@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t('site_title') %></title>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Serif&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="header">
+      <div class="inner">
+        <div class="logo">
+          <a href="#"><%= image_tag 'logo.png', :title => t('site_title'), :alt => t('site_title'), :width => '134px', :height => '79px' %></a>
+        </div>
+
+        <div class="city">
+          <a href="#">Томск</a>
+        </div>
+
+        <div class="search">
+          <form action="#">
+            <input type="text" class='input' placeholder='Поиск по городу' />
+            <input type="submit" class='submit' value='<%= t('find') %>'/>
+          </form>
+          <div class="example">
+            <p>Например: <a href='#'>Где пообедать в Кировском районе?</a></p>
+          </div>
+        </div>
+
+        <div class="extralink">
+          <ul>
+            <li>
+              <a href="#"><%= t('add_organization') %></a>
+            </li>
+            <li>
+              <a href="#"><%= t('add_event') %></a>
+            </li>
+            <li class='last'>
+              <a href="#"><%= t('sign_in') %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="main_category">
+      <div class="inner">
+        <div class="column">
+          <h2><a href='#'><%= t('organizations') %></a></h2>
+        </div>
+        <div class="column">
+          <h2><a href='#'><%= t('affiche') %></a></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="main_wrapper">
+      <div class="inner">
+        <div class="column">
+          <div class="column_wrapper left">
+            <div class="items">
+              <ul>
+                <% 8.times do %>
+                  <li>
+                    <%= render :file => 'application/item' %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column_wrapper right">
+            <div class="items">
+              <ul>
+                <% 8.times do %>
+                  <li>
+                    <%= render :file => 'application/item' %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="inner">
+        <div class="bottom_navigation">
+          <ul>
+            <li class='left'>
+              <h5><a href='#'><%= t('organizations') %></a></h5>
+              <ul>
+                <li><a href='#'>Вкусно</a></li>
+                <li><a href='#'>Весело</a></li>
+                <li><a href='#'>Интересно</a></li>
+                <li><a href='#'>Спортивно</a></li>
+                <li><a href='#'>Красиво</a></li>
+                <li><a href='#'>Автомобильно</a></li>
+                <li><a href='#'>Важно</a></li>
+                <li><a href='#'>Хозяйственно</a></li>
+              </ul>
+            </li>
+            <li class='right'>
+              <h5><a href='#'><%= t('affiche') %></a></h5>
+              <ul>
+                <li><a href="#">Кино</a></li>
+                <li><a href="#">Концерты</a></li>
+                <li><a href="#">Выставки</a></li>
+                <li><a href="#">Спектакли</a></li>
+                <li><a href="#">Выставки</a></li>
+                <li><a href="#">Вечеринки</a></li>
+                <li><a href="#">Конкурсы</a></li>
+                <li><a href="#">Спорт</a></li>
+                <li><a href="#">Прочие</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="our_social_link">
+          <h5><%= t('our_social_link') %></h5>
+          <ul>
+            <li class='vk'><a href='http://vk.com/znaigorod'>vk.com/znaigorod</a></li>
+            <li class='twitter'><a href='http://twitter.com/znaigorod'>twitter.com/znaigorod</a></li>
+            <li class='email'><a href='mailto:team@znaigorod.ru'>team@znaigorod.ru</a></li>
+            <li class='phone'><a href='#'>+7 (3822) 11-11-11</a></li>
+          </ul>
+        </div>
+        <div class="twitter_timeline">
+          <h5><%= t('twitter_timeline') %></h5>
+          <script>
+            new TWTR.Widget({
+              version: 2,
+              type: 'profile',
+              rpp: 4,
+              interval: 30000,
+              width: 'auto',
+              height: 'auto',
+              theme: {
+                shell: {
+                  background: 'transparent',
+                },
+                tweets: {
+                  background: 'transparent'
+                }
+              },
+              features: {
+                scrollbar: false,
+                loop: false,
+                live: false,
+                behavior: 'all',
+                avatars: false
+              }
+            }).render().setUser('znaigorod').start();
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
