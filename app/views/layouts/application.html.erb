@@ -2,133 +2,141 @@
 <html>
   <head>
     <title><%= t('site_title') %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic|PT+Serif&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="header">
-      <div class="inner">
-        <div class="logo">
-          <a href="#"><%= image_tag 'logo.png', :title => t('site_title'), :alt => t('site_title'), :width => '134px', :height => '79px' %></a>
-        </div>
+    <div class="container header">
+      <div class="row">
 
-        <div class="city">
-          <a href="#">Томск</a>
-        </div>
-
-        <div class="search">
-          <form action="#">
-            <input type="text" class='input' placeholder='Поиск по городу' />
-            <input type="submit" class='submit' value='<%= t('find') %>'/>
-          </form>
-          <div class="example">
-            <p>Например: <a href='#'>Где пообедать в Кировском районе?</a></p>
-          </div>
-        </div>
-
-        <div class="extralink">
-          <ul>
-            <li>
-              <a href="#"><%= t('add_organization') %></a>
-            </li>
-            <li>
-              <a href="#"><%= t('add_event') %></a>
-            </li>
-            <li class='last'>
-              <a href="#"><%= t('sign_in') %></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="main_category">
-      <div class="inner">
-        <div class="column">
-          <h2><a href='#'><%= t('organizations') %></a></h2>
-        </div>
-        <div class="column">
-          <h2><a href='#'><%= t('affiche') %></a></h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="main_wrapper">
-      <div class="inner">
-        <div class="column">
-          <div class="column_wrapper left">
-            <div class="items">
-              <ul>
-                <% 8.times do %>
-                  <li>
-                    <%= render :file => 'application/item' %>
-                  </li>
-                <% end %>
-              </ul>
+        <div class="three columns">
+          <div class="row">
+            <div class="logo seven columns">
+              <a href="http://znaigorod.ru/"><%= image_tag 'logo.png', :title => t('site_title'), :alt => t('site_title'), :width => '134px', :height => '79px' %></a>
+            </div>
+            <div class="city three end columns">
+              <a href="#" class='dashed_light_blue'>Томск</a>
             </div>
           </div>
         </div>
-        <div class="column">
-          <div class="column_wrapper right">
-            <div class="items">
-              <ul>
-                <% 8.times do %>
-                  <li>
-                    <%= render :file => 'application/item' %>
-                  </li>
-                <% end %>
-              </ul>
+
+        <div class="four columns push-five">
+          <div class="extralink row">
+            <ul class='block-grid three-up'>
+              <li>
+                <a href="#" class='dashed_light_blue'><%= raw t('add_organization') %></a>
+              </li>
+              <li>
+                <a href="#" class='dashed_light_blue'><%= raw t('add_event') %></a>
+              </li>
+              <li class='last'>
+                <a href="#" class='dashed_white'><%= raw t('sign_in') %></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="five columns pull-four">
+          <div class="search row">
+            <div class="twelve columns">
+              <form action="#" class='row'>
+                <div class='ten columns'>
+                  <input type="text" class='input' placeholder='Поиск по городу' />
+                </div>
+                <div class='two columns'>
+                  <input type="submit" class='submit row' value='<%= t('find') %>'/>
+                </div>
+              </form>
+            </div>
+            <div class="example row show-on-desktops">
+              <p>Например: <a href='#' class='dashed_light_gray'>Где пообедать в Кировском районе?</a></p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      <div class="inner">
-        <div class="bottom_navigation">
-          <ul>
-            <li class='left'>
-              <h5><a href='#'><%= t('organizations') %></a></h5>
-              <ul>
-                <li><a href='#'>Вкусно</a></li>
-                <li><a href='#'>Весело</a></li>
-                <li><a href='#'>Интересно</a></li>
-                <li><a href='#'>Спортивно</a></li>
-                <li><a href='#'>Красиво</a></li>
-                <li><a href='#'>Автомобильно</a></li>
-                <li><a href='#'>Важно</a></li>
-                <li><a href='#'>Хозяйственно</a></li>
-              </ul>
-            </li>
-            <li class='right'>
-              <h5><a href='#'><%= t('affiche') %></a></h5>
-              <ul>
-                <li><a href="#">Кино</a></li>
-                <li><a href="#">Концерты</a></li>
-                <li><a href="#">Выставки</a></li>
-                <li><a href="#">Спектакли</a></li>
-                <li><a href="#">Выставки</a></li>
-                <li><a href="#">Вечеринки</a></li>
-                <li><a href="#">Конкурсы</a></li>
-                <li><a href="#">Спорт</a></li>
-                <li><a href="#">Прочие</a></li>
-              </ul>
-            </li>
-          </ul>
+    <div class="container main_wrapper">
+      <div class="row">
+        <div class="six columns">
+          <h2 class='main_category'><a href='#' class='dashed_deep_blue'><%= t('organizations') %></a></h2>
+          <div class="items">
+            <ul>
+              <% 8.times do %>
+                <li>
+                  <%= render :file => 'application/item' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-        <div class="our_social_link">
+        <div class="six columns">
+          <h2 class='main_category'><a href='#' class='dashed_deep_blue'><%= t('affiche') %></a></h2>
+          <div class="items">
+            <ul>
+              <% 8.times do %>
+                <li>
+                  <%= render :file => 'application/item' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container footer">
+      <div class="inner row">
+        <div class="five columns">
+          <div class="bottom_navigation row">
+            <div class="six columns">
+              <h5><a href='#' class='dashed_light_blue'><%= t('organizations') %></a></h5>
+              <ul class='block-grid two-up'>
+                <li><a href='#' class='solid_white'>Вкусно</a></li>
+                <li><a href='#' class='solid_white'>Весело</a></li>
+                <li><a href='#' class='solid_white'>Интересно</a></li>
+                <li><a href='#' class='solid_white'>Спортивно</a></li>
+                <li><a href='#' class='solid_white'>Красиво</a></li>
+                <li><a href='#' class='solid_white'>Автомобильно</a></li>
+                <li><a href='#' class='solid_white'>Важно</a></li>
+                <li><a href='#' class='solid_white'>Хозяйственно</a></li>
+              </ul>
+            </div>
+            <div class="six columns">
+              <h5><a href='#' class='dashed_light_blue'><%= t('affiche') %></a></h5>
+              <ul class='block-grid two-up'>
+                <li><a href='#' class='solid_white'>Кино</a></li>
+                <li><a href='#' class='solid_white'>Концерты</a></li>
+                <li><a href='#' class='solid_white'>Выставки</a></li>
+                <li><a href='#' class='solid_white'>Спектакли</a></li>
+                <li><a href='#' class='solid_white'>Выставки</a></li>
+                <li><a href='#' class='solid_white'>Вечеринки</a></li>
+                <li><a href='#' class='solid_white'>Конкурсы</a></li>
+                <li><a href='#' class='solid_white'>Спорт</a></li>
+                <li><a href='#' class='solid_white'>Прочие</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row logo">
+            <a href="http://znaigorod.ru/"><%= image_tag 'logo.png', :title => t('site_title'), :alt => t('site_title'), :width => '134px', :height => '79px' %></a>
+          </div>
+        </div>
+
+        <div class="three columns our_social_link">
           <h5><%= t('our_social_link') %></h5>
           <ul>
-            <li class='vk'><a href='http://vk.com/znaigorod'>vk.com/znaigorod</a></li>
-            <li class='twitter'><a href='http://twitter.com/znaigorod'>twitter.com/znaigorod</a></li>
-            <li class='email'><a href='mailto:team@znaigorod.ru'>team@znaigorod.ru</a></li>
-            <li class='phone'><a href='#'>+7 (3822) 11-11-11</a></li>
+            <li class='vk'><a href='http://vk.com/znaigorod' class='solid_white'>vk.com/znaigorod</a></li>
+            <li class='twitter'><a href='http://twitter.com/znaigorod' class='solid_white'>twitter.com/znaigorod</a></li>
+            <li class='email'><a href='mailto:team@znaigorod.ru' class='solid_white'>team@znaigorod.ru</a></li>
+            <li class='phone'><a href='#' class='solid_white'>+7 (3822) 11-11-11</a></li>
           </ul>
         </div>
-        <div class="twitter_timeline">
+
+        <div class="four columns twitter_timeline">
           <h5><%= t('twitter_timeline') %></h5>
           <script>
             new TWTR.Widget({
@@ -158,5 +166,6 @@
         </div>
       </div>
     </div>
+
   </body>
 </html>

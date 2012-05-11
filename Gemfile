@@ -13,6 +13,7 @@ group :assets do
   gem 'sass-rails'
   gem 'therubyracer', :platform => :ruby
   gem 'uglifier'
+  gem 'zurb-foundation'
 end
 
 group :development do

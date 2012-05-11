@@ -1,10 +1,12 @@
 ru:
-  add_event: Предложить событие
-  add_organization: Добавить заведение
+  #add_event: Предложить событие
+  #add_organization: Добавить заведение
+  add_event: "&plus;&nbsp;событие"
+  add_organization: "&plus;&nbsp;заведение"
   affiche: Афиша
   find: Найти
   organizations: Заведения
   our_social_link: Контакты
-  sign_in: Вход
+  sign_in: "Вход в&nbsp;кабинет"
   site_title: ЗнайГород
   twitter_timeline: Эфир

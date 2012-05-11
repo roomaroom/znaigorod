@@ -1,0 +1,312 @@
+html, body
+  font-family: 'PT Sans', Verdana, Arial, sans-serif
+  font-weight: normal
+
+body
+  background: image_url('bg.png') repeat
+
+  h1, h2, h3, h4, h5, h6
+    font-weight: normal
+
+  a
+    display: inline
+    outline: none
+    text-decoration: none
+
+    &.dashed_light_blue
+      background: image_url('dashed_light_blue.png') repeat-x left 1.2em
+      color: #9ccfff
+
+    &.dashed_white
+      background: image_url('dashed_white.png') repeat-x left 1.2em
+      color: #fff
+
+    &.dashed_light_gray
+      background: image_url('dashed_light_gray.png') repeat-x left 1.2em
+      color: #e7edf2
+
+    &.dashed_deep_blue
+      background: image_url('dashed_deep_blue.png') repeat-x left 1.2em
+      color: #0d88bc
+
+    &.solid_dark_gray
+      background: image_url('solid_dark_gray.png') repeat-x left 1.2em
+      color: #151a1d
+
+    &.solid_light_blue
+      background: image_url('solid_light_blue.png') repeat-x left 1.2em
+      color: red
+
+    &.solid_white
+      background: image_url('solid_white.png') repeat-x left 1.2em
+      color: #fff
+
+    &:hover
+      background: none
+
+.row
+  max-width: 100%
+
+.header
+  background: #435a6d
+  @include background-image(linear-gradient(#4d6676, #435a6d, #3a4a5b))
+  border-bottom: 1px solid #fff
+  min-height: 82px
+  padding-bottom: 5px
+
+  .logo
+    float: left
+    margin: 6px 0 0 0
+
+    a
+      img
+        display: block
+
+  .city
+    float: left
+    margin: 63px 0 0 13px
+
+  .search
+    float: left
+    margin: 28px 0 0 0
+
+    form
+      +clearfix
+      padding: 2px
+      margin: 0
+
+      .input
+        +border-radius(3px)
+        background: #fff
+        border: none
+        color: #969ca2
+        float: left
+        font-size: 15px
+        height: 29px
+        margin: 0 0 6px 0
+        padding: 0 1%
+        width: 98%
+
+      .submit
+        background: #ebebeb
+        +background-image(linear-gradient(#fff, #d1d1d1))
+        +single-box-shadow(#3e5062, 0, 0, 2px)
+        +border-radius(3px)
+        border: none
+        color: #334049
+        float: left
+        font-size: 14px
+        line-height: 31px
+        height: 31px
+
+        &:hover
+          +background-image(linear-gradient(#fff, #b8b8b8))
+
+        &:active
+          +background-image(linear-gradient(#d1d1d1, #fff))
+          position: relative
+          top: 1px
+
+    .example
+      p
+        color: #95a6b5
+        font-size: 11px
+        line-height: 12px
+        margin: 0 0 0 1%
+
+        a
+          border-color: #e7edf2
+          color: #e7edf2
+          font-size: 12px
+          margin: -3px 0 0 6px
+          padding: 0 0 1px 0
+
+          &:hover
+            border-color: transparent
+
+  .extralink
+    float: right
+    font-size: 13px
+    margin: 37px 0 0 0
+
+    ul
+      margin: 0
+
+      li
+        margin: 0
+        text-align: center
+
+.main_wrapper
+  padding-bottom: 30px
+
+  .main_category
+    margin-top: 23px
+    height: 52px
+    font-size: 2.3em
+    text-align: center
+
+  h3
+    font-size: 1.6em
+
+  .items
+    background: hsla(0, 0, 100%, 0.7)
+    border: 1px solid #fff
+    padding: 27px 22px 0
+
+  .subcategory_item
+    +clearfix
+
+    li
+      float: left
+      margin: 0 1% 0 0
+      width: 19.3%
+
+    .last
+      margin: 0
+
+    .opened
+      background: #fff
+      border: 1px dashed #e2e8ec
+      width: 59.4%
+
+      .description
+        display: block
+
+  .item_wrapper
+    +clearfix
+    border: 1px solid transparent
+
+    .mini_poster
+      float: left
+
+      img
+        display: block
+        padding: 5px
+
+    .description
+      +clearfix
+      display: none
+      padding: 5px 5px 5px 0
+
+.footer
+  +clearfix
+  background: #404d59
+  @include background-image(linear-gradient(#424f5b, #404d59, #38444e))
+  border-top: 1px solid #fff
+  padding-top: 30px
+  padding-bottom: 10px
+
+  h5
+    +clearfix
+    color: #9ccfff
+    font-size: 18px
+    margin: 0 0 12px 0
+
+  .logo
+    a
+      +clearfix
+
+      img
+        display: block
+
+  .our_social_link
+    li
+      background: image_url('social_links.png') no-repeat
+      height: 28px
+      padding: 10px 0 0 50px
+      margin: 0 0 6px 0
+
+    .vk
+      background-position: 0 0
+
+    .twitter
+      background-position: 0 -38px
+
+    .email
+      background-position: 0 -76px
+
+    .phone
+      background-position: 0 -114px
+
+  .twitter_timeline
+    float: right
+
+    #twtr-widget-1
+      .twtr-doc
+        .twtr-hd
+          display: none
+
+        .twtr-bd
+          .twtr-timeline
+            .twtr-tweets
+
+              .twtr-reference-tweet
+                display: none
+
+              .twtr-tweet
+                border: none
+
+                .twtr-tweet-wrap
+                  padding: 0 0 15px 0
+
+                  .twtr-avatar
+                    display: none
+
+                  .twtr-tweet-text
+                    p
+                      font-size: 12px
+                      line-height: 16px
+
+                      .twtr-user
+                      .tweet-url
+                      .username
+                      .hashtag
+
+                      a
+                        background: none
+                        border: none
+                        text-decoration: none
+                        vertical-align: baseline
+
+                        &:hover
+                          text-decoration: none !important
+
+                      em
+                        .twtr-timestamp
+                        .twtr-reply
+                        .twtr-rt
+                        .twtr-fav
+
+              #tweet-id-4
+                .twtr-tweet-text
+                  p
+                    color: #ffffff !important
+                    a
+                      color: #9ccfff !important
+
+              #tweet-id-3
+                .twtr-tweet-text
+                  p
+                    color: #cdd4db !important
+
+                    a
+                      color: #add7ff !important
+
+              #tweet-id-2
+                .twtr-tweet-text
+                  p
+                    color: #8c99a5 !important
+
+                    a
+                      color: #bedfff !important
+
+              #tweet-id-1
+                .twtr-tweet-text
+                  p
+                    color: #788897 !important
+
+                    a
+                      color: #cfe8ff !important
+
+        .twtr-ft
+          display: none
