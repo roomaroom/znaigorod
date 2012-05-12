@@ -15,5 +15,4 @@
 //= require foundation
 //= require twitter
 //= require collapser
-//= require font_resizer
 //= require main

@@ -148,45 +148,90 @@ body
   h3
     font-size: 1.6em
 
-  .items
-    background: hsla(0, 0, 100%, 0.7)
-    border: 1px solid #fff
-    padding: 27px 22px 0
+  .today_in_the_city
+    h4
+      font-size: 1.1em
+      text-align: center
+      margin: 0 0 10px 0
 
-  .subcategory_item
+    ul
+      li
+        +clearfix
+        background: image_url('solid_light_blue.png') repeat-x bottom
+        padding: 3px 0
+
+        .time
+          float: left
+          font-size: 0.9em
+          margin: 0 10px 0 0
+
+        a
+          float: right
+          font-size: 0.9em
+          text-align: right
+
+        .description
+          clear: both
+          font-size: 0.8em
+          text-align: right
+
+  .twitter_timeline
+    h4
+      font-size: 1.1em
+      text-align: center
+      margin: 0 0 10px 0
+
+  .affiche
     +clearfix
+    $height: 350px
+    $width: round($height*1.61803399)
+    height: $height
+    width: $width+$height
+    margin: 0 auto
 
-    li
-      float: left
-      margin: 0 1% 0 0
-      width: 19.3%
-
-    .last
-      margin: 0
-
-    .opened
-      background: #fff
-      border: 1px dashed #e2e8ec
-      width: 59.4%
-
-      .description
-        display: block
-
-  .item_wrapper
-    +clearfix
-    border: 1px solid transparent
-
-    .mini_poster
+    .poster
       float: left
 
-      img
+      a
         display: block
-        padding: 5px
+        height: $height
+        width: $width
 
-    .description
+        img
+          display: block
+          height: $height
+          width: $width
+
+    .previews
       +clearfix
-      display: none
-      padding: 5px 5px 5px 0
+      display: block
+      height: $height
+      margin: 0
+      padding: 0
+      width: $width - $height
+
+      li
+        height: round($height/4)
+        margin: 0
+        padding: 0
+
+        a
+          img
+            display: block
+            height: round($height/4)
+            width: $width - $height
+
+  .offer
+    margin: 0 0 15px 0
+
+    a
+      +clearfix
+      img
+        float: left
+        margin: 0 15px 0 0
+
+      span
+
 
 .footer
   +clearfix
@@ -231,82 +276,83 @@ body
   .twitter_timeline
     float: right
 
-    #twtr-widget-1
-      .twtr-doc
-        .twtr-hd
-          display: none
+.twtr-widget-profile
+  .twtr-doc
+    .twtr-hd
+      display: none
 
-        .twtr-bd
-          .twtr-timeline
-            .twtr-tweets
+    .twtr-bd
+      .twtr-timeline
+        .twtr-tweets
 
-              .twtr-reference-tweet
+          .twtr-reference-tweet
+            display: none
+
+          .twtr-tweet
+            border: none
+
+            .twtr-tweet-wrap
+              padding: 0 0 15px 0
+
+              .twtr-avatar
                 display: none
 
-              .twtr-tweet
-                border: none
+              .twtr-tweet-text
+                p
+                  font-size: 12px
+                  line-height: 16px
 
-                .twtr-tweet-wrap
-                  padding: 0 0 15px 0
+                  .twtr-user
+                  .tweet-url
+                  .username
+                  .hashtag
 
-                  .twtr-avatar
-                    display: none
+                  a
+                    background: none
+                    border: none
+                    text-decoration: none
+                    vertical-align: baseline
 
-                  .twtr-tweet-text
-                    p
-                      font-size: 12px
-                      line-height: 16px
+                    &:hover
+                      text-decoration: none !important
 
-                      .twtr-user
-                      .tweet-url
-                      .username
-                      .hashtag
+                  em
+                    .twtr-timestamp
+                    .twtr-reply
+                    .twtr-rt
+                    .twtr-fav
 
-                      a
-                        background: none
-                        border: none
-                        text-decoration: none
-                        vertical-align: baseline
+        .asd
+          #tweet-id-4
+            .twtr-tweet-text
+              p
+                color: #ffffff !important
+                a
+                  color: #9ccfff !important
 
-                        &:hover
-                          text-decoration: none !important
+          #tweet-id-3
+            .twtr-tweet-text
+              p
+                color: #cdd4db !important
 
-                      em
-                        .twtr-timestamp
-                        .twtr-reply
-                        .twtr-rt
-                        .twtr-fav
+                a
+                  color: #add7ff !important
 
-              #tweet-id-4
-                .twtr-tweet-text
-                  p
-                    color: #ffffff !important
-                    a
-                      color: #9ccfff !important
+          #tweet-id-2
+            .twtr-tweet-text
+              p
+                color: #8c99a5 !important
 
-              #tweet-id-3
-                .twtr-tweet-text
-                  p
-                    color: #cdd4db !important
+                a
+                  color: #bedfff !important
 
-                    a
-                      color: #add7ff !important
+          #tweet-id-1
+            .twtr-tweet-text
+              p
+                color: #788897 !important
 
-              #tweet-id-2
-                .twtr-tweet-text
-                  p
-                    color: #8c99a5 !important
+                a
+                  color: #cfe8ff !important
 
-                    a
-                      color: #bedfff !important
-
-              #tweet-id-1
-                .twtr-tweet-text
-                  p
-                    color: #788897 !important
-
-                    a
-                      color: #cfe8ff !important
-
-        .twtr-ft
-          display: none
+    .twtr-ft
+      display: none
