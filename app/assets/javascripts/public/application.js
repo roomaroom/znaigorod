@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require twitter
-//= require collapser
-//= require main
+//= require public/twitter
+//= require public/main

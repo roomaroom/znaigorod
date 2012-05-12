@@ -1,0 +1,13 @@
+app:
+  secret:               secret
+
+solr:
+  url:                  http://localhost:8982/solr
+
+2gis:
+  api_key:              api_key
+
+hoptoad:
+  api_key:              api_key
+  host:                 host
+

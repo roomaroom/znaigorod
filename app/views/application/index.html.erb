@@ -1,0 +1,27 @@
+<div class="results">
+  <ul>
+    <% if collection.any? %>
+      <% collection.each do |item| %>
+        <li>
+          <%= image_tag 'cafe.png', :height => '100', :width => '100' %>
+          <%= link_to item,  item, :class => 'title' %>
+          <%= content_tag :div, item.address, :class => 'address' %>
+          <%= content_tag :div, item.phone, :class => 'phone' %>
+          <ul class="feature">
+            <% item.feature.split(', ').each do |feature| %>
+              <li class='<%= ActiveSupport::Inflector.transliterate(feature).gsub(/\s/, '_').underscore %>' title='<%= feature %>'><%= feature %></li>
+            <% end %>
+          </ul>
+          <%= content_tag :div, item.category, :class => 'category' %>
+        </li>
+      <% end %>
+    <% else %>
+      <li class="empty">Ничего не найдено ;(</li>
+    <% end %>
+  </ul>
+  <%= paginate collection %>
+</div>
+
+<div class="filter_block">
+  <%= render :partial => 'commons/facets' %>
+</div>

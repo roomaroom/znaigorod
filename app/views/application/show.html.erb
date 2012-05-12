@@ -1,0 +1,28 @@
+<%= show_for resource do |r| %>
+  <%= content_tag :h1, resource.title %>
+  <%= r.attributes :category,
+    :description,
+    :offer,
+    :feature,
+    :cuisine,
+    :payment,
+    :phone,
+    :email,
+    :site,
+    :created_at,
+    :updated_at
+  %>
+
+  <%= r.association :address %>
+
+  <%= r.association :schedules do |schedule| %>
+    <li><%= schedule %></li>
+  <% end %>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span12 btn-group">
+    <%= link_to "<i class='icon-arrow-left'></i>&nbsp;К списку".html_safe, collection_path, :class => 'btn' %>
+    <%= link_to "<i class='icon-pencil'></i>&nbsp;Редактировать".html_safe, edit_resource_path, :class => 'btn' if controller_path.match('manage') %>
+  </div>
+</div>
