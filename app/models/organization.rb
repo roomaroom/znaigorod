@@ -1,4 +1,17 @@
 class Organization < ActiveRecord::Base
+  attr_accessible :address_attributes,
+                  :category,
+                  :cuisine,
+                  :description,
+                  :email,
+                  :feature,
+                  :offer,
+                  :payment,
+                  :phone,
+                  :schedules_attributes,
+                  :site,
+                  :title
+
   has_many :schedules, :dependent => :destroy
   has_many :halls, :dependent => :destroy
 

@@ -1,4 +1,6 @@
 class OrganizationSearch < Search
+  attr_accessible :keywords
+
   column :keywords,       :text
 end
 

@@ -1,4 +1,6 @@
 class Address < ActiveRecord::Base
+  attr_accessible :house, :latitude, :longitude, :street
+
   belongs_to :organization
 
   def to_s
