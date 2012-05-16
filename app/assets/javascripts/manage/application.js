@@ -12,9 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery_nested_form
 //= require twitter/bootstrap
-//= require public/filter_resizer
-//= require public/tablesorter
-//= require public/trailer_resizer
-//= require public/twitter
-//= require public/main
+//= require ./geocoder
+//= require ./main

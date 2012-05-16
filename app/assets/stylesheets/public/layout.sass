@@ -1,395 +1,707 @@
-body
-  background: image_url('bg.png') repeat
-  font-family: 'PT Sans', sans-serif
+html, body
+  font-family: 'PT Sans', Verdana, Arial, sans-serif
   font-weight: normal
 
+body
+  background: image_url('bg.png') repeat
+  color: #334049
+  padding: 0
+  max-width: 1280px
+  margin: 0 auto
+
+  h1, h2, h3, h4, h5, h6
+    font-weight: normal
+
   a
-    +inline-block
-    border-bottom: 1px dashed #0d88bc
-    color: #0d88bc
+    display: inline
     outline: none
-    padding: 0 0 1px 0
     text-decoration: none
 
-    &:hover
-      background: none !important
-      border-color: transparent !important
-      color: #084f6d
-
-  .inner
-    +clearfix
-    +min-width(1000px)
-    margin: 0 auto
-    max-width: 1230px
-
-  .header
-    +clearfix
-    background: #455a6c image_url('header_bg.png') repeat-x
-    border-bottom: 1px solid #fff
-    height: 87px
-
-    a
+    &.dashed_light_blue
+      background: image_url('dashed_light_blue.png') repeat-x left 1.2em
       color: #9ccfff
 
-    .logo
+    &.dashed_white
+      background: image_url('dashed_white.png') repeat-x left 1.2em
+      color: #fff
+
+    &.dashed_light_gray
+      background: image_url('dashed_light_gray.png') repeat-x left 1.2em
+      color: #e7edf2
+
+    &.dashed_dark_gray
+      background: image_url('dashed_dark_gray.png') repeat-x left 1.2em
+      color: #4c5254
+
+    &.dashed_deep_blue
+      background: image_url('dashed_deep_blue.png') repeat-x left 1.2em
+      color: #0d88bc
+
+    &.solid_dark_gray
+      background: image_url('solid_dark_gray.png') repeat-x left 1.2em
+      color: #151a1d
+
+    &.solid_light_blue
+      background: image_url('solid_light_blue.png') repeat-x left 1.2em
+      color: #0d88bc
+
+    &.solid_white
+      background: image_url('solid_white.png') repeat-x left 1.2em
+      color: #fff
+
+    &:hover
+      background: none
+      text-decoration: none
+
+  table
+    background: #f1f3f3
+
+    &.sortable
+      .theader
+        background: #fff
+
+        .dashed_light_blue
+          +inline-block
+          color: #0d88bc
+          font-weight: normal
+
+        &:hover
+          cursor: pointer
+          background: none
+
+      .time, .amount
+        width: 10%
+
+      .cinema, .hall
+        width: 40%
+
+      th
+        &:hover
+          background: #fff !important
+
+      .sort_asc, .sort_desc
+        a
+          +border-radius(3px)
+          background: #61b1e2
+          @include background-image(linear-gradient(#61b1e2, #1c7ccd))
+          color: #fff !important
+          padding: 1px 15px
+
+      .sort_asc
+        a
+          &:after
+            content: '\25B4'
+            margin: 0 0 0 10px
+
+      .sort_desc
+        a
+          &:after
+            content: '\25BE'
+            margin: 0 0 0 10px
+
+.row
+  max-width: 100%
+
+.header
+  background: #435a6d
+  @include background-image(linear-gradient(#4d6676, #435a6d, #3a4a5b))
+  border-bottom: 1px solid #fff
+  min-height: 82px
+  padding-bottom: 5px
+
+  .logo
+    float: left
+    margin: 6px 0 0 0
+
+    a
+      img
+        display: block
+
+  .city
+    float: left
+    margin: 63px 0 0 13px
+
+  .search
+    float: left
+    margin: 28px 0 0 0
+
+    form
+      +clearfix
+      padding: 2px
+      margin: 0
+
+      .input
+        +border-radius(3px)
+        background: #fff
+        border: none
+        color: #969ca2
+        float: left
+        font-size: 15px
+        height: 29px
+        margin: 0 0 6px 0
+        padding: 0 1%
+        width: 98%
+
+      .submit
+        background: #ebebeb
+        +background-image(linear-gradient(#fff, #d1d1d1))
+        +single-box-shadow(#3e5062, 0, 0, 2px)
+        +border-radius(3px)
+        border: none
+        color: #334049
+        float: left
+        font-size: 14px
+        height: 31px
+        line-height: 25px
+        width: 100%
+
+        &:hover
+          +background-image(linear-gradient(#fff, #b8b8b8))
+
+        &:active
+          +background-image(linear-gradient(#d1d1d1, #fff))
+          position: relative
+          top: 1px
+
+    .example
+      p
+        color: #95a6b5
+        font-size: 11px
+        line-height: 12px
+        margin: 0 0 0 1%
+
+        a
+          border-color: #e7edf2
+          color: #e7edf2
+          font-size: 12px
+          margin: -3px 0 0 6px
+          padding: 0 0 1px 0
+
+          &:hover
+            border-color: transparent
+
+  .extralink
+    float: right
+    font-size: 13px
+    margin: 37px 0 0 0
+
+    ul
+      margin: 0
+
+      li
+        margin: 0
+        text-align: center
+
+.main_wrapper
+  padding-bottom: 30px
+
+  .main_category
+    margin-top: 23px
+    height: 52px
+    font-size: 2.3em
+    text-align: center
+
+  .breadcrumbs
+    +clearfix
+    list-style: none
+    line-height: 18px
+    margin: 0
+
+    li
+      display: inline
+
+      span
+        color: #0d88bc
+        margin: 0 10px
+
+  .affiche_show, .affiche_index
+    background: rgba(255, 255, 255, 0.7)
+    border: 1px solid #fcfcfc
+    padding: 25px 35px 0
+    width: auto
+
+  .filters
+    fieldset
+      +border-radius(3px)
+      border: 1px solid #e2e6e7
+      padding: 15px 17px
+
+    legend
+      background: #fbfbfb
+      border: none
+      color: #a0a6a8
       float: left
-      margin: 6px 0 0 0
+      font-size: 0.7em
+      margin: 0 0 -34px 0
+      padding: 0 5px
+      position: relative
+      text-transform: uppercase
+      top: -34px
+      width: auto
+
+    h6
+      font-size: 1em
+      text-transform: none
+      margin: 0 0 7px 0
+
+    ul
+      +clearfix
+      list-style: none
+      margin: 0
+
+      li
+        float: left
+
+    .filter
+      +clearfix
+      margin: 0 0 30px 0
+
+      .wrapper
+        +clearfix
+        background: #fff
+        border: 1px dashed #dce3ea
+
+    .by_date
+      height: 70px
+      position: relative
+      width: 100%
+
+      .wrapper
+        height: 68px
+
+      .second_wrapper
+        position: relative
+        width: 2000px
+
+      .month
+        float: left
+        border-right: 1px solid #dce3ea
+
+        .month_title
+          color: #0d88bc
+          margin: 0 0 0 9px
+
+        ul
+          li
+            padding: 7px 9px
+            text-align: center
+
+            .day
+              color: #47a0c6
+              display: block
+
+              &.holiday
+                color: #e97248
+
+            .dow
+              color: #b1b7bd
+              display: block
+
+    .by_time
+      .wrapper
+        overflow: visible
+
+        margin: 0 0 20px 0
+        ul
+          li
+            color: #0d88bc
+            padding: 10px 9px 7px
+            width: 24px
+
+            .minute
+              +inline-block
+              color: #96becf
+              font-size: 0.8em
+              position: relative
+              top: -7px
+
+        .pod
+          position: relative
+          margin: -18px 0 0 0
+          top: 22px
+
+          ul
+            li
+              +border-radius(0 0 10px 10px)
+              border: 1px solid #e2e6e7
+              border-top: none
+              height: 12px
+              margin: 0 1px 5px
+              padding: 0
+              text-align: center
+              width: 246px
+
+              div
+                +inline-block
+                background: #fbfbfb
+                padding: 0 10px
+
+              a
+                font-size: 0.9em
+
+    .by_category, .by_tag
+      .wrapper
+        background: none
+        border: none
+
+        ul
+          li
+            padding: 2px
+            margin: 0 10px 0 0
+
+            a
+              +background-image(linear-gradient(#fefefe, #e3e3e3))
+              +border-radius(5px)
+              +single-box-shadow(#d1d1d1, 0, 2px, 3px)
+              border: 1px solid #a9acae
+              color: #4a5966
+              display: block
+              height: 27px
+              line-height: 27px
+              margin: 0
+              padding: 0 18px
+              text-transform: capitalize
+
+              &:hover
+                +background-image(linear-gradient(#fefefe, #efefef))
+
+              &.active, &:active
+                +background-image(linear-gradient(#0b79a7, #16aae8))
+                +single-box-shadow(#d1d1d1, 0, -2px, 3px)
+                border-color: #0b739f
+                color: #fff
+
+                &:after
+                  content: '\2715'
+                  font-size: 0.8em
+                  margin: 1px 0 0 4px
+                  position: absolute
+
+    .by_tag
+      margin: 0
+
+      .wrapper
+        ul
+          li
+            a
+              height: 21px
+              line-height: 21px
+              text-transform: lowercase
+
+    .by_amount
+      +clearfix
+
+      .wrapper
+        ul
+          li
+            padding: 7px 9px
+
+  .duration
+    color: #8c969d
+    font-size: 0.7em
+    font-style: italic
+    margin: 0 0 0 15px
+
+  .list
+    margin: 25px 0 0
+
+    ul
+      list-style: none
+      margin: 0
+
+    .item
+      background: #fff
+      margin: 0 0 30px 0
+      padding: 17px 19px
+
+      h3
+        margin: 0 0 15px 0
+
+        a
+        .category
+          +border-radius(3px)
+          background: #abbcc5
+          border: 1px solid #b9c7cf
+          color: #fff
+          font-size: 0.6em
+          margin: 0 10px 0 5px
+          padding: 0px 4px
+          position: relative
+          text-transform: lowercase
+          top: -11px
+
+      .poster
+        img
+          display: block
+          margin: 0 auto
+
+      table
+        margin: 0
+
+  .main_info
+    h1
+    h2
+      color: #828a8f
+      font-size: 1.1em
+      font-style: italic
+
+    h4
+      font-size: 2.1em
+      margin: 30px 0
+
+    .trailer
+      height: auto !important
+      margin: 30px 0
+
+  .subcategories
+    margin: 0
+
+  h3
+    font-size: 1.6em
+
+  .today_in_the_city
+    h4
+      font-size: 1.1em
+      text-align: center
+      margin: 0 0 10px 0
+
+    ul
+      margin: 0
+
+      li
+        +clearfix
+        background: image_url('solid_light_blue.png') repeat-x bottom
+        padding: 3px 0
+
+        .time
+          float: left
+          font-size: 0.9em
+          margin: 0 10px 0 0
+
+        a
+          float: right
+          font-size: 0.9em
+          text-align: right
+
+        .description
+          clear: both
+          font-size: 0.8em
+          text-align: right
+
+  .twitter_timeline
+    h4
+      font-size: 1.1em
+      text-align: center
+      margin: 0 0 10px 0
+
+  .affiche
+    +single-box-shadow
+    +border-radius
+    +clearfix
+    $height: 350px
+    $width: round($height*1.61803399)
+    height: $height
+    width: 2 * $width - $height
+    margin: 0 auto
+    $border-image-color: #595959
+
+    .poster
+      float: left
 
       a
-        border: none
+        +clearfix
         display: block
-        height: 78px
-        width: 134px
+        height: $height
+        width: $width
 
         img
           display: block
+          height: $height
+          width: $width - 1
+          border-right: 1px solid $border-image-color
 
-    .city
-      float: left
-
-      a
-        font-size: 14px
-        margin: 65px 0 0 13px
-
-    .search
-      float: left
-      margin: 28px 0 0 70px
-
-      form
-        +clearfix
-        padding: 2px 0
-
-        .input
-          +border-radius(3px)
-          background: #fff
-          border: none
-          color: #969ca2
-          font-size: 15px
-          float: left
-          height: 29px
-          margin: 0 9px 0 0
-          padding: 0 13px
-          width: 384px
-
-        .submit
-          background: #ebebeb
-          +background-image(linear-gradient(#fff, #d1d1d1))
-          +single-box-shadow(#3e5062, 0, 0, 2px)
-          +border-radius(3px)
-          border: none
-          color: #334049
-          font-size: 14px
-          float: left
-          height: 29px
-          width: 85px
-
-          &:hover
-            +background-image(linear-gradient(#fff, #b8b8b8))
-
-          &:active
-            +background-image(linear-gradient(#d1d1d1, #fff))
-            position: relative
-            top: 1px
-
-
-      .example
-        p
-          color: #95a6b5
-          font-size: 11px
-          line-height: 12px
-          margin: 6px 0 0 13px
-
-          a
-            border-color: #e7edf2
-            color: #e7edf2
-            font-size: 12px
-            margin: -3px 0 0 6px
-            padding: 0 0 1px 0
-
-            &:hover
-              border-color: transparent
-
-    .extralink
-      float: left
-      font-size: 13px
-      margin: 37px 0 0 101px
-
-      ul
-        +clearfix
-
-        li
-          float: left
-          background: image_url('extralink_div.png') no-repeat right
-          margin: 0 12px 0 0
-          padding: 0 12px 0 0
-
-          a
-
-        .last
-          background: none
-          margin: 0
-          padding: 0
-
-          a
-            color: #fff
-            border-color: #fff
-
-  .main_category
-    height: 84px
-    font-size: 30px
-
-    .inner
-      padding: 23px 0 0 0
-
-    .column
-      float: left
-      text-align: center
-      width: 50%
-
-      h2
-        a
-
-  .main_wrapper
-    margin: 0 0 51px 0
-
-    .column
-      float: left
-      width: 50%
-
-      .left
-        margin: 0 7px 0 0
-
-      .right
-        margin: 0 0 0 7px
-
-      .column_wrapper
-        background: hsla(0, 0, 100%, 0.7)
-        border: 1px solid #fff
-        padding: 27px 22px 0
-
-      .items
-        ul
-          li
-            +clearfix
-
-            h3
-              font-size: 21px
-              margin: 0 0 8px 8px
-
-            ul
-              +clearfix
-              margin: 0 0 30px 0
-
-              li
-                float: left
-                max-width: 58%
-
-                .item_wrapper
-                  +clearfix
-                  border: 1px solid transparent
-                  height: 96px
-                  padding: 8px
-
-                  .mini_poster
-                    border: none
-                    float: left
-                    height: 96px
-                    padding: 0
-                    width: 96px
-
-                    img
-                      display: block
-
-                  .description
-                    +clearfix
-                    color: #151a1d
-                    display: none
-                    float: left
-                    font-size: 14px
-                    line-height: 16px
-                    padding: 5px 0 5px 7px
-
-                    a
-                      background: image_url('item_desc_underline.png') repeat-x bottom
-                      border: none
-                      color: #151a1d
-                      display: inline
-                      padding: 0
-
-                .opened
-                  background: #fff
-                  border: 1px dashed #e2e8ec
-
-                  .description
-                    display: block
-
-  .footer
-    +clearfix
-    background: #404d59 image_url('footer_bg.png') repeat-x
-    border-top: 1px solid #fff
-    height: 293px
-
-    .inner
+    .previews
       +clearfix
-      +min-width(1000px)
-      background: image_url('logo.png') no-repeat 1px 155px
-      font-size: 14px
-      height: 263px
-      margin-top: 30px
-      max-width: 1170px
+      display: block
+      height: $height
+      margin: 0
+      padding: 0
+      width: $width - $height
+
+      li
+        display: block
+        height: round($height/4)
+        margin: 0
+        padding: 0
+
+        a
+          +clearfix
+
+          img
+            display: block
+            height: round($height/4) - 1
+            width: $width - $height
+            border-bottom: 1px solid $border-image-color
+
+      .last
+        a
+          img
+            height: round($height/4)
+            border: none
+
+  .offer
+    margin: 0 0 15px 0
 
     a
-      color: #fff
-      border: none
-      background: image_url('bottom_nav_underline.png') repeat-x left 13px
-
-      &:hover
-        background: none
-
-    h5
       +clearfix
-      background: none
-      color: #9ccfff
-      font-size: 18px
-      margin: 0 0 12px 0
 
-      a
-        background: none
-        border-bottom: 1px dashed #9ccfff
-        color: #9ccfff
+      img
+        +border-radius
+        +single-box-shadow
+        display: block
+        margin: 0 auto
+
+      span
+        display: block
+        margin: 10px 0 0 0
+        text-align: center
+
+
+.footer
+  +clearfix
+  background: #404d59
+  @include background-image(linear-gradient(#424f5b, #404d59, #38444e))
+  border-top: 1px solid #fff
+  padding-top: 30px
+  padding-bottom: 10px
+
+  h5
+    +clearfix
+    color: #9ccfff
+    font-size: 18px
+    margin: 0 0 12px 0
+
+  .logo
+    margin: 35px 0 0 0
+    a
+      +clearfix
+
+      img
+        display: block
+
+  .bottom_navigation
+    ul
+      +clearfix
+      margin: 0
+
+      li
+        list-style: none
         float: left
+        margin: 0 0 5px 0
+        width: 50%
 
-        &:hover
-          border-color: transparent
-
-    .bottom_navigation
-      float: left
-
-      ul
-        +clearfix
-
-        ul
-          width: 185px
-
-          li
-            float: left
-            margin: 0 0 5px 0
-            width: 50%
-
-      .left
-        float: left
-
-      .right
-        float: left
-        margin: 0 0 0 48px
-
-    .our_social_link
-      float: left
-
-      h5
-        margin: 0 0 5px 48px
+  .our_social_link
+    ul
+      margin: 0
 
       li
         background: image_url('social_links.png') no-repeat
-        height: 38px
-        padding: 0 0 0 50px
+        list-style: none
+        height: 28px
+        padding: 10px 0 0 50px
         margin: 0 0 6px 0
 
-        a
-          margin: 10px 0 0 0
+    .vk
+      background-position: 0 0
 
-      .vk
-        background-position: 0 0
+    .twitter
+      background-position: 0 -38px
 
-      .twitter
-        background-position: 0 -38px
+    .email
+      background-position: 0 -76px
 
-      .email
-        background-position: 0 -76px
+    .phone
+      background-position: 0 -114px
 
-      .phone
-        background-position: 0 -114px
+  .twitter_timeline
+    float: right
 
-    .twitter_timeline
-      float: right
-      max-width: 500px
+.twtr-widget-profile
+  .twtr-doc
+    .twtr-hd
+      display: none
 
-      #twtr-widget-1
-        .twtr-doc
-          .twtr-hd
+    .twtr-bd
+      .twtr-timeline
+        .twtr-tweets
+
+          .twtr-reference-tweet
             display: none
 
-          .twtr-bd
-            .twtr-timeline
-              .twtr-tweets
+          .twtr-tweet
+            border: none
 
-                .twtr-reference-tweet
-                  display: none
+            .twtr-tweet-wrap
+              padding: 0 0 15px 0
 
-                .twtr-tweet
-                  border: none
+              .twtr-avatar
+                display: none
 
-                  .twtr-tweet-wrap
-                    padding: 0 0 15px 0
+              .twtr-tweet-text
+                p
+                  font-size: 12px
+                  line-height: 16px
 
-                    .twtr-avatar
-                      display: none
+                  .twtr-user
+                  .tweet-url
+                  .username
+                  .hashtag
 
-                    .twtr-tweet-text
-                      p
-                        font-size: 12px
-                        line-height: 16px
+                  a
+                    background: none
+                    border: none
+                    text-decoration: none
+                    vertical-align: baseline
 
-                        .twtr-user
-                        .tweet-url
-                        .username
-                        .hashtag
+                    &:hover
+                      text-decoration: none !important
 
-                        a
-                          background: none
-                          border: none
-                          text-decoration: none
-                          vertical-align: baseline
+                  em
+                    .twtr-timestamp
+                    .twtr-reply
+                    .twtr-rt
+                    .twtr-fav
 
-                          &:hover
-                            text-decoration: none !important
+          #tweet-id-4
+            .twtr-tweet-text
+              p
+                color: #ffffff !important
+                a
+                  color: #9ccfff !important
 
-                        em
-                          .twtr-timestamp
-                          .twtr-reply
-                          .twtr-rt
-                          .twtr-fav
+          #tweet-id-3
+            .twtr-tweet-text
+              p
+                color: #cdd4db !important
 
-                #tweet-id-4
-                  .twtr-tweet-text
-                    p
-                      color: #ffffff !important
-                      a
-                        color: #9ccfff !important
+                a
+                  color: #add7ff !important
 
-                #tweet-id-3
-                  .twtr-tweet-text
-                    p
-                      color: #cdd4db !important
+          #tweet-id-2
+            .twtr-tweet-text
+              p
+                color: #8c99a5 !important
 
-                      a
-                        color: #add7ff !important
+                a
+                  color: #bedfff !important
 
-                #tweet-id-2
-                  .twtr-tweet-text
-                    p
-                      color: #8c99a5 !important
+          #tweet-id-1
+            .twtr-tweet-text
+              p
+                color: #788897 !important
 
-                      a
-                        color: #bedfff !important
+                a
+                  color: #cfe8ff !important
 
-                #tweet-id-1
-                  .twtr-tweet-text
-                    p
-                      color: #788897 !important
-
-                      a
-                        color: #cfe8ff !important
-
-          .twtr-ft
-            display: none
+    .twtr-ft
+      display: none

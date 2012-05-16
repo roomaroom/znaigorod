@@ -1,0 +1,329 @@
+<div class="row-fluid">
+  <h2 class='main_category span12'><%= t('affiche') %></h2>
+</div>
+
+<div class="row-fluid affiche_index">
+  <div class="span12">
+    <div class="row-fluid filters">
+      <div class="span12">
+        <fieldset>
+          <legend>Фильтр</legend>
+          <div class="filter by_date">
+            <div class="wrapper">
+              <div class="second_wrapper">
+                <% ['Январь', 'Февраль', 'Март', 'Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'].each do |month| %>
+                  <div class="month">
+                    <ul>
+                      <% (1..31).to_a.in_groups_of(7).each do |week| %>
+                        <% week.each_with_index do |day, index| %>
+                          <% break if !day %>
+                          <li>
+                            <span class='day <%= 'holiday' if [0, 6].include?(index) %>'><%= day %></span>
+                            <span class="dow"><%= ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][index] %></span>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    <div class="month_title"><%= month %> 2012</div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter by_time">
+            <h6><a href='#' class='dashed_dark_gray'>Время</a></h6>
+            <div class="row-fluid">
+              <div class="wrapper span11">
+                <div class="hours">
+                  <ul>
+                    <% [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5].each do |hour| %>
+                      <li><%= hour %><span class='minute'>00</span></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class='pod'>
+                  <ul>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray'>Утро</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray'>День</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray'>Вечер</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray'>Ночь</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="span1">
+                <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter by_category">
+            <h6><a href="#" class="dashed_dark_gray">Категории</a></h6>
+            <div class="row-fluid">
+              <div class="span11">
+                <div class="wrapper">
+                  <ul>
+                    <% ['Кино', 'Спектакли','Спорт','Конкурсы','Концерты','Вечеринки','Выставки','Другое'].each do |category| %>
+                      <li>
+                        <a href="#"><%= category %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="span1">
+                <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter by_amount">
+            <h6><a href="#" class="dashed_dark_gray">Стоимость (руб.)</a></h6>
+            <div class="row-fluid">
+              <div class="span11">
+                <div class="wrapper">
+                  <ul>
+                    <% ['бесплатно', '50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '600', '700', '800', '900', '1000', '1500', '>1500'].each do |amount| %>
+                      <li>
+                        <a href='#'><%= amount %></a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="span1">
+                <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter by_tag">
+            <h6><a href="#" class="dashed_dark_gray">Тэги</a></h6>
+            <div class="row-fluid">
+              <div class="span11">
+                <div class="wrapper">
+                  <ul>
+                    <% ['отдых с друзьями', 'мелодрама', 'шествие', 'детские праздники', 'цирк'].each do |tag| %>
+                      <li>
+                        <a href='#'><%= tag %></a>
+                      </li>
+                    <% end %>
+                    <li>
+                      <a href="#" class='active'>покатушки</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="span1">
+                <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row-fluid list">
+      <div class="span12">
+        <ul>
+          <li class='item'>
+            <div class="row-fluid">
+              <h3 class='span12'><a href='#' class='solid_light_blue'>Пираты! Банда неудачников</a><span class='category'>Кино</span><span class='duration'>Сеансы с 13 по 25 мая</span></h3>
+            </div>
+            <div class="row-fluid">
+              <div class="poster span2">
+                <img src="http://placeholders-matter.com/137x185/Пираты:%20Банда%20неудачников" alt="Пираты! Банда неудачников" />
+              </div>
+              <div class="span10">
+                <table class="table sortable table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th class='time'><a href='#' class='dashed_light_blue'>Время</a></th>
+                      <th class='cinema'><a href='#' class='dashed_light_blue'>Кинотеатр</a></th>
+                      <th class='hall'><a href='#' class='dashed_light_blue'>Зал</a></th>
+                      <th class='amount'><a href='#' class='dashed_light_blue'>Стоимость</a></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+          <li class='item'>
+            <div class="row-fluid">
+              <h3 class='span12'><a href='#' class='solid_light_blue'>Большой куш</a><span class='category'>Кино</span><span class='duration'>Сеансы с 13 по 25 мая</span></h3>
+            </div>
+            <div class="row-fluid">
+              <div class="poster span2">
+                <img src="http://placeholders-matter.com/137x185/Большой%20куш" alt="Большой куш" />
+              </div>
+              <div class="span10">
+                <table class="table sortable table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th class='time'><a href='#' class='dashed_light_blue'>Время</a></th>
+                      <th class='cinema'><a href='#' class='dashed_light_blue'>Кинотеатр</a></th>
+                      <th class='hall'><a href='#' class='dashed_light_blue'>Зал</a></th>
+                      <th class='amount'><a href='#' class='dashed_light_blue'>Стоимость</a></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+          <li class='item'>
+            <div class="row-fluid">
+              <h3 class='span12'><a href='#' class='solid_light_blue'>Куда приводять мечты</a><span class='category'>Кино</span><span class='duration'>Сеансы с 13 по 25 мая</span></h3>
+            </div>
+            <div class="row-fluid">
+              <div class="poster span2">
+                <img src="http://placeholders-matter.com/137x185/Куда%20приводят%20мечты" alt="Куда приводят мечты" />
+              </div>
+              <div class="span10">
+                <table class="table sortable table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th class='time'><a href='#' class='dashed_light_blue'>Время</a></th>
+                      <th class='cinema'><a href='#' class='dashed_light_blue'>Кинотеатр</a></th>
+                      <th class='hall'><a href='#' class='dashed_light_blue'>Зал</a></th>
+                      <th class='amount'><a href='#' class='dashed_light_blue'>Стоимость</a></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>10:30</td>
+                      <td>Киномир</td>
+                      <td>Оранжевый зал</td>
+                      <td>140 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:50</td>
+                      <td>Киномакс</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                    <tr>
+                      <td>11:55</td>
+                      <td>Киномир</td>
+                      <td>Синий зал</td>
+                      <td>250 руб.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

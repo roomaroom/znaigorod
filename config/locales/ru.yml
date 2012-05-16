@@ -1,4 +1,8 @@
 ru:
+  add_a_hall: Добавить зал
+  clear_filters: Очистить фильтры
+  site_title: ЗнайГород
+  remove_this_hall: Удалить этот зал
   #add_event: Предложить событие
   #add_organization: Добавить заведение
   add_event: "&plus;&nbsp;событие"
@@ -10,3 +14,63 @@ ru:
   sign_in: "Вход в&nbsp;кабинет"
   site_title: ЗнайГород
   twitter_timeline: Эфир
+
+  activerecord:
+    attributes:
+      address:
+        house: Дом
+        latitude: Широта
+        longitude: Долгота
+        street: Улица
+
+      hall:
+        seating_capacity: Вместимость
+        title: Название зала
+
+      organization:
+        address: Адрес организации
+        category: Категория
+        created_at: Создано
+        cuisine: Кухня
+        description: Описание
+        email: Электронная почта
+        feature: Особенности
+        offer: Предложение
+        payment: Способы оплаты
+        phone: Телефоны
+        schedules: Расписание работы
+        site: Сайт
+        title: Название
+        updated_at: Обновлено
+
+      schedule:
+        day: День недели
+        from: с
+        to: до
+
+  show_for:
+    blank: "Не указано"
+    "yes": "Да"
+    "no": "Нет"
+
+  simple_form:
+    fieldset:
+      address: Адрес организации
+      halls: Залы
+      organization: Организация
+      schedules: Расписание работы
+
+    hints:
+      organization:
+        category: 'Например: кафе, бар и т.п.'
+        cuisine: 'Например: русская, итальянская и т.п.'
+        description: 'Описание или история'
+        feature: 'Отличительные особенности, например: wifi, парковка и т.д.'
+        offer: 'Предложение услуг, например: банкеты, бизнес-ланч и т.д.'
+        payment: 'Например: наличными, Visa, MasterCard и т.п.'
+
+  views:
+    pagination:
+      first: Первая
+      last: Последняя
+

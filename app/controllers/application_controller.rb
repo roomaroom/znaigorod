@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   layout 'public'
 
-  def stub
+  def main_page
 
   end
 
