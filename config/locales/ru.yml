@@ -28,6 +28,8 @@ ru:
         original_title: Оригинальное название
         description: Описание
         trailer_code: Код трейлера
+        starts_on: Дата начала
+        ends_on: Дата окончания
 
       hall:
         seating_capacity: Вместимость

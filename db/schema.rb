@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516023711) do
+ActiveRecord::Schema.define(:version => 20120516044954) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20120516023711) do
     t.string   "original_title"
     t.string   "poster_url"
     t.text     "trailer_code"
+    t.date     "starts_on"
+    t.date     "ends_on"
   end
 
   create_table "halls", :force => true do |t|
