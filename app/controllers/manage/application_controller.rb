@@ -1,4 +1,4 @@
-class Manage::ApplicationController < ApplicationController
+class Manage::ApplicationController < InheritedResourcesController
   has_searcher
 
   layout 'manage'

@@ -1,5 +1,3 @@
-#encoding: utf-8
-
 class Manage::GeocoderController < ApplicationController
   layout false
 

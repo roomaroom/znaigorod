@@ -1,5 +1,5 @@
 class Manage::OrganizationsController < Manage::ApplicationController
-  inherit_resources
+  actions :all
 
   protected
     def build_resource
@@ -21,6 +21,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
         facet(:payment)
         paginate(:page => params[:page], :per_page => 20)
       end
+
       @search.results
     end
 end
