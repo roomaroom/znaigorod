@@ -20,8 +20,10 @@
             <a class="brand" href="/">ЗнайГород</a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li><%= link_to "Список организаций", collection_path %></li>
-                <li><%= link_to "Добавить организацию", new_resource_path if controller_path.match('manage') %></li>
+                <li><%= link_to "Список организаций", manage_organizations_path %></li>
+                <li><%= link_to "Добавить организацию", new_manage_organization_path %></li>
+                <li><%= link_to "Список мероприятий", manage_affiches_path %></li>
+                <li><%= link_to "Добавить мероприятие", new_manage_affiche_path %></li>
               </ul>
             </div>
 

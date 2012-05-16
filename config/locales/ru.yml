@@ -23,6 +23,12 @@ ru:
         longitude: Долгота
         street: Улица
 
+      affiche:
+        title: Русское название
+        original_title: Оригинальное название
+        description: Описание
+        trailer_code: Код трейлера
+
       hall:
         seating_capacity: Вместимость
         title: Название зала

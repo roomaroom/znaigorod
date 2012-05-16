@@ -28,7 +28,7 @@ group :default do
 end
 
 group :development do
-  gem 'hirb'
+  gem 'hirb',                                         :require => false
   gem 'sunspot_solr',        '~> 2.0.0.pre.111215'
 end
 

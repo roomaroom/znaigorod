@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(:version => 20120516023711) do
 
   create_table "affiches", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.text     "description"
+    t.string   "original_title"
     t.string   "poster_url"
     t.text     "trailer_code"
   end

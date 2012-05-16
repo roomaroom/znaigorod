@@ -1,6 +1,5 @@
 class Manage::OrganizationsController < Manage::ApplicationController
   inherit_resources
-  has_searcher
 
   protected
     def build_resource
