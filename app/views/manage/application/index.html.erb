@@ -1,20 +1,7 @@
 <table class='table table-condensed table-striped'>
   <tbody>
     <% collection.each do |item| %>
-      <tr>
-        <% if controller_path.match('manage') %>
-          <td><i class='icon-th-list'></i>&nbsp;<%= link_to item.title, [:manage, item] %></td>
-        <% else %>
-          <td><i class='icon-th-list'></i>&nbsp;<%= link_to item.title, item %></td>
-        <% end %>
-        <td>
-          <% if item.site? %>
-            <i class='icon-share'></i>&nbsp;<%= link_to item.site, item.site, :target => '_blank' %>
-          <% end %>
-        </td>
-        <td><i class='icon-info-sign'></i>&nbsp;<%= item.category %></td>
-        <td><i class='icon-home'></i>&nbsp;<%= item.address %></td>
-      </tr>
+      <%= render :partial => 'item', :locals => { :item => item } %>
     <% end %>
   </tbody>
 </table>

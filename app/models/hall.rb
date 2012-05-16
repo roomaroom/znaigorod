@@ -1,6 +1,7 @@
 class Hall < ActiveRecord::Base
   belongs_to :organization
 end
+
 # == Schema Information
 #
 # Table name: halls

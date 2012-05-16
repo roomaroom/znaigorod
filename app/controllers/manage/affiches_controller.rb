@@ -1,3 +1,5 @@
 class Manage::AffichesController < Manage::ApplicationController
-  actions :all, :except => :show
+  actions :all
+
+  has_scope :page, :default => 1
 end
