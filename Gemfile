@@ -11,7 +11,8 @@ group :assets do
 end
 
 group :default do
-  gem 'curb'
+  gem 'curb',                                         :require => false
+  gem 'el_vfs_client'
   gem 'formtastic'
   gem 'has_scope'
   gem 'has_searcher'

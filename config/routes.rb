@@ -12,4 +12,6 @@ Znaigorod::Application.routes.draw do
   resources :organizations, :only => [:index, :show]
 
   root :to => 'application#main_page'
+
+  mount ElVfsClient::Engine => '/'
 end

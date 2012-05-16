@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'curb'
+
 class Geocoder
   def self.get_coordinates(street, house)
     address = "Томск, #{[street, house].join(', ')}"

@@ -4,3 +4,10 @@
 <%= f.input :trailer_code %>
 <%= f.input :starts_on %>
 <%= f.input :ends_on %>
+
+<%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper' %>
+<%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
+
+<%= image_tag resource.poster_url if resource.poster_url? %>
+
+<div class='poster_wrapper'></div>

@@ -16,3 +16,4 @@
 //= require twitter/bootstrap
 //= require ./geocoder
 //= require ./main
+//= require jquery-ui

@@ -41,8 +41,9 @@ $.fn.handler = (form, map_container) ->
 
 $ ->
   form = $('form.organization')
-  organization = form.get_object()
-  map_container = $('#map')
-  update_coordinates(organization)
-  map_container.draw_map(organization)
-  $('.get_coordinates').handler(form, map_container)
+  if form.length
+    organization = form.get_object()
+    map_container = $('#map')
+    update_coordinates(organization)
+    map_container.draw_map(organization)
+    $('.get_coordinates').handler(form, map_container)
