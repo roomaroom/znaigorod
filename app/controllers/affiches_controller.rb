@@ -5,7 +5,4 @@ class AffichesController < InheritedResourcesController
 
   def index
   end
-
-  def show
-  end
 end

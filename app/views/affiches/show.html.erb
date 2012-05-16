@@ -13,7 +13,7 @@
           <%= link_to t('affiche'), affiches_path, :class => 'solid_light_blue' %><span class='arrow'>&rarr;</span>
         </li>
         <li>
-          Как трусливый Роберт Форд убил Джесси Джеймса
+          <%= resource.title %>
         </li>
       </ul>
     </div>
@@ -21,55 +21,20 @@
       <div class="main_info span12">
 
         <div class="row-fluid">
-          <h1 class='span12'>Как трусливый Роберт Форд убил Джесси Джеймса</h1>
+          <h1 class='span12'><%= resource.title %></h1>
         </div>
         <div class="row-fluid">
-          <h2 class='span12'>The Assassination of Jesse James by the Coward Robert Ford</h2>
+          <h2 class='span12'><%= resource.original_title %></h2>
         </div>
         <div class="row-fluid">
           <div class="span3">
-            <img src="http://placeholders-matter.com/290x390/Jesse%20James%20film" alt="" class="poster" />
+            <%= image_tag resized_image_url(resource.poster_url, 290, 390) %>
             <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
             <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
           </div>
           <div class="span9">
             <div class="info">
-              <table class='table table-condensed table-striped'>
-                <tbody>
-                  <tr>
-                    <td>Жанр:</td>
-                    <td>драма, вестерн</td>
-                  </tr>
-                  <tr>
-                  	<td>В ролях:</td>
-                  	<td>Бред Питт, Кейси Аффлек</td>
-                  </tr>
-                  <tr>
-                  	<td>Страна:</td>
-                  	<td>США, Канада</td>
-                  </tr>
-                  <tr>
-                  	<td>Слоган:</td>
-                  	<td>История о самом подлом подлеце</td>
-                  </tr>
-                  <tr>
-                  	<td>Режиссер:</td>
-                  	<td>Грегори Стинфед</td>
-                  </tr>
-                  <tr>
-                  	<td>Продолжительность:</td>
-                  	<td>190 минут</td>
-                  </tr>
-                  <tr>
-                  	<td>Бюджет:</td>
-                  	<td>50 млн. долларов США</td>
-                  </tr>
-                  <tr>
-                  	<td>Рейтинг MPAA:</td>
-                  	<td>рекомендуется присутсвие взорслых</td>
-                  </tr>
-                </tbody>
-              </table>
+              <%= resource.description.html_safe %>
             </div>
             <div class="description">
               <p>История самого печально известного преступника Америки времен Дикого Запада. Дерзкий и непредсказуемый Джесси Джеймс — легендарный вор. Он всегда тщательно планирует свои нападения, и ведет войну с теми, кто наживает деньги и славу, прикрываясь его именем.</p>
@@ -80,13 +45,7 @@
         <div class="row-fluid">
           <div class="span2"></div>
           <div class="span8 trailer">
-            <object style="height: 390px; width: 640px;">
-              <param name="movie" value="http://www.youtube.com/v/wUAuCElQ8v0?version=3&feature=player_detailpage">
-              <param name="allowFullScreen" value="true">
-              <param name="allowScriptAccess" value="always">
-              <param name="wmode" value="transparent">
-              <embed src="http://www.youtube.com/v/wUAuCElQ8v0?version=3&feature=player_detailpage" type="application/x-shockwave-flash" wmode='transparent' allowfullscreen="true" allowScriptAccess="always" width="640" height="360">
-              </object>
+            <%= resource.trailer_code.html_safe %>
           </div>
           <div class="span2"></div>
         </div>
