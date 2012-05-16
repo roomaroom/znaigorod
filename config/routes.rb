@@ -2,8 +2,8 @@ Znaigorod::Application.routes.draw do
   namespace :manage do
     match 'geocoder' => 'geocoder#get_coordinates'
 
-    resources :affiches
-    resources :organizations
+    resources :affiches, :except => :show
+    resources :organizations, :except => :show
 
     root :to => 'organizations#index'
   end

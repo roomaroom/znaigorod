@@ -1,5 +1,5 @@
 class Manage::OrganizationsController < Manage::ApplicationController
-  actions :all
+  actions :all, :except => :show
 
   protected
     def build_resource
