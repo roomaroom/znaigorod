@@ -1,7 +1,3 @@
-<div class="row-fluid">
-  <h2 class='main_category span12'><%= t('affiche') %></h2>
-</div>
-
 <div class="row-fluid affiche_show">
   <div class="span12">
     <div class="row-fluid">
@@ -12,14 +8,10 @@
         <li>
           <%= link_to t('affiche'), affiches_path, :class => 'solid_light_blue' %><span class='arrow'>&rarr;</span>
         </li>
-        <li>
-          <%= resource.title %>
-        </li>
       </ul>
     </div>
     <div class='row-fluid'>
       <div class="main_info span12">
-
         <div class="row-fluid">
           <h1 class='span12'><%= resource.title %></h1>
         </div>
@@ -33,13 +25,7 @@
             <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
           </div>
           <div class="span9">
-            <div class="info">
-              <%= resource.description.html_safe %>
-            </div>
-            <div class="description">
-              <p>История самого печально известного преступника Америки времен Дикого Запада. Дерзкий и непредсказуемый Джесси Джеймс — легендарный вор. Он всегда тщательно планирует свои нападения, и ведет войну с теми, кто наживает деньги и славу, прикрываясь его именем.</p>
-              <p>В 1881 году в ряды банды Джеймса вступает Роберт Форд. Со временем Джесси падает в глазах Форда, который никогда не отличался смелостью. Никто и не мог предположить, что именно этот трусливый юнец, возмущенный поведением главаря, отважится на убийство Джесси.</p>
-            </div>
+            <%= resource.description.html_safe %>
           </div>
         </div>
         <div class="row-fluid">
@@ -51,7 +37,7 @@
         </div>
         <div class="row-fluid">
           <div class="span12">
-            <h4>Сеансы<span class='duration'>Сеансы с 12 по 25 мая</span></h4>
+            <h4>Сеансы<span class='duration'>Сеансы <%= affiche_showings(resource) %></span></h4>
             <table class="table sortable table-striped table-condensed">
               <thead>
                 <tr>
