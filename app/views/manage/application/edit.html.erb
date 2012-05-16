@@ -1,3 +1,11 @@
-<%= simple_nested_form_for resource, :url => resource_path, :defaults => { :input_html => { :class => 'span8', :rows => 4 } }, :html => { :class => 'form-horizontal organization' } do |f| %>
-  <%= render :partial => 'form', :locals => { :f => f } %>
+<%= simple_nested_form_for resource,
+                           :url => resource_path,
+                           :defaults => { :input_html => { :class => 'span8', :rows => 4 } },
+                           :html => { :class => "form-horizontal #{resource.class.name.singularize.underscore}" } do |f| %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+
+  <div class="form-actions btn-group">
+    <%= link_to "<i class='icon-arrow-left'></i>&nbsp;Назад".html_safe, :back, :class => 'btn' %>
+    <%= button_tag '<i class="icon-ok"></i>&nbsp;Сохранить'.html_safe, :class => 'btn' %>
+  </div>
 <% end %>

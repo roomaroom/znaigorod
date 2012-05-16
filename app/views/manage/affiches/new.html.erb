@@ -1,7 +1,0 @@
-<%= simple_nested_form_for resource,
-                           :url => collection_path,
-                           :defaults => { :input_html => { :class => 'span8', :rows => 4 } },
-                           :html => { :class => 'form-horizontal affiche' } do |f| %>
-  <%= render :partial => 'form', :locals => { :f => f } %>
-<% end %>
-
