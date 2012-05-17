@@ -1,8 +1,9 @@
 # encoding: utf-8
 
 class Schedule < ActiveRecord::Base
-  attr_accessible :day, :from, :to
   belongs_to :organization
+
+  attr_accessible :day, :from, :to
 
   validates_presence_of :day, :from, :to
 

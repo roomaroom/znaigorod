@@ -18,6 +18,8 @@ module ApplicationHelper
   end
 
   def affiche_showings(affiche)
+    return '' if affiche.showings.empty?
+
     return "#{l(affiche.starts_on, :format => '%d %B')}" if affiche.starts_on == affiche.ends_on
     return "с #{l(affiche.starts_on, :format => '%d')} по #{l(affiche.ends_on, :format => '%d %B')}" if affiche.starts_on.month == affiche.ends_on.month
 

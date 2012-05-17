@@ -2,12 +2,12 @@
 <%= f.input :original_title %>
 <%= f.input :description %>
 <%= f.input :trailer_code %>
-<%= f.input :starts_on %>
-<%= f.input :ends_on %>
 
 <%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper' %>
 <%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
-
 <%= image_tag resized_image_url(resource.poster_url, 290, 390) if resource.poster_url? %>
-
 <div class='poster_wrapper'></div>
+
+<%= f.simple_fields_for :showings %>
+
+<%= f.link_to_add "Добавить сеанс", :showings %>

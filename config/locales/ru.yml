@@ -31,6 +31,12 @@ ru:
         starts_on: Дата начала
         ends_on: Дата окончания
 
+      showing:
+        place: Место
+        hall: Зал
+        starts_at: Время начала
+        price: Цена
+
       hall:
         seating_capacity: Вместимость
         title: Название зала

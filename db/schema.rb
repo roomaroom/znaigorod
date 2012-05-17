@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516044954) do
+ActiveRecord::Schema.define(:version => 20120517025542) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(:version => 20120516044954) do
     t.string   "original_title"
     t.string   "poster_url"
     t.text     "trailer_code"
-    t.date     "starts_on"
-    t.date     "ends_on"
   end
 
   create_table "halls", :force => true do |t|
@@ -70,5 +68,17 @@ ActiveRecord::Schema.define(:version => 20120516044954) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "showings", :force => true do |t|
+    t.integer  "affiche_id"
+    t.string   "place"
+    t.datetime "starts_at"
+    t.integer  "price"
+    t.string   "hall"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "showings", ["affiche_id"], :name => "index_showings_on_affiche_id"
 
 end
