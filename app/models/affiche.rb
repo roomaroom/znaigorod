@@ -8,11 +8,11 @@ class Affiche < ActiveRecord::Base
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
   def starts_on
-    showings.first.try :starts_at
+    showings.first.try(:starts_at).try(:to_date)
   end
 
   def ends_on
-    showings.last.try :starts_at
+    showings.last.try(:starts_at).try(:to_date)
   end
 end
 
