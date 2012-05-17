@@ -71,8 +71,8 @@ ru:
   simple_form:
     fieldset:
       address: Адрес организации
-      affiche: Мероприятие
       halls: Залы
+      movie: Кино
       organization: Организация
       schedules: Расписание работы
       showings: Сеансы

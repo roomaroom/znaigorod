@@ -1,17 +1,13 @@
-<%= field_set_tag "<i class='icon-th-large' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.affiche')}".html_safe do %>
-  <%= f.input :title %>
-  <%= f.input :original_title %>
-  <%= f.input :description %>
-  <%= f.input :trailer_code %>
+<%= f.input :title %>
+<%= f.input :description %>
 
-  <%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper' %>
-  <%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
-  <%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>
-  <div class='poster_wrapper'></div>
+<%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper' %>
+<%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
+<%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>
+<div class='poster_wrapper'></div>
 
-  <%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.showings')}".html_safe do %>
-    <%= f.simple_fields_for :showings %>
-    <%= f.link_to_add t('add_showing'), :showings %>
-  <% end %>
+<%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.showings')}".html_safe do %>
+  <%= f.simple_fields_for :showings %>
+  <%= f.link_to_add t('add_showing'), :showings %>
 <% end %>
 
