@@ -1,4 +1,4 @@
-class Concert < Affiche
+class Exhibition < Affiche
 end
 
 # == Schema Information

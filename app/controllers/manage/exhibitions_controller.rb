@@ -1,4 +1,4 @@
-class Manage::ConcertsController < Manage::ApplicationController
+class Manage::ExhibitionsController < Manage::ApplicationController
   actions :all, :except => :show
 
   has_scope :page, :default => 1

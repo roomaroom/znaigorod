@@ -3,6 +3,7 @@ class Movie < Affiche
 
   validates_presence_of :trailer_code
 end
+
 # == Schema Information
 #
 # Table name: affiches

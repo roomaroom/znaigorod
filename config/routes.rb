@@ -5,8 +5,8 @@ Znaigorod::Application.routes.draw do
     resources :affiches, :only => [:index, :new]
     resources :organizations, :except => :show
 
-    %w[concerts movies].each do |type|
-      resources type.to_sym, :except => :show
+    [:concerts, :exhibitions, :movies].each do |res|
+      resources res, :except => :show
     end
 
     root :to => 'organizations#index'
