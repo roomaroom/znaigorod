@@ -1,17 +1,19 @@
 ru:
   add_a_hall: Добавить зал
-  clear_filters: Очистить фильтры
-  site_title: ЗнайГород
-  remove_this_hall: Удалить этот зал
-  #add_event: Предложить событие
-  #add_organization: Добавить заведение
   add_event: "&plus;&nbsp;событие"
+  #add_event: Предложить событие
   add_organization: "&plus;&nbsp;заведение"
+  #add_organization: Добавить заведение
+  add_showing: Добавить сеанс
   affiche: Афиша
+  clear_filters: Очистить фильтры
   find: Найти
   organizations: Заведения
   our_social_link: Контакты
+  remove_this_hall: Удалить этот зал
+  remove_this_showing: Удалить этот сеанс
   sign_in: "Вход в&nbsp;кабинет"
+  site_title: ЗнайГород
   site_title: ЗнайГород
   twitter_timeline: Эфир
 
@@ -24,12 +26,11 @@ ru:
         street: Улица
 
       affiche:
-        title: Название
-        original_title: Оригинальное название
         description: Описание
+        original_title: Оригинальное название
+        poster_url: Ссылка на постер
+        title: Название
         trailer_code: Код трейлера
-        starts_on: Дата начала
-        ends_on: Дата окончания
 
       showing:
         place: Место
@@ -70,9 +71,11 @@ ru:
   simple_form:
     fieldset:
       address: Адрес организации
+      affiche: Мероприятие
       halls: Залы
       organization: Организация
       schedules: Расписание работы
+      showings: Сеансы
 
     hints:
       organization:

@@ -11,9 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
+//= require ./jquery-ui/jquery.ui.datepicker-ru.js
+//= require ./jquery-ui/jquery-ui-timepicker-addon.js
+//= require ./jquery-ui/jquery-ui-timepicker-ru.js
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require twitter/bootstrap
 //= require ./geocoder
 //= require ./main
-//= require jquery-ui
