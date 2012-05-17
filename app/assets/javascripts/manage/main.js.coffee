@@ -11,16 +11,17 @@ handle_adding_poster = ->
       height: '400'
       scrolling: 'no'
       id: 'el_finder_iframe'
-    ).load(->
+    ).load ->
       $('.content_wrapper').animate
         scrollTop: $(document).height() + $(target).height()
         'slow'
-    )).slideDown()
+    ).slideDown()
 
     false
 
 handle_date_picker = ->
-  $('input.date_picker').datetimepicker()
+  $('input.date_picker').live 'click', ->
+    $(this).datetimepicker()
 
 $ ->
   handle_adding_poster()

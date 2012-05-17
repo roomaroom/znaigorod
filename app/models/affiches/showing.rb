@@ -3,7 +3,7 @@ class Showing < ActiveRecord::Base
 
   belongs_to :affiche
 
-  validates_presence_of :affiche, :hall, :place, :price, :starts_at
+  validates_presence_of :place, :price, :starts_at
 
   default_scope order(:starts_at)
 end

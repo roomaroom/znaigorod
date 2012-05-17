@@ -3,6 +3,7 @@ Znaigorod::Application.routes.draw do
     match 'geocoder' => 'geocoder#get_coordinates'
 
     resources :affiches, :only => [:index, :new]
+    resources :concerts, :except => :show
     resources :movies, :except => :show
     resources :organizations, :except => :show
 

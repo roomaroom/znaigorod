@@ -71,6 +71,7 @@ ru:
   simple_form:
     fieldset:
       address: Адрес организации
+      concert: Концерт
       halls: Залы
       movie: Кино
       organization: Организация
