@@ -5,10 +5,10 @@
         <h2 class='main_category'><%= link_to t('affiche'), affiches_path, :class => 'dashed_deep_blue' %></h2>
         <ul class="subcategories row-fluid">
           <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Кино</a>
+            <%= link_to 'Кино', movies_path, :class => 'solid_dark_gray' %>
           </li>
           <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Концерты</a>
+            <%= link_to 'Концерты', concerts_path, :class => 'solid_dark_gray' %>
           </li>
           <li class='span2'>
             <a href="#" class='solid_dark_gray'>Выставки</a>
