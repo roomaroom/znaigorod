@@ -11,9 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require public/filter_reset
 //= require public/filter_resizer
+//= require public/filter_preset_button
+//= require public/range_slider
 //= require public/tablesorter
 //= require public/trailer_resizer
 //= require public/twitter

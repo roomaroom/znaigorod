@@ -8,25 +8,29 @@
       <div class="span12">
         <fieldset>
           <legend>Фильтр</legend>
+
           <div class="filter by_date">
             <div class="wrapper">
               <div class="second_wrapper">
-                <% ['Январь', 'Февраль', 'Март', 'Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'].each do |month| %>
-                  <div class="month">
-                    <ul>
-                      <% (1..31).to_a.in_groups_of(7).each do |week| %>
-                        <% week.each_with_index do |day, index| %>
-                          <% break if !day %>
-                          <li>
-                            <span class='day <%= 'holiday' if [0, 6].include?(index) %>'><%= day %></span>
-                            <span class="dow"><%= ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][index] %></span>
+                <% range = (Date.today..Date.parse('10.06.2013')) %>
+                <% i = 0 %>
+                <% range.group_by(&:year).map{|year, months| months.group_by(&:month)}.each do |year| %>
+                  <% year.each do |month, dates| %>
+                    <div class="month">
+                      <ul>
+                        <% dates.each do |date| %>
+                          <li id='<%= "item_#{i}" %>' data-value='<%= date %>'>
+                            <% i=i+1 %>
+                            <span class="day <%= l(date, :format => '%a', :locale => :en).downcase %>"><%= l date, :format => '%d' %></span>
+                            <span class="dow"><%= l date, :format => '%a' %></span>
                           </li>
                         <% end %>
-                      <% end %>
-                    </ul>
-                    <div class="month_title"><%= month %> 2012</div>
-                  </div>
+                      </ul>
+                      <div class="month_title"><%= t('date.month_names')[month] %></div>
+                    </div>
+                  <% end %>
                 <% end %>
+                <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %>></div>
               </div>
             </div>
           </div>
@@ -34,41 +38,49 @@
           <div class="filter by_time">
             <h6><a href='#' class='dashed_dark_gray'>Время</a></h6>
             <div class="row-fluid">
-              <div class="wrapper span11">
-                <div class="hours">
-                  <ul>
-                    <% [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5].each do |hour| %>
-                      <li><%= hour %><span class='minute'>00</span></li>
-                    <% end %>
-                  </ul>
-                </div>
-                <div class='pod'>
-                  <ul>
-                    <li>
-                      <div>
-                        <a href="#" class='dashed_dark_gray'>Утро</a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <a href="#" class='dashed_dark_gray'>День</a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <a href="#" class='dashed_dark_gray'>Вечер</a>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <a href="#" class='dashed_dark_gray'>Ночь</a>
-                      </div>
-                    </li>
-                  </ul>
+              <div class="span11">
+                <div class="wrapper">
+                  <div class="hours">
+                    <ul>
+                      <% [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5].each_with_index do |hour, i| %>
+                        <li id='<%= "item_#{i}" %>' data-value='<%= hour %>'><%= hour %><span class='minute'>00</span></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="range_slider" id='by_time' data-count='24'></div>
                 </div>
               </div>
               <div class="span1">
                 <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+              </div>
+            </div>
+
+            <div class="row-fluid">
+              <div class="pod_wrapper span11">
+                <div class='pod'>
+                  <ul>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray pod_preset' id='morning'>Утро</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray pod_preset' id='day'>День</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray pod_preset' id='evening'>Вечер</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <a href="#" class='dashed_dark_gray pod_preset' id='night'>Ночь</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -98,13 +110,16 @@
             <div class="row-fluid">
               <div class="span11">
                 <div class="wrapper">
-                  <ul>
-                    <% ['бесплатно', '50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '600', '700', '800', '900', '1000', '1500', '>1500'].each do |amount| %>
-                      <li>
-                        <a href='#'><%= amount %></a>
-                      </li>
-                    <% end %>
-                  </ul>
+                  <div class="amounts">
+                    <ul>
+                      <% ['0', '50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '600', '700', '800', '900', '1000', '1500', '>1500'].each_with_index do |amount, i| %>
+                        <li id='<%= "item_#{i}" %>' data-value='<%= amount %>'>
+                          <a href='#'><%= amount %></a>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="range_slider" id='by_amount' data-count='18' ></div>
                 </div>
               </div>
               <div class="span1">
@@ -139,6 +154,7 @@
       </div>
     </div>
 
+    <% if false %>
     <div class="row-fluid list">
       <div class="span12">
         <ul>
@@ -146,5 +162,6 @@
         </ul>
       </div>
     </div>
+    <% end %>
   </div>
 </div>

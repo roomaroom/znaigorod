@@ -1,8 +1,5 @@
-html, body
-  font-family: 'PT Sans', Verdana, Arial, sans-serif
-  font-weight: normal
-
 body
+  +min-width(1010px)
   background: image_url('bg.png') repeat
   color: #334049
   padding: 0
@@ -103,10 +100,9 @@ body
   max-width: 100%
 
 .header
-  background: #435a6d
-  @include background-image(linear-gradient(#4d6676, #435a6d, #3a4a5b))
+  background: #435a6d image_url('header_bg.png') repeat-x left
   border-bottom: 1px solid #fff
-  min-height: 82px
+  min-height: 83px
   padding-bottom: 5px
 
   .logo
@@ -138,6 +134,7 @@ body
         float: left
         font-size: 15px
         height: 29px
+        line-height: 37px
         margin: 0 0 6px 0
         padding: 0 1%
         width: 98%
@@ -152,7 +149,7 @@ body
         float: left
         font-size: 14px
         height: 31px
-        line-height: 25px
+        line-height: 31px
         width: 100%
 
         &:hover
@@ -258,20 +255,48 @@ body
 
       .wrapper
         +clearfix
+        float: left
         background: #fff
         border: 1px dashed #dce3ea
 
     .by_date
-      height: 70px
+      height: 72px
       position: relative
       width: 100%
 
+      .prev, .next
+        background: image_url('prev_next.png') no-repeat left center
+        bottom: 8px
+        display: block
+        height: 11px
+        margin: 0 0 0 10px
+        position: absolute
+        text-indent: -9999px
+        width: 12px
+        z-index: 2
+
+      .next
+        background-position: right center
+        bottom: 8px
+        margin: 0 10px 0 0
+        right: 0
+
       .wrapper
-        height: 68px
+        height: 70px
+        float: none
 
       .second_wrapper
-        position: relative
-        width: 2000px
+        +clearfix
+        float: left
+
+      .ui-slider
+        height: 46px
+
+        .ui-slider-handle
+          height: 36px
+
+        .ui-slider-range
+          height: 46px
 
       .month
         float: left
@@ -279,18 +304,20 @@ body
 
         .month_title
           color: #0d88bc
-          margin: 0 0 0 9px
+          margin: 0 0 0 10px
 
         ul
           li
             padding: 7px 9px
             text-align: center
+            width: 14px
 
             .day
               color: #47a0c6
               display: block
+              font-weight: bold
 
-              &.holiday
+              &.holiday, &.sun, &.sat
                 color: #e97248
 
             .dow
@@ -298,15 +325,21 @@ body
               display: block
 
     .by_time
-      .wrapper
-        overflow: visible
-
+      .wrapper, .pod_wrapper
+        +clearfix
         margin: 0 0 20px 0
+
+        .hours
+          float: left
+          position: relative
+
         ul
           li
             color: #0d88bc
             padding: 10px 9px 7px
-            width: 24px
+            text-align: center
+            font-size: 0.9em
+            width: 14px
 
             .minute
               +inline-block
@@ -317,8 +350,6 @@ body
 
         .pod
           position: relative
-          margin: -18px 0 0 0
-          top: 22px
 
           ul
             li
@@ -326,10 +357,10 @@ body
               border: 1px solid #e2e6e7
               border-top: none
               height: 12px
-              margin: 0 1px 5px
+              margin: 0 0 5px
               padding: 0
               text-align: center
-              width: 246px
+              width: 250px
 
               div
                 +inline-block
@@ -338,6 +369,9 @@ body
 
               a
                 font-size: 0.9em
+
+      .pod_wrapper
+        margin: 0
 
     .by_category, .by_tag
       .wrapper
@@ -357,8 +391,8 @@ body
               color: #4a5966
               display: block
               height: 27px
-              line-height: 27px
-              margin: 0
+              line-height: 31px
+              margin: 0 0 10px 0
               padding: 0 18px
               text-transform: capitalize
 
@@ -385,16 +419,21 @@ body
           li
             a
               height: 21px
-              line-height: 21px
+              line-height: 24px
               text-transform: lowercase
 
     .by_amount
       +clearfix
 
       .wrapper
+        .amounts
+          float: left
+
         ul
           li
             padding: 7px 9px
+            text-align: center
+            width: 35px
 
   .duration
     color: #8c969d
