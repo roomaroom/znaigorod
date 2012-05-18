@@ -5,7 +5,7 @@ Znaigorod::Application.routes.draw do
     resources :affiches, :only => [:index, :new]
     resources :organizations, :except => :show
 
-    [:concerts, :exhibitions, :movies].each do |res|
+    [:concerts, :exhibitions, :movies, :spectacles].each do |res|
       resources res, :except => :show
     end
 
