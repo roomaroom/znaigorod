@@ -1,7 +1,6 @@
 class Organization < ActiveRecord::Base
   attr_accessible :address_attributes,
                   :category,
-                  :cuisine,
                   :description,
                   :email,
                   :feature,
@@ -88,5 +87,6 @@ end
 #  updated_at  :datetime        not null
 #  phone       :text
 #  offer       :text
+#  type        :string(255)
 #
 
