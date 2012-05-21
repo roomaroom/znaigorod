@@ -1,7 +1,18 @@
-<%= f.simple_fields_for :showing do  %>
-  <%= f.input :starts_at, :as => :date_picker %>
-  <%= f.input :place %>
-  <%= f.input :hall %>
-  <%= f.input :price %>
-  <%= f.link_to_remove t('remove_this_showing') %>
-<% end %>
+<div class='row-fluid'>
+  <%= f.simple_fields_for :showing do  %>
+    <div class='span2'>
+      <%= f.input :starts_at, :as => :date_picker, :input_html => { :class => 'span12' } %>
+    </div>
+    <div class='span3'>
+      <%= f.input :place, :input_html => { :class => 'span12' } %>
+    </div>
+    <div class='span3'>
+      <%= f.input :hall, :input_html => { :class => 'span12' } %>
+    </div>
+    <div class='span3'>
+      <%= f.input :price %>
+    </div>
+  <% end %>
+</div>
+<%= f.link_to_remove t('remove_this_showing') %>
+
