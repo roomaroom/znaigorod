@@ -1,6 +1,7 @@
 class Eating < Organization
   attr_accessible :cuisine
 end
+
 # == Schema Information
 #
 # Table name: organizations

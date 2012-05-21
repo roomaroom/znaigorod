@@ -7,7 +7,7 @@ $.fn.get_object = ->
 
 $.fn.draw_map = (organization) ->
   container = this[0]
-  point = new DG.GeoPoint(organization['organization[address_attributes][longitude]'], organization['organization[address_attributes][latitude]'])
+  point = new DG.GeoPoint(organization['eating[address_attributes][longitude]'], organization['eating[address_attributes][latitude]'])
   map = new DG.Map(container)
   marker = new DG.Markers.Common({ geoPoint: point })
   scale = organization['scale'] || 15
@@ -20,17 +20,17 @@ update_coordinates = (organization) ->
   $.ajax '/manage/geocoder',
     async:    false
     dataType: 'json'
-    data:     'street='+organization['organization[address_attributes][street]']+'&house='+organization['organization[address_attributes][house]']
+    data:     'street='+organization['eating[address_attributes][street]']+'&house='+organization['eating[address_attributes][house]']
     error: (jqXHR, textStatus, errorThrown) ->
       console.log(errorThrown)
 
     success: (data, textStatus, jqXHR) ->
       json = jQuery.parseJSON jqXHR.responseText
-      organization['organization[address_attributes][longitude]'] = json.longitude
-      organization['organization[address_attributes][latitude]']  = json.latitude
+      organization['eating[address_attributes][longitude]'] = json.longitude
+      organization['eating[address_attributes][latitude]']  = json.latitude
       organization['scale'] = json.scale
-      $('#organization_address_attributes_longitude').val(json.longitude)
-      $('#organization_address_attributes_latitude').val(json.latitude)
+      $('#eating_address_attributes_longitude').val(json.longitude)
+      $('#eating_address_attributes_latitude').val(json.latitude)
 
 $.fn.handler = (form, map_container) ->
   this.click ->
@@ -40,7 +40,7 @@ $.fn.handler = (form, map_container) ->
     false
 
 $ ->
-  form = $('form.organization')
+  form = $('form.eating')
   if form.length
     organization = form.get_object()
     map_container = $('#map')

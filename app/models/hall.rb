@@ -1,4 +1,6 @@
 class Hall < ActiveRecord::Base
+  attr_accessible :title, :seating_capacity
+
   belongs_to :organization
 end
 

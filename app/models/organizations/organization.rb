@@ -4,6 +4,7 @@ class Organization < ActiveRecord::Base
                   :description,
                   :email,
                   :feature,
+                  :halls_attributes,
                   :offer,
                   :payment,
                   :phone,
