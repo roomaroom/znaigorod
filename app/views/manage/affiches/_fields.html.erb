@@ -1,6 +1,8 @@
 <%= f.input :title %>
 <%= f.input :description %>
 
+<%= yield :additional_fields %>
+
 <%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper' %>
 <%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
 <%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>

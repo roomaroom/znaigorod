@@ -1,4 +1,4 @@
-class Manage::EatingsController < Manage::ApplicationController
+class Manage::FunniesController < Manage::ApplicationController
   actions :all, :except => :show
 
   has_scope :page, :default => 1

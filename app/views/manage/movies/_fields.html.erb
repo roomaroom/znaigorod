@@ -1,5 +1,7 @@
-<%= render :partial => 'manage/affiches/fields', :locals => { :f => f } %>
+<%= content_for :additional_fields do %>
+  <%= f.input :original_title %>
+  <%= f.input :trailer_code %>
+<% end %>
 
-<%= f.input :original_title %>
-<%= f.input :trailer_code %>
+<%= render :partial => 'manage/affiches/fields', :locals => { :f => f } %>
 

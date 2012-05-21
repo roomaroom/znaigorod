@@ -72,7 +72,8 @@ ru:
     fieldset:
       address: Адрес организации
       concert: Концерт
-      eating: Заведение
+      eating: Заведение (еда)
+      funny: Заведение (развлечения)
       halls: Залы
       movie: Кино
       organization: Организация

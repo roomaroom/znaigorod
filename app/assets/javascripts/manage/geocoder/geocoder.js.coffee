@@ -5,9 +5,9 @@ $.fn.get_object = ->
     form_object[item.name] = item.value
   form_object
 
-$.fn.draw_map = (organization) ->
+$.fn.draw_map = (organization, context) ->
   container = this[0]
-  point = new DG.GeoPoint(organization['eating[address_attributes][longitude]'], organization['eating[address_attributes][latitude]'])
+  point = new DG.GeoPoint(organization[context+'[address_attributes][longitude]'], organization[context+'[address_attributes][latitude]'])
   map = new DG.Map(container)
   marker = new DG.Markers.Common({ geoPoint: point })
   scale = organization['scale'] || 15
@@ -16,34 +16,35 @@ $.fn.draw_map = (organization) ->
   map.setCenter(point, scale)
   map.markers.add(marker)
 
-update_coordinates = (organization) ->
+update_coordinates = (organization, context) ->
   $.ajax '/manage/geocoder',
     async:    false
     dataType: 'json'
-    data:     'street='+organization['eating[address_attributes][street]']+'&house='+organization['eating[address_attributes][house]']
+    data:     'street='+organization[context+'[address_attributes][street]']+'&house='+organization[context+'[address_attributes][house]']
     error: (jqXHR, textStatus, errorThrown) ->
       console.log(errorThrown)
 
     success: (data, textStatus, jqXHR) ->
       json = jQuery.parseJSON jqXHR.responseText
-      organization['eating[address_attributes][longitude]'] = json.longitude
-      organization['eating[address_attributes][latitude]']  = json.latitude
+      organization[context+'[address_attributes][longitude]'] = json.longitude
+      organization[context+'[address_attributes][latitude]']  = json.latitude
       organization['scale'] = json.scale
-      $('#eating_address_attributes_longitude').val(json.longitude)
-      $('#eating_address_attributes_latitude').val(json.latitude)
+      $('#'+context+'_address_attributes_longitude').val(json.longitude)
+      $('#'+context+'_address_attributes_latitude').val(json.latitude)
 
-$.fn.handler = (form, map_container) ->
+$.fn.handler = (form, map_container, context) ->
   this.click ->
     organization = form.get_object()
-    update_coordinates(organization)
-    map_container.draw_map(organization)
+    update_coordinates(organization, context)
+    map_container.draw_map(organization, context)
     false
 
 $ ->
-  form = $('form.eating')
+  form = $('form.simple_form')
   if form.length
     organization = form.get_object()
     map_container = $('#map')
-    update_coordinates(organization)
-    map_container.draw_map(organization)
-    $('.get_coordinates').handler(form, map_container)
+    context = form.attr('id').replace(/(new|edit)_/, '').replace(/_\d+/, '')
+    update_coordinates(organization, context)
+    map_container.draw_map(organization, context)
+    $('.get_coordinates').handler(form, map_container, context)

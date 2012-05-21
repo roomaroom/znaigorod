@@ -3,14 +3,14 @@
 <%= f.input :description %>
 <%= f.input :offer %>
 <%= f.input :feature %>
-<%= f.input :cuisine,     :as => :string %>
 <%= f.input :payment,     :as => :string %>
 <%= f.input :phone,       :as => :tel %>
 <%= f.input :email,       :as => :email %>
 <%= f.input :site,        :as => :url %>
 
+<%= yield :additional_fields %>
+
 <%= field_set_tag "<i class='icon-home' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.address')}".html_safe do %>
-  <% f.object.build_address unless f.object.address %>
   <%= f.simple_fields_for :address %>
 <% end %>
 

@@ -5,7 +5,7 @@ Znaigorod::Application.routes.draw do
     resources :affiches, :only => [:index, :new]
     resources :organizations, :only => [:index, :new]
 
-    [:eatings].each do |res|
+    [:eatings, :funnies].each do |res|
       resources res, :except => :show
     end
 
