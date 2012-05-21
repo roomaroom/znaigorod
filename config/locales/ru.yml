@@ -29,6 +29,7 @@ ru:
         description: Описание
         original_title: Оригинальное название
         poster_url: Ссылка на постер
+        tag: Теги
         title: Название
         trailer_code: Код трейлера
 

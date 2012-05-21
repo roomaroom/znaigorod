@@ -17,5 +17,6 @@ end
 #  poster_url     :string(255)
 #  trailer_code   :text
 #  type           :string(255)
+#  tag            :text
 #
 

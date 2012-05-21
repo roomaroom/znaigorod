@@ -1,5 +1,5 @@
 class Affiche < ActiveRecord::Base
-  attr_accessible :description, :poster_url, :showings_attributes, :title
+  attr_accessible :description, :poster_url, :showings_attributes, :tag, :title
 
   validates_presence_of :description, :poster_url, :title
 
@@ -29,5 +29,6 @@ end
 #  poster_url     :string(255)
 #  trailer_code   :text
 #  type           :string(255)
+#  tag            :text
 #
 
