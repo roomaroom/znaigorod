@@ -23,36 +23,46 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :halls, :allow_destroy => true, :reject_if => :all_blank
 
-  FACETS = %w[category payment cuisine feature offer]
+  def self.facets
+    %w[category payment cuisine feature offer]
+  end
 
-  FACET_FILEDS = FACETS.inject({}) { |h,v| h[v] = 1; h }
-  RU_FILEDS = { title: 2, address: 1, description: 0.5 }.merge(FACET_FILEDS)
-  NGRAM_FIEDS = { site: 0.5, email: 0.5 }.merge(RU_FILEDS)
+  def self.facet_fields
+    facets.inject({}) { |h,v| h[v] = 1; h }
+  end
 
-  searchable do
-    integer :capacity, :multiple => true do
+  def self.ru_fields
+    { title: 2, address: 1, description: 0.5 }.merge(facet_fields)
+  end
+
+  def self.ngram_fields
+    { site: 0.5, email: 0.5 }.merge(ru_fields)
+  end
+
+  searchable do |s|
+    s.integer :capacity, :multiple => true do
       halls.pluck(:seating_capacity)
     end
 
-    text    :site
-    text    :email
+    s.text    :site
+    s.text    :email
 
-    RU_FILEDS.each do |field, boost|
-      text field,         boost: boost
+    ru_fields.each do |field, boost|
+      s.text field,         boost: boost
 
-      text "#{field}_ru", boost: boost * 0.9 do
+      s.text "#{field}_ru", boost: boost * 0.9 do
         self.send(field)
       end
     end
 
-    NGRAM_FIEDS.each do |field, boost|
-      text "#{field}_ngram", boost: boost * 0.5 do
+    ngram_fields.each do |field, boost|
+      s.text "#{field}_ngram", boost: boost * 0.5 do
         self.send(field)
       end
     end
 
-    FACETS.each do |facet|
-      string facet, :multiple => true do self.send(facet).to_s.split(',').map(&:squish) end
+    facets.each do |facet|
+      s.string facet, :multiple => true do self.send(facet).to_s.split(',').map(&:squish) end
     end
   end
 
