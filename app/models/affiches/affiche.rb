@@ -14,6 +14,10 @@ class Affiche < ActiveRecord::Base
   def ends_on
     showings.last.try(:starts_at).try(:to_date)
   end
+
+  def showings_grouped_by_day
+    showings.group_by(&:starts_on)
+  end
 end
 
 # == Schema Information

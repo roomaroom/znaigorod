@@ -17,7 +17,7 @@
         <div class="filter_wrapper">
           <div class="range_wrapper">
             <div class="range">
-              <% range = (Date.today..Date.parse('10.06.2013')) %>
+              <% range = (Date.today..1.month.from_now.to_date) %>
               <% i = 0 %>
               <% range.group_by(&:year).map{|year, months| months.group_by(&:month)}.each do |year| %>
                 <% year.each do |month, dates| %>

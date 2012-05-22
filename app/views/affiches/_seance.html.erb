@@ -1,0 +1,29 @@
+<div class="seance_tabs">
+  <ul>
+    <% range = affiche.showings_grouped_by_day.keys %>
+    <% range.each_with_index do |day, index| %>
+      <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
+        <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="seances_wrapper">
+  <% index = 0 %>
+  <% affiche.showings_grouped_by_day.each do |date, showings| %>
+    <table class="sortable" id='t<%= "#{affiche.id}#{index}" %>'>
+      <thead>
+        <tr>
+          <th class='time'><a href='#' class='dashed_deep_blue'>Время</a></th>
+          <th class='cinema'><a href='#' class='dashed_deep_blue'>Кинотеатр</a></th>
+          <th class='hall'><a href='#' class='dashed_deep_blue'>Зал</a></th>
+          <th class='amount'><a href='#' class='dashed_deep_blue'>Стоимость</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render showings %>
+      </tbody>
+    </table>
+    <% index += 1 %>
+  <% end %>
+</div>
