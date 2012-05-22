@@ -8,13 +8,16 @@
       range: true
       min: 0
       max: max
-      values: [ 1, 3 ]
+      values: [ 0, 6 ]
       slide: (event, ui) ->
+        return (ui.values[1] - ui.values[0] > 0)
+
+      change: (event, ui) ->
         context = $(this).attr('id')
         min = ui.values[0]
         max = ui.values[1] - 1
-        min_value =  $('#'+context).parent().find('#item_'+min).attr('data-value')
-        max_value =  $('#'+context).parent().find('#item_'+max).attr('data-value')
+        min_value =  $('#'+context).parent().find('.item_'+min).attr('data-value')
+        max_value =  $('#'+context).parent().find('.item_'+max).attr('data-value')
         console.log min_value
         console.log max_value
 

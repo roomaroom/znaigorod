@@ -1,49 +1,49 @@
 body
-  +min-width(1010px)
+  +min-width(1000px)
   background: image_url('bg.png') repeat
   color: #334049
-  padding: 0
-  max-width: 1280px
-  margin: 0 auto
+  padding: 83px 0 0 0
 
   h1, h2, h3, h4, h5, h6
     font-weight: normal
 
   a
+    background-position: left 1em
+    background-repeat: repeat-x
     display: inline
     outline: none
     text-decoration: none
 
     &.dashed_light_blue
-      background: image_url('dashed_light_blue.png') repeat-x left 1.2em
+      background-image: image_url('dashed_light_blue.png')
       color: #9ccfff
 
     &.dashed_white
-      background: image_url('dashed_white.png') repeat-x left 1.2em
+      background-image: image_url('dashed_white.png')
       color: #fff
 
     &.dashed_light_gray
-      background: image_url('dashed_light_gray.png') repeat-x left 1.2em
+      background-image: image_url('dashed_light_gray.png')
       color: #e7edf2
 
     &.dashed_dark_gray
-      background: image_url('dashed_dark_gray.png') repeat-x left 1.2em
+      background-image: image_url('dashed_dark_gray.png')
       color: #4c5254
 
     &.dashed_deep_blue
-      background: image_url('dashed_deep_blue.png') repeat-x left 1.2em
+      background-image: image_url('dashed_deep_blue.png')
       color: #0d88bc
 
     &.solid_dark_gray
-      background: image_url('solid_dark_gray.png') repeat-x left 1.2em
+      background-image: image_url('solid_dark_gray.png')
       color: #151a1d
 
     &.solid_light_blue
-      background: image_url('solid_light_blue.png') repeat-x left 1.2em
+      background-image: image_url('solid_light_blue.png')
       color: #0d88bc
 
     &.solid_white
-      background: image_url('solid_white.png') repeat-x left 1.2em
+      background-image: image_url('solid_white.png')
       color: #fff
 
     &:hover
@@ -52,6 +52,24 @@ body
 
   table
     background: #f1f3f3
+    border-collapse: collapse
+    border-spacing: 0
+    font-size: 13px
+    width: 100%
+
+    th, td
+      padding: 10px 15px 5px
+      text-align: left
+      vertical-align: middle
+
+    th
+      background: #fcfdfe
+
+    tr:nth-child(even)
+      background: #fcfdfe
+
+    td:first-child
+      width: 125px
 
     &.sortable
       .theader
@@ -67,14 +85,25 @@ body
           background: none
 
       .time, .amount
-        width: 10%
+        width: 15%
 
       .cinema, .hall
-        width: 40%
+        width: 35%
 
       th
+        height: 24px
+        padding: 10px 5px 5px
+        vertical-align: middle
+
+        a
+          margin: 4px 5px 0
+
         &:hover
           background: #fff !important
+
+      td
+        padding: 5px 10px
+
 
       .sort_asc, .sort_desc
         a
@@ -82,127 +111,95 @@ body
           background: #61b1e2
           @include background-image(linear-gradient(#61b1e2, #1c7ccd))
           color: #fff !important
-          padding: 1px 15px
+          margin: 0
+          padding: 4px 5px 0
 
       .sort_asc
         a
           &:after
             content: '\25B4'
-            margin: 0 0 0 10px
+            font-size: 0.8em
+            margin: 0 0 0 7px
 
       .sort_desc
         a
           &:after
             content: '\25BE'
-            margin: 0 0 0 10px
+            font-size: 0.8em
+            margin: 0 0 0 7px
 
-.row
-  max-width: 100%
+  .wrapper
+    +clearfix
+    margin: 0 auto
+    max-width: 1280px
 
 .header
-  background: #435a6d image_url('header_bg.png') repeat-x left
-  border-bottom: 1px solid #fff
-  min-height: 83px
-  padding-bottom: 5px
+  background: image_url('header_bg.png') repeat-x left
+  height: 83px
+  left: 0
+  position: fixed
+  right: 0
+  top: 0
+  z-index: 99999
+
+  .wrapper
+    +min-width(610px)
 
   .logo
     float: left
-    margin: 6px 0 0 0
+    margin: 5px 0 0 30px
 
     a
+      display: block
+
       img
         display: block
+        height: 66px
+        width: 118px
 
   .city
     float: left
-    margin: 63px 0 0 13px
+    font-size: 14px
+    margin: 55px 0 0 10px
 
-  .search
-    float: left
-    margin: 28px 0 0 0
+  .search_form
+    +border-radius(3px)
+    +single-box-shadow(#bbb, 0, 1px, 10px, false, true)
+    background: #e2e6e9
+    float: right
+    margin: 25px 30px 0 0
+    padding: 5px 12px
 
     form
-      +clearfix
-      padding: 2px
-      margin: 0
-
-      .input
-        +border-radius(3px)
-        background: #fff
+      input
+        background: none
         border: none
-        color: #969ca2
-        float: left
-        font-size: 15px
-        height: 29px
-        line-height: 37px
-        margin: 0 0 6px 0
-        padding: 0 1%
-        width: 98%
+        height: 17px
+        line-height: 17px
+        margin: 0
+        outline: none
+        padding: 0
+
+      .search
+        width: 324px
 
       .submit
-        background: #ebebeb
-        +background-image(linear-gradient(#fff, #d1d1d1))
-        +single-box-shadow(#3e5062, 0, 0, 2px)
-        +border-radius(3px)
-        border: none
-        color: #334049
-        float: left
-        font-size: 14px
-        height: 31px
-        line-height: 31px
-        width: 100%
+        background: image_url('search_button.png') no-repeat
+        height: 17px
+        text-indent: -9999px
+        width: 17px
 
         &:hover
-          +background-image(linear-gradient(#fff, #b8b8b8))
-
-        &:active
-          +background-image(linear-gradient(#d1d1d1, #fff))
-          position: relative
-          top: 1px
-
-    .example
-      p
-        color: #95a6b5
-        font-size: 11px
-        line-height: 12px
-        margin: 0 0 0 1%
-
-        a
-          border-color: #e7edf2
-          color: #e7edf2
-          font-size: 12px
-          margin: -3px 0 0 6px
-          padding: 0 0 1px 0
-
-          &:hover
-            border-color: transparent
-
-  .extralink
-    float: right
-    font-size: 13px
-    margin: 37px 0 0 0
-
-    ul
-      margin: 0
-
-      li
-        margin: 0
-        text-align: center
+          cursor: pointer
 
 .main_wrapper
-  padding-bottom: 30px
-
-  .main_category
-    margin-top: 23px
-    height: 52px
-    font-size: 2.3em
-    text-align: center
+  +clearfix
 
   .breadcrumbs
     +clearfix
     list-style: none
     line-height: 18px
-    margin: 0
+    margin: 0 0 0 19px
 
     li
       display: inline
@@ -211,459 +208,89 @@ body
         color: #0d88bc
         margin: 0 10px
 
-  .affiche_show, .affiche_index
-    background: rgba(255, 255, 255, 0.7)
-    border: 1px solid #fcfcfc
-    padding: 25px 35px 0
-    width: auto
+.footer
+  background: image_url('footer_bg.png') repeat-x left
 
-  .filters
-    fieldset
-      +border-radius(3px)
-      border: 1px solid #e2e6e7
-      padding: 15px 17px
+  a
+    color: #fff !important
 
-    legend
-      background: #fbfbfb
-      border: none
-      color: #a0a6a8
-      float: left
-      font-size: 0.7em
-      margin: 0 0 -34px 0
-      padding: 0 5px
-      position: relative
-      text-transform: uppercase
-      top: -34px
-      width: auto
-
-    h6
-      font-size: 1em
-      text-transform: none
-      margin: 0 0 7px 0
-
-    ul
-      +clearfix
-      list-style: none
-      margin: 0
-
-      li
-        float: left
-
-    .filter
-      +clearfix
-      margin: 0 0 30px 0
-
-      .wrapper
-        +clearfix
-        float: left
-        background: #fff
-        border: 1px dashed #dce3ea
-
-    .by_date
-      height: 72px
-      position: relative
-      width: 100%
-
-      .prev, .next
-        background: image_url('prev_next.png') no-repeat left center
-        bottom: 8px
-        display: block
-        height: 11px
-        margin: 0 0 0 10px
-        position: absolute
-        text-indent: -9999px
-        width: 12px
-        z-index: 2
-
-      .next
-        background-position: right center
-        bottom: 8px
-        margin: 0 10px 0 0
-        right: 0
-
-      .wrapper
-        height: 70px
-        float: none
-
-      .second_wrapper
-        +clearfix
-        float: left
-
-      .ui-slider
-        height: 46px
-
-        .ui-slider-handle
-          height: 36px
-
-        .ui-slider-range
-          height: 46px
-
-      .month
-        float: left
-        border-right: 1px solid #dce3ea
-
-        .month_title
-          color: #0d88bc
-          margin: 0 0 0 10px
-
-        ul
-          li
-            padding: 7px 9px
-            text-align: center
-            width: 14px
-
-            .day
-              color: #47a0c6
-              display: block
-              font-weight: bold
-
-              &.holiday, &.sun, &.sat
-                color: #e97248
-
-            .dow
-              color: #b1b7bd
-              display: block
-
-    .by_time
-      .wrapper, .pod_wrapper
-        +clearfix
-        margin: 0 0 20px 0
-
-        .hours
-          float: left
-          position: relative
-
-        ul
-          li
-            color: #0d88bc
-            padding: 10px 9px 7px
-            text-align: center
-            font-size: 0.9em
-            width: 14px
-
-            .minute
-              +inline-block
-              color: #96becf
-              font-size: 0.8em
-              position: relative
-              top: -7px
-
-        .pod
-          position: relative
-
-          ul
-            li
-              +border-radius(0 0 10px 10px)
-              border: 1px solid #e2e6e7
-              border-top: none
-              height: 12px
-              margin: 0 0 5px
-              padding: 0
-              text-align: center
-              width: 250px
-
-              div
-                +inline-block
-                background: #fbfbfb
-                padding: 0 10px
-
-              a
-                font-size: 0.9em
-
-      .pod_wrapper
-        margin: 0
-
-    .by_category, .by_tag
-      .wrapper
-        background: none
-        border: none
-
-        ul
-          li
-            padding: 2px
-            margin: 0 10px 0 0
-
-            a
-              +background-image(linear-gradient(#fefefe, #e3e3e3))
-              +border-radius(5px)
-              +single-box-shadow(#d1d1d1, 0, 2px, 3px)
-              border: 1px solid #a9acae
-              color: #4a5966
-              display: block
-              height: 27px
-              line-height: 31px
-              margin: 0 0 10px 0
-              padding: 0 18px
-              text-transform: capitalize
-
-              &:hover
-                +background-image(linear-gradient(#fefefe, #efefef))
-
-              &.active, &:active
-                +background-image(linear-gradient(#0b79a7, #16aae8))
-                +single-box-shadow(#d1d1d1, 0, -2px, 3px)
-                border-color: #0b739f
-                color: #fff
-
-                &:after
-                  content: '\2715'
-                  font-size: 0.8em
-                  margin: 1px 0 0 4px
-                  position: absolute
-
-    .by_tag
-      margin: 0
-
-      .wrapper
-        ul
-          li
-            a
-              height: 21px
-              line-height: 24px
-              text-transform: lowercase
-
-    .by_amount
-      +clearfix
-
-      .wrapper
-        .amounts
-          float: left
-
-        ul
-          li
-            padding: 7px 9px
-            text-align: center
-            width: 35px
-
-  .duration
-    color: #8c969d
-    font-size: 0.7em
-    font-style: italic
-    margin: 0 0 0 15px
-
-  .list
-    margin: 25px 0 0
-
-    ul
-      list-style: none
-      margin: 0
-
-    .item
-      background: #fff
-      margin: 0 0 30px 0
-      padding: 17px 19px
-
-      h3
-        margin: 0 0 15px 0
-
-        a
-        .category
-          +border-radius(3px)
-          background: #abbcc5
-          border: 1px solid #b9c7cf
-          color: #fff
-          font-size: 0.6em
-          margin: 0 10px 0 5px
-          padding: 0px 4px
-          position: relative
-          text-transform: lowercase
-          top: -11px
-
-      .poster
-        img
-          display: block
-          margin: 0 auto
-
-      table
-        margin: 0
-
-  .main_info
-    h1
-    h2
-      color: #828a8f
-      font-size: 1.1em
-      font-style: italic
-
-    h4
-      font-size: 2.1em
-      margin: 30px 0
-
-    .trailer
-      height: auto !important
-      margin: 30px 0
-
-  .subcategories
-    margin: 0
-
-  h3
-    font-size: 1.6em
-
-  .today_in_the_city
-    h4
-      font-size: 1.1em
-      text-align: center
-      margin: 0 0 10px 0
-
-    ul
-      margin: 0
-
-      li
-        +clearfix
-        background: image_url('solid_light_blue.png') repeat-x bottom
-        padding: 3px 0
-
-        .time
-          float: left
-          font-size: 0.9em
-          margin: 0 10px 0 0
-
-        a
-          float: right
-          font-size: 0.9em
-          text-align: right
-
-        .description
-          clear: both
-          font-size: 0.8em
-          text-align: right
-
-  .twitter_timeline
-    h4
-      font-size: 1.1em
-      text-align: center
-      margin: 0 0 10px 0
-
-  .affiche
-    +single-box-shadow
-    +border-radius
-    +clearfix
-    $height: 350px
-    $width: round($height*1.61803399)
-    height: $height
-    width: 2 * $width - $height
+  .wrapper
     margin: 0 auto
-    $border-image-color: #595959
+    padding: 34px 30px 0
+    position: relative
+    max-width: 1220px
 
-    .poster
-      float: left
+    h5
+      color: #9CCFFF
+      font-size: 18px
+      margin: 0 0 13px 0
 
       a
-        +clearfix
-        display: block
-        height: $height
-        width: $width
-
-        img
-          display: block
-          height: $height
-          width: $width - 1
-          border-right: 1px solid $border-image-color
-
-    .previews
-      +clearfix
-      display: block
-      height: $height
-      margin: 0
-      padding: 0
-      width: $width - $height
-
-      li
-        display: block
-        height: round($height/4)
-        margin: 0
-        padding: 0
-
-        a
-          +clearfix
-
-          img
-            display: block
-            height: round($height/4) - 1
-            width: $width - $height
-            border-bottom: 1px solid $border-image-color
-
-      .last
-        a
-          img
-            height: round($height/4)
-            border: none
-
-  .offer
-    margin: 0 0 15px 0
-
-    a
-      +clearfix
-
-      img
-        +border-radius
-        +single-box-shadow
-        display: block
-        margin: 0 auto
-
-      span
-        display: block
-        margin: 10px 0 0 0
-        text-align: center
-
-
-.footer
-  +clearfix
-  background: #404d59
-  @include background-image(linear-gradient(#424f5b, #404d59, #38444e))
-  border-top: 1px solid #fff
-  padding-top: 30px
-  padding-bottom: 10px
-
-  h5
-    +clearfix
-    color: #9ccfff
-    font-size: 18px
-    margin: 0 0 12px 0
-
-  .logo
-    margin: 35px 0 0 0
-    a
-      +clearfix
-
-      img
-        display: block
+        color: #9CCFFF !important
 
   .bottom_navigation
+    +clearfix
+    float: left
+    width: 265px
+
+    div
+      font-size: 14px
+      float: left
+      width: 100%
+
+    .right
+      margin: 28px 0 0 0
+
     ul
       +clearfix
-      margin: 0
 
       li
-        list-style: none
         float: left
-        margin: 0 0 5px 0
+        margin: 0 0 8px 0
         width: 50%
 
+  .logo
+    display: none
+    float: left
+    position: absolute
+    top: 220px
+
+    a
+      img
+
   .our_social_link
+    float: left
+    width: 179px
+
+    h5
+      margin: 0 0 1px 46px
+
     ul
       margin: 0
 
       li
         background: image_url('social_links.png') no-repeat
+        font-size: 14px
+        height: 24px
         list-style: none
-        height: 28px
-        padding: 10px 0 0 50px
         margin: 0 0 6px 0
+        padding: 12px 0 0 46px
 
     .vk
       background-position: 0 0
 
     .twitter
-      background-position: 0 -38px
+      background-position: 0 -36px
 
     .email
-      background-position: 0 -76px
+      background-position: 0 -74px
 
     .phone
-      background-position: 0 -114px
+      background-position: 0 -110px
 
   .twitter_timeline
     float: right
+    width: 50%
 
 .twtr-widget-profile
   .twtr-doc
@@ -671,6 +298,8 @@ body
       display: none
 
     .twtr-bd
+      padding: 0
+
       .twtr-timeline
         .twtr-tweets
 
@@ -681,7 +310,7 @@ body
             border: none
 
             .twtr-tweet-wrap
-              padding: 0 0 15px 0
+              padding: 0 0 12px 0
 
               .twtr-avatar
                 display: none

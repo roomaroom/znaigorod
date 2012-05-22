@@ -1,0 +1,116 @@
+.affiche_show, .affiche_index
+  background: rgba(255, 255, 255, 0.7)
+  margin: 17px 0
+  padding: 30px 30px 17px 30px
+
+  h1
+    margin: 12px 0 0 19px
+    font-size: 29px
+
+  h2
+    font-size: 14px
+    font-style: italic
+    margin: 3px 0 0 0
+
+  .description
+    +clearfix
+    color: #1d1f21
+    margin: 24px 0 0 0
+
+    .poster
+      float: left
+      margin: 0 22px 0 0
+
+      img
+        display: block
+        margin: 0 0 8px 0
+
+    .info
+      +clearfix
+
+    .story
+      +clearfix
+      font-size: 14px
+      margin: 27px 0 0 0
+      padding: 0 13px
+
+      p
+        line-height: 17px
+        margin: 0 0 28px 0
+
+  .trailer
+    margin: 30px 15%
+
+  .seance
+    margin: 0 0 30px 0
+
+    h4
+      font-size: 28px
+      float: left
+      padding: 10px 24px 7px 0
+
+      .duration
+        font-style: italic
+        font-size: 14px
+        margin: 0 0 0 10px
+
+    .seances_wrapper
+      +clearfix
+      border-top: 1px solid #dedede
+      position: relative
+      top: -1px
+      width: 100%
+      z-index: 1
+
+  .comments
+    h4
+      font-size: 28px
+
+    a
+      color: #0D88BC
+
+      &:hover
+        color: #095a7c
+
+.affiche_index
+  .list
+    +clearfix
+
+    .item
+      +clearfix
+      background: #fff
+      margin: 0 0 30px 0
+      padding: 20px 19px 17px
+
+      h3
+        font-size: 18px
+        margin: 0 0 15px 0
+
+        a
+        .category
+          +inline-block
+          +border-radius(3px)
+          background: #abbcc5
+          border: 1px solid #b9c7cf
+          color: #fff
+          font-size: 0.6em
+          margin: 0 10px 0 5px
+          padding: 2px 4px 1px
+          position: relative
+          text-transform: lowercase
+          top: -11px
+
+      .poster
+        float: left
+        margin: 5px 0 0 0
+
+        img
+          display: block
+          margin: 0 auto
+
+      .seance
+        +clearfix
+        margin: 0
+
+      .seances_wrapper
+        padding: 0 0 0 15px

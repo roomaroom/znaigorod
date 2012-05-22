@@ -1,0 +1,200 @@
+.main_page_block
+  +clearfix
+  margin: 17px 0
+
+  position: relative
+  width: 100%
+
+  h3
+    font-size: 21px
+    margin: 0
+
+  .right_wrapper
+    float: left
+    width: 100%
+
+  .thin_block
+    background: rgba(255, 255, 255, 0.7)
+    float: left
+    padding: 30px 15px 15px 30px
+
+    width: 250px
+    height: 434px
+    margin-left: -100%
+    position: relative
+
+    h3
+      margin: 0 0 22px 0
+
+    .link
+      font-size: 13px
+      float: right
+      line-height: 16px
+      margin: 15px 0 0 0
+
+    ul
+      list-style: none
+      margin: 0
+
+      li
+        +clearfix
+        background: image_url('dashed_light_gray.png') repeat-x bottom
+        height: 62px
+        padding: 10px 0 0
+        width: 250px
+
+        .top
+          +clearfix
+          line-height: 16px
+
+        .bottom
+          +clearfix
+          line-height: 16px
+
+        .title
+          font-size: 14px
+          float: left
+          margin: 0 15px 0 0
+          width: 202px
+
+        .time
+          color: #212223
+          font-size: 12px
+          float: right
+          line-height: 15px
+          width: 33px
+
+        .category
+          color: #8c98a4
+          font-size: 12px
+          float: left
+          margin: 0 10px 0 0
+
+          a
+            color: #8c98a4
+
+        .location
+          +clearfix
+          color: #454d56
+          font-size: 12px
+
+          a
+            color: #454d56
+
+  .wide_block
+    +min-width(628px)
+    background: rgba(255, 255, 255, 0.7)
+    float: left
+    padding: 30px 30px 17px 30px
+
+    margin-left: 312px
+    height: 432px
+
+    h3
+      float: left
+      margin: 0 0 35px 0
+
+    .category
+      float: right
+      margin: 7px 0 0 0
+
+      ul
+        +clearfix
+
+        li
+          float: left
+          font-size: 13px
+          line-height: 14px
+          margin: 0 0 0 18px
+
+    .affiche
+      +clearfix
+      +border-radius
+      height: 363px
+      width: 100%
+      position: relative
+
+      .poster_wrapper
+        float: left
+        width: 100%
+
+      .poster
+        padding: 0 255px 0 0
+        height: 363px
+
+        a
+          display: block
+
+          img
+            +min-width(100%)
+            display: block
+
+      .previews_wrapper
+        +clearfix
+        float: left
+        height: 363px
+        margin-left: -255px
+        position: absolute
+        right: 0
+        top: 0
+        width: 255px
+
+      .previews
+        border-left: 1px solid #fafafa
+        bottom: 0
+        display: block
+        list-style: none
+        margin: 0
+        position: absolute
+        right: 0
+        width: 254px
+
+        li
+          border-bottom: 1px solid #fafafa
+          height: 121px
+
+          a
+            display: block
+            width: 254px
+
+            img
+              display: block
+
+        .last
+          padding: 0
+
+    .hot_offer
+      +clearfix
+      margin: 105px 0 0 0
+      width: 100%
+
+      ul
+        +clearfix
+
+        li
+          float: left
+          width: 33%
+
+          .icon
+            float: left
+            margin: 0 6px 0 0
+
+            img
+              display: block
+
+          .title
+            font-size: 13px
+            margin: 0 6px 0 0
+
+          .links
+            +clearfix
+            color: #8c98a4
+            line-height: 12px
+            margin: 5px 6px 0 0
+
+            a
+              color: #8c98a4
+              font-size: 11px
+
+              &:hover
+                color: #596571

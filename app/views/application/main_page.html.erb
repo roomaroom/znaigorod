@@ -1,148 +1,239 @@
-<div class="row-fluid">
-  <div class="span12">
-    <div class="row-fluid">
-      <div class="offset2">
-        <h2 class='main_category'><%= link_to t('affiche'), affiches_path, :class => 'dashed_deep_blue' %></h2>
-        <ul class="subcategories row-fluid">
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Кино</a>
+<div class="main_page_block">
+  <div class="right_wrapper">
+    <div class="wide_block">
+      <h3><a href='/affiches' class='solid_dark_gray'>Афиша</a></h3>
+      <div class="category">
+        <ul>
+          <li><a href="#" class='solid_light_blue'>Кино</a></li>
+          <li><a href="#" class='solid_light_blue'>Спектакли</a></li>
+          <li><a href="#" class='solid_light_blue'>Выставки</a></li>
+          <li><a href="#" class='solid_light_blue'>Концерты</a></li>
+          <li><a href="#" class='solid_light_blue'>Вечеринки</a></li>
+          <li><a href="#" class='solid_light_blue'>Спорт</a></li>
+        </ul>
+      </div>
+      <div class="affiche">
+        <div class="poster_wrapper">
+          <div class="poster">
+          </div>
+        </div>
+        <div class="previews_wrapper">
+          <ul class='previews'>
+            <li>
+              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1940/254-121!/2011-11-30_LTE-02_600.jpg" alt="Мстители" title='Мстители' /></a>
+            </li>
+            <li>
+              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1374/254-121!/photo_48617.jpg" alt="1+1" title='1+1' /></a>
+            </li>
+            <li>
+              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1948/254-121!/IMG_4831.jpg" alt="Мрачные тени" title='Мрачные тени' /></a>
+            </li>
+            <li class='last'>
+              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/2335/254-121!/sib_326_023-1_jpg_625x625_q70.jpg" alt="Deep purple" title='Deep purple' /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="thin_block">
+    <h3><a href='#' class='solid_dark_gray'>Сегодня в городе</a></h3>
+    <ul>
+      <li>
+        <div class="top">
+          <div class="time">13:40</div>
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Кто подставил кролика Роджера</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Кино</a></div>
+          <div class="location">Киномакс</div>
+        </div>
+      </li>
+      <li>
+        <div class="top">
+          <div class="time">14:20</div>
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Кому на Руси жить хорошо</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Спектакли</a></div>
+          <div class="location">Томский театр драмы</div>
+        </div>
+      </li>
+      <li>
+        <div class="top">
+          <div class="time">14:25</div>
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Чемпионат по боулингу среди детей от 3-х лет</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Спорт</a></div>
+          <div class="location">Rocco bar</div>
+        </div>
+      </li>
+      <li>
+        <div class="top">
+          <div class="time">15:00</div>
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Hardcore Halloween</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Вечеринки</a></div>
+          <div class="location">Fакел</div>
+        </div>
+      </li>
+      <li>
+        <div class="top">
+          <div class="time">15:05</div>
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Трансляция футбольного матча Конь-Чебуреки</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Спорт</a></div>
+          <div class="location">Стадион Труд</div>
+        </div>
+      </li>
+    </ul>
+    <a href="#" class='solid_light_blue link'>Все события сегодня</a>
+  </div>
+
+</div>
+
+<div class="main_page_block">
+  <div class="right_wrapper">
+    <div class="wide_block">
+      <h3><a href='#' class='solid_dark_gray'>Заведения города</a></h3>
+      <div class="category">
+        <ul>
+          <li><a href="#" class='solid_light_blue'>Еда</a></li>
+          <li><a href="#" class='solid_light_blue'>Развлечения</a></li>
+          <li><a href="#" class='solid_light_blue'>Занятия спортом</a></li>
+        </ul>
+      </div>
+
+      <div class="hot_offer">
+        <ul>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>Попеть в граммофон</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Концерты</a>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>С ребенком в боулинг</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Выставки</a>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>Наскрипачиться в доску</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Cпектакли</a>
+        </ul>
+      </div>
+      <div class="hot_offer">
+        <ul>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>Попеть в граммофон</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Вечеринки</a>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>С ребенком в боулинг</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
-          <li class='span2'>
-            <a href="#" class='solid_dark_gray'>Спорт</a>
+          <li>
+            <a href="#" class='icon'><img src='http://placeholders-matter.com/96x96/american_nightmare_game/3' alt='Попеть в граммофон' /></a>
+            <a href="#" class='title solid_light_blue'>Наскрипачиться в доску</a>
+            <p class="links">
+              <a href="#">Караоке "У Варгена"</a>,
+              <a href="#">Караоке "Звезда"</a>,
+              <a href="#">Кафе "Пирамида"</a>
+            </p>
           </li>
         </ul>
       </div>
     </div>
-    <div class="row-fluid">
-      <div class="span2">
-        <div class="today_in_the_city">
-          <h4><a href='#' class='dashed_deep_blue'>Сегодня в городе</a></h4>
-          <ul>
-            <li>
-              <div class="time"><%= l Time.now, :format => "%H:%m" %></div>
-              <a href='#'>Мстители</a>
-              <div class="description">боевик</div>
-            </li>
-            <li>
-              <div class="time"><%= l Time.now+3600, :format => "%H:%m" %></div>
-              <a href='#'>Каштанка или Забытые письма</a>
-              <div class="description">спектакль</div>
-            </li>
-            <li>
-              <div class="time"><%= l Time.now+7200, :format => "%H:%m" %></div>
-              <a href='#'>Томский Экзотариум</a>
-              <div class="description">выставка</div>
-            </li>
-            <li>
-              <div class="time"><%= l Time.now+10800, :format => "%H:%m" %></div>
-              <a href='#'>Неристойное предложение</a>
-              <div class="description">стриптиз</div>
-            </li>
-            <li>
-              <div class="time"><%= l Time.now+14400, :format => "%H:%m" %></div>
-              <a href='#'>Сестры Зайцевы</a>
-              <div class="description">концерт</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="span10">
-        <div class="affiche">
-          <div class="poster">
-            <a href="#"><img src="http://placeholders-matter.com/485x300/avengers/2" alt="Мстители" title='Мстители' /></a>
+  </div>
+  <div class="thin_block">
+    <h3><a href='#' class='solid_dark_gray'>Новое на сайте</a></h3>
+    <ul>
+      <li>
+        <div class="top">
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Кафе "Три баяниста"</a>
           </div>
-          <ul class='previews'>
-            <li>
-              <a href="#"><img src="http://placeholders-matter.com/216x88/Белый%20тигр" alt="Белый тигр" title='Белый тигр' /></a>
-            </li>
-            <li>
-              <a href="#"><img src="http://placeholders-matter.com/216x88/Intouchables/2" alt="1+1" title='1+1' /></a>
-            </li>
-            <li>
-              <a href="#"><img src="http://placeholders-matter.com/216x88/Мрачные%20тени" alt="Мрачные тени" title='Мрачные тени' /></a>
-            </li>
-            <li class='last'>
-              <a href="#"><img src="http://placeholders-matter.com/216x88/Deep%20purple" alt="Deep purple" title='Deep purple' /></a>
-            </li>
-          </ul>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span12">
-    <div class="row-fluid">
-      <div class="offset2">
-        <h2 class='main_category'><%= link_to t('organizations'), organizations_path, :class => 'dashed_deep_blue' %></h2>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span2">
-      <div class="twitter_timeline">
-        <h4><a href='#' class='dashed_deep_blue'>Наш твиттор</a></h4>
-        <script>
-          new TWTR.Widget({
-            version: 2,
-            type: 'profile',
-            rpp: 4,
-            interval: 30000,
-            width: 'auto',
-            height: 'auto',
-            theme: {
-              shell: {
-                background: 'transparent',
-              },
-              tweets: {
-                background: 'transparent'
-              }
-            },
-            features: {
-              scrollbar: false,
-              loop: false,
-              live: false,
-              behavior: 'all',
-              avatars: false
-            }
-          }).render().setUser('znaigorod').start();
-        </script>
-      </div>
-    </div>
-    <div class="span10">
-      <div class="row-fluid">
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/busness%20lunch' alt='#'/><span>Бизнес-ланч</span></a>
+        <div class="bottom">
+          <div class="category"><a href='#'>Вкусно</a></div>
         </div>
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/wifi' alt='#'/><span>Места с WiFi</span></a>
+      </li>
+      <li>
+        <div class="top">
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Ресторан "Пармезан"</a>
+          </div>
         </div>
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/kid' alt='#'/><span>Куда пойти с ребенком</span></a>
+        <div class="bottom">
+          <div class="category"><a href='#'>Вкусно</a></div>
         </div>
-      </div>
-      <div class="row-fluid">
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/barbershop/1' alt='#'/><span>Парикмахерские</span></a>
+      </li>
+      <li>
+        <div class="top">
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Выставка кошек</a>
+          </div>
         </div>
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/fastfood/2' alt='#'/><span>Кафе быстрого питания</span></a>
+        <div class="bottom">
+          <div class="category"><a href='#'>Выставки</a></div>
         </div>
-        <div class="span4 offer">
-          <a href="#"><img src='http://placeholders-matter.com/148x88/coffee' alt='#'/><span>Кофейни</span></a>
+      </li>
+      <li>
+        <div class="top">
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Hardcore Halloween</a>
+          </div>
         </div>
-      </div>
-    </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Вечеринки</a></div>
+        </div>
+      </li>
+      <li>
+        <div class="top">
+          <div class="title">
+            <a href="#" class='solid_light_blue'>Трансляция футбольного матча Конь-Чебуреки</a>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="category"><a href='#'>Спорт</a></div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

@@ -1,19 +1,27 @@
-<li class="item">
-  <div class="row-fluid">
-    <h3 class='span12'><%= link_to affiche.title, affiche_path(affiche), :class => 'solid_light_blue' %><span class='category'>Кино</span><span class='duration'>Сеансы <%= affiche_showings(affiche) %></span></h3>
+<div class="item">
+  <h3><%= link_to affiche.title, affiche_path(affiche), :class => 'solid_light_blue' %><span class='category'>Кино</span></h3>
+  <div class="poster">
+    <%= poster_image_tag_for(affiche, 137, 185) %>
   </div>
-  <div class="row-fluid">
-    <div class="poster span2">
-      <%= poster_image_tag_for(affiche, 137, 185) %>
+  <div class="seance">
+    <div class="seance_tabs">
+      <ul>
+        <% range = (Date.parse('21.05.2012')..Date.parse('27.05.2012')) %>
+        <% range.each_with_index do |day, index| %>
+          <li class='fake <%= 'active' if index==0 %>' id='target_t<%= index %>'>
+            <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
+          </li>
+        <% end %>
+      </ul>
     </div>
-    <div class="span10">
-      <table class="table sortable table-striped table-condensed">
+    <div class="seances_wrapper">
+      <table class="sortable" id='t1'>
         <thead>
           <tr>
-            <th class='time'><a href='#' class='dashed_light_blue'>Время</a></th>
-            <th class='cinema'><a href='#' class='dashed_light_blue'>Кинотеатр</a></th>
-            <th class='hall'><a href='#' class='dashed_light_blue'>Зал</a></th>
-            <th class='amount'><a href='#' class='dashed_light_blue'>Стоимость</a></th>
+            <th class='time'><a href='#' class='dashed_deep_blue'>Время</a></th>
+            <th class='cinema'><a href='#' class='dashed_deep_blue'>Кинотеатр</a></th>
+            <th class='hall'><a href='#' class='dashed_deep_blue'>Зал</a></th>
+            <th class='amount'><a href='#' class='dashed_deep_blue'>Стоимость</a></th>
           </tr>
         </thead>
         <tbody>
@@ -22,5 +30,5 @@
       </table>
     </div>
   </div>
-</li>
+</div>
 
