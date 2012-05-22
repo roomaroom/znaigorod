@@ -18,5 +18,5 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require twitter/bootstrap
-//= require ./geocoder
+// require ./geocoder
 //= require ./main

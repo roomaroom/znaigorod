@@ -3,7 +3,7 @@ class Affiche < ActiveRecord::Base
 
   validates_presence_of :description, :poster_url, :title
 
-  has_many :showings
+  has_many :showings, :dependent => :destroy
 
   accepts_nested_attributes_for :showings, :allow_destroy => true
 

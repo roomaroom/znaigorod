@@ -12,6 +12,7 @@ end
 
 group :default do
   gem 'curb',                                         :require => false
+  gem 'default_value_for'
   gem 'el_vfs_client'
   gem 'formtastic'
   gem 'has_scope'

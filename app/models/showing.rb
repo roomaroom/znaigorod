@@ -6,6 +6,23 @@ class Showing < ActiveRecord::Base
   validates_presence_of :place, :price, :starts_at
 
   default_scope order(:starts_at)
+
+  delegate :title, :to => :affiche, :prefix => true
+
+  searchable do
+    date      :starts_on
+    integer   :price
+    integer   :starts_at_hour
+    text      :affiche_title
+  end
+
+  def starts_on
+    starts_at.to_date
+  end
+
+  def starts_at_hour
+    starts_at.hour
+  end
 end
 
 # == Schema Information
