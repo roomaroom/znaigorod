@@ -10,10 +10,11 @@ class Showing < ActiveRecord::Base
   delegate :title, :to => :affiche, :prefix => true
 
   searchable do
-    date      :starts_on
-    integer   :price
-    integer   :starts_at_hour
-    text      :affiche_title
+    date                                   :starts_on
+    integer                                :price
+    integer                                :starts_at_hour
+    string(:categories, :multiple => true) { [affiche.class.name.underscore] }
+    text                                   :affiche_title
   end
 
   def starts_on

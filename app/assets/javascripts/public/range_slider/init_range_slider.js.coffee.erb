@@ -1,5 +1,6 @@
 @init_range_slider = () ->
   range_slider_block = $('.range_slider')
+  filters = $('.filters')
 
   range_slider_block.each ->
     $this = $(this)
@@ -13,13 +14,7 @@
         return (ui.values[1] - ui.values[0] > 0)
 
       change: (event, ui) ->
-        context = $(this).attr('id')
-        min = ui.values[0]
-        max = ui.values[1] - 1
-        min_value =  $('#'+context).parent().find('.item_'+min).attr('data-value')
-        max_value =  $('#'+context).parent().find('.item_'+max).attr('data-value')
-        console.log min_value
-        console.log max_value
+        filters.trigger('changed')
 
       create: (event, ui) ->
         $('.ui-slider-handle').filter(":even").addClass('left_handle')

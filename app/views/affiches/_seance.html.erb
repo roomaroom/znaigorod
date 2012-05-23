@@ -1,7 +1,7 @@
 <div class="seance_tabs">
   <ul>
-    <% range = affiche.showings_grouped_by_day.keys %>
-    <% range.each_with_index do |day, index| %>
+    <% range = affiche.showings_grouped_by_day %>
+    <% range.keys.each_with_index do |day, index| %>
       <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
         <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
       </li>
@@ -10,8 +10,8 @@
 </div>
 <div class="seances_wrapper">
   <% index = 0 %>
-  <% affiche.showings_grouped_by_day.each do |date, showings| %>
-    <table class="sortable" id='t<%= "#{affiche.id}#{index}" %>'>
+  <% range.each do |date, showings| %>
+    <table class="sortable" <%= "style='display: none;'" unless index.zero? %> id='t<%= "#{affiche.id}#{index}" %>'>
       <thead>
         <tr>
           <th class='time'><a href='#' class='dashed_deep_blue'>Время</a></th>
@@ -21,7 +21,14 @@
         </tr>
       </thead>
       <tbody>
-        <%= render showings %>
+        <% showings.each do |showing| %>
+          <tr>
+            <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
+            <td><%= showing.place %></td>
+            <td><%= showing.hall %></td>
+            <td><%= showing.price %> руб.</td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
     <% index += 1 %>

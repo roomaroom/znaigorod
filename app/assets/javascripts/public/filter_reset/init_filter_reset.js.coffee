@@ -1,8 +1,5 @@
 @init_filter_reset = () ->
-  $('.by_category li a, .by_tag li a').click ->
-    $(this).toggleClass('active')
-    false
-
+  filters = $('.filters')
   $('.reset').click ->
     $this = $(this)
     context = $this.closest('.filter').attr('class').replace('filter ', '')
@@ -15,4 +12,7 @@
         max = target.slider('option', 'max')
         target.slider('values', [0,max])
         break
+
+    filters.trigger('changed')
+
     false

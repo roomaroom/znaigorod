@@ -5,6 +5,12 @@ class AffichesController < InheritedResourcesController
 
   layout 'public'
 
+  def index
+    render :partial => 'item', :collection => collection, :layout => false and return if request.xhr?
+
+    index!
+  end
+
   protected
     def collection
       get_collection_ivar || set_collection_ivar(search_and_paginate_collection)

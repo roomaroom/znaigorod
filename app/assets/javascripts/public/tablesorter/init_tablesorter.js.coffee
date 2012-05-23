@@ -1,5 +1,6 @@
 @init_tablesorter = () ->
   tables = $('.sortable')
+
   tables.each ->
     $this = $(this)
 

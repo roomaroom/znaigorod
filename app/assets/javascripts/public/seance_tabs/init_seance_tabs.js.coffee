@@ -1,8 +1,5 @@
 @init_seance_tabs = () ->
-  firsts = $('.seances_wrapper table:first', '.seance')
-  $('.seances_wrapper table', '.seance').not(firsts).hide()
-
-  $('.seance_tabs a').click ->
+  $('.seance_tabs a').live 'click', ->
     $this = $(this)
     parent = $this.parent()
     false if parent.hasClass('active')

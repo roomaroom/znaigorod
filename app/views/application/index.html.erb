@@ -1,0 +1,23 @@
+<div class="affiche_index">
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="/" class='solid_light_blue'>Главная</a><span class='arrow'>&rarr;</span>
+      </li>
+    </ul>
+  </div>
+
+  <h1><%= t('affiche') %></h1>
+
+  <div class="filters">
+    <fieldset>
+      <legend>Фильтр</legend>
+      <%= render :partial => "filters" %>
+    </fieldset>
+  </div>
+
+  <div class="list">
+    <%= render :partial => 'item', :collection => collection %>
+  </div>
+</div>
+

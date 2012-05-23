@@ -1,55 +1,10 @@
-<div class="affiche_show">
-
-    <div class="breadcrumbs">
-      <ul>
-        <li>
-          <a href="/" class='solid_light_blue'>Главная</a><span class='arrow'>&rarr;</span>
-        </li>
-        <li>
-          <%= link_to t('affiche'), affiches_path, :class => 'solid_light_blue' %><span class='arrow'>&rarr;</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="main_info">
-      <h1><%= resource.title %></h1>
-      <h2>The Assassination of Jesse James by the Coward Robert Ford</h2>
-
-      <div class='description'>
-        <div class='poster'>
-          <%= poster_image_tag_for(resource, 290, 390) %>
-          <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-          <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
-        </div>
-
-        <div class="info">
-          <%= resource.description.html_safe %>
-        </div>
-      </div>
-
-      <div class='trailer'>
-        <%= resource.trailer_code %>
-      </div>
-
-      <div class='seance'>
-        <h4>Сеансы</h4>
-        <%= render :partial => 'seance', :locals => { :affiche => resource } %>
-      </div>
-      <div class='comments'>
-        <h4>Комментарии</h4>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-          var disqus_shortname = 'znaigorod'; // required: replace example with your forum shortname
-
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-             dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-           })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
-    </div>
+<div class="item">
+  <h3><%= link_to item.title, affiche_path(item), :class => 'solid_light_blue' %><span class='category'>Кино</span></h3>
+  <div class="poster">
+    <%= poster_image_tag_for(item, 137, 185) %>
+  </div>
+  <div class="seance">
+    <%= render :partial => 'seance', :locals => { :affiche => item } %>
+  </div>
 </div>
+

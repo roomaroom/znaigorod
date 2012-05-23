@@ -1,0 +1,94 @@
+<div class="filter by_date">
+  <div class="filter_wrapper">
+    <div class="range_wrapper">
+      <div class="range">
+        <% range = (Date.today..Date.parse('10.06.2013')) %>
+        <% i = 0 %>
+        <% range.group_by(&:year).map{|year, months| months.group_by(&:month)}.each do |year| %>
+          <% year.each do |month, dates| %>
+            <div class="month">
+              <ul>
+                <% dates.each do |date| %>
+                  <li class='<%= "item_#{i}" %>' data-value='<%= date %>'>
+                    <% i = i +1 %>
+                    <span class="day <%= l(date, :format => '%a', :locale => :en).downcase %>"><%= l date, :format => '%e' %></span>
+                    <span class="dow"><%= l date, :format => '%a' %></span>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="month_title"><%= t('date.month_names')[month] %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %>></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter by_time">
+  <h6><a href='#' class='dashed_dark_gray'>Время</a></h6>
+  <div class="filter_wrapper hide">
+    <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+    <div class="range_wrapper">
+      <div class="range">
+        <div class="hours">
+          <ul>
+            <% [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5].each_with_index do |hour, i| %>
+              <li class='<%= "item_#{i}" %>' data-value='<%= hour %>'><%= hour %><span class='minute'>00</span></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="range_slider" id='by_time' data-count='24'></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter by_category">
+  <h6><a href='#' class='dashed_dark_gray'>Категория</a></h6>
+  <div class="filter_wrapper hide">
+    <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+    <ul>
+      <% Affiche.descendants.map(&:name).map(&:underscore).each do |category| %>
+        <li>
+          <a href="#" data-value='<%= category %>'><%= category %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="filter by_amount">
+  <h6><a href='#' class='dashed_dark_gray'>Стоимость (руб)</a></h6>
+  <div class="filter_wrapper hide">
+    <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+    <div class="range_wrapper">
+      <div class="range">
+        <div class="amounts">
+          <ul>
+            <% ['0', '50', '100', '150', '200', '250', '300', '350', '400', '450', '500', '600', '700', '800', '900', '1000', '1500', '>1500'].each_with_index do |amount, i| %>
+              <li class='<%= "item_#{i}" %>' data-value='<%= amount %>'><%= amount %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="range_slider" id='by_amount' data-count='18' ></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter by_tag">
+  <h6><a href='#' class='dashed_dark_gray'>Тег</a></h6>
+  <div class="filter_wrapper hide">
+    <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+    <ul>
+      <% ['отдых с друзьями', 'мелодрама', 'шествие', 'детские праздники', 'цирк', 'отдых с друзьями', 'мелодрама', 'шествие', 'детские праздники', 'цирк', 'отдых с друзьями', 'мелодрама', 'шествие', 'детские праздники', 'цирк'].each do |tag| %>
+        <li>
+          <a href='#' data-value='<%= tag %>'><%= tag %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
