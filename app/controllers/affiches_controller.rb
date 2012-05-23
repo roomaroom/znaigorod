@@ -2,6 +2,7 @@ class AffichesController < InheritedResourcesController
   actions :index, :show
 
   has_scope :page, :default => 1
+  has_scope :with_showings, :default => 1
 
   layout 'public'
 

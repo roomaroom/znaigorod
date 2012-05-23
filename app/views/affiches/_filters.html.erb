@@ -50,9 +50,9 @@
   <div class="filter_wrapper hide">
     <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
     <ul>
-      <% Affiche.descendants.map(&:name).map(&:underscore).each do |category| %>
+      <% Affiche.descendants.each do |category_class| %>
         <li>
-          <a href="#" data-value='<%= category %>'><%= category %></a>
+          <a href="#" data-value='<%= category_class.name.underscore %>'><%= category_class.model_name.human %></a>
         </li>
       <% end %>
     </ul>

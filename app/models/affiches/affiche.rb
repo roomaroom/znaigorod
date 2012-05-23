@@ -7,6 +7,8 @@ class Affiche < ActiveRecord::Base
 
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
+  scope :with_showings, ->(fake) { includes(:showings).where('showings.starts_at > ?', Date.today) }
+
   def starts_on
     showings.first.try(:starts_at).try(:to_date)
   end
@@ -16,7 +18,7 @@ class Affiche < ActiveRecord::Base
   end
 
   def showings_grouped_by_day
-    showings.group_by(&:starts_on)
+    showings.where('starts_at > ?', Date.today).group_by(&:starts_on)
   end
 end
 

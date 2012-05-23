@@ -20,5 +20,7 @@ class ShowingSearch < Search
   default_value_for :price_gt, 0
   default_value_for :starts_at_hour_gt, 0
   default_value_for :starts_at_hour_lt, 24
-  default_value_for :starts_on_gt, Date.today
+  default_value_for :starts_on_gt do
+    Date.today
+  end
 end

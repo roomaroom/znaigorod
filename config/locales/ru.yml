@@ -18,6 +18,14 @@ ru:
   twitter_timeline: Эфир
 
   activerecord:
+    models:
+      concert: Концерт
+      exhibition: Выставка
+      movie: Кино
+      party: Вечеринка
+      spectacle: Спектакль
+      sports_event: Спорт
+
     attributes:
       address:
         house: Дом
