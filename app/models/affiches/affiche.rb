@@ -19,7 +19,7 @@ class Affiche < ActiveRecord::Base
   end
 
   def showings_grouped_by_day(search_params = nil)
-    search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today }
+    search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
 
     showings.where(:id => showing_ids).where('starts_at > ?', Date.today).group_by(&:starts_on)
