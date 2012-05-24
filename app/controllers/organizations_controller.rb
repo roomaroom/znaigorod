@@ -21,7 +21,7 @@ class OrganizationsController < InheritedResourcesController
         fulltext params[:q]
 
         all_of do
-          Organization::FACETS.each do |facet|
+          Organization.facets.each do |facet|
             params_facet_values(facet).each do |value|
               with(facet, value)
             end
@@ -30,7 +30,7 @@ class OrganizationsController < InheritedResourcesController
           with(:capacity).greater_than(capacity) if capacity?
         end
 
-        Organization::FACETS.each do |facet|
+        Organization.facets.each do |facet|
           facet(facet, :zeros => true, :sort => :index)
         end
       end
