@@ -51,27 +51,30 @@ $.fn.prepare_params = () ->
 
   { utf8: true, search: params }
 
-send_request = (params) ->
-  $.ajax
-    url: '/affiches'
-    type: 'GET'
-    data: params
-    success: (data, textStatus, jqXHR) ->
-      list = $('.list')
-      response = $(jqXHR.responseText)
-      list.animate({height: 0}, 900, ->
-        list.html(response).removeAttr('style').hide().show('slow')
-        init_tablesorter()
-      )
-
-wait_respond = (params) ->
-  $('.list').animate({height: 0}, 900, ->
-    $(this).html('<img src="/assets/preloader.gif" width=150 height=150 style="margin: 0 auto; display: block">')
-  ).animate({height: '150px'}, 900, ->
-    send_request(params)
-  )
-
 @init_filter_handler = () ->
   filters = $('.filters')
+
+  search_preset = window.location.hash.replace('#','')
+
   filters.on 'changed', ->
-    wait_respond(filters.prepare_params())
+    list_block =  $('.list')
+
+    list_block.addClass('filled') if list_block.find('.item').length
+
+    list_block.animate({opacity: 0}, 900, ->
+      list_block.addClass('preloader').html('<img src="/assets/preloader.gif" width=48 height=48 style="margin: 0 auto; display: block">').animate({opacity: 1}, 900, ->
+        $.ajax
+          url: '/affiches'
+          type: 'GET'
+          data: filters.prepare_params()
+          success: (data, textStatus, jqXHR) ->
+            list_block.removeClass('preloader').animate({opacity: 0}, 900, ->
+              list_block.addClass('filled').html(jqXHR.responseText).animate({opacity: 1}, 900)
+              init_tablesorter()
+            )
+      ) unless list_block.hasClass('preloader')
+    ).removeClass('filled') if list_block.hasClass('filled')
+
+  if search_preset.length
+    window.location.hash = ''
+    $('.'+search_preset).click()

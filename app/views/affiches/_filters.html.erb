@@ -52,7 +52,7 @@
     <ul>
       <% Affiche.descendants.each do |category_class| %>
         <li>
-          <a href="#" data-value='<%= category_class.name.underscore %>'><%= category_class.model_name.human %></a>
+          <a href="#" data-value='<%= category_class.name.underscore %>' class='<%= category_class.name.underscore %>'><%= category_class.model_name.human %></a>
         </li>
       <% end %>
     </ul>
