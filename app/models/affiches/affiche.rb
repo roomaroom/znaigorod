@@ -7,6 +7,7 @@ class Affiche < ActiveRecord::Base
 
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
+  # NOTE: using with has_scope in AffichesController
   scope :with_showings, ->(fake) { includes(:showings).where('showings.starts_at > ?', Date.today) }
 
   def starts_on
@@ -17,10 +18,14 @@ class Affiche < ActiveRecord::Base
     showings.last.try(:starts_at).try(:to_date)
   end
 
-  def showings_grouped_by_day(params=nil)
-    showing_ids = ShowingSearch.new(params[:search]).result_ids
+  def showings_grouped_by_day(search_params = nil)
+    showing_ids = ShowingSearch.new(search_params).result_ids
 
     showings.where(:id => showing_ids).where('starts_at > ?', Date.today).group_by(&:starts_on)
+  end
+
+  def tags
+    tag.split(',').map(&:squish)
   end
 end
 

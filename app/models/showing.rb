@@ -7,14 +7,15 @@ class Showing < ActiveRecord::Base
 
   default_scope order(:starts_at)
 
-  delegate :title, :to => :affiche, :prefix => true
+  delegate :tags, :title, :to => :affiche, :prefix => true
 
   searchable do
-    date                                   :starts_on
-    integer                                :price
-    integer                                :starts_at_hour
-    string(:categories, :multiple => true) { [affiche.class.name.underscore] }
-    text                                   :affiche_title
+    date                                      :starts_on
+    integer                                   :price
+    integer                                   :starts_at_hour
+    string(:categories, :multiple => true)    { [affiche.class.name.underscore] }
+    string(:tags, :multiple => true)          { affiche_tags }
+    text                                      :affiche_title
   end
 
   def starts_on
@@ -23,6 +24,10 @@ class Showing < ActiveRecord::Base
 
   def starts_at_hour
     starts_at.hour
+  end
+
+  def self.tags
+    search { facet :tags }.facets.flat_map(&:rows).map(&:value)
   end
 end
 

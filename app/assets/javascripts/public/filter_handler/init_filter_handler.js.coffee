@@ -45,9 +45,9 @@ $.fn.prepare_params = () ->
         $.extend params, get_params_from_checker(context, 'categories')
         break
 
-      #when 'by_tag'
-        #$.extend params, get_params_from_checker(context, 'tags')
-        #break
+      when 'by_tag'
+        $.extend params, get_params_from_checker(context, 'tags')
+        break
 
   { utf8: true, search: params }
 
