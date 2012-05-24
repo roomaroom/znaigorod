@@ -57,13 +57,21 @@ send_request = (params) ->
     type: 'GET'
     data: params
     success: (data, textStatus, jqXHR) ->
-      $('.list').html(jqXHR.responseText)
-      init_tablesorter()
+      list = $('.list')
+      response = $(jqXHR.responseText)
+      list.animate({height: 0}, 900, ->
+        list.html(response).removeAttr('style').hide().show('slow')
+        init_tablesorter()
+      )
 
+wait_respond = (params) ->
+  $('.list').animate({height: 0}, 900, ->
+    $(this).html('<img src="/assets/preloader.gif" width=150 height=150 style="margin: 0 auto; display: block">')
+  ).animate({height: '150px'}, 900, ->
+    send_request(params)
+  )
 
 @init_filter_handler = () ->
   filters = $('.filters')
   filters.on 'changed', ->
-    setTimeout( ->
-      send_request(filters.prepare_params())
-    , 1500)
+    wait_respond(filters.prepare_params())
