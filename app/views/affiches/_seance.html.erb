@@ -1,6 +1,6 @@
 <div class="seance_tabs">
   <ul>
-    <% range = affiche.showings_grouped_by_day %>
+    <% range = affiche.showings_grouped_by_day(params) %>
     <% range.keys.each_with_index do |day, index| %>
       <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
         <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
