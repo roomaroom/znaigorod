@@ -9,3 +9,5 @@
       cssAsc:    'sort_asc'
       cssDesc:   'sort_desc'
       sortList:  [[0,0]]
+      textExtraction: 'complex'
+

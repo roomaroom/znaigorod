@@ -26,7 +26,7 @@
             <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
             <td><%= showing.place %></td>
             <td><%= showing.hall %></td>
-            <td><%= showing.price %> руб.</td>
+            <td><%= number_to_currency showing.price, :unit => '' %></td>
           </tr>
         <% end %>
       </tbody>

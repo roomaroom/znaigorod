@@ -11,5 +11,5 @@
 /solr/data
 /solr/pids
 /tmp
-log/sunspot-solr-development.log.lck
+log/sunspot-solr-development.log*
 public/assets/

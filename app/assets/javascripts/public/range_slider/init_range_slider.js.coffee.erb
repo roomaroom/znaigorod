@@ -5,11 +5,14 @@
   range_slider_block.each ->
     $this = $(this)
     max = $this.attr('data-count')
+    selected_value = $this.attr('data-selected').split(',').map (x) ->
+      parseInt(x)
+
     $this.slider({
       range: true
       min: 0
       max: max
-      values: [ 0, 6 ]
+      values: selected_value
       slide: (event, ui) ->
         return (ui.values[1] - ui.values[0] > 0)
 

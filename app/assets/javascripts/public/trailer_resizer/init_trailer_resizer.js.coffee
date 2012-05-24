@@ -2,7 +2,8 @@ $ ->
   $allVideos = $("iframe[src^='http://player.vimeo.com'], iframe[src^='http://www.youtube.com'], object, embed")
   $fluidEl = $(".trailer")
   $allVideos.each ->
-    $(this).attr("data-aspectRatio", @height / @width).removeAttr("height").removeAttr "width"
+    $this = $(this)
+    $this.attr("data-aspectRatio", @height / @width).removeAttr("height").removeAttr("width")
 
   $(window).resize(->
      newWidth = $fluidEl.width()

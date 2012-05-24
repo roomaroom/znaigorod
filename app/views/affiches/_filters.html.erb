@@ -2,7 +2,7 @@
   <div class="filter_wrapper">
     <div class="range_wrapper">
       <div class="range">
-        <% range = (Date.today..Date.parse('10.06.2013')) %>
+        <% range = (Date.today..Date.today + 4.week) %>
         <% i = 0 %>
         <% range.group_by(&:year).map{|year, months| months.group_by(&:month)}.each do |year| %>
           <% year.each do |month, dates| %>
@@ -21,7 +21,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %>></div>
+      <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %> <%= "data-selected='0,29'" %>></div>
     </div>
   </div>
 </div>
@@ -40,7 +40,7 @@
           </ul>
         </div>
       </div>
-      <div class="range_slider" id='by_time' data-count='24'></div>
+      <div class="range_slider" id='by_time' data-count='24' <%= "data-selected='0,24'" %>></div>
     </div>
   </div>
 </div>
@@ -73,7 +73,7 @@
           </ul>
         </div>
       </div>
-      <div class="range_slider" id='by_amount' data-count='18' ></div>
+      <div class="range_slider" id='by_amount' data-count='18' <%= "data-selected='0,18'" %>></div>
     </div>
   </div>
 </div>
