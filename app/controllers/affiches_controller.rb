@@ -27,7 +27,7 @@ class AffichesController < InheritedResourcesController
 
     def search_results
       showing_ids = ShowingSearch.new(params[:search]).result_ids
-      affiche_ids = Showing.where(:id => showing_ids).group(:affiche_id).pluck(:affiche_id)
+      affiche_ids = Showing.unscoped.where(:id => showing_ids).group(:affiche_id).pluck(:affiche_id)
 
       Affiche.where(:id => affiche_ids).page(page).per(per_page)
     end
