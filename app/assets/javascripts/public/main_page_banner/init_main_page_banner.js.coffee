@@ -13,7 +13,6 @@
     previews.children().last().prependTo previews
     $myclone = previews.children().last().clone()
     image_manipulation = $myclone.html()
-    console.log image_manipulation
     $big_image = image_manipulation.replace(/files\/(\d+)\/\d+-\d+(\!|%21)/,'files/$1/653-363!')
     poster.html $big_image
     poster.find('img').removeClass("min").addClass "max"

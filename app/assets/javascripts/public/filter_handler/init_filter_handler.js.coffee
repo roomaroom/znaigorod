@@ -77,4 +77,7 @@ $.fn.prepare_params = () ->
 
   if search_preset.length
     window.location.hash = ''
-    $('.'+search_preset).click()
+    target = $('.'+search_preset)
+    if target.length
+      $('.by_category h6 a').click()
+      target.click()
