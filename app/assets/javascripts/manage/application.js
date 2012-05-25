@@ -8,6 +8,7 @@
  * = require ./jquery-ui/jquery-ui-timepicker-addon.js
  * = require ./jquery-ui/jquery-ui-timepicker-ru.js
  * = require ./datetime_picker
+ * = require ./jwysiwyg
  * = require ./geocoder
  * = require ./main
  */
