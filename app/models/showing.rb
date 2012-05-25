@@ -16,6 +16,7 @@ class Showing < ActiveRecord::Base
     string(:categories, :multiple => true)    { [affiche.class.name.underscore] }
     string(:tags, :multiple => true)          { affiche_tags }
     text                                      :affiche_title
+    time                                      :starts_at
   end
 
   def starts_on
@@ -28,6 +29,11 @@ class Showing < ActiveRecord::Base
 
   def self.tags
     search { facet :tags }.facets.flat_map(&:rows).map(&:value)
+  end
+
+  # NOTE: ShowingSearch.new(...).results does not apply default scope
+  def self.nearest
+    where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now).result_ids).limit(5)
   end
 end
 

@@ -38,66 +38,20 @@
   <div class="thin_block">
     <h3><a href='#' class='solid_dark_gray'>Сегодня в городе</a></h3>
     <ul>
-      <li>
-        <div class="top">
-          <div class="time">13:40</div>
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Кто подставил кролика Роджера</a>
+      <% Showing.nearest.each do |seance| %>
+        <li>
+          <div class="top">
+            <div class="time"><%= l(seance.starts_at, :format => '%H:%M') %></div>
+            <div class="title">
+              <a href="#" class='solid_light_blue'><%= seance.affiche_title %></a>
+            </div>
           </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Кино</a></div>
-          <div class="location">Киномакс</div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="time">14:20</div>
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Кому на Руси жить хорошо</a>
+          <div class="bottom">
+            <div class="category"><a href='#'><%= seance.affiche.class.model_name.human %></a></div>
+            <div class="location"><%= seance.place %></div>
           </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Спектакли</a></div>
-          <div class="location">Томский театр драмы</div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="time">14:25</div>
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Чемпионат по боулингу среди детей от 3-х лет</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Спорт</a></div>
-          <div class="location">Rocco bar</div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="time">15:00</div>
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Hardcore Halloween</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Вечеринки</a></div>
-          <div class="location">Fакел</div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="time">15:05</div>
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Трансляция футбольного матча Конь-Чебуреки</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Спорт</a></div>
-          <div class="location">Стадион Труд</div>
-        </div>
-      </li>
+        </li>
+      <% end %>
     </ul>
     <a href="#" class='solid_light_blue link'>Все события сегодня</a>
   </div>

@@ -7,6 +7,8 @@ class Affiche < ActiveRecord::Base
 
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
+  default_scope order('affiches.id DESC')
+
   # NOTE: using with has_scope in AffichesController
   scope :with_showings, ->(fake) { includes(:showings).where('showings.starts_at > ?', Date.today) }
 

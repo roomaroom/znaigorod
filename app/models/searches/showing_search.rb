@@ -3,6 +3,7 @@ class ShowingSearch < Search
                   :keywords,
                   :price_gt,
                   :price_lt,
+                  :starts_at_gt,
                   :starts_at_hour_gt,
                   :starts_at_hour_lt,
                   :starts_on_gt,
@@ -13,6 +14,7 @@ class ShowingSearch < Search
   column :keywords,           :text
   column :price_gt,           :integer
   column :price_lt,           :integer
+  column :starts_at_gt,       :datetime
   column :starts_at_hour_gt,  :integer
   column :starts_at_hour_lt,  :integer
   column :starts_on_gt,       :date
