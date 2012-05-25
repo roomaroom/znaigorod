@@ -77,6 +77,14 @@ $.fn.prepare_params = () ->
 
   if search_preset.length
     window.location.hash = ''
+
+    if search_preset == 'todays'
+      hour = new Date().getHours()
+      $('#by_date').slider('values', [0,1])
+      $('#by_time').slider('values', [hour, 24])
+      $('.by_time h6 a').click()
+      return false
+
     target = $('.'+search_preset)
     if target.length
       $('.by_category h6 a').click()

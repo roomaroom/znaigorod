@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="thin_block">
-    <h3><a href='#' class='solid_dark_gray'>Сегодня в городе</a></h3>
+    <h3><a href='#' class='solid_dark_gray'>Ближайшие события</a></h3>
     <ul>
       <% Showing.nearest.each do |seance| %>
         <li>
@@ -53,7 +53,7 @@
         </li>
       <% end %>
     </ul>
-    <a href="#" class='solid_light_blue link'>Все события сегодня</a>
+    <%= link_to "Все события сегодня", affiches_path(:anchor => 'todays'), :class => 'solid_light_blue link' %>
   </div>
 
 </div>
