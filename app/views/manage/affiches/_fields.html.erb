@@ -4,12 +4,19 @@
 
 <%= yield :additional_fields %>
 
-<%= link_to 'Добавить постер', '#', :class => 'add_poster', :id => 'poster_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
-<%= f.input :poster_url, :input_html => { :id => 'file_url' } %>
-<%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>
-<div class='poster_wrapper'></div>
+<div>
+  <%= link_to 'Добавить постер', '#', :class => 'choose_file', :id => 'poster_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
+  <%= f.input :poster_url, :input_html => { :id => 'poster_url' } %>
+  <%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>
+</div>
 
-<%= f.input :vfs_path, :as => :hidden %>
+<div>
+  <%= link_to 'Добавить изображение для главной страницы', '#', :class => 'choose_file', :id => 'image_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
+  <%= f.input :image_url, :input_html => { :id => 'image_url' } %>
+  <%= image_image_tag_for resource, 653, 363 if resource.image_url? %>
+</div>
+
+<%= f.hidden_field :vfs_path %>
 
 <%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.showings')}".html_safe do %>
   <%= f.simple_fields_for :showings %>

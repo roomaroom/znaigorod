@@ -1,5 +1,5 @@
 class Affiche < ActiveRecord::Base
-  attr_accessible :description, :poster_url, :showings_attributes, :tag, :title, :vfs_path
+  attr_accessible :description, :poster_url, :image_url, :showings_attributes, :tag, :title, :vfs_path
 
   validates_presence_of :description, :poster_url, :title
 

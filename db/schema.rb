@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525034939) do
+ActiveRecord::Schema.define(:version => 20120525050740) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120525034939) do
     t.string   "type"
     t.text     "tag"
     t.string   "vfs_path"
+    t.string   "image_url"
   end
 
   create_table "halls", :force => true do |t|

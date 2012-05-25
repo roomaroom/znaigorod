@@ -12,6 +12,10 @@ module ApplicationHelper
     image_tag resized_image_url(affiche.poster_url, width, height, crop)
   end
 
+  def image_image_tag_for(affiche, width, height)
+    image_tag resized_image_url(affiche.image_url, width, height, true)
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =
