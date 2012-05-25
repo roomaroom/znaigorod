@@ -9,8 +9,8 @@ Znaigorod::Application.routes.draw do
       resources res, :except => :show
     end
 
-    [:concerts, :exhibitions, :movies, :parties, :spectacles, :sports_events].each do |res|
-      resources res, :except => :show
+    Affiche.descendants.each do |type|
+      resources type.name.underscore.pluralize, :except => :show
     end
 
     root :to => 'organizations#index'

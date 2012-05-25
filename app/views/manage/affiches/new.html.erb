@@ -1,8 +1,11 @@
+<h1>
+  Добавление мероприятия
+</h1>
+
 <ul>
-  <li><%= link_to 'Добавить кино', new_manage_movie_path %></li>
-  <li><%= link_to 'Добавить концерт', new_manage_concert_path %></li>
-  <li><%= link_to 'Добавить выставку', new_manage_exhibition_path %></li>
-  <li><%= link_to 'Добавить спектакль', new_manage_spectacle_path %></li>
-  <li><%= link_to 'Добавить вечеринку', new_manage_party_path %></li>
-  <li><%= link_to 'Добавить спортивное мероприятие', new_manage_sports_event_path %></li>
+  <% Affiche.descendants.each do |type| %>
+    <% type_name = type.to_s.underscore %>
+    <% vfs_path = "/znaigorod/afiches/#{type_name.pluralize}/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"  %>
+    <li><%= link_to type.model_name.human, send("new_manage_#{type_name}_path", "#{type_name}[vfs_path]" => vfs_path) %></li>
+  <% end %>
 </ul>

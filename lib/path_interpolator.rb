@@ -1,6 +1,6 @@
 class PathInterpolator
   # NOTE: может в будущем измениться
   def self.path(request)
-    "/affiches/#{Date.today.to_s}"
+    request.params['vfs_path']
   end
 end

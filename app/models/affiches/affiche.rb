@@ -1,5 +1,5 @@
 class Affiche < ActiveRecord::Base
-  attr_accessible :description, :poster_url, :showings_attributes, :tag, :title
+  attr_accessible :description, :poster_url, :showings_attributes, :tag, :title, :vfs_path
 
   validates_presence_of :description, :poster_url, :title
 
@@ -20,7 +20,7 @@ class Affiche < ActiveRecord::Base
   end
 
   def tags
-    tag.split(',').map(&:squish)
+    tag.split(/,\s+/).map(&:squish)
   end
 end
 
