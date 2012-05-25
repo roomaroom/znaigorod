@@ -22,6 +22,7 @@ group :default do
   gem 'nested_form',              :git => 'git://github.com/ryanb/nested_form.git'
   gem 'openteam-commons'
   gem 'pg',                                           :require => false
+  gem 'progress_bar'
   gem 'rails'
   gem 'russian'
   gem 'show_for'
@@ -36,9 +37,3 @@ group :development do
   gem 'sunspot_solr'
 end
 
-group :test do
-  gem 'fabrication',                                  :require => false
-  gem 'rspec-rails'
-  gem 'shoulda-matchers',                             :require => false
-  gem 'sunspot_matchers',                             :require => false
-end
