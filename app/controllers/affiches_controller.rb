@@ -18,8 +18,7 @@ class AffichesController < InheritedResourcesController
     end
 
     def search_and_paginate_collection
-      #params[:utf8] ? search_results : results
-      search_results
+      params[:utf8] ? search_results : results
     end
 
     def results
