@@ -18,18 +18,9 @@
         </div>
         <div class="previews_wrapper">
           <ul class='previews'>
-            <li>
-              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1940/254-121!/2011-11-30_LTE-02_600.jpg" alt="Мстители" title='Мстители' /></a>
-            </li>
-            <li>
-              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1374/254-121!/photo_48617.jpg" alt="1+1" title='1+1' /></a>
-            </li>
-            <li>
-              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/1948/254-121!/IMG_4831.jpg" alt="Мрачные тени" title='Мрачные тени' /></a>
-            </li>
-            <li class='last'>
-              <a href="#"><img src="http://storage.esp.tomsk.gov.ru/files/2335/254-121!/sib_326_023-1_jpg_625x625_q70.jpg" alt="Deep purple" title='Deep purple' /></a>
-            </li>
+            <% banners.each do |affiche| %>
+              <li><%= link_to image_image_tag_for(affiche, 227, 121), affiche_path(affiche) %></li>
+            <% end %>
           </ul>
         </div>
       </div>

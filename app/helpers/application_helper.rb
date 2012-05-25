@@ -12,8 +12,8 @@ module ApplicationHelper
     image_tag resized_image_url(affiche.poster_url, width, height, crop)
   end
 
-  def image_image_tag_for(affiche, width, height)
-    image_tag resized_image_url(affiche.image_url, width, height, true)
+  def image_image_tag_for(affiche, width, height, options={})
+    image_tag resized_image_url(affiche.image_url, width, height, true), :alt => affiche.title, :title => affiche.title
   end
 
   private

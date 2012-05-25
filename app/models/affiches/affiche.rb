@@ -9,8 +9,11 @@ class Affiche < ActiveRecord::Base
 
   default_scope order('affiches.id DESC')
 
-  # NOTE: using with has_scope in AffichesController
-  scope :with_showings, ->(fake) { includes(:showings).where('showings.starts_at > ?', Date.today) }
+  scope :with_showings, -> { includes(:showings).where('showings.starts_at > ?', Date.today) }
+
+  scope :with_images, -> { where('image_url IS NOT NULL') }
+
+  scope :latest, ->(count) { limit(count) }
 
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
