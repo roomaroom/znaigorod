@@ -1,7 +1,8 @@
 <%= simple_nested_form_for resource,
                            :url => resource_path,
                            :defaults => { :input_html => { :class => 'span8', :rows => 4 } },
-                           :html => { :class => "form-horizontal #{resource.class.name.singularize.underscore}" } do |f| %>
+                           :html => { :novalidate => true, :class => "form-horizontal #{resource.class.name.singularize.underscore} #{resource.class.superclass.name.underscore}" } do |f| %>
+
   <%= render :partial => 'fields', :locals => { :f => f } %>
 
   <div class="form-actions btn-group">

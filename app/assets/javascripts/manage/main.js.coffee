@@ -20,8 +20,7 @@ handle_adding_poster = ->
     false
 
 handle_date_picker = ->
-  $('input.date_picker').datetimepicker()
 
 $ ->
   handle_adding_poster()
-  handle_date_picker()
+  init_datetime_picker()

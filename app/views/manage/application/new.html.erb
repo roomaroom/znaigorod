@@ -1,7 +1,7 @@
 <%= simple_nested_form_for resource,
                            :url => collection_path,
                            :defaults => { :input_html => { :class => 'span8', :rows => 4 } },
-                           :html => { :class => "form-horizontal #{resource.class.name.singularize.underscore}" } do |f| %>
+                           :html => { :novalidate => true, :class => "form-horizontal #{resource.class.name.singularize.underscore} #{resource.class.superclass.name.underscore}" } do |f| %>
 
 <%= field_set_tag "<i class='icon-th-large' style='margin: 5px 5px 0 0'></i>#{t("simple_form.fieldset.#{resource.class.name.underscore}")}".html_safe do %>
   <%= render :partial => 'fields', :locals => { :f => f } %>

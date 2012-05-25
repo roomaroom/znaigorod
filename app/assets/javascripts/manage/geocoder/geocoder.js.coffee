@@ -40,7 +40,7 @@ $.fn.handler = (form, map_container, context) ->
     false
 
 $ ->
-  form = $('form.simple_form')
+  form = $('form.simple_form.organization')
   if form.length
     organization = form.get_object()
     map_container = $('#map')
