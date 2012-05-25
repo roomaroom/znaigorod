@@ -4,9 +4,9 @@
       <h3><a href='/affiches' class='solid_dark_gray'>Афиша</a></h3>
       <div class="category">
         <ul>
-          <% Affiche.descendants.each do |klass| %>
+          <% Affiche.descendants.map(&:model_name).sort.each do |klass| %>
             <li>
-              <%= link_to klass.model_name.human, "/affiches/##{klass.name.underscore}", :class => 'solid_light_blue' %>
+              <%= link_to klass.human, "/affiches/##{klass.underscore}", :class => 'solid_light_blue' %>
             </li>
           <% end %>
         </ul>

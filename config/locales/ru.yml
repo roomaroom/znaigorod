@@ -19,11 +19,11 @@ ru:
 
   activerecord:
     models:
-      concert: Концерт
-      exhibition: Выставка
+      concert: Концерты
+      exhibition: Выставки
       movie: Кино
-      party: Вечеринка
-      spectacle: Спектакль
+      party: Вечеринки
+      spectacle: Спектакли
       sports_event: Спорт
 
     attributes:
