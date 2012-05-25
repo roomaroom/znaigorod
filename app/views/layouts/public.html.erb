@@ -43,12 +43,11 @@
         <div class="right">
           <h5><a href='#' class='dashed_light_blue'><%= t('affiche') %></a></h5>
           <ul>
-            <li><a href='#' class='solid_dark_gray'>Кино</a></li>
-            <li><a href='#' class='solid_dark_gray'>Концерты</a></li>
-            <li><a href='#' class='solid_dark_gray'>Выставки</a></li>
-            <li><a href='#' class='solid_dark_gray'>Спектакли</a></li>
-            <li><a href='#' class='solid_dark_gray'>Вечеринки</a></li>
-            <li><a href='#' class='solid_dark_gray'>Спорт</a></li>
+            <% Affiche.descendants.each do |klass| %>
+              <li>
+                <%= link_to klass.model_name.human, "/affiches/##{klass.name.underscore}", :class => 'solid_dark_gray' %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

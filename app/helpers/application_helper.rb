@@ -9,6 +9,7 @@ module ApplicationHelper
   end
 
   def poster_image_tag_for(affiche, width, height, crop = true)
+    return image_tag affiche.poster_url, :width => width, :height => height
     image_tag resized_image_url(affiche.poster_url, width, height, crop)
   end
 
