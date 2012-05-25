@@ -33,7 +33,7 @@ class Showing < ActiveRecord::Base
 
   # NOTE: ShowingSearch.new(...).results does not apply default scope
   def self.nearest
-    where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now).result_ids).limit(5)
+    where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now, :starts_at_lt => DateTime.now.end_of_day).result_ids).limit(5)
   end
 end
 

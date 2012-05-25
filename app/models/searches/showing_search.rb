@@ -6,6 +6,7 @@ class ShowingSearch < Search
                   :starts_at_gt,
                   :starts_at_hour_gt,
                   :starts_at_hour_lt,
+                  :starts_at_lt,
                   :starts_on_gt,
                   :starts_on_lt,
                   :tags
@@ -17,6 +18,7 @@ class ShowingSearch < Search
   column :starts_at_gt,       :datetime
   column :starts_at_hour_gt,  :integer
   column :starts_at_hour_lt,  :integer
+  column :starts_at_lt,       :datetime
   column :starts_on_gt,       :date
   column :starts_on_lt,       :date
   column :tags,               :string
