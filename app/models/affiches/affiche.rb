@@ -10,14 +10,6 @@ class Affiche < ActiveRecord::Base
   # NOTE: using with has_scope in AffichesController
   scope :with_showings, ->(fake) { includes(:showings).where('showings.starts_at > ?', Date.today) }
 
-  def starts_on
-    showings.first.try(:starts_at).try(:to_date)
-  end
-
-  def ends_on
-    showings.last.try(:starts_at).try(:to_date)
-  end
-
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
