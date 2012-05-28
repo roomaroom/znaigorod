@@ -5,8 +5,8 @@ Znaigorod::Application.routes.draw do
     resources :affiches, :only => [:index, :new]
     resources :organizations, :only => [:index, :new]
 
-    [:eatings, :funnies].each do |res|
-      resources res, :except => :show
+    Organization.descendants.each do |type|
+      resources type.name.underscore.pluralize, :except => :show
     end
 
     Affiche.descendants.each do |type|
