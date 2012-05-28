@@ -15,6 +15,8 @@ class Affiche < ActiveRecord::Base
 
   scope :latest, ->(count) { limit(count) }
 
+  normalize_attribute :image_url
+
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids

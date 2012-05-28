@@ -11,6 +11,7 @@ group :assets do
 end
 
 group :default do
+  gem 'attribute_normalizer'
   gem 'curb',                                         :require => false
   gem 'default_value_for'
   gem 'el_vfs_client'

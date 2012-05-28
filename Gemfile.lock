@@ -39,6 +39,7 @@ GEM
       builder
     annotate (2.4.1.beta1)
     arel (3.0.2)
+    attribute_normalizer (1.1.0)
     builder (3.0.0)
     chunky_png (1.2.5)
     coffee-rails (3.2.2)
@@ -195,6 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (>= 2.4.1.beta1)
+  attribute_normalizer
   coffee-rails
   compass-rails
   curb
