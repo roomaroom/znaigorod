@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   belongs_to :organization
 
-  attr_accessible :url
+  attr_accessible :description, :url
 end
 
 # == Schema Information
@@ -13,5 +13,6 @@ end
 #  organization_id :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  description     :text
 #
 

@@ -45,6 +45,9 @@ ru:
         title: Название
         trailer_code: Код трейлера
 
+      image:
+        description: Описание
+
       showing:
         place: Место
         hall: Зал
