@@ -28,3 +28,21 @@ class ShowingSearch < Search
   default_value_for :starts_at_hour_lt, 24
   default_value_for(:starts_on_gt)      { Date.today }
 end
+
+# == Schema Information
+#
+# Table name: searches
+#
+#  categories        :string
+#  keywords          :text
+#  price_gt          :integer
+#  price_lt          :integer
+#  starts_at_gt      :datetime
+#  starts_at_hour_gt :integer
+#  starts_at_hour_lt :integer
+#  starts_at_lt      :datetime
+#  starts_on_gt      :date
+#  starts_on_lt      :date
+#  tags              :string
+#
+

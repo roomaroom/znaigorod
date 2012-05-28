@@ -7,13 +7,13 @@
 <div>
   <%= link_to 'Добавить постер', '#', :class => 'choose_file', :id => 'poster_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
   <%= f.input :poster_url, :input_html => { :id => 'poster_url' } %>
-  <%= poster_image_tag_for resource, 290, 390 if resource.poster_url? %>
+  <%= image_tag_for resource.poster_url, 290, 390 if resource.poster_url? %>
 </div>
 
 <div>
   <%= link_to 'Добавить изображение для главной страницы', '#', :class => 'choose_file', :id => 'image_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
   <%= f.input :image_url, :input_html => { :id => 'image_url' } %>
-  <%= image_image_tag_for resource, 653, 363 if resource.image_url? %>
+  <%= image_tag_for resource.image_url, 653, 363 if resource.image_url? %>
 </div>
 
 <%= f.hidden_field :vfs_path %>

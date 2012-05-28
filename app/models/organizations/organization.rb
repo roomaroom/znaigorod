@@ -5,23 +5,27 @@ class Organization < ActiveRecord::Base
                   :email,
                   :feature,
                   :halls_attributes,
+                  :images_attributes,
                   :offer,
                   :payment,
                   :phone,
                   :schedules_attributes,
                   :site,
-                  :title
+                  :title,
+                  :vfs_path
 
-  has_many :schedules, :dependent => :destroy
   has_many :halls, :dependent => :destroy
+  has_many :images, :dependent => :destroy
+  has_many :schedules, :dependent => :destroy
 
   has_one :address, :dependent => :destroy
 
   validates_presence_of :title
 
   accepts_nested_attributes_for :address, :reject_if => :all_blank
-  accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :halls, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
   def self.facets
     %w[category payment cuisine feature offer]
@@ -89,5 +93,6 @@ end
 #  phone       :text
 #  offer       :text
 #  type        :string(255)
+#  vfs_path    :string(255)
 #
 

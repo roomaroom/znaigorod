@@ -20,5 +20,6 @@ end
 #  phone       :text
 #  offer       :text
 #  type        :string(255)
+#  vfs_path    :string(255)
 #
 

@@ -8,8 +8,8 @@ module ApplicationHelper
     result
   end
 
-  def poster_image_tag_for(affiche, width, height, crop = true)
-    image_tag resized_image_url(affiche.poster_url, width, height, crop)
+  def image_tag_for(url, width, height, crop = true)
+    image_tag resized_image_url(url, width, height, crop)
   end
 
   def image_image_tag_for(affiche, width, height, options={})

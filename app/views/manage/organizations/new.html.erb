@@ -1,5 +1,11 @@
-<ul>
-  <li><%= link_to 'Добавить заведение (еда)', new_manage_eating_path %></li>
-  <li><%= link_to 'Добавить заведение (развлечение)', new_manage_funny_path %></li>
-</ul>
+<h1>
+  Добавление организации
+</h1>
 
+<ul>
+  <% Organization.descendants.each do |type| %>
+    <% type_name = type.to_s.underscore %>
+    <% vfs_path = "/znaigorod/organizations/#{type_name.pluralize}/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"  %>
+    <li><%= link_to type.model_name.human, send("new_manage_#{type_name}_path", "#{type_name}[vfs_path]" => vfs_path) %></li>
+  <% end %>
+</ul>

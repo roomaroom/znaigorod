@@ -1,10 +1,11 @@
 ru:
-  add_a_hall: Добавить зал
+  add_hall: Добавить зал
   add_event: "&plus;&nbsp;событие"
   #add_event: Предложить событие
   add_organization: "&plus;&nbsp;заведение"
   #add_organization: Добавить заведение
   add_showing: Добавить сеанс
+  add_image: Добавить изображение
   affiche: Афиша
   clear_filters: Очистить фильтры
   find: Найти
@@ -12,6 +13,7 @@ ru:
   our_social_link: Контакты
   remove_this_hall: Удалить этот зал
   remove_this_showing: Удалить этот сеанс
+  remove_this_image: Удалить это изображение
   sign_in: "Вход в&nbsp;кабинет"
   site_title: ЗнайГород
   site_title: ЗнайГород
@@ -20,7 +22,9 @@ ru:
   activerecord:
     models:
       concert: Концерты
+      eating: Заведение (еда)
       exhibition: Выставки
+      funny: Заведение (развлечение)
       movie: Кино
       party: Вечеринки
       spectacle: Спектакли
@@ -82,8 +86,10 @@ ru:
       address: Адрес организации
       concert: Концерт
       eating: Заведение (еда)
+      exhibition: Выставка
       funny: Заведение (развлечения)
       halls: Залы
+      images: Изображения
       movie: Кино
       organization: Организация
       party: Вечеринка

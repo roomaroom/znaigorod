@@ -1,0 +1,13 @@
+<div class='row-fluid'>
+  <%= f.simple_fields_for :images do %>
+    <div class='span6'>
+      <%= f.input :url, :as => :string, :input_html => { :class => 'span12' }, :label => false  %>
+      <%= link_to 'Выбрать изображение', '#', :class => 'choose_file', :id => 'image_wrapper', :params => "vfs_path=#{resource.vfs_path}" %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <%= image_tag_for(f.object.url, 100, 100) if f.object.url? %>
+</div>
+<%= f.link_to_remove t('remove_this_image') %>

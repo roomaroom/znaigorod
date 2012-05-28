@@ -1,7 +1,7 @@
 <div class="item">
   <h3><%= link_to item.title, affiche_path(item), :class => 'solid_light_blue' %><span class='category'><%= item.class.model_name.human %></span></h3>
   <div class="poster">
-    <%= poster_image_tag_for(item, 137, 185) %>
+    <%= image_tag_for(item.poster_url, 137, 185) %>
   </div>
   <div class="seance">
     <%= render :partial => 'seance', :locals => { :affiche => item } %>

@@ -15,5 +15,7 @@ end
 #  trailer_code   :text
 #  type           :string(255)
 #  tag            :text
+#  vfs_path       :string(255)
+#  image_url      :string(255)
 #
 

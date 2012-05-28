@@ -36,8 +36,10 @@ Znaigorod::Application.configure do
   config.assets.debug = true
 
   config.to_prepare do
-    Dir[Rails.root.join('app/models/affiches/*')].each do |model_path|
-      require_or_load model_path.to_s
+    %w[affiches organizations].each do |dir|
+      Dir[Rails.root.join("app/models/#{dir}/*")].each do |model_path|
+        require_or_load model_path.to_s
+      end
     end
   end
 end
