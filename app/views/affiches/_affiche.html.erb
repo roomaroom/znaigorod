@@ -34,9 +34,15 @@
       <% end %>
 
       <div class='seance'>
-        <h4>Сеансы</h4>
-        <%= render :partial => 'seance', :locals => { :affiche => resource } %>
+        <% if Movie === resource %>
+          <h4>Сеансы</h4>
+          <%= render :partial => 'seance', :locals => { :affiche => resource } %>
+        <% else %>
+          <h4>Дата и место проведения</h4>
+          <%= render :partial => 'seance', :locals => { :affiche => resource } %>
+        <% end %>
       </div>
+
       <div class='comments'>
         <h4>Комментарии</h4>
         <div id="disqus_thread"></div>
