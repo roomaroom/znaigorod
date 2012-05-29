@@ -16,6 +16,15 @@ module ApplicationHelper
     image_tag resized_image_url(affiche.image_url, width, height, true), :alt => affiche.title, :title => affiche.title
   end
 
+  def path_for(item)
+    case item.class.superclass.name
+    when 'Affiche'
+      affiche_path(item)
+    when 'Organization'
+      organization_path(item)
+    end
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =

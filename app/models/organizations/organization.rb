@@ -48,8 +48,9 @@ class Organization < ActiveRecord::Base
       halls.pluck(:seating_capacity)
     end
 
-    s.text    :site
-    s.text    :email
+    s.string(:kind) { self.class.superclass.name.underscore }
+    s.text          :site
+    s.text          :email
 
     ru_fields.each do |field, boost|
       s.text field,         boost: boost

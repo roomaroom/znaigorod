@@ -9,6 +9,9 @@ class Showing < ActiveRecord::Base
 
   delegate :tags, :title, :to => :affiche, :prefix => true
 
+  after_create  :index_affiche
+  after_destroy :index_affiche
+
   searchable do
     date                                      :starts_on
     integer(:ends_at_hour)                    { ends_at.try(:hour) }
@@ -31,6 +34,11 @@ class Showing < ActiveRecord::Base
   def self.nearest
     where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now, :starts_at_lt => DateTime.now.end_of_day).result_ids).limit(5)
   end
+
+  private
+    def index_affiche
+      affiche.index
+    end
 end
 
 # == Schema Information

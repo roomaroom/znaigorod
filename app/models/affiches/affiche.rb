@@ -18,8 +18,12 @@ class Affiche < ActiveRecord::Base
   normalize_attribute :image_url
 
   searchable do
-    text :title
-    text :description
+    string(:kind) { self.class.superclass.name.underscore }
+    text          :description
+    text          :original_title
+    text          :tag
+    text          :title
+    time          :last_showing_time
   end
 
   def showings_grouped_by_day(search_params = nil)
@@ -31,6 +35,14 @@ class Affiche < ActiveRecord::Base
 
   def tags
     tag.split(/,\s+/).map(&:squish)
+  end
+
+  def last_showing
+    showings.last
+  end
+
+  def last_showing_time
+    last_showing.try(:ends_at) || last_showing.try(:starts_at)
   end
 
   private

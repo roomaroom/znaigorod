@@ -60,7 +60,6 @@ end
 #  categories        :string
 #  ends_at_hour_gt   :integer
 #  ends_at_hour_lt   :integer
-#  keywords          :text
 #  price_gt          :integer
 #  price_lt          :integer
 #  starts_at_gt      :datetime
