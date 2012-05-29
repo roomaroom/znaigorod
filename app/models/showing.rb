@@ -16,7 +16,6 @@ class Showing < ActiveRecord::Base
     integer(:starts_at_hour)                  { starts_at.hour }
     string(:categories, :multiple => true)    { [affiche.class.name.underscore] }
     string(:tags, :multiple => true)          { affiche_tags }
-    text                                      :affiche_title
     time                                      :starts_at
   end
 

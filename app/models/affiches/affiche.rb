@@ -17,6 +17,11 @@ class Affiche < ActiveRecord::Base
 
   normalize_attribute :image_url
 
+  searchable do
+    text :title
+    text :description
+  end
+
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids

@@ -2,7 +2,6 @@ class ShowingSearch < Search
   attr_accessible :categories,
                   :ends_at_hour_gt,
                   :ends_at_hour_lt,
-                  :keywords,
                   :price_gt,
                   :price_lt,
                   :starts_at_gt,
@@ -18,7 +17,6 @@ class ShowingSearch < Search
   column :categories,         :string
   column :ends_at_hour_gt,    :integer
   column :ends_at_hour_lt,    :integer
-  column :keywords,           :text
   column :price_gt,           :integer
   column :price_lt,           :integer
   column :starts_at_gt,       :datetime
