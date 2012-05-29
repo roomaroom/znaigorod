@@ -1,5 +1,5 @@
 class Showing < ActiveRecord::Base
-  attr_accessible :hall, :place, :price, :starts_at
+  attr_accessible :ends_at, :hall, :place, :price, :starts_at
 
   belongs_to :affiche
 
@@ -11,8 +11,9 @@ class Showing < ActiveRecord::Base
 
   searchable do
     date                                      :starts_on
+    integer(:ends_at_hour)                    { ends_at.try(:hour) }
     integer                                   :price
-    integer                                   :starts_at_hour
+    integer(:starts_at_hour)                  { starts_at.hour }
     string(:categories, :multiple => true)    { [affiche.class.name.underscore] }
     string(:tags, :multiple => true)          { affiche_tags }
     text                                      :affiche_title
@@ -21,10 +22,6 @@ class Showing < ActiveRecord::Base
 
   def starts_on
     starts_at.to_date
-  end
-
-  def starts_at_hour
-    starts_at.hour
   end
 
   def self.tags
@@ -49,5 +46,6 @@ end
 #  hall       :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  ends_at    :datetime
 #
 

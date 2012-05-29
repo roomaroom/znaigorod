@@ -21,12 +21,17 @@ class Affiche < ActiveRecord::Base
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
 
-    showings.where(:id => showing_ids).where('starts_at > ?', Date.today).group_by(&:starts_on)
+    showings.where(:id => showing_ids).where('starts_at > ?', localized_date).group_by(&:starts_on)
   end
 
   def tags
     tag.split(/,\s+/).map(&:squish)
   end
+
+  private
+    def localized_date
+      Time.local(Time.now.year, Time.now.month, Time.now.day)
+    end
 end
 
 # == Schema Information
