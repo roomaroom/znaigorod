@@ -39,35 +39,19 @@ class Organization < ActiveRecord::Base
     { title: 2, address: 1, description: 0.5 }.merge(facet_fields)
   end
 
-  def self.ngram_fields
-    { site: 0.5, email: 0.5 }.merge(ru_fields)
-  end
-
   searchable do |s|
-    s.integer :capacity, :multiple => true do
-      halls.pluck(:seating_capacity)
-    end
-
-    s.string(:kind) { self.class.superclass.name.underscore }
-    s.text          :site
-    s.text          :email
-
-    ru_fields.each do |field, boost|
-      s.text field,         boost: boost
-
-      s.text "#{field}_ru", boost: boost * 0.9 do
-        self.send(field)
-      end
-    end
-
-    ngram_fields.each do |field, boost|
-      s.text "#{field}_ngram", boost: boost * 0.5 do
-        self.send(field)
-      end
-    end
+    s.integer(:capacity, :multiple => true) { halls.pluck(:seating_capacity) }
+    s.string(:kind) { 'organization' }
+    s.text :address
+    s.text :description, :boost => 0.5
+    s.text :email, :boost => 0.5
+    s.text :site, :boost => 0.5
+    s.text :title, :boost => 2
+    s.text(:kind) { self.class.model_name.human }
 
     facets.each do |facet|
-      s.string facet, :multiple => true do self.send(facet).to_s.split(',').map(&:squish) end
+      s.text facet
+      s.string(facet, :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
     end
   end
 

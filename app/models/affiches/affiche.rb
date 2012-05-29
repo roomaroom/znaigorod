@@ -18,12 +18,13 @@ class Affiche < ActiveRecord::Base
   normalize_attribute :image_url
 
   searchable do
-    string(:kind) { self.class.superclass.name.underscore }
-    text          :description
-    text          :original_title
-    text          :tag
-    text          :title
-    time          :last_showing_time
+    string(:kind) { 'affiche' }
+    text :description, :boost => 0.5
+    text :original_title, :boost => 2
+    text :tag
+    text :title, :boost => 2
+    text(:kind) { self.class.model_name.human }
+    time :last_showing_time
   end
 
   def showings_grouped_by_day(search_params = nil)
