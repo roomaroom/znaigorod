@@ -1,7 +1,10 @@
 <div class='row-fluid'>
   <%= f.simple_fields_for :showing do  %>
-    <div class='span2'>
+    <div class='span1'>
       <%= f.input :starts_at, :as => :date_picker, :input_html => { :class => 'span12' } %>
+    </div>
+    <div class='span1'>
+      <%= f.input :ends_at, :as => :date_picker, :input_html => { :class => 'span12' } %>
     </div>
     <div class='span3'>
       <%= f.input :place, :input_html => { :class => 'span12' } %>

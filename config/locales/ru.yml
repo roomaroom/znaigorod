@@ -50,10 +50,11 @@ ru:
         description: Описание
 
       showing:
-        place: Место
+        ends_at: Окончание
         hall: Зал
-        starts_at: Время начала
+        place: Место
         price: Цена
+        starts_at: Начало
 
       hall:
         seating_capacity: Вместимость
