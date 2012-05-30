@@ -1,10 +1,12 @@
 <div class="item">
-  <h3><%= link_to item.title, organization_path(item), :class => 'solid_light_blue' %><span class='category'><%= item.class.model_name.human %></span></h3>
+  <h3><%= link_to item.title, item, :class => 'solid_light_blue' %><span class='category'><%= item.class.model_name.human %></span></h3>
   <div class="poster">
-    <% if item.images.any? %>
-      <%#= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
-    <% else %>
-      <%= image_tag "eat/no_photo#{1 + rand(5)}.jpg", :width => '137', :height => '185', :alt => item.title, :title => item.title %>
+    <%= link_to  item do %>
+      <% if item.images.any? %>
+        <%#= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
+      <% else %>
+        <%= image_tag "eat/no_photo#{1 + rand(5)}.jpg", :width => '137', :height => '185', :alt => item.title, :title => item.title %>
+      <% end %>
     <% end %>
   </div>
   <div class="additional">
@@ -17,10 +19,12 @@
         <span class="label">Телефон</span>
         <%= item.phone %>
       </li>
-      <li>
-        <span class="label">Критерии</span>
-        <%= [item].flat_map{|i| [i.cuisine, i.payment, i.feature, i.offer]}.reject(&:blank?).join(', ') %>
-      </li>
+      <% if item.feature? %>
+        <li>
+          <span class="label">Особенности</span>
+          <%= item.feature %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
