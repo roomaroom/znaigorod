@@ -11,7 +11,7 @@ class AffichesController < InheritedResourcesController
   def index
     if request.xhr?
       render :text => '<div class="empty">Ничего не найдено ;(</div>', :layout => false and return if collection.empty?
-      render :partial => 'commons/list', :locals => { :collection => collection }, :layout => false and return
+      render :partial => 'commons/list', :locals => { :collection => collection, :remote => true }, :layout => false and return
     end
 
     index!

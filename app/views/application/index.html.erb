@@ -7,7 +7,7 @@
     </ul>
   </div>
 
-  <h1><%= t collection.first.class.superclass.model_name.human %></h1>
+  <h1><%= Affiche == collection.first.class.superclass ? t(collection.first.class.superclass.model_name.human) : t(collection.first.class.model_name.human) %></h1>
 
   <div class="filters" id="<%= Affiche == collection.first.class.superclass ? collection.first.class.superclass.model_name.pluralize.underscore : collection.first.class.model_name.pluralize.underscore %>">
     <fieldset>
