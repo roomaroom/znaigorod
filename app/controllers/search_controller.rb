@@ -1,10 +1,11 @@
 class SearchController < ApplicationController
   helper_method :collection
 
-  private
+  protected
     def collection
       @collection ||= Sunspot.search([Affiche, Organization]) {
         keywords(params[:q])
+        paginate(paginate_options)
 
         any_of do
           all_of do
@@ -15,6 +16,7 @@ class SearchController < ApplicationController
           all_of do
             with(:kind, 'organization')
           end
+
         end
       }.results
     end

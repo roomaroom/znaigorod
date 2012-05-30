@@ -31,19 +31,4 @@ class AffichesController < InheritedResourcesController
 
       Affiche.where(:id => affiche_ids).page(page).per(per_page)
     end
-
-    def page
-      params[:page].blank? ? 1 : params[:page].to_i
-    end
-
-    def per_page
-      params[:per_page].to_i.zero? ? 20 : params[:per_page].to_i
-    end
-
-    def paginate_options
-      {
-        :page       => page,
-        :per_page   => per_page
-      }
-    end
 end

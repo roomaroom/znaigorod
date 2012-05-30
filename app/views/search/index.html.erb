@@ -1,7 +1,19 @@
-<ul>
-  <% collection.each do |item| %>
-    <li>
-      <%= link_to item.title, path_for(item) %>
-    </li>
-  <% end %>
-</ul>
+<div class="index">
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="/" class='solid_light_blue'>Главная</a><span class='arrow'>&rarr;</span>
+      </li>
+    </ul>
+  </div>
+
+  <h1>Результаты поиска</h1>
+
+  <div class="list">
+    <% collection.each do |item| %>
+      <%= render :partial => "#{item.class.superclass.name.underscore.pluralize}/item", :locals => { :item => item } %>
+    <% end %>
+  </div>
+
+  <%= paginate collection %>
+</div>
