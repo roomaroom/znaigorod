@@ -1,6 +1,6 @@
 $ ->
   init_main_page_banner()     if $('.main_page_block').length
-  init_seance_tabs()          if $('.seance').length
+  init_seance_tabs()          if $('.seance_tabs').length
   init_tablesorter()          if $('.sortable').length
   init_remote_pagination()    if $('.pagination').length
 
