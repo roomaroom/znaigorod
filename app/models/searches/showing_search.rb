@@ -12,7 +12,12 @@ class ShowingSearch < Search
                   :starts_on_lt,
                   :tags
 
-  attr_accessor :ends_at_hour_gt, :ends_at_hour_lt, :starts_at_hour_gt, :starts_at_hour_lt
+  attr_accessor :ends_at_hour_gt,
+                :ends_at_hour_lt,
+                :price_gt,
+                :price_lt,
+                :starts_at_hour_gt,
+                :starts_at_hour_lt
 
   column :categories,         :string
   column :ends_at_hour_gt,    :integer
@@ -33,9 +38,13 @@ class ShowingSearch < Search
   default_value_for :starts_at_hour_lt, 24
   default_value_for(:starts_on_gt)      { Date.today }
 
+  def price_lt
+    @price_lt.to_i.zero? ? 99999 : @price_lt
+  end
+
   protected
     def search_columns
-      @showing_search_columns ||= super.reject { |c| c.match(/hour/) }
+      @showing_search_columns ||= super.reject { |c| c.match(/(hour|price)/) }
     end
 
     def additional_search(search)
@@ -48,6 +57,25 @@ class ShowingSearch < Search
         all_of do
           with(:ends_at_hour).greater_than(ends_at_hour_gt)
           with(:starts_at_hour).less_than(starts_at_hour_lt)
+        end
+      end
+
+      search.with(:price_min).greater_than(price_gt)
+      search.with(:price_min).less_than(price_lt)
+      search.any_of do
+        all_of do
+          with(:price_min).greater_than(price_gt)
+          with(:price_max).less_than(price_lt)
+        end
+
+        all_of do
+          with(:price_min).less_than(price_gt)
+          with(:price_max).greater_than(price_gt)
+        end
+
+        all_of do
+          with(:price_min).less_than(price_lt)
+          with(:price_max).greater_than(price_lt)
         end
       end
     end
