@@ -2,6 +2,13 @@ class Movie < Affiche
   attr_accessible :original_title, :trailer_code
 
   validates_presence_of :trailer_code
+
+  before_save :set_wmode_for_trailer
+
+  private
+    def set_wmode_for_trailer
+      self.trailer_code.gsub!(/(object|embed)/, '\1 wmode="opaque"')
+    end
 end
 
 # == Schema Information

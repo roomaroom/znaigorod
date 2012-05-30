@@ -19,7 +19,9 @@ Znaigorod::Application.routes.draw do
   get 'search' => 'search#index'
 
   resources :affiches, :only => [:index, :show]
-  resources :organizations, :only => [:index, :show]
+  Organization.descendants.each do |type|
+    resources type.name.underscore.pluralize, :except => :show
+  end
 
   root :to => 'application#main_page'
 

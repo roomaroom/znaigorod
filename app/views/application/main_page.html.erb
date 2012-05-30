@@ -52,12 +52,11 @@
 <div class="main_page_block">
   <div class="right_wrapper">
     <div class="wide_block">
-      <h3><%= link_to 'Заведения города', organizations_path, :class => 'solid_dark_gray' %></h3>
+      <h3>Заведения города</h3>
       <div class="category">
         <ul>
-          <li><a href="#" class='solid_light_blue'>Еда</a></li>
-          <li><a href="#" class='solid_light_blue'>Развлечения</a></li>
-          <li><a href="#" class='solid_light_blue'>Занятия спортом</a></li>
+          <li><%= link_to "Еда", eatings_path, :class => 'solid_light_blue'%></li>
+          <li><%= link_to "Развлечения", funnies_path, :class => 'solid_light_blue'%></li>
         </ul>
       </div>
 
