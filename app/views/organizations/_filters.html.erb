@@ -1,0 +1,15 @@
+<% Organization.facets.each do |facet| %>
+  <div class="filter by_<%= facet %>">
+    <h6><a href='#' class='dashed_dark_gray'><%= Organization.human_attribute_name(facet) %></a></h6>
+    <div class="filter_wrapper hide">
+      <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
+      <ul>
+        <% @search.facet(facet).rows.each do |row| %>
+          <li>
+            <a href="#" data-value='<%= row.value %>'><%= row.value %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

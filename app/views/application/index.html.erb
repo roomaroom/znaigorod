@@ -9,23 +9,15 @@
 
   <h1><%= t collection.first.class.superclass.model_name.human %></h1>
 
-  <div class="filters">
+  <div class="filters" id="<%= Affiche == collection.first.class.superclass ? collection.first.class.superclass.model_name.pluralize.underscore : collection.first.class.model_name.pluralize.underscore %>">
     <fieldset>
       <legend>Фильтр</legend>
-      <%= render :partial => "filters" %>
+      <%= render :partial => "#{collection.first.class.superclass.model_name.pluralize.underscore}/filters" %>
     </fieldset>
   </div>
 
   <div class="list">
-    <% if collection.any? %>
-      <%= render :partial => 'item', :collection => collection %>
-    <% else %>
-      <div class="empty">Ничего не найдено ;(</div>
-    <% end %>
+    <%= render :partial => 'commons/list', :locals => { :collection => collection, :remote => true } %>
   </div>
 
-  <%= paginate collection %>
 </div>
-
-
-

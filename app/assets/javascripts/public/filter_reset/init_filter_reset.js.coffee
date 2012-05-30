@@ -4,7 +4,7 @@
     $this = $(this)
     context = $this.closest('.filter').attr('class').replace('filter ', '')
     switch context
-      when 'by_category', 'by_tag'
+      when 'by_category', 'by_tag', 'by_payment', 'by_cuisine', 'by_feature', 'by_offer'
         $('.'+context+' ul a').removeClass('active')
         break
       when 'by_time', 'by_amount'

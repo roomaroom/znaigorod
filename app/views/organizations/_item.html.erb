@@ -3,28 +3,30 @@
   <div class="poster">
     <%= link_to  item do %>
       <% if item.images.any? %>
-        <%#= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
+        <%= image_tag_for item.images.first.url, 137, 185 %>
       <% else %>
-        <%= image_tag "eat/no_photo#{1 + rand(5)}.jpg", :width => '137', :height => '185', :alt => item.title, :title => item.title %>
+        <%= image_tag "eat/stub.jpg", :width => '137', :height => '185', :alt => item.title, :title => item.title %>
       <% end %>
     <% end %>
   </div>
   <div class="additional">
-    <ul>
-      <li>
-        <span class="label">Адрес</span>
-        <%= item.address %>
-      </li>
-      <li>
-        <span class="label">Телефон</span>
-        <%= item.phone %>
-      </li>
-      <% if item.feature? %>
+    <div class="seances_wrapper">
+      <ul>
         <li>
-          <span class="label">Особенности</span>
-          <%= item.feature %>
+          <span class="label">Адрес</span>
+          <%= item.address %>
         </li>
-      <% end %>
-    </ul>
+        <li>
+          <span class="label">Телефон</span>
+          <%= item.phone %>
+        </li>
+        <% if item.feature? %>
+          <li>
+            <span class="label">Особенности</span>
+            <%= item.feature %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

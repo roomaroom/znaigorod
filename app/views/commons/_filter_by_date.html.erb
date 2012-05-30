@@ -1,0 +1,28 @@
+<div class="filter by_date">
+  <div class="filter_wrapper">
+    <div class="range_wrapper">
+      <div class="range">
+        <% range = (Date.today..Date.today + 4.week) %>
+        <% i = 0 %>
+        <% range.group_by(&:year).map{|year, months| months.group_by(&:month)}.each do |year| %>
+          <% year.each do |month, dates| %>
+            <div class="month">
+              <ul>
+                <% dates.each do |date| %>
+                  <li class='<%= "item_#{i}" %>' data-value='<%= date %>'>
+                    <% i = i +1 %>
+                    <span class="day <%= l(date, :format => '%a', :locale => :en).downcase %>"><%= l date, :format => '%e' %></span>
+                    <span class="dow"><%= l date, :format => '%a' %></span>
+                  </li>
+                <% end %>
+              </ul>
+              <div class="month_title"><%= t('date.month_names')[month] %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %> <%= "data-selected='0,29'" %>></div>
+    </div>
+  </div>
+</div>
+

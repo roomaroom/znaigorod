@@ -10,14 +10,7 @@
   <h1>Результаты поиска<span class='result_count'>Найдено: <%= total %></span></h1>
 
   <div class="list">
-    <% if collection.any? %>
-      <% collection.each do |item| %>
-        <%= render :partial => "#{item.class.superclass.name.underscore.pluralize}/item", :locals => { :item => item } %>
-      <% end %>
-    <% else %>
-      <div class="empty">Ничего не найдено ;(</div>
-    <% end %>
+    <%= render :partial => 'commons/list', :locals => { :collection => collection, :remote => false } %>
   </div>
 
-  <%= paginate collection %>
 </div>

@@ -49,10 +49,27 @@ $.fn.prepare_params = () ->
         $.extend params, get_params_from_checker(context, 'tags')
         break
 
+      when 'by_cuisine'
+        $.extend params, get_params_from_checker(context, 'cuisine')
+        break
+
+      when 'by_payment'
+        $.extend params, get_params_from_checker(context, 'payment')
+        break
+
+      when 'by_feature'
+        $.extend params, get_params_from_checker(context, 'feature')
+        break
+
+      when 'by_offer'
+        $.extend params, get_params_from_checker(context, 'offer')
+        break
+
   { utf8: true, search: params }
 
 @init_filter_handler = () ->
   filters = $('.filters')
+  url = '/'+filters.attr('id')
 
   search_preset = window.location.hash.replace('#','')
 
@@ -62,15 +79,16 @@ $.fn.prepare_params = () ->
     list_block.addClass('filled')
 
     list_block.animate({opacity: 0}, 900, ->
-      list_block.addClass('preloader').html('<img src="/assets/preloader.gif" width=48 height=48 style="margin: 0 auto; display: block">').animate({opacity: 1}, 900, ->
+      list_block.addClass('preloader').html('<img src="/assets/preloader.gif" width=48 height=48 style="margin: 0 auto; display: block" />').animate({opacity: 1}, 900, ->
         $.ajax
-          url: '/affiches'
+          url: url
           type: 'GET'
           data: filters.prepare_params()
           success: (data, textStatus, jqXHR) ->
             list_block.removeClass('preloader').animate({opacity: 0}, 900, ->
               list_block.addClass('filled').html(jqXHR.responseText).animate({opacity: 1}, 900)
               init_tablesorter()
+              init_remote_pagination()
             )
       ) unless list_block.hasClass('preloader')
     ).removeClass('filled') if list_block.hasClass('filled')

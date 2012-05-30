@@ -1,4 +1,6 @@
-class OrganizationsController < InheritedResourcesController
+# encoding: utf-8
+
+class EatingsController < InheritedResourcesController
   actions :index, :show
 
   helper_method :params_with_facet, :params_without_facet, :params_have_facet?
@@ -8,17 +10,19 @@ class OrganizationsController < InheritedResourcesController
   respond_to :json
 
   def index
-    index! {
-      if request.xhr?
-        render :action => 'index', :layout => false and return
-      end
-    }
+    if request.xhr?
+      render :text => '<div class="empty">Ничего не найдено ;(</div>', :layout => false and return if collection.empty?
+      render :partial => 'commons/list', :locals => { :collection => collection }, :layout => false and return
+    end
+
+    index!
   end
 
   protected
     def collection
       @search ||= Organization.search do
         fulltext params[:q]
+        paginate(paginate_options)
 
         all_of do
           Organization.facets.each do |facet|
@@ -47,7 +51,7 @@ class OrganizationsController < InheritedResourcesController
     end
 
     def params_facet_values(facet)
-      [*params[:facets].try(:[], facet)]
+      [*params[:search].try(:[], facet)]
     end
 
     def params_have_facet?(facet, value)
