@@ -16,6 +16,13 @@ module ApplicationHelper
     image_tag resized_image_url(affiche.image_url, width, height, true), :alt => affiche.title, :title => affiche.title
   end
 
+  def price_for(showing)
+    return 'бесплатно' if showing.price_min.zero? && showing.price_max.zero?
+    return number_to_currency(showing.price_min, :precision => 0) if showing.price_max.zero?
+
+    "#{showing.price_min} - #{number_to_currency(showing.price_max, :precision => 0)}"
+  end
+
   def path_for(item)
     case item.class.superclass.name
     when 'Affiche'

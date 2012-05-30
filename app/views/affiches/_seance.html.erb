@@ -35,7 +35,7 @@
               <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
               <td><%= showing.place %></td>
               <td><%= showing.hall %></td>
-              <td><%= number_to_currency showing.price, :unit => '' %></td>
+              <td><%= price_for(showing) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -53,7 +53,7 @@
           </li>
           <li>
             <span class="label">Стоимость</span>
-            <%= showings.map{|s| s.price.zero? ? 'бесплатно' : number_to_currency(s.price) }.join(', ') %>
+            <%= showings.map{|s| price_for(s) }.join(', ') %>
           </li>
         </ul>
       <% end %>

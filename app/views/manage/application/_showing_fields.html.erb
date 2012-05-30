@@ -6,14 +6,17 @@
     <div class='span2'>
       <%= f.input :ends_at, :as => :date_picker, :input_html => { :class => 'span12' } %>
     </div>
-    <div class='span3'>
+    <div class='span2'>
       <%= f.input :place, :input_html => { :class => 'span12' } %>
     </div>
-    <div class='span3'>
+    <div class='span2'>
       <%= f.input :hall, :input_html => { :class => 'span12' } %>
     </div>
     <div class='span2'>
-      <%= f.input :price %>
+      <%= f.input :price_min, :input_html => { :class => 'span12' } %>
+    </div>
+    <div class='span2'>
+      <%= f.input :price_max, :input_html => { :class => 'span12' } %>
     </div>
   <% end %>
 </div>

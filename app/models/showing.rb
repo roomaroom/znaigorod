@@ -1,9 +1,9 @@
 class Showing < ActiveRecord::Base
-  attr_accessible :ends_at, :hall, :place, :price, :starts_at
+  attr_accessible :ends_at, :hall, :place, :price_max, :price_min, :starts_at
 
   belongs_to :affiche
 
-  validates_presence_of :place, :price, :starts_at
+  validates_presence_of :place, :price_max, :price_min, :starts_at
 
   default_scope order(:starts_at)
 
@@ -12,14 +12,18 @@ class Showing < ActiveRecord::Base
   after_create  :index_affiche
   after_destroy :index_affiche
 
+  default_value_for :price_max, 0
+  default_value_for :price_min, 0
+
   searchable do
-    date                                      :starts_on
-    integer(:ends_at_hour)                    { ends_at.try(:hour) }
-    integer                                   :price
-    integer(:starts_at_hour)                  { starts_at.hour }
-    string(:categories, :multiple => true)    { [affiche.class.name.underscore] }
-    string(:tags, :multiple => true)          { affiche_tags }
-    time                                      :starts_at
+    date :starts_on
+    integer(:ends_at_hour) { ends_at.try(:hour) }
+    integer :price_max
+    integer :price_min
+    integer(:starts_at_hour) { starts_at.hour }
+    string(:categories, :multiple => true) { [affiche.class.name.underscore] }
+    string(:tags, :multiple => true) { affiche_tags }
+    time :starts_at
   end
 
   def starts_on

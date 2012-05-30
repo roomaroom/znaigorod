@@ -55,7 +55,8 @@ ru:
         ends_at: Окончание
         hall: Зал
         place: Место
-        price: Цена
+        price_min: Минимальная цена
+        price_max: Максимальная цена
         starts_at: Начало
 
       hall:
