@@ -15,6 +15,8 @@ class Affiche < ActiveRecord::Base
 
   scope :latest, ->(count) { limit(count) }
 
+  before_save :set_wmode_for_trailer
+
   normalize_attribute :image_url
 
   searchable do
@@ -49,6 +51,10 @@ class Affiche < ActiveRecord::Base
   private
     def localized_date
       Time.local(Time.now.year, Time.now.month, Time.now.day)
+    end
+
+    def set_wmode_for_trailer
+      self.trailer_code.gsub!(/(object|embed)/, '\1 wmode="opaque"')
     end
 end
 
