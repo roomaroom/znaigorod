@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
-  helper_method :collection
+  helper_method :collection, :total
 
   protected
-    def collection
-      @collection ||= Sunspot.search([Affiche, Organization]) {
+    def search
+      @search ||= Sunspot.search([Affiche, Organization]) {
         keywords(params[:q])
         paginate(paginate_options)
 
@@ -18,6 +18,14 @@ class SearchController < ApplicationController
           end
 
         end
-      }.results
+      }
+    end
+
+    def collection
+      @collection ||= search.results
+    end
+
+    def total
+      search.total
     end
 end

@@ -17,7 +17,11 @@
   </div>
 
   <div class="list">
-    <%= render :partial => 'item', :collection => collection %>
+    <% if collection.any? %>
+      <%= render :partial => 'item', :collection => collection %>
+    <% else %>
+      <div class="empty">Ничего не найдено ;(</div>
+    <% end %>
   </div>
 
   <%= paginate collection %>

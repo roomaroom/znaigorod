@@ -19,7 +19,7 @@
       </li>
       <li>
         <span class="label">Критерии</span>
-        <%= [item].map{|i| [i.cuisine, i.payment, i.feature, i.offer]}.join(', ') %>
+        <%= [item].flat_map{|i| [i.cuisine, i.payment, i.feature, i.offer]}.reject(&:blank?).join(', ') %>
       </li>
     </ul>
   </div>

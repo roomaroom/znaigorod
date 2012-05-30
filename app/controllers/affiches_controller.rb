@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AffichesController < InheritedResourcesController
   actions :index, :show
 
@@ -7,7 +9,10 @@ class AffichesController < InheritedResourcesController
   layout 'public'
 
   def index
-    render :partial => 'item', :collection => collection, :layout => false and return if request.xhr?
+    if request.xhr?
+      render :text => '<div class="empty">Ничего не найдено ;(</div>', :layout => false and return if collection.empty?
+      render :partial => 'item', :collection => collection, :layout => false and return
+    end
 
     index!
   end
