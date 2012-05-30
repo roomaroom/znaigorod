@@ -27,8 +27,10 @@ class Affiche < ActiveRecord::Base
     time :last_showing_time
   end
 
+  # NOTE: per_page => 1000
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
+    search_params.merge!({ :per_page => 1000 })
     showing_ids = ShowingSearch.new(search_params).result_ids
 
     showings.where(:id => showing_ids).where('starts_at > ?', localized_date).group_by(&:starts_on)

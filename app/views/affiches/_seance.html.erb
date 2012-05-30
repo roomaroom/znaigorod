@@ -1,18 +1,14 @@
 <% range = affiche.showings_grouped_by_day(params[:search]) %>
 
-<% unless range.keys.one? %>
-
-  <div class="seance_tabs">
-    <ul>
-      <% range.keys.each_with_index do |day, index| %>
-        <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
-          <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-<% end %>
+<div class="seance_tabs">
+  <ul>
+    <% range.keys.each_with_index do |day, index| %>
+      <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
+        <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="seances_wrapper">
   <% index = 0 %>

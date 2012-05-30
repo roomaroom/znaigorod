@@ -20,7 +20,7 @@ module ApplicationHelper
     return 'бесплатно' if showing.price_min.zero? && showing.price_max.zero?
     return number_to_currency(showing.price_min, :precision => 0) if showing.price_max.zero?
 
-    "#{showing.price_min} - #{number_to_currency(showing.price_max, :precision => 0)}"
+    "#{showing.price_min} &mdash; #{number_to_currency(showing.price_max, :precision => 0)}".html_safe
   end
 
   def path_for(item)
