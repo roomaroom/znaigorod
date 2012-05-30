@@ -1,0 +1,26 @@
+<div class="item">
+  <h3><%= link_to item.title, organization_path(item), :class => 'solid_light_blue' %><span class='category'><%= item.class.model_name.human %></span></h3>
+  <div class="poster">
+    <% if item.images.any? %>
+      <%#= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
+    <% else %>
+      <%= image_tag "eat/no_photo#{1 + rand(5)}.jpg", :width => '137', :height => '185', :alt => item.title, :title => item.title %>
+    <% end %>
+  </div>
+  <div class="additional">
+    <ul>
+      <li>
+        <span class="label">Адрес</span>
+        <%= item.address %>
+      </li>
+      <li>
+        <span class="label">Телефон</span>
+        <%= item.phone %>
+      </li>
+      <li>
+        <span class="label">Критерии</span>
+        <%= [item].map{|i| [i.cuisine, i.payment, i.feature, i.offer]}.join(', ') %>
+      </li>
+    </ul>
+  </div>
+</div>

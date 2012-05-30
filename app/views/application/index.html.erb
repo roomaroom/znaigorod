@@ -1,4 +1,4 @@
-<div class="affiche_index">
+<div class="index">
   <div class="breadcrumbs">
     <ul>
       <li>
@@ -7,7 +7,7 @@
     </ul>
   </div>
 
-  <h1><%= t('affiche') %></h1>
+  <h1><%= t collection.first.class.superclass.model_name.human %></h1>
 
   <div class="filters">
     <fieldset>
@@ -19,5 +19,9 @@
   <div class="list">
     <%= render :partial => 'item', :collection => collection %>
   </div>
+
+  <%= paginate collection %>
 </div>
+
+
 

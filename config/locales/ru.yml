@@ -21,11 +21,13 @@ ru:
 
   activerecord:
     models:
+      affiche: Афиша
       concert: Концерты
-      eating: Заведение (еда)
+      eating: Питание
       exhibition: Выставки
-      funny: Заведение (развлечение)
+      funny: Развлечения
       movie: Кино
+      organization: Организации
       other: Другое
       party: Вечеринки
       spectacle: Спектакли

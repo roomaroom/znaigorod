@@ -3,7 +3,7 @@
   <div class="poster">
     <%= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
   </div>
-  <div class="seance">
+  <div class="additional">
     <%= render :partial => 'seance', :locals => { :affiche => item } %>
   </div>
 </div>

@@ -1,4 +1,4 @@
-.affiche_show, .affiche_index
+.affiche_show, .index
   +min-height(498px)
   background: rgba(255, 255, 255, 0.7)
   margin: 17px 0
@@ -44,7 +44,7 @@
   .trailer
     margin: 30px 15%
 
-  .seance
+  .seance, .additional
     +clearfix
     margin: 0 0 30px 0
 
@@ -66,18 +66,18 @@
       width: 100%
       z-index: 1
 
-      ul
-        margin: 6px 0 0 0
+    ul
+      margin: 6px 0 0 0
 
-        li
-          font-size: 13px
-          line-height: 17px
-          margin: 0 0 8px 0
+      li
+        font-size: 13px
+        line-height: 17px
+        margin: 0 0 8px 0
 
-          .label
-            color: #0D88BC
-            display: block
-            font-size: 14px
+        .label
+          color: #0D88BC
+          display: block
+          font-size: 14px
 
   .comments
     h4
@@ -89,7 +89,7 @@
       &:hover
         color: #095a7c
 
-.affiche_index
+.index
   .list
     +clearfix
     width: 100%
@@ -129,9 +129,35 @@
           display: block
           margin: 0 auto
 
-      .seance
+      .additional
         +clearfix
         margin: 0
 
       .seances_wrapper
         padding: 0 0 0 15px
+
+  .pagination
+    text-align: center
+
+    ul
+      +clearfix
+
+      li
+        +inline-block
+        font-size: 16px
+        line-height: 19px
+        width: 20px
+
+        a
+          color: #0D88BC
+
+      .active
+        a
+          color: #334049
+
+      .next
+      .previous
+      .last
+      .first
+      .gap
+
