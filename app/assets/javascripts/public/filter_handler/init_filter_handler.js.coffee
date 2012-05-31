@@ -42,7 +42,7 @@ $.fn.prepare_params = () ->
         break
 
       when 'by_category'
-        $.extend params, get_params_from_checker(context, 'categories')
+        $.extend params, get_params_from_checker(context, 'category')
         break
 
       when 'by_tag'

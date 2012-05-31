@@ -1,5 +1,5 @@
 class ShowingSearch < Search
-  attr_accessible :categories,
+  attr_accessible :category,
                   :ends_at_hour_gt,
                   :ends_at_hour_lt,
                   :per_page,
@@ -20,7 +20,7 @@ class ShowingSearch < Search
                 :starts_at_hour_gt,
                 :starts_at_hour_lt
 
-  column :categories,         :string
+  column :category,           :string
   column :ends_at_hour_gt,    :integer
   column :ends_at_hour_lt,    :integer
   column :per_page,           :integer
