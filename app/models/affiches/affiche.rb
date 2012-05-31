@@ -27,6 +27,10 @@ class Affiche < ActiveRecord::Base
     time :last_showing_time
   end
 
+  def self.descendants
+    [Movie, Concert, Party, Spectacle, Exhibition, SportsEvent, Other]
+  end
+
   def showings_grouped_by_day(search_params = nil)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids

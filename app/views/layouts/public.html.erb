@@ -43,7 +43,7 @@
         <div class="right">
           <h5><a href='#' class='dashed_light_blue'><%= t('affiche') %></a></h5>
           <ul>
-            <% Affiche.descendants.map(&:model_name).sort.each do |klass| %>
+            <% Affiche.descendants.map(&:model_name).each do |klass| %>
               <li>
                 <%= link_to klass.human, "/affiches/##{klass.underscore}", :class => 'solid_dark_gray' %>
               </li>
