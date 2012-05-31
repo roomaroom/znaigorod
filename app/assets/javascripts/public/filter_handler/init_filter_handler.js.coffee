@@ -107,6 +107,12 @@ $.fn.prepare_params = () ->
       $('.by_time h6 a').click()
       return false
 
+    if search_preset.match(/__/)
+      [facet, target] = search_preset.split('__')
+      $('.by_' + facet + ' h6 a').click()
+      $('.by_' + facet + ' a.' + target).click()
+      return false
+
     target = $('.'+search_preset)
     if target.length
       $('.by_affiche_categories h6 a, .by_categories h6 a').click()

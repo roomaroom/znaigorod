@@ -38,6 +38,10 @@ module ApplicationHelper
     return Organization   if Organization.descendants.include?(resource_class)
   end
 
+  def transliterate(string)
+    I18n.transliterate(string).gsub(/[^[:alnum:]]+/,'_').downcase
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =

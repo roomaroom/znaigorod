@@ -6,7 +6,7 @@
       <ul>
         <% @search.facet(resource_class.facet_field(facet)).rows.each do |row| %>
           <li>
-            <a href="#" data-value='<%= row.value %>'><%= row.value %></a>
+            <a href="#" class='<%= transliterate(row.value) %>' data-value='<%= row.value %>'><%= row.value %></a>
           </li>
         <% end %>
       </ul>
