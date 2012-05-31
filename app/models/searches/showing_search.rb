@@ -18,7 +18,8 @@ class ShowingSearch < Search
                 :price_gt,
                 :price_lt,
                 :starts_at_hour_gt,
-                :starts_at_hour_lt
+                :starts_at_hour_lt,
+                :tags
 
   column :affiche_categories, :string
   column :ends_at_hour_gt,    :integer
@@ -47,10 +48,16 @@ class ShowingSearch < Search
 
   protected
     def search_columns
-      @showing_search_columns ||= super.reject { |c| c.match(/(hour|price)/) }
+      @showing_search_columns ||= super.reject { |c| c.match(/(hour|price|tags)/) }
     end
 
     def additional_search(search)
+      search.all_of do
+        [*tags].each do |tag|
+          with(:tags, tag)
+        end
+      end
+
       search.any_of do
         all_of do
           with(:starts_at_hour).greater_than(starts_at_hour_gt)
