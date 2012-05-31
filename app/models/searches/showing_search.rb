@@ -23,7 +23,7 @@ class ShowingSearch < Search
   column :categories,         :string
   column :ends_at_hour_gt,    :integer
   column :ends_at_hour_lt,    :integer
-  column :per_page,           :string
+  column :per_page,           :integer
   column :price_gt,           :integer
   column :price_lt,           :integer
   column :starts_at_gt,       :datetime
@@ -39,6 +39,7 @@ class ShowingSearch < Search
   default_value_for :starts_at_hour_gt, 0
   default_value_for :starts_at_hour_lt, 24
   default_value_for(:starts_on_gt)      { Date.today }
+  default_value_for :per_page,          1000
 
   def price_lt
     @price_lt.to_i.zero? ? 99999 : @price_lt
