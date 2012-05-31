@@ -3,7 +3,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
     def collection
       @search ||= Organization.search do
         fulltext params[:organization_search].try(:[], :keywords)
-        facet(:category)
+        facet(:organization_categories)
         facet(:feature)
         facet(:cuisine)
         facet(:payment)

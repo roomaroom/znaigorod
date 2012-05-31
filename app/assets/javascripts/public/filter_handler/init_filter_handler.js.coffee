@@ -41,8 +41,12 @@ $.fn.prepare_params = () ->
         $.extend params, get_params_from_slider(context, 'price_gt', 'price_lt')
         break
 
-      when 'by_category'
-        $.extend params, get_params_from_checker(context, 'category')
+      when 'by_affiche_categories'
+        $.extend params, get_params_from_checker(context, 'affiche_categories')
+        break
+
+      when 'by_organization_categories'
+        $.extend params, get_params_from_checker(context, 'organization_categories')
         break
 
       when 'by_tag'
@@ -105,5 +109,5 @@ $.fn.prepare_params = () ->
 
     target = $('.'+search_preset)
     if target.length
-      $('.by_category h6 a').click()
+      $('.by_affiche_categories h6 a, .by_organization_categories h6 a').click()
       target.click()

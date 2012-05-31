@@ -1,5 +1,5 @@
 class ShowingSearch < Search
-  attr_accessible :category,
+  attr_accessible :affiche_categories,
                   :ends_at_hour_gt,
                   :ends_at_hour_lt,
                   :per_page,
@@ -20,7 +20,7 @@ class ShowingSearch < Search
                 :starts_at_hour_gt,
                 :starts_at_hour_lt
 
-  column :category,           :string
+  column :affiche_categories, :string
   column :ends_at_hour_gt,    :integer
   column :ends_at_hour_lt,    :integer
   column :per_page,           :integer
@@ -88,17 +88,18 @@ end
 #
 # Table name: searches
 #
-#  categories        :string
-#  ends_at_hour_gt   :integer
-#  ends_at_hour_lt   :integer
-#  price_gt          :integer
-#  price_lt          :integer
-#  starts_at_gt      :datetime
-#  starts_at_hour_gt :integer
-#  starts_at_hour_lt :integer
-#  starts_at_lt      :datetime
-#  starts_on_gt      :date
-#  starts_on_lt      :date
-#  tags              :string
+#  affiche_categories :string
+#  ends_at_hour_gt    :integer
+#  ends_at_hour_lt    :integer
+#  per_page           :integer
+#  price_gt           :integer
+#  price_lt           :integer
+#  starts_at_gt       :datetime
+#  starts_at_hour_gt  :integer
+#  starts_at_hour_lt  :integer
+#  starts_at_lt       :datetime
+#  starts_on_gt       :date
+#  starts_on_lt       :date
+#  tags               :string
 #
 
