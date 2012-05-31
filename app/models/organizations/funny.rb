@@ -1,6 +1,10 @@
 class Funny < Organization
   alias_attribute :funny_categories, :organization_categories
 
+  def self.or_facets
+    %w[funny_categories]
+  end
+
   def self.facets
     %w[funny_categories payment feature offer]
   end
