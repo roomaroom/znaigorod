@@ -66,6 +66,8 @@ ru:
       organization:
         address: Адрес организации
         organization_categories: Категория
+        eating_categories: Категория
+        funny_categories: Категория
         created_at: Создано
         cuisine: Кухня
         description: Описание

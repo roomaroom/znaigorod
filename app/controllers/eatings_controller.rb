@@ -20,12 +20,12 @@ class EatingsController < InheritedResourcesController
 
   protected
     def collection
-      @search ||= Organization.search do
+      @search ||= Eating.search do
         fulltext params[:q]
         paginate(paginate_options)
 
         all_of do
-          self.class.facets.each do |facet|
+          Eating.facets.each do |facet|
             params_facet_values(facet).each do |value|
               with(facet, value)
             end
@@ -34,7 +34,7 @@ class EatingsController < InheritedResourcesController
           with(:capacity).greater_than(capacity) if capacity?
         end
 
-        self.class.facets.each do |facet|
+        Eating.facets.each do |facet|
           facet(facet, :zeros => true, :sort => :index)
         end
       end

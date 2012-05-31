@@ -3,7 +3,7 @@ class Eating < Organization
   alias_attribute :eating_categories, :organization_categories
 
   def self.facets
-    %w[organization_categories eating_categories payment cuisine feature offer]
+    %w[eating_categories payment cuisine feature offer]
   end
 
   add_sunspot_configuration

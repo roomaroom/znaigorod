@@ -45,8 +45,12 @@ $.fn.prepare_params = () ->
         $.extend params, get_params_from_checker(context, 'affiche_categories')
         break
 
-      when 'by_organization_categories'
-        $.extend params, get_params_from_checker(context, 'organization_categories')
+      when 'by_eating_categories'
+        $.extend params, get_params_from_checker(context, 'eating_categories')
+        break
+
+      when 'by_funny_categories'
+        $.extend params, get_params_from_checker(context, 'funny_categories')
         break
 
       when 'by_tag'
@@ -109,5 +113,5 @@ $.fn.prepare_params = () ->
 
     target = $('.'+search_preset)
     if target.length
-      $('.by_affiche_categories h6 a, .by_organization_categories h6 a').click()
+      $('.by_affiche_categories h6 a, .by_eating_categories h6 a, .by_funny_categories h6 a').click()
       target.click()

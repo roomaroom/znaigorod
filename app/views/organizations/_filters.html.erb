@@ -1,4 +1,4 @@
-<% Organization.facets.each do |facet| %>
+<% resource_class.facets.each do |facet| %>
   <div class="filter by_<%= facet %>">
     <h6><a href='#' class='dashed_dark_gray'><%= Organization.human_attribute_name(facet) %></a></h6>
     <div class="filter_wrapper hide">
