@@ -32,6 +32,12 @@ module ApplicationHelper
     end
   end
 
+  def search_class(resource_class)
+    return resource_class if [Affiche, Organization].include?(resource_class)
+    return Affiche        if Affiche.descendants.include?(resource_class)
+    return Organization   if Organization.descendants.include?(resource_class)
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =

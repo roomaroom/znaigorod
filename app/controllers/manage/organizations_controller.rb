@@ -1,8 +1,12 @@
 class Manage::OrganizationsController < Manage::ApplicationController
+  actions :index, :new
+
+  has_scope :page, :default => 1
+
   protected
     def collection
       @search ||= Sunspot.search([Eating, Funny]) do
-        fulltext params[:organization_search].try(:[], :keywords)
+        keywords(params[:q])
         paginate(:page => params[:page], :per_page => 20)
       end
 

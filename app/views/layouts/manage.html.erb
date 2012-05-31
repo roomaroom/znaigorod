@@ -27,11 +27,9 @@
               </ul>
             </div>
 
-            <%= semantic_search_form_for :organization, :url => manage_organizations_path, :method => :get, :html => { :class => 'navbar-search pull-right' } do |form| %>
-              <%= form.inputs do %>
-                <%= form.input :keywords, :as => :string, :label => false, :input_html => { :class => 'search-query span2', :placeholder => 'Поиск' } %>
-              <% end %>
-            <% end if controller_path.match('manage') %>
+            <%= form_tag send("manage_#{search_class(resource_class).name.downcase.pluralize}_path"), :method => :get, :class => 'navbar-search pull-right' do %>
+              <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск', :class => 'search-query span2' %>
+            <% end %>
           </div>
         </div>
       </div>
