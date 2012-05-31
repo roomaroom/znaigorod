@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   protected
     def search
-      @search ||= Sunspot.search([Affiche, Organization]) {
+      @search ||= Sunspot.search([Affiche, Eating, Funny]) {
         keywords(params[:q])
         paginate(paginate_options)
 

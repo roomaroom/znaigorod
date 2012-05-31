@@ -31,10 +31,10 @@
       <div class="info">
         <table>
           <tbody>
-            <% if resource.category? %>
+            <% if resource.organization_categories? %>
               <tr>
                 <td>Категория:</td>
-                <td><%= resource.category %></td>
+                <td><%= resource.organization_categories %></td>
               </tr>
             <% end %>
             <% if resource.address %>
