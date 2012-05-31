@@ -3,7 +3,7 @@
     <% if item.images.any? %>
       <%= image_tag_for item.images.first.url, 137, 100 %>
     <% else %>
-      <%= image_tag "funny/#{I18n.transliterate(item.organization_categories.split(', ').first).gsub(' ','_').downcase}.jpg", :width => '137', :height => '100', :alt => item.title, :title => item.title %>
+      <%= image_tag "funny/#{I18n.transliterate(item.categories.split(', ').first).gsub(' ','_').downcase}.jpg", :width => '137', :height => '100', :alt => item.title, :title => item.title %>
     <% end %>
   <% end %>
 </div>

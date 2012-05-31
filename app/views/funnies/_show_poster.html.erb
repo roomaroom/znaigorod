@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <%= image_tag "funny/#{I18n.transliterate(resource.organization_categories.split(', ').first).gsub(' ','_').downcase}.jpg", :width => '274', :height => '200', :alt => resource.title, :title => resource.title %>
+    <%= image_tag "funny/#{I18n.transliterate(resource.categories.split(', ').first).gsub(' ','_').downcase}.jpg", :width => '274', :height => '200', :alt => resource.title, :title => resource.title %>
   <% end %>
   <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
   <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
