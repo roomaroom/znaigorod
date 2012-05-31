@@ -13,21 +13,7 @@
   <div class="main_info">
     <h1><%= resource.title %></h1>
     <div class="description">
-      <div class="poster">
-        <% if resource.images.any? %>
-          <%= image_tag_for(resource.images.first.url, 290, 390) %>
-
-          <% if false %>
-            <% (resource.images - [resource.images.first]).each do |image| %>
-              <%= image_tag_for image.url, 290, 390 %>
-            <% end %>
-          <% end %>
-        <% else %>
-          <%= image_tag "eat/stub.jpg", :width => '290', :height => '390', :alt => resource.title, :title => resource.title %>
-        <% end %>
-        <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-        <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
-      </div>
+      <%= render :partial => "#{resource.class.model_name.pluralize.underscore}/show_poster", :locals => { :resource => resource } %>
       <div class="info">
         <table>
           <tbody>
