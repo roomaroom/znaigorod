@@ -2,7 +2,7 @@ class Eating < Organization
   attr_accessible :cuisine
 
   def self.or_facets
-    %w[categories]
+    %w[categories cuisine]
   end
 
   def self.facets
@@ -16,20 +16,20 @@ end
 #
 # Table name: organizations
 #
-#  id                      :integer         not null, primary key
-#  title                   :text
-#  categories :text
-#  payment                 :text
-#  cuisine                 :text
-#  feature                 :text
-#  site                    :text
-#  email                   :text
-#  description             :text
-#  created_at              :datetime        not null
-#  updated_at              :datetime        not null
-#  phone                   :text
-#  offer                   :text
-#  type                    :string(255)
-#  vfs_path                :string(255)
+#  id          :integer         not null, primary key
+#  title       :text
+#  categories  :text
+#  payment     :text
+#  cuisine     :text
+#  feature     :text
+#  site        :text
+#  email       :text
+#  description :text
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  phone       :text
+#  offer       :text
+#  type        :string(255)
+#  vfs_path    :string(255)
 #
 
