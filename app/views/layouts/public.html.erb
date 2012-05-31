@@ -34,10 +34,10 @@
     <div class="wrapper">
       <div class="bottom_navigation">
         <div class="left">
-          <h5><a href='#' class='dashed_light_blue'><%= t('organizations') %></a></h5>
+          <h5><%= t('organizations') %></h5>
           <ul>
-            <li><a href='#' class='solid_dark_gray'>Развлечения</a></li>
-            <li><a href='#' class='solid_dark_gray'>Еда</a></li>
+            <li><%= link_to 'Еда', funnies_path, :class => 'solid_dark_gray' %>
+            <li><%= link_to 'Развлечения', funnies_path, :class => 'solid_dark_gray' %>
           </ul>
         </div>
         <div class="right">
