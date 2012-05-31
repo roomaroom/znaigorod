@@ -89,7 +89,7 @@ class ShowingSearch < Search
         end
       end
 
-      adjust_solr_params {|params| params[:sort] = 'id desc'}
+      search.adjust_solr_params {|params| params[:sort] = 'id desc'}
     end
 end
 
