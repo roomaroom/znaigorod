@@ -1,12 +1,13 @@
 @init_range_slider = () ->
   range_slider_block = $('.range_slider')
   filters = $('.filters')
-
   range_slider_block.each ->
     $this = $(this)
     max = $this.attr('data-count')
-    selected_value = $this.attr('data-selected').split(',').map (x) ->
-      parseInt(x)
+
+    selected_value = []
+    selected_value.push $this.attr('data-selected').split(',')[0]
+    selected_value.push $this.attr('data-selected').split(',')[1]
 
     $this.slider({
       range: true
