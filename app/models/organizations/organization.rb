@@ -27,10 +27,6 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
-  def self.facets
-    %w[organization_categories payment cuisine feature offer]
-  end
-
   def self.facet_fields
     facets.inject({}) { |h,v| h[v] = 1; h }
   end
@@ -39,19 +35,21 @@ class Organization < ActiveRecord::Base
     { title: 2, address: 1, description: 0.5 }.merge(facet_fields)
   end
 
-  searchable do |s|
-    s.integer(:capacity, :multiple => true) { halls.pluck(:seating_capacity) }
-    s.string(:kind) { 'organization' }
-    s.text :address
-    s.text :description, :boost => 0.5
-    s.text :email, :boost => 0.5
-    s.text :site, :boost => 0.5
-    s.text :title, :boost => 2
-    s.text(:kind) { self.class.model_name.human }
+  def self.add_sunspot_configuration
+    searchable do |s|
+      s.integer(:capacity, :multiple => true) { halls.pluck(:seating_capacity) }
+      s.string(:kind) { 'organization' }
+      s.text :address
+      s.text :description, :boost => 0.5
+      s.text :email, :boost => 0.5
+      s.text :site, :boost => 0.5
+      s.text :title, :boost => 2
+      s.text(:kind) { self.class.model_name.human }
 
-    facets.each do |facet|
-      s.text facet
-      s.string(facet, :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
+      facets.each do |facet|
+        s.text facet
+        s.string(facet, :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
+      end
     end
   end
 

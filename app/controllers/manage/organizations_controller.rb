@@ -1,7 +1,7 @@
 class Manage::OrganizationsController < Manage::ApplicationController
   protected
     def collection
-      @search ||= Organization.search do
+      @search ||= Sunspot.search([Eating, Funny]) do
         fulltext params[:organization_search].try(:[], :keywords)
         facet(:organization_categories)
         facet(:feature)

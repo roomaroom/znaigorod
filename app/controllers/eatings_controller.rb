@@ -25,7 +25,7 @@ class EatingsController < InheritedResourcesController
         paginate(paginate_options)
 
         all_of do
-          Organization.facets.each do |facet|
+          self.class.facets.each do |facet|
             params_facet_values(facet).each do |value|
               with(facet, value)
             end
@@ -34,7 +34,7 @@ class EatingsController < InheritedResourcesController
           with(:capacity).greater_than(capacity) if capacity?
         end
 
-        Organization.facets.each do |facet|
+        self.class.facets.each do |facet|
           facet(facet, :zeros => true, :sort => :index)
         end
       end

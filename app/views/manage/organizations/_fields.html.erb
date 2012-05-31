@@ -1,13 +1,13 @@
-<%= f.input :title,       :as => :string %>
-<%= f.input :category,    :as => :string %>
+<%= f.input :title,                   :as => :string %>
+<%= f.input :organization_categories, :as => :string %>
 <%= f.input :description %>
 <%= f.input :offer %>
 <%= f.input :feature %>
-<%= f.input :payment,     :as => :string %>
-<%= f.input :phone,       :as => :tel %>
-<%= f.input :email,       :as => :email %>
-<%= f.input :site,        :as => :url %>
-<%= f.input :vfs_path,    :as => :hidden %>
+<%= f.input :payment,                 :as => :string %>
+<%= f.input :phone,                   :as => :tel %>
+<%= f.input :email,                   :as => :email %>
+<%= f.input :site,                    :as => :url %>
+<%= f.input :vfs_path,                :as => :hidden %>
 
 <%= yield :additional_fields %>
 
