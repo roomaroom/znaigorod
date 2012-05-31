@@ -3,14 +3,15 @@
 class Schedule < ActiveRecord::Base
   belongs_to :organization
 
-  attr_accessible :day, :from, :to
+  attr_accessible :day, :from, :to, :holiday
 
   validates_presence_of :day, :from, :to
 
   default_scope order(:day)
 
-  def self.days_for_select
-    array = I18n.t('date.standalone_day_names').dup
+  def self.days_for_select(format = :full)
+    format == :full ? format = 'date.standalone_day_names' : format = 'date.common_abbr_day_names'
+    array = I18n.t(format).dup
     sunday = array.shift
     array << sunday
     array.each_with_index.map { |e, i| [e, i + 1] }
@@ -18,6 +19,10 @@ class Schedule < ActiveRecord::Base
 
   def human_day
     self.class.days_for_select[day-1].first
+  end
+
+  def short_human_day
+    self.class.days_for_select(:short)[day-1].first
   end
 
   def to_s

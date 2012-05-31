@@ -1,63 +1,46 @@
-<div class="affiche_show">
+<div class="show">
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="/" class='solid_light_blue'>Главная</a><span class='arrow'>&rarr;</span>
+      </li>
+      <li>
+        <%= link_to t('affiche'), affiches_path, :class => 'solid_light_blue' %><span class='arrow'>&rarr;</span>
+      </li>
+    </ul>
+  </div>
 
-    <div class="breadcrumbs">
-      <ul>
-        <li>
-          <a href="/" class='solid_light_blue'>Главная</a><span class='arrow'>&rarr;</span>
-        </li>
-        <li>
-          <%= link_to t('affiche'), affiches_path, :class => 'solid_light_blue' %><span class='arrow'>&rarr;</span>
-        </li>
-      </ul>
-    </div>
+  <div class="main_info">
+    <h1><%= resource.title %></h1>
+    <h2><%= resource.original_title %></h2>
 
-    <div class="main_info">
-      <h1><%= resource.title %></h1>
-      <h2><%= resource.original_title %></h2>
-
-      <div class='description'>
-        <div class='poster'>
-          <%= image_tag_for(resource.poster_url, 290, 390) %>
-          <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-          <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
-        </div>
-
-        <div class="info">
-          <%= raw resource.description %>
-        </div>
+    <div class='description'>
+      <div class='poster'>
+        <%= image_tag_for(resource.poster_url, 290, 390) %>
+        <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+        <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
       </div>
 
-      <% if resource.trailer_code? %>
-        <div class='trailer'>
-          <%= raw resource.trailer_code %>
-        </div>
+      <div class="info">
+        <%= raw resource.description %>
+      </div>
+    </div>
+
+    <% if resource.trailer_code? %>
+      <div class='trailer'>
+        <%= raw resource.trailer_code %>
+      </div>
+    <% end %>
+
+    <div class='seance'>
+      <% if Movie === resource %>
+        <h4>Сеансы</h4>
+        <%= render :partial => 'seance', :locals => { :affiche => resource } %>
+      <% else %>
+        <h4>Дата и место проведения</h4>
+        <%= render :partial => 'seance', :locals => { :affiche => resource } %>
       <% end %>
-
-      <div class='seance'>
-        <% if Movie === resource %>
-          <h4>Сеансы</h4>
-          <%= render :partial => 'seance', :locals => { :affiche => resource } %>
-        <% else %>
-          <h4>Дата и место проведения</h4>
-          <%= render :partial => 'seance', :locals => { :affiche => resource } %>
-        <% end %>
-      </div>
-
-      <div class='comments'>
-        <h4>Комментарии</h4>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-          var disqus_shortname = 'znaigorod'; // required: replace example with your forum shortname
-
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function() {
-             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-             dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-           })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      </div>
     </div>
+    <%= render :partial => 'commons/comments_block' %>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="item">
-  <h3><%= link_to item.title, item, :class => 'solid_light_blue' %><span class='category'><%= item.class.model_name.human %></span></h3>
+  <h3><%= link_to item.title, item, :class => 'solid_light_blue' %><span class='category'><%= item.category %></span></h3>
   <div class="poster">
     <%= link_to  item do %>
       <% if item.images.any? %>

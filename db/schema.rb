@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20120531024158) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.boolean  "holiday"
   end
 
   create_table "showings", :force => true do |t|

@@ -49,7 +49,7 @@
           </li>
           <li>
             <span class="label">Стоимость</span>
-            <%= showings.map{|s| price_for(s) }.join(', ') %>
+            <%= showings.map{|s| price_for(s) }.join(', ').html_safe %>
           </li>
         </ul>
       <% end %>

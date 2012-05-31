@@ -34,7 +34,7 @@
           <div class="top">
             <div class="time"><%= l(seance.starts_at, :format => '%H:%M') %></div>
             <div class="title">
-              <a href="#" class='solid_light_blue'><%= seance.affiche_title %></a>
+              <%= link_to seance.affiche_title, affiche_path(seance.affiche), :class => 'solid_light_blue' %>
             </div>
           </div>
           <div class="bottom">

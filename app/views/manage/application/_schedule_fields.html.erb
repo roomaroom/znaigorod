@@ -9,6 +9,9 @@
     <div class="span2">
       <%= f.input :to,   :as => :string, :input_html => { :class => 'span12', :value => f.object.to ? l(f.object.to, :format => '%H:%M') : '' } %>
     </div>
+    <div class="span1">
+      <%= f.input :holiday, :input_html => { :class => 'span12' } %>
+    </div>
   <% end %>
 </div>
 

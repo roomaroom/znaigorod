@@ -85,6 +85,7 @@ ru:
         day: День недели
         from: с
         to: до
+        holiday: Выходной
 
   show_for:
     blank: "Не указано"
