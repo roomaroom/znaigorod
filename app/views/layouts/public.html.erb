@@ -43,9 +43,9 @@
         <div class="right">
           <h5><a href='#' class='dashed_light_blue'><%= t('affiche') %></a></h5>
           <ul>
-            <% Affiche.descendants.map(&:model_name).each do |klass| %>
+            <% Affiche.descendants.map(&:model_name).map(&:human).each do |human_name| %>
               <li>
-                <%= link_to klass.human, "/affiches/##{klass.underscore}", :class => 'solid_dark_gray' %>
+                <%= link_to human_name, "/affiches/##{transliterate(human_name)}", :class => 'solid_dark_gray' %>
               </li>
             <% end %>
           </ul>

@@ -39,7 +39,7 @@ module ApplicationHelper
   end
 
   def transliterate(string)
-    I18n.transliterate(string).gsub(/[^[:alnum:]]+/,'_').downcase
+    I18n.transliterate(string).downcase.gsub(/[^[:alnum:]]+/,'_')
   end
 
   private

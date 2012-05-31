@@ -2,14 +2,14 @@
 
 <%= render :partial => 'commons/filter_by_time' %>
 
-<div class="filter by_affiche_categories">
+<div class="filter by_affiche_category">
   <h6><a href='#' class='dashed_dark_gray'>Категория</a></h6>
   <div class="filter_wrapper hide">
     <a href="#" class='reset dashed_dark_gray'>Сбросить</a>
     <ul>
       <% Affiche.descendants.each do |category_class| %>
         <li>
-          <a href="#" data-value='<%= category_class.name.underscore %>' class='<%= category_class.name.underscore %>'><%= category_class.model_name.human %></a>
+          <a href="#" data-value='<%= transliterate(category_class.model_name.human) %>' class='<%= transliterate(category_class.model_name.human) %>'><%= category_class.model_name.human %></a>
         </li>
       <% end %>
     </ul>
