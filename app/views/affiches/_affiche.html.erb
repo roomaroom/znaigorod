@@ -24,6 +24,16 @@
       <div class="info">
         <%= raw resource.description %>
       </div>
+
+      <div class="tags">
+        <ul>
+          <% resource.tags.split(', ').flatten.each do |tag| %>
+            <li>
+              <%= tag %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
 
     <% if resource.trailer_code? %>
