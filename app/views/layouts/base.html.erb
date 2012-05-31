@@ -10,4 +10,5 @@
   <body>
     <%= yield :content %>
   </body>
+  <%= render :partial => 'commons/reformal' if Rails.env.production? %>
 </html>
