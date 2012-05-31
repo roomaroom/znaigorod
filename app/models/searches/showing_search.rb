@@ -88,6 +88,8 @@ class ShowingSearch < Search
           with(:price_max).greater_than(price_lt)
         end
       end
+
+      adjust_solr_params {|params| params[:sort] = 'id desc'}
     end
 end
 

@@ -38,6 +38,8 @@ class OrganizationsController < InheritedResourcesController
         end
 
         paginate(paginate_options)
+
+        adjust_solr_params {|params| params[:sort] = 'id desc'}
       end
 
       @search.results
