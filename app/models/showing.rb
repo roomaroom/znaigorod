@@ -21,7 +21,7 @@ class Showing < ActiveRecord::Base
     integer :price_max
     integer :price_min
     integer(:starts_at_hour) { starts_at.hour }
-    string(:category, :multiple => true) { [affiche.class.name.underscore] }
+    string(:affiche_categories, :multiple => true) { [affiche.class.name.underscore] }
     string(:tags, :multiple => true) { affiche_tags }
     time :starts_at
   end

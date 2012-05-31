@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530051642) do
+ActiveRecord::Schema.define(:version => 20120531024158) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -61,15 +61,15 @@ ActiveRecord::Schema.define(:version => 20120530051642) do
 
   create_table "organizations", :force => true do |t|
     t.text     "title"
-    t.text     "category"
+    t.text     "organization_categories"
     t.text     "payment"
     t.text     "cuisine"
     t.text     "feature"
     t.text     "site"
     t.text     "email"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.text     "phone"
     t.text     "offer"
     t.string   "type"

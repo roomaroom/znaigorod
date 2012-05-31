@@ -65,7 +65,7 @@ ru:
 
       organization:
         address: Адрес организации
-        category: Категория
+        organization_categories: Категория
         created_at: Создано
         cuisine: Кухня
         description: Описание
@@ -107,7 +107,7 @@ ru:
 
     hints:
       organization:
-        category: 'Например: кафе, бар и т.п.'
+        organization_categories: 'Например: кафе, бар и т.п.'
         cuisine: 'Например: русская, итальянская и т.п.'
         description: 'Описание или история'
         feature: 'Отличительные особенности, например: wifi, парковка и т.д.'

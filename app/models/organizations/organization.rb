@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   attr_accessible :address_attributes,
-                  :category,
+                  :organization_categories,
                   :description,
                   :email,
                   :feature,
@@ -28,7 +28,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
   def self.facets
-    %w[category payment cuisine feature offer]
+    %w[organization_categories payment cuisine feature offer]
   end
 
   def self.facet_fields
