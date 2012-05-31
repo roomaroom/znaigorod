@@ -63,26 +63,26 @@
       <div class="hot_offer">
         <ul>
           <li>
-            <%= link_to 'Бизнес-Ланч', eatings_path(:anchor => 'offer__biznes_lanch'), :class => 'icon business_lunch' %>
+            <%= link_to 'Бизнес-Ланч', eatings_path(:anchor => 'biznes_lanch'), :class => 'icon business_lunch' %>
           </li>
           <li>
-            <%= link_to 'Заведения с wifi', eatings_path(:anchor => 'feature__wi_fi'), :class => 'icon wifi' %>
+            <%= link_to 'Заведения с wifi', eatings_path(:anchor => 'wi_fi'), :class => 'icon wifi' %>
           </li>
           <li>
-            <%= link_to 'Столовые', eatings_path(:anchor => 'categories__stolovye'), :class => 'icon cantina' %>
+            <%= link_to 'Столовые', eatings_path(:anchor => 'stolovye'), :class => 'icon cantina' %>
           </li>
         </ul>
       </div>
       <div class="hot_offer">
         <ul>
           <li>
-            <%= link_to 'Пиццерии', eatings_path(:anchor => 'categories__pitstserii'), :class => 'icon pizzeria' %>
+            <%= link_to 'Пиццерии', eatings_path(:anchor => 'pitstserii'), :class => 'icon pizzeria' %>
           </li>
           <li>
-            <%= link_to 'Завтраки', eatings_path(:anchor => 'offer__zavtraki'), :class => 'icon breakfast' %>
+            <%= link_to 'Завтраки', eatings_path(:anchor => 'zavtraki'), :class => 'icon breakfast' %>
           </li>
           <li>
-            <%= link_to 'Кофейни', eatings_path(:anchor => 'categories__kofeyni'), :class => 'icon coffee_house' %>
+            <%= link_to 'Кофейни', eatings_path(:anchor => 'kofeyni'), :class => 'icon coffee_house' %>
           </li>
         </ul>
       </div>
@@ -91,7 +91,7 @@
   <div class="thin_block">
     <h3>Новое на сайте</h3>
     <ul>
-      <% Organization.order('created_at DESC').limit(5).each do |organization| %>
+      <% Organization.order('updated_at desc').limit(5).each do |organization| %>
         <li>
           <div class="top">
             <div class="title">

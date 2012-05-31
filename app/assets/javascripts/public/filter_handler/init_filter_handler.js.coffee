@@ -98,7 +98,7 @@ $.fn.prepare_params = () ->
     ).removeClass('filled') if list_block.hasClass('filled')
 
   if search_preset.length
-    window.location.hash = ''
+    #window.location.hash = ''
 
     if search_preset == 'todays'
       hour = new Date().getHours()
@@ -107,10 +107,9 @@ $.fn.prepare_params = () ->
       $('.by_time h6 a').click()
       return false
 
-    if search_preset.match(/__/)
-      [facet, target] = search_preset.split('__')
-      $('.by_' + facet + ' h6 a').click()
-      $('.by_' + facet + ' a.' + target).click()
+    if search_preset.length
+      $('h6 a', $('.' + search_preset).closest('.filter')).click()
+      $('.' + search_preset).click()
       return false
 
     target = $('.'+search_preset)
