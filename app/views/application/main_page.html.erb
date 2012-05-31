@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="thin_block">
-    <h3><%= link_to "Ближайшие события", affiches_path(:anchor => 'todays'), :class => 'solid_dark_gray link' %></h3>
+    <h3>Ближайшие события</h3>
     <ul>
       <% Showing.nearest.each do |seance| %>
         <li>
@@ -89,58 +89,20 @@
     </div>
   </div>
   <div class="thin_block">
-    <h3><a href='#' class='solid_dark_gray'>Новое на сайте</a></h3>
+    <h3>Новое на сайте</h3>
     <ul>
-      <li>
-        <div class="top">
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Кафе "Три баяниста"</a>
+      <% Organization.order('created_at DESC').limit(5).each do |organization| %>
+        <li>
+          <div class="top">
+            <div class="title">
+              <%= link_to organization.title, organization, :class => 'solid_light_blue' %>
+            </div>
           </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Вкусно</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Ресторан "Пармезан"</a>
+          <div class="bottom">
+            <div class="category"><%= organization.organization_categories %></div>
           </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Вкусно</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Выставка кошек</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Выставки</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Hardcore Halloween</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Вечеринки</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="top">
-          <div class="title">
-            <a href="#" class='solid_light_blue'>Трансляция футбольного матча Конь-Чебуреки</a>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="category"><a href='#'>Спорт</a></div>
-        </div>
-      </li>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
