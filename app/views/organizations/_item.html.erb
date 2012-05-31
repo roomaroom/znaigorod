@@ -1,5 +1,5 @@
 <div class="item">
-  <h3><%= link_to item.title, item, :class => 'solid_light_blue' %><span class='category'><%= item.organization_categories %></span></h3>
+  <h3><%= link_to item.title, item, :class => 'solid_light_blue' %><span class='category'><%= item.categories %></span></h3>
   <%= render :partial => "#{item.class.model_name.pluralize.underscore}/index_poster", :locals => { :item => item } %>
   <div class="additional">
     <div class="seances_wrapper">

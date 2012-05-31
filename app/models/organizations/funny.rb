@@ -1,12 +1,10 @@
 class Funny < Organization
-  alias_attribute :funny_categories, :organization_categories
-
   def self.or_facets
-    %w[funny_categories]
+    %w[categories]
   end
 
   def self.facets
-    %w[funny_categories payment feature offer]
+    %w[categories payment feature offer]
   end
 
   add_sunspot_configuration
@@ -18,7 +16,7 @@ end
 #
 #  id                      :integer         not null, primary key
 #  title                   :text
-#  organization_categories :text
+#  categories :text
 #  payment                 :text
 #  cuisine                 :text
 #  feature                 :text

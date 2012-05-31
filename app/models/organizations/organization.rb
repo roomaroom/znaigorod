@@ -1,6 +1,6 @@
 class Organization < ActiveRecord::Base
   attr_accessible :address_attributes,
-                  :organization_categories,
+                  :categories,
                   :description,
                   :email,
                   :feature,
@@ -27,12 +27,8 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
-  def self.facet_fields
-    facets.inject({}) { |h,v| h[v] = 1; h }
-  end
-
-  def self.ru_fields
-    { title: 2, address: 1, description: 0.5 }.merge(facet_fields)
+  def self.facet_field(facet)
+    "#{model_name.underscore}_#{facet}"
   end
 
   def self.add_sunspot_configuration
@@ -48,7 +44,7 @@ class Organization < ActiveRecord::Base
 
       facets.each do |facet|
         s.text facet
-        s.string(facet, :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
+        s.string(facet_field(facet), :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
       end
     end
   end
@@ -64,7 +60,7 @@ end
 #
 #  id                      :integer         not null, primary key
 #  title                   :text
-#  organization_categories :text
+#  categories :text
 #  payment                 :text
 #  cuisine                 :text
 #  feature                 :text

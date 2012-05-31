@@ -21,15 +21,12 @@ class OrganizationsController < InheritedResourcesController
   protected
     def collection
       @search ||= resource_class.search do
-        fulltext params[:q]
-        paginate(paginate_options)
-
         resource_class.facets.each do |facet|
           if resource_class.or_facets.include?(facet)
-            with(facet, params_facet_values(facet)) if params_facet_values(facet).any?
+            with(resource_class.facet_field(facet), params_facet_values(facet)) if params_facet_values(facet).any?
           else
             params_facet_values(facet).each do |value|
-              with(facet, value)
+              with(resource_class.facet_field(facet), value)
             end
           end
         end
@@ -37,8 +34,10 @@ class OrganizationsController < InheritedResourcesController
         with(:capacity).greater_than(capacity) if capacity?
 
         resource_class.facets.each do |facet|
-          facet(facet, :zeros => true, :sort => :index)
+          facet(resource_class.facet_field(facet), :zeros => true, :sort => :index)
         end
+
+        paginate(paginate_options)
       end
 
       @search.results
