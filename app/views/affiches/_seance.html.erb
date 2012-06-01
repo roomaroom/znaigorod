@@ -45,7 +45,7 @@
           </li>
           <li>
             <span class='label'>Время проведения</span>
-            <%= showings.map{|s| l(s.starts_at, :format => '%e %b в %H:%M')}.join(', ') %>
+            <%= showings.map{|s| interval_for(s)}.join(', ').html_safe %>
           </li>
           <li>
             <span class="label">Стоимость</span>

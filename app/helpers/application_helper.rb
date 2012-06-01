@@ -42,6 +42,52 @@ module ApplicationHelper
     I18n.transliterate(string).downcase.gsub(/[^[:alnum:]]+/,'_')
   end
 
+  def interval_for(showing)
+    since_date, since_time = l(showing.starts_at.to_datetime, :format => '%d.%B.%Y %H:%M').split(' ')
+    until_date, until_time = l(showing.ends_at.to_datetime, :format => '%d.%B.%Y %H:%M').split(' ') if showing.ends_at
+
+    since_date.gsub!('.', ' ')
+    until_date.gsub!('.', ' ') if showing.ends_at
+
+    since_arr = []
+    until_arr = []
+
+    since_arr << content_tag(:span, since_date, :class => 'nobr')
+    until_arr << content_tag(:span, until_date, :class => 'nobr') if since_date != until_date && !until_date.nil?
+
+    if since_time != '00:00'
+      since_arr << ", #{since_time}"
+      if until_time != '00:00' && until_time != '23:59' && !until_time.nil?
+        if since_time != until_time
+          if until_arr.empty?
+            until_arr << until_time
+          else
+            until_arr << ", #{until_time}"
+          end
+        else
+          unless until_arr.empty?
+            until_arr << ", #{until_time}"
+          end
+        end
+      end
+    else
+      if until_time != '00:00' && until_time != '23:59' && !until_time.nil?
+        unless until_arr.empty?
+          until_arr << ", #{until_time}"
+        end
+      end
+    end
+
+    res = since_arr.join
+
+    unless until_arr.empty?
+      res += ' &ndash; '
+      res += until_arr.join
+    end
+
+    res.html_safe
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =
