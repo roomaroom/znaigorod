@@ -74,50 +74,10 @@
           />
         <filter class='solr.LowerCaseFilterFactory'/>
         <filter class='solr.PatternReplaceFilterFactory' pattern='ё' replacement='е' replace='all' />
-      </analyzer>
-    </fieldType>
-    <fieldType name='ru_text' class='solr.TextField' omitNorms='false'>
-      <analyzer>
-        <tokenizer class='solr.WhitespaceTokenizerFactory'/>
-        <filter class='solr.WordDelimiterFilterFactory'
-          splitOnCaseChange='1'
-          splitOnNumerics='1'
-          generateWordParts='1'
-          generateNumberParts='0'
-          catenateWords='1'
-          catenateNumbers='1'
-          catenateAll='1'
-          preserveOriginal='1'
-          />
-        <filter class='solr.LowerCaseFilterFactory'/>
-        <filter class='solr.PatternReplaceFilterFactory' pattern='ё' replacement='е' replace='all' />
         <filter class='solr.HunspellStemFilterFactory'
           dictionary='ru_RU.dic'
           affix='ru_RU.aff'
           ignoreCase='true' />
-      </analyzer>
-    </fieldType>
-    <fieldType name='ngram_text' class='solr.TextField' omitNorms='false'>
-      <analyzer type='index'>
-        <tokenizer class='solr.WhitespaceTokenizerFactory'/>
-        <filter class='solr.WordDelimiterFilterFactory'
-          splitOnCaseChange='1'
-          splitOnNumerics='1'
-          generateWordParts='1'
-          generateNumberParts='0'
-          catenateWords='1'
-          catenateNumbers='1'
-          catenateAll='1'
-          preserveOriginal='1'
-          />
-        <filter class='solr.LowerCaseFilterFactory'/>
-        <filter class='solr.PatternReplaceFilterFactory' pattern='ё' replacement='е' replace='all' />
-        <filter class='solr.EdgeNGramFilterFactory' minGramSize='3' maxGramSize='25' side='front'/>
-      </analyzer>
-      <analyzer type='query'>
-        <tokenizer class='solr.StandardTokenizerFactory'/>
-        <filter class='solr.LowerCaseFilterFactory'/>
-        <filter class='solr.PatternReplaceFilterFactory' pattern='ё' replacement='е' replace='all' />
       </analyzer>
     </fieldType>
     <!-- *** This fieldType is used by Sunspot! *** -->
@@ -184,10 +144,6 @@
     <dynamicField name='random_*' stored='false' type='rand' multiValued='false' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='_local*' stored='false' type='tdouble' multiValued='false' indexed='true'/>
-    <!-- *** This dynamicField is used by Sunspot! *** -->
-    <dynamicField name='*_ngram_text' stored='false' type='ngram_text' multiValued='true' indexed='true'/>
-    <!-- *** This dynamicField is used by Sunspot! *** -->
-    <dynamicField name='*_ru_text' stored='false' type='ru_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_text' stored='false' type='text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
