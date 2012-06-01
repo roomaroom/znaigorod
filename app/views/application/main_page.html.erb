@@ -60,32 +60,16 @@
         </ul>
       </div>
 
-      <div class="hot_offer">
-        <ul>
-          <li>
-            <%= link_to 'Бизнес-Ланч', eatings_path(:anchor => 'biznes_lanch'), :class => 'icon business_lunch' %>
-          </li>
-          <li>
-            <%= link_to 'Заведения с wifi', eatings_path(:anchor => 'wi_fi'), :class => 'icon wifi' %>
-          </li>
-          <li>
-            <%= link_to 'Столовые', eatings_path(:anchor => 'stolovye'), :class => 'icon cantina' %>
-          </li>
-        </ul>
-      </div>
-      <div class="hot_offer">
-        <ul>
-          <li>
-            <%= link_to 'Пиццерии', eatings_path(:anchor => 'pitstserii'), :class => 'icon pizzeria' %>
-          </li>
-          <li>
-            <%= link_to 'Завтраки', eatings_path(:anchor => 'zavtraki'), :class => 'icon breakfast' %>
-          </li>
-          <li>
-            <%= link_to 'Кофейни', eatings_path(:anchor => 'kofeyni'), :class => 'icon coffee_house' %>
-          </li>
-        </ul>
-      </div>
+      <% hot_offers.each_slice(3) do |slice| %>
+        <div class="hot_offer">
+          <ul>
+            <% slice.each do |type_tag| %>
+              <% type, tag = type_tag.split('/') %>
+              <li><%= link_to(tag, send("#{type}_path", :anchor => transliterate(tag)), :class => "icon #{transliterate(tag)}") %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="thin_block">
