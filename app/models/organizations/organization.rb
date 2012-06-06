@@ -46,6 +46,8 @@ class Organization < ActiveRecord::Base
         s.text facet
         s.string(facet_field(facet), :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
       end
+
+      s.boost 45
     end
   end
 

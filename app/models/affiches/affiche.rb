@@ -18,13 +18,15 @@ class Affiche < ActiveRecord::Base
   normalize_attribute :image_url
 
   searchable do
+    integer :showing_ids, :multiple => true
     string(:kind) { 'affiche' }
     text :description, :boost => 0.5
     text :original_title, :boost => 2
     text :tag
     text :title, :boost => 2
     text(:kind) { self.class.model_name.human }
-    time :last_showing_time
+    time :first_showing_time, :trie => true
+    time :last_showing_time, :trie => true
   end
 
   def self.descendants
@@ -40,6 +42,14 @@ class Affiche < ActiveRecord::Base
 
   def tags
     tag.split(/,\s+/).map(&:squish)
+  end
+
+  def first_showing
+    showings.first
+  end
+
+  def first_showing_time
+    first_showing.try(:starts_at)
   end
 
   def last_showing
