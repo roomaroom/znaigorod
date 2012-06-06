@@ -11,5 +11,6 @@
  * = require ./jwysiwyg
  * = require ./geocoder
  * = require ./info_plugin
+ * = require ./red_cloth
  * = require ./main
  */

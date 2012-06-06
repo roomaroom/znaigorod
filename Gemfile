@@ -25,6 +25,7 @@ group :default do
   gem 'pg',                                           :require => false
   gem 'progress_bar'
   gem 'rails'
+  gem 'RedCloth'
   gem 'russian'
   gem 'show_for'
   gem 'simple_form'

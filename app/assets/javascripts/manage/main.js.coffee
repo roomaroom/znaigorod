@@ -24,4 +24,5 @@ handle_adding_poster = ->
 $ ->
   handle_adding_poster()
   init_datetime_picker()
+  init_red_cloth()
   #init_jwysiwyg() if $('textarea').length

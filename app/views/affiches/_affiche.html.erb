@@ -22,7 +22,9 @@
       </div>
 
       <div class="info">
-        <%= raw resource.description %>
+        <div class="story">
+          <%= RedCloth.new(resource.description).to_html.html_safe %>
+        </div>
       </div>
 
       <div class="tags">
