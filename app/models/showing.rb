@@ -17,12 +17,13 @@ class Showing < ActiveRecord::Base
 
   searchable do
     date :starts_on
-    integer(:ends_at_hour) { ends_at.try(:hour) }
     integer :price_max
     integer :price_min
+    integer(:ends_at_hour) { ends_at.try(:hour) }
     integer(:starts_at_hour) { starts_at.hour }
     string(:affiche_category) { I18n.transliterate(affiche.class.model_name.human).downcase.gsub(/[^[:alnum:]]+/, '_') }
     string(:tags, :multiple => true) { affiche_tags }
+    time :ends_at
     time :starts_at
   end
 

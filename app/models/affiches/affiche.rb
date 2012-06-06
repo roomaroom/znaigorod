@@ -26,7 +26,7 @@ class Affiche < ActiveRecord::Base
     text :title, :boost => 2
     text(:kind) { self.class.model_name.human }
     time :first_showing_time, :trie => true
-    time :last_showing_time, :trie => true
+    time :last_showing_time
   end
 
   def self.descendants
@@ -37,7 +37,7 @@ class Affiche < ActiveRecord::Base
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
 
-    showings.where(:id => showing_ids).where('starts_at >= ?', localized_date).group_by(&:starts_on)
+    showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on)
   end
 
   def tags

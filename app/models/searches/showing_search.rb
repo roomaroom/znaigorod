@@ -1,5 +1,7 @@
 class ShowingSearch < Search
   attr_accessible :affiche_category,
+                  :ends_at_gt,
+                  :ends_at_lt,
                   :ends_at_hour_gt,
                   :ends_at_hour_lt,
                   :per_page,
@@ -13,15 +15,20 @@ class ShowingSearch < Search
                   :starts_on_lt,
                   :tags
 
-  attr_accessor :ends_at_hour_gt,
+  attr_accessor :ends_at_gt,
+                :ends_at_lt,
+                :ends_at_hour_gt,
                 :ends_at_hour_lt,
                 :price_gt,
                 :price_lt,
                 :starts_at_hour_gt,
                 :starts_at_hour_lt,
+                :starts_on_gt,
                 :tags
 
   column :affiche_category,   :string
+  column :ends_at_gt,         :integer
+  column :ends_at_lt,         :integer
   column :ends_at_hour_gt,    :integer
   column :ends_at_hour_lt,    :integer
   column :per_page,           :integer
@@ -48,14 +55,20 @@ class ShowingSearch < Search
 
   protected
     def search_columns
-      @showing_search_columns ||= super.reject { |c| c.match(/(hour|price|tags)/) }
+      @showing_search_columns ||= super.reject { |c| c.match(/(hour|price|tags|starts_on_gt)/) }
     end
 
     def additional_search(search)
-      search.all_of do
-        [*tags].each do |tag|
-          with(:tags, tag)
-        end
+      search.with(:price_min).greater_than(price_gt)
+      search.with(:price_min).less_than(price_lt)
+
+      [*tags].each do |tag|
+        search.with(:tags, tag)
+      end
+
+      search.any_of do
+        with(:starts_on).greater_than(starts_on_gt)
+        with(:ends_at).greater_than(DateTime.now)
       end
 
       search.any_of do
@@ -70,8 +83,6 @@ class ShowingSearch < Search
         end
       end
 
-      search.with(:price_min).greater_than(price_gt)
-      search.with(:price_min).less_than(price_lt)
       search.any_of do
         all_of do
           with(:price_min).greater_than(price_gt)
@@ -89,7 +100,9 @@ class ShowingSearch < Search
         end
       end
 
-      search.adjust_solr_params {|params| params[:sort] = 'id desc'}
+      search.adjust_solr_params do |params|
+        params[:sort] = 'id desc'
+      end
     end
 end
 
