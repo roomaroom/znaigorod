@@ -29,7 +29,6 @@ group :default do
   gem 'russian'
   gem 'show_for'
   gem 'simple_form'
-  gem 'sqlite3'
   gem 'sunspot_rails'
 end
 
@@ -37,5 +36,12 @@ group :development do
   gem 'annotate',                 '>= 2.4.1.beta1',   :require => false
   gem 'hirb',                                         :require => false
   gem 'sunspot_solr'
+end
+
+group :test do
+  gem 'fabrication',                                  :require => false
+  gem 'rspec-rails',                                  :require => false
+  gem 'sqlite3',                                      :require => false
+  gem 'sunspot_matchers',                             :require => false
 end
 
