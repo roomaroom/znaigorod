@@ -111,6 +111,8 @@ end
 # Table name: searches
 #
 #  affiche_category  :string
+#  ends_at_gt        :integer
+#  ends_at_lt        :integer
 #  ends_at_hour_gt   :integer
 #  ends_at_hour_lt   :integer
 #  per_page          :integer

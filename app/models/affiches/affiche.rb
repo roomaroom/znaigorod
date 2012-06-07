@@ -1,10 +1,13 @@
 class Affiche < ActiveRecord::Base
-  attr_accessible :description, :poster_url, :image_url, :showings_attributes, :tag, :title, :vfs_path
+  attr_accessible :description, :poster_url, :image_url, :showings_attributes, :tag, :title, :vfs_path, :affiche_schedule_attributes
 
   validates_presence_of :description, :poster_url, :title
 
   has_many :showings, :dependent => :destroy
 
+  has_one :affiche_schedule, :dependent => :destroy
+
+  accepts_nested_attributes_for :affiche_schedule, :allow_destroy => true
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
   default_scope order('affiches.id DESC')
@@ -58,6 +61,14 @@ class Affiche < ActiveRecord::Base
 
   def last_showing_time
     last_showing.try(:ends_at) || last_showing.try(:starts_at)
+  end
+
+  def destroy_showings
+    showings.destroy
+  end
+
+  def create_showing(attributes)
+    showings.create! attributes
   end
 
   private
