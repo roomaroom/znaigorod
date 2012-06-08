@@ -31,3 +31,18 @@
   <%= f.link_to_add t('add_showing'), :showings %>
 <% end %>
 
+<%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.affiche_schedule')}".html_safe do %>
+  <% f.object.build_affiche_schedule unless f.object.affiche_schedule %>
+  <%= f.simple_fields_for :affiche_schedule do |f| %>
+    <%= f.input :starts_on,
+                :as => :string,
+                :input_html => { :class => 'span2', :value => f.object.starts_on ? f.object.starts_on : '' } %>
+    <%= f.input :ends_on,
+                :as => :string,
+                :input_html => { :class => 'span2', :value => f.object.ends_on ? f.object.ends_on : '' } %>
+    <%= f.input :starts_at, :as => :string, :input_html => { :class => 'span2', :value => f.object.starts_at ? l(f.object.starts_at, :format => '%H:%M') : '' } %>
+    <%= f.input :ends_at, :as => :string, :input_html => { :class => 'span2', :value => f.object.ends_at ? l(f.object.ends_at, :format => '%H:%M') : '' } %>
+    <%= f.input :place %>
+    <%= f.link_to_remove t('remove_affiche_schedule') %>
+  <% end %>
+<% end %>

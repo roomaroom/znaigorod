@@ -4,7 +4,7 @@
       <h3><a href='/affiches' class='solid_dark_gray'>Афиша</a></h3>
       <div class="category">
         <ul>
-          <% Affiche.descendants.map(&:model_name).map(&:human).each do |human_name| %>
+          <% Affiche.ordered_descendants.map(&:model_name).map(&:human).each do |human_name| %>
             <li>
               <%= link_to human_name, "/affiches/##{transliterate(human_name)}", :class => 'solid_light_blue' %>
             </li>

@@ -6,6 +6,7 @@ class AfficheSchedule < ActiveRecord::Base
   validates_presence_of :ends_at, :ends_on, :place, :starts_at, :starts_on
 
   after_save :create_showings
+  after_destroy :destroy_showings
 
   private
     def create_showings
@@ -20,6 +21,10 @@ class AfficheSchedule < ActiveRecord::Base
 
     def ends_at_for(day)
       "#{day.to_s} #{I18n.l(ends_at, :format => '%H:%M')}".to_datetime
+    end
+
+    def destroy_showings
+      affiche.destroy_showings
     end
 end
 

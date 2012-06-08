@@ -7,7 +7,7 @@ class Affiche < ActiveRecord::Base
 
   has_one :affiche_schedule, :dependent => :destroy
 
-  accepts_nested_attributes_for :affiche_schedule, :allow_destroy => true
+  accepts_nested_attributes_for :affiche_schedule, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
   default_scope order('affiches.id DESC')
@@ -32,7 +32,7 @@ class Affiche < ActiveRecord::Base
     time :last_showing_time
   end
 
-  def self.descendants
+  def self.ordered_descendants
     [Movie, Concert, Party, Spectacle, Exhibition, SportsEvent, Other]
   end
 
@@ -63,12 +63,12 @@ class Affiche < ActiveRecord::Base
     last_showing.try(:ends_at) || last_showing.try(:starts_at)
   end
 
-  def destroy_showings
-    showings.destroy
+  def create_showing(attributes)
+    showings.create attributes
   end
 
-  def create_showing(attributes)
-    showings.create! attributes
+  def destroy_showings
+    showings.destroy_all
   end
 
   private
