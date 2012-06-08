@@ -25,6 +25,8 @@ class MovieSyncer
           showing.update_attributes! seance
           bar.increment!
         end
+      else
+        bar.increment! seances.count
       end
     end
   end
@@ -136,7 +138,7 @@ namespace :sync do
             if i['class'] == 'show-time'
               time = i.css('a').text
               amount = i.next_element.css('table td:nth-child(2)').text
-              movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => hall, :price_min => amount.to_i }
+              movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => [hall, three_d].join(' ').squish, :price_min => amount.to_i }
             end
           end
         end
