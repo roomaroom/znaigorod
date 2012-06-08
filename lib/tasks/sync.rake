@@ -39,7 +39,7 @@ class MovieSyncer
       if similar_movies.one?
         puts "Найден похожий фильм '#{title}' -> '#{similar_movies.first.title}'"
       else
-        puts "Не могу найти фильм '#{seance[:title]}'"
+        puts "Не могу найти фильм '#{title}'"
       end
       similar_movies.first
     end
@@ -49,7 +49,7 @@ namespace :sync do
   desc "Sync movie seances from http://fakel.tomsknet.ru"
   task :fakel => :environment do
     page = Nokogiri::HTML(open('http://fakel.tomsknet.ru/film_timetable.html'))
-    puts "Факел: парсинг"
+    puts 'Факел: парсинг'
     movies = {}
     day_nodes = page.css('table tr:nth-child(2) td:nth-child(3) table table')
     bar = ProgressBar.new(day_nodes.count)
@@ -72,6 +72,7 @@ namespace :sync do
     MovieSyncer.new(:place => "Факел", :movies => movies).sync
   end
 
+  desc "Sync movie seances from http://kinomax.tomsk.ru"
   task :kinomax => :environment do
     host = 'http://kinomax.tomsk.ru'
     url = "#{host}/timetable/"
@@ -79,7 +80,7 @@ namespace :sync do
 
     timetable = Nokogiri::HTML(open(url).read).css('.filminfo_calendar_date > a')
     bar = ProgressBar.new(timetable.count)
-    puts "Киномакс: парсинг"
+    puts 'Киномакс: парсинг'
 
     timetable.each do |day_tile|
       day_schedule_path = day_tile.attribute('href').value
@@ -100,7 +101,7 @@ namespace :sync do
             prices = time.css('font').text.gsub(/\(|\)/,'').squish.split(' ')
             price_min = prices.min.to_i
             price_max = prices.max == prices.min ? 0 : prices.max.to_i
-            movies[title] << {:starts_at => "#{date} #{starts_at}".to_datetime, :hall => [hall, three_d].join(' ').squish, :price_min => price_min, :price_max => price_max }
+            movies[title] << {:starts_at => Time.zone.parse("#{date} #{starts_at}"), :hall => [hall, three_d].join(' ').squish, :price_min => price_min, :price_max => price_max }
           end
         end
       end
@@ -109,6 +110,42 @@ namespace :sync do
 
     MovieSyncer.new(:place => "Киномакс", :movies => movies).sync
   end
+
+  desc "Sync movie seances from http://kinomir.tom.ru"
+  task :kinomir => :environment do
+    host = 'http://kinomir.tom.ru'
+    url = "#{host}/schedule/"
+    movies = {}
+
+    timetable = Nokogiri::HTML(open(url).read).css('.schedule a')
+    bar = ProgressBar.new(timetable.count)
+    puts 'Киномир: парсинг'
+
+    timetable.each do |day_tile|
+      day_schedule_path = day_tile.attribute('href').value
+      date = day_schedule_path.match(/\d{2}.\d{2}.\d{4}/)
+      day_schedule_page = Nokogiri::HTML(open(host+day_schedule_path).read)
+      day_schedule_page.css('.raspisanie-table').each do |table|
+        hall = table.css('thead tr td:first h1').text
+        table.css('tbody tr .content').each do |seance|
+          title = seance.css('h1 a').text
+          three_d = title.match(/в (3D)/).try(:[], 1)
+          title = title.gsub(/ в 3D/,'').squish
+          movies[title] ||= []
+          seance.parent.parent.parent.parent.css('td:nth-child(2) > div > div').each do |i|
+            if i['class'] == 'show-time'
+              time = i.css('a').text
+              amount = i.next_element.css('table td:nth-child(2)').text
+              movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => hall, :price_min => amount.to_i }
+            end
+          end
+        end
+      end
+      bar.increment!
+    end
+
+    MovieSyncer.new(:place => "Киномир", :movies => movies).sync
+  end
 end
 
-task :sync => ['sync:fakel', 'sync:kinomax']
+task :sync => ['sync:fakel', 'sync:kinomax', 'sync:kinomir']
