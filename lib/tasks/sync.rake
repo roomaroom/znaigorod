@@ -12,6 +12,8 @@ class MovieSyncer
   end
 
   def sync
+    puts "#{place}: импорт сеансов"
+    bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
       if (movie = find_movie_by(title.squish))
         showings = movie.showings.where(:place => place)
@@ -21,10 +23,10 @@ class MovieSyncer
                                                                                     :starts_at => seance.delete(:starts_at),
                                                                                     :price_min => seance.delete(:price_min))
           showing.update_attributes! seance
+          bar.increment!
         end
       end
     end
-
   end
 
   private
@@ -47,8 +49,11 @@ namespace :sync do
   desc "Sync movie seances from http://fakel.tomsknet.ru"
   task :fakel => :environment do
     page = Nokogiri::HTML(open('http://fakel.tomsknet.ru/film_timetable.html'))
+    puts "Факел: парсинг"
     movies = {}
-    page.css('table tr:nth-child(2) td:nth-child(3) table table').each do |day_node|
+    day_nodes = page.css('table tr:nth-child(2) td:nth-child(3) table table')
+    bar = ProgressBar.new(day_nodes.count)
+    day_nodes.each do |day_node|
       rows = day_node.css('tr').to_a
       day, month, year = rows.shift.text.match(/(\d{2})\.(\d{2})\.(\d{4})/)[1..3]
       rows.each do |seance|
@@ -61,6 +66,7 @@ namespace :sync do
         movies[title] ||= []
         movies[title] << {starts_at: starts_at, hall: hall, price_min: price_min}
       end
+      bar.increment!
     end
 
     MovieSyncer.new(:place => "Факел", :movies => movies).sync
@@ -73,7 +79,7 @@ namespace :sync do
 
     timetable = Nokogiri::HTML(open(url).read).css('.filminfo_calendar_date > a')
     bar = ProgressBar.new(timetable.count)
-    p 'Парсинг сеансов Киномакса'
+    puts "Киномакс: парсинг"
 
     timetable.each do |day_tile|
       day_schedule_path = day_tile.attribute('href').value
@@ -104,3 +110,5 @@ namespace :sync do
     MovieSyncer.new(:place => "Киномакс", :movies => movies).sync
   end
 end
+
+task :sync => ['sync:fakel', 'sync:kinomax']
