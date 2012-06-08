@@ -5,4 +5,5 @@ Fabricator(:affiche_schedule) do
   ends_at '17:00'
   place 'place'
   hall 'hall'
+  price_min 100
 end

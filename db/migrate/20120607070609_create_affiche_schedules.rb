@@ -9,6 +9,8 @@ class CreateAfficheSchedules < ActiveRecord::Migration
       t.string :holidays
       t.string :place
       t.string :hall
+      t.integer :price_min
+      t.integer :price_max
 
       t.timestamps
     end

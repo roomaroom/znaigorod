@@ -7,16 +7,24 @@ describe AfficheSchedule do
 
   describe 'should create showings for affiche' do
     it { exhibition.showings.count.should == 5 }
-    it { exhibition.showings.first.place.should == 'place' }
-    it { exhibition.showings.first.hall.should == 'hall' }
-    it { exhibition.showings.first.starts_at.should == '2012-06-01 11:00'.to_datetime }
-    it { exhibition.showings.first.ends_at.should == '2012-06-01 17:00'.to_datetime }
+
+    subject { exhibition.showings.first }
+
+    its(:place) { should == 'place' }
+    its(:hall) { should == 'hall' }
+    its(:starts_at) { should == Time.zone.parse('2012-06-01 11:00') }
+    its(:ends_at) { should == Time.zone.parse('2012-06-01 17:00') }
+    its(:price_min) { should == 100 }
+    its(:price_max) { exhibition.showings.first.price_max.should == 0 }
   end
 
   describe 'should destroy affiche showings' do
     before { exhibition.affiche_schedule.destroy }
 
     it { exhibition.showings.should be_empty }
+  end
+
+  describe 'should delete old showings before creation new' do
   end
 end
 

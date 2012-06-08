@@ -26,23 +26,44 @@
 
 <%= f.hidden_field :vfs_path %>
 
-<%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.showings')}".html_safe do %>
-  <%= f.simple_fields_for :showings %>
-  <%= f.link_to_add t('add_showing'), :showings %>
+<% unless f.object.affiche_schedule.try :persisted? %>
+  <%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.showings')}".html_safe do %>
+    <%= f.simple_fields_for :showings %>
+    <%= f.link_to_add t('add_showing'), :showings %>
+  <% end %>
 <% end %>
 
 <%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.affiche_schedule')}".html_safe do %>
   <% f.object.build_affiche_schedule unless f.object.affiche_schedule %>
   <%= f.simple_fields_for :affiche_schedule do |f| %>
-    <%= f.input :starts_on,
-                :as => :string,
-                :input_html => { :class => 'span2', :value => f.object.starts_on ? f.object.starts_on : '' } %>
-    <%= f.input :ends_on,
-                :as => :string,
-                :input_html => { :class => 'span2', :value => f.object.ends_on ? f.object.ends_on : '' } %>
-    <%= f.input :starts_at, :as => :string, :input_html => { :class => 'span2', :value => f.object.starts_at ? l(f.object.starts_at, :format => '%H:%M') : '' } %>
-    <%= f.input :ends_at, :as => :string, :input_html => { :class => 'span2', :value => f.object.ends_at ? l(f.object.ends_at, :format => '%H:%M') : '' } %>
-    <%= f.input :place %>
+    <div class="row-fluid">
+      <%= f.input :starts_on,
+                  :as => :string,
+                  :input_html => { :class => 'span12', :value => f.object.starts_on ? f.object.starts_on : '' },
+                  :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :ends_on,
+                  :as => :string,
+                  :input_html => { :class => 'span12', :value => f.object.ends_on ? f.object.ends_on : '' },
+                  :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :starts_at,
+                  :as => :string,
+                  :input_html => { :class => 'span12', :value => f.object.starts_at ? l(f.object.starts_at, :format => '%H:%M') : '' },
+                  :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :ends_at,
+                  :as => :string,
+                  :input_html => { :class => 'span12', :value => f.object.ends_at ? l(f.object.ends_at, :format => '%H:%M') : '' },
+                  :wrapper_html => { :class => 'span2' } %>
+    </div>
+
+    <div class="row-fluid">
+      <%= f.input :place, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :hall, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :price_min, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+      <%= f.input :price_max, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+    </div>
+
+    <%= f.input :holidays, :as => :check_boxes, :collection => Schedule.days_for_select %>
+
     <%= f.link_to_remove t('remove_affiche_schedule') %>
   <% end %>
 <% end %>

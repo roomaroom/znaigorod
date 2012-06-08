@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(:version => 20120607070609) do
     t.string   "holidays"
     t.string   "place"
     t.string   "hall"
+    t.integer  "price_min"
+    t.integer  "price_max"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

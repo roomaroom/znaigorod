@@ -11,6 +11,7 @@ ru:
   find: Найти
   organizations: Заведения
   our_social_link: Контакты
+  remove_affiche_schedule: Удалить расписание
   remove_this_hall: Удалить этот зал
   remove_this_showing: Удалить этот сеанс
   remove_this_image: Удалить это изображение
@@ -47,6 +48,17 @@ ru:
         tag: Теги
         title: Название
         trailer_code: Код трейлера
+
+      affiche_schedule:
+        starts_on: Дата начала
+        ends_on: Дата окончания
+        starts_at: Время начала
+        ends_at: Время окончания
+        holidays: Нерабочие дни
+        place: Место проведения
+        hall: Зал
+        price_min: Минимальная цена
+        price_max: Максимальная цена
 
       image:
         description: Описание
@@ -93,6 +105,7 @@ ru:
   simple_form:
     fieldset:
       address: Адрес организации
+      affiche_schedule: Расписание
       concert: Концерт
       eating: Заведение (еда)
       exhibition: Выставка
