@@ -66,10 +66,11 @@ class ShowingSearch < Search
         search.with(:tags, tag)
       end
 
-      search.any_of do
-        with(:starts_on).greater_than(starts_on_gt)
-        with(:ends_at).greater_than(DateTime.now)
-      end
+      search.with(:starts_on).greater_than(starts_on_gt)
+      #search.any_of do
+        #with(:starts_on).greater_than(starts_on_gt)
+        #with(:ends_at).greater_than(DateTime.now)
+      #end
 
       search.any_of do
         all_of do
