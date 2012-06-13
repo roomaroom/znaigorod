@@ -33,7 +33,7 @@
   <% end %>
 <% end %>
 
-<% if (f.object.showings.empty? && f.object.new_record?)||(f.object.showings.any? && f.object.affiche_schedule) %>
+<% if f.object.new_record? || f.object.affiche_schedule || f.object.showings.empty? %>
   <div class="affiche_schedule">
     <%= field_set_tag "<i class='icon-resize-full' style='margin: 5px 5px 0 0'></i>#{t('simple_form.fieldset.affiche_schedule')}".html_safe do %>
     <%= link_to 'Показать расписание', '#', :onClick => '$(this).next().slideToggle(); return false;' %>

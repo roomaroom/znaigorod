@@ -7,7 +7,7 @@ class Affiche < ActiveRecord::Base
 
   has_one :affiche_schedule, :dependent => :destroy
 
-  accepts_nested_attributes_for :affiche_schedule, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :affiche_schedule, :allow_destroy => true, :reject_if => :affiche_schedule_attributes_blank?
   accepts_nested_attributes_for :showings, :allow_destroy => true
 
   default_scope order('affiches.id DESC')
@@ -74,6 +74,14 @@ class Affiche < ActiveRecord::Base
   private
     def localized_date
       Time.local(Time.now.year, Time.now.month, Time.now.day)
+    end
+
+    def affiche_schedule_attributes_blank?(attributes)
+      %w[ends_at ends_on starts_at starts_on].each do |attribute|
+        return false unless attributes[attribute].blank?
+      end
+
+      true
     end
 end
 
