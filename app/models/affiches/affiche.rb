@@ -40,7 +40,7 @@ class Affiche < ActiveRecord::Base
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
 
-    showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).limit(9).group_by(&:starts_on)
+    Hash[showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on).map.first(9)]
   end
 
   def tags
