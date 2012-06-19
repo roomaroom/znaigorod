@@ -20,7 +20,7 @@ class SearchController < ApplicationController
         end
 
         adjust_solr_params do |params|
-          params[:q] = "{!boost b=recip(abs(ms(NOW,first_showing_time_dt)),3.16e-11,1,1) defType=dismax}#{params[:q]}"
+          params[:q] = "{!boost b=recip(abs(ms(NOW,first_showing_time_dt)),3.16e-11,1,1) defType=dismax}#{params[:q]}" unless params[:q].blank?
         end
       }
     end
