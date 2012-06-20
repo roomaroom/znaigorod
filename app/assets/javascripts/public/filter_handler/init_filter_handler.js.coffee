@@ -97,7 +97,7 @@ $.fn.prepare_params = () ->
       ) unless list_block.hasClass('preloader')
     ).removeClass('filled') if list_block.hasClass('filled')
 
-  if search_preset.length
+  if search_preset.length && filters.length
     window.location.hash = ''
 
     if search_preset == 'todays'
