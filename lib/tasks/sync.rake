@@ -62,11 +62,10 @@ namespace :sync do
         columns = seance.css('td').map(&:text)
         hour, minute = columns[0].match(/(\d{2}):(\d{2})/)[1..2]
         starts_at  = Time.local(year, month, day, hour, minute)
-        title, format = columns[1].match(/(.*)\((.*?)\)\s*/)[1..2]
+        title = columns[1].gsub('(обычный формат)', '')
         price_min = columns[2].to_i
-        hall = '3D' if format !~ /обычный/
         movies[title] ||= []
-        movies[title] << {starts_at: starts_at, hall: hall, price_min: price_min}
+        movies[title] << {starts_at: starts_at, price_min: price_min}
       end
       bar.increment!
     end
