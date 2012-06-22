@@ -74,10 +74,13 @@
       .range_slider
         &.ui-slider
           background: transparent
-          height: 35px
+          height: 40px
           top: -5px
           position: absolute
           width: 100%
+
+          &:hover
+            cursor: pointer
 
           .ui-slider-handle
             +border-radius(2px)
@@ -98,7 +101,6 @@
               border-left: none
 
           .ui-slider-range
-            +background-image(linear-gradient(rgba(255, 254, 254, 0.4), rgba(235, 237, 238, 0.4)))
             top: 5px
             position: absolute
 
@@ -148,6 +150,7 @@
 
       .range_slider
         &.ui-slider
+          height: 70px
           .ui-slider-handle
             height: 59px
 

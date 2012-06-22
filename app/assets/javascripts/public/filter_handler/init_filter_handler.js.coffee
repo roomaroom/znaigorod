@@ -1,9 +1,9 @@
-get_params_from_slider = (context, min_key, max_key) ->
+get_params_from_customslider = (context, min_key, max_key) ->
   params = {}
   slider = $('#'+context)
   slider_parent = slider.parent()
-  min = slider.slider('values', 0)
-  max = slider.slider('values', 1) - 1
+  min = slider.customslider('values', 0)
+  max = slider.customslider('values', 1) - 1
   min_value =  slider_parent.find('.item_'+min).attr('data-value')
   max_value =  slider_parent.find('.item_'+max).attr('data-value')
   params[min_key] = min_value
@@ -30,15 +30,15 @@ $.fn.prepare_params = () ->
 
     switch context
       when 'by_date'
-        $.extend params, get_params_from_slider(context, 'starts_on_gt', 'starts_on_lt')
+        $.extend params, get_params_from_customslider(context, 'starts_on_gt', 'starts_on_lt')
         break
 
       when 'by_time'
-        $.extend params, get_params_from_slider(context, 'starts_at_hour_gt', 'starts_at_hour_lt')
+        $.extend params, get_params_from_customslider(context, 'starts_at_hour_gt', 'starts_at_hour_lt')
         break
 
       when 'by_amount'
-        $.extend params, get_params_from_slider(context, 'price_gt', 'price_lt')
+        $.extend params, get_params_from_customslider(context, 'price_gt', 'price_lt')
         break
 
       when 'by_affiche_category'
@@ -88,6 +88,7 @@ $.fn.prepare_params = () ->
 
     #list_block.animate({opacity: 0}, 900, ->
       #list_block.addClass('preloader').html('<img src="/assets/preloader.gif" width=48 height=48 style="margin: 0 auto; display: block" />').animate({opacity: 1}, 900, ->
+    History.pushState({}, null, url+'?'+decodeURIComponent($.param(filters.prepare_params())))
     xhr = $.ajax
       url: url
       type: 'GET'

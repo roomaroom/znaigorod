@@ -88,6 +88,35 @@ module ApplicationHelper
     res.html_safe
   end
 
+  def is_active_range?(range_name)
+    case range_name
+      when 'amount'
+        if params['search']['price_gt'] == '0' && params['search']['price_lt'] == '>1500'
+          false
+        else
+          true
+        end
+      when 'time'
+        if params['search']['starts_at_hour_gt'] == '0' && params['search']['starts_at_hour_lt'] == '23'
+          false
+        else
+          true
+        end
+    end if params['search']
+  end
+
+  def is_active_filter?(filter_name)
+    return params.has_key?('search') && params['search'][filter_name].try(:any?) ? true : false
+  end
+
+  def is_active_variant?(filter, variant)
+    if is_active_filter?(filter) == true
+      params['search'][filter].include?(variant) ? 'active' : ''
+    else
+      false
+    end
+  end
+
   private
     def resized_image_url(url, width, height, crop)
       image_url, image_id, image_width, image_height, image_crop, image_filename =

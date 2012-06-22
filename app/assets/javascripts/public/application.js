@@ -15,5 +15,6 @@
  * = require public/trailer_resizer
  * = require public/twitter
  * = require public/remote_pagination
+ * = require public/history
  * = require public/main
  */
