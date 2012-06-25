@@ -9,8 +9,8 @@
         break
       when 'by_time', 'by_amount'
         target = $('#'+context)
-        max = target.slider('option', 'max')
-        target.slider('values', [0,max])
+        max = target.customslider('option', 'max')
+        target.customslider('values', [0,max])
         break
 
     filters.trigger('changed')

@@ -86,31 +86,25 @@ $.fn.prepare_params = () ->
 
     list_block.addClass('filled')
 
-    #list_block.animate({opacity: 0}, 900, ->
-      #list_block.addClass('preloader').html('<img src="/assets/preloader.gif" width=48 height=48 style="margin: 0 auto; display: block" />').animate({opacity: 1}, 900, ->
     History.pushState({}, null, url+'?'+decodeURIComponent($.param(filters.prepare_params())))
     xhr = $.ajax
       url: url
       type: 'GET'
       data: filters.prepare_params()
       success: (data, textStatus, jqXHR) ->
-        #list_block.removeClass('preloader').animate({opacity: 0}, 900, ->
-          #list_block.addClass('filled').html(jqXHR.responseText).animate({opacity: 1}, 900)
         list_block.html(jqXHR.responseText)
         init_tablesorter()
         init_remote_pagination()
-        #)
-      #) unless list_block.hasClass('preloader')
-    #).removeClass('filled') if list_block.hasClass('filled')
 
   if search_preset.length && filters.length
-    window.location.hash = ''
 
     if search_preset == 'todays'
       hour = new Date().getHours()
-      $('#by_date').slider('values', [0, 1])
-      $('#by_time').slider('values', [hour, 24])
+      $('#by_date').customslider('values', 0, 0)
+      $('#by_date').customslider('values', 1, 1)
+      $('#by_time').customslider('values', [hour, 24])
       $('.by_time h6 a').click()
+      filters.trigger('changed')
       return false
 
     if search_preset.length
