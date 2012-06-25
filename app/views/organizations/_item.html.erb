@@ -11,7 +11,8 @@
       <ul>
         <li>
           <span class="label">Адрес</span>
-          <%= item.address %>
+          <span class='address'><%= item.address %></span>
+          <%= link_to "Показать карту", '#', :class => 'show_map_link solid_light_blue', :longitude => item.address.longitude, :latitude => item.address.latitude %>
         </li>
         <li>
           <span class="label">Телефон</span>
