@@ -3,6 +3,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
   has_scope :page, :default => 1
 
+  respond_to :json
+
   protected
     def collection
       @search ||= Sunspot.search([Eating, Funny]) do

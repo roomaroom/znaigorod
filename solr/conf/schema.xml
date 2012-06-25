@@ -80,6 +80,20 @@
           ignoreCase='true' />
       </analyzer>
     </fieldType>
+    <fieldType name="autosuggest" class="solr.TextField">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="ё" replacement="е" replace="all" />
+        <filter class="solr.EdgeNGramFilterFactory" minGramSize="1" maxGramSize="15" side="front"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <filter class="solr.PatternReplaceFilterFactory" pattern="ё" replacement="е" replace="all" />
+      </analyzer>
+    </fieldType>
+
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name='boolean' class='solr.BoolField' omitNorms='true'/>
     <!-- *** This fieldType is used by Sunspot! *** -->
@@ -140,6 +154,8 @@
     <field name='lat' stored='true' type='tdouble' multiValued='false' indexed='true'/>
     <!-- *** This field is used by Sunspot! *** -->
     <field name='lng' stored='true' type='tdouble' multiValued='false' indexed='true'/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
+    <field name="term_text" stored="false" type="autosuggest" multiValued="true" indexed="true"/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='random_*' stored='false' type='rand' multiValued='false' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->

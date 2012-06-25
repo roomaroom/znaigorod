@@ -41,6 +41,7 @@ class Organization < ActiveRecord::Base
       s.text :site, :boost => 0.5
       s.text :title, :boost => 2
       s.text(:kind) { self.class.model_name.human }
+      s.text :term
 
       facets.each do |facet|
         s.text facet
@@ -54,26 +55,34 @@ class Organization < ActiveRecord::Base
   def to_s
     title
   end
+
+  def term
+   "#{title}, #{address}, #{categories}"
+  end
+
+  def as_json(options)
+    super(:only => :id, :methods => :term)
+  end
 end
 
 # == Schema Information
 #
 # Table name: organizations
 #
-#  id                      :integer         not null, primary key
-#  title                   :text
-#  categories :text
-#  payment                 :text
-#  cuisine                 :text
-#  feature                 :text
-#  site                    :text
-#  email                   :text
-#  description             :text
-#  created_at              :datetime        not null
-#  updated_at              :datetime        not null
-#  phone                   :text
-#  offer                   :text
-#  type                    :string(255)
-#  vfs_path                :string(255)
+#  id          :integer         not null, primary key
+#  title       :text
+#  categories  :text
+#  payment     :text
+#  cuisine     :text
+#  feature     :text
+#  site        :text
+#  email       :text
+#  description :text
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  phone       :text
+#  offer       :text
+#  type        :string(255)
+#  vfs_path    :string(255)
 #
 
