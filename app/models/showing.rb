@@ -32,7 +32,9 @@ class Showing < ActiveRecord::Base
   end
 
   def self.tags
-    ShowingSearch.new.tags_facet.rows.map(&:value)
+    search_params = { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
+
+    ShowingSearch.new(search_params).tags_facet.rows.map(&:value)
   end
 
   # NOTE: ShowingSearch.new(...).results does not apply default scope
