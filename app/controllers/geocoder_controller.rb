@@ -1,4 +1,4 @@
-class Manage::GeocoderController < ApplicationController
+class GeocoderController < ApplicationController
   layout false
 
   def get_coordinates

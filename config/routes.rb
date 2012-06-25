@@ -1,6 +1,5 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
-    get 'geocoder' => 'geocoder#get_coordinates'
     post 'red_cloth' => 'red_cloth#show'
 
     resources :affiches, :only => [:index, :new]
@@ -18,6 +17,7 @@ Znaigorod::Application.routes.draw do
   end
 
   get 'search' => 'search#index'
+  get 'geocoder' => 'geocoder#get_coordinates'
 
   resources :affiches, :only => [:index, :show]
 
