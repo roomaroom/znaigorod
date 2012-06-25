@@ -32,7 +32,7 @@ class Showing < ActiveRecord::Base
   end
 
   def self.tags
-    search { facet :tags }.facets.flat_map(&:rows).map(&:value)
+    ShowingSearch.new.tags_facet.rows.map(&:value)
   end
 
   # NOTE: ShowingSearch.new(...).results does not apply default scope
@@ -50,15 +50,16 @@ end
 #
 # Table name: showings
 #
-#  id         :integer         not null, primary key
-#  affiche_id :integer
-#  place      :string(255)
-#  starts_at  :datetime
-#  price_min  :integer
-#  hall       :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  ends_at    :datetime
-#  price_max  :integer
+#  id              :integer         not null, primary key
+#  affiche_id      :integer
+#  place           :string(255)
+#  starts_at       :datetime
+#  price_min       :integer
+#  hall            :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  ends_at         :datetime
+#  price_max       :integer
+#  organization_id :integer
 #
 

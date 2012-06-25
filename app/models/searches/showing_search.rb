@@ -53,6 +53,10 @@ class ShowingSearch < Search
     @price_lt.to_i.zero? ? 99999 : @price_lt
   end
 
+  def tags_facet
+    search.facet(:tags)
+  end
+
   protected
     def search_columns
       @showing_search_columns ||= super.reject { |c| c.match(/(hour|price|tags|starts_on_gt)/) }
@@ -104,6 +108,8 @@ class ShowingSearch < Search
       search.adjust_solr_params do |params|
         params[:sort] = 'id desc'
       end
+
+      search.facet :tags
     end
 end
 

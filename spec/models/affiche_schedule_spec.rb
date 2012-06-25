@@ -41,6 +41,8 @@ end
 #  holidays   :string(255)
 #  place      :string(255)
 #  hall       :string(255)
+#  price_min  :integer
+#  price_max  :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #
