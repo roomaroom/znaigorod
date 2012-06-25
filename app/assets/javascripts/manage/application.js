@@ -12,5 +12,6 @@
  * = require ./geocoder
  * = require ./info_plugin
  * = require ./red_cloth
+ * = require ./autosuggest_handler
  * = require ./main
  */

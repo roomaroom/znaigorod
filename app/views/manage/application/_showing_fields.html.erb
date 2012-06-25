@@ -7,7 +7,8 @@
       <%= f.input :ends_at, :as => :date_picker, :input_html => { :class => 'span12' } %>
     </div>
     <div class='span2'>
-      <%= f.input :place, :input_html => { :class => 'span12' } %>
+      <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+      <%= f.input :place, :input_html => { :class => 'span12 autosuggest' } %>
     </div>
     <div class='span2'>
       <%= f.input :hall, :input_html => { :class => 'span12' } %>
