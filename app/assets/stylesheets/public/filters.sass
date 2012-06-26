@@ -276,10 +276,16 @@
 
   .by_location
     .map_container
-      width: 640px
-      height: 480px
-      margin: 10px 0px 20px
+      float: left
+      width: 320px
+      height: 320px
+      margin: 10px 0 0
       background-color: #f9f4e5
+      border: 1px solid #ccc
+      .DGControlsCopyright
+        display: none
+    .additional
+      margin: 10px 0 0 340px
     .search_location
       +clearfix
       fieldset
@@ -302,3 +308,25 @@
           width: 200px
       .actions
         margin-top: 17px
+    #search_radius_radius
+      position: relative
+      width: 10px
+      height: 200px
+      border: 1px solid #ddd
+      margin-top: 20px
+      .ui-slider-handle
+        cursor: default
+        width: 12px
+        height: 12px
+        position: absolute
+        background-color: #999
+        margin-bottom: -6px
+        left: -1px
+        z-index: 5
+        &.ui-state-hover
+          background-color: #777
+      .ui-slider-range-min
+        position: absolute
+        width: 100%
+        bottom: 0
+        background-color: #9ccfff

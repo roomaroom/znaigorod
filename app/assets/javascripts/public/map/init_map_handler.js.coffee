@@ -28,15 +28,22 @@ map_for_location = ->
   container = $('.map_container')
   lon = container.attr('data-lon')
   lat  = container.attr('data-lat')
-  map = container.draw_map(lon, lat, 12)
+  map = container.draw_map(lon, lat, 11)
   marker = map.markers.getAll()[0]
+  current_radius = 600
   marker.hide()
+  circle_geometry = new DG.Style.Geometry
+  circle_geometry.strokeColor = '#999'
+  circle_geometry.strokeWidth = 2
+  circle = new DG.Geometries.Circle marker.getPosition(), current_radius
+  $(".DGControlsCopyright", container).remove()
   map.addEventListener map.getContainerId(), 'DgClick', (evt) ->
-    console.log evt.getGeoPoint()
     marker.setPosition evt.getGeoPoint()
     marker.show()
+    map.setCenter evt.getGeoPoint()
     map.geometries.removeAll()
-    map.geometries.add(new DG.Geometries.Circle evt.getGeoPoint(), 150, new DG.Style.Geometry)
+    circle = new DG.Geometries.Circle marker.getPosition(), current_radius
+    map.geometries.add(circle, circle_geometry)
 
   $(".by_location form.search_location").submit ->
     form = $(this)
@@ -49,16 +56,32 @@ map_for_location = ->
       error: (jqXHR, textStatus, errorThrown) ->
         console.log(errorThrown)
       success: (data, textStatus, jqXHR) ->
-        json = jQuery.parseJSON jqXHR.responseText
+        json = $.parseJSON jqXHR.responseText
         if json.response_code == "200"
           position = new DG.GeoPoint(json.longitude, json.latitude)
           marker.setPosition position
           marker.show()
-          map.setCenter position, 16
+          map.setCenter position
+          map.geometries.removeAll()
+          circle = new DG.Geometries.Circle position, current_radius
+          map.geometries.add(circle, circle_geometry)
         else
+          marker.hide()
+          map.geometries.removeAll()
           # TODO показать сообщение об ошибке
 
     return false
+
+  $("#search_radius_radius").slider
+    orientation: "vertical"
+    range: "min"
+    min: 150
+    max: 3000
+    step: 150
+    value: current_radius
+    slide: (event, ui) ->
+      current_radius = ui.value
+      circle.setRadius(current_radius)
 
 $.fn.draw_map = (longitude, latitude, scale = 16) ->
   container = this[0]
