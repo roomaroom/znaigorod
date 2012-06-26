@@ -17,6 +17,8 @@ class Organization < ActiveRecord::Base
   has_many :halls, :dependent => :destroy
   has_many :images, :dependent => :destroy
   has_many :schedules, :dependent => :destroy
+  has_many :showings, :dependent => :destroy
+  has_many :affiches, :through => :showings
 
   has_one :address, :dependent => :destroy
 

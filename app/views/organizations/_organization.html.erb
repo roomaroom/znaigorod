@@ -123,7 +123,10 @@
         </div>
       </div>
     </div>
-    <div class="map_container" style='width:640px;height:480px;margin: 20px auto 0;'longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
+    <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
+    <div class="list">
+      <%= render :partial => 'commons/list', :locals => { :collection => resource.affiches, :remote => true } %>
+    </div>
     <%= render :partial => 'commons/comments_block' %>
   </div>
 </div>
