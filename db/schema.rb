@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625023033) do
+ActiveRecord::Schema.define(:version => 20120625091023) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20120625023033) do
     t.datetime "ends_at"
     t.integer  "price_max"
     t.integer  "organization_id"
+    t.string   "latitude"
+    t.string   "longitude"
   end
 
   add_index "showings", ["affiche_id"], :name => "index_showings_on_affiche_id"

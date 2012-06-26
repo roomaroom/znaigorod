@@ -26,4 +26,5 @@ $ ->
   init_datetime_picker()
   init_red_cloth()
   init_autosuggest_handler() if $('.autosuggest').length
+  init_choose_coordinate() if $('.choose_coordinate').length
   #init_jwysiwyg() if $('textarea').length

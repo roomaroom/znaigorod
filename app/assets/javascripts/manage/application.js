@@ -13,5 +13,6 @@
  * = require ./info_plugin
  * = require ./red_cloth
  * = require ./autosuggest_handler
+ * = require ./choose_coordinate
  * = require ./main
  */

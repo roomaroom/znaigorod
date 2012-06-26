@@ -1,13 +1,15 @@
 class Showing < ActiveRecord::Base
-  attr_accessible :ends_at, :hall, :place, :price_max, :price_min, :starts_at
+  attr_accessible :ends_at, :hall, :place, :price_max, :price_min, :starts_at, :organization_id, :latitude, :longitude
 
   belongs_to :affiche
+  belongs_to :organization
 
   validates_presence_of :place, :price_max, :price_min, :starts_at
 
   default_scope order(:starts_at)
 
   delegate :tags, :title, :to => :affiche, :prefix => true
+  delegate :address, :to => :organization, :prefix => true, :allow_nil => true
 
   after_create  :index_affiche
   after_destroy :index_affiche
@@ -42,6 +44,14 @@ class Showing < ActiveRecord::Base
     where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now, :starts_at_lt => DateTime.now.end_of_day).result_ids).limit(5)
   end
 
+  def get_longitude
+    organization_address.try(:longitude) || longitude
+  end
+
+  def get_latitude
+    organization_address.try(:latitude) || latitude
+  end
+
   private
     def index_affiche
       affiche.index
@@ -63,5 +73,7 @@ end
 #  ends_at         :datetime
 #  price_max       :integer
 #  organization_id :integer
+#  latitude        :string(255)
+#  longitude       :string(255)
 #
 

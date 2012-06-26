@@ -29,7 +29,16 @@
           <% showings.each do |showing| %>
             <tr>
               <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
-              <td><%= showing.place %></td>
+              <td>
+                <% if showing.organization %>
+                  <%= link_to showing.organization.title, showing.organization  %>
+                <% else %>
+                  <%= showing.place %>
+                <% end %>
+                <% if showing.get_latitude.present? %>
+                  <%= link_to "Показать карту", '#', :class => 'show_map_link solid_light_blue', :longitude => showing.get_longitude, :latitude => showing.get_latitude %>
+                <% end %>
+              </td>
               <td><%= showing.hall %></td>
               <td><%= price_for(showing) %></td>
             </tr>
@@ -37,19 +46,26 @@
         </tbody>
       </table>
     <% else %>
-      <% showings.group_by(&:place).each do |place, showings| %>
+      <% showings.each do |showing| %>
         <ul>
           <li>
             <span class='label'>Место проведения</span>
-            <%= place %>
+            <% if showing.organization %>
+              <%= link_to showing.organization.title, showing.organization  %>
+            <% else %>
+              <%= showing.place %>
+            <% end %>
+            <% if showing.get_latitude.present?  %>
+              <%= link_to "Показать карту", '#', :class => 'show_map_link solid_light_blue', :longitude => showing.get_longitude, :latitude => showing.get_latitude %>
+            <% end %>
           </li>
           <li>
             <span class='label'>Время проведения</span>
-            <%= showings.map{|s| interval_for(s)}.join(', ').html_safe %>
+            <%= interval_for(showing) %>
           </li>
           <li>
             <span class="label">Стоимость</span>
-            <%= showings.map{|s| price_for(s) }.join(', ').html_safe %>
+            <%= price_for(showing) %>
           </li>
         </ul>
       <% end %>

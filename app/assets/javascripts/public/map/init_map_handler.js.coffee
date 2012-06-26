@@ -1,6 +1,5 @@
 map_for_index = () ->
   container = $('<div class="map_container" style="width:640px; height: 480px;" />').appendTo('body').hide()
-
   $('.show_map_link').live 'click', ->
     link = $(this)
     longitude = link.attr('longitude')
@@ -38,5 +37,5 @@ $.fn.draw_map = (longitude, latitude) ->
   return map
 
 @init_map_handler = () ->
-  map_for_index() if $('.index .show_map_link').length
   map_for_show() if $('.show .map_container').length
+  map_for_index() if $('.show_map_link').length

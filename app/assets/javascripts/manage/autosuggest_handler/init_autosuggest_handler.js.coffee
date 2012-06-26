@@ -1,8 +1,7 @@
-@init_autosuggest_handler = () ->
-  target = $('.autosuggest_target')
-  autosuggest = $('.autosuggest')
+$.fn.add_autosuggest = () ->
+  $this = $(this)
 
-  autosuggest.autocomplete
+  $this.autocomplete
     source: (request, response) ->
       $.ajax
         url: '/manage/organizations.json'
@@ -17,4 +16,13 @@
           ))
     minLength: 3
     select: ( event, ui ) ->
+      target = $('.autosuggest_target', $(event.target).parent().parent())
       target.val(ui.item.id)
+
+@init_autosuggest_handler = () ->
+  autosuggest = $('.autosuggest').filter(':visible')
+  autosuggest.add_autosuggest()
+
+  $('form').on('nested:fieldAdded', (event) ->
+    $(event.field).find('.autosuggest').filter(':visible').last().add_autosuggest()
+  )
