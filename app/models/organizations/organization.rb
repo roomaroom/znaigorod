@@ -65,6 +65,7 @@ class Organization < ActiveRecord::Base
   def as_json(options)
     super(:only => :id, :methods => :term)
   end
+
 end
 
 # == Schema Information

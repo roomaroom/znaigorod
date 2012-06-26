@@ -6,8 +6,6 @@ class Showing < ActiveRecord::Base
 
   validates_presence_of :place, :price_max, :price_min, :starts_at
 
-  default_scope order(:starts_at)
-
   delegate :tags, :title, :to => :affiche, :prefix => true
   delegate :address, :to => :organization, :prefix => true, :allow_nil => true
 

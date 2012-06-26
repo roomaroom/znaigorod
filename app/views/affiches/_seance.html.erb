@@ -1,4 +1,4 @@
-<% if  if action_name == 'show' && controller_name != 'affiches' %>
+<% if action_name == 'show' && controller_name != 'affiches' %>
   <% range = affiche.showings_grouped_by_organization_and_day(resource, params[:search]) %>
 <% else %>
   <% range = affiche.showings_grouped_by_day(params[:search]) %>
@@ -31,6 +31,7 @@
         </thead>
         <tbody>
           <% showings.each do |showing| %>
+            <% next if showing.starts_at < DateTime.now && action_name == 'show' && controller_name != 'affiches' %>
             <tr>
               <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
               <td>

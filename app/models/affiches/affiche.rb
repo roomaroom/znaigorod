@@ -3,7 +3,7 @@ class Affiche < ActiveRecord::Base
 
   validates_presence_of :description, :poster_url, :title
 
-  has_many :showings, :dependent => :destroy
+  has_many :showings, :dependent => :destroy, :order => :starts_at
 
   has_one :affiche_schedule, :dependent => :destroy
 
