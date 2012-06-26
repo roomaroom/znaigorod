@@ -273,3 +273,32 @@
           height: 18px
           line-height: 21px
           text-transform: lowercase
+
+  .by_location
+    .map_container
+      width: 640px
+      height: 480px
+      margin: 10px 0px 20px
+      background-color: #f9f4e5
+    .search_location
+      +clearfix
+      fieldset
+        padding: 0
+        border: none
+        float: left
+      .inputs
+        ol
+          +clearfix
+          li
+            float: left
+            margin-right: 10px
+        label
+          display: block
+        input
+          padding: 4px
+          border: 1px solid #ccc
+          +border-radius
+        #search_location_street
+          width: 200px
+      .actions
+        margin-top: 17px
