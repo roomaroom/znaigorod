@@ -36,11 +36,21 @@ class Affiche < ActiveRecord::Base
     [Movie, Concert, Party, Spectacle, Exhibition, SportsEvent, Other]
   end
 
-  def showings_grouped_by_day(search_params = nil)
+  def search_showing_ids(search_params)
     search_params ||= { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
     showing_ids = ShowingSearch.new(search_params).result_ids
+  end
+
+  def showings_grouped_by_day(search_params = nil)
+    showing_ids = search_showing_ids(search_params)
 
     Hash[showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on).map.first(9)]
+  end
+
+  def showings_grouped_by_organization_and_day(organization, search_params = nil)
+    showing_ids = search_showing_ids(search_params)
+
+    Hash[showings.where(:id => showing_ids, :organization_id => organization.id).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on).map.first(9)]
   end
 
   def tags

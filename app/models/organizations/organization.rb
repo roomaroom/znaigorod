@@ -18,7 +18,7 @@ class Organization < ActiveRecord::Base
   has_many :images, :dependent => :destroy
   has_many :schedules, :dependent => :destroy
   has_many :showings, :dependent => :destroy
-  has_many :affiches, :through => :showings
+  has_many :affiches, :through => :showings, :uniq => true
 
   has_one :address, :dependent => :destroy
 
