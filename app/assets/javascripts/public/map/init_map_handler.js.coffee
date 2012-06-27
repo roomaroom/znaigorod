@@ -30,7 +30,13 @@ map_for_location = ->
   lat  = container.attr('data-lat')
   map = container.draw_map(lon, lat, 11)
   marker = map.markers.getAll()[0]
+  min_radius = 150
+  $(".search_radius_wrapper .min_max .min").text(min_radius)
+  max_radius = 3000
+  $(".search_radius_wrapper .min_max .max").text(max_radius)
   current_radius = 600
+  $(".search_radius_wrapper .info .counter").text(current_radius)
+  $(".search_radius_wrapper .info .speed").text("(пешком ~#{manyralize(Math.round(current_radius * 60 / 5000), { one: 'минута', few: 'минуты', many: 'минут' })})")
   marker.hide()
   circle_geometry = new DG.Style.Geometry
   circle_geometry.strokeColor = '#999'
@@ -44,9 +50,11 @@ map_for_location = ->
     map.geometries.removeAll()
     circle = new DG.Geometries.Circle marker.getPosition(), current_radius
     map.geometries.add(circle, circle_geometry)
+    $(".search_radius_wrapper").show()
 
   $(".by_location form.search_location").submit ->
     form = $(this)
+    $(".actions li.error", form).remove()
     street = $("#search_location_street", form).val()
     house = $("#search_location_house", form).val()
     $.ajax '/geocoder',
@@ -65,23 +73,36 @@ map_for_location = ->
           map.geometries.removeAll()
           circle = new DG.Geometries.Circle position, current_radius
           map.geometries.add(circle, circle_geometry)
+          $(".search_radius_wrapper").show()
         else
           marker.hide()
           map.geometries.removeAll()
-          # TODO показать сообщение об ошибке
+          button_wrapper = $(".actions input", form).closest("ol")
+          $("<li class='error'>Не найдено</li>").appendTo(button_wrapper)
+          $(".search_radius_wrapper").hide()
 
     return false
 
-  $("#search_radius_radius").slider
-    orientation: "vertical"
+  $("#search_radius_slider").slider
     range: "min"
-    min: 150
-    max: 3000
+    min: min_radius
+    max: max_radius
     step: 150
     value: current_radius
     slide: (event, ui) ->
       current_radius = ui.value
       circle.setRadius(current_radius)
+      $(".search_radius_wrapper .info .counter").text(current_radius)
+      $(".search_radius_wrapper .info .speed").text("(пешком ~#{manyralize(Math.round(current_radius * 60 / 5000), { one: 'минута', few: 'минуты', many: 'минут' })})")
+
+manyralize = (num, cases) ->
+  num = Math.abs(num)
+  word = ""
+  if num.toString().indexOf(".") > -1
+    word = cases.few
+  else
+    word = (if num % 10 is 1 and num % 100 isnt 11 then cases.one else (if num % 10 >= 2 and num % 10 <= 4 and (num % 100 < 10 or num % 100 >= 20) then cases.few else cases.many))
+  "#{num} #{word}"
 
 $.fn.draw_map = (longitude, latitude, scale = 16) ->
   container = this[0]
