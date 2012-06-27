@@ -29,12 +29,12 @@
   <div class="thin_block">
     <h3>Ближайшие события</h3>
     <ul>
-      <% Showing.nearest.each do |seance| %>
+      <% Showing.nearest.order(:starts_at).each do |seance| %>
         <li>
           <div class="top">
             <div class="time"><%= l(seance.starts_at, :format => '%H:%M') %></div>
             <div class="title">
-              <%= link_to seance.affiche_title, affiche_path(seance.affiche), :class => 'solid_light_blue' %>
+              <%= link_to seance.affiche_title.truncate(58), affiche_path(seance.affiche), :class => 'solid_light_blue' %>
             </div>
           </div>
           <div class="bottom">
