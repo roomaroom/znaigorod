@@ -23,7 +23,7 @@
 
       <div class="info">
         <div class="story">
-          <%= RedCloth.new(resource.description).to_html.gilensize.html_safe %>
+          <%= RedCloth.new(resource.description).gilensize.to_html.html_safe %>
         </div>
       </div>
 
