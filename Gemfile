@@ -11,11 +11,13 @@ group :assets do
 end
 
 group :default do
+  gem 'RedCloth'
   gem 'attribute_normalizer'
   gem 'curb',                                         :require => false
   gem 'default_value_for'
   gem 'el_vfs_client'
   gem 'formtastic'
+  gem 'gilenson'
   gem 'has_scope'
   gem 'has_searcher'
   gem 'inherited_resources'
@@ -25,7 +27,6 @@ group :default do
   gem 'pg',                                           :require => false
   gem 'progress_bar'
   gem 'rails'
-  gem 'RedCloth'
   gem 'russian'
   gem 'show_for'
   gem 'simple_form'

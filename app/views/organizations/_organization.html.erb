@@ -11,7 +11,7 @@
   </div>
 
   <div class="main_info">
-    <h1><%= resource.title %></h1>
+    <h1><%= resource.title.gilensize.html_safe %></h1>
     <div class="description">
       <%= render :partial => "#{resource.class.model_name.pluralize.underscore}/show_poster", :locals => { :resource => resource } %>
       <div class="info">
@@ -118,9 +118,7 @@
             <% end %>
           </tbody>
         </table>
-        <div class="story">
-          <%= raw resource.description %>
-        </div>
+        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" unless resource.description.blank? %>
       </div>
     </div>
     <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>

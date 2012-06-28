@@ -1,6 +1,6 @@
 <div class="item">
   <h3>
-    <%= link_to item.title, item, :class => 'solid_light_blue' %>
+    <%= link_to item.title.gilensize.html_safe, item, :class => 'solid_light_blue' %>
     <% item.categories.split(',').map(&:squish).each do |c| %>
       <span class='category'><%= c %></span>
     <% end %>

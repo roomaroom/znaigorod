@@ -74,6 +74,7 @@ GEM
     formtastic (2.2.0)
       actionpack (>= 3.0)
     fssm (0.2.9)
+    gilenson (1.2.2)
     has_scope (0.5.1)
     has_searcher (0.0.13)
       rails
@@ -222,6 +223,7 @@ DEPENDENCIES
   el_vfs_client
   fabrication
   formtastic
+  gilenson
   has_scope
   has_searcher
   hirb

@@ -11,8 +11,8 @@
   </div>
 
   <div class="main_info">
-    <h1><%= resource.title %></h1>
-    <h2><%= resource.original_title %></h2>
+    <%= content_tag :h1, resource.title.gilensize.html_safe %>
+    <%= content_tag :h2, resource.original_title.gilensize.html_safe unless resource.original_title.blank? %>
 
     <div class='description'>
       <div class='poster'>
@@ -23,7 +23,7 @@
 
       <div class="info">
         <div class="story">
-          <%= RedCloth.new(resource.description).to_html.html_safe %>
+          <%= RedCloth.new(resource.description).to_html.gilensize.html_safe %>
         </div>
       </div>
 
