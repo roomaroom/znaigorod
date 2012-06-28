@@ -1,3 +1,3 @@
-class Manage::ApplicationController < InheritedResourcesController
+class Manage::ApplicationController < InheritedResources::Base
   layout 'manage'
 end

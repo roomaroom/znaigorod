@@ -1,22 +1,29 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
-    post 'red_cloth' => 'red_cloth#show'
+    #post 'red_cloth' => 'red_cloth#show'
 
-    resources :affiches, :only => [:index, :new]
-    resources :organizations, :only => [:index, :new]
+    #resources :affiches, :only => [:index, :new]
+    #resources :organizations, :only => [:index, :new]
 
-    Organization.descendants.each do |type|
-      resources type.name.underscore.pluralize, :except => :show
-    end
+    #Organization.descendants.each do |type|
+      #resources type.name.underscore.pluralize, :except => :show
+    #end
 
-    Affiche.descendants.each do |type|
-      resources type.name.underscore.pluralize, :except => :show
+    #Affiche.descendants.each do |type|
+      #resources type.name.underscore.pluralize, :except => :show
+    #end
+
+    resources :affiches
+    resources :organizations do
+      resources :organizations
+      resource :meal
+      resource :entertainment
     end
 
     root :to => 'organizations#index'
   end
 
-  get 'search' => 'search#index'
+  #get 'search' => 'search#index'
   get 'geocoder' => 'geocoder#get_coordinates'
 
   { 'kino' => 'movies', 'vecherinki' => 'parties' }.each do |category, kind|
@@ -39,7 +46,6 @@ Znaigorod::Application.routes.draw do
   Organization.descendants.each do |type|
     resources type.name.underscore.pluralize, :only => [:index, :show]
   end
-
 
   root :to => 'application#main_page'
 
