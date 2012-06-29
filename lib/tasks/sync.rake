@@ -15,13 +15,31 @@ class MovieSyncer
     puts "#{place}: импорт сеансов"
     bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
-      if (movie = find_movie_by(title.squish))
-        showings = movie.showings.where(:place => place)
+      if (movie = find_movie_by(title.squish)) && (cinematheatre = find_similar_cinematheatre_by(place.squish))
+        showings = Showing.where(:id => Showing.search{with(:affiche_id, movie.id); fulltext(place){fields(:place, :organization_title)}; paginate(:per_page => '100000')}.results.map(&:id))
+
         seances.each do |seance|
           seance.each do |k,v| v.squish! if v.is_a?(String) end
-          showing = showings.find_or_initialize_by_hall_and_starts_at_and_price_min(:hall => seance.delete(:hall),
-                                                                                    :starts_at => seance.delete(:starts_at),
-                                                                                    :price_min => seance.delete(:price_min))
+
+          unless showing = showings.find_by_hall_and_starts_at_and_price_min(seance[:hall],
+                                                                             seance[:starts_at],
+                                                                             seance[:price_min])
+            showing = Showing.new(:hall => seance[:hall],
+                                  :starts_at => seance[:starts_at],
+                                  :price_min => seance[:price_min],
+                                  :affiche_id => movie.id).tap do |s|
+
+              if place =~ /Факел/
+               s.place = 'Факел, центр досуга и спорта'
+               s.organization_id = 315
+              else
+               s.place = cinematheatre.title
+               s.organization_id = cinematheatre.id
+              end
+            end
+            showing.save!
+          end
+
           showing.update_attributes! seance
           bar.increment!
         end
@@ -44,6 +62,16 @@ class MovieSyncer
         puts "Не могу найти фильм '#{title}'"
       end
       similar_movies.first
+    end
+
+    def find_similar_cinematheatre_by(cinema_title)
+      similar_cinematheatre = Funny.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:categories)}}.results
+      if similar_cinematheatre.one?
+        puts "Найден похожий кинотеатр '#{cinema_title}' -> '#{similar_cinematheatre.first.title}'"
+      else
+        puts "Кинотеатр '#{cinema_title}' не найден"
+      end
+      similar_cinematheatre.first
     end
 end
 

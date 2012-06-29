@@ -1,5 +1,5 @@
 class Showing < ActiveRecord::Base
-  attr_accessible :ends_at, :hall, :place, :price_max, :price_min, :starts_at, :organization_id, :latitude, :longitude
+  attr_accessible :ends_at, :hall, :place, :price_max, :price_min, :starts_at, :organization_id, :latitude, :longitude, :affiche_id
 
   belongs_to :affiche
   belongs_to :organization
@@ -8,6 +8,7 @@ class Showing < ActiveRecord::Base
 
   delegate :tags, :title, :to => :affiche, :prefix => true
   delegate :address, :to => :organization, :prefix => true, :allow_nil => true
+  delegate :title, :to => :organization, :prefix => true, :allow_nil => true
 
   after_create  :index_affiche
   after_destroy :index_affiche
@@ -17,12 +18,15 @@ class Showing < ActiveRecord::Base
 
   searchable do
     date :starts_on
+    integer :affiche_id
     integer :price_max
     integer :price_min
     integer(:ends_at_hour) { ends_at.try(:hour) }
     integer(:starts_at_hour) { starts_at.hour }
     string(:affiche_category) { I18n.transliterate(affiche.class.model_name.human).downcase.gsub(/[^[:alnum:]]+/, '_') }
     string(:tags, :multiple => true) { affiche_tags }
+    text :organization_title
+    text :place
     time :ends_at
     time :starts_at
   end

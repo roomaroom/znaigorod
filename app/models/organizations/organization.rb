@@ -38,6 +38,7 @@ class Organization < ActiveRecord::Base
       s.integer(:capacity, :multiple => true) { halls.pluck(:seating_capacity) }
       s.string(:kind) { 'organization' }
       s.text :address
+      s.text :categories
       s.text :description, :boost => 0.5
       s.text :email, :boost => 0.5
       s.text :site, :boost => 0.5
