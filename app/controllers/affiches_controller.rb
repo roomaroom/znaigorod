@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class AffichesController < InheritedResourcesController
+class AffichesController < ApplicationController
   actions :index, :show
 
   has_scope :page, :default => 1
@@ -22,7 +22,6 @@ class AffichesController < InheritedResourcesController
     end
 
     def search_results
-
       showing_ids = HasSearcher.searcher(:showing, params[:search]).limit(10_000).result_ids
 
       Affiche.search {

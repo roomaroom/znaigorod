@@ -12,7 +12,7 @@
 
   <div class="main_info">
     <%= content_tag :h1, resource.title.gilensize.html_safe %>
-    <%= content_tag :h2, resource.original_title.gilensize.html_safe unless resource.original_title.blank? %>
+    <%= content_tag :h2, resource.original_title.gilensize.html_safe if resource.original_title? %>
 
     <div class='description'>
       <div class='poster'>

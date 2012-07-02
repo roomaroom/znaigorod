@@ -23,7 +23,7 @@ Znaigorod::Application.routes.draw do
     root :to => 'organizations#index'
   end
 
-  #get 'search' => 'search#index'
+  get 'search' => 'search#index'
   get 'geocoder' => 'geocoder#get_coordinates'
 
   { 'kino' => 'movies', 'vecherinki' => 'parties' }.each do |category, kind|
@@ -43,9 +43,9 @@ Znaigorod::Application.routes.draw do
 
   resources :affiches, :only => [:index, :show]
 
-  Organization.descendants.each do |type|
-    resources type.name.underscore.pluralize, :only => [:index, :show]
-  end
+  resources :entertainments
+  resources :meals
+  resources :organizations
 
   root :to => 'application#main_page'
 
