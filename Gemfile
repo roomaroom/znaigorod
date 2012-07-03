@@ -23,7 +23,7 @@ group :default do
   gem 'inherited_resources'
   gem 'kaminari'
   gem 'nested_form',              :git => 'git://github.com/ryanb/nested_form.git'
-  gem 'openteam-commons'
+  gem 'openteam-commons',         '>= 0.2.3'
   gem 'pg',                                           :require => false
   gem 'progress_bar'
   gem 'rails'
