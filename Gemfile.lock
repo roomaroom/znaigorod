@@ -4,6 +4,12 @@ GIT
   specs:
     nested_form (0.2.0)
 
+PATH
+  remote: ../../openteam/has_searcher
+  specs:
+    has_searcher (0.0.17)
+      rails (~> 3.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,13 +78,9 @@ GEM
       multi_json (~> 1.0)
     fabrication (2.0.1)
     fattr (2.2.1)
-    formtastic (2.2.0)
-      actionpack (>= 3.0)
     fssm (0.2.9)
     gilenson (1.2.2)
     has_scope (0.5.1)
-    has_searcher (0.0.13)
-      rails
     highline (1.6.12)
     hike (1.2.1)
     hirb (0.6.2)
@@ -227,10 +229,9 @@ DEPENDENCIES
   default_value_for
   el_vfs_client
   fabrication
-  formtastic
   gilenson
   has_scope
-  has_searcher
+  has_searcher!
   hirb
   inherited_resources
   jquery-rails

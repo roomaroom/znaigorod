@@ -37,13 +37,11 @@ class Showing < ActiveRecord::Base
 
   def self.tags
     search_params = { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
-
     ShowingSearch.new(search_params).tags_facet.rows.map(&:value)
   end
 
-  # NOTE: ShowingSearch.new(...).results does not apply default scope
   def self.nearest
-    where(:id => ShowingSearch.new(:starts_at_gt => DateTime.now, :starts_at_lt => DateTime.now.end_of_day).result_ids).limit(5)
+    HasSearcher.searcher(:showing).actual.today.order(:starts_at).limit(5)
   end
 
   def get_longitude
