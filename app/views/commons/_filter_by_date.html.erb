@@ -23,7 +23,7 @@
           <% end %>
         <% end %>
       </div>
-      <% if params['search'] %>
+      <% if params['search'] && params['search']['starts_on_lt'] %>
         <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %> <%= "data-selected='#{values.index(params['search']['starts_on_gt'])}, #{values.index(params['search']['starts_on_lt'])+1}'" %>></div>
       <% else %>
         <div class="range_slider" id='by_date' <%= "data-count=#{range.count}" %> <%= "data-selected='0,7'" %>></div>

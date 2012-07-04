@@ -120,6 +120,13 @@
         </table>
         <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" unless resource.description.blank? %>
       </div>
+      <div class="tags">
+        <ul>
+        <% resource.categories.split(',').map(&:squish).each do |c| %>
+          <li><%= link_to c, collection_path('search[categories][]' => c) %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
     <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
     <% if resource.affiches.any? %>

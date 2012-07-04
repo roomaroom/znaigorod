@@ -31,7 +31,7 @@
         <ul>
           <% resource.tags.split(', ').flatten.each do |tag| %>
             <li>
-              <%= tag %>
+              <%= link_to tag, affiches_path('search[tags][]' => tag) %></span>
             </li>
           <% end %>
         </ul>
