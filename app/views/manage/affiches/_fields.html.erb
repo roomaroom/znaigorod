@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://maps.api.2gis.ru/1.0"></script>
 <%= f.input :title %>
 
 <div class="row-fluid">
@@ -59,10 +60,17 @@
       </div>
 
       <div class="row-fluid">
-        <%= f.input :place, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
-        <%= f.input :hall, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
-        <%= f.input :price_min, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
-        <%= f.input :price_max, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+        <div class="span2">
+          <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+          <%= f.input :latitude, :as => :hidden, :input_html => { :class => 'latitude', :value => f.object.get_latitude } %>
+          <%= f.input :longitude, :as => :hidden, :input_html => { :class => 'longitude', :value => f.object.get_longitude } %>
+          <%= f.input :place, :input_html => { :class => 'span12 autosuggest' } %>
+          <%= link_to "Указать/показать координаты", '#', :class => 'choose_coordinate' %>
+        </div>
+
+          <%= f.input :hall, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+          <%= f.input :price_min, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
+          <%= f.input :price_max, :input_html => { :class => 'span12' }, :wrapper_html => { :class => 'span2' } %>
       </div>
 
       <%= f.input :holidays, :as => :check_boxes, :collection => Schedule.days_for_select, :input_html => {:class => 'span1'} %>

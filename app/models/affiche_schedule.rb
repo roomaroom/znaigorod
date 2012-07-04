@@ -1,7 +1,11 @@
 class AfficheSchedule < ActiveRecord::Base
-  belongs_to :affiche
+  attr_accessible :affiche, :ends_at, :ends_on, :hall, :holidays, :place,
+                  :price_max, :price_min, :starts_at, :starts_on,
+                  :organization_id, :longitude, :latitude
 
-  attr_accessible :affiche, :ends_at, :ends_on, :hall, :holidays, :place, :price_max, :price_min, :starts_at, :starts_on
+  attr_accessor :organization_id, :longitude, :latitude
+
+  belongs_to :affiche
 
   validates_presence_of :ends_at, :ends_on, :place, :price_min, :starts_at, :starts_on
 
@@ -14,6 +18,14 @@ class AfficheSchedule < ActiveRecord::Base
 
   serialize :holidays, Array
   normalize_attribute :holidays, :with => [:as_array_of_integer]
+
+  def get_latitude
+    affiche.try(:showings).try(:first).try(:latitude)
+  end
+
+  def get_longitude
+    affiche.try(:showings).try(:first).try(:longitude)
+  end
 
   private
     def create_showings
@@ -34,6 +46,9 @@ class AfficheSchedule < ActiveRecord::Base
       attributes.reject { |k| k.match /(id|created_at|updated_at|starts_on|ends_on)/ }.tap do |hash|
         hash['starts_at'] = concat_date_and_time(date, hash['starts_at'])
         hash['ends_at'] = concat_date_and_time(date, hash['ends_at'])
+        hash['latitude'] = latitude
+        hash['longitude'] = longitude
+        hash['organization_id'] = organization_id
       end
     end
 end

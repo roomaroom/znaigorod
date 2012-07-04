@@ -20,7 +20,7 @@ $.fn.add_autosuggest = () ->
       target.val(ui.item.id)
 
 @init_autosuggest_handler = () ->
-  autosuggest = $('.autosuggest').filter(':visible')
+  autosuggest = $('.autosuggest')
   autosuggest.add_autosuggest()
 
   $('form').on('nested:fieldAdded', (event) ->
