@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   protected
     def search
-      @search = HasSearcher.searcher(:total, params)
+      @search = HasSearcher.searcher(:total, params).boost_by(:first_showing_time_dt)
     end
 
     def collection
