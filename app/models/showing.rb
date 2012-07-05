@@ -19,6 +19,7 @@ class Showing < ActiveRecord::Base
   searchable do
     date :starts_on
     integer :affiche_id
+    integer :organization_id
     integer :price_max
     integer :price_min
     integer(:ends_at_hour) { ends_at.try(:hour) }
