@@ -9,7 +9,7 @@ class Manage::AffichesController < Manage::ApplicationController
     end
 
     def only_actual
-      showing_ids = ShowingSearch.new(params[:search]).result_ids
+      showing_ids = HasSearcher.searcher(:showing, params[:search]).limit(1000).result_ids
 
       Affiche.search {
         keywords(params[:q])
