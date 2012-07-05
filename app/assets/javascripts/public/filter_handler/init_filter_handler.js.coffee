@@ -30,15 +30,15 @@ $.fn.prepare_params = () ->
 
     switch context
       when 'by_date'
-        $.extend params, get_params_from_customslider(context, 'starts_on_gt', 'starts_on_lt')
+        $.extend params, get_params_from_customslider(context, 'starts_on_greater_than', 'starts_on_less_than')
         break
 
       when 'by_time'
-        $.extend params, get_params_from_customslider(context, 'starts_at_hour_gt', 'starts_at_hour_lt')
+        $.extend params, get_params_from_customslider(context, 'starts_at_hour_greater_than', 'starts_at_hour_less_than')
         break
 
       when 'by_amount'
-        $.extend params, get_params_from_customslider(context, 'price_gt', 'price_lt')
+        $.extend params, get_params_from_customslider(context, 'price_greater_than', 'price_less_than')
         break
 
       when 'by_affiche_category'

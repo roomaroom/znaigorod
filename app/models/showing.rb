@@ -36,7 +36,7 @@ class Showing < ActiveRecord::Base
   end
 
   def self.tags
-    search_params = { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
+    search_params = { :starts_on_greater_than => Date.today, :starts_on_less_than => Date.today + 4.weeks }
     HasSearcher.searcher(:showing, search_params).faceted.facet(:tags).rows.map(&:value)
   end
 

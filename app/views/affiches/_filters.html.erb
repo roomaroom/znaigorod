@@ -35,8 +35,8 @@
           </ul>
         </div>
       </div>
-      <% if params['search'] && params['search']['price_lt'] %>
-        <div class="range_slider" id='by_amount' data-count='18' <%= "data-selected='#{values.index(params['search']['price_gt'])}, #{values.index(params['search']['price_lt'])+1}'" %>></div>
+      <% if params['search'] && params['search']['price_less_than'] %>
+        <div class="range_slider" id='by_amount' data-count='18' <%= "data-selected='#{values.index(params['search']['price_greater_than'])}, #{values.index(params['search']['price_less_than'])+1}'" %>></div>
       <% else %>
         <div class="range_slider" id='by_amount' data-count='18' <%= "data-selected='0,18'" %>></div>
       <% end %>

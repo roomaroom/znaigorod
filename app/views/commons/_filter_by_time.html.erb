@@ -13,8 +13,8 @@
           </ul>
         </div>
       </div>
-      <% if params['search'] && params['search']['starts_at_hour_lt'] %>
-        <div class="range_slider" id='by_time' data-count='24' <%= "data-selected='#{values.index(params['search']['starts_at_hour_gt'].to_i)}, #{values.index(params['search']['starts_at_hour_lt'].to_i)+1}'" %>></div>
+      <% if params['search'] && params['search']['starts_at_hour_less_than'] %>
+        <div class="range_slider" id='by_time' data-count='24' <%= "data-selected='#{values.index(params['search']['starts_at_hour_greater_than'].to_i)}, #{values.index(params['search']['starts_at_hour_less_than'].to_i)+1}'" %>></div>
       <% else %>
         <div class="range_slider" id='by_time' data-count='24' <%= "data-selected='0,24'" %>></div>
       <% end %>

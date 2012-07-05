@@ -91,13 +91,13 @@ module ApplicationHelper
   def is_active_range?(range_name)
     case range_name
       when 'amount'
-        if params['search']['price_gt'] == '0' && params['search']['price_lt'] == '>1500'
+        if params['search']['price_greater_than'] == '0' && params['search']['price_less_than'] == '>1500'
           false
         else
           true
         end
       when 'time'
-        if params['search']['starts_at_hour_gt'] == '0' && params['search']['starts_at_hour_lt'] == '23'
+        if params['search']['starts_at_hour_greater_than'] == '0' && params['search']['starts_at_hour_less_than'] == '23'
           false
         else
           true
