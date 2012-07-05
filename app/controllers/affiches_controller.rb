@@ -22,7 +22,7 @@ class AffichesController < InheritedResourcesController
     end
 
     def search_results
-      showing_ids = ShowingSearch.new(params[:search]).result_ids
+      showing_ids = HasSearcher.searcher(:showing, params[:search]).result_ids
 
       Affiche.search {
         # NOTE: use [0] if showing_ids is empty

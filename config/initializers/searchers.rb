@@ -23,4 +23,8 @@ HasSearcher.create_searcher :showing do
   scope :today do
     with(:starts_at).less_than DateTime.now.end_of_day
   end
+
+  scope :faceted do
+    facet(:tags)
+  end
 end

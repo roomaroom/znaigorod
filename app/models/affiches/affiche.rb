@@ -39,7 +39,7 @@ class Affiche < ActiveRecord::Base
   def search_showing_ids(search_params)
     search_params ||= { :starts_on_greater_than => Date.today, :starts_on_less_than => Date.today + 4.weeks }
     search_params[:affiche_id] = self.id
-    showing_ids = HasSearcher.searcher(:showing, search_params).result_ids
+    HasSearcher.searcher(:showing, search_params).result_ids
   end
 
   def showings_grouped_by_day(search_params = nil)

@@ -37,7 +37,7 @@ class Showing < ActiveRecord::Base
 
   def self.tags
     search_params = { :starts_on_gt => Date.today, :starts_on_lt => Date.today + 4.weeks }
-    ShowingSearch.new(search_params).tags_facet.rows.map(&:value)
+    HasSearcher.searcher(:showing, search_params).faceted.facet(:tags).rows.map(&:value)
   end
 
   def self.nearest
