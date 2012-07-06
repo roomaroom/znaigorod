@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class OrganizationsController < ApplicationController
+  inherit_resources
+
   has_scope :page, :default => 1
 
   def index

@@ -2,8 +2,6 @@
 
 
 class ApplicationController < ActionController::Base
-  inherit_resources
-
   helper_method :banners, :hot_offers
 
   layout 'public'

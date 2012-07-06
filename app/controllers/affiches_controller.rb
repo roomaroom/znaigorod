@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class AffichesController < ApplicationController
+  inherit_resources
+
   actions :index, :show
 
   has_scope :page, :default => 1
