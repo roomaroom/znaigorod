@@ -2,16 +2,10 @@ HasSearcher.create_searcher :total do
   models :affiche, :organization
   keywords :q
 
-  property :include_gone do
-    puts "ololo"
-  end
-
   scope do |sunspot|
-    unless search_object.include_gone.presence
-      sunspot.any_of do
-        with(:last_showing_time).greater_than(DateTime.now)
-        with(:kind, :organization)
-      end
+    sunspot.any_of do
+      with(:last_showing_time).greater_than(DateTime.now)
+      with(:kind, :organization)
     end
   end
 end
@@ -65,4 +59,9 @@ HasSearcher.create_searcher :showing do
   scope :faceted do
     facet(:tags)
   end
+end
+
+HasSearcher.create_searcher :manage_organization do
+  models :organization
+  keywords :q
 end

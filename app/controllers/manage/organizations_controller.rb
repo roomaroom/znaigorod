@@ -1,11 +1,21 @@
 class Manage::OrganizationsController < Manage::ApplicationController
-  has_scope :ordered_by_updated_at, :default => 1
+  has_scope :ordered_by_updated_at, :default => true, :type => :boolean
   has_scope :page, :default => 1
-  has_scope :parental, :default => 1
+  has_scope :parental, :default => true, :type => :boolean
 
   belongs_to :organization, :optional => true
 
   private
+
+    alias_method :old_collection, :collection
+
+    def collection
+      if params[:utf8]
+        HasSearcher.searcher(:manage_organization, params)
+      else
+        old_collection
+      end
+    end
 
     def build_resource
       super
