@@ -92,7 +92,7 @@
                 <td><%= resource.offer %></td>
               </tr>
             <% end %>
-            <% if resource.cuisine? %>
+            <% if resource.respond_to?(:cuisine?) && resource.cuisine? %>
               <tr>
                 <td>Кухня:</td>
                 <td><%= resource.cuisine %></td>
@@ -118,7 +118,7 @@
             <% end %>
           </tbody>
         </table>
-        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.description? %>
+        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.respond_to?(:description?) && resource.description? %>
       </div>
       <div class="tags">
         <ul>
