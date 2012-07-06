@@ -13,9 +13,7 @@ class Schedule < ActiveRecord::Base
   def self.days_for_select(format = :full)
     format == :full ? format = 'date.standalone_day_names' : format = 'date.common_abbr_day_names'
     array = I18n.t(format).dup
-    sunday = array.shift
-    array << sunday
-    array.each_with_index.map { |e, i| [e, i + 1] }
+    array.each_with_index.map { |e, i| [e, i] }
   end
 
   def human_day
