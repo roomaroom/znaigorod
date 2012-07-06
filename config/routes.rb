@@ -13,6 +13,7 @@ Znaigorod::Application.routes.draw do
       resources type.name.underscore.pluralize, :except => :show
     end
 
+    resources :search, :only => :index
     resources :affiches
     resources :organizations do
       resources :organizations

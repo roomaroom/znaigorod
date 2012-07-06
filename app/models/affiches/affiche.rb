@@ -84,6 +84,8 @@ class Affiche < ActiveRecord::Base
     showings.destroy_all
   end
 
+  alias_attribute :to_s, :title
+
   private
     def localized_date
       Time.local(Time.now.year, Time.now.month, Time.now.day)

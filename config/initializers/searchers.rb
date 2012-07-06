@@ -2,10 +2,16 @@ HasSearcher.create_searcher :total do
   models :affiche, :organization
   keywords :q
 
-  scope do
-    any_of do
-      with(:last_showing_time).greater_than(DateTime.now)
-      with(:kind, :organization)
+  property :include_gone do
+    puts "ololo"
+  end
+
+  scope do |sunspot|
+    unless search_object.include_gone.presence
+      sunspot.any_of do
+        with(:last_showing_time).greater_than(DateTime.now)
+        with(:kind, :organization)
+      end
     end
   end
 end

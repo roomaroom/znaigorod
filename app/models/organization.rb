@@ -32,6 +32,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
   scope :ordered_by_updated_at, ->(param) { order('updated_at DESC') }
+  scope :parental, where(:organization_id => nil)
 
   searchable do
     string(:kind) { 'organization' }

@@ -1,8 +1,12 @@
 class Manage::OrganizationsController < Manage::ApplicationController
   has_scope :ordered_by_updated_at, :default => 1
+  has_scope :page, :default => 1
+  has_scope :parental, :default => 1
+
   belongs_to :organization, :optional => true
 
   private
+
     def build_resource
       super
 
@@ -14,4 +18,5 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
       resource
     end
+
 end

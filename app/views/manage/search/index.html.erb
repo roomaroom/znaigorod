@@ -1,0 +1,7 @@
+<ul>
+  <% collection.each do |item| %>
+    <li>
+      <%= link_to item, [:edit, :manage, item] %>
+    </li>
+  <% end %>
+</ul>
