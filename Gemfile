@@ -18,7 +18,7 @@ group :default do
   gem 'el_vfs_client'
   gem 'gilenson'
   gem 'has_scope'
-  gem 'has_searcher',             :path => '../../openteam/has_searcher'
+  gem 'has_searcher'
   gem 'inherited_resources'
   gem 'kaminari'
   gem 'nested_form',              :git => 'git://github.com/ryanb/nested_form.git'

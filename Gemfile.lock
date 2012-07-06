@@ -4,12 +4,6 @@ GIT
   specs:
     nested_form (0.2.0)
 
-PATH
-  remote: ../../openteam/has_searcher
-  specs:
-    has_searcher (0.0.17)
-      rails (~> 3.2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,6 +75,8 @@ GEM
     fssm (0.2.9)
     gilenson (1.2.2)
     has_scope (0.5.1)
+    has_searcher (0.0.90)
+      rails
     highline (1.6.12)
     hike (1.2.1)
     hirb (0.6.2)
@@ -231,7 +227,7 @@ DEPENDENCIES
   fabrication
   gilenson
   has_scope
-  has_searcher!
+  has_searcher
   hirb
   inherited_resources
   jquery-rails
