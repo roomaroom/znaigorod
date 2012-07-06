@@ -61,7 +61,7 @@ class Organization < ActiveRecord::Base
   end
 
   def nearest_affiches
-    affiches.select{ |a| a.showings.where('starts_at > ?', Date.today).any? }
+    affiches.select{ |a| a.showings.where('starts_at > ?', DateTime.now.utc).any? }
   end
 
   delegate :category, :feature, :offer, :payment, :to => :entertainment, :allow_nil => true, :prefix => true

@@ -47,13 +47,13 @@ class Affiche < ActiveRecord::Base
   def showings_grouped_by_day(search_params = nil)
     showing_ids = search_showing_ids(search_params)
 
-    Hash[showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on).map.first(9)]
+    Hash[showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => DateTime.now.utc }).group_by(&:starts_on).map.first(9)]
   end
 
   def showings_grouped_by_organization_and_day(organization, search_params = nil)
     showing_ids = search_showing_ids(search_params)
 
-    Hash[showings.where(:id => showing_ids, :organization_id => organization.id).where('starts_at >= :date OR ends_at >= :date', { :date => localized_date }).group_by(&:starts_on).map.first(9)]
+    Hash[showings.where(:id => showing_ids, :organization_id => organization.id).where('starts_at >= :date OR ends_at >= :date', { :date => DateTime.now.utc }).group_by(&:starts_on).map.first(9)]
   end
 
   def tags
@@ -87,10 +87,6 @@ class Affiche < ActiveRecord::Base
   alias_attribute :to_s, :title
 
   private
-    def localized_date
-      Time.local(Time.now.year, Time.now.month, Time.now.day)
-    end
-
     def affiche_schedule_attributes_blank?(attributes)
       %w[ends_at ends_on starts_at starts_on].each do |attribute|
         return false unless attributes[attribute].blank?
