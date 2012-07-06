@@ -1,5 +1,5 @@
 HasSearcher.create_searcher :total do
-  models :affiche, :eating, :funny
+  models :affiche, :organization
   keywords :q
 
   scope do
