@@ -3,7 +3,9 @@ class Entertainment < ActiveRecord::Base
 
   belongs_to :organization
 
-  delegate :title, :images, :address, :phone, :schedules, :halls, :site?, :site, :email?, :email, :description, :affiches, :to => :organization
+
+  delegate :title, :images, :address, :phone, :schedules, :halls, :site?, :site, :email?, :email, :description, :affiches,
+           :latitude, :longitude, :to => :organization
 
   def self.or_facets
     %w[category]
@@ -21,6 +23,7 @@ class Entertainment < ActiveRecord::Base
     facets.each do |facet|
       text facet
       string(facet_field(facet), :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
+      latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     end
   end
 end

@@ -4,7 +4,8 @@ class Meal < ActiveRecord::Base
   belongs_to :organization
 
   delegate :title, :images, :address, :phone, :schedules, :halls,
-           :site?, :site, :email?, :email, :description, :description?, :affiches, :to => :organization
+           :site?, :site, :email?, :email, :description, :description?, :affiches,
+           :latitude, :longitude, :to => :organization
 
   def self.facets
     %w[category payment cuisine feature offer]
@@ -22,6 +23,7 @@ class Meal < ActiveRecord::Base
     facets.each do |facet|
       text facet
       string(facet_field(facet), :multiple => true) { self.send(facet).to_s.split(',').map(&:squish) }
+      latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     end
   end
 end

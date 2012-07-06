@@ -33,6 +33,8 @@ class OrganizationsController < ApplicationController
         facet(resource_class.facet_field(facet), :zeros => true, :sort => :index)
       end
 
+      with(:location).in_radius(params[:search][:latitude], params[:search][:longitude], params[:search][:radius]) if params[:search] && params[:search][:latitude] && params[:search][:longitude] && params[:search][:radius]
+
       paginate(paginate_options)
 
       adjust_solr_params {|params| params[:sort] = 'id desc'}
