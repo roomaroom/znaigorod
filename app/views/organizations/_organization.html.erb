@@ -118,7 +118,7 @@
             <% end %>
           </tbody>
         </table>
-        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.respond_to?(:description?) && resource.description? %>
+        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.description? %>
       </div>
       <div class="tags">
         <ul>

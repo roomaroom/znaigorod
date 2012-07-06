@@ -3,7 +3,8 @@ class Meal < ActiveRecord::Base
 
   belongs_to :organization
 
-  delegate :title, :images, :address, :phone, :schedules, :halls, :site?, :site, :email?, :email, :description, :affiches, :to => :organization
+  delegate :title, :images, :address, :phone, :schedules, :halls,
+           :site?, :site, :email?, :email, :description, :description?, :affiches, :to => :organization
 
   def self.facets
     %w[category payment cuisine feature offer]
