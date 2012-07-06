@@ -4,8 +4,8 @@ class Entertainment < ActiveRecord::Base
   belongs_to :organization
 
   delegate :title, :images, :address, :phone, :schedules, :halls,
-           :latitude, :longitude, :site?, :site, :email?, :email,
-           :description, :description?, :affiches, :to => :organization
+           :site?, :site, :email?, :email, :description, :description?, :affiches,
+           :latitude, :longitude, :nearest_affiches, :to => :organization
 
   def self.or_facets
     %w[category]

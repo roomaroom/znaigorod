@@ -5,7 +5,7 @@ class Meal < ActiveRecord::Base
 
   delegate :title, :images, :address, :phone, :schedules, :halls,
            :site?, :site, :email?, :email, :description, :description?, :affiches,
-           :latitude, :longitude, :to => :organization
+           :latitude, :longitude, :nearest_affiches, :to => :organization
 
   def self.facets
     %w[category payment cuisine feature offer]
