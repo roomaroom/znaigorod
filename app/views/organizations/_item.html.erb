@@ -1,11 +1,11 @@
 <div class="item">
   <h3>
     <%= link_to item.title.gilensize.html_safe, item, :class => 'solid_light_blue' %>
-    <% item.categories.split(',').map(&:squish).each do |c| %>
+    <% item.category.split(',').map(&:squish).each do |c| %>
       <span class='category'><%= link_to c, send("#{item.class.model_name.underscore.pluralize}_path", 'search[categories][]' => c) %></span>
     <% end %>
   </h3>
-  <%= render :partial => "#{item.class.model_name.pluralize.underscore}/index_poster", :locals => { :item => item } %>
+  <%= render :partial => 'organizations/index_poster', :locals => { :item => item } %>
   <div class="additional">
     <div class="seances_wrapper">
       <ul>

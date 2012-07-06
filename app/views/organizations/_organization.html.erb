@@ -17,10 +17,10 @@
       <div class="info">
         <table>
           <tbody>
-            <% if resource.categories? %>
+            <% if resource.category.present? %>
               <tr>
                 <td>Категория:</td>
-                <td><%= resource.categories %></td>
+                <td><%= resource.category %></td>
               </tr>
             <% end %>
             <% if resource.address %>
@@ -118,30 +118,20 @@
             <% end %>
           </tbody>
         </table>
-<<<<<<< HEAD
-        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" unless resource.description.blank? %>
+        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.description? %>
       </div>
       <div class="tags">
         <ul>
-        <% resource.categories.split(',').map(&:squish).each do |c| %>
+        <% resource.category.split(',').map(&:squish).each do |c| %>
           <li><%= link_to c, collection_path('search[categories][]' => c) %></li>
         <% end %>
         </ul>
-=======
-        <div class="story">
-          <%= raw resource.description %>
-        </div>
->>>>>>> сделали поиск, контроллеры и виды
       </div>
     </div>
     <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
     <% if resource.affiches.any? %>
       <div class="list">
-<<<<<<< HEAD
-        <%= render :partial => 'commons/list', :locals => { :collection => resource.affiches, :remote => true } %>
-=======
         <%= render :partial => 'commons/list', :locals => { :collection => resource.nearest_affiches, :remote => true } %>
->>>>>>> сделали поиск, контроллеры и виды
       </div>
     <% end %>
     <%= render :partial => 'commons/comments_block' %>

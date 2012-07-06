@@ -9,9 +9,9 @@ Znaigorod::Application.routes.draw do
       #resources type.name.underscore.pluralize, :except => :show
     #end
 
-    #Affiche.descendants.each do |type|
-      #resources type.name.underscore.pluralize, :except => :show
-    #end
+    Affiche.descendants.each do |type|
+      resources type.name.underscore.pluralize, :except => :show
+    end
 
     resources :affiches
     resources :organizations do
