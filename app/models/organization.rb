@@ -31,6 +31,8 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
   accepts_nested_attributes_for :schedules, :allow_destroy => true, :reject_if => :all_blank
 
+  delegate :latitude, :longitude, :to => :address
+
   scope :ordered_by_updated_at, order('updated_at DESC')
   scope :parental, where(:organization_id => nil)
 
@@ -46,6 +48,7 @@ class Organization < ActiveRecord::Base
     text :title, :boost => 2
     text :payment
     text :offer
+    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
   end
 
   def to_s

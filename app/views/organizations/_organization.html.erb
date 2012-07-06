@@ -13,7 +13,7 @@
   <div class="main_info">
     <h1><%= resource.title.gilensize.html_safe %></h1>
     <div class="description">
-      <%= render :partial => "#{resource.class.model_name.pluralize.underscore}/show_poster", :locals => { :resource => resource } %>
+      <%= render :partial => "organizations/show_poster", :locals => { :resource => resource } %>
       <div class="info">
         <table>
           <tbody>
