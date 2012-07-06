@@ -24,7 +24,7 @@ class AffichesController < ApplicationController
     end
 
     def search_results
-      showing_ids = HasSearcher.searcher(:showing, params[:search]).limit(10_000).result_ids
+      showing_ids = HasSearcher.searcher(:showing, params[:search]).limit(1_000).result_ids
 
       Affiche.search {
         # NOTE: use [0] if showing_ids is empty
