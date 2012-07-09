@@ -8,12 +8,12 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :day
   validates_presence_of :from, :to, :unless => :holiday?
 
-  default_scope order(:day)
-
   def self.days_for_select(format = :full)
     format == :full ? format = 'date.standalone_day_names' : format = 'date.common_abbr_day_names'
     array = I18n.t(format).dup
-    array.each_with_index.map { |e, i| [e, i] }
+    sunday = array.shift
+    array.push(sunday)
+    array.each_with_index.map{ |e, i| i+1 == 7 ? [e, 0] : [e, i+1] }
   end
 
   def human_day
