@@ -52,6 +52,10 @@ HasSearcher.create_searcher :showing do
     with(:starts_at).greater_than DateTime.now
   end
 
+  scope :ordered do
+    order_by(:starts_at)
+  end
+
   scope :today do
     with(:starts_at).less_than DateTime.now.end_of_day
   end

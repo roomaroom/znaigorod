@@ -24,17 +24,14 @@ class AffichesController < ApplicationController
     end
 
     def search_results
-      showing_ids = HasSearcher.searcher(:showing, params[:search]).limit(1_000).result_ids
+      search_params = params[:search] || {:starts_on_greater_than => Date.today, :starts_on_less_than => (Date.today + 6.days).end_of_day}
 
-      Affiche.search {
-        # NOTE: use [0] if showing_ids is empty
-        with(:showing_ids, showing_ids + [0])
-        paginate(paginate_options)
+      @affiches_hash = HasSearcher.searcher(:showing, search_params).limit(1_000).ordered.results.group_by(&:affiche)
 
-        adjust_solr_params do |params|
-          params[:sort] = 'recip(abs(ms(NOW,first_showing_time_dt)),3.16e-11,1,1) desc'
-        end
+      @affiches_hash.each do |affiche, showings|
+        @affiches_hash[affiche] = showings.group_by(&:starts_on)
+      end
 
-      }.results
+      @affiches_hash.keys[((page - 1) * per_page)...(page * per_page)]
     end
 end

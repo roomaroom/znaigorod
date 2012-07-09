@@ -46,14 +46,13 @@ class Affiche < ActiveRecord::Base
 
   def showings_grouped_by_day(search_params = nil)
     showing_ids = search_showing_ids(search_params)
-
-    Hash[showings.where(:id => showing_ids).where('starts_at >= :date OR ends_at >= :date', { :date => DateTime.now.utc }).group_by(&:starts_on).map.first(9)]
+    Hash[showings.where(:id => showing_ids).group_by(&:starts_on).map.first(9)]
   end
 
   def showings_grouped_by_organization_and_day(organization, search_params = nil)
     showing_ids = search_showing_ids(search_params)
 
-    Hash[showings.where(:id => showing_ids, :organization_id => organization.id).where('starts_at >= :date OR ends_at >= :date', { :date => DateTime.now.utc }).group_by(&:starts_on).map.first(9)]
+    Hash[showings.where(:id => showing_ids, :organization_id => organization.id).group_by(&:starts_on).map.first(9)]
   end
 
   def tags

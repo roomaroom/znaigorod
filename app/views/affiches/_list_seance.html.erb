@@ -1,12 +1,6 @@
-<% if action_name == 'show' && controller_name != 'affiches' %>
-  <% range = affiche.showings_grouped_by_organization_and_day(resource, params[:search]) %>
-<% else %>
-  <% range = affiche.showings_grouped_by_day(params[:search]) %>
-<% end %>
-
 <div class="seance_tabs">
   <ul>
-    <% range.keys.each_with_index do |day, index| %>
+    <% range.keys[0..9].each_with_index do |day, index| %>
       <li class='fake <%= 'active' if index==0 %>' id='target_t<%= "#{affiche.id}#{index}" %>'>
         <a href="#"><span class='day'><%= l day, :format => '%e %b' %></span><span class="dow"><%= l(day, :format => '%A').mb_chars.downcase %></span></a>
       </li>

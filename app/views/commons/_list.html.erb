@@ -10,4 +10,8 @@
   <div class="empty">Ничего не найдено ;(</div>
 <% end %>
 
+<% if controller_name == 'affiches' %>
+  <% collection = Kaminari.paginate_array(collection, :total_count => @affiches_hash.keys.size).page(page).per(per_page) %>
+<% end %>
+
 <%= paginate collection, :remote => remote if action_name == 'index' %>

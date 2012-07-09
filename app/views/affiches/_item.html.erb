@@ -7,7 +7,11 @@
     <%= link_to image_tag_for(item.poster_url, 137, 185), affiche_path(item) %>
   </div>
   <div class="additional">
-    <%= render :partial => 'affiches/seance', :locals => { :affiche => item } %>
+    <% if controller_name == 'affiches' && action_name == 'index' %>
+      <%= render :partial => 'affiches/list_seance', :locals => { :range => @affiches_hash[item], :affiche => item } %>
+    <% else %>
+      <%= render :partial => 'affiches/seance', :locals => { :affiche => item } %>
+    <% end %>
   </div>
 </div>
 
