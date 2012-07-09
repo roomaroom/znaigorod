@@ -5,7 +5,7 @@ $.fn.add_autosuggest = () ->
     source: (request, response) ->
       $.ajax
         url: '/manage/organizations.json'
-        data: {q: request.term}
+        data: {utf8: 'true', q: request.term}
         success: (data) ->
           response( $.map( data, ( item ) ->
             return {
