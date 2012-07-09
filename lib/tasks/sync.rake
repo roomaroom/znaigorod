@@ -158,8 +158,8 @@ namespace :sync do
         hall = table.css('thead tr td:first h1').text
         table.css('tbody tr .content').each do |seance|
           title = seance.css('h1 a').text
-          three_d = title.match(/в (3D)/).try(:[], 1)
-          title = title.gsub(/ в 3D/,'').squish
+          three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
+          title = title.gsub(/((?:в 3D)|3D)/,'').squish
           movies[title] ||= []
           seance.parent.parent.parent.parent.css('td:nth-child(2) > div > div').each do |i|
             if i['class'] == 'show-time'
