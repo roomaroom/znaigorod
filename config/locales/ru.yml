@@ -1,24 +1,25 @@
 ru:
-  add_hall: Добавить зал
-  add_event: "&plus;&nbsp;событие"
   #add_event: Предложить событие
-  add_organization: "&plus;&nbsp;заведение"
   #add_organization: Добавить заведение
-  add_showing: Добавить сеанс
+  add_event: "&plus;&nbsp;событие"
+  add_hall: Добавить зал
   add_image: Добавить изображение
+  add_organization: "&plus;&nbsp;заведение"
+  add_showing: Добавить сеанс
   affiche: Афиша
-  meal: Заведения питания
-  entertainment: Развлечения
-  funny: Заведения
-  eating: Заведения
   clear_filters: Очистить фильтры
+  eating: Заведения
+  entertainment: Развлечения
   find: Найти
+  funny: Заведения
+  meal: Заведения питания
+  organization: Заведения
   organizations: Заведения
   our_social_link: Контакты
   remove_affiche_schedule: Удалить расписание
   remove_this_hall: Удалить этот зал
-  remove_this_showing: Удалить этот сеанс
   remove_this_image: Удалить это изображение
+  remove_this_showing: Удалить этот сеанс
   sign_in: "Вход в&nbsp;кабинет"
   site_title: ЗнайГород
   site_title: ЗнайГород

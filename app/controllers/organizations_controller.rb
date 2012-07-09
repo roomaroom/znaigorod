@@ -25,13 +25,13 @@ class OrganizationsController < ApplicationController
             with(resource_class.facet_field(facet), value)
           end
         end
-      end
+      end unless resource_class == Organization
 
       with(:capacity).greater_than(capacity) if capacity?
 
       resource_class.facets.each do |facet|
         facet(resource_class.facet_field(facet), :zeros => true, :sort => :index)
-      end
+      end unless resource_class == Organization
 
       with(:location).in_radius(params[:search][:latitude], params[:search][:longitude], params[:search][:radius]) if params[:search] && params[:search][:latitude] && params[:search][:longitude] && params[:search][:radius]
 

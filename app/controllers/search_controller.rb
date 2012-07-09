@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     end
 
     def collection
-      @collection ||= search.results
+      @collection ||= search.paginate(paginate_options).results
     end
 
     def total
