@@ -5,6 +5,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
   belongs_to :organization, :optional => true
 
+  respond_to :html, :json
+
   private
 
     alias_method :old_collection, :collection
