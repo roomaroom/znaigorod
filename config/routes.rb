@@ -1,6 +1,6 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
-    #post 'red_cloth' => 'red_cloth#show'
+    post 'red_cloth' => 'red_cloth#show'
 
     #resources :affiches, :only => [:index, :new]
     #resources :organizations, :only => [:index, :new]
