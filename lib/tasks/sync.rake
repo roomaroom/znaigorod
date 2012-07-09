@@ -65,7 +65,7 @@ class MovieSyncer
     end
 
     def find_similar_cinematheatre_by(cinema_title)
-      similar_cinematheatre = Funny.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:categories)}}.results
+      similar_cinematheatre = Organization.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:category)}}.results
       if similar_cinematheatre.one?
         puts "Найден похожий кинотеатр '#{cinema_title}' -> '#{similar_cinematheatre.first.title}'"
       else
