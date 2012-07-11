@@ -71,12 +71,6 @@ class Organization < ActiveRecord::Base
     meal_cuisine
   end
 
-  %w[category feature offer payment].each do |method|
-    define_method method do
-      [send("entertainment_#{method}"), send("meal_#{method}")].compact.join(', ')
-    end
-  end
-
   %w[cuisine feature offer payment].each do |method|
     define_method "#{method}?" do
       send(method).present?
@@ -96,7 +90,6 @@ class Organization < ActiveRecord::Base
     r += 1 if description?
     r += 1 if email?
     r += 1 if phone?
-
     r / 100.0
   end
 end
