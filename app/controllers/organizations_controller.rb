@@ -77,7 +77,9 @@ class OrganizationsController < ApplicationController
       parameters[:facets][facet].uniq!
     parameters[:facets][facet].delete(value)
     end
-    enddef collection
+  end
+
+  def collection
     @search ||= resource_class.search do
       resource_class.facets.each do |facet|
         if resource_class.or_facets.include?(facet)

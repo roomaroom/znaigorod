@@ -60,7 +60,8 @@ class Organization < ActiveRecord::Base
   end
 
   def nearest_affiches
-    affiches.select{ |a| a.showings.where('starts_at > ?', DateTime.now.utc).any? }
+    Affiche.where :id => Showing.where('starts_at > :now AND organization_id = :organization_id',
+                  { :now => DateTime.now.utc, :organization_id => id }).group(:affiche_id).pluck(:affiche_id)
   end
 
   def cuisine
