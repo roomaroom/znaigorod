@@ -33,7 +33,6 @@
         </thead>
         <tbody>
           <% showings.each do |showing| %>
-            <% next if showing.starts_at < DateTime.now %>
             <tr>
               <td><%= l(showing.starts_at, :format => '%H:%M') %></td>
               <td>
