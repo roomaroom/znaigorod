@@ -11,6 +11,8 @@ class OrganizationsController < ApplicationController
       render :partial => 'commons/list', :locals => { :collection => collection, :remote => true }, :layout => false and return
     end
 
+    return if resource_class == Organization
+
     index!
   end
 
