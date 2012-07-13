@@ -29,7 +29,7 @@ class Organization < ActiveRecord::Base
   delegate :category, :feature, :offer, :payment,
            :to => :entertainment, :allow_nil => true, :prefix => true
 
-  delegate :latitude, :longitude, :to => :address
+  delegate :latitude, :longitude, :to => :address, :allow_nil => true
 
   scope :ordered_by_updated_at, order('updated_at DESC')
   scope :parental,              where(:organization_id => nil)
@@ -64,6 +64,12 @@ class Organization < ActiveRecord::Base
                   { :now => DateTime.now.utc, :organization_id => id }).group(:affiche_id).pluck(:affiche_id)
   end
 
+  def last_image
+    images.last
+  end
+  delegate :created_at, :to => :last_image, :prefix => true, :allow_nil => true
+  alias_method :last_image_time, :last_image_created_at
+
   def cuisine
     meal_cuisine
   end
@@ -82,6 +88,10 @@ class Organization < ActiveRecord::Base
 
   def additional_attributes
     [meal, entertainment].compact
+  end
+
+  def index_additional_attributes
+    additional_attributes.map(&:index)
   end
 end
 
