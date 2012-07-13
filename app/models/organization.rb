@@ -110,5 +110,6 @@ end
 #  phone           :text
 #  vfs_path        :string(255)
 #  organization_id :integer
+#  logotype_url    :text
 #
 
