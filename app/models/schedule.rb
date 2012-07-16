@@ -8,6 +8,8 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :day
   validates_presence_of :from, :to, :unless => :holiday?
 
+  default_scope order('id')
+
   def self.days_for_select(format = :full)
     format == :full ? format = 'date.standalone_day_names' : format = 'date.common_abbr_day_names'
     array = I18n.t(format).dup
