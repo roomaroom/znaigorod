@@ -19,7 +19,7 @@ class Affiche < ActiveRecord::Base
 
   scope :latest,        ->(count) { limit(count) }
   scope :with_images,   -> { where('image_url IS NOT NULL') }
-  scope :with_showings, -> { includes(:showings).where('showings.starts_at > ?', Date.today) }
+  scope :with_showings, -> { includes(:showings).where('showings.starts_at > :date OR showings.ends_at > :date', { :date => Date.today }) }
 
   alias_attribute :to_s, :title
 
