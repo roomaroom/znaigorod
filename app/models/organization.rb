@@ -1,7 +1,7 @@
 class Organization < ActiveRecord::Base
   attr_accessible :address_attributes, :description, :email, :halls_attributes,
                   :images_attributes, :organization_id, :phone, :schedules_attributes,
-                  :site, :title, :vfs_path, :attachments_attributes
+                  :site, :title, :vfs_path, :attachments_attributes, :logotype_url
 
   belongs_to :organization
 
@@ -93,6 +93,10 @@ class Organization < ActiveRecord::Base
     r += 1 if email?
     r += 1 if phone?
     r / 100.0
+  end
+
+  def self.grouped_collection_for_select
+    organizations = Organization.where(:organization_id => nil).order(:title)
   end
 end
 
