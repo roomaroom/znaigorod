@@ -34,6 +34,8 @@ class Organization < ActiveRecord::Base
   scope :ordered_by_updated_at, order('updated_at DESC')
   scope :parental,              where(:organization_id => nil)
 
+  after_save :index_additional_attributes
+
   alias_attribute :to_s, :title
 
   searchable do
@@ -49,6 +51,7 @@ class Organization < ActiveRecord::Base
     text :payment
     text :offer
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+    float :rating
   end
 
   def term
@@ -63,12 +66,6 @@ class Organization < ActiveRecord::Base
     Affiche.where :id => Showing.where('starts_at > :now AND organization_id = :organization_id',
                   { :now => DateTime.now.utc, :organization_id => id }).group(:affiche_id).pluck(:affiche_id)
   end
-
-  def last_image
-    images.last
-  end
-  delegate :created_at, :to => :last_image, :prefix => true, :allow_nil => true
-  alias_method :last_image_time, :last_image_created_at
 
   def cuisine
     meal_cuisine
@@ -92,6 +89,15 @@ class Organization < ActiveRecord::Base
 
   def index_additional_attributes
     additional_attributes.map(&:index)
+  end
+
+  def rating
+    r = nearest_affiches.count + images.count
+    r += 1 if description?
+    r += 1 if email?
+    r += 1 if phone?
+
+    r / 100.0
   end
 end
 

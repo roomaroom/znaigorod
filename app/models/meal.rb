@@ -19,7 +19,7 @@ class Meal < ActiveRecord::Base
     "#{model_name.underscore}_#{facet}"
   end
 
-  delegate :last_image_time, :to => :organization, :prefix => true, :allow_nil => true
+  delegate :rating, :to => :organization, :prefix => true
   searchable do
     facets.each do |facet|
       text facet
@@ -27,7 +27,7 @@ class Meal < ActiveRecord::Base
       latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     end
 
-    time :organization_last_image_time, :trie => true, :stored => true
+    float :organization_rating, :stored => true
   end
 end
 

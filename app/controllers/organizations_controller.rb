@@ -39,7 +39,7 @@ class OrganizationsController < ApplicationController
 
       paginate(paginate_options)
 
-      adjust_solr_params { |params| params[:q] = "{!boost b=recip(ms(NOW/HOUR,organization_last_image_time_dts),3.16e-11,1,1)}*:*" }
+      adjust_solr_params { |params| params[:q] = "{!boost b=organization_rating_fs}*:*" }
     end
 
     @search.results
