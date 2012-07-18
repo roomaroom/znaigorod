@@ -45,17 +45,13 @@ class Organization < ActiveRecord::Base
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string(:kind) { 'organization' }
     text :address
+    text :category
+    text :cuisine
     text :description, :boost => 0.5
     text :email, :boost => 0.5
-    text :entertainment_category
-    text :entertainment_feature
-    text :entertainment_offer
-    text :entertainment_payment
-    text :meal_category
-    text :meal_cuisine
-    text :meal_feature
-    text :meal_offer
-    text :meal_payment
+    text :feature
+    text :offer
+    text :payment
     text :site, :boost => 0.5
     text :term
     text :title, :boost => 2
@@ -76,6 +72,12 @@ class Organization < ActiveRecord::Base
 
   def cuisine
     meal_cuisine
+  end
+
+  %w[category feature offer payment].each do |method|
+    define_method method do
+      [send("entertainment_#{method}"), send("meal_#{method}")].compact.join(', ')
+    end
   end
 
   %w[cuisine feature offer payment].each do |method|
