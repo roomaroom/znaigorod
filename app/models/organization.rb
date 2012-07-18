@@ -41,19 +41,24 @@ class Organization < ActiveRecord::Base
   alias_attribute :to_s, :title
 
   searchable do
+    float :rating
+    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string(:kind) { 'organization' }
     text :address
-    text :category
     text :description, :boost => 0.5
     text :email, :boost => 0.5
-    text :feature
+    text :entertainment_category
+    text :entertainment_feature
+    text :entertainment_offer
+    text :entertainment_payment
+    text :meal_category
+    text :meal_cuisine
+    text :meal_feature
+    text :meal_offer
+    text :meal_payment
     text :site, :boost => 0.5
     text :term
     text :title, :boost => 2
-    text :payment
-    text :offer
-    latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
-    float :rating
   end
 
   def term
