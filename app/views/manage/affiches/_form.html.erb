@@ -50,7 +50,9 @@
     <%= f.link_to_add t('add_showing'), :showings %>
   </div>
 <% end %>
+
 <% if f.object.new_record? || f.object.affiche_schedule || f.object.showings.empty? %>
+  <% f.object.build_affiche_schedule unless f.object.affiche_schedule %>
   <div class="schedule_fields">
     <h3>Расписание:</h3>
     <%= link_to 'Показать/Скрыть расписание', '#', :onClick => '$(this).next().slideToggle(); return false;' %>
