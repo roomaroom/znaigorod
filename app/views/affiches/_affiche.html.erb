@@ -38,17 +38,16 @@
       </div>
     </div>
 
-    <% if resource.images.any? %>
-      <div class="images">
+    <div class="images">
+      <% if resource.images.any? %>
         <h4>Фотографии</h4>
-        <div class="gallery_container">
+        <div class="gallery_container" style='margin: 20px auto;'>
           <% resource.images.each do |image| %>
-            <%= image_tag_for image.url, 270, 168 %>
-            <span class="description"><%= image.description %></span>
+            <%= image_tag image.url, :alt => image.description, :title => resource.title %>
           <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <% if resource.attachments.any? %>
       <div class="attachments">

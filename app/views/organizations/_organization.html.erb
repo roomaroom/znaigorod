@@ -161,7 +161,7 @@
       <% if resource.images.any? %>
         <h4>Фотографии</h4>
         <div class="gallery_container" style='margin: 20px auto;'>
-          <% (resource.images - [resource.images.first]).each do |image| %>
+          <% resource.images.each do |image| %>
             <%= image_tag image.url, :alt => image.description, :title => resource.title %>
           <% end %>
         </div>

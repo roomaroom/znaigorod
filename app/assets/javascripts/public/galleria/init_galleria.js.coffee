@@ -2,7 +2,7 @@
   $('.gallery_container').galleria
     autoplay: 7000
     easing: 'galleriaIn'
-    imageCrop: 'height'
+    imageCrop: 'landscape'
     preload: 3
     showCounter: false
     showFullscreen: true
