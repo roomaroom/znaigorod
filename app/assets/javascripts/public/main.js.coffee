@@ -4,6 +4,7 @@ $ ->
   init_seance_tabs()          if $('.seance_tabs').length
   init_tablesorter()          if $('.sortable').length
   init_remote_pagination()    if $('.pagination').length
+  init_galleria()             if $('.gallery_container').length
 
   if ('.filter').length
     init_filter_collapser()

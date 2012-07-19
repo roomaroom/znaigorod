@@ -16,5 +16,6 @@
  * = require public/twitter
  * = require public/remote_pagination
  * = require public/history
+ * = require public/galleria
  * = require public/main
  */

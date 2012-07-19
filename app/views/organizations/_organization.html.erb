@@ -15,6 +15,26 @@
     <div class="description">
       <%= render :partial => "organizations/show_poster", :locals => { :resource => resource } %>
       <div class="info">
+        <% if resource.organizations.any? %>
+          <div class="organizations">
+            <h2>Дочерние организации</h2>
+            <ul>
+              <% resource.organizations.each do |organization| %>
+                <li>
+                  <%= link_to organization.title, organization, :class => 'solid_light_blue' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <% if resource.organization.present? %>
+          <div class="organization">
+            <h2>Родительская организация</h2>
+            <%= link_to resource.organization, resource.organization, :class => 'solid_light_blue' %>
+          </div>
+        <% end %>
+
         <table>
           <tbody>
             <% if resource.category.present? %>
@@ -118,7 +138,8 @@
             <% end %>
           </tbody>
         </table>
-        <%= content_tag :div, resource.description.gilensize.html_safe, :class => "story" if resource.description? %>
+
+        <%= content_tag :div, raw(RedCloth.new(resource.description).to_html), :class => "story" if resource.description? %>
       </div>
       <div class="tags">
         <ul>
@@ -129,12 +150,19 @@
       </div>
     </div>
 
+    <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
+    <% if resource.affiches.any? %>
+      <div class="list">
+        <%= render :partial => 'commons/list', :locals => { :collection => resource.nearest_affiches, :remote => true } %>
+      </div>
+    <% end %>
+
     <div class="images">
       <% if resource.images.any? %>
         <h4>Фотографии</h4>
         <div class="gallery_container" style='margin: 20px auto;'>
           <% (resource.images - [resource.images.first]).each do |image| %>
-            <%= image_tag_for image.url, 270, 168 %>
+            <%= image_tag image.url, :alt => image.description, :title => resource.title %>
           <% end %>
         </div>
       <% end %>
@@ -150,13 +178,6 @@
         </ul>
       <% end %>
     </div>
-
-    <div class="map_container" style='width:640px;height:480px;margin: 20px auto;' longitude=<%= resource.address.longitude %> latitude=<%= resource.address.latitude %>></div>
-    <% if resource.affiches.any? %>
-      <div class="list">
-        <%= render :partial => 'commons/list', :locals => { :collection => resource.nearest_affiches, :remote => true } %>
-      </div>
-    <% end %>
 
     <%= render :partial => 'commons/comments_block' %>
   </div>

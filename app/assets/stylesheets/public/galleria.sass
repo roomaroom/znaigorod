@@ -1,0 +1,95 @@
+.gallery_container
+  +clearfix
+  background: #E9E9EA
+  border: 5px solid #1b1007
+  margin: 0 auto
+  padding: 20px 10px
+  width: 850px
+
+  .galleria-container
+    height: auto !important
+    position: relative
+
+    .galleria-stage
+      height: 480px
+
+      .galleria-images
+        .galleria-image
+          padding: 5px
+
+          .galleria-layer
+
+          img
+            +single-box-shadow
+            display: block
+            top: 5px !important
+
+      .galleria-loader
+        display: none
+
+      .galleria-counter
+        display: none
+        .galleria-current
+        .galleria-total
+
+      .galleria-image-nav
+        height: 16px
+        position: absolute
+        top: 50%
+        width: 850px
+        z-index: 3
+
+        .galleria-image-nav-right
+          background: image_url('galleria_nav.png') no-repeat right top
+          display: block
+          float: right
+          height: 16px
+          width: 10px
+
+          &:hover
+            background-position: right bottom
+            cursor: pointer
+
+        .galleria-image-nav-left
+          background: image_url('galleria_nav.png') no-repeat left top
+          display: block
+          float: left
+          height: 16px
+          width: 10px
+
+          &:hover
+            background-position: left bottom
+            cursor: pointer
+
+    .galleria-thumbnails-container
+      display: none
+      .galleria-thumb-nav-left
+      .galleria-thumbnails-list
+        .galleria-thumbnails
+
+      .galleria-thumb-nav-right
+
+    .galleria-info
+      +clearfix
+      margin: 30px 0 0 0
+      text-align: center
+
+      .galleria-info-link
+        display: none
+
+      .galleria-info-close
+        display: none
+
+      .galleria-info-text
+        .galleria-info-title
+          font-weight: bold
+          margin: 0 0 7px 0
+
+        .galleria-info-description
+          font-size: 0.9em
+
+    .galleria-tooltip
+      display: none
+
+  .galleria-errors
+    display: none
