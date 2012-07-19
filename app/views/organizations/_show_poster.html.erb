@@ -1,6 +1,6 @@
 <div class="poster">
-  <% if resource.images.any? %>
-    <%= image_tag_for(resource.images.first.url, 290, 390) %>
+  <% if resource.logotype_url.present? %>
+    <%= image_tag_for(resource.logotype_url, 290, 390) %>
   <% else %>
     <%= image_tag "stub.jpg", :width => '274', :height => '200', :alt => resource.title, :title => resource.title %>
   <% end %>
