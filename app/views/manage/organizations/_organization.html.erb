@@ -174,8 +174,8 @@
     <span class="value">
       <ul>
         <% resource.showings.group_by(&:affiche).each do |affiche, showings| %>
-          <li <%= "class=gone" if DateTime.now >= showings.last.starts_at %>>
-            <%= link_to affiche.title, [:manage, affiche] %> (<%= l showings.first.starts_at, :format => :long %> &mdash; <%= l showings.last.starts_at, :format => :long %>)
+          <li <%= "class=gone" if DateTime.now >= showings.last.starts_at && (showings.last.ends_at.present? ? DateTime.now >= showings.last.ends_at : true) %>>
+            <%= link_to affiche.title, [:manage, affiche] %> (<%= l showings.first.starts_at, :format => :long %> &mdash; <%= l showings.last.ends_at, :format => :long %>)
           </li>
         <% end %>
       </ul>

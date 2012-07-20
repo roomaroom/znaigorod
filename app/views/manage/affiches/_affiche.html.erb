@@ -172,7 +172,7 @@
 
           <ul>
             <% showings.reverse.each do |showing| %>
-              <li <%= "class=gone" if DateTime.now >= showing.starts_at %>>
+              <li <%= "class=gone" if DateTime.now >= showing.starts_at && (showing.ends_at.present? ? DateTime.now >= showing.ends_at : true) %>>
                 <div class='time'><%= l showing.starts_at, :format => "%H:%M" %></div>
                 <div class="place">
                   <% if showing.organization_id.present? %>
