@@ -40,6 +40,8 @@ class Organization < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
+  paginates_per Settings['pagination.per_page'] || 10
+
   searchable do
     float :rating
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }

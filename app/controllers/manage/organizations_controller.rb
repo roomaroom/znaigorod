@@ -13,7 +13,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
     def collection
       if params[:utf8]
-        HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page]).results
+        HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => per_page).results
       else
         old_collection
       end

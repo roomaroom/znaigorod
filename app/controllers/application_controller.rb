@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   layout 'public'
 
-
   private
     def page
       params[:page].blank? ? 1 : params[:page].to_i
