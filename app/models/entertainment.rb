@@ -9,6 +9,9 @@ class Entertainment < ActiveRecord::Base
 
   validates_presence_of :category, :organization_id
 
+  delegate :touch, :to => :organization, :prefix => true
+  after_save :organization_touch
+
   def self.or_facets
     %w[category]
   end

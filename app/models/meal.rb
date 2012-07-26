@@ -9,6 +9,9 @@ class Meal < ActiveRecord::Base
 
   validates_presence_of :category, :organization_id
 
+  delegate :touch, :to => :organization, :prefix => true
+  after_save :organization_touch
+
   def self.facets
     %w[category payment cuisine feature offer]
   end
