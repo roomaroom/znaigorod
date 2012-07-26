@@ -15,7 +15,7 @@ class Manage::AffichesController < Manage::ApplicationController
         keywords(params[:q])
         # NOTE: use [0] if showing_ids is empty
         with(:showing_ids, showing_ids + [0])
-        paginate(paginate_options.merge(:per_page => 30))
+        paginate(paginate_options.merge(:per_page => Settings['pagination.per_page'] || 10))
 
         adjust_solr_params do |params|
           params[:sort] = 'recip(abs(ms(NOW,first_showing_time_dt)),3.16e-11,1,1) desc'
@@ -27,7 +27,7 @@ class Manage::AffichesController < Manage::ApplicationController
     def include_gone
       @search ||= Sunspot.search(Affiche) do
         keywords(params[:q])
-        paginate(:page => params[:page], :per_page => 20)
+        paginate(:page => params[:page], :per_page => Settings['pagination.per_page'] || 10)
       end
 
       @search.results
