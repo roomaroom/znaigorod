@@ -104,33 +104,37 @@ namespace :sync do
   desc "Sync movie seances from http://kinomax.tomsk.ru"
   task :kinomax => :environment do
     host = 'http://kinomax.tomsk.ru'
-    url = "#{host}/timetable/"
+    url = "#{host}/schedule/"
     movies = {}
 
-    timetable = Nokogiri::HTML(open(url).read).css('.filminfo_calendar_date > a')
+    timetable = Nokogiri::HTML(open(url).read).css('.tableTabContainer a')
     bar = ProgressBar.new(timetable.count)
     puts 'Киномакс: парсинг'
 
     timetable.each do |day_tile|
-      day_schedule_path = day_tile.attribute('href').value
-      date = day_schedule_path.match(/\d{4}-\d{2}-\d{2}/)
+      day_schedule_path = day_tile.attribute('data-url').value
+      date = day_schedule_path.match(/\d{2}.\d{2}.\d{4}/)
       day_schedule_page = Nokogiri::HTML(open(host+day_schedule_path).read)
 
-      day_schedule_page.css('.сinemainfo_schedule_film').each do |row|
-        title = row.css('a').text.squish
-        three_d = title.match(/\(?3D\)?/)
-        title = title.gsub(/\s\(?3D\)?|\(?2D\)?/,'').squish
-        movies[title] ||= []
-        seanses = row.parent.parent.css('.сinemainfo_schedule_tr2')
-        seanses.each do |seans|
-          hall  = seans.css('.сinemainfo_schedule_hall').text
-          times = seans.css('.сinemainfo_schedule_time > span')
-          times.each do |time|
-            starts_at = time.css('b').text.gsub(/(\d\d)$/,':\1')
-            prices = time.css('font').text.gsub(/\(|\)/,'').squish.split(' ')
-            price_min = prices.min.to_i
-            price_max = prices.max == prices.min ? 0 : prices.max.to_i
-            movies[title] << {:starts_at => Time.zone.parse("#{date} #{starts_at}"), :hall => [hall, three_d].join(' ').squish, :price_min => price_min, :price_max => price_max }
+      day_schedule_page.css('h2.sectionHeader2').each do |hall_html|
+        hall  = hall_html.text
+        hall_html.next_element.css('div.hallContainer').each do |film|
+          title = film.css('h3 a').text.squish
+          three_d = title.match(/\(?3D\)?/)
+          title = title.gsub(/\s\(?3D\)?|\(?2D\)?/,'').squish
+          movies[title] ||= []
+          film.css('a.timeLineItem').each do |seans|
+            next if seans['class'].match(/session-already-past/)
+            time = seans.css('u').first.text
+            seans_id = seans['href'].match(/\d+/)
+            prices = day_schedule_page.css("#sessionTooltip-#{seans_id}").first.css('table.sessionTooltipTable').first.css('td.tal')[1].text
+            price_min = prices.match(/\d+/).to_a.map(&:to_i).min
+            price_max = prices.match(/\d+/).to_a.map(&:to_i).max
+            movies[title] << {
+              :starts_at => Time.zone.parse("#{date} #{time}"),
+              :hall => [hall, three_d].join(' ').squish,
+              :price_min => price_min,
+              :price_max => price_max }
           end
         end
       end
