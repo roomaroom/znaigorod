@@ -78,7 +78,7 @@ class Organization < ActiveRecord::Base
 
   %w[category feature offer payment].each do |method|
     define_method method do
-      [send("entertainment_#{method}"), send("meal_#{method}")].compact.join(', ')
+      [send("entertainment_#{method}"), send("meal_#{method}")].delete_if(&:blank?).compact.join(', ')
     end
   end
 
