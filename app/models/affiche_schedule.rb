@@ -27,6 +27,10 @@ class AfficheSchedule < ActiveRecord::Base
     affiche.try(:showings).try(:first).try(:longitude)
   end
 
+  def get_organization_id
+    affiche.try(:showings).try(:first).try(:organization_id)
+  end
+
   private
     def create_showings
       (starts_on..ends_on).each do |date|

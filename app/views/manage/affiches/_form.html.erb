@@ -62,7 +62,7 @@
         <%= schedule.input :ends_on, :as => :date_picker %>
         <%= schedule.input :starts_at, :as => :string, :input_html => { :value => schedule.object.starts_at ? l(schedule.object.starts_at, :format => '%H:%M') : '' }, :wrapper_html => { :class => 'integer' } %>
         <%= schedule.input :ends_at, :as => :string, :input_html => { :value => schedule.object.ends_at ? l(schedule.object.ends_at, :format => '%H:%M') : '' }, :wrapper_html => { :class => 'integer' } %>
-        <%= schedule.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+        <%= schedule.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target', :value => schedule.object.get_organization_id } %>
         <%= schedule.input :latitude, :as => :hidden, :input_html => { :class => 'latitude', :value => schedule.object.get_latitude } %>
         <%= schedule.input :longitude, :as => :hidden, :input_html => { :class => 'longitude', :value => schedule.object.get_longitude } %>
         <%= schedule.input :place, :input_html => { :class => 'autosuggest' } %>
