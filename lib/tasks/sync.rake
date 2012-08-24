@@ -121,7 +121,7 @@ namespace :sync do
         hall_html.next_element.css('div.hallContainer').each do |film|
           title = film.css('h3 a').text.squish
           three_d = title.match(/\(?3D\)?/)
-          title = title.gsub(/\s\(?3D\)?|\(?2D\)?/,'').squish
+          title = title.gsub(/\s\(?3D\)?\b|\(?2D\)?/,'').squish
           movies[title] ||= []
           film.css('a.timeLineItem').each do |seans|
             next if seans['class'].match(/session-already-past/)
@@ -163,7 +163,7 @@ namespace :sync do
         table.css('tbody tr .content').each do |seance|
           title = seance.css('h1 a').text
           three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
-          title = title.gsub(/((?:в 3D)|3D)/,'').squish
+          title = title.gsub(/((?:в 3D)\b|3D\b)/,'').squish
           movies[title] ||= []
           seance.parent.parent.parent.parent.css('td:nth-child(2) > div > div').each do |i|
             if i['class'] == 'show-time'
