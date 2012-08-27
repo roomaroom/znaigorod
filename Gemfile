@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source :rubygems
 
 group :assets do
   gem 'coffee-rails'
@@ -31,8 +31,8 @@ group :default do
   gem 'simple-navigation'
   gem 'simple_form'
   gem 'sunspot_rails'
+  gem 'text-hyphen'
   gem 'timecop',                                      :require => false
-  gem 'text-hyphen',                                  :git => 'git://github.com/openteam/text-hyphen.git'
 end
 
 group :development do
