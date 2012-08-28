@@ -48,4 +48,3 @@ group :test do
   gem 'sunspot_matchers',                             :require => false
   gem 'freeze_time'
 end
-
