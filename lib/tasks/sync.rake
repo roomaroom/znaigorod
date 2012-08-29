@@ -4,6 +4,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'timecop'
 
+
 class MovieSyncer
   attr_accessor :movies, :place
 
@@ -12,18 +13,26 @@ class MovieSyncer
     self.movies = options.delete(:movies)
   end
 
+  def self.now
+    @now ||= Time.zone.now.change(:sec => 0)
+  end
+
+  def self.finded_movies
+    @finded_movies ||= []
+  end
+
   def sync
     puts "#{place}: импорт сеансов"
-    now = Time.zone.now.change(:sec => 0)
     bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
       if (movie = find_movie_by(title.squish)) && (cinematheatre = find_similar_cinematheatre_by(place.squish))
+        MovieSyncer.finded_movies << movie
         showings = Showing.where(:id => Showing.search{with(:affiche_id, movie.id); fulltext(place){fields(:place, :organization_title)}; paginate(:per_page => '100000')}.results.map(&:id))
 
         seances.each do |seance|
           seance.each do |k,v| v.squish! if v.is_a?(String) end
 
-          Timecop.freeze(now) do
+          Timecop.freeze(MovieSyncer.now) do
             if showing = showings.find_by_hall_and_starts_at_and_price_min(seance[:hall],
                                                                            seance[:starts_at],
                                                                            seance[:price_min])
@@ -43,12 +52,12 @@ class MovieSyncer
                  s.organization_id = cinematheatre.id
                 end
               end
+              showing.attributes = seance
               showing.save!
             end
           end
           bar.increment!
         end
-        showings.where('starts_at > ?', now).where('updated_at <> ?', now).destroy_all
       else
         bar.increment! seances.count
       end
@@ -120,7 +129,7 @@ namespace :sync do
     timetable.each do |day_tile|
       day_schedule_path = day_tile.attribute('data-url').value
       date = day_schedule_path.match(/\d{2}.\d{2}.\d{4}/)
-      day_schedule_page = Nokogiri::HTML(open(host+day_schedule_path).read)
+      day_schedule_page = Nokogiri::HTML(Net::HTTP.post_form(URI.parse(host + day_schedule_path), {}).body.force_encoding('cp1251'))
 
       day_schedule_page.css('h2.sectionHeader2').each do |hall_html|
         hall  = hall_html.text
@@ -187,4 +196,7 @@ namespace :sync do
   end
 end
 
-task :sync => ['sync:fakel', 'sync:kinomax', 'sync:kinomir']
+task :sync => ['sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
+  bad_showings = Showing.where(:affiche_id => MovieSyncer.finded_movies.map(&:id).uniq).where('starts_at > ?', MovieSyncer.now).where('updated_at <> ?', MovieSyncer.now)
+  bad_showings.destroy_all
+end
