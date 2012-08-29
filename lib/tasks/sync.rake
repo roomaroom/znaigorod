@@ -2,6 +2,7 @@
 
 require 'open-uri'
 require 'nokogiri'
+require 'timecop'
 
 class MovieSyncer
   attr_accessor :movies, :place
@@ -13,6 +14,7 @@ class MovieSyncer
 
   def sync
     puts "#{place}: импорт сеансов"
+    now = Time.zone.now.change(:sec => 0)
     bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
       if (movie = find_movie_by(title.squish)) && (cinematheatre = find_similar_cinematheatre_by(place.squish))
@@ -21,28 +23,32 @@ class MovieSyncer
         seances.each do |seance|
           seance.each do |k,v| v.squish! if v.is_a?(String) end
 
-          unless showing = showings.find_by_hall_and_starts_at_and_price_min(seance[:hall],
-                                                                             seance[:starts_at],
-                                                                             seance[:price_min])
-            showing = Showing.new(:hall => seance[:hall],
-                                  :starts_at => seance[:starts_at],
-                                  :price_min => seance[:price_min],
-                                  :affiche_id => movie.id).tap do |s|
+          Timecop.freeze(now) do
+            if showing = showings.find_by_hall_and_starts_at_and_price_min(seance[:hall],
+                                                                           seance[:starts_at],
+                                                                           seance[:price_min])
+              showing.update_attributes! seance
+              showing.touch
+            else
+              showing = Showing.new(:hall => seance[:hall],
+                                    :starts_at => seance[:starts_at],
+                                    :price_min => seance[:price_min],
+                                    :affiche_id => movie.id).tap do |s|
 
-              if place =~ /Факел/
-               s.place = 'Факел, центр досуга и спорта'
-               s.organization_id = 315
-              else
-               s.place = cinematheatre.title
-               s.organization_id = cinematheatre.id
+                if place =~ /Факел/
+                 s.place = 'Факел, центр досуга и спорта'
+                 s.organization_id = 315
+                else
+                 s.place = cinematheatre.title
+                 s.organization_id = cinematheatre.id
+                end
               end
+              showing.save!
             end
-            showing.save!
           end
-
-          showing.update_attributes! seance
           bar.increment!
         end
+        showings.where('starts_at > ?', now).where('updated_at <> ?', now).destroy_all
       else
         bar.increment! seances.count
       end
@@ -85,11 +91,11 @@ namespace :sync do
     bar = ProgressBar.new(day_nodes.count)
     day_nodes.each do |day_node|
       rows = day_node.css('tr').to_a
-      day, month, year = rows.shift.text.match(/(\d{2})\.(\d{2})\.(\d{4})/)[1..3]
+      date = rows.shift.text.match(/((\d{2})\.(\d{2})\.(\d{4}))/)[1]
       rows.each do |seance|
         columns = seance.css('td').map(&:text)
-        hour, minute = columns[0].match(/(\d{2}):(\d{2})/)[1..2]
-        starts_at  = Time.local(year, month, day, hour, minute)
+        time = columns[0].match(/((\d{2}):(\d{2}))/)[1]
+        starts_at  =  Time.zone.parse("#{date} #{time}")
         title = columns[1].gsub('(обычный формат)', '')
         price_min = columns[2].to_i
         movies[title] ||= []

@@ -29,6 +29,7 @@ group :default do
   gem 'simple_form'
   gem 'simple-navigation'
   gem 'sunspot_rails'
+  gem 'timecop',                                      :require => false
 end
 
 group :development do
