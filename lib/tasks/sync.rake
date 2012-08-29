@@ -4,7 +4,6 @@ require 'open-uri'
 require 'nokogiri'
 require 'timecop'
 
-
 class MovieSyncer
   attr_accessor :movies, :place
 
@@ -23,6 +22,7 @@ class MovieSyncer
 
   def sync
     puts "#{place}: импорт сеансов"
+    now = Time.zone.now.change(:sec => 0)
     bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
       next unless title.squish
@@ -59,6 +59,7 @@ class MovieSyncer
           end
           bar.increment!
         end
+        showings.where('starts_at > ?', now).where('updated_at <> ?', now).destroy_all
       else
         bar.increment! seances.count
       end
