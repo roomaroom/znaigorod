@@ -179,6 +179,7 @@ namespace :sync do
           title = seance.css('h1 a').text
           three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
           title = title.gsub(/((?:в 3D)\b|3D\b)/,'').squish
+          next if title =~ /^Non-stop [[:alpha:]]+ зал$/
           movies[title] ||= []
           seance.parent.parent.parent.parent.css('td:nth-child(2) > div > div').each do |i|
             if i['class'] == 'show-time'
