@@ -139,7 +139,7 @@ namespace :sync do
           title = title.gsub(/\s\(?3D\)?\b|\(?2D\)?/,'').squish
           movies[title] ||= []
           film.css('a.timeLineItem').each do |seans|
-            next if seans['class'].match(/session-already-past/)
+            next if seans['class'].match(/session-already-past|session-disabled/)
             time = seans.css('u').first.text
             seans_id = seans['href'].match(/\d+/)
             prices = day_schedule_page.css("#sessionTooltip-#{seans_id}").first.css('table.sessionTooltipTable').first.css('td.tal')[1].text
