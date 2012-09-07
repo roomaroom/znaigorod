@@ -25,6 +25,7 @@ class MovieSyncer
     puts "#{place}: импорт сеансов"
     bar = ProgressBar.new(movies.values.map(&:count).sum)
     movies.each do |title, seances|
+      next unless title.squish
       if (movie = find_movie_by(title.squish)) && (cinematheatre = find_similar_cinematheatre_by(place.squish))
         MovieSyncer.finded_movies << movie
         showings = Showing.where(:id => Showing.search{with(:affiche_id, movie.id); fulltext(place){fields(:place, :organization_title)}; paginate(:per_page => '100000')}.results.map(&:id))
@@ -176,7 +177,7 @@ namespace :sync do
       day_schedule_page.css('.raspisanie-table').each do |table|
         hall = table.css('thead tr td:first h1').text
         table.css('tbody tr .content').each do |seance|
-          title = seance.css('h1 a').text
+          title = seance.css('h1').text
           three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
           title = title.gsub(/((?:в 3D)\b|3D\b)/,'').squish
           next if title =~ /^Non-stop [[:alpha:]]+ зал$/
