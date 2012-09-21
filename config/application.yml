@@ -1,12 +1,38 @@
 app:
   affiche_today:
-    monday:
-      '00-24': ['others']
+    monday: &workday
+      '00-04': ['parties']
+      '04-10': ['exhibitions', 'others', 'sportevents']
+      '10-18': ['movies', 'spectacles', 'concerts']
+      '18-00': ['parties']
+    tuesday:
+      <<: *workday
+    wednesday:
+      <<: *workday
+    thursday:
+      <<: *workday
+    friday:
+      <<: *workday
+    saturday:
+      <<: *workday
     sunday:
-      '11-14': ['exhibitions']
+      <<: *workday
   actual_organizations:
     monday: &day
-      '00-24':
+      '00-07':
+        sauna:
+          category: entertainment
+          options:
+            category: сауны
+        night_club:
+          category: entertainment
+          options:
+            category: ночные клубы
+        bari:
+          category: meal
+          options:
+            category: бары
+      '07-12':
         breakfast:
           category: meal
           options:
@@ -15,10 +41,49 @@ app:
           category: meal
           options:
             category: кофейни
+        detskie_kafe:
+          category: meal
+          options:
+            category: детские кафе
+      '12-15':
+        stolovie:
+          category: meal
+          options:
+            category: столовые
+        buiseness_lanch:
+          category: meal
+          options:
+            offer: бизнес-ланч
         food_delivery:
           category: meal
           options:
             category: доставка готовых блюд
+      '15-18':
+        museums:
+          category: culture
+          options:
+            category: музеи
+        cafe:
+          category: meal
+          options:
+            category: кафе
+        billiard:
+          category: entertainment
+          options:
+            category: бильярдные залы
+      '18-24':
+        food_delivery:
+          category: meal
+          options:
+            category: доставка готовых блюд
+        theatre:
+          category: entertainment
+          options:
+            category: театры
+        night_club:
+          category: entertainment
+          options:
+            category: ночные клубы
     tuesday:
       <<: *day
     wednesday:
