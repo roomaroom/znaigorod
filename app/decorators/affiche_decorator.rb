@@ -148,6 +148,7 @@ class AfficheDecorator < ApplicationDecorator
       case affiche.class.name
       when 'Movie'
         if affiche_distribution?
+          return human_distribution if affiche.distribution_starts_on >= Date.today
           return "Было в прокате до #{last_showing.e_B(last_showing.starts_at)}"
         else
           return "Последний показ был #{last_showing.e_B(last_showing.starts_at)}"
