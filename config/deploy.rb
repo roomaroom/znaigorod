@@ -22,7 +22,7 @@ set :unicorn_instance_name, "unicorn"
 
 set :scm, :git
 set :repository, "https://github.com/openteam-com/znaigorod.git"
-set :branch, "v2"
+set :branch, "master"
 set :deploy_via, :remote_cache
 
 set :keep_releases, 7
