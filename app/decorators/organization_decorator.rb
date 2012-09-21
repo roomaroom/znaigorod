@@ -84,7 +84,11 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def affiches
-    organization.nearest_affiches.map { |a| AfficheDecorator.new a }
+    [].tap do |array|
+      HasSearcher.searcher(:affiche, organization_id: organization.id).actual.affiches.group(:affiche_id_str).groups.map(&:value).map { |id| Affiche.find(id) }.each do |affiche|
+        array << AfficheDecorator.new(affiche)
+      end
+    end
   end
 
   def html_description

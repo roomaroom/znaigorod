@@ -5,6 +5,7 @@ HasSearcher.create_searcher :affiche do
   property :starts_on
   property :tags
   property :affiche_id
+  property :organization_id
 
   scope :today do
     with(:starts_at).less_than DateTime.now.end_of_day
