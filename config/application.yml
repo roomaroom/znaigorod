@@ -4,7 +4,7 @@ app:
       '00-04': ['parties']
       '04-10': ['exhibitions', 'others', 'sportevents']
       '10-18': ['movies', 'spectacles', 'concerts']
-      '18-00': ['parties']
+      '18-24': ['parties']
     tuesday:
       <<: *workday
     wednesday:
