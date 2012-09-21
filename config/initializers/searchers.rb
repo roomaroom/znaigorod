@@ -97,6 +97,9 @@ HasSearcher.create_searcher :actual_organization do
   property :entertainment_category
   property :entertainment_offer
 
+  property :culture_category
+  property :culture_offer
+
   scope do
     adjust_solr_params { |params| params[:q] = "{!boost b=organization_rating_fs}*:*" }
   end
