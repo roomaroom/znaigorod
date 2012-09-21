@@ -89,7 +89,7 @@ HasSearcher.create_searcher :photoreport do
 end
 
 HasSearcher.create_searcher :actual_organization do
-  models :meal, :entertainment
+  models :meal, :entertainment, :culture
 
   property :meal_offer
   property :meal_category
