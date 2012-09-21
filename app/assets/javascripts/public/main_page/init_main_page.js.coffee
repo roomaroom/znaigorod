@@ -115,7 +115,7 @@ prepare_affiche_list = ->
   $('.main_page_affiche .affiche').css('height', '383px') unless list.length
 
   if $('li', list).length
-    $('.main_page_affiche .affiche').jScrollPane().unbind('mousewheel')
+    $('.main_page_affiche .affiche').jScrollPane()
 
   true
 
