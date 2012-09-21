@@ -7,7 +7,7 @@ class Photogallery
   attr_accessor :period, :query, :page
 
   def initialize(params = {})
-    @period = params[:period] || 'all'
+    @period = params[:period]
     @query = params[:query] || ''
     @page = params[:page] || 1
   end

@@ -6,10 +6,6 @@ describe Photogallery do
   subject { Photogallery.new }
 
   describe '#period' do
-    context '' do
-      its(:period) { should == 'all' }
-    end
-
     context '/photogalleries/all' do
       subject { Photogallery.new period: 'week' }
 
