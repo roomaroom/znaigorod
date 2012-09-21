@@ -19,8 +19,7 @@ class AfficheToday
         break
       end
     end
-    prng = Random.new(1234)
-    settings_kinds[prng.rand(0..settings_kinds.size - 1)].downcase
+    settings_kinds[Random.rand(0..settings_kinds.size - 1)].downcase
   end
 
   def links

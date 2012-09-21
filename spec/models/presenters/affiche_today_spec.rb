@@ -6,21 +6,21 @@ describe AfficheToday do
   let(:affiche_today) { AfficheToday.new }
   subject { affiche_today }
 
-  before { Time.stub!(:now).and_return(Time.local(2012, 8, 19, 11, 0)) }
+  before { Time.stub!(:now).and_return(Time.local(2012, 9, 17, 3, 0)) }
   describe "#default_kind" do
-    context "sunday 11:00" do
-      its(:kind) { should == 'exhibitions'}
+    context "monday 03:00" do
+      its(:kind) { should == 'parties'}
     end
   end
 
   describe "#links" do
     subject { affiche_today.links }
     its(:size) { should == 7 }
-    describe "for Exhibition" do
-      subject { affiche_today.links[4] }
-      its(:title) { should == "Выставки" }
+    describe "for Parties" do
+      subject { affiche_today.links[2] }
+      its(:title) { should == "Вечеринки" }
       its(:current?) { should == true }
-      its(:url) { should == "/exhibitions/today" }
+      its(:url) { should == "/parties/today" }
     end
   end
 
