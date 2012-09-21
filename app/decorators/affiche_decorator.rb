@@ -60,8 +60,18 @@ class AfficheDecorator < ApplicationDecorator
   def tabs
     [].tap do |links|
       links << h.content_tag(:li, h.link_to("Описание", "#info"))
-      links << h.content_tag(:li, h.link_to(affiche.is_a?(Movie) ? "Кадры" : "Фотографии", "#photogallery", "data-link" => kind_affiche_photogallery_path), :class => affiche.has_images? ? nil : 'disabled')
-      links << h.content_tag(:li, h.link_to(affiche.is_a?(Movie) ? "Трейлер" : "Видео", "#trailer", "data-link" => kind_affiche_trailer_path), :class => affiche.trailer_code? ? nil : 'disabled')
+      links << h.content_tag(:li,
+                             h.link_to(affiche.is_a?(Movie) ? "Кадры" : "Фотографии",
+                                       "#photogallery",
+                                       :title => affiche.has_images? ? nil : "Недоступно",
+                                       "data-link" => kind_affiche_photogallery_path),
+                             :class => affiche.has_images? ? nil : 'disabled')
+      links << h.content_tag(:li,
+                             h.link_to(affiche.is_a?(Movie) ? "Трейлер" : "Видео",
+                                       "#trailer",
+                                       :title => affiche.trailer_code? ? nil : "Недоступно",
+                                       "data-link" => kind_affiche_trailer_path),
+                             :class => affiche.trailer_code? ? nil : 'disabled')
     end
   end
 
