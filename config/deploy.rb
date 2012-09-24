@@ -107,6 +107,18 @@ namespace :db do
       puts "Cannot backup, adapter #{adapter} is not implemented for backup yet"
     end
   end
+
+  desc "download data to local database"
+  task :import do
+    run_locally("bin/rake sunspot:solr:stop")
+    run_locally("bin/rake db:drop")
+    run_locally("bin/rake db:create")
+    run_locally("ssh #{domain} -p #{port} pg_dump -U #{db_username} -h #{host} #{database} | psql #{local_database}")
+    run_locally("bin/rake db:migrate")
+    run_locally("bin/rake db:migrate RAILS_ENV=test")
+    run_locally("bin/rake sunspot:solr:start")
+    run_locally("bin/rake sunspot:reindex")
+  end
 end
 
 # deploy
