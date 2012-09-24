@@ -51,6 +51,7 @@ class OrganizationsCollection
         links << Link.new(title: "#{row.value.mb_chars.capitalize} (#{row.count})", url: organizations_path(organization_class: organization_class.pluralize, category: link_kind), current: category == link_kind)
       end
       current_index = links.index { |link| link.current? }
+      raise ActionController::RoutingError.new('Not Found') unless current_index
       links[current_index - 1].html_options[:class] = :before_current if current_index > 0
       links[current_index + 1].html_options[:class] = :after_current if current_index < links.size - 1
       links[current_index].html_options[:class] = :current
