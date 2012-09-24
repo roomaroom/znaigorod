@@ -2,7 +2,7 @@ app:
   affiche_today:
     monday: &workday
       '00-04': ['parties']
-      '04-10': ['exhibitions', 'others', 'sportevents']
+      '04-10': ['exhibitions', 'others', 'sportsevents']
       '10-18': ['movies', 'spectacles', 'concerts']
       '18-24': ['parties']
     tuesday:
