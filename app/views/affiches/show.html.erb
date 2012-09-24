@@ -94,8 +94,8 @@
                     </li>
                     <% showings.each_with_index do |showing, index| %>
                       <li class="seance<%= ' break' if index > 0 && index % 7 == 0 %>">
-                        <p class="time"><%= showing.human_time_starts_at %></p>
-                        <p class="price"><%= showing.human_price %></p>
+                        <%= content_tag :p, showing.human_time_starts_at, :class => "time" unless showing.human_time_starts_at.blank? %>
+                        <%= content_tag :p, showing.human_price, :class => "price" unless showing.human_price.blank? %>
                       </li>
                     <% end %>
                   </ul>

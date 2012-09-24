@@ -105,8 +105,9 @@ class ShowingDecorator < ApplicationDecorator
         date.html_safe
       end
       html << date
-      html << h.content_tag(:p, starts_at.beginning_of_day == starts_at ? '' : H_M(starts_at), class: 'time')
-      html << h.content_tag(:p, human_price, :class => 'price')
+      p starts_at
+      html << h.content_tag(:p, H_M(starts_at), class: 'time') if starts_at.beginning_of_day != starts_at
+      html << h.content_tag(:p, human_price, :class => 'price') unless human_price.blank?
     end.html_safe
   end
 end
