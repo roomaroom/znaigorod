@@ -236,7 +236,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def distribution_movie_nearlest_grouped_showings
-    showings.group_by(&:starts_on).first.second.select(&:actual?).group_by(&:place)
+    showings.any? ? showings.group_by(&:starts_on).first.second.select(&:actual?).group_by(&:place) : []
   end
 
   def distribution_movie_grouped_showings
@@ -248,7 +248,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def distribution_movie_schedule_date
-    "Ближайшие сеансы #{showings.first.human_date.mb_chars.downcase}"
+    "Ближайшие сеансы #{showings.first.human_date.mb_chars.downcase}" if showings.any?
   end
 
   def similar_affiches
