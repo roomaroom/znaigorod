@@ -21,7 +21,8 @@ class ShowingDecorator < ApplicationDecorator
 
       if in_one_day?
         date = today? ? 'Сегодня' : e_B(starts_at)
-        date += " с #{from_time} до #{to_time}"
+        date += " с #{from_time}" unless starts_at_only_date?
+        date += " до #{to_time}" unless ends_at_only_date?
 
         return date
       else
@@ -70,7 +71,7 @@ class ShowingDecorator < ApplicationDecorator
   end
 
   def ends_at_only_date?
-    ends_at == ends_at.end_of_day
+    H_M(ends_at) == H_M(ends_at.end_of_day)
   end
 
   def e(date)
@@ -104,7 +105,7 @@ class ShowingDecorator < ApplicationDecorator
         date.html_safe
       end
       html << date
-      html << h.content_tag(:p, H_M(starts_at), class: 'time')
+      html << h.content_tag(:p, starts_at.beginning_of_day == starts_at ? '' : H_M(starts_at), class: 'time')
       html << h.content_tag(:p, human_price, :class => 'price')
     end.html_safe
   end

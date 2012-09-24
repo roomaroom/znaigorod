@@ -46,6 +46,13 @@ describe ShowingDecorator do
       it { should == "9 &ndash; 10 сентября" }
     end
 
+    context "when starts_at 00:00 and ends_at 23:59" do
+      before { showing.starts_at = Time.zone.parse('2012-09-09 00:00') }
+      before { showing.ends_at = Time.zone.parse('2012-09-09 23:59') }
+
+      it { should == "9 сентября" }
+    end
+
     context "when starts_at end ends_at different dates in different months and time not set" do
       before { showing.starts_at = Time.zone.parse('2012-09-09').beginning_of_day }
       before { showing.ends_at = Time.zone.parse('2012-10-10').end_of_day }
