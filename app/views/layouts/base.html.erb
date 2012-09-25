@@ -4,7 +4,7 @@
     <base href="<%= root_url %>" />
     <meta charset="UTF-8" />
     <meta name='yandex-verification' content='6f2efa53b5d49370' />
-    <title><%= (yield :subtitle).squish %><%= " — ".html_safe if content_for?(:subtitle) %><%= t('site_title') %></title>
+    <title><%= (yield :subtitle).squish.html_safe %><%= " — ".html_safe if content_for?(:subtitle) %><%= t('site_title') %></title>
     <%= favicon_link_tag %>
     <%= yield :stylesheets %>
     <%= yield :javascripts %>
