@@ -110,7 +110,7 @@ namespace :db do
 
   desc "download data to local database"
   task :import do
-    run_locally("bin/rake sunspot:solr:stop")
+    run_locally("bin/rake sunspot:solr:stop; true")
     run_locally("bin/rake db:drop")
     run_locally("bin/rake db:create")
     run_locally("ssh #{domain} -p #{port} pg_dump -U #{db_username} -h #{host} #{database} | psql #{local_database}")
