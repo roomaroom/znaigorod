@@ -4,7 +4,11 @@ class OrganizationDecorator < ApplicationDecorator
   decorates :organization
 
   def image_for_main_page
-    h.link_to image_tag(organization.logotype_url, 100, 75, organization.title), h.organization_path(organization)
+    unless organization.logotype_url.blank?
+      h.link_to image_tag(organization.logotype_url, 100, 75, organization.title), h.organization_path(organization)
+    else
+      h.link_to h.image_tag("public/stub.jpg", :size => "100x75", :alt => organization.title, :title => organization.title), h.organization_path(organization)
+    end
   end
 
   def logo_link
