@@ -19,11 +19,14 @@
           url: link
           beforeSend: (jqXHR, settings) ->
             $(ui.panel).html("<p class='ajax_loading'>Загрузка...</p>")
+            true
           success: (data, textStatus, jqXHR) ->
             $(ui.panel).html(data)
             init_galleria() if data.match /gallery_container/g
+            true
           error: (jqXHR, textStatus, errorThrown) ->
             $(ui.panel).html("<p class='error'>Ошибка!</p>")
+            true
 
 prepare_borders = (ui) ->
   $("li", $(ui.tab).closest("ul")).each (index, item) ->

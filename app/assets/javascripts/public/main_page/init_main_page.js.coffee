@@ -4,14 +4,17 @@
 
   $('.main_page_affiche .today_in_city_menu ul li a').live 'click', (event) ->
     return false if $(this).closest('li').hasClass('current')
+    return false if $(".ajax_indicator_wrapper").length
     link = $(this)
     url = link.attr('href')
     $.ajax
       url: url
       beforeSend: (jqXHR, settings) ->
         create_ajax_indicator()
+        true
       complete: (jqXHR, textStatus) ->
         remove_ajax_indicator()
+        true
       success: (data, textStatus, jqXHR) ->
         $('<div class="ajax_response"/>').appendTo('body').hide().html(data)
         $('.main_page_affiche .affiche').animate
@@ -27,8 +30,11 @@
             opacity: 1
           , 300
           prepare_affiche_list()
+          true
+        true
       error: (jqXHR, textStatus, errorThrown) ->
         console.log jqXHR.responseText if console && console.log
+        true
     false
 
   $('.main_page_affiche .was_in_city li').each ->
@@ -86,6 +92,9 @@
           "-ms-transform": "rotate(#{angle})"
           "-o-transform": "rotate(#{angle})"
           "transform": "rotate(#{angle})"
+        true
+      true
+    true
 
   $('.main_page_affiche .was_in_city li img').hover ->
     $('img', $(this).closest('li')).css
@@ -94,6 +103,9 @@
     $(this).css
       'z-index': 1
     , 100
+    true
+
+  true
 
 prepare_affiche_list = ->
 
@@ -103,6 +115,7 @@ prepare_affiche_list = ->
     list_height = 0
     $('li', list).each ->
       list_height = $(this).outerHeight(true, true) if  list_height < $(this).outerHeight(true, true)
+      true
     list.closest('.affiche')
       .width($('li', list).outerWidth(true, true) * $('li', list).length)
       .height(list_height)
@@ -110,6 +123,7 @@ prepare_affiche_list = ->
   list_width = 0
   $('li', list).each ->
     list_width += $(this).outerWidth(true, true)
+    true
   list.width(list_width)
 
   $('.main_page_affiche .affiche').css('height', '383px') unless list.length
@@ -128,6 +142,8 @@ create_ajax_indicator = () ->
     top: $(window).height()/2 - $('.ajax_indicator_wrapper').height()/2 + $(document).scrollTop()
     left: $(window).width()/2 - $('.ajax_indicator_wrapper').width()/2
   .show()
+  true
 
 remove_ajax_indicator = () ->
   $('.ajax_indicator_wrapper').remove()
+  true
