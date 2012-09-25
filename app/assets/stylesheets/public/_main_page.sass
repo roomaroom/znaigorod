@@ -70,6 +70,38 @@
       height: 415px
       +clearfix
       margin: 0 auto
+    .prev,
+    .next
+      width: 17px
+      height: 27px
+      display: block
+      overflow: hidden
+      text-indent: -9999em
+      outline: none
+      background-color: transparent
+      background-image: image_url('public/affiche_nav.png')
+      background-repeat: no-repeat
+      margin-top: 170px
+    .prev
+      float: left
+      background-position: 0 0
+      &:hover
+        background-position: 0 -27px
+      &.disabled
+        background-position: 0 -54px
+        &:hover
+          cursor: default
+          background-position: 0 -54px
+    .next
+      float: right
+      background-position: -17px 0
+      &:hover
+        background-position: -17px -27px
+      &.disabled
+        background-position: -17px -54px
+        &:hover
+          cursor: default
+          background-position: -17px -54px
     ul
       li
         float: left

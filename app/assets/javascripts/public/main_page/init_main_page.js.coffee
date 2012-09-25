@@ -109,7 +109,14 @@
 
 prepare_affiche_list = ->
 
-  list = $('.main_page_affiche .affiche ul')
+  affiches_block = $('.main_page_affiche .affiche')
+  list = $('ul', affiches_block)
+
+  list_width = 0
+  $('li', list).each ->
+    list_width += $(this).outerWidth(true, true)
+    true
+  list.width(list_width)
 
   if $('li', list).length < 5
     list_height = 0
@@ -119,17 +126,27 @@ prepare_affiche_list = ->
     list.closest('.affiche')
       .width($('li', list).outerWidth(true, true) * $('li', list).length)
       .height(list_height)
-
-  list_width = 0
-  $('li', list).each ->
-    list_width += $(this).outerWidth(true, true)
-    true
-  list.width(list_width)
+  else
+    prev_link = $('<a href="#prev" class="prev disabled">prev</a>').insertBefore(affiches_block)
+    next_link = $('<a href="#next" class="next">next</a>').insertBefore(affiches_block)
+    scroll = $('.main_page_affiche .affiche').jScrollPane
+      animateScroll: true
+      animateEase: 'easeOutBack'
+    scroll_api = scroll.data('jsp')
+    affiches_block.bind 'jsp-scroll-x', (event, scrollPositionX, isAtLeft, isAtRight) ->
+      if isAtLeft then prev_link.addClass('disabled') else prev_link.removeClass('disabled')
+      if isAtRight then next_link.addClass('disabled') else next_link.removeClass('disabled')
+    offset = $('li', list).outerWidth(true, true)
+    prev_link.click (event) ->
+      return false if $(this).hasClass('disabled')
+      scroll_api.scrollByX(-offset)
+      false
+    next_link.click (event) ->
+      return false if $(this).hasClass('disabled')
+      scroll_api.scrollByX(offset)
+      false
 
   $('.main_page_affiche .affiche').css('height', '383px') unless list.length
-
-  if $('li', list).length
-    $('.main_page_affiche .affiche').jScrollPane()
 
   true
 

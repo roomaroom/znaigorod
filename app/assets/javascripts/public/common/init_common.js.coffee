@@ -1,5 +1,5 @@
 @init_common = () ->
-  $('a.disabled').click ->
+  $('a.disabled').live "click", ->
     false
 
 randomize = (number) ->
