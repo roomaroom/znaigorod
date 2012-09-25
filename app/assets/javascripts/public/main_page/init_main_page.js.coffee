@@ -20,9 +20,9 @@
         $('.main_page_affiche .affiche').animate
           opacity: 0
         , 100, ->
-          $('.main_page_affiche .today_in_city_menu').html($('.ajax_response .today_in_city_menu'))
-          $('.main_page_affiche .today_in_city_affiche').html($('.ajax_response .today_in_city_affiche'))
-          $('.main_page_affiche .more_in_city').html($('.ajax_response .more_in_city'))
+          $('.main_page_affiche .today_in_city_menu').html($('.ajax_response .today_in_city_menu').html())
+          $('.main_page_affiche .today_in_city_affiche').html($('.ajax_response .today_in_city_affiche').html())
+          $('.main_page_affiche .more_in_city:first .main_page_block').html($('.ajax_response .more_in_city .main_page_block').html())
           $('.ajax_response').remove()
           $('.main_page_affiche .affiche').css
             opacity: 0

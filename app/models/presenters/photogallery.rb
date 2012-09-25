@@ -21,7 +21,7 @@ class Photogallery
   end
 
   def period_links
-    [week_link, month_link, all_link]
+    [all_link, month_link, week_link]
   end
 
   def category_links
