@@ -8,11 +8,7 @@
   <div class="affiches_list">
     <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %></h1>
     <ul>
-      <% @affiche_collection.affiches.each do |affiche| %>
-        <li>
-          <%= render :partial => 'affiche', locals: { affiche: affiche } %>
-        </li>
-      <% end %>
+      <%= render partial: 'affiches_list' %>
     </ul>
   </div>
 
