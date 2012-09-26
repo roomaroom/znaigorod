@@ -131,7 +131,8 @@ prepare_affiche_list = ->
     next_link = $('<a href="#next" class="next">next</a>').insertBefore(affiches_block)
     scroll = $('.main_page_affiche .affiche').jScrollPane
       animateScroll: true
-      animateEase: 'easeOutBack'
+      animateEase: 'easeOutCubic'
+      animateDuration: 1000
     scroll_api = scroll.data('jsp')
     affiches_block.bind 'jsp-scroll-x', (event, scrollPositionX, isAtLeft, isAtRight) ->
       if isAtLeft then prev_link.addClass('disabled') else prev_link.removeClass('disabled')
@@ -139,11 +140,11 @@ prepare_affiche_list = ->
     offset = $('li', list).outerWidth(true, true)
     prev_link.click (event) ->
       return false if $(this).hasClass('disabled')
-      scroll_api.scrollByX(-offset)
+      scroll_api.scrollByX(-offset * 4)
       false
     next_link.click (event) ->
       return false if $(this).hasClass('disabled')
-      scroll_api.scrollByX(offset)
+      scroll_api.scrollByX(offset * 4)
       false
 
   $('.main_page_affiche .affiche').css('height', '383px') unless list.length

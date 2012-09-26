@@ -11,7 +11,7 @@ VK.init
 
 @init_vk_recommended = () ->
   VK.Widgets.Recommended "vk_recommended"
-    limit: 5
+    limit: 10
     period: 'month'
     sort: 'likes'
   true
