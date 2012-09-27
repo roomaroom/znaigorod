@@ -3,5 +3,6 @@ class PhotogalleriesController < ApplicationController
 
   def index
     @photogallery = Photogallery.new(params)
+    render partial: 'photogalleries_list', layout: false and return if request.xhr?
   end
 end

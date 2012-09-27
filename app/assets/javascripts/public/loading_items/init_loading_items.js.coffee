@@ -26,6 +26,7 @@
           last_item_top = last_item.position().top
           page += 1
           busy = false if data.length
+          init_photogallery() if $('.content_wrapper .was_in_city_photos li').length && data.length
           true
         error: (jqXHR, textStatus, errorThrown) ->
           console.log jqXHR.responseText if console && console.log

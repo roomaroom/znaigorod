@@ -3,16 +3,7 @@
   <div class="affiches_list">
     <h1><span class="strong">Было</span> в городе</h1>
     <ul class="was_in_city_photos">
-      <% @photogallery.collection.each do |item| %>
-        <li class="<%= cycle('odd', 'even') %>">
-          <div class="relative">
-            <div class="counter"><%= item.images_count %></div>
-            <div class="images"><%= item.main_images "photogallery" %></div>
-          </div>
-          <div class="link"><%= item.link "photogallery" %></div>
-          <div class="date"><%= item.date %></div>
-        </li>
-      <% end %>
+      <%= render :partial => "photogalleries_list" %>
     </ul>
   </div>
 
