@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations_collection = OrganizationsCollection.new params
-
+    render partial: 'organizations_list', layout: false and return if request.xhr?
     render @organizations_collection.view
   end
 
@@ -15,11 +15,11 @@ class OrganizationsController < ApplicationController
 
   def photogallery
     @organization = OrganizationDecorator.find(params[:id])
-    render :layout => false
+    render layout: false
   end
 
   def affiche
     @organization = OrganizationDecorator.find(params[:id])
-    render :layout => false
+    render layout: false
   end
 end

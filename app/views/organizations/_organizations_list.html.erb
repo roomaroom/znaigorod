@@ -1,0 +1,5 @@
+<% @organizations_collection.suborganizations.each do |suborganization| %>
+  <li>
+    <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization } %>
+  </li>
+<% end %>

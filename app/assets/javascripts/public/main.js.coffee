@@ -13,5 +13,5 @@ $ ->
   init_filters_toggler() if $('.need_toggler li').length
   init_prepare_organizations() if $('.organizations_list .info .characteristics').length
   init_photogallery() if $('.content_wrapper .was_in_city_photos li').length
-  init_loading_items() if $('.content_wrapper .affiches_list ul li').length
+  init_loading_items() if $('.content_wrapper .affiches_list ul li, .content_wrapper .organizations_list ul li').length
   true
