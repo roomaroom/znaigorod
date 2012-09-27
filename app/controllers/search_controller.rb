@@ -12,13 +12,13 @@ class SearchController < ApplicationController
 
   def affiches
     @search_presenter = SearchPresenter.new(params: params.merge(kind: 'affiches'))
-
+    render partial: 'search_results_list', layout: false and return if request.xhr?
     render :index
   end
 
   def organizations
     @search_presenter = SearchPresenter.new(params: params.merge(kind: 'organizations'))
-
+    render partial: 'search_results_list', layout: false and return if request.xhr?
     render :index
   end
 end

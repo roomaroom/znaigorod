@@ -62,11 +62,11 @@ class SearchPresenter
   end
 
   def paginated_affiches
-    searcher.affiches.paginate(page: page, per_page: 10).results
+    searcher.affiches.paginate(page: page, per_page: 5).results
   end
 
   def paginated_organizations
-    searcher.organizations.paginate(page: page, per_page: 10).results
+    searcher.organizations.paginate(page: page, per_page: 5).results
   end
 
   def paginated_collection

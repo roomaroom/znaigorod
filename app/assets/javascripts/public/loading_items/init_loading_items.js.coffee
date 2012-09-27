@@ -12,8 +12,11 @@
   $(window).scroll ->
     if $(this).scrollTop() + $(this).height() >= last_item_top && !busy
       busy = true
+      search_params = ""
+      if window.location.search.match(/\?q=/) && window.location.search.match(/utf8=/)
+        search_params = window.location.search.replace(/^\?/, "&")
       $.ajax
-        url: "#{list_url}?page=#{parseInt(page) + 1}"
+        url: "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
         beforeSend: (jqXHR, settings) ->
           $('<li class="ajax_loading_items_indicator">&nbsp;</li>').appendTo(list)
           true

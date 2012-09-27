@@ -1,0 +1,9 @@
+<% @search_presenter.collection.each do |item| %>
+  <li>
+    <% if @search_presenter.affiches? %>
+      <%= render partial: 'affiches/affiche', locals: { affiche: item } %>
+    <% else %>
+      <%= render partial: 'organization', locals: { organization: item } %>
+    <% end %>
+  </li>
+<% end %>

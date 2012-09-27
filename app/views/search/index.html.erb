@@ -13,19 +13,10 @@
 
       <div class="<%= @search_presenter.affiches? ? 'affiches_list' : 'organizations_list' %>">
         <ul>
-          <% @search_presenter.collection.each do |item| %>
-            <li>
-              <% if @search_presenter.affiches? %>
-                <%= render partial: 'affiches/affiche', locals: { affiche: item } %>
-              <% else %>
-                <%= render partial: 'organization', locals: { organization: item } %>
-              <% end %>
-            </li>
-          <% end %>
+          <%= render :partial => "search_results_list" %>
         </ul>
       </div>
     <% end %>
-
-    <%= paginate @search_presenter.paginated_collection %>
   </div>
 </div>
+<%= paginate @search_presenter.paginated_collection %>

@@ -7,7 +7,7 @@ class AfficheSchedule < ActiveRecord::Base
 
   belongs_to :affiche
 
-  validates_presence_of :ends_at, :ends_on, :place, :price_min, :starts_at, :starts_on
+  validates_presence_of :ends_at, :ends_on, :place, :starts_at, :starts_on
 
   after_save :destroy_showings
   after_save :create_showings
