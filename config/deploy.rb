@@ -126,7 +126,7 @@ after "deploy:finalize_update", "deploy:config_app"
 after "deploy", "deploy:migrate"
 after "deploy", "deploy:copy_unicorn_config"
 after "deploy", "deploy:reload_servers"
-after "deploy:reload_servers", "deploy:cleanup"
+after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:crontab"
 after "deploy", "deploy:airbrake"
 
