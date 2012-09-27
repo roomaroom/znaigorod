@@ -12,6 +12,8 @@
   container.tabs
     disabled: get_disabled()
     show: (event, ui) ->
+      window.location.hash = $(ui.tab).attr('href')
+      window.scrollTo(0, 0)
       prepare_borders(ui)
       link = $(ui.tab).attr('data-link')
       if link && !$(ui.panel).html().trim()
