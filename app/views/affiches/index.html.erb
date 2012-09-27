@@ -7,7 +7,7 @@
 
   <div class="affiches_list">
     <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %></h1>
-    <ul>
+    <ul class="items_list">
       <%= render partial: 'affiches_list' %>
     </ul>
   </div>

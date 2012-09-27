@@ -12,7 +12,7 @@
       </ul>
 
       <div class="<%= @search_presenter.affiches? ? 'affiches_list' : 'organizations_list' %>">
-        <ul>
+        <ul class="items_list">
           <%= render :partial => "search_results_list" %>
         </ul>
       </div>
