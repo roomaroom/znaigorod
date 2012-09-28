@@ -2,24 +2,49 @@
   unless $.cookie
     console.error "$.cookie() is not a function. please include it" if console && console.error
     return false
-  $(".content_wrapper .list_settings .sort ul li a, .content_wrapper .list_settings .aspect ul li a").each (index, item) ->
+  $(".content_wrapper .list_settings .sort ul li a, .content_wrapper .list_settings .presentation ul li a").each (index, item) ->
     $(item).attr("href", window.location.pathname)
     true
   $.cookie.defaults =
     path: "/"
     expires: 365
-  list_settings = {}
   unless $.cookie("znaigorod_list_settings")
-    list_settings =
-      sort: []
-      aspect: ""
-    $(".content_wrapper .list_settings .sort ul li").each (index, item) ->
-      klass = $('a', item).attr("class")
-      list_settings.sort.push(klass.replace("selected", "").trim()) if klass.match(/selected/)
-      true
-    aspect = $(".content_wrapper .list_settings .aspect ul li .selected")
-    list_settings.aspect = aspect.attr("class").replace("selected", "").trim()
-    $.cookie "znaigorod_list_settings", JSON.stringify(list_settings)
-  else
-    list_settings = JSON.parse($.cookie("znaigorod_list_settings"))
+    set_cookie()
+  prepare_separators()
+  $(".content_wrapper .list_settings .sort ul li a").click (event) ->
+    $(this).toggleClass("selected")
+    prepare_separators()
+    set_cookie()
+    false # TODO remove this when controller/presenter/decorator is ready
+  $(".content_wrapper .list_settings .presentation ul li a").click (event) ->
+    return false if $(this).hasClass("selected")
+    $(".content_wrapper .list_settings .presentation ul li a").removeClass("selected")
+    $(this).addClass("selected")
+    set_cookie()
+    false # TODO remove this when controller/presenter/decorator is ready
+  true
+
+prepare_separators = () ->
+  $(".content_wrapper .list_settings .sort ul li .separator").each (index, item) ->
+    if $('a', $(this).closest('li').prev()).hasClass('selected') || $('a', $(this).closest('li').next()).hasClass('selected')
+      $(this).css
+        "border-color": "#845999"
+        "background-color": "#845999"
+    else
+      $(this).css
+        "border-color": "#639eba"
+        "background-color": "#639eba"
+  true
+
+set_cookie = () ->
+  list_settings =
+    sort: []
+    presentation: ""
+  $(".content_wrapper .list_settings .sort ul li a").each (index, item) ->
+    klass = $(item).attr("class")
+    list_settings.sort.push(klass.replace("selected", "").trim()) if klass.match(/selected/)
+    true
+  presentation = $(".content_wrapper .list_settings .presentation ul li .selected")
+  list_settings.presentation = presentation.attr("class").replace("selected", "").trim()
+  $.cookie "znaigorod_list_settings", JSON.stringify(list_settings)
   true

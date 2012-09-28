@@ -8,23 +8,78 @@
       background: none
       padding: 0
       margin: 0
-      .selected
-        font-weight: bold
     .sort
       float: left
       +clearfix
       p, ul
         float: left
+      p
+        margin: 8px 10px 0
       ul
         +clearfix
-        margin-left: 10px
         li
           float: left
-          margin-right: 5px
-    .aspect
+          a
+            color: #fff
+            display: block
+            padding: 7px 10px
+            background-color: #82b4cc
+            border: 1px solid #639eba
+            text-decoration: none
+            &.closest
+              +border-left-radius
+              border-right: none
+            &.newest
+              border-left: none
+              border-right: none
+            &.popular
+              border-left: none
+              +border-right-radius
+            &.selected
+              color: #ebebeb
+              border-color: #845999
+              background-color: #b492c5
+              +box-shadow(#6d4a7e 0 3px 4px inset)
+          .separator
+            display: block
+            width: 1px
+            overflow: hidden
+            text-indent: -9999em
+            padding: 7px 0
+            border-top: 1px solid #639eba
+            border-bottom: 1px solid #639eba
+            background-color: #639eba
+    .presentation
       float: right
       ul
         +clearfix
         li
           float: left
-          margin-left: 10px
+          a
+            display: block
+            width: 30px
+            overflow: hidden
+            text-indent: -9999em
+            padding: 7px 0
+            background-color: #82b4cc
+            border: 1px solid #639eba
+            &.list
+              border-right: 0
+              +border-left-radius
+            &.posters
+              border-left: 0
+              +border-right-radius
+            &.selected
+              color: #ebebeb
+              border-color: #845999
+              background-color: #b492c5
+              +box-shadow(#6d4a7e 0 3px 4px inset)
+          .separator
+            display: block
+            width: 1px
+            overflow: hidden
+            text-indent: -9999em
+            padding: 7px 0
+            border-top: 1px solid #845999
+            border-bottom: 1px solid #845999
+            background-color: #845999
