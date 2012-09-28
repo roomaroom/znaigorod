@@ -2,6 +2,9 @@
   unless $.cookie
     console.error "$.cookie() is not a function. please include it" if console && console.error
     return false
+  $(".content_wrapper .list_settings .sort ul li a, .content_wrapper .list_settings .aspect ul li a").each (index, item) ->
+    $(item).attr("href", window.location.pathname)
+    true
   $.cookie.defaults =
     path: "/"
     expires: 365
@@ -13,6 +16,7 @@
     $(".content_wrapper .list_settings .sort ul li").each (index, item) ->
       klass = $('a', item).attr("class")
       list_settings.sort.push(klass.replace("selected", "").trim()) if klass.match(/selected/)
+      true
     aspect = $(".content_wrapper .list_settings .aspect ul li .selected")
     list_settings.aspect = aspect.attr("class").replace("selected", "").trim()
     $.cookie "znaigorod_list_settings", JSON.stringify(list_settings)
