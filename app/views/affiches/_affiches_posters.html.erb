@@ -1,0 +1,5 @@
+<% @affiche_collection.affiches.each do |affiche| %>
+  <li>
+    <%= render :partial => 'affiche', locals: { affiche: affiche } %>
+  </li>
+<% end %>
