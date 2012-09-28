@@ -33,7 +33,7 @@
           true
         true
       error: (jqXHR, textStatus, errorThrown) ->
-        console.log jqXHR.responseText if console && console.log
+        console.log jqXHR.responseText.strip_tags() if console && console.log
         true
     false
 

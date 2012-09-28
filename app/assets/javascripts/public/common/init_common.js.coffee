@@ -12,4 +12,4 @@ String.prototype.squish = () ->
   this.replace(/\s+/g, " ").trim()
 
 String.prototype.strip_tags = () ->
-  this.replace(/(<([^>]+)>)/ig, "").replace(/&nbsp;/ig, " ").replace(/&#?[a-z0-9]+;/ig, "")
+  this.replace(/(<([^>]+)>)/ig, "").replace(/&\w+;/ig, " ").replace(/&#?[a-z0-9]+;/ig, "")

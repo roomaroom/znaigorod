@@ -32,7 +32,7 @@
           init_photogallery() if $('.content_wrapper .was_in_city_photos li').length && data.length
           true
         error: (jqXHR, textStatus, errorThrown) ->
-          console.log jqXHR.responseText if console && console.log
+          console.log jqXHR.responseText.strip_tags() if console && console.log
           true
     true
   true

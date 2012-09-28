@@ -7,6 +7,22 @@
 
   <div class="affiches_list">
     <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %></h1>
+    <div class="list_settings">
+      <div class="sort">
+        <p>Сортировка:</p>
+        <ul>
+          <li><a class="closest selected" href="">По ближайшему сеансу</a></li>
+          <li><a class="newest" href="">По времени добавления</a></li>
+          <li><a class="popular" href="">По популярности</a></li>
+        </ul>
+      </div>
+      <div class="aspect">
+        <ul>
+          <li><a class="list selected" href="">список</a></li>
+          <li><a class="posters" href="">постеры</a></li>
+        </ul>
+      </div>
+    </div>
     <ul class="items_list">
       <%= render partial: 'affiches_list' %>
     </ul>
