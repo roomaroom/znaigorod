@@ -8,6 +8,7 @@
       background: none
       padding: 0
       margin: 0
+
     .sort
       float: left
       +clearfix
@@ -49,6 +50,7 @@
             border-top: 1px solid #639eba
             border-bottom: 1px solid #639eba
             background-color: #639eba
+
     .presentation
       float: right
       ul
@@ -62,12 +64,16 @@
             text-indent: -9999em
             padding: 7px 0
             background-color: #82b4cc
+            background-repeat: no-repeat
+            background-position: center center
             border: 1px solid #639eba
             &.list
               border-right: 0
               +border-left-radius
+              background-image: image_url('public/list_settings_presentation_list.png')
             &.posters
               border-left: 0
+              background-image: image_url('public/list_settings_presentation_posters.png')
               +border-right-radius
             &.selected
               color: #ebebeb
