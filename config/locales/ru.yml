@@ -45,8 +45,7 @@ ru:
   remove_this_image: Удалить это изображение
   remove_this_showing: Удалить этот сеанс
   sign_in: "Вход в&nbsp;кабинет"
-  site_title: ЗнайГород
-  site_title: ЗнайГород
+  site_title: ЗнайГород - афиша, заведения Томска
   twitter_timeline: Эфир
 
   affiche:
@@ -65,7 +64,7 @@ ru:
     weekend: На этих выходных
     daily: Выбрать дату
     all:
-      affiches: Все мероприятия
+      affiches: Вся афиша мероприятий
       movies: Всё кино
       concerts: Все концерты
       parties: Все вечеринки
@@ -129,7 +128,7 @@ ru:
 
   activerecord:
     models:
-      affiche: Все мероприятия
+      affiche: Вся афиша
       concert: Концерты
       meal: Заведение питания
       exhibition: Выставки

@@ -1,11 +1,10 @@
 <% content_for :subtitle do %>
-  <%= @organizations_collection.title %><%= ", " unless @organizations_collection.subtitle.blank? %>
-  <%= @organizations_collection.subtitle %>
+  <%= @organizations_collection.subtitle.capitalize %> в Томске
 <% end %>
 
 <div class="content_wrapper">
   <div class="organizations_list">
-    <h1><span class="strong"><%= @organizations_collection.title %></span> <%= @organizations_collection.subtitle %></h1>
+    <h1><span class="strong"><%= @organizations_collection.subtitle.capitalize %></span> в Томске</h1>
     <ul class="items_list">
       <%= render :partial => "organizations_list" %>
     </ul>

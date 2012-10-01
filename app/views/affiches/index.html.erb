@@ -1,12 +1,12 @@
 <% content_for :subtitle do %>
   <%= @affiche_collection.human_kind %>
-  <%= @affiche_collection.human_period.mb_chars.downcase %>
+  <%= @affiche_collection.human_period.mb_chars.downcase %> в Томске
 <% end %>
 
 <div class="content_wrapper">
 
   <div class="affiches_list">
-    <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %></h1>
+    <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %> в Томске</h1>
     <div class="list_settings">
       <div class="sort">
         <p>Сортировка:</p>

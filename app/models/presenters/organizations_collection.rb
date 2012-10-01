@@ -94,7 +94,7 @@ class OrganizationsCollection
   end
 
   def subtitle
-    return "" if category == 'all'
+    return title if category == 'all'
     category
   end
 
