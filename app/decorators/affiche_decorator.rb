@@ -218,11 +218,11 @@ class AfficheDecorator < ApplicationDecorator
   def other_showings
     return [] if affiche.is_a?(Movie)
     if affiche_distribution?
-      return affiche.showings.where("starts_at >= ?", showings.first.starts_at)
+      return affiche.showings.where("starts_at >= ?", showings.first.starts_at) unless showings.blank?
     else
       return affiche.showings.where("starts_at > ?", showings.first.starts_at) unless showings.blank?
-      []
     end
+    []
   end
 
   def first_other_showing_today?
