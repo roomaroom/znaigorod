@@ -8,6 +8,7 @@
 <% end %>
 
 <div class="content_wrapper">
+
   <div class="organizations_list">
     <h1><span class="strong"><%= @organizations_collection.subtitle.capitalize %></span> в Томске</h1>
     <ul class="items_list">
@@ -47,6 +48,9 @@
       </div>
     <% end %>
   </div>
+
+  <a href="#" class="move_to_top">наверх</a>
+
 </div>
 
 <%= paginate @organizations_collection.paginated_suborganizations %>

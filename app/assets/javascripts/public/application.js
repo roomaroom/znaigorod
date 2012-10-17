@@ -4,6 +4,7 @@
  * = require public/md5
  * = require public/twitter
  * = require public/vk
+ * = require public/scroll_to
  * = require public/common
  * = require public/jscrollpane
  * = require public/main_page
@@ -19,5 +20,6 @@
  * = require public/loading_items
  * = require public/list_settings
  * = require public/swfkrpano
+ * = require public/move_to_top
  * = require public/main
  */

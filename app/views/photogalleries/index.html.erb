@@ -39,10 +39,15 @@
     <div class="vk_group_wrapper">
       <div id="vk_group_thin"></div>
     </div>
-    <div class="vk_recommended_wrapper">
-      <div id="vk_recommended"></div>
-    </div>
+    <% if Rails.env.production? %>
+      <div class="vk_recommended_wrapper">
+        <div id="vk_recommended"></div>
+      </div>
+    <% end %>
   </div>
+
+  <a href="#" class="move_to_top">наверх</a>
+
 </div>
 
 <%= paginate @photogallery.paginated_collection %>
