@@ -6,6 +6,9 @@
  * = require public/vk
  * = require public/scroll_to
  * = require public/cookie
+ *
+ * = require public/3dtourme_stat
+ *
  * = require public/common
  * = require public/jscrollpane
  * = require public/main_page
