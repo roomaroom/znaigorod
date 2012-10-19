@@ -8,7 +8,7 @@ class Schedule < ActiveRecord::Base
   validates_presence_of :day
   validates_presence_of :from, :to, :unless => :holiday?
 
-  default_scope order('id')
+  default_scope order('day')
 
   def self.days_for_select(format = :full)
     format == :full ? format = 'date.standalone_day_names' : format = 'date.common_abbr_day_names'
