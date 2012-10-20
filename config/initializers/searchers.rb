@@ -285,7 +285,7 @@ HasSearcher.create_searcher :global do
   end
   scope do
     adjust_solr_params do |params|
-      params[:qf].gsub! /\bterm_text\b/, ''
+      (params[:qf] || '').gsub! /\bterm_text\b/, ''
       params[:fl] = 'id score'
     end
   end

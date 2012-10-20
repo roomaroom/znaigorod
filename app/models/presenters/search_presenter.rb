@@ -20,7 +20,7 @@ class SearchPresenter
   end
 
   def hits
-    HitDecorator.decorate collection.hits
+    HitDecorator.decorate(collection.hits).select { |h| !h.organization? || h.raw_suborganization }
   end
 
   def hits?

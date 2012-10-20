@@ -13,7 +13,7 @@ class HitDecorator < ApplicationDecorator
     result.poster_url?
   end
 
-  def  organization?
+  def organization?
     result.class.name.underscore.singularize.eql?("organization")
   end
 
