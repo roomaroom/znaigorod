@@ -301,6 +301,8 @@ ru:
         payment: Способы оплаты
 
       sauna_accessory:
+        ability_own_alcohol: Возможность принести алкоголь с собой
+        alcohol_for_sale: Алкоголь в продаже
         sheets: Простыни
         sneakers: Тапочки
         bathrobes: Халаты
