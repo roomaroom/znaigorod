@@ -35,12 +35,13 @@ end
 #
 # Table name: sauna_halls
 #
-#  id         :integer          not null, primary key
-#  sauna_id   :integer
-#  title      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  tour_link  :string(255)
-#  vfs_path   :text
+#  id          :integer          not null, primary key
+#  sauna_id    :integer
+#  title       :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  tour_link   :string(255)
+#  vfs_path    :text
+#  description :text
 #
 

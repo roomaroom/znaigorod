@@ -69,7 +69,7 @@
   <fieldset>
     <legend>Бассейн</legend>
     <% if @sauna_hall.sauna_hall_pool %>
-      <% %w(size contraflow geyser waterfall jacuzzi bucket).each do |field| %>
+      <% %w(size contraflow geyser waterfall water_filter jacuzzi bucket).each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_pool, :field => field } %>
       <% end %>
