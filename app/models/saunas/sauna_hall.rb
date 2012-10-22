@@ -1,5 +1,5 @@
 class SaunaHall < ActiveRecord::Base
-  attr_accessible :title, :tour_link, :vfs_path
+  attr_accessible :title, :tour_link, :vfs_path, :description
 
   belongs_to :sauna
 

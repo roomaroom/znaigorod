@@ -9,6 +9,8 @@
 
   <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
     :object => @sauna_hall.class.human_attribute_name("tour_link"), :field => @sauna_hall.tour_link } %>
+  <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
+    :object => @sauna_hall.class.human_attribute_name("description"), :field => @sauna_hall.description } %>
   <fieldset>
     <legend>Вместительность</legend>
     <% if @sauna_hall.sauna_hall_capacity %>

@@ -330,6 +330,7 @@ ru:
       sauna_hall:
         title: Название
         tour_link: Ссылка на 3D-тур
+        description: Описание
 
       sauna_hall_schedule:
         day: День недели
