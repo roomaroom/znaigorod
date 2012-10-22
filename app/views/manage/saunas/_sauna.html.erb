@@ -10,7 +10,7 @@
       <legend>Общая информация</legend>
       <% if sauna.sauna_accessory %>
         <% %w(ability_own_alcohol alcohol_for_sale sheets sneakers bathrobes towels ability_brooms brooms ability_oils oils).each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_accessory.class.human_attribute_name(field), :field => sauna.sauna_accessory.send("#{field}") } %>
+          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_accessory, :field => field } %>
         <% end %>
       <% else %>
         не указано
@@ -21,7 +21,7 @@
       <legend>Массаж</legend>
       <% if sauna.sauna_massage %>
         <% %w(anticelltilitis classical spa).each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_massage.class.human_attribute_name(field), :field => sauna.sauna_massage.send("#{field}") } %>
+          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_massage, :field => field } %>
         <% end %>
       <% else %>
         не указано
@@ -32,7 +32,7 @@
       <legend>Для детей</legend>
       <% if sauna.sauna_child_stuff %>
         <% %w(life_jacket cartoons games rubber_ring).each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_child_stuff.class.human_attribute_name(field), :field => sauna.sauna_child_stuff.send("#{field}") } %>
+          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_child_stuff, :field => field } %>
         <% end %>
       <% else %>
         не указано
@@ -43,7 +43,7 @@
       <legend>Разное</legend>
       <% if sauna.sauna_stuff %>
         <% %w(wifi safe).each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_stuff.class.human_attribute_name(field), :field => sauna.sauna_stuff.send("#{field}") } %>
+          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_stuff, :field => field } %>
         <% end %>
       <% else %>
         не указано

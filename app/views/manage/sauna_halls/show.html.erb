@@ -8,16 +8,16 @@
   </p>
 
   <% %w(tour_link description).each do |field| %>
-    <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-      :object => @sauna_hall.class.human_attribute_name(field), :field => @sauna_hall.send("#{field}") } %>
+    <%= render :partial => 'manage/saunas/attribute', :locals => {
+      :object => @sauna_hall, :field => field } %>
   <% end %>
 
   <fieldset>
     <legend>Вместительность</legend>
     <% if @sauna_hall.sauna_hall_capacity %>
       <% %w(default maximal extra_guest_cost).each do |field| %>
-        <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_capacity.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_capacity.send("#{field}") } %>
+        <%= render :partial => 'manage/saunas/attribute', :locals => {
+          :object => @sauna_hall.sauna_hall_capacity, :field => field } %>
       <% end %>
     <% else %>
       не указано
@@ -28,8 +28,8 @@
     <legend>Развлечения</legend>
     <% if @sauna_hall.sauna_hall_entertainment %>
       <% %w(karaoke guitar tv hookah billiard ping_pong aerohockey checkers chess backgammon).each do |field| %>
-        <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_entertainment.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_entertainment.send("#{field}") } %>
+        <%= render :partial => 'manage/saunas/attribute', :locals => {
+          :object => @sauna_hall.sauna_hall_entertainment, :field => field } %>
       <% end %>
     <% else %>
       не указано
@@ -38,7 +38,7 @@
 
   <fieldset class="sauna_hall_schedules">
     <legend>Стоимость</legend>
-    <% if @sauna_hall.sauna_hall_schedules %>
+    <% if @sauna_hall.sauna_hall_schedules.any? %>
       <% @sauna_hall.sauna_hall_schedules.each do |schedule| %>
         <div>
           <strong><%= Schedule.days_for_select[schedule.day].first %>:</strong>
@@ -47,6 +47,10 @@
           <%= schedule.price %> руб.
         </div>
       <% end %>
+    <% else %>
+      <div>
+        <span class="blank">Не указано</span>
+      </div>
     <% end %>
   </fieldset>
 
@@ -54,8 +58,8 @@
     <legend>Парные</legend>
     <% if @sauna_hall.sauna_hall_bath %>
       <% %w(russian finnish turkish infrared japanese).each do |field| %>
-        <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_bath.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_bath.send("#{field}") } %>
+        <%= render :partial => 'manage/saunas/attribute', :locals => {
+          :object => @sauna_hall.sauna_hall_bath, :field => field } %>
       <% end %>
     <% else %>
       не указано
@@ -66,8 +70,8 @@
     <legend>Бассейн</legend>
     <% if @sauna_hall.sauna_hall_pool %>
       <% %w(size contraflow geyser waterfall jacuzzi bucket).each do |field| %>
-        <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_pool.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_pool.send("#{field}") } %>
+        <%= render :partial => 'manage/saunas/attribute', :locals => {
+          :object => @sauna_hall.sauna_hall_pool, :field => field } %>
       <% end %>
     <% else %>
       не указано
@@ -78,8 +82,8 @@
     <legend>Интерьер</legend>
     <% if @sauna_hall.sauna_hall_interior %>
       <% %w(pit pylon barbecue floors lounges).each do |field| %>
-        <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_interior.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_interior.send("#{field}") } %>
+        <%= render :partial => 'manage/saunas/attribute', :locals => {
+          :object => @sauna_hall.sauna_hall_interior, :field => field } %>
       <% end %>
     <% else %>
       не указано

@@ -69,8 +69,8 @@
       <%= interior_form.input :pit %>
       <%= interior_form.input :pylon %>
       <%= interior_form.input :barbecue %>
-      <%= interior_form.input :floors %>
-      <%= interior_form.input :lounges %>
+      <%= interior_form.input :floors, :input_html => { :class => "required count" } %>
+      <%= interior_form.input :lounges, :input_html => { :class => "required count" } %>
     <% end %>
   </div>
 </div>
