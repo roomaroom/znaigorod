@@ -7,10 +7,11 @@
     <%= link_to t('delete'), manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
   </p>
 
-  <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-    :object => @sauna_hall.class.human_attribute_name("tour_link"), :field => @sauna_hall.tour_link } %>
-  <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-    :object => @sauna_hall.class.human_attribute_name("description"), :field => @sauna_hall.description } %>
+  <% %w(tour_link description).each do |field| %>
+    <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
+      :object => @sauna_hall.class.human_attribute_name(field), :field => @sauna_hall.send("#{field}") } %>
+  <% end %>
+
   <fieldset>
     <legend>Вместительность</legend>
     <% if @sauna_hall.sauna_hall_capacity %>
