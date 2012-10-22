@@ -41,7 +41,7 @@
     <% if @sauna_hall.sauna_hall_schedules.any? %>
       <% @sauna_hall.sauna_hall_schedules.each do |schedule| %>
         <div>
-          <strong><%= Schedule.days_for_select[schedule.day].first %>:</strong>
+          <strong><%= Schedule.days_for_select[schedule.day - 1].first %>:</strong>
           с <%= l schedule.from, :format => "%H:%M" if schedule.from? %>
           до <%= l schedule.to, :format => "%H:%M" if schedule.to? %> -
           <%= schedule.price %> руб.
