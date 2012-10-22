@@ -7,7 +7,7 @@
 
   <% if sauna.sauna_accessory %>
     <h5>Общая информация</h5>
-    <% %w(sheets sneakers bathrobes towels ability_brooms brooms ability_oils oils).each do |field| %>
+    <% %w(ability_own_alcohol alcohol_for_sale sheets sneakers bathrobes towels ability_brooms brooms ability_oils oils).each do |field| %>
       <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_accessory.class.human_attribute_name(field), :field => sauna.sauna_accessory.send("#{field}") } %>
     <% end %>
   <% else %>
