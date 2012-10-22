@@ -53,6 +53,15 @@
   </div>
 
   <div>
+    <span class="label">Безналичный расчет:</span>
+    <% if resource.non_cash.present? %>
+      <span class="value"><%= resource.non_cash ? 'да' : 'нет' %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
     <span class="label">Залы заведения:</span>
     <% if resource.halls.any? %>
       <span class="value">

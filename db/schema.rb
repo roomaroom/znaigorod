@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022100612) do
+ActiveRecord::Schema.define(:version => 20121022101231) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20121022100612) do
     t.string   "slug"
     t.text     "tour_link"
     t.float    "rating"
+    t.boolean  "non_cash"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

@@ -3,7 +3,8 @@ class Organization < ActiveRecord::Base
 
   attr_accessible :address_attributes, :description, :email, :halls_attributes,
                   :images_attributes, :organization_id, :phone, :schedules_attributes,
-                  :site, :title, :vfs_path, :attachments_attributes, :logotype_url, :tour_link
+                  :site, :title, :vfs_path, :attachments_attributes, :logotype_url,
+                  :tour_link, :non_cash
 
   belongs_to :organization
 
@@ -168,5 +169,6 @@ end
 #  slug            :string(255)
 #  tour_link       :text
 #  rating          :float
+#  non_cash        :boolean
 #
 
