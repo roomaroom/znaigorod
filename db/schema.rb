@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022101231) do
+ActiveRecord::Schema.define(:version => 20121022102027) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -172,15 +172,23 @@ ActiveRecord::Schema.define(:version => 20121022101231) do
     t.integer  "bathrobes"
     t.integer  "towels"
     t.integer  "oils"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "ability_oils"
-    t.integer  "ability_own_alcohol"
-    t.boolean  "alcohol_for_sale"
     t.boolean  "ware"
   end
 
   add_index "sauna_accessories", ["sauna_id"], :name => "index_sauna_accessories_on_sauna_id"
+
+  create_table "sauna_alcohols", :force => true do |t|
+    t.integer  "sauna_id"
+    t.integer  "ability_own"
+    t.boolean  "sale"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "sauna_alcohols", ["sauna_id"], :name => "index_sauna_alcohols_on_sauna_id"
 
   create_table "sauna_brooms", :force => true do |t|
     t.integer  "sauna_id"

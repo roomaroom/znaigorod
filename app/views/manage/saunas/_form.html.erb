@@ -8,8 +8,6 @@
 
   <div id="sauna_accessory_attributes">
     <%= f.simple_fields_for :sauna_accessory_attributes, resource.sauna_accessory || resource.build_sauna_accessory do |form| %>
-      <%= form.input :ability_own_alcohol, :input_html => { :class => "cost" } %>
-      <%= form.input :alcohol_for_sale %>
       <%= form.input :sheets, :input_html => { :class => "cost" } %>
       <%= form.input :sneakers, :input_html => { :class => "cost" } %>
       <%= form.input :bathrobes, :input_html => { :class => "cost" } %>
@@ -23,6 +21,14 @@
       <%= f.simple_fields_for :sauna_broom, resource.sauna_broom || resource.build_sauna_broom do |form| %>
         <%= form.input :ability, :input_html => { :class => "cost" } %>
         <%= form.input :sale, :input_html => { :class => "cost" } %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Алкоголь</legend>
+      <%= f.simple_fields_for :sauna_alcohol, resource.sauna_alcohol || resource.build_sauna_alcohol do |form| %>
+        <%= form.input :ability_own, :input_html => { :class => "cost" } %>
+        <%= form.input :sale %>
       <% end %>
     </fieldset>
   </div>

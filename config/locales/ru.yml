@@ -207,6 +207,7 @@ ru:
       sportsevent: Спортивные мероприятия
       sauna_accessory: Общая информация
       sauna_broom: Веники
+      sauna_alcohol: Алкоголь
       sauna_massage: Массаж
       sauna_child_stuff: Для детей
       sauna_stuff: Разное
@@ -307,8 +308,6 @@ ru:
         payment: Способы оплаты
 
       sauna_accessory:
-        ability_own_alcohol: Возможность принести алкоголь с собой
-        alcohol_for_sale: Алкоголь в продаже
         sheets: Простыни
         sneakers: Тапочки
         bathrobes: Халаты
@@ -320,6 +319,10 @@ ru:
       sauna_broom:
         ability: Возможность использовать веники
         sale: Веники в продаже
+
+      sauna_alcohol:
+        ability_own: Возможность принести алкоголь с собой
+        sale: Алкоголь в продаже
 
       sauna_massage:
         spa: Спа

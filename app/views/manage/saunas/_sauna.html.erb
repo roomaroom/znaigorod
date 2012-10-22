@@ -7,7 +7,7 @@
 
   <div class="sauna_info">
 
-    <% %w(sauna_accessory sauna_broom sauna_massage sauna_child_stuff sauna_stuff).each do |assocoation| %>
+    <% %w(sauna_accessory sauna_broom sauna_alcohol sauna_massage sauna_child_stuff sauna_stuff).each do |assocoation| %>
       <fieldset>
         <legend><%= assocoation.classify.constantize.model_name.human %></legend>
         <% if sauna.send(assocoation) %>
