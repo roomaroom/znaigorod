@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022023309) do
+ActiveRecord::Schema.define(:version => 20121022060427) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -277,10 +277,11 @@ ActiveRecord::Schema.define(:version => 20121022023309) do
   create_table "sauna_halls", :force => true do |t|
     t.integer  "sauna_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "tour_link"
     t.text     "vfs_path"
+    t.text     "description"
   end
 
   add_index "sauna_halls", ["sauna_id"], :name => "index_sauna_halls_on_sauna_id"
