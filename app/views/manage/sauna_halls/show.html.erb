@@ -1,5 +1,5 @@
 <div class="sauna_info">
-  <h1>Зал: <%= @sauna_hall.title %> (<%= @sauna_hall.sauna.organization.title %>)</h1>
+  <h1>Зал: <%= @sauna_hall.title.present? ? @sauna_hall.title : "Без названия" %> (<%= @sauna_hall.sauna.organization.title %>)</h1>
 
   <p class="actions">
     <%= link_to 'Назад', manage_organization_path(@sauna_hall.sauna.organization) %>

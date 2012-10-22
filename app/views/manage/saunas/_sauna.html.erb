@@ -55,7 +55,7 @@
       <ul>
         <% sauna.sauna_halls.each do |hall| %>
           <li>
-            <%= link_to hall.title, [:manage, @organization, :sauna, hall] %>
+            <%= link_to (hall.title.present? ? hall.title : "Без названия"), [:manage, @organization, :sauna, hall] %>
           </li>
         <% end %>
       </ul>
