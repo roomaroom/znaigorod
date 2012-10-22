@@ -1,6 +1,6 @@
 class SaunaAccessory < ActiveRecord::Base
   attr_accessible :sheets, :sneakers, :bathrobes, :towels, :brooms, :oils,
-                  :ability_brooms, :ability_oils
+                  :ability_brooms, :ability_oils, :ability_own_alcohol, :alcohol_for_sale
 
   belongs_to :sauna
 end
