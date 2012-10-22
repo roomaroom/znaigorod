@@ -15,7 +15,7 @@ class Schedule < ActiveRecord::Base
     array = I18n.t(format).dup
     sunday = array.shift
     array.push(sunday)
-    array.each_with_index.map{ |e, i| i+1 == 7 ? [e, 0] : [e, i+1] }
+    array.each_with_index.map{ |e, i| [e, i+1] }
   end
 
   def human_day

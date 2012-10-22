@@ -1,6 +1,6 @@
 class SaunaHallInterior < ActiveRecord::Base
   belongs_to :sauna_hall
-  attr_accessible :floors, :lounges
+  attr_accessible :floors, :lounges, :pit, :pylon, :barbecue
 end
 
 # == Schema Information

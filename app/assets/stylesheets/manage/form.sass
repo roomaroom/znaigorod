@@ -237,8 +237,25 @@
     input.integer
       width: 50px
       margin-right: 5px
+  #sauna_hall_schedules_attributes
+    .fields
+      +clearfix
+      .input
+        float: left
+        margin-right: 15px
+        label
+          width: auto
+      .select
+        select
+          width: 135px
+      .string
+        input
+          width: 50px
+      .integer
+        div
+          +inline-block
     .remove_nested_fields
-      float: right
+      float: left
 
 .ui-datepicker
   font-size: 0.9em

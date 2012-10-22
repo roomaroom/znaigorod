@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022013751) do
+ActiveRecord::Schema.define(:version => 20121022023309) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -240,9 +240,9 @@ ActiveRecord::Schema.define(:version => 20121022013751) do
     t.integer  "lounges"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "pit"
-    t.integer  "pylon"
-    t.integer  "barbecue"
+    t.boolean  "pit"
+    t.boolean  "pylon"
+    t.boolean  "barbecue"
   end
 
   add_index "sauna_hall_interiors", ["sauna_hall_id"], :name => "index_sauna_hall_interiors_on_sauna_hall_id"

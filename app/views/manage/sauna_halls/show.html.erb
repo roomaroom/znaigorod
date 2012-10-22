@@ -1,6 +1,7 @@
 <h1>Зал: <%= @sauna_hall.title %></h1>
 
 <p>
+  <%= link_to 'Назад', manage_organization_path(@sauna_hall.sauna.organization) %>
   <%= link_to t('edit'), edit_manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :class => 'edit_link' %>
   <%= link_to t('delete'), manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
 </p>
