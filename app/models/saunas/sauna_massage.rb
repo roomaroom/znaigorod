@@ -1,8 +1,9 @@
 class SaunaMassage < ActiveRecord::Base
   include UsefulAttributes
 
-  belongs_to :sauna
   attr_accessible :anticelltilitis, :classical, :spa
+
+  belongs_to :sauna
 end
 
 # == Schema Information

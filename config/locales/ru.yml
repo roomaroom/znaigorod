@@ -205,6 +205,11 @@ ru:
       spectacle: Спектакли
       sports_event: Спорт
       sportsevent: Спортивные мероприятия
+      sauna_accessory: Общая информация
+      sauna_broom: Веники
+      sauna_massage: Массаж
+      sauna_child_stuff: Для детей
+      sauna_stuff: Разное
 
     attributes:
       address:
@@ -307,10 +312,12 @@ ru:
         sneakers: Тапочки
         bathrobes: Халаты
         towels: Полотенца
-        ability_brooms: Возможность использовать веники
-        brooms: Веники в продаже
         ability_oils: Возможность использовать ароматические масла
         oils: Ароматические масла в продаже
+
+      sauna_broom:
+        ability: Возможность использовать веники
+        sale: Веники в продаже
 
       sauna_massage:
         spa: Спа

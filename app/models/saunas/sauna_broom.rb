@@ -1,19 +1,19 @@
-class SaunaStuff < ActiveRecord::Base
+class SaunaBroom < ActiveRecord::Base
   include UsefulAttributes
 
-  attr_accessible :safe, :wifi
+  attr_accessible :ability, :sale
 
   belongs_to :sauna
 end
 
 # == Schema Information
 #
-# Table name: sauna_stuffs
+# Table name: sauna_brooms
 #
 #  id         :integer          not null, primary key
 #  sauna_id   :integer
-#  wifi       :integer
-#  safe       :integer
+#  ability    :integer
+#  sale       :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

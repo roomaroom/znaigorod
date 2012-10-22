@@ -1,8 +1,8 @@
 class SaunaAccessory < ActiveRecord::Base
   include UsefulAttributes
 
-  attr_accessible :sheets, :sneakers, :bathrobes, :towels, :brooms, :oils,
-                  :ability_brooms, :ability_oils, :ability_own_alcohol, :alcohol_for_sale
+  attr_accessible :sheets, :sneakers, :bathrobes, :towels, :oils,
+                  :ability_oils, :ability_own_alcohol, :alcohol_for_sale
 
   belongs_to :sauna
 end
@@ -17,11 +17,9 @@ end
 #  sneakers            :integer
 #  bathrobes           :integer
 #  towels              :integer
-#  brooms              :integer
 #  oils                :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  ability_brooms      :integer
 #  ability_oils        :integer
 #  ability_own_alcohol :integer
 #  alcohol_for_sale    :boolean

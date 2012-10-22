@@ -7,6 +7,10 @@ class Sauna < ActiveRecord::Base
   accepts_nested_attributes_for :sauna_accessory
   attr_accessible :sauna_accessory_attributes
 
+  has_one :sauna_broom, :dependent => :destroy
+  accepts_nested_attributes_for :sauna_broom
+  attr_accessible :sauna_broom_attributes
+
   has_one :sauna_child_stuff, :dependent => :destroy
   accepts_nested_attributes_for :sauna_child_stuff
   attr_accessible :sauna_child_stuff_attributes

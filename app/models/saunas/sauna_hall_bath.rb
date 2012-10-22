@@ -1,8 +1,9 @@
 class SaunaHallBath < ActiveRecord::Base
   include UsefulAttributes
 
-  belongs_to :sauna_hall
   attr_accessible :finnish, :infrared, :japanese, :russian, :turkish
+
+  belongs_to :sauna_hall
 end
 
 # == Schema Information

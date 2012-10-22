@@ -6,49 +6,19 @@
   </h3>
 
   <div class="sauna_info">
-    <fieldset>
-      <legend>Общая информация</legend>
-      <% if sauna.sauna_accessory %>
-        <% sauna.sauna_accessory.useful_attributes.each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_accessory, :field => field } %>
-        <% end %>
-      <% else %>
-        не указано
-      <% end %>
-    </fieldset>
 
-    <fieldset>
-      <legend>Массаж</legend>
-      <% if sauna.sauna_massage %>
-        <% sauna.sauna_massage.useful_attributes.each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_massage, :field => field } %>
+    <% %w(sauna_accessory sauna_broom sauna_massage sauna_child_stuff sauna_stuff).each do |assocoation| %>
+      <fieldset>
+        <legend><%= assocoation.classify.constantize.model_name.human %></legend>
+        <% if sauna.send(assocoation) %>
+          <% sauna.send(assocoation).useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.send(assocoation), :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
         <% end %>
-      <% else %>
-        не указано
-      <% end %>
-    </fieldset>
-
-    <fieldset>
-      <legend>Для детей</legend>
-      <% if sauna.sauna_child_stuff %>
-        <% sauna.sauna_child_stuff.useful_attributes.each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_child_stuff, :field => field } %>
-        <% end %>
-      <% else %>
-        не указано
-      <% end %>
-    </fieldset>
-
-    <fieldset>
-      <legend>Разное</legend>
-      <% if sauna.sauna_stuff %>
-        <% sauna.sauna_stuff.useful_attributes.each do |field| %>
-          <%= render :partial => 'manage/saunas/attribute', :locals => { :object => sauna.sauna_stuff, :field => field } %>
-        <% end %>
-      <% else %>
-        не указано
-      <% end %>
-    </fieldset>
+      </fieldset>
+    <% end %>
 
     <fieldset>
       <legend>Залы</legend>
