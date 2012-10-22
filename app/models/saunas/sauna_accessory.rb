@@ -23,5 +23,6 @@ end
 #  ability_oils        :integer
 #  ability_own_alcohol :integer
 #  alcohol_for_sale    :boolean
+#  ware                :boolean
 #
 
