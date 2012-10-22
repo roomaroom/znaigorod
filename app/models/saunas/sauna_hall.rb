@@ -1,4 +1,6 @@
 class SaunaHall < ActiveRecord::Base
+  include UsefulAttributes
+
   attr_accessible :title, :tour_link, :vfs_path, :description
 
   belongs_to :sauna
@@ -28,7 +30,6 @@ class SaunaHall < ActiveRecord::Base
   has_one :sauna_hall_pool, :dependent => :destroy
   accepts_nested_attributes_for :sauna_hall_pool
   attr_accessible :sauna_hall_pool_attributes
-
 end
 
 # == Schema Information

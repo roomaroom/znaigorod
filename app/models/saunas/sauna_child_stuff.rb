@@ -1,4 +1,6 @@
 class SaunaChildStuff < ActiveRecord::Base
+  include UsefulAttributes
+
   attr_accessible :cartoons, :games, :life_jacket, :rubber_ring
 
   belongs_to :sauna

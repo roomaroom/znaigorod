@@ -1,4 +1,6 @@
 class SaunaHallInterior < ActiveRecord::Base
+  include UsefulAttributes
+
   belongs_to :sauna_hall
   attr_accessible :floors, :lounges, :pit, :pylon, :barbecue
 end

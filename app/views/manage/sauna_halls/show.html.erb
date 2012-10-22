@@ -7,7 +7,7 @@
     <%= link_to t('delete'), manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
   </p>
 
-  <% %w(tour_link description).each do |field| %>
+  <% @sauna_hall.useful_attributes.each do |field| %>
     <%= render :partial => 'manage/saunas/attribute', :locals => {
       :object => @sauna_hall, :field => field } %>
   <% end %>
@@ -15,7 +15,7 @@
   <fieldset>
     <legend>Вместительность</legend>
     <% if @sauna_hall.sauna_hall_capacity %>
-      <% %w(default maximal extra_guest_cost).each do |field| %>
+      <% @sauna_hall.sauna_hall_capacity.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_capacity, :field => field } %>
       <% end %>
@@ -27,7 +27,7 @@
   <fieldset>
     <legend>Развлечения</legend>
     <% if @sauna_hall.sauna_hall_entertainment %>
-      <% %w(karaoke guitar tv hookah billiard ping_pong aerohockey checkers chess backgammon).each do |field| %>
+      <% @sauna_hall.sauna_hall_entertainment.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_entertainment, :field => field } %>
       <% end %>
@@ -57,7 +57,7 @@
   <fieldset>
     <legend>Парные</legend>
     <% if @sauna_hall.sauna_hall_bath %>
-      <% %w(russian finnish turkish infrared japanese).each do |field| %>
+      <% @sauna_hall.sauna_hall_bath.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_bath, :field => field } %>
       <% end %>
@@ -69,7 +69,7 @@
   <fieldset>
     <legend>Бассейн</legend>
     <% if @sauna_hall.sauna_hall_pool %>
-      <% %w(size contraflow geyser waterfall water_filter jacuzzi bucket).each do |field| %>
+      <% @sauna_hall.sauna_hall_pool.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_pool, :field => field } %>
       <% end %>
@@ -81,7 +81,7 @@
   <fieldset>
     <legend>Интерьер</legend>
     <% if @sauna_hall.sauna_hall_interior %>
-      <% %w(pit pylon barbecue floors lounges).each do |field| %>
+      <% @sauna_hall.sauna_hall_interior.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
           :object => @sauna_hall.sauna_hall_interior, :field => field } %>
       <% end %>

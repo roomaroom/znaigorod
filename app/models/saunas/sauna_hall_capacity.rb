@@ -1,4 +1,6 @@
 class SaunaHallCapacity < ActiveRecord::Base
+  include UsefulAttributes
+
   attr_accessible :default, :maximal, :extra_guest_cost
 
   belongs_to :sauna_hall

@@ -1,4 +1,6 @@
 class SaunaStuff < ActiveRecord::Base
+  include UsefulAttributes
+
   belongs_to :sauna
   attr_accessible :safe, :wifi
 end

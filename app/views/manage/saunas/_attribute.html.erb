@@ -1,7 +1,7 @@
 <div>
   <span class="label"><%= object.class.human_attribute_name(field) %>:</span>
   <% if object.send(field).present? %>
-    <% if %w[default maximal floors lounges size water_filter].include?(field) %>
+    <% if %w[title default maximal floors lounges size water_filter].include?(field) %>
       <% if object.send(field).is_a?(Integer) && object.send(field).zero? %>
         <span class="blank">Не указано</span>
       <% else %>
