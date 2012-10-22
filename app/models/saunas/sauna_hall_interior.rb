@@ -13,5 +13,8 @@ end
 #  lounges       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  pit           :integer
+#  pylon         :integer
+#  barbecue      :integer
 #
 
