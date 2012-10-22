@@ -1,15 +1,21 @@
 <div>
   <span class="label"><%= object.class.human_attribute_name(field) %>:</span>
   <% if object.send(field).present? %>
-      <% if %w[default maximal floors lounges].include?(field) %>
-        <% if object.send(field).zero? %>
-          <span class="blank">Не указано</span>
-        <% else %>
-          <span class="value"><%= object.send(field) %></span>
-          <% end %>
+    <% if %w[default maximal floors lounges].include?(field) %>
+      <% if object.send(field).zero? %>
+        <span class="blank">Не указано</span>
       <% else %>
-        <span class="value"><%= object.send(field).zero? ? "Бесплатно" : "#{object.send(field)} руб." %></span>
+        <span class="value"><%= object.send(field) %></span>
       <% end %>
+    <% else %>
+      <span class="value">
+        <% if object.send(field).eql?(true) %>
+          да
+        <% else %>
+          <%= object.send(field).zero? ? "Бесплатно" : "#{object.send(field)} руб." %>
+        <% end %>
+      </span>
+    <% end %>
   <% else %>
     <span class="blank">Не указано</span>
   <% end %>
