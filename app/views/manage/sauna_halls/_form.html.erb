@@ -60,13 +60,8 @@
       <%= pool_form.input :geyser %>
       <%= pool_form.input :waterfall %>
       <%= pool_form.input :water_filter %>
-    <% end %>
-  </div>
-
-  <div id="sauna_hall_water_accessory_attributes">
-    <%= f.simple_fields_for :sauna_hall_water_accessory_attributes, resource.sauna_hall_water_accessory || resource.build_sauna_hall_water_accessory do |water_accessory_form| %>
-      <%= water_accessory_form.input :jacuzzi %>
-      <%= water_accessory_form.input :bucket %>
+      <%= pool_form.input :jacuzzi %>
+      <%= pool_form.input :bucket %>
     <% end %>
   </div>
 

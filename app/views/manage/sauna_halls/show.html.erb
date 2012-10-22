@@ -40,19 +40,9 @@
 
 <h5>Бассейн</h5>
 <% if @sauna_hall.sauna_hall_pool %>
-  <% %w(size contraflow geyser waterfall).each do |field| %>
+  <% %w(size contraflow geyser waterfall jacuzzi bucket).each do |field| %>
     <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
       :object => @sauna_hall.sauna_hall_pool.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_pool.send("#{field}") } %>
-  <% end %>
-<% else %>
-  не указано
-<% end %>
-
-<h5>Водные процедуры</h5>
-<% if @sauna_hall.sauna_hall_water_accessory %>
-  <% %w(jacuzzi bucket).each do |field| %>
-    <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-      :object => @sauna_hall.sauna_hall_water_accessory.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_water_accessory.send("#{field}") } %>
   <% end %>
 <% else %>
   не указано
