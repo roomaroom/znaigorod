@@ -58,19 +58,9 @@
   не указано
 <% end %>
 
-<h5>Разное</h5>
-<% if @sauna_hall.sauna_hall_stuff %>
-  <% %w(pit pylon barbecue).each do |field| %>
-    <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
-      :object => @sauna_hall.sauna_hall_stuff.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_stuff.send("#{field}") } %>
-  <% end %>
-<% else %>
-  не указано
-<% end %>
-
 <h5>Интерьер</h5>
 <% if @sauna_hall.sauna_hall_interior %>
-  <% %w(floors lounges).each do |field| %>
+  <% %w(pit pylon barbecue floors lounges).each do |field| %>
     <%= render :partial => 'manage/sauna_halls/attribute', :locals => {
       :object => @sauna_hall.sauna_hall_interior.class.human_attribute_name(field), :field => @sauna_hall.sauna_hall_interior.send("#{field}") } %>
   <% end %>

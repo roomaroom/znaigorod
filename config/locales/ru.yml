@@ -362,6 +362,9 @@ ru:
         guitar:       Гитара
 
       sauna_hall_interior:
+        pit:          Танцпол
+        pylon:        Пилон
+        barbecue:     Мангал/барбекю
         floors:       Количество этажей (уровней)
         lounges:      Количество комнат отдыха
 
@@ -371,11 +374,6 @@ ru:
         geyser:       Гейзер
         waterfall:    Водопад
         water_filter: Система очистки воды
-
-      sauna_hall_stuff:
-        pit:          Танцпол
-        pylon:        Пилон
-        barbecue:     Мангал/барбекю
 
       sauna_hall_water_accessory:
         jacuzzi:      Джакузи
