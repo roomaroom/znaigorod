@@ -333,8 +333,8 @@ ru:
 
       sauna_hall_schedule:
         day: День недели
-        from: С
-        to: По
+        from: с
+        to: до
         price: Цена
 
       sauna_hall_bath:

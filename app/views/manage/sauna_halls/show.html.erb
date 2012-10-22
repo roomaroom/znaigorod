@@ -33,6 +33,20 @@
     <% end %>
   </fieldset>
 
+  <fieldset class="sauna_hall_schedules">
+    <legend>Стоимость</legend>
+    <% if @sauna_hall.sauna_hall_schedules %>
+      <% @sauna_hall.sauna_hall_schedules.each do |schedule| %>
+        <div>
+          <strong><%= Schedule.days_for_select[schedule.day].first %>:</strong>
+          с <%= l schedule.from, :format => "%H:%M" if schedule.from? %>
+          до <%= l schedule.to, :format => "%H:%M" if schedule.to? %> -
+          <%= schedule.price %> руб.
+        </div>
+      <% end %>
+    <% end %>
+  </fieldset>
+
   <fieldset>
     <legend>Парные</legend>
     <% if @sauna_hall.sauna_hall_bath %>

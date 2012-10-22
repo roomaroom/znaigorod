@@ -11,11 +11,6 @@
     <li><a href="#sauna_hall_interior_attributes">Интерьер</a></li>
   </ul>
 
-  <div id="sauna_hall_schedules_attributes">
-    <%= f.simple_fields_for :sauna_hall_schedules %>
-    <%= f.link_to_add 'Добавить интервал', :sauna_hall_schedules %>
-  </div>
-
   <div id="sauna_hall_capacity_attributes">
     <%= f.simple_fields_for :sauna_hall_capacity_attributes, resource.sauna_hall_capacity || resource.build_sauna_hall_capacity do |capacity_form| %>
       <%= capacity_form.input :default, :input_html => { :class => "count" } %>
@@ -39,6 +34,11 @@
       <%= entertainment_form.input :chess, :input_html => { :class => "cost" } %>
       <%= entertainment_form.input :backgammon, :input_html => { :class => "cost" } %>
     <% end %>
+  </div>
+
+  <div id="sauna_hall_schedules_attributes">
+    <%= f.simple_fields_for :sauna_hall_schedules %>
+    <%= f.link_to_add 'Добавить интервал', :sauna_hall_schedules %>
   </div>
 
   <div id="sauna_hall_bath_attributes">
