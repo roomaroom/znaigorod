@@ -5,7 +5,7 @@ class Image < ActiveRecord::Base
 
   default_scope :order => :id
 
-  validates_presence_of :description, :url
+  validates_presence_of :url
 
   after_create :index_imageable
   after_destroy :index_imageable
