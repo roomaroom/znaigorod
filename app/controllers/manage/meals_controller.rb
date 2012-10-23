@@ -1,11 +1,15 @@
 class Manage::MealsController < Manage::ApplicationController
   defaults :singleton => true
 
-  actions :all, :except => [:index, :show]
+  actions :all, :except => :show
 
   belongs_to :organization
 
   before_filter :redirect_to_edit, :only => :new, :if => :meal_exists?
+
+  def index
+    @collection = Meal.page(params[:page] || 1).per(10)
+  end
 
   private
 

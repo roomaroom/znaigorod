@@ -108,6 +108,16 @@ a
   margin: 0 auto
   width: 95%
 
+  .kind_links
+    +clearfix
+    font-size: 20px
+    margin: 20px 0 0 15px
+    li
+      float: left
+      margin: 0 10px 0 0
+      &.floatr
+        float: right
+
   .new_link
     display: block
     text-align: right
@@ -115,6 +125,7 @@ a
     position: relative
 
     ul
+
       +border-radius(5px)
       background: rgba(224, 224, 224, 0.91)
       display: none

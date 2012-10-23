@@ -30,7 +30,10 @@ Znaigorod::Application.routes.draw do
       resources :organizations, :only => [:new, :create, :destroy]
     end
 
-    resources :saunas, :only => :index
+    resources :cultures,        :only => :index
+    resources :entertainments,  :only => :index
+    resources :meals,           :only => :index
+    resources :saunas,          :only => :index
 
     match 'statistics' => 'affiches#statistics'
 
