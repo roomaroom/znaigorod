@@ -20,6 +20,7 @@ Znaigorod::Application.routes.draw do
       resource :sauna, :except => [:index, :show] do
         resources :sauna_halls, :except => :index
       end
+
       resources :sauna_halls, :only => [] do
         resources :images, :only => [:new, :create, :destroy, :edit, :update]
       end
@@ -28,6 +29,8 @@ Znaigorod::Application.routes.draw do
       resources :images, :only => [:new, :create, :destroy, :edit, :update]
       resources :organizations, :only => [:new, :create, :destroy]
     end
+
+    resources :saunas, :only => :index
 
     match 'statistics' => 'affiches#statistics'
 

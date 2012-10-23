@@ -1,0 +1,12 @@
+<% if @collection.any? %>
+  <ul>
+    <% @collection.each do |item| %>
+      <li><%= link_to item.title, manage_organization_path(item.organization) %></li>
+    <% end %>
+  </ul>
+
+  <%= paginate @collection %>
+<% else %>
+  <p>Пока ничего не добавлено ;(</p>
+<% end %>
+

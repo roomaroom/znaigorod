@@ -1,3 +1,7 @@
+<ul>
+	<li><%= link_to 'Сауны', manage_saunas_path %></li>
+</ul>
+
 <div class="new_link">
   <% if controller_name == 'affiches' %>
     <%= link_to t("new_#{resource_class.model_name.underscore}"), '#', :class => 'new_resource dropdown' %>

@@ -1,11 +1,15 @@
 class Manage::SaunasController < Manage::ApplicationController
-  actions :all, :except => [:index, :show]
-
   defaults :singleton => true
+
+  actions :all, :except => :show
 
   belongs_to :organization
 
   before_filter :redirect_to_edit, :only => :new, :if => :sauna_exists?
+
+  def index
+    @collection = Sauna.page(params[:page] || 1).per(10)
+  end
 
   private
 
