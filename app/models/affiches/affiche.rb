@@ -48,23 +48,25 @@ class Affiche < ActiveRecord::Base
 
   alias_attribute :tag_ru, :tag
   alias_attribute :title_ru, :title
+  alias_attribute :title_translit, :title
 
   before_save :set_popularity
 
   searchable do
-    text :title,                :boost => 2 * 1.2
-    text :title_ru,             :boost => 2,          :more_like_this => true,  :stored => true
+    text :title,                :boost => 1.0 * 1.2
+    text :title_ru,             :boost => 1.0,        :more_like_this => true
+    text :title_translit,       :boost => 0.0,                                  :stored => true
     text :original_title,       :boost => 1.5,        :more_like_this => true,  :stored => true
-    text :human_model_name,     :boost => 1 * 1.2
-    text :human_model_name_ru,  :boost => 1
-    text :tag,                  :boost => 1 * 1.2
-    text :tag_ru,               :boost => 1,          :more_like_this => true,  :stored => true
-    text :place,                :boost => 1 * 1.2
-    text :place_ru,             :boost => 1
-    text :address,              :boost => 0.8 * 1.2
-    text :address_ru,           :boost => 0.8
-    text :description,          :boost => 0.5 * 1.2                                               do text_description end
-    text :description_ru,       :boost => 0.5,        :stored => true                             do text_description end
+    text :human_model_name,     :boost => 0.5 * 1.2
+    text :human_model_name_ru,  :boost => 0.5
+    text :tag,                  :boost => 0.5 * 1.2
+    text :tag_ru,               :boost => 0.5,        :more_like_this => true,  :stored => true
+    text :place,                :boost => 0.5 * 1.2
+    text :place_ru,             :boost => 0.5
+    text :address,              :boost => 0.3 * 1.2
+    text :address_ru,           :boost => 0.3
+    text :description,          :boost => 0.1 * 1.2                                               do text_description end
+    text :description_ru,       :boost => 0.1,                                  :stored => true   do text_description end
 
     boolean :has_images, :using => :has_images?
 

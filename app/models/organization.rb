@@ -58,6 +58,7 @@ class Organization < ActiveRecord::Base
   alias_attribute :poster_url, :logotype_url
 
   alias_attribute :title_ru, :title
+  alias_attribute :title_translit, :title
   alias_attribute :category_ru, :category
   alias_attribute :cuisine_ru, :cuisine
   alias_attribute :feature_ru, :feature
@@ -68,22 +69,23 @@ class Organization < ActiveRecord::Base
   searchable do
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
     string(:kind) { 'organization' }
-    text :title,                :boost => 2 * 1.2
-    text :title_ru,             :boost => 2,          :more_like_this => true,  :stored => true
-    text :category,             :boost => 1.2
-    text :category_ru,          :boost => 1
-    text :cuisine,              :boost => 1.2
-    text :cuisine_ru,           :boost => 1,          :more_like_this => true,  :stored => true
-    text :feature,              :boost => 1.2
-    text :feature_ru,           :boost => 1,          :more_like_this => true,  :stored => true
-    text :offer,                :boost => 1.2
-    text :offer_ru,             :boost => 1,          :more_like_this => true,  :stored => true
-    text :payment,              :boost => 1.2
-    text :payment_ru,           :boost => 1,                                    :stored => true
-    text :description,          :boost => 0.5 * 1.2                                               do text_description end
-    text :description_ru,       :boost => 0.5,                                  :stored => true   do text_description end
-    text :address,              :boost => 0.8 * 1.2
-    text :address_ru,           :boost => 0.8,                                  :stored => true
+    text :title,                :boost => 1.0 * 1.2
+    text :title_ru,             :boost => 1.0,              :more_like_this => true
+    text :title_translit,       :boost => 0.0,                                        :stored => true
+    text :category,             :boost => 0.5 * 1.2
+    text :category_ru,          :boost => 0.5 * 1
+    text :cuisine,              :boost => 0.5 * 1.2
+    text :cuisine_ru,           :boost => 0.5 * 1,          :more_like_this => true,  :stored => true
+    text :feature,              :boost => 0.5 * 1.2
+    text :feature_ru,           :boost => 0.5 * 1,          :more_like_this => true,  :stored => true
+    text :offer,                :boost => 0.5 * 1.2
+    text :offer_ru,             :boost => 0.5 * 1,          :more_like_this => true,  :stored => true
+    text :payment,              :boost => 0.5 * 1.2
+    text :payment_ru,           :boost => 0.5 * 1,                                    :stored => true
+    text :address,              :boost => 0.3 * 1.2
+    text :address_ru,           :boost => 0.3,                                        :stored => true
+    text :description,          :boost => 0.1 * 1.2                                                     do text_description end
+    text :description_ru,       :boost => 0.1,                                        :stored => true   do text_description end
 
     float :rating
 

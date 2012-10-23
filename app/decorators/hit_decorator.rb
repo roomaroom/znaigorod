@@ -132,7 +132,7 @@ class HitDecorator < ApplicationDecorator
   end
 
   def highlighted(field)
-    (highlights("#{field}_ru") + highlights(field)).map(&:formatted).map{|phrase| phrase.gsub(/\A[[:punct:][:space:]]+/, '')}.join(' ... ').html_safe.presence
+    (highlights("#{field}_translit") + highlights("#{field}_ru") + highlights(field)).map(&:formatted).map{|phrase| phrase.gsub(/\A[[:punct:][:space:]]+/, '')}.join(' ... ').html_safe.presence
   end
 
   def truncated(field)

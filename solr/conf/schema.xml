@@ -84,6 +84,23 @@
         <filter class='solr.PatternReplaceFilterFactory' pattern='ё' replacement='е' replace='all' />
       </analyzer>
     </fieldType>
+    <fieldType name='translit_text' class='solr.TextField' omitNorms='false'>
+      <analyzer>
+        <tokenizer class='solr.StandardTokenizerFactory'/>
+        <filter class='solr.WordDelimiterFilterFactory'
+          splitOnCaseChange='1'
+          splitOnNumerics='1'
+          generateWordParts='1'
+          generateNumberParts='0'
+          catenateWords='1'
+          catenateNumbers='1'
+          catenateAll='1'
+          preserveOriginal='1'
+          />
+        <filter class="solr.ICUTransformFilterFactory" id="Russian-Latin/BGN"/>
+        <filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/>
+      </analyzer>
+    </fieldType>
     <fieldType name="autosuggest" class="solr.TextField">
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -165,9 +182,13 @@
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='_local*' stored='false' type='tdouble' multiValued='false' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name='*_translit_text' stored='false' type='translit_text' multiValued='true' indexed='true'/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_ru_text' stored='false' type='ru_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_text' stored='false' type='text' multiValued='true' indexed='true'/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name='*_translit_texts' stored='true' type='translit_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_ru_texts' stored='true' type='ru_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
@@ -253,9 +274,13 @@
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_dtms' stored='true' type='tdate' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name='*_translit_textv' stored='false' termVectors='true' type='translit_text' multiValued='true' indexed='true'/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_ru_textv' stored='false' termVectors='true' type='ru_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_textv' stored='false' termVectors='true' type='text' multiValued='true' indexed='true'/>
+    <!-- *** This dynamicField is used by Sunspot! *** -->
+    <dynamicField name='*_translit_textsv' stored='true' termVectors='true' type='translit_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
     <dynamicField name='*_ru_textsv' stored='true' termVectors='true' type='ru_text' multiValued='true' indexed='true'/>
     <!-- *** This dynamicField is used by Sunspot! *** -->
