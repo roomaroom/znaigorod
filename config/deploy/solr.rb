@@ -10,6 +10,7 @@ namespace :solr do
   desc "Upload local solr config to remote server"
   task :export do
     run_locally("scp -r -P #{solr_port} solr/conf/ #{solr_domain}:/var/lib/tomcat6/solr/")
+    run_locally("scp -r -P #{solr_port} solr/lib/ #{solr_domain}:/var/lib/tomcat6/solr/")
     run_locally("ssh #{solr_domain} -p #{solr_port} chown -R tomcat6:tomcat6 /var/lib/tomcat6/solr/")
   end
 
