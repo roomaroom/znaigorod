@@ -208,6 +208,7 @@ ru:
       sauna_accessory: Общая информация
       sauna_broom: Веники
       sauna_alcohol: Алкоголь
+      sauna_oil: Ароматические масла
       sauna_massage: Массаж
       sauna_child_stuff: Для детей
       sauna_stuff: Разное
@@ -312,8 +313,6 @@ ru:
         sneakers: Тапочки
         bathrobes: Халаты
         towels: Полотенца
-        ability_oils: Возможность использовать ароматические масла
-        oils: Ароматические масла в продаже
         ware: Посуда
 
       sauna_broom:
@@ -323,6 +322,10 @@ ru:
       sauna_alcohol:
         ability_own: Возможность принести алкоголь с собой
         sale: Алкоголь в продаже
+
+      sauna_oil:
+        ability: Возможность использовать
+        sale: Есть масла в продаже
 
       sauna_massage:
         spa: Спа

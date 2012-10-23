@@ -12,8 +12,6 @@
       <%= form.input :sneakers, :input_html => { :class => "cost" } %>
       <%= form.input :bathrobes, :input_html => { :class => "cost" } %>
       <%= form.input :towels, :input_html => { :class => "cost" } %>
-      <%= form.input :ability_oils, :input_html => { :class => "cost" } %>
-      <%= form.input :oils, :input_html => { :class => "cost" } %>
       <%= form.input :ware %>
     <% end %>
     <fieldset>
@@ -28,6 +26,14 @@
       <legend>Алкоголь</legend>
       <%= f.simple_fields_for :sauna_alcohol, resource.sauna_alcohol || resource.build_sauna_alcohol do |form| %>
         <%= form.input :ability_own, :input_html => { :class => "cost" } %>
+        <%= form.input :sale %>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Ароматические масла</legend>
+      <%= f.simple_fields_for :sauna_oil, resource.sauna_oil || resource.build_sauna_oil do |form| %>
+        <%= form.input :ability, :input_html => { :class => "cost" } %>
         <%= form.input :sale %>
       <% end %>
     </fieldset>

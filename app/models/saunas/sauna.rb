@@ -15,6 +15,10 @@ class Sauna < ActiveRecord::Base
   accepts_nested_attributes_for :sauna_alcohol
   attr_accessible :sauna_alcohol_attributes
 
+  has_one :sauna_oil, :dependent => :destroy
+  accepts_nested_attributes_for :sauna_oil
+  attr_accessible :sauna_oil_attributes
+
   has_one :sauna_child_stuff, :dependent => :destroy
   accepts_nested_attributes_for :sauna_child_stuff
   attr_accessible :sauna_child_stuff_attributes
