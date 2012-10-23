@@ -7,6 +7,10 @@ solr:
 2gis:
   api_key:              api_key
 
+vk:
+  app_id:               app_id
+  app_secret:           app_secret
+
 errors:
   key:                  api_key
   host:                 host
