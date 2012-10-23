@@ -1,94 +1,104 @@
 <div class="sauna_info">
   <h1>Зал: <%= @sauna_hall.title.present? ? @sauna_hall.title : "Без названия" %> (<%= @sauna_hall.sauna.organization.title %>)</h1>
 
-  <p class="actions">
-    <%= link_to 'Назад', manage_organization_path(@sauna_hall.sauna.organization) %>
-    <%= link_to t('edit'), edit_manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :class => 'edit_link' %>
-    <%= link_to t('delete'), manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
-  </p>
+  <div class="columns_wrapper">
 
-  <% @sauna_hall.useful_attributes.each do |field| %>
-    <%= render :partial => 'manage/saunas/attribute', :locals => {
-      :object => @sauna_hall, :field => field } %>
-  <% end %>
+    <div class="column">
 
-  <fieldset>
-    <legend>Вместительность</legend>
-    <% if @sauna_hall.sauna_hall_capacity %>
-      <% @sauna_hall.sauna_hall_capacity.useful_attributes.each do |field| %>
+      <p class="actions">
+        <%= link_to 'Назад', manage_organization_path(@sauna_hall.sauna.organization) %>
+        <%= link_to t('edit'), edit_manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :class => 'edit_link' %>
+        <%= link_to t('delete'), manage_organization_sauna_sauna_hall_path(@sauna_hall.sauna.organization, @sauna_hall), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+      </p>
+
+      <% @sauna_hall.useful_attributes.each do |field| %>
         <%= render :partial => 'manage/saunas/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_capacity, :field => field } %>
+          :object => @sauna_hall, :field => field } %>
       <% end %>
-    <% else %>
-      не указано
-    <% end %>
-  </fieldset>
 
-  <fieldset>
-    <legend>Развлечения</legend>
-    <% if @sauna_hall.sauna_hall_entertainment %>
-      <% @sauna_hall.sauna_hall_entertainment.useful_attributes.each do |field| %>
-        <%= render :partial => 'manage/saunas/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_entertainment, :field => field } %>
-      <% end %>
-    <% else %>
-      не указано
-    <% end %>
-  </fieldset>
+      <fieldset>
+        <legend>Вместительность</legend>
+        <% if @sauna_hall.sauna_hall_capacity %>
+          <% @sauna_hall.sauna_hall_capacity.useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => {
+              :object => @sauna_hall.sauna_hall_capacity, :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
 
-  <fieldset class="sauna_hall_schedules">
-    <legend>Стоимость</legend>
-    <% if @sauna_hall.sauna_hall_schedules.any? %>
-      <% @sauna_hall.sauna_hall_schedules.each do |schedule| %>
-        <div>
-          <strong><%= Schedule.days_for_select[schedule.day - 1].first %>:</strong>
-          с <%= l schedule.from, :format => "%H:%M" if schedule.from? %>
-          до <%= l schedule.to, :format => "%H:%M" if schedule.to? %> -
-          <%= schedule.price %> руб.
-        </div>
-      <% end %>
-    <% else %>
-      <div>
-        <span class="blank">Не указано</span>
-      </div>
-    <% end %>
-  </fieldset>
+      <fieldset>
+        <legend>Развлечения</legend>
+        <% if @sauna_hall.sauna_hall_entertainment %>
+          <% @sauna_hall.sauna_hall_entertainment.useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => {
+              :object => @sauna_hall.sauna_hall_entertainment, :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
 
-  <fieldset>
-    <legend>Парные</legend>
-    <% if @sauna_hall.sauna_hall_bath %>
-      <% @sauna_hall.sauna_hall_bath.useful_attributes.each do |field| %>
-        <%= render :partial => 'manage/saunas/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_bath, :field => field } %>
-      <% end %>
-    <% else %>
-      не указано
-    <% end %>
-  </fieldset>
+      <fieldset class="sauna_hall_schedules">
+        <legend>Стоимость</legend>
+        <% if @sauna_hall.sauna_hall_schedules.any? %>
+          <% @sauna_hall.sauna_hall_schedules.each do |schedule| %>
+            <div>
+              <strong><%= Schedule.days_for_select[schedule.day - 1].first %>:</strong>
+              с <%= l schedule.from, :format => "%H:%M" if schedule.from? %>
+              до <%= l schedule.to, :format => "%H:%M" if schedule.to? %> -
+              <%= schedule.price %> руб.
+            </div>
+          <% end %>
+        <% else %>
+          <div>
+            <span class="blank">Не указано</span>
+          </div>
+        <% end %>
+      </fieldset>
 
-  <fieldset>
-    <legend>Бассейн</legend>
-    <% if @sauna_hall.sauna_hall_pool %>
-      <% @sauna_hall.sauna_hall_pool.useful_attributes.each do |field| %>
-        <%= render :partial => 'manage/saunas/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_pool, :field => field } %>
-      <% end %>
-    <% else %>
-      не указано
-    <% end %>
-  </fieldset>
+      <fieldset>
+        <legend>Парные</legend>
+        <% if @sauna_hall.sauna_hall_bath %>
+          <% @sauna_hall.sauna_hall_bath.useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => {
+              :object => @sauna_hall.sauna_hall_bath, :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
 
-  <fieldset>
-    <legend>Интерьер</legend>
-    <% if @sauna_hall.sauna_hall_interior %>
-      <% @sauna_hall.sauna_hall_interior.useful_attributes.each do |field| %>
-        <%= render :partial => 'manage/saunas/attribute', :locals => {
-          :object => @sauna_hall.sauna_hall_interior, :field => field } %>
-      <% end %>
-    <% else %>
-      не указано
-    <% end %>
-  </fieldset>
+      <fieldset>
+        <legend>Бассейн</legend>
+        <% if @sauna_hall.sauna_hall_pool %>
+          <% @sauna_hall.sauna_hall_pool.useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => {
+              :object => @sauna_hall.sauna_hall_pool, :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
+
+      <fieldset>
+        <legend>Интерьер</legend>
+        <% if @sauna_hall.sauna_hall_interior %>
+          <% @sauna_hall.sauna_hall_interior.useful_attributes.each do |field| %>
+            <%= render :partial => 'manage/saunas/attribute', :locals => {
+              :object => @sauna_hall.sauna_hall_interior, :field => field } %>
+          <% end %>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
+    </div>
+    <div class="column">
+      <h3>Информация о сауне</h3>
+      <%= render :partial => "manage/saunas/info", :locals => { :sauna => @sauna_hall.sauna } %>
+    </div>
+  </div>
 
   <div class='images'>
     <h3>
