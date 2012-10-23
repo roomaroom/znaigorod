@@ -11,6 +11,9 @@ vk:
   app_id:               app_id
   app_secret:           app_secret
 
+yandex:
+  oauth_token:          token
+
 errors:
   key:                  api_key
   host:                 host
