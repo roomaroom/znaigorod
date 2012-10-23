@@ -172,6 +172,8 @@ class Affiche < ActiveRecord::Base
       response = Curl.get(prepare_url_4_vk({ gid: id, aid: aid })).body_str.gsub(/{"error":".+"}/, '')
     end
 
+    return [] if response.blank?
+
     photos = JSON.parse(response)['response']
   end
 
