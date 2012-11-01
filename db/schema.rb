@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023014715) do
+ActiveRecord::Schema.define(:version => 20121101035548) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -36,8 +36,11 @@ ActiveRecord::Schema.define(:version => 20121023014715) do
     t.string   "hall"
     t.integer  "price_min"
     t.integer  "price_max"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "organization_id"
+    t.string   "latitude"
+    t.string   "longitude"
   end
 
   add_index "affiche_schedules", ["affiche_id"], :name => "index_affiche_schedules_on_affiche_id"

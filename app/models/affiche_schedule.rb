@@ -3,8 +3,6 @@ class AfficheSchedule < ActiveRecord::Base
                   :price_max, :price_min, :starts_at, :starts_on,
                   :organization_id, :longitude, :latitude
 
-  attr_accessor :organization_id, :longitude, :latitude
-
   belongs_to :affiche
 
   validates_presence_of :ends_at, :ends_on, :place, :starts_at, :starts_on
