@@ -6,6 +6,7 @@ Fabricator(:affiche_schedule) do
   place 'place'
   hall 'hall'
   price_min 100
+  holidays [7]
 end
 
 # == Schema Information

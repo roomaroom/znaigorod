@@ -6,7 +6,7 @@ describe AfficheSchedule do
   let(:exhibition) { Exhibition.create! attributes }
 
   describe 'should create showings for affiche' do
-    it { exhibition.showings.count.should == 5 }
+    it { exhibition.showings.count.should == 4 }
 
     subject { exhibition.showings.first }
 
