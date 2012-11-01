@@ -35,7 +35,8 @@ class AfficheSchedule < ActiveRecord::Base
   private
     def create_showings
       (starts_on..ends_on).each do |date|
-        affiche.create_showing attributes_for_showing_on(date) unless holidays.include? date.wday
+        wday = date.wday == 0 ? 7 : date.wday
+        affiche.create_showing attributes_for_showing_on(date) unless holidays.include? wday
       end
     end
 
