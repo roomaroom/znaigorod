@@ -24,8 +24,8 @@ $ ->
   init_loading_items() if $('.content_wrapper .search_results ul.items_list li').length
   init_list_settings() if $('.content_wrapper .list_settings').length
   init_swfkrpano() if $("#krpano").length
-  init_move_to_top() if $("a.move_to_top").length
   true
 
 $(window).load ->
   init_3dtourme_stat() if $('a.3dtourme').length
+  init_move_to_top() if $("a.move_to_top").length

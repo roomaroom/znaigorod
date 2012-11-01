@@ -1,6 +1,7 @@
 @init_move_to_top = () ->
   link = $("a.move_to_top")
-  barrier = 1000
+
+  barrier = link.prev(".affiches_filter").outerHeight(true, true) + 100
 
   link.css
     top: $(window).height() / 2 - link.outerHeight() / 2
