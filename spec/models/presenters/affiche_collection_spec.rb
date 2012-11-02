@@ -32,7 +32,7 @@ describe AfficheCollection do
   describe "#period_links" do
     before {
       searcher = HasSearcher.searcher(:affiche, :affiche_category => 'movies')
-      searcher.stub_chain(:today, :affiches, :group, :total).and_return(5)
+      searcher.stub_chain(:today, :actual, :affiches, :group, :total).and_return(5)
       searcher.stub_chain(:weekend, :actual, :affiches, :group, :total).and_return(7)
       searcher.stub_chain(:weekly, :actual, :affiches, :group, :total).and_return(9)
       searcher.stub_chain(:actual, :affiches, :group, :total).and_return(10)
@@ -84,7 +84,7 @@ describe AfficheCollection do
     subject { affiche_collection.counter }
     before {
       searcher = HasSearcher.searcher(:affiche, :affiche_category => 'movies')
-      searcher.stub_chain(:today, :affiches, :group, :total).and_return(5)
+      searcher.stub_chain(:today, :actual, :affiches, :group, :total).and_return(5)
       Counter.any_instance.stub(:searcher).and_return(searcher)
     }
     its(:today) { should == 5 }
@@ -115,7 +115,7 @@ describe AfficheCollection do
     subject { affiche_collection.searcher_scopes }
     context "when today" do
       before { affiche_collection.period = 'today' }
-      it { should == ['today', 'order_by_affiche_popularity'] }
+      it { should == ['today', 'actual', 'order_by_affiche_popularity'] }
     end
     context "when daily and date = today" do
       before { affiche_collection.period = 'daily' }
@@ -125,7 +125,7 @@ describe AfficheCollection do
     context "when daily and date != today" do
       before { affiche_collection.period = 'daily' }
       before { affiche_collection.on = Date.today + 3.days }
-      it { should == ['actual', 'order_by_affiche_popularity'] }
+      it { should == ['order_by_affiche_popularity'] }
     end
     context "when weekly" do
       before { affiche_collection.period = 'weekly' }

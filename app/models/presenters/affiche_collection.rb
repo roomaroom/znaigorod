@@ -163,12 +163,9 @@ class AfficheCollection
       case period
       when 'today'
         scopes << 'today'
+        scopes << 'actual'
       when 'daily'
-        if on == Date.today
-          scopes << 'today'
-        else
-          scopes << 'actual'
-        end
+        scopes << 'today' if on == Date.today
       when 'weekend'
         scopes << 'weekend'
         scopes << 'actual'

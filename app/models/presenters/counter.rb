@@ -5,7 +5,7 @@ class Counter
   attr_accessor :kind, :organization
 
   def today
-    @today ||= searcher.today.affiches.group(:affiche_id_str).total
+    @today ||= searcher.today.actual.affiches.group(:affiche_id_str).total
   end
 
   def weekend

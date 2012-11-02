@@ -38,10 +38,6 @@ HasSearcher.create_searcher :affiche do
     group :affiche_id_str
   end
 
-  scope do
-    with(:starts_at).greater_than DateTime.now.beginning_of_day
-  end
-
   scope :order_by_starts_at do
     order_by(:starts_at, :asc)
   end

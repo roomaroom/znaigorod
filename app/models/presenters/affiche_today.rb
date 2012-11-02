@@ -58,7 +58,7 @@ class AfficheToday
   private
 
   def searcher(searcher_params)
-    HasSearcher.searcher(:affiche, searcher_params).today
+    HasSearcher.searcher(:affiche, searcher_params).today.actual
   end
 
   def search_params(affiche_id = nil)
