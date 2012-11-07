@@ -7,10 +7,16 @@ domain = config['deploy']["domain"]
 raise "not found deploy.domain key in settings.yml. see settings.yml.example" unless domain
 port = config['deploy']["port"]
 raise "not found deploy.port key in settings.yml. see settings.yml.example" unless port
+pg_domain = config['deploy']["pg_domain"]
+raise "not found deploy.pg_domain key in settings.yml. see settings.yml.example" unless pg_domain
+pg_port = config['deploy']["pg_port"]
+raise "not found deploy.pg_port key in settings.yml. see settings.yml.example" unless pg_port
 
 set :application, application
 set :domain, domain
 set :port, port
+set :pg_domain, pg_domain
+set :pg_port, pg_port
 
 set :rails_env, "production"
 set :deploy_to, "/srv/#{application}"
