@@ -12,26 +12,28 @@
     <%= affiche.when_with_price %>
   </div>
   <% if affiche.distribution_movie? %>
-    <div class="seances">
-      <ul class="title">
-        <li class="text"><%= affiche.distribution_movie_schedule_date %></li>
-        <li class="link_all"><%= link_to "Все сеансы", affiche.kind_affiche_path(:anchor => 'showings') %></li>
-      </ul>
-      <ul class="theaters">
-        <% affiche.distribution_movie_nearlest_grouped_showings.each do |place, showings| %>
-          <li class="theater">
-            <p class="name"><%= showings.first.place_decorator.link_short_title %></p>
-            <p class="address"><%= showings.first.place_decorator.address_link %></p>
-          </li>
-          <% showings[0..4].each_with_index do |showing, index| %>
-            <li class="seance<%= " last" if index == 4 %>">
-              <%= content_tag :p, showing.human_time_starts_at, :class => "time" unless showing.human_time_starts_at.blank? %>
-              <%= content_tag :p, showing.human_price, :class => "price" unless showing.human_price.blank? %>
+    <% if affiche.affiche_actual? %>
+      <div class="seances">
+        <ul class="title">
+          <li class="text"><%= affiche.distribution_movie_schedule_date %></li>
+          <li class="link_all"><%= link_to "Все сеансы", affiche.kind_affiche_path(:anchor => 'showings') %></li>
+        </ul>
+        <ul class="theaters">
+          <% affiche.distribution_movie_nearlest_grouped_showings.each do |place, showings| %>
+            <li class="theater">
+              <p class="name"><%= showings.first.place_decorator.link_short_title %></p>
+              <p class="address"><%= showings.first.place_decorator.address_link %></p>
             </li>
+            <% showings[0..4].each_with_index do |showing, index| %>
+              <li class="seance<%= " last" if index == 4 %>">
+                <%= content_tag :p, showing.human_time_starts_at, :class => "time" unless showing.human_time_starts_at.blank? %>
+                <%= content_tag :p, showing.human_price, :class => "price" unless showing.human_price.blank? %>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    <% end %>
   <% else %>
     <% if affiche.other_showings.any? %>
       <div class="will_be">

@@ -283,13 +283,17 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def other_showings
-    return [] if affiche.is_a?(Movie)
-    if affiche_distribution?
-      return affiche.showings.where("starts_at >= ?", showings.first.starts_at) unless showings.blank?
-    else
-      return affiche.showings.where("starts_at > ?", showings.first.starts_at) unless showings.blank?
-    end
-    []
+    return [] unless affiche_actual?
+    first_showing = showings.first
+    @other_showings ||= if first_showing && first_showing.actual?
+                          if affiche_distribution?
+                            ShowingDecorator.decorate affiche.showings.where("starts_at >= ?", showings.first.starts_at)
+                          else
+                            ShowingDecorator.decorate affiche.showings.where("starts_at > ?", showings.first.starts_at)
+                          end
+                        else
+                          ShowingDecorator.decorate affiche.showings.where("starts_at > ?", DateTime.now.beginning_of_day)
+                        end
   end
 
   def first_other_showing_today?
@@ -305,7 +309,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def html_other_showings
-    ((ShowingDecorator.decorate(other_showings[0..1]).map(&:html_other_showing)).compact.join(", <br />") + "&nbsp;" + html_many_other_showings.to_s).html_safe
+    ((other_showings[0..1].map(&:html_other_showing)).compact.join(", <br />") + "&nbsp;" + html_many_other_showings.to_s).html_safe
   end
 
   def distribution_movie?
@@ -313,7 +317,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def distribution_movie_nearlest_grouped_showings
-    showings.any? ? showings.group_by(&:starts_on).first.second.select(&:actual?).group_by(&:place) : []
+    other_showings.any? ? other_showings.group_by(&:starts_on).first.second.group_by(&:place) : []
   end
 
   def distribution_movie_grouped_showings
@@ -325,7 +329,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def distribution_movie_schedule_date
-    "Ближайшие сеансы #{showings.first.human_date.mb_chars.downcase}" if showings.any?
+    "Ближайшие сеансы #{other_showings.first.human_date.mb_chars.downcase}" if other_showings.any?
   end
 
   def similar_affiches
