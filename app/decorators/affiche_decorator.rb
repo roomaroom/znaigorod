@@ -216,8 +216,14 @@ class AfficheDecorator < ApplicationDecorator
     affiche.distribution_starts_on?
   end
 
+  def affiche_actual?
+    affiche.showings.actual.count > 0
+  end
+
   def human_when
-    if showings.any?
+    nealest_showing = showings.any? ? showings.first : ShowingDecorator.new(affiche.showings.last)
+    return "Время проведения неизвестно" unless nealest_showing.showing
+    if affiche_actual?
       if affiche.constant?
         case affiche.class
         when Exhibition
@@ -227,24 +233,20 @@ class AfficheDecorator < ApplicationDecorator
         end
       end
       return human_distribution if affiche.distribution_starts_on?
-      return showings.first.human_when
     else
-      last_showing = ShowingDecorator.new(affiche.showings.last)
-      return "Время проведения неизвестно" unless last_showing.showing
       case affiche.class.name
       when 'Movie'
         if affiche_distribution?
           return human_distribution if affiche.distribution_starts_on >= Date.today
-          return "Было в прокате до #{last_showing.e_B(last_showing.starts_at)}"
+          return "Было в прокате до #{nealest_showing.e_B(nealest_showing.starts_at)}"
         else
-          return "Последний показ был #{last_showing.e_B(last_showing.starts_at)}"
+          return "Последний показ был #{nealest_showing.e_B(nealest_showing.starts_at)}"
         end
       when 'Exhibition'
-        return "Выставка закончилась #{last_showing.e_B(last_showing.starts_at)}"
-      else
-        return "Было #{last_showing.e_B(last_showing.starts_at)}"
+        return "Выставка закончилась #{nealest_showing.e_B(nealest_showing.starts_at)}"
       end
     end
+    nealest_showing.actual? ? nealest_showing.human_when : "Было #{nealest_showing.e_B(nealest_showing.starts_at)}"
   end
 
   def human_price

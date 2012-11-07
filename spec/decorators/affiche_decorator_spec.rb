@@ -106,6 +106,7 @@ describe AfficheDecorator do
   describe "#human_when" do
     let(:showing) { Showing.new(:starts_at => Time.zone.parse('2012-09-04 12:00')) }
     before { affiche.stub_chain(:showings, :actual).and_return([showing]) }
+    before { Time.stub!(:now).and_return(Time.local(2012, 9, 3, 3, 0)) }
     subject { decorator.human_when }
     context "when distribution date set in affiche" do
       before { affiche.distribution_starts_on = Time.zone.parse('2012-09-05') }

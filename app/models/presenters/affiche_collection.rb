@@ -95,7 +95,7 @@ class AfficheCollection
     [].tap do |array|
       Affiche.ordered_descendants.each do |category|
         array << Link.new(title: category.model_name.human.mb_chars.downcase,
-                          url: affiches_path(kind, period, categories: tag_params('categories', category.model_name.downcase.pluralize), tags: tags.any? ? tags : nil),
+                          url: affiches_path(kind, period, on, categories: tag_params('categories', category.model_name.downcase.pluralize), tags: tags.any? ? tags : nil),
                           current: categories.include?(category.model_name.downcase.pluralize),
                           html_options: categories.include?(category.model_name.downcase.pluralize) ? { class: :selected } : {}
                          )
