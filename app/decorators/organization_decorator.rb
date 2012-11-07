@@ -63,6 +63,7 @@ class OrganizationDecorator < ApplicationDecorator
     return organization.meal if organization.respond_to?(:meal) && organization.meal
     return organization.entertainment if organization.respond_to?(:entertainment) && organization.entertainment
     return organization.culture if organization.respond_to?(:culture) && organization.culture
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def suborganization_decorator_class
