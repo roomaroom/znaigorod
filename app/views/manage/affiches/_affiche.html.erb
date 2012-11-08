@@ -73,19 +73,6 @@
 
 <div style='clear:both;'>
   <h3>
-    Изображение для главной страницы
-  </h3>
-  <% if resource.image_url.present? %>
-    <span class="value">
-      <%= image_tag resource.image_url %>
-    </span>
-  <% else %>
-    <span class="blank">Нет изображения</span>
-  <% end %>
-</div>
-
-<div>
-  <h3>
     Видеоролик
   </h3>
   <% if resource.trailer_code.present? %>

@@ -21,18 +21,6 @@
   </div>
 </div>
 
-<div class='image'>
-  <h3>Изображение для главной страницы:</h3>
-  <%= f.input :image_url, :as => :hidden, :input_html => { :id => 'affiche_image_url' } %>
-  <div class="choose_file_wrapper">
-    <div class="uploaded_file_wrapper image">
-      <%= image_tag f.object.image_url if f.object.image_url.present? %>
-    </div>
-    <%= link_to t('remove_link'), '#', :class => 'remove_link', :style => ("display: none;" unless f.object.image_url.present?) %>
-    <%= link_to t('choose_file'), '#', :class => 'affiche_image_url choose_file', :params => "vfs_path=#{f.object.vfs_path}", :style => ('display: none;' if f.object.image_url.present?) %>
-  </div>
-</div>
-
 <% unless f.object.affiche_schedule.try :persisted? %>
   <div class="showings_fields">
     <h3>Сеансы:</h3>
