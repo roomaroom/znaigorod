@@ -22,6 +22,7 @@ class AfficheDecorator < ApplicationDecorator
 
   auto_html_for :trailer_code do
     youtube(:width => 740, :height => 450)
+    vimeo(:width => 740, :height => 450)
   end
 
   def kind_affiche_path(options = {})

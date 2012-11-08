@@ -90,16 +90,21 @@ body
   background: #513871 image_url('public/main_menu_bg.png') repeat left top
   .main_menu
     $main_height: 27px
-    $menu_left_offset: 10px
-    width: $common_width - $menu_left_offset
+    $menu_offset: 10px
+    width: $common_width - $menu_offset * 2
     margin: 0 auto
     overflow: visible
     +min-height($main_height)
-    padding-left: $menu_left_offset
+    //border-right: 1px dotted #afafaf
+    border-left: 1px dotted #afafaf
     li
       float: left
       font-size: 16px
       border-right: 1px dotted #afafaf
+      &.float_right
+        float: right
+        border-right: none
+        border-left: 1px dotted #afafaf
       a
         color: #fff
         display: block
