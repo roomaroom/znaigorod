@@ -12,7 +12,7 @@ class Showing < ActiveRecord::Base
   after_create  :index_affiche
   after_destroy :index_affiche
 
-  scope :actual, -> { where('starts_at >= ?', DateTime.now.beginning_of_day) }
+  scope :actual, -> { where('starts_at >= ? OR (ends_at is not null AND ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now) }
 
   scope :with_organization, where('organization_id IS NOT NULL')
 
