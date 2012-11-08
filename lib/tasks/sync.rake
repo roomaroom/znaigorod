@@ -187,6 +187,12 @@ namespace :sync do
             if i['class'] == 'show-time'
               time = i.css('a').text
               amount = i.next_element.css('table td:nth-child(2)').text
+              begin
+                Time.parse(time)
+              rescue
+                puts "Какой-то не правильный формат времени '#{time}' для '#{title}'"
+                next
+              end
               movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => [hall, three_d].join(' ').squish, :price_min => amount.to_i }
             end
           end
