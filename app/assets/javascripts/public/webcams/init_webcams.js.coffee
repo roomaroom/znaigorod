@@ -1,34 +1,31 @@
-@init_webcam_tpu_main = () ->
-  link = $("#webcam_tpu_main a")
-  link.click (event) ->
-    render_axis_dialog("http://webcam.tpu.ru/activex/AxisCamControl.cab", "http://webcam.tpu.ru/axis-cgi/mjpg/video.cgi")
-    false
-
+@init_webcam = () ->
+  $(".webcams_list .webcam").each (index, item) ->
+    block = $(this)
+    link = $("a", block)
+    link.click (event) ->
+      width = block.attr("data-width")
+      height = block.attr("data-height")
+      cab_url = block.attr("data-cab")
+      cgi_url = block.attr("data-cgi")
+      dialog_title = "#{link.text()}. #{link.next("span").text()}"
+      render_axis_dialog(width, height, cab_url, cgi_url, dialog_title)
+      false
+    true
   true
 
-@init_webcam_novosobornaya = () ->
-  link = $("#webcam_novosobornaya a")
-  link.click (event) ->
-    render_axis_dialog("http://ctt.tusur.ru/files/webcam/AxisCamControl.cab", "http://campus.tusur.ru/axis-cgi/mjpg/video.cgi")
-    false
-  true
-
-$.fn.open_dialog = () ->
-  $(this).dialog
-    modal: true
-    width: 740
-    height: 620
-    resizable: false
-  true
-
-render_axis_dialog = (cab_path, cgi_path) ->
+render_axis_dialog = (width, height, cab_url, cgi_url, dialog_title) ->
   webcam_dialog = init_webcam_dialog()
   webcam_dialog.html("").hide()
   if navigator.appName == "Microsoft Internet Explorer" && navigator.platform != "MacPPC" && navigator.platform != "Mac68k"
-    webcam_dialog.html(render_axis_object(cab_path, cgi_path))
+    webcam_dialog.html(render_axis_object(width, height, cab_url, cgi_url))
   else
-    webcam_dialog.html(render_axis_image(cgi_path))
-  webcam_dialog.open_dialog()
+    webcam_dialog.html(render_axis_image(width, height, cgi_url))
+  webcam_dialog.dialog
+    title: dialog_title
+    modal: true
+    width: width.toNumber() + 36
+    height: height.toNumber() + 44
+    resizable: false
   true
 
 init_webcam_dialog = () ->
@@ -36,21 +33,17 @@ init_webcam_dialog = () ->
     $("<div id='webcam_dialog' />").appendTo("body")
   $("#webcam_dialog")
 
-render_axis_object = (cab_path, cgi_path) ->
-  width = 704
-  height = 576
+render_axis_object = (width, height, cab_url, cgi_url) ->
   "<center>" +
-  "<object width='#{width}' height='#{height}' codebase='#{cab_path}#Version=1,0,2,15'>" +
+  "<object width='#{width}' height='#{height}' codebase='#{cab_url}#Version=1,0,2,15'>" +
   "<param name='DisplaySoundPanel' value=0>" +
-  "<param name='url' value='#{cgi_path}?camera=&resolution=#{width}x#{height}'>" +
+  "<param name='url' value='#{cgi_url}?camera=&resolution=#{width}x#{height}'>" +
   "</object>" +
   "</center>"
 
-render_axis_image = (cgi_path) ->
-  width = 704
-  height = 576
+render_axis_image = (width, height, cgi_url) ->
   "<center>" +
-  "<img src='#{cgi_path}?camera=&resolution=#{width}x#{height}&#{new Date().getTime()}' " +
+  "<img src='#{cgi_url}?camera=&resolution=#{width}x#{height}&#{new Date().getTime()}' " +
   " width='#{width}' height='#{height}' " +
   "alt='Press Reload if no image is displayed'>" +
   "</center>"

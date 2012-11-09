@@ -11,14 +11,40 @@
 
     <div class="webcams_list">
 
-      <div id="webcam_tpu_main">
+      <div class="webcam"
+           data-width="704"
+           data-height="576"
+           data-cab="http://webcam.tpu.ru/activex/AxisCamControl.cab"
+           data-cgi="http://webcam.tpu.ru/axis-cgi/mjpg/video.cgi">
         <a href="#">Главный корпус Томского политехнического университета</a>
         <span>пр. Ленина, 30</span>
       </div>
 
-      <div id="webcam_novosobornaya">
-        <a href="#">Площадь Новособорная. Вид со здания ТУСУР</a>
+      <div class="webcam"
+           data-width="704"
+           data-height="576"
+           data-cab="http://ctt.tusur.ru/files/webcam/AxisCamControl.cab"
+           data-cgi="http://campus.tusur.ru/axis-cgi/mjpg/video.cgi">
+        <a href="#">Площадь Новособорная. Вид с главного корпуса ТУСУР</a>
         <span>пр. Ленина, 40</span>
+      </div>
+
+      <div class="webcam"
+           data-width="640"
+           data-height="480"
+           data-cab="http://ctt.tusur.ru/files/webcam/AxisCamControl.cab"
+           data-cgi="http://webcam.fet.tusur.ru/axis-cgi/mjpg/video.cgi">
+        <a href="#">Корпус ФЭТ ТУСУР</a>
+        <span>ул. Вершинина проезд, 74</span>
+      </div>
+
+      <div class="webcam"
+           data-width="704"
+           data-height="576"
+           data-cab="http://cam.admin.tomsk.ru/AxisCamControl.ocx"
+           data-cgi="http://cam.admin.tomsk.ru/cgi-bin/cam2.pl">
+        <a href="#">Дворец зрелищ и спорта</a>
+        <span>ул. Красноармейская, 126</span>
       </div>
 
     </div>

@@ -4,8 +4,9 @@
  * = require public/md5
  * = require public/twitter
  * = require public/vk
- * = require public/scroll_to
  * = require public/cookie
+ * = require public/scroll_to
+ * = require public/sugar
  *
  * = require public/3dtourme_stat
  * = require public/common

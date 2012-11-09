@@ -24,10 +24,7 @@ $ ->
   init_loading_items() if $('.content_wrapper .search_results ul.items_list li').length
   init_list_settings() if $('.content_wrapper .list_settings').length
   init_swfkrpano() if $("#krpano").length
-
-  # webcams
-  init_webcam_tpu_main() if $("#webcam_tpu_main").length
-  init_webcam_novosobornaya() if $("#webcam_novosobornaya").length
+  init_webcam() if $(".webcams_list .webcam").length
   true
 
 $(window).load ->
