@@ -147,7 +147,7 @@ class AfficheDecorator < ApplicationDecorator
       end
       else
         last_showoing = affiche.showings.last
-        return unless last_showoing
+        return [] unless last_showoing
         place = last_showoing.organization ? last_showoing.organization : last_showoing.place
         array << (place.is_a?(Organization) ? PlaceDecorator.new(:organization => place) : PlaceDecorator.new(:title => place,
                                                                                    :latitude => last_showoing.latitude,
