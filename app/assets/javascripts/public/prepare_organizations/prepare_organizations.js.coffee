@@ -8,3 +8,5 @@
         if top > 0
           $(item).addClass('offset_left').css
             "margin-left": left
+    true
+  true

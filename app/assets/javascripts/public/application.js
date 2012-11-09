@@ -8,7 +8,6 @@
  * = require public/cookie
  *
  * = require public/3dtourme_stat
- *
  * = require public/common
  * = require public/jscrollpane
  * = require public/main_page
@@ -25,5 +24,6 @@
  * = require public/list_settings
  * = require public/swfkrpano
  * = require public/move_to_top
+ * = require public/webcams
  * = require public/main
  */

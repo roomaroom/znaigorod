@@ -1,4 +1,4 @@
 /*
- *= require ./swfkrpano
- *= require ./init_swfkrpano
+ * = require ./swfkrpano
+ * = require ./init_swfkrpano
  */
