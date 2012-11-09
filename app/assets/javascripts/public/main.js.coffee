@@ -27,6 +27,7 @@ $ ->
 
   # webcams
   init_webcam_tpu_main() if $("#webcam_tpu_main").length
+  init_webcam_novosobornaya() if $("#webcam_novosobornaya").length
   true
 
 $(window).load ->
