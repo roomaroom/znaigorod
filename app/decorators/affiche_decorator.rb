@@ -139,10 +139,19 @@ class AfficheDecorator < ApplicationDecorator
 
   def places
     [].tap do |array|
+      if showings.any?
       showings.map { |showing| showing.organization ? showing.organization : showing.place }.uniq.each do |place|
         array << (place.is_a?(Organization) ? PlaceDecorator.new(:organization => place) : PlaceDecorator.new(:title => place,
-                                                                                                              :latitude => affiche.showings.where(:place => place).first.latitude,
-                                                                                                              :longitude => affiche.showings.where(:place => place).first.longitude))
+                                                                     :latitude => affiche.showings.where(:place => place).first.latitude,
+                                                                     :longitude => affiche.showings.where(:place => place).first.longitude))
+      end
+      else
+        last_showoing = affiche.showings.last
+        return unless last_showoing
+        place = last_showoing.organization ? last_showoing.organization : last_showoing.place
+        array << (place.is_a?(Organization) ? PlaceDecorator.new(:organization => place) : PlaceDecorator.new(:title => place,
+                                                                                   :latitude => last_showoing.latitude,
+                                                                                   :longitude => last_showoing.longitude))
       end
     end
   end

@@ -14,7 +14,7 @@
       <div class="closest">
         <%= @affiche.when_with_price %>
       </div>
-      <% unless @affiche.distribution_movie? && @affiche.showings.many? %>
+      <% unless @affiche.distribution_movie? %>
         <% @affiche.places.each do |place| %>
           <div class="place">
             <%= place.place %>
