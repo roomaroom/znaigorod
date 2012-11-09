@@ -8,19 +8,25 @@ raise "not found deploy.solr_port key in settings.yml. see settings.yml.example"
 
 namespace :solr do
   desc "Upload local solr config to remote server"
-  task :export do
+  task :export_config do
     run_locally("scp -r -P #{solr_port} solr/conf/ #{solr_domain}:/var/lib/tomcat6/solr/")
     run_locally("scp -r -P #{solr_port} solr/lib/ #{solr_domain}:/var/lib/tomcat6/solr/")
     run_locally("ssh #{solr_domain} -p #{solr_port} chown -R tomcat6:tomcat6 /var/lib/tomcat6/solr/")
   end
 
+  desc "Download remote solr config"
+    task :import_config do
+      run_locally("scp -r -P #{solr_port} #{solr_domain}:/var/lib/tomcat6/solr/conf/ solr/")
+  end
+
+  desc "Import solr index files"
+    task :import do
+      run_locally("rm -rf solr/data/development/")
+      run_locally("rsync -a --progress -e='ssh -p#{solr_port}' #{solr_domain}:/var/lib/tomcat6/solr/data/ solr/data/development")
+  end
+
   desc "Restart Tomcat6/Solr server"
   task :restart do
     run_locally("ssh #{solr_domain} -p #{solr_port} /etc/init.d/tomcat6 restart")
-  end
-
-  desc "Download remote solr config"
-  task :import do
-    run_locally("scp -r -P #{solr_port} #{solr_domain}:/var/lib/tomcat6/solr/conf/ solr/")
   end
 end
