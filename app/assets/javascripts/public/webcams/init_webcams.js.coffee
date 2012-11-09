@@ -1,5 +1,5 @@
-@init_webcam = () ->
-  $(".webcams_list .webcam").each (index, item) ->
+@init_webcam_axis = () ->
+  $(".webcams_list .webcam_axis").each (index, item) ->
     block = $(this)
     link = $("a", block)
     link.click (event) ->
@@ -12,6 +12,11 @@
       false
     true
   true
+
+init_webcam_dialog = () ->
+  unless $("#webcam_dialog").length
+    $("<div id='webcam_dialog' />").appendTo("body")
+  $("#webcam_dialog")
 
 render_axis_dialog = (width, height, cab_url, cgi_url, dialog_title) ->
   webcam_dialog = init_webcam_dialog()
@@ -27,11 +32,6 @@ render_axis_dialog = (width, height, cab_url, cgi_url, dialog_title) ->
     height: height.toNumber() + 44
     resizable: false
   true
-
-init_webcam_dialog = () ->
-  unless $("#webcam_dialog").length
-    $("<div id='webcam_dialog' />").appendTo("body")
-  $("#webcam_dialog")
 
 render_axis_object = (width, height, cab_url, cgi_url) ->
   "<center>" +
