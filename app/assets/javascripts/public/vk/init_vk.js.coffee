@@ -1,7 +1,8 @@
-VK.init
-  apiId: 3136085 # znaigorod.ru
-  #apiId: 3136087 # znaigorod.openteam.ru
-  onlyWidgets: true
+if typeof VK != "undefined"
+  VK.init
+    apiId: 3136085 # znaigorod.ru
+    #apiId: 3136087 # znaigorod.openteam.ru
+    onlyWidgets: true
 
 @init_vk_like = () ->
   VK.Widgets.Like "vk_like",
