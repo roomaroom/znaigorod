@@ -189,7 +189,7 @@ namespace :sync do
       day_schedule_page = Nokogiri::HTML(open(host+day_schedule_path).read)
       day_schedule_page.css('.raspisanie-table').each do |table|
         hall = table.css('thead tr td:first h1').text
-        table.css('tbody tr .content').each do |seance|
+        table.css('tbody tr td div .container .content').each do |seance|
           title = seance.css('h1').text
           three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
           title = title.gsub(/((?:в 3D)\b|3D\b)/,'').squish
