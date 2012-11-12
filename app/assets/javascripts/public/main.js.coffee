@@ -25,8 +25,10 @@ $ ->
   init_list_settings() if $('.content_wrapper .list_settings').length
   init_swfkrpano() if $("#krpano").length
   init_webcam_axis() if $(".webcams_list .webcam_axis").length
+  init_webcam_swfobject() if $(".webcams_list .webcam_swfobject").length
   true
 
 $(window).load ->
   init_3dtourme_stat() if $('a.3dtourme').length
   init_move_to_top() if $("a.move_to_top").length
+  true

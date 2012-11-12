@@ -7,6 +7,7 @@
  * = require public/cookie
  * = require public/scroll_to
  * = require public/sugar
+ * = require public/swfobject
  *
  * = require public/3dtourme_stat
  * = require public/common
