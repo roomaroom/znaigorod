@@ -1,5 +1,5 @@
 desc "Run rake task"
-task :rake do
+task :caprake do
   ARGV.shift
 
   task = ARGV.shift
