@@ -4,6 +4,9 @@ require 'open-uri'
 require 'nokogiri'
 require 'timecop'
 
+require 'rack'
+require 'airbrake'
+
 class MovieSyncer
   attr_accessor :movies, :place
 
@@ -64,6 +67,9 @@ class MovieSyncer
         bar.increment! seances.count
       end
     end
+
+    message = I18n.localize(Time.now, :format => :short) + " Импорт сеансов '#{place}' выполнен."
+    Airbrake.notify(:error_class => "Rake Task", :error_message => message)
   end
 
   private
@@ -77,6 +83,9 @@ class MovieSyncer
         puts "Найден похожий фильм '#{title}' -> '#{similar_movies.first.title}'"
       else
         puts "Не могу найти фильм '#{title}'"
+
+        message = I18n.localize(Time.now, :format => :short) + " Не могу найти фильм '#{title}'"
+        Airbrake.notify(Exception.new(message))
       end
       similar_movies.first
     end
@@ -87,6 +96,9 @@ class MovieSyncer
         puts "Найден похожий кинотеатр '#{cinema_title}' -> '#{similar_cinematheatre.first.title}'"
       else
         puts "Кинотеатр '#{cinema_title}' не найден"
+
+        message = I18n.localize(Time.now, :format => :short) + " Не могу найти кинотеатр '#{cinema_title}'"
+        Airbrake.notify(Exception.new(message))
       end
       similar_cinematheatre.first
     end
@@ -190,7 +202,8 @@ namespace :sync do
               begin
                 Time.parse(time)
               rescue
-                puts "Какой-то не правильный формат времени '#{time}' для '#{title}'"
+                message = I18n.localize(Time.now, :format => :short) + " Какой-то не правильный формат времени '#{time}' для '#{title}'"
+                Airbrake.notify(Exception.new(message))
                 next
               end
               movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => [hall, three_d].join(' ').squish, :price_min => amount.to_i }
