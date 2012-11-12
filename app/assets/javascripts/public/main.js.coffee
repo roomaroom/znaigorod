@@ -1,20 +1,17 @@
 $ ->
   init_common()
 
-  VK_async.ready () ->
-    if typeof VK != "undefined"
-      init_vk_like() if $("#vk_like").length
-      init_vk_recommended() if $("#vk_recommended").length
-      init_vk_comments() if $("#vk_comments").length
-      init_vk_group_thin() if $("#vk_group_thin").length
-      init_vk_group_thick() if $("#vk_group_thick").length
-      init_vk_group_news() if $("#vk_group_news").length
-      init_vk_group_subscribers() if $("#vk_group_subscribers").length
-    true
+  if typeof VK != "undefined"
+    init_vk_like() if $("#vk_like").length
+    init_vk_recommended() if $("#vk_recommended").length
+    init_vk_comments() if $("#vk_comments").length
+    init_vk_group_thin() if $("#vk_group_thin").length
+    init_vk_group_thick() if $("#vk_group_thick").length
+    init_vk_group_news() if $("#vk_group_news").length
+    init_vk_group_subscribers() if $("#vk_group_subscribers").length
 
-  DG_async.ready () ->
-    if typeof DG != "undefined"
-      init_affiches_map() if $(".show_map_link").length
+  if typeof DG != "undefined"
+    init_affiches_map() if $(".show_map_link").length
 
   init_main_page() if $(".main_page_affiche").length
   init_affiches_filter() if $(".affiches_filter .periods .daily").length
