@@ -4,7 +4,6 @@ require "rvm/capistrano"
 load "config/deploy/settings"
 load "config/deploy/assets"
 load "config/deploy/database"
-load "config/deploy/rake"
 load "config/deploy/solr"
 load "config/deploy/tag"
 
