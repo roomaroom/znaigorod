@@ -199,12 +199,13 @@ namespace :sync do
             if i['class'] == 'show-time'
               time = i.css('a').text
               amount = i.next_element.css('table td:nth-child(2)').text
-              begin
+              if time.split(':').first == '24'
+                hour = '00'
+                min = time.split(':').last
+                time = hour + ':' + min
+                Time.parse(time)+1.day
+              else
                 Time.parse(time)
-              rescue
-                message = I18n.localize(Time.now, :format => :short) + " Какой-то не правильный формат времени '#{time}' для '#{title}'"
-                Airbrake.notify(Exception.new(message))
-                next
               end
               movies[title] << {:starts_at => Time.zone.parse("#{date} #{time}"), :hall => [hall, three_d].join(' ').squish, :price_min => amount.to_i }
             end
