@@ -46,6 +46,8 @@ Znaigorod::Application.routes.draw do
 
   get 'webcams' => 'webcams#index'
 
+  get 'cooperation' => 'cooperation#index'
+
   get ':kind/:period/(:on)/(categories/*categories)/(tags/*tags)' => 'affiches#index',
       :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches/,
       :period => /today|weekly|weekend|all|daily/, :as => :affiches
