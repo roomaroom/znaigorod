@@ -21,7 +21,7 @@ namespace :solr do
 
   desc "Import solr index files"
     task :import do
-      run_locally("rsync -a --delete -e='ssh -p#{solr_port}' #{solr_domain}:/var/lib/tomcat6/solr/data/ solr/data/development")
+      run_locally("rsync -a --delete -e='ssh -p#{solr_port}' #{solr_domain}:/var/lib/tomcat6/solr/data/ solr/data/development; true")
   end
 
   desc "Restart Tomcat6/Solr server"
