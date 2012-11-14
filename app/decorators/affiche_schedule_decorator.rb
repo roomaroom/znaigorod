@@ -16,7 +16,7 @@ class AfficheScheduleDecorator < ApplicationDecorator
     res = ""
     if affiche_schedule.starts_on > date && affiche_schedule.ends_on > date
       res = h.content_tag(:span, "не работает", class: :weekend)
-    elsif affiche_schedule.holidays.include? date.wday
+    elsif affiche_schedule.holidays.include? (date.wday == 0 ? 7 : date.wday)
       res = h.content_tag(:span, "выходной", :class => :weekend)
     else
       res << h.content_tag(:span, I18n.l(affiche_schedule.starts_at, :format => '%H:%M'), :class => :begin)
