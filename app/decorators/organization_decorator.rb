@@ -116,7 +116,7 @@ class OrganizationDecorator < ApplicationDecorator
 
   def tags_for_vk
     res = ""
-    res << "<meta name='description' content='#{text_description}' />\n"
+    res << "<meta name='description' content='#{text_description.truncate(700, :separator => ' ')}' />\n"
     res << "<meta property='og:description' content='#{text_description.truncate(350, :separator => ' ')}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
     res << "<meta property='og:url' content='#{organization_url}' />\n"

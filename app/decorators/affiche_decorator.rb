@@ -187,7 +187,7 @@ class AfficheDecorator < ApplicationDecorator
     desc = desc.gsub(/<table>.*<\/table>/m, '').gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe
     image = resized_image_url(poster_url, 180, 242, false)
     res = ""
-    res << "<meta name='description' content='#{desc}' />\n"
+    res << "<meta name='description' content='#{desc.truncate(700, :separator => ' ').html_safe}' />\n"
     res << "<meta property='og:description' content='#{desc.truncate(350, :separator => ' ').html_safe}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
     res << "<meta property='og:title' content='#{title.text_gilensize}' />\n"
