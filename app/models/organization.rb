@@ -165,20 +165,21 @@ end
 #
 # Table name: organizations
 #
-#  id              :integer          not null, primary key
-#  title           :text
-#  site            :text
-#  email           :text
-#  description     :text
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  phone           :text
-#  vfs_path        :string(255)
-#  organization_id :integer
-#  logotype_url    :text
-#  slug            :string(255)
-#  tour_link       :text
-#  rating          :float
-#  non_cash        :boolean
+#  id                            :integer          not null, primary key
+#  title                         :text
+#  site                          :text
+#  email                         :text
+#  description                   :text
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  phone                         :text
+#  vfs_path                      :string(255)
+#  organization_id               :integer
+#  logotype_url                  :text
+#  slug                          :string(255)
+#  tour_link                     :text
+#  rating                        :float
+#  non_cash                      :boolean
+#  priority_suborganization_kind :string(255)
 #
 

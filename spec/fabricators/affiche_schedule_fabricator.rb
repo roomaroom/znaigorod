@@ -13,18 +13,21 @@ end
 #
 # Table name: affiche_schedules
 #
-#  id         :integer          not null, primary key
-#  affiche_id :integer
-#  starts_on  :date
-#  ends_on    :date
-#  starts_at  :time
-#  ends_at    :time
-#  holidays   :string(255)
-#  place      :string(255)
-#  hall       :string(255)
-#  price_min  :integer
-#  price_max  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  affiche_id      :integer
+#  starts_on       :date
+#  ends_on         :date
+#  starts_at       :time
+#  ends_at         :time
+#  holidays        :string(255)
+#  place           :string(255)
+#  hall            :string(255)
+#  price_min       :integer
+#  price_max       :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :integer
+#  latitude        :string(255)
+#  longitude       :string(255)
 #
 
