@@ -8,7 +8,7 @@ class CultureDecorator < SuborganizationDecorator
   end
 
   def characteristics_on_show
-    characteristics_by_type("categories features offers")
+    characteristics_by_type("features offers")
   end
 
 end

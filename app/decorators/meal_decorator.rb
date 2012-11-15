@@ -8,7 +8,7 @@ class MealDecorator < SuborganizationDecorator
   end
 
   def characteristics_on_show
-    characteristics_by_type("categories features offers cuisines")
+    characteristics_by_type("features offers cuisines")
   end
 
 end
