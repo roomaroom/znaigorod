@@ -59,6 +59,27 @@ class OrganizationDecorator < ApplicationDecorator
     h.content_tag :ul, links.join("\n").html_safe, :class => "breadcrumbs"
   end
 
+  def suborganizations
+    @suborganizations ||= %w[meal entertainment culture].map { |kind| organization.send(kind) }.compact
+  end
+
+  def categories
+    suborganizations.each.map(&:categories).flatten
+  end
+
+  def categories_links
+    [].tap do |arr|
+      suborganizations.each do |suborganization|
+        suborganization.categories.each do |category|
+         arr<< Link.new(
+           title: category,
+           url: h.organizations_path(organization_class: suborganization.class.name.downcase.pluralize, category: category.mb_chars.downcase)
+         )
+        end
+      end
+    end
+  end
+
   def raw_suborganization
     return organization.meal if organization.respond_to?(:meal) && organization.meal
     return organization.entertainment if organization.respond_to?(:entertainment) && organization.entertainment
@@ -74,7 +95,7 @@ class OrganizationDecorator < ApplicationDecorator
     suborganization_decorator_class.decorate raw_suborganization
   end
 
-  delegate :categories, :features, :offers, :cuisines, :to => :suborganization
+  delegate :features, :offers, :cuisines, :to => :suborganization
 
   def has_photogallery?
     organization.images.any?
