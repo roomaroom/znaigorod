@@ -3,9 +3,11 @@ class Culture < ActiveRecord::Base
 
   belongs_to :organization
 
-  delegate :title, :images, :address, :phone, :schedules, :halls,
-           :site?, :site, :email?, :email, :description, :description?, :affiches,
+  delegate :images, :address, :phone, :schedules, :halls,
+           :site?, :site, :email?, :email, :affiches,
            :latitude, :longitude, :nearest_affiches, :to => :organization
+
+  delegate :title, :description, :description?, to: :organization, prefix: true
 
   validates_presence_of :category, :organization_id
 

@@ -3,13 +3,14 @@ class Meal < ActiveRecord::Base
 
   belongs_to :organization
 
-  delegate :title, :images, :address, :phone, :schedules, :halls,
-           :site?, :site, :email?, :email, :description, :description?, :affiches,
+  delegate :images, :address, :phone, :schedules, :halls,
+           :site?, :site, :email?, :email, :affiches,
            :latitude, :longitude, :nearest_affiches, :to => :organization
+
+  delegate :title, :description, :description?, :touch, to: :organization, prefix: true
 
   validates_presence_of :category, :organization_id
 
-  delegate :touch, :to => :organization, :prefix => true
   after_save :organization_touch
 
   def self.facets

@@ -7,6 +7,14 @@ class SuborganizationDecorator < ApplicationDecorator
     :truncated_description, :site_link, :email_link,
     :to => :decorated_organization
 
+  def decorated_title
+    h.content_tag :h3, title if title?
+  end
+
+  def decorated_description
+    h.simple_format description if description?
+  end
+
   def list_of_characteristics(name)
     content = ""
     content << h.content_tag(:li, I18n.t("activerecord.attributes.#{self.decorate.model.class.name.downcase}.#{name.singularize}"), class: "title")
