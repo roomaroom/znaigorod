@@ -10,7 +10,7 @@
 
       <div class="description">
 
-        <table<%= " class='full'" unless @organization.logotype_url? %>>
+        <table<%= raw(" class='full'") unless @organization.logotype_url? %>>
           <% if @organization.phone.present? %>
             <tr>
               <td>Телефон:</td>
@@ -34,7 +34,7 @@
             <td>
               <ul class="schedule">
                 <% @organization.schedules.each do |schedule| %>
-                  <li<%= " class='today'" if l(Date.today, :format => '%a') == schedule.short_human_day %>>
+                  <li<%= raw(" class='today'") if l(Date.today, :format => '%a') == schedule.short_human_day %>>
                     <div class="dow">
                       <%= schedule.short_human_day %>
                     </div>
@@ -66,9 +66,10 @@
       </div>
 
       <% @organization.decorated_suborganizations.each do |suborganization| %>
-
-        <%= content_tag :h3, t("organization.singularize_title.#{suborganization.model.class.name.downcase}"), class: :suborganization %>
-        <%= suborganization.characteristics_on_show %>
+        <% unless suborganization.characteristics_on_show.blank? %>
+          <%= content_tag :h3, t("organization.singularize_title.#{suborganization.model.class.name.downcase}"), class: :suborganization %>
+          <%= suborganization.characteristics_on_show %>
+        <% end %>
       <% end %>
 
       <div class="share_organization">

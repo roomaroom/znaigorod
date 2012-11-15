@@ -9,7 +9,7 @@
   <div class="main_page_block">
     <ul>
       <% @affiche_today.links.each do |link| %>
-        <li<%= " class='#{link.html_options[:class]}'" unless link.html_options[:class].blank? %>>
+        <li<%= raw(" class='#{link.html_options[:class]}'") unless link.html_options[:class].blank? %>>
           <%= link_to raw("#{link.title} <span>(#{@affiche_today.counters[link.kind].today})</span>"), link.url %>
         </li>
       <% end %>
