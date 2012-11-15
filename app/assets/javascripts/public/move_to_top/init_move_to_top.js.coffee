@@ -1,6 +1,7 @@
 @init_move_to_top = () ->
   link = $("a.move_to_top")
 
+
   barrier = link.prev("div").outerHeight(true, true) + 100
 
   link.css
@@ -19,10 +20,6 @@
       link.fadeOut()
 
   link.click (event) ->
-    if $.scrollTo
-      $.scrollTo '.header_wrapper', 100,
-        easing: 'easeOutExpo'
-    else
-      window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
     false
   true
