@@ -1,5 +1,5 @@
 class Meal < ActiveRecord::Base
-  attr_accessible :category, :cuisine, :feature, :offer, :payment
+  attr_accessible :category, :cuisine, :feature, :offer, :payment, :title, :description
 
   belongs_to :organization
 
@@ -65,5 +65,7 @@ end
 #  organization_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  title           :string(255)
+#  description     :text
 #
 

@@ -8,6 +8,8 @@
 
   <div id="sauna_accessory_attributes">
     <%= f.simple_fields_for :sauna_accessory_attributes, resource.sauna_accessory || resource.build_sauna_accessory do |form| %>
+      <%= form.input :title %>
+      <%= form.input :description %>
       <%= form.input :sheets, :input_html => { :class => "cost" } %>
       <%= form.input :sneakers, :input_html => { :class => "cost" } %>
       <%= form.input :bathrobes, :input_html => { :class => "cost" } %>

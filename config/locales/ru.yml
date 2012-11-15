@@ -220,6 +220,7 @@ ru:
       sauna_stuff: Разное
 
     attributes:
+
       address:
         house: Дом
         latitude: Широта
@@ -301,6 +302,8 @@ ru:
         feature: Особенности
         offer: Предложение
         payment: Способы оплаты
+        title: Название
+        description: Описание
 
       meal:
         category: Категория
@@ -308,12 +311,16 @@ ru:
         feature: Особенности
         offer: Предложение
         payment: Способы оплаты
+        title: Название
+        description: Описание
 
       entertainment:
         category: Категория
         feature: Особенности
         offer: Предложение
         payment: Способы оплаты
+        title: Название
+        description: Описание
 
       sauna_accessory:
         sheets: Простыни
@@ -321,6 +328,8 @@ ru:
         bathrobes: Халаты
         towels: Полотенца
         ware: Посуда
+        title: Название
+        description: Описание
 
       sauna_broom:
         ability: Возможность использовать веники
@@ -411,6 +420,10 @@ ru:
         feature:      Особенности
         age:          Возраст
         tag:          Тэги
+
+      sport:
+        title: Название
+        description: Описание
 
   manage:
     add_affiche: Добавление события

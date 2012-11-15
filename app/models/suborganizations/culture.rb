@@ -1,5 +1,5 @@
 class Culture < ActiveRecord::Base
-  attr_accessible :category, :feature, :offer, :payment
+  attr_accessible :category, :feature, :offer, :payment, :title, :description
 
   belongs_to :organization
 
@@ -44,7 +44,6 @@ class Culture < ActiveRecord::Base
     float :organization_rating
   end
 end
-
 # == Schema Information
 #
 # Table name: cultures
@@ -71,5 +70,7 @@ end
 #  organization_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  title           :string(255)
+#  description     :text
 #
 

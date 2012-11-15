@@ -5,6 +5,23 @@
     <%= link_to t('delete'), manage_organization_sport_path(sport.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
   </h3>
 
+  <div>
+    <span class="label">Название:</span>
+    <% if sport.title? %>
+      <span class="value"><%= sport.title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
+    <span class="label">Описание:</span>
+    <% if sport.description? %>
+      <span class="value"><%= sport.description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
   <span class="label">Услуги:</h4>
   <% if sport.services.any? %>
     <ul>

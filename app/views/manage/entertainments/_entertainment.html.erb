@@ -5,6 +5,22 @@
     <%= link_to t('delete'), manage_organization_entertainment_path(entertainment.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
 </h3>
   <div>
+    <span class="label">Название:</span>
+    <% if entertainment.title? %>
+      <span class="value"><%= entertainment.title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
+    <span class="label">Описание:</span>
+    <% if entertainment.description? %>
+      <span class="value"><%= entertainment.description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
     <span class="label">Категория:</span>
     <% if entertainment.category.present? %>
       <span class="value"><%= entertainment.category %></span>

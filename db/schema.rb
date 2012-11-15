@@ -181,9 +181,11 @@ ActiveRecord::Schema.define(:version => 20121115093630) do
     t.integer  "sneakers"
     t.integer  "bathrobes"
     t.integer  "towels"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "ware"
+    t.string   "title"
+    t.text     "description"
   end
 
   add_index "sauna_accessories", ["sauna_id"], :name => "index_sauna_accessories_on_sauna_id"
@@ -347,8 +349,6 @@ ActiveRecord::Schema.define(:version => 20121115093630) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "title"
-    t.text     "description"
   end
 
   add_index "saunas", ["organization_id"], :name => "index_saunas_on_organization_id"

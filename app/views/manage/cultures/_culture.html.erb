@@ -5,6 +5,22 @@
     <%= link_to t('delete'), manage_organization_culture_path(culture.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
 </h3>
   <div>
+    <span class="label">Название:</span>
+    <% if culture.title? %>
+      <span class="value"><%= culture.title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
+    <span class="label">Описание:</span>
+    <% if culture.description? %>
+      <span class="value"><%= culture.description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
     <span class="label">Категория:</span>
     <% if culture.category.present? %>
       <span class="value"><%= culture.category %></span>

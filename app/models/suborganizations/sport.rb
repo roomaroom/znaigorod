@@ -1,5 +1,5 @@
 class Sport < ActiveRecord::Base
-  attr_accessible :services_attributes
+  attr_accessible :services_attributes, :title, :description
 
   belongs_to :organization
 
@@ -16,5 +16,7 @@ end
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :integer
+#  title           :string(255)
+#  description     :text
 #
 

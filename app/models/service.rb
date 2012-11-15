@@ -4,6 +4,8 @@ class Service < ActiveRecord::Base
   belongs_to :context, :polymorphic => true
 
   validates_presence_of :title
+
+  alias_attribute :to_s, :title
 end
 
 # == Schema Information

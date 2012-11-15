@@ -5,6 +5,22 @@
     <%= link_to t('delete'), manage_organization_meal_path(meal.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
   </h3>
   <div>
+    <span class="label">Название:</span>
+    <% if meal.title? %>
+      <span class="value"><%= meal.title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
+    <span class="label">Описание:</span>
+    <% if meal.description? %>
+      <span class="value"><%= meal.description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
     <span class="label">Категория:</span>
     <% if meal.category.present? %>
       <span class="value"><%= meal.category %></span>
