@@ -70,6 +70,12 @@ describe ShowingDecorator do
       it { should == "сто\u00ADи\u00ADмость не ука\u00ADзана" }
     end
 
+    context "when price_min=nil price_max=10" do
+      before { showing.price_min = nil }
+      before { showing.price_max = 10 }
+      it { should == "сто\u00ADи\u00ADмость не ука\u00ADзана" }
+    end
+
     context "when price_min=0 price_max=nil" do
       before { showing.price_min = 0 }
       before { showing.price_max = nil }
