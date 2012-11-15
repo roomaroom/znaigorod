@@ -46,7 +46,9 @@ class OrganizationDecorator < ApplicationDecorator
     links = []
     links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{suborganization_kind.singularize}"), h.organizations_path(:organization_class => suborganization_kind)), :class => "crumb")
+    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{priority_suborganization_kind}"), h.organizations_path(:organization_class => priority_suborganization_kind.pluralize)), :class => "crumb")
+    links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
+    links << h.content_tag(:li, link_to_priority_cateroy, :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     links << h.content_tag(:li, h.link_to(title, h.organization_path(organization)), :class => "crumb")
     %w(photogallery tour affiche).each do |method|
@@ -65,6 +67,14 @@ class OrganizationDecorator < ApplicationDecorator
 
   def categories
     suborganizations.each.map(&:categories).flatten
+  end
+
+  def priority_category
+    priority_suborganization.categories.first
+  end
+
+  def link_to_priority_cateroy
+    h.link_to(priority_category, h.organizations_path(organization_class: priority_suborganization_kind.pluralize, category: priority_category.mb_chars.downcase))
   end
 
   def categories_links
