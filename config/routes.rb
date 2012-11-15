@@ -17,9 +17,12 @@ Znaigorod::Application.routes.draw do
       resource :culture, :except => [:index, :show]
       resource :entertainment, :except => [:index, :show]
       resource :meal, :except => [:index, :show]
+
       resource :sauna, :except => [:index, :show] do
         resources :sauna_halls, :except => :index
       end
+
+      resource :sport, :except => [:index, :show]
 
       resources :sauna_halls, :only => [] do
         resources :images, :only => [:new, :create, :destroy, :edit, :update]
@@ -34,6 +37,7 @@ Znaigorod::Application.routes.draw do
     resources :entertainments,  :only => :index
     resources :meals,           :only => :index
     resources :saunas,          :only => :index
+    resources :sports,          :only => :index
 
     match 'statistics' => 'affiches#statistics'
 

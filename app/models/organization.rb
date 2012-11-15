@@ -22,6 +22,7 @@ class Organization < ActiveRecord::Base
   has_one :entertainment,   :dependent => :destroy
   has_one :meal,            :dependent => :destroy
   has_one :sauna,           :dependent => :destroy
+  has_one :sport,           :dependent => :destroy
 
   validates_presence_of :title, :priority_suborganization_kind
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115081033) do
+ActiveRecord::Schema.define(:version => 20121115091356) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -355,6 +355,17 @@ ActiveRecord::Schema.define(:version => 20121115081033) do
     t.boolean  "holiday"
   end
 
+  create_table "services", :force => true do |t|
+    t.text     "title"
+    t.text     "feature"
+    t.text     "age"
+    t.text     "tag"
+    t.string   "context_type"
+    t.integer  "context_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "showings", :force => true do |t|
     t.integer  "affiche_id"
     t.string   "place"
@@ -373,8 +384,9 @@ ActiveRecord::Schema.define(:version => 20121115081033) do
   add_index "showings", ["affiche_id"], :name => "index_showings_on_affiche_id"
 
   create_table "sports", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "organization_id"
   end
 
 end

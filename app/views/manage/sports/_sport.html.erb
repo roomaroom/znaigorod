@@ -1,0 +1,18 @@
+<div class='type'>
+  <h3>
+    Спортивное заведение
+    <%= link_to t('edit'), edit_manage_organization_sport_path(sport.organization), :class => 'edit_link' %>
+    <%= link_to t('delete'), manage_organization_sport_path(sport.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+  </h3>
+
+  <span class="label">Услуги:</h4>
+  <% if sport.services.any? %>
+    <ul>
+      <% sport.services.each do |service| %>
+        <li><%= service.title %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span class="blank">Не указано</span>
+  <% end %>
+</div>
