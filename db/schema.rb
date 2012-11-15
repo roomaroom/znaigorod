@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115091356) do
+ActiveRecord::Schema.define(:version => 20121115093630) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20121115091356) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.text     "description"
   end
 
   create_table "entertainments", :force => true do |t|
@@ -97,6 +99,8 @@ ActiveRecord::Schema.define(:version => 20121115091356) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.text     "description"
   end
 
   add_index "entertainments", ["organization_id"], :name => "index_entertainments_on_organization_id"
@@ -134,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20121115091356) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.text     "description"
   end
 
   add_index "meals", ["organization_id"], :name => "index_meals_on_organization_id"
@@ -341,6 +347,8 @@ ActiveRecord::Schema.define(:version => 20121115091356) do
     t.integer  "organization_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "title"
+    t.text     "description"
   end
 
   add_index "saunas", ["organization_id"], :name => "index_saunas_on_organization_id"
@@ -387,6 +395,8 @@ ActiveRecord::Schema.define(:version => 20121115091356) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "organization_id"
+    t.string   "title"
+    t.text     "description"
   end
 
 end
