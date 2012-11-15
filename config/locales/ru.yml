@@ -178,6 +178,11 @@ ru:
       meal: Заведения общественного питания
       entertainment: Развлекательные заведения
       culture: Культурные заведения
+    singularize_title:
+      organization: Заведение города
+      meal: Заведение общественного питания
+      entertainment: Развлекательное заведение
+      culture: Культурное заведение
     filters:
       category: Категории
       cuisine: Кухня

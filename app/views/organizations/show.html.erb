@@ -65,13 +65,15 @@
         </div>
       </div>
 
+      <% @organization.decorated_suborganizations.each do |suborganization| %>
+
+        <%= content_tag :h3, t("organization.singularize_title.#{suborganization.model.class.name.downcase}"), class: :suborganization %>
+        <%= suborganization.characteristics_on_show %>
+      <% end %>
+
       <div class="share_organization">
         <%= render :partial => "commons/share_this" %>
       </div>
-
-      <% @organization.decorated_suborganizations.each do |suborganization| %>
-        <%= suborganization.characteristics_on_show %>
-      <% end %>
 
     </div>
   </div>
