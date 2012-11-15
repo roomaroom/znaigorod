@@ -62,7 +62,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def suborganizations
-    @suborganizations ||= %w[meal entertainment culture].map { |kind| organization.send(kind) }.compact
+    @suborganizations ||= [priority_suborganization] + (%w[meal entertainment culture] - [priority_suborganization_kind]).map { |kind| organization.send(kind) }.compact
   end
 
   def categories
@@ -186,15 +186,15 @@ class OrganizationDecorator < ApplicationDecorator
     lat, lon = organization.latitude, organization.longitude
     radius = 3
 
-    search = suborganization.class.search do
+    search = priority_suborganization.class.search do
       with(:location).in_radius(lat, lon, radius)
-      without(raw_suborganization)
+      without(priority_suborganization)
 
       any_of do
-        with("#{raw_suborganization.class.name.downcase}_category", categories.map(&:mb_chars).map(&:downcase))
-        with("#{raw_suborganization.class.name.downcase}_feature", features.map(&:mb_chars).map(&:downcase)) if features.any?
-        with("#{raw_suborganization.class.name.downcase}_offer", offers.map(&:mb_chars).map(&:downcase)) if offers.any?
-        with("#{raw_suborganization.class.name.downcase}_cuisine", cuisines.map(&:mb_chars).map(&:downcase)) if suborganization.is_a?(Meal) && cuisines.any?
+        with("#{priority_suborganization_kind}_category", categories.map(&:mb_chars).map(&:downcase))
+        with("#{priority_suborganization_kind}_feature", priority_suborganization.features.map(&:mb_chars).map(&:downcase)) if priority_suborganization.respond_to?(:features) && priority_suborganization.features.any?
+        with("#{priority_suborganization_kind}_offer", priority_suborganization.offers.map(&:mb_chars).map(&:downcase)) if priority_suborganization.respond_to?(:offers) && priority_suborganization.offers.any?
+        with("#{priority_suborganization_kind}_cuisine", priority_suborganization.cuisines.map(&:mb_chars).map(&:downcase)) if priority_suborganization.respond_to?(:cuisines) && priority_suborganization.cuisines.any?
       end
 
       order_by_geodist(:location, lat, lon)
