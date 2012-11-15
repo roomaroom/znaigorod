@@ -65,6 +65,10 @@ class OrganizationDecorator < ApplicationDecorator
     @suborganizations ||= [priority_suborganization] + (%w[meal entertainment culture] - [priority_suborganization_kind]).map { |kind| organization.send(kind) }.compact
   end
 
+  def decorated_suborganizations
+    suborganizations.map { |suborganization| "#{suborganization.class.name.downcase}_decorator".classify.constantize.decorate suborganization }
+  end
+
   def categories
     suborganizations.each.map(&:categories).flatten
   end
@@ -89,23 +93,6 @@ class OrganizationDecorator < ApplicationDecorator
       end
     end
   end
-
-  def raw_suborganization
-    return organization.meal if organization.respond_to?(:meal) && organization.meal
-    return organization.entertainment if organization.respond_to?(:entertainment) && organization.entertainment
-    return organization.culture if organization.respond_to?(:culture) && organization.culture
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
-  def suborganization_decorator_class
-    "#{raw_suborganization.class.name.underscore}_decorator".classify.constantize
-  end
-
-  def suborganization
-    suborganization_decorator_class.decorate raw_suborganization
-  end
-
-  delegate :features, :offers, :cuisines, :to => :suborganization
 
   def has_photogallery?
     organization.images.any?
@@ -141,10 +128,6 @@ class OrganizationDecorator < ApplicationDecorator
     links
   end
 
-  def suborganization_kind
-    raw_suborganization.try(:class).try(:name).try(:downcase).try(:pluralize)
-  end
-
   def tags_for_vk
     res = ""
     res << "<meta name='description' content='#{text_description.truncate(700, :separator => ' ')}' />\n"
@@ -162,9 +145,12 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def keywords_content
-    keywords = raw_suborganization.categories + raw_suborganization.features + raw_suborganization.offers
-    keywords += raw_suborganization.cuisines.map { |cuisine| "#{cuisine} кухня" } if raw_suborganization.is_a?(Meal)
-
+    keywords = categories
+    suborganizations.each do |suborganization|
+      %w[features offers cuisines].each do |field|
+        keywords += suborganization.send(field) if suborganization.respond_to?(field) && suborganization.send(field).any?
+      end
+    end
     keywords.map(&:mb_chars).map(&:downcase).join(',')
   end
 

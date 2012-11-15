@@ -79,6 +79,8 @@
 
   <%= content_tag :hr if suborganization.features.any? || suborganization.offers.any? || suborganization.cuisines.any? %>
 
+  <%= suborganization.list_info %>
+
   <% if suborganization.features.any? || suborganization.offers.any? || suborganization.cuisines.any? %>
     <div class="characteristics">
       <% if suborganization.features.any? %>

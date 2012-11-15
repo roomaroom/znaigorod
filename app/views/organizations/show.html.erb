@@ -69,7 +69,13 @@
         <%= render :partial => "commons/share_this" %>
       </div>
 
-      <% if @organization.features.any? || @organization.offers.any? || @organization.cuisines.any? %>
+      <% @organization.decorated_suborganizations.each do |suborganization| %>
+        <div class="characteristics">
+          <%= suborganization.info %>
+        </div>
+      <% end %>
+
+      <% if false %>
         <div class="characteristics">
           <% if @organization.features.any? %>
             <ul>
