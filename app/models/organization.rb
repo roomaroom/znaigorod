@@ -23,7 +23,7 @@ class Organization < ActiveRecord::Base
   has_one :meal,            :dependent => :destroy
   has_one :sauna,           :dependent => :destroy
 
-  validates_presence_of :title
+  validates_presence_of :title, :priority_suborganization_kind
 
   accepts_nested_attributes_for :address,   :reject_if => :all_blank
   accepts_nested_attributes_for :halls,     :allow_destroy => true, :reject_if => :all_blank
