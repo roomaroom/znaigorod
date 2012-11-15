@@ -10,6 +10,9 @@
 <%= f.input :site %>
 <%= f.input :tour_link %>
 <%= f.input :non_cash %>
+<%= f.input :priority_suborganization_kind,
+  :as => :select,
+  :collection => f.object.available_suborganization_kinds.map { |kind| [t("organization.kind.#{kind}"), kind] } %>
 
 <fieldset class='organization_stand'>
   <legend>Парковка</legend>

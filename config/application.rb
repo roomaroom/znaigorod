@@ -26,6 +26,7 @@ module Znaigorod
                                 #{config.root}/app/models/affiches
                                 #{config.root}/app/models/saunas
                                 #{config.root}/app/models/presenters
+                                #{config.root}/app/models/suborganizations
                                 #{config.root}/lib
                                )
 

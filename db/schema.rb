@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101035548) do
+ActiveRecord::Schema.define(:version => 20121115034256) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(:version => 20121101035548) do
     t.text     "site"
     t.text     "email"
     t.text     "description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.text     "phone"
     t.string   "vfs_path"
     t.integer  "organization_id"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20121101035548) do
     t.text     "tour_link"
     t.float    "rating"
     t.boolean  "non_cash"
+    t.string   "priority_suborganization_kind"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

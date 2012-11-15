@@ -137,6 +137,15 @@
     <% end %>
     <%= link_to 'Добавить вложенную организацию', new_manage_organization_organization_path(resource) if resource.organization_id.nil? %>
   </div>
+
+  <div>
+    <span class="label">Приоритетная подорганизация:</span>
+    <% if resource.priority_suborganization_kind? %>
+      <span class="value"><%= t("organization.kind.#{resource.priority_suborganization_kind}") %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
 </div>
 
 <div class='types'>

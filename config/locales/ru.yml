@@ -284,6 +284,7 @@ ru:
         tour_link: Ссылка на 3D-тур
         updated_at: Обновлено
         non_cash: Безналичный расчет
+        priority_suborganization_kind: Приоритетная подорганизация
 
       organization_stand:
         places:             Количество мест
