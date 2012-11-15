@@ -1,5 +1,6 @@
 class SetPrioritySuborganizationKind < ActiveRecord::Migration
   def up
+    bar = ProgressBar.new(Organization.count)
     Organization.find_each do |organization|
       unless organization.priority_suborganization_kind?
         suborganization = %w[meal entertainment culture].map { |kind| organization.send(kind) }.compact.first
@@ -9,6 +10,7 @@ class SetPrioritySuborganizationKind < ActiveRecord::Migration
           organization.update_attribute :priority_suborganization_kind, priority_suborganization_kind
         end
       end
+      bar.increment!
     end
   end
 
