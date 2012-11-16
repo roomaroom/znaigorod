@@ -165,7 +165,7 @@ class AfficheCollection
         scopes << 'today'
         scopes << 'actual'
       when 'daily'
-        scopes << 'today' if on == Date.today
+        scopes << 'today' if  on == Date.today
       when 'weekend'
         scopes << 'weekend'
         scopes << 'actual'

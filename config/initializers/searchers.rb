@@ -2,7 +2,21 @@ HasSearcher.create_searcher :affiche do
   models :showing
 
   property :affiche_category
-  property :starts_on
+
+  property :starts_on do |search|
+    search.any_of do
+      all_of do
+        with(:starts_at).greater_than search_object.starts_on.beginning_of_day
+        with(:starts_at).less_than search_object.starts_on.end_of_day
+        with(:ends_at, nil)
+      end
+      all_of do
+        with(:starts_at).less_than search_object.starts_on.end_of_day
+        with(:ends_at).greater_than search_object.starts_on.beginning_of_day
+      end
+    end if search_object.starts_on
+  end
+
   property :tags
   property :affiche_id
   property :organization_id
@@ -35,20 +49,6 @@ HasSearcher.create_searcher :affiche do
       all_of do
         with(:starts_at).less_than DateTime.now.end_of_week
         with(:ends_at).greater_than DateTime.now.beginning_of_week
-      end
-    end
-  end
-
-  scope :daily do |search|
-    search.any_of do
-      #all_of do
-        #with(:starts_at).greater_than search_object.starts_on.beginning_of_day
-        #with(:starts_at).less_than search_object.starts_on.end_of_day
-        #with(:ends_at, nil)
-      #end
-      all_of do
-        with(:starts_at).less_than search_object.starts_on.end_of_day
-        with(:ends_at).greater_than search_object.starts_on.beginning_of_day
       end
     end
   end
