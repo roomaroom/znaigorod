@@ -11,26 +11,52 @@ HasSearcher.create_searcher :affiche do
     with(:starts_at).less_than DateTime.now.end_of_day
   end
 
-  scope :weekend do
-    with(:starts_at).greater_than DateTime.now.end_of_week - 2.days + 1.second
-    with(:starts_at).less_than DateTime.now.end_of_week
+  scope :weekend do |search|
+    search.any_of do
+      all_of do
+        with(:starts_at).greater_than DateTime.now.end_of_week - 2.days + 1.second
+        with(:starts_at).less_than DateTime.now.end_of_week
+        with(:ends_at, nil)
+      end
+      all_of do
+        with(:starts_at).less_than DateTime.now.end_of_week
+        with(:ends_at).greater_than DateTime.now.end_of_week - 2.days + 1.second
+      end
+    end
   end
 
-  scope :weekly do
-    with(:starts_at).greater_than DateTime.now.beginning_of_week
-    with(:starts_at).less_than DateTime.now.end_of_week
+  scope :weekly do |search|
+    search.any_of do
+      all_of do
+        with(:starts_at).greater_than DateTime.now.beginning_of_week
+        with(:starts_at).less_than DateTime.now.end_of_week
+        with(:ends_at, nil)
+      end
+      all_of do
+        with(:starts_at).less_than DateTime.now.end_of_week
+        with(:ends_at).greater_than DateTime.now.beginning_of_week
+      end
+    end
   end
 
   scope :daily do |search|
-    search.with(:starts_at).greater_than search_object.starts_on.beginning_of_day
-    search.with(:starts_at).less_than search_object.starts_on.end_of_day
+    search.any_of do
+      #all_of do
+        #with(:starts_at).greater_than search_object.starts_on.beginning_of_day
+        #with(:starts_at).less_than search_object.starts_on.end_of_day
+        #with(:ends_at, nil)
+      #end
+      all_of do
+        with(:starts_at).less_than search_object.starts_on.end_of_day
+        with(:ends_at).greater_than search_object.starts_on.beginning_of_day
+      end
+    end
   end
 
   scope :actual do |search|
-    search.with(:starts_at).greater_than DateTime.now.beginning_of_day
     search.any_of do
-      with(:ends_at).greater_than(DateTime.now.beginning_of_day)
-      with(:ends_at, nil)
+      with(:starts_at).greater_than DateTime.now.beginning_of_day
+      with(:ends_at).greater_than DateTime.now.beginning_of_day
     end
   end
 
