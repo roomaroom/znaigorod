@@ -8,11 +8,11 @@ class SuborganizationDecorator < ApplicationDecorator
     :to => :decorated_organization
 
   def decorated_title
-    h.content_tag :h3, title if title?
+    h.content_tag :h3, title, class: :suborganization if title?
   end
 
   def decorated_description
-    h.simple_format description if description?
+    h.content_tag(:div, description.as_html, class: :description) if description?
   end
 
   def list_of_characteristics(name)
