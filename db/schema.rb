@@ -177,6 +177,18 @@ ActiveRecord::Schema.define(:version => 20121119024751) do
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
 
+  create_table "pool_table_prices", :force => true do |t|
+    t.integer  "pool_table_id"
+    t.integer  "day"
+    t.time     "from"
+    t.time     "to"
+    t.integer  "price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "pool_table_prices", ["pool_table_id"], :name => "index_pool_table_prices_on_pool_table_id"
+
   create_table "pool_tables", :force => true do |t|
     t.integer  "size"
     t.integer  "count"
