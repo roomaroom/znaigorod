@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20121119024751) do
     t.datetime "updated_at",      :null => false
     t.string   "title"
     t.text     "description"
+    t.string   "type"
   end
 
   add_index "entertainments", ["organization_id"], :name => "index_entertainments_on_organization_id"
