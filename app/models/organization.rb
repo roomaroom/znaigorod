@@ -147,6 +147,7 @@ class Organization < ActiveRecord::Base
   end
 
   def priority_suborganization
+    raise ActionController::RoutingError.new('Not Found') if priority_suborganization_kind.nil?
     send priority_suborganization_kind
   end
 
