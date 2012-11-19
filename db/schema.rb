@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116043408) do
+ActiveRecord::Schema.define(:version => 20121119024751) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20121116043408) do
     t.float    "rating"
     t.boolean  "non_cash"
     t.string   "priority_suborganization_kind"
+    t.text     "comment"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

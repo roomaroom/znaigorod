@@ -276,6 +276,7 @@ ru:
       organization:
         address: Адрес организации
         category: Категория
+        comment: Комментарий
         created_at: Создано
         cuisine: Кухня
         description: Описание

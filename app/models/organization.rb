@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
   attr_accessible :address_attributes, :description, :email, :halls_attributes,
                   :images_attributes, :organization_id, :phone, :schedules_attributes,
                   :site, :title, :vfs_path, :attachments_attributes, :logotype_url,
-                  :tour_link, :non_cash, :priority_suborganization_kind
+                  :tour_link, :non_cash, :priority_suborganization_kind, :comment
 
   belongs_to :organization
 

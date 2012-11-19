@@ -146,6 +146,18 @@
       <span class="blank">Не указано</span>
     <% end %>
   </div>
+
+</div>
+
+<div class='types'>
+  <h3 class="label">Комментарий:</h3>
+  <% if resource.comment? %>
+    <p class="comment">
+      <%= resource.comment %>
+    </p>
+  <% else %>
+    <span class="blank">Не указано</span>
+  <% end %>
 </div>
 
 <div class='types'>
