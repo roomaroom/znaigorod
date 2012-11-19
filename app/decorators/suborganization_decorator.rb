@@ -4,7 +4,7 @@ class SuborganizationDecorator < ApplicationDecorator
   end
 
   delegate :logo_link, :title_link, :address_link, :html_description,
-    :truncated_description, :site_link, :email_link,
+    :truncated_description, :site_link, :email_link, :stand_info,
     :to => :decorated_organization
 
   def decorated_title

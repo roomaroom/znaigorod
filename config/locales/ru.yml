@@ -196,6 +196,14 @@ ru:
     affiche: Афиша
     show: Описание
 
+  organization_stand:
+    places:
+      zero: не предусмотрена
+      one: "%{count} место"
+      few: "%{count} места"
+      many: "%{count} мест"
+      other: "%{count} места"
+
   search:
     affiches: В мероприятиях
     organizations: В заведениях

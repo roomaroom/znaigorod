@@ -110,6 +110,18 @@ class OrganizationDecorator < ApplicationDecorator
     true
   end
 
+  def stand_info
+    res = ""
+    if organization_stand && !organization_stand.places.to_i.zero?
+      res << I18n.t("organization_stand.places", count: organization_stand.places)
+      organization_stand.guarded? ? res << ", охраняется" : res << ", не охраняется"
+      organization_stand.video_observation? ? res << ", есть видеонаблюдение" : res << ", без видеонаблюдения"
+    else
+      res << "отсутствует"
+    end
+    res
+  end
+
   def navigation
     links = []
     %w(show photogallery tour affiche).each do |method|
