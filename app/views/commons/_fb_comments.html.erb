@@ -8,4 +8,4 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="fb-comments" data-href="<%= url_for(only_path: false) %>" data-num-posts="2" data-width="760"></div>
+<div class="fb-comments" data-href="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" data-num-posts="2" data-width="760"></div>
