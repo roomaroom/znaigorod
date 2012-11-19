@@ -50,7 +50,7 @@ class OrganizationDecorator < ApplicationDecorator
     # NOTE: грязный хак коих много ;(
     suborganization_kind = priority_suborganization_kind == 'billiard' ? 'entertainment' : priority_suborganization_kind
 
-    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{priority_suborganization_kind}"), h.organizations_path(:organization_class => suborganization_kind.pluralize)), :class => "crumb")
+    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{suborganization_kind}"), h.organizations_path(:organization_class => suborganization_kind.pluralize)), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     links << h.content_tag(:li, link_to_priority_cateroy, :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")

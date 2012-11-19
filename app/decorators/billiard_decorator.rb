@@ -8,9 +8,7 @@ class BilliardDecorator < SuborganizationDecorator
   end
 
   def characteristics_on_show
-    content = "<tr>" +
-              "<th colspan='2'>Бильярдные столы</th>"
-              "</tr>"
+    content = ""
     pool_tables.group_by(&:kind).each do |kind, pool_tables|
       content << "<tr>"
       content << h.content_tag(:td, kind, class: "title", colspan: 2)
