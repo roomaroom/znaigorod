@@ -1,0 +1,35 @@
+<div class='type'>
+  <h3>
+    Творческо-развивающее заведение
+    <%= link_to t('edit'), edit_manage_organization_creation_path(creation.organization), :class => 'edit_link' %>
+    <%= link_to t('delete'), manage_organization_creation_path(creation.organization), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+  </h3>
+
+  <div>
+    <span class="label">Название:</span>
+    <% if creation.title? %>
+      <span class="value"><%= creation.title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+  <div>
+    <span class="label">Описание:</span>
+    <% if creation.description? %>
+      <span class="value"><%= creation.description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <span class="label">Услуги:</h4>
+  <% if creation.services.any? %>
+    <ul>
+      <% creation.services.each do |service| %>
+        <li><%= service.title %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <span class="blank">Не указано</span>
+  <% end %>
+</div>

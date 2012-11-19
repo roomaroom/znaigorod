@@ -78,7 +78,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def priority_category
-    priority_suborganization.categories.first
+    priority_suborganization.categories.first || ''
   end
 
   def schedule_content

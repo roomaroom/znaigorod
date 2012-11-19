@@ -24,6 +24,7 @@ class Organization < ActiveRecord::Base
   has_one :sauna,           :dependent => :destroy
   has_one :sport,           :dependent => :destroy
   has_one :billiard,        :dependent => :destroy
+  has_one :creation,        :dependent => :destroy
 
   validates_presence_of :title, :priority_suborganization_kind
 
@@ -186,5 +187,6 @@ end
 #  rating                        :float
 #  non_cash                      :boolean
 #  priority_suborganization_kind :string(255)
+#  comment                       :text
 #
 

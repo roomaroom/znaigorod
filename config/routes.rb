@@ -16,11 +16,13 @@ Znaigorod::Application.routes.draw do
     resources :organizations do
       resource :culture, :except => [:index, :show]
       resource :entertainment, :except => [:index, :show]
+      resource :meal, :except => [:index, :show]
+      resource :sport, :except => [:index, :show]
+      resource :creation, :except => [:index, :show]
+
       resource :billiard, :except => [:index, :show] do
         resources :pool_tables, :except => [:index, :show]
       end
-      resource :meal, :except => [:index, :show]
-      resource :sport, :except => [:index, :show]
 
       resource :sauna, :except => [:index, :show] do
         resources :sauna_halls, :except => :index
@@ -40,6 +42,7 @@ Znaigorod::Application.routes.draw do
     resources :meals,           :only => :index
     resources :saunas,          :only => :index
     resources :sports,          :only => :index
+    resources :creations,       :only => :index
 
     match 'statistics' => 'affiches#statistics'
 
@@ -86,7 +89,7 @@ Znaigorod::Application.routes.draw do
   end
 
   get ':organization_class/(:category)/(*query)' => 'organizations#index',
-      :organization_class => /organizations|meals|entertainments|cultures|sports/, :as => :organizations
+      :organization_class => /organizations|meals|entertainments|cultures|sports|creations/, :as => :organizations
 
   root :to => 'application#main_page'
 

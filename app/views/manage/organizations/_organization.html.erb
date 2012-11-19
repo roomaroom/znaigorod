@@ -176,6 +176,7 @@
   <%= render resource.culture if resource.culture %>
   <%= render resource.sauna if resource.sauna %>
   <%= render resource.sport if resource.sport %>
+  <%= render resource.creation if resource.creation %>
   <ul class="create_links">
     <% unless resource.meal %>
       <li><%= link_to "Добавить заведение питания", new_manage_organization_meal_path(resource), :class => 'create_link' %></li>
@@ -194,6 +195,9 @@
     <% end %>
     <% unless resource.billiard %>
       <li><%= link_to "Добавить бильярдный зал", new_manage_organization_billiard_path(resource), :class => 'create_link' %></li>
+    <% end %>
+    <% unless resource.creation %>
+      <li><%= link_to "Добавить творческо-развивающее заведение", new_manage_organization_creation_path(resource), :class => 'create_link' %></li>
     <% end %>
   </ul>
 </div>
