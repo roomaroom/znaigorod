@@ -16,7 +16,9 @@ class OrganizationsCollection
   end
 
   def self.kinds
-    [Meal, Entertainment, Culture, Sport]
+    # FIXME                     add Sport's and Creation when ready
+    #[Meal, Entertainment, Culture, Sport, Creation]
+    [Meal, Entertainment, Culture]
   end
 
   self.kinds.map(&:name).map(&:downcase).each do |klass|
@@ -40,10 +42,8 @@ class OrganizationsCollection
   end
 
   def kind_links
-    # FIXME                     clean removal Sport's kinds whene ready
-    #                             ____________________________________
     {}.tap do |links|
-      self.class.kinds.map(&:name).delete_if { |name| name == "Sport" }.map(&:downcase).each do |klass|
+      self.class.kinds.map(&:name).map(&:downcase).each do |klass|
         links[Link.new(title: I18n.t("organization.kind.#{klass}"), url: organizations_path(organization_class: klass.pluralize))] = self.send("#{klass}_categories_links")
       end
     end

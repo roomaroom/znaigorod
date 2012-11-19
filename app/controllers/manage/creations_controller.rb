@@ -8,7 +8,7 @@ class Manage::CreationsController < Manage::ApplicationController
   before_filter :redirect_to_edit, :only => :new, :if => :creation_exists?
 
   def index
-    @collection = Sport.page(params[:page] || 1).per(10)
+    @collection = Creation.page(params[:page] || 1).per(10)
   end
 
   private

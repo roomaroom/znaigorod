@@ -170,6 +170,7 @@ ru:
       entertainment: Развлечения
       culture: Культура
       sport: Спорт
+      billiard: Бильярд
       creation: Творчество и развитие
     all:
       meal: Все заведения питания
@@ -183,6 +184,7 @@ ru:
       culture: Культурные заведения
       sport: Спортивные заведения
       billiard: Бильярдные клубы
+      creation: ===НАЗВАНИЕ ДЛЯ РАЗВИВАЙКИ===
     singularize_title:
       organization: Заведение города
       meal: Заведение общественного питания
