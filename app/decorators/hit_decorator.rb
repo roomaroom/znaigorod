@@ -14,7 +14,7 @@ class HitDecorator < ApplicationDecorator
   end
 
   def organization?
-    result.class.name.underscore.singularize.eql?("organization")
+    result.is_a?(Organization)
   end
 
   def image_item
@@ -49,7 +49,7 @@ class HitDecorator < ApplicationDecorator
   end
 
   def raw_suborganization
-    return result.priority_suborganization
+    result.priority_suborganization
   end
 
   def suborganization_decorator_class
