@@ -87,7 +87,6 @@ class AfficheCollection
 
   def presented_tags
     searcher_params = search_params
-    searcher_params.delete(:tags)
     searcher(searcher_params).faceted.facet(:tags).rows.map(&:value)
   end
 
