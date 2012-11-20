@@ -91,12 +91,16 @@ class AfficheCollection
   end
 
   def categories_links
+    searcher_params = search_params
+    searcher_params.delete(:affiche_category)
+    existed_categories = searcher(searcher_params).categories.group(:affiche_category).groups.map(&:value)
     [].tap do |array|
       Affiche.ordered_descendants.each do |category|
         array << Link.new(title: category.model_name.human.mb_chars.downcase,
                           url: affiches_path(kind, period, on, categories: tag_params('categories', category.model_name.downcase.pluralize), tags: tags.any? ? tags : nil),
                           current: categories.include?(category.model_name.downcase.pluralize),
-                          html_options: categories.include?(category.model_name.downcase.pluralize) ? { class: :selected } : {}
+                          html_options: categories.include?(category.model_name.downcase.pluralize) ? { class: 'selected' } : {},
+                          disabled: !existed_categories.include?(category.model_name.downcase)
                          )
       end
     end

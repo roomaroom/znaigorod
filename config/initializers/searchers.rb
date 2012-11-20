@@ -1,7 +1,9 @@
 HasSearcher.create_searcher :affiche do
   models :showing
 
-  property :affiche_category
+  property :affiche_category do |search|
+    search.with(:affiche_category, search_object.affiche_category) if search_object.affiche_category.present?
+  end
 
   property :starts_on do |search|
     search.any_of do
@@ -62,6 +64,10 @@ HasSearcher.create_searcher :affiche do
 
   scope :affiches do
     group :affiche_id_str
+  end
+
+  scope :categories do
+    group :affiche_category
   end
 
   scope :order_by_starts_at do
