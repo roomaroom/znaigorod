@@ -338,6 +338,7 @@ HasSearcher.create_searcher :global do
     )
   end
   scope do
+    without(:priority_suborganization_kind, nil)
     adjust_solr_params do |params|
       (params[:qf] || '').gsub! /\bterm_text\b/, ''
       params[:fl] = 'id score'

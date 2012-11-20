@@ -70,8 +70,13 @@ class Organization < ActiveRecord::Base
   alias_attribute :address_ru, :address
 
   searchable do
+    float :rating
+
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
+
     string(:kind) { 'organization' }
+    string :priority_suborganization_kind
+
     text :title,                :boost => 1.0 * 1.2
     text :title_ru,             :boost => 1.0,              :more_like_this => true
     text :title_translit,       :boost => 0.0,                                        :stored => true
@@ -89,8 +94,6 @@ class Organization < ActiveRecord::Base
     text :address_ru,           :boost => 0.3,                                        :stored => true
     text :description,          :boost => 0.1 * 1.2                                                     do text_description end
     text :description_ru,       :boost => 0.1,                                        :stored => true   do text_description end
-
-    float :rating
 
     text :term
   end
