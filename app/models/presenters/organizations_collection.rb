@@ -147,8 +147,15 @@ class OrganizationsCollection
   end
 
   def category_filters
+    existed_categories = self.send("#{organization_class}_searcher", list_search_params).facet("#{organization_class}_category").rows.map(&:value)
     self.send("#{organization_class}_searcher", category_search_params).facet("#{organization_class}_category").rows.map(&:value).
-      map { |value| Link.new title: value, url: filter_link_url(category: value), html_options: { :class => (categories.include?(value) ? 'selected' : nil) } }
+      map { |value|
+        Link.new(title: value,
+                 url: filter_link_url(category: value),
+                 html_options: { :class => (categories.include?(value) ? 'selected' : nil) },
+                 disabled: !existed_categories.include?(value)
+                )
+    }
   end
 
   def cuisine_filters
