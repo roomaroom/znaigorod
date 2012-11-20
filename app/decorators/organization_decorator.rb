@@ -39,7 +39,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def site_link
-    h.link_to site, site, rel: "nofollow", target: "_blank"
+    h.link_to site.squish, site.squish, rel: "nofollow", target: "_blank"
   end
 
   def breadcrumbs
