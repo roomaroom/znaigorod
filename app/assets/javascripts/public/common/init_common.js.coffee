@@ -1,11 +1,17 @@
 @init_common = () ->
+
   $('a.disabled').live "click", ->
-    false
+    if $(this).parent('li').hasClass('disabled')
+      true
+    else
+      false
 
   $('.content .tabs .info .description table tr').each (index, item) ->
     td = $('td:first', this)
     td.text(td.text().squish() + ':') if !td.text().match(/:$/) && td.text() != ""
     true
+
+  true
 
 randomize = (number) ->
   Math.floor(Math.random() * Math.round(number) + 1)

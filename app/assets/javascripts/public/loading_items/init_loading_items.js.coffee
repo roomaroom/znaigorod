@@ -10,7 +10,11 @@
     '.content_wrapper .search_results ul.items_list'
   )
   first_item = $('li:first', list)
-  last_item = first_item.siblings().last()
+  return true unless first_item.length
+  if first_item.siblings().length
+    last_item = first_item.siblings().last()
+  else
+    last_item = first_item
   last_item_top = last_item.position().top
   page = 1
   busy = false
