@@ -781,7 +781,6 @@
       service:
         title:        Название
         feature:      Особенности
-        offer:        Предложения
         age:          Возраст
         tag:          Тэги
         category:     Категория
