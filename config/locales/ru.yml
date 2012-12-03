@@ -201,6 +201,7 @@ ru:
       cuisine: Кухня
       offer: Предложения
       feature: Особенности
+      stuff: ''
     photogallery: Фотографии
     tour: 3D-тур
     affiche: Афиша
@@ -483,6 +484,11 @@ ru:
         "true": "Есть пилон"
       barbecue:
         "true": "Есть мангал/барбекю"
+
+  suborganizations:
+    with_3d_tour: c 3D-туром
+    with_site: с сайтом
+    with_images: с фотографиями
 
   activerecord:
     models:
