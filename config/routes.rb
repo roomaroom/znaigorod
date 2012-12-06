@@ -58,7 +58,7 @@ Znaigorod::Application.routes.draw do
   get 'cooperation' => 'cooperation#index'
 
   get ':kind/:period/(:on)/(categories/*categories)/(tags/*tags)' => 'affiches#index',
-      :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches/,
+      :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches|masterclasses/,
       :period => /today|weekly|weekend|all|daily/, :as => :affiches
 
   get 'photogalleries/:period/(*query)' => 'photogalleries#index',
@@ -66,6 +66,7 @@ Znaigorod::Application.routes.draw do
     :as => :photogalleries
 
   get 'sportsevent/:id' => 'affiches#show', :as => :sports_event
+  get 'masterclass/:id' => 'affiches#show', :as => :master_class
 
   Affiche.descendants.each do |type|
     get "#{type.name.downcase}/:id" => 'affiches#show', :as => "#{type.name.downcase}"
