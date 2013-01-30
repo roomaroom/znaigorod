@@ -7,7 +7,7 @@
   <div>
     <span class="label">Описание:</span>
     <% if resource.description? %>
-      <span class="value"><%= resource.description %></span>
+      <span class="value"><%= simple_format resource.description %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
@@ -16,7 +16,7 @@
   <div>
     <span class="label">Дата начала:</span>
     <% if resource.starts_on? %>
-      <span class="value"><%= resource.starts_on %></span>
+      <span class="value"><%= l resource.starts_on %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
@@ -25,7 +25,7 @@
   <div>
     <span class="label">Дата окончания:</span>
     <% if resource.ends_on? %>
-      <span class="value"><%= resource.ends_on %></span>
+      <span class="value"><%= l resource.ends_on %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
@@ -52,7 +52,7 @@
             <div>
               <span class="label">Описание:</span>
               <% if work.description? %>
-                <span class="value"><%= work.description %></span>
+                <span class="value"><%= simple_format work.description %></span>
               <% else %>
                 <span class="value">Не указано</span>
               <% end %>
