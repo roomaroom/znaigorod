@@ -34,5 +34,6 @@
  * = require public/swfkrpano
  * = require public/move_to_top
  * = require public/webcams
+ * = require public/contest
  * = require public/main
  */

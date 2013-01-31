@@ -1,18 +1,22 @@
-<div class="content_wrapper">
-  <h1><%= @contest.title.as_html %></h1>
-  <div class="contest">
+<div class='content_wrapper'>
+  <h1><%= @contest.title.excerpt %></h1>
+  <div class='contest'>
     <%= raw @contest.description %>
     <% if @contest.works.any? %>
-      <ul>
-        <% @contest.works.each do |work| %>
-          <li>
-            <div class="title"><%= work.title %></div>
-            <div class="image"><%= image_tag work.image_url %></div>
-            <div class="annotation"><%= work.description %></div>
-            <div class="author"><%= work.author_info %></div>
-          </li>
-        <% end %>
-      </ul>
+      <div class='works'>
+        <h2>Работы-участники</h2>
+        <ul>
+          <% @contest.works.each do |work| %>
+            <li class='<%= cycle('first', 'second', 'third') %>' data-url='<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}/work/#{work.id}" %>'>
+              <div class='image'>
+                <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), work.image_url) %>
+              </div>
+              <div class='title'><%= work.title %></div>
+              <div class='author'><%= work.author_info %></div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
   </div>
 </div>

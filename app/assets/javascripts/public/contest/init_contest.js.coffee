@@ -1,0 +1,2 @@
+@init_contest = () ->
+  true
