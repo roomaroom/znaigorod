@@ -4,6 +4,46 @@
     font-size: 14px
     margin: 0 10px 20px 10px
 
+    .description
+      .annotation
+        +clearfix
+        .image
+          float: left
+          margin-right: 30px
+          img
+            width: 400px
+            border: 4px solid #fff
+            +border-radius
+            +box-shadow(#aaa 0 0 3px)
+            margin: 3px
+        ul
+          float: left
+          width: 536px
+          margin-top: 7px
+          li
+            font-size: 16px
+            background-color: #ccf2ff
+            +border-radius
+            padding: 15px 20px
+            margin-bottom: 15px
+            &:last-child
+              font-size: 17px
+              background-color: #f1ecf3
+              margin-bottom: 0
+      .details
+        +clearfix
+        background-color: #f8f8f8
+        padding: 10px 10px 0 10px
+        +border-radius
+        margin-top: 15px
+        .toggler
+          font-size: 17px
+          margin-bottom: 10px
+        .toggable
+          display: none
+          p
+            margin-bottom: 10px
+
     .works
       margin: 20px 0
       h2
@@ -23,6 +63,7 @@
           .image
             img
               border: 4px solid #fff
+              +border-radius
               +box-shadow(#aaa 0 0 3px)
               margin: 3px
           .title

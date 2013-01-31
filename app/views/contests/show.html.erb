@@ -1,7 +1,9 @@
 <div class='content_wrapper'>
   <h1><%= @contest.title.excerpt %></h1>
   <div class='contest'>
-    <%= raw @contest.description %>
+    <div class="description">
+      <%= @contest.description.as_html %>
+    </div>
     <% if @contest.works.any? %>
       <div class='works'>
         <h2>Работы-участники</h2>
