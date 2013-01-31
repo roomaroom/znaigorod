@@ -224,5 +224,8 @@ end
 #  priority_suborganization_kind :string(255)
 #  comment                       :text
 #  additional_rating             :integer
+#  yandex_metrika_page_views     :integer
+#  vkontakte_likes               :integer
+#  subdomain                     :string(255)
 #
 

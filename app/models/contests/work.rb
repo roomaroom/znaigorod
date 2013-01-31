@@ -6,7 +6,7 @@ class Work < ActiveRecord::Base
   validates_presence_of :image_url
 
   def vfs_path
-    I18n.transliterate("/znaigorod/contests/#{contest.title}").gsub(' ', '_')
+    "/znaigorod/contests/#{contest.id}"
   end
 end
 

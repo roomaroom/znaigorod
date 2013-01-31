@@ -541,6 +541,7 @@
         description: Описание
         starts_on: Дата начала
         ends_on: Дата окончания
+        published: Опубликован
 
       work:
         title: Название

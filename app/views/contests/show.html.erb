@@ -1,0 +1,18 @@
+<div class="content_wrapper">
+  <h1><%= @contest.title.as_html %></h1>
+  <div class="contest">
+    <%= raw @contest.description %>
+    <% if @contest.works.any? %>
+      <ul>
+        <% @contest.works.each do |work| %>
+          <li>
+            <div class="title"><%= work.title %></div>
+            <div class="image"><%= image_tag work.image_url %></div>
+            <div class="annotation"><%= work.description %></div>
+            <div class="author"><%= work.author_info %></div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

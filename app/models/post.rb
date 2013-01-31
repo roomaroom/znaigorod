@@ -25,3 +25,19 @@ class Post < ActiveRecord::Base
     HasSearcher.searcher(:similar_posts).more_like_this(self).limit(3).results
   end
 end
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :text
+#  annotation :text
+#  content    :text
+#  poster_url :text
+#  vfs_path   :string(255)
+#  slug       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+

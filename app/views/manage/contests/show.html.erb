@@ -7,7 +7,7 @@
   <div>
     <span class="label">Описание:</span>
     <% if resource.description? %>
-      <span class="value"><%= simple_format resource.description %></span>
+      <span class="value"><%= raw resource.description %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
@@ -29,6 +29,11 @@
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
+  </div>
+
+  <div>
+    <span class="label">Опубликован:</span>
+    <span class="value"><%= resource.published? ? 'Да' : 'Нет' %></span>
   </div>
 
   <div>
