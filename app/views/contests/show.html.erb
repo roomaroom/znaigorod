@@ -1,8 +1,8 @@
 <div class='content_wrapper'>
   <h1><%= @contest.title.excerpt %></h1>
   <div class='contest'>
-    <div class="description">
-      <%= @contest.description.as_html %>
+    <div class='description'>
+      <%= @contest.description.as_html.hyphenate %>
     </div>
     <% if @contest.works.any? %>
       <div class='works'>
