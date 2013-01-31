@@ -1,9 +1,13 @@
 class Work < ActiveRecord::Base
+  extend FriendlyId
+
   attr_accessible :author_info, :image_url, :title, :description
 
   belongs_to :contest
 
   validates_presence_of :image_url
+
+  friendly_id :title, use: :slugged
 
   def vfs_path
     "/znaigorod/contests/#{contest.id}"

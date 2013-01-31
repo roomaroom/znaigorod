@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130093233) do
+ActiveRecord::Schema.define(:version => 20130131054033) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -86,9 +86,11 @@ ActiveRecord::Schema.define(:version => 20130130093233) do
     t.date     "ends_on"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.boolean  "published"
     t.string   "vfs_path"
+    t.string   "slug"
   end
+
+  add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
 
   create_table "creations", :force => true do |t|
     t.integer  "organization_id"
@@ -473,8 +475,10 @@ ActiveRecord::Schema.define(:version => 20130130093233) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
 
   add_index "works", ["contest_id"], :name => "index_works_on_contest_id"
+  add_index "works", ["slug"], :name => "index_works_on_slug", :unique => true
 
 end

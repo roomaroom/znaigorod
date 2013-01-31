@@ -63,9 +63,8 @@ class Organization < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  # NOTE: не забыть раскоментить после слияния saunas_search и master
-  #default_value_for :yandex_metrika_page_views, 0
-  #default_value_for :vkontakte_likes,           0
+  default_value_for :yandex_metrika_page_views, 0
+  default_value_for :vkontakte_likes,           0
 
   friendly_id :title, use: :slugged
 

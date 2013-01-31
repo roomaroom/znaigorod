@@ -106,7 +106,9 @@ Znaigorod::Application.routes.draw do
 
   resources :posts, :only => [:index, :show]
 
-  resource :contest, :only => :show
+  resources :contests, :only => :show do
+    resources :works, :only => :show
+  end
 
   constraints(Subdomain) do
     match '/' => 'organizations#show'

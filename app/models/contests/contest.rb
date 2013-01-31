@@ -1,15 +1,15 @@
 class Contest < ActiveRecord::Base
-  attr_accessible :title, :description, :ends_on, :starts_on, :published, :vfs_path
+  extend FriendlyId
+
+  attr_accessible :title, :description, :ends_on, :starts_on, :vfs_path
 
   has_many :works, :dependent => :destroy
 
   validates_presence_of :title
 
-  scope :published, where(:published => true)
+  scope :ordered_by_starts_on, order('starts_on desc')
 
-  def self.latest_contest
-    order('created_at desc').first
-  end
+  friendly_id :title, use: :slugged
 
   def self.generate_vfs_path
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
@@ -28,7 +28,7 @@ end
 #  ends_on     :date
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  published   :boolean
 #  vfs_path    :string(255)
+#  slug        :string(255)
 #
 

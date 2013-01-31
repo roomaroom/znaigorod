@@ -1,8 +1,11 @@
 class ContestsController < ApplicationController
 
+  def index
+    @contests = Contest.ordered_by_starts_on
+  end
+
   def show
-    @contest = Contest.published.latest_contest
-    raise ActionController::RoutingError.new('Not Found') unless @contest
+    @contest = Contest.find(params[:id])
   end
 
 end
