@@ -9,7 +9,7 @@
           <% @contest.works.each do |work| %>
             <li class='<%= cycle('first', 'second', 'third') %>' data-url='<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}/work/#{work.id}" %>'>
               <div class='image'>
-                <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), work.image_url) %>
+                <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), work.image_url, :rel => :contest_works) %>
               </div>
               <div class='title'><%= work.title %></div>
               <div class='author'><%= work.author_info %></div>
