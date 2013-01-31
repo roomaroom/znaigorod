@@ -1,3 +1,16 @@
+<% content_for :extra_meta do %>
+  <% full_content = @work.author_info
+     full_content += '. ' + @work.description.squish if @work.description.present?
+     content = truncate(full_content, :length => 140)
+  %>
+  <meta='description' content='<%= full_content %>' />
+  <meta property='og:description' content='<%= content %>'/>
+  <meta property='og:site_name' content='Знай­Город - конкурс' />
+  <meta property='og:title' content='<%= @work.contest.title.excerpt %>. <%= @work.title %>' />
+  <meta property='og:url' content='<%= "#{request.protocol}#{request.host_with_port}#{contest_work_path(@work.contest, @work)}" %>' />
+  <meta property='og:image' content='<%= @work.image_url %>' />
+<% end %>
+
 <div class='content_wrapper'>
   <h1><%= @work.contest.title.excerpt %></h1>
   <div class='contest'>
@@ -11,14 +24,14 @@
         <%= work_image_tag @work %>
       </div>
       <div class='author'>
-        <div class='contest_work_vk_like'>
-          <div id='vk_contest_work_like'></div>
-        </div>
+        <%# if Rails.env.production? %>
+          <div class='contest_work_vk_like'>
+            <div id='vk_contest_work_like'></div>
+          </div>
+        <%# end %>
         <strong>Автор работы:</strong> <%= @work.author_info %>
       </div>
-      <div class='description'>
-        <%= @work.description.as_html.hyphenate %>
-      </div>
+      <%= content_tag :div, @work.description.as_html.hyphenate, :class => :description if @work.description.present? %>
     </div>
     <%# if Rails.env.production? %>
       <div id='vk_contest_work_comments'></div>
