@@ -12,7 +12,7 @@
       </div>
       <div class='author'>
         <div class='contest_work_vk_like'>
-          голосование
+          <div id='vk_contest_work_like'></div>
         </div>
         <strong>Автор работы:</strong> <%= @work.author_info %>
       </div>
@@ -20,5 +20,8 @@
         <%= @work.description.as_html.hyphenate %>
       </div>
     </div>
+    <%# if Rails.env.production? %>
+      <div id='vk_contest_work_comments'></div>
+    <%# end %>
   </div>
 </div>
