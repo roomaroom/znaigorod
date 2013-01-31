@@ -10,7 +10,6 @@ $ ->
     init_vk_group_thick() if $('#vk_group_thick').length
     init_vk_group_news() if $('#vk_group_news').length
     init_vk_group_subscribers() if $('#vk_group_subscribers').length
-    init_contest() if $('.content_wrapper .contest .works ul li').length
 
   if typeof DG != 'undefined'
     init_affiches_map() if $('.show_map_link').length
@@ -24,6 +23,7 @@ $ ->
   init_galleria() if $('.content .gallery_container').length
   init_filters_toggler() if $('.need_toggler li').length
   init_filter_handler() if $('.filters_wrapper').length
+  init_contest() if $('.content_wrapper .contest').length
   init_prepare_organizations() if $('.organizations_list .info .characteristics').length
   init_prepare_sauna() if $('.organization_info .sauna_hall_details').length
   init_iconize_info() if $('.organization_info .iconize_info li').length
