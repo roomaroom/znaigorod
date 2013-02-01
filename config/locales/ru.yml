@@ -616,6 +616,7 @@
         phone: Телефоны
         schedules: Расписание работы
         site: Сайт
+        subdomain: Поддомен
         title: Название
         tour_link: Ссылка на 3D-тур
         updated_at: Обновлено
