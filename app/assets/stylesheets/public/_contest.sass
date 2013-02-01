@@ -9,6 +9,7 @@
         +clearfix
         .image
           float: left
+          position: relative
           margin-right: 30px
           img
             width: 400px
@@ -16,6 +17,20 @@
             +border-radius
             +box-shadow(#aaa 0 0 3px)
             margin: 3px
+          a
+            display: block
+            position: absolute
+            width: 100px
+            height: 33px
+            left: 243px
+            +clearfix
+            text-indent: -9999em
+            &.znaigorod
+              bottom: 86px
+            &.typical_tomsk
+              bottom: 48px
+            &.sixhandshakes
+              bottom: 10px
         ul
           float: left
           width: 536px
@@ -88,7 +103,7 @@
         float: right
         display: block
         font-size: 17px
-        margin: 2px 0 0 20px
+        margin: 2px 0 15px 20px
       h2
         font-size: 20px
         margin-bottom: 15px

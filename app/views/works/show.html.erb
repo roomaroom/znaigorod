@@ -19,7 +19,7 @@
     </div>
     <div class='work'>
       <%= link_to 'Все участники конкурса', @work.contest, :class => :link_to_contest %>
-      <h2><%= @work.title %></h2>
+      <%= content_tag :h2, @work.title if @work.title.present? %>
       <div class='image'>
         <%= work_image_tag @work %>
       </div>
@@ -29,7 +29,7 @@
             <div id='vk_contest_work_like'></div>
           </div>
         <% end %>
-        <strong>Автор работы:</strong> <%= @work.author_info %>
+        <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
       </div>
       <%= content_tag :div, @work.description.as_html.hyphenate, :class => :description if @work.description.present? %>
     </div>

@@ -1,5 +1,5 @@
 @init_loading_items = () ->
-  $('body > nav.pagination').css
+  $('body nav.pagination').css
     'height': '0'
     'visibility': 'hidden'
   list_url = window.location.pathname

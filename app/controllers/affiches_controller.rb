@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class AffichesController < ApplicationController
-  layout 'public'
 
   def index
     if request.xhr?
