@@ -23,6 +23,24 @@
           <%= sauna_hall.price %>
           <%= sauna_hall.schedule %>
         </div>
+          <ul class="iconize_info">
+            <% if sauna_hall.description? %>
+              <li>
+                <%= link_to 'информация', '#', :class => 'description_icon', 'data-link' => 'description_text', :title => 'информация'  %>
+                <div class="description_text">
+                  <%= sauna_hall.description %>
+                </div>
+              </li>
+            <% end %>
+            <% if sauna_hall.tour_link? %>
+              <li>
+                <%= link_to '3D-тур', '#', :class => 'tour_icon', 'data-link' => 'tour_link', :title => '3D-тур'  %>
+                <div class="tour_link">
+                  <%= sauna_hall.tour_link %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
         <div class='right'>
           <%= sauna_hall.htmlise_capacity_on_show %>
         </div>
