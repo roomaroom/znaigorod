@@ -6,7 +6,7 @@
     </div>
     <% if @contest.works.any? %>
       <div class='works'>
-        <h2>Работы-участники</h2>
+        <h2>Участники</h2>
         <ul>
           <% @contest.works.each do |work| %>
             <li class='<%= cycle('first', 'second', 'third') %>'>
