@@ -8,7 +8,7 @@
       <div class='works'>
         <h2>Участники</h2>
         <ul>
-          <% @contest.works.each do |work| %>
+          <% @contest.works.ordered.each do |work| %>
             <li class='<%= cycle('first', 'second', 'third') %>'>
               <div class='image'>
                 <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), contest_work_path(@contest, work)) %>

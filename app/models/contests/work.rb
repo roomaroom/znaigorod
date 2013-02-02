@@ -9,6 +9,8 @@ class Work < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
+  scope :ordered, order('created_at desc')
+
   def vfs_path
     "/znaigorod/contests/#{contest.id}"
   end
