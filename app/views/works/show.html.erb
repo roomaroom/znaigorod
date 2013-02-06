@@ -18,7 +18,7 @@
       <%= @work.contest.description.as_html.hyphenate %>
     </div>
     <div class='work'>
-      <%= link_to 'Все участники конкурса', @work.contest, :class => :link_to_contest %>
+      <%= link_to 'Все участники конкурса', first_contest_path, :class => :link_to_contest %>
       <%= content_tag :h2, @work.title if @work.title.present? %>
       <div class='image'>
         <%= work_image_tag @work %>
