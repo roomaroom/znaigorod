@@ -106,9 +106,11 @@ Znaigorod::Application.routes.draw do
 
   resources :posts, :only => [:index, :show]
 
-  resources :contests, :only => :show do
+  get '/contests/fotokonkurs-par-goroda-polovinki-loventinki' => 'works#index', :as => :first_contest
+  resources :contests, :only => [] do
     resources :works, :only => :show
   end
+
 
   constraints(Subdomain) do
     match '/' => 'organizations#show'
