@@ -8,30 +8,7 @@
       <div class='works'>
         <h2>Участники</h2>
         <ul>
-          <% @works.each do |work| %>
-            <li class='<%= cycle('first', 'second', 'third') %>'>
-              <div class='image'>
-                <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), contest_work_path(@contest, work)) %>
-              </div>
-              <% contest_description = work.author_info
-                 contest_description += '. ' + work.description.squish if work.description.present?
-                 contest_description = truncate(contest_description, :length => 140)
-              %>
-              <div class='title'>
-                <% if Rails.env.production? %>
-                  <div class='contest_work_vk_like_on_list'
-                       data-title='<%= @contest.title.excerpt %>. <%= work.title %>'
-                       data-image='<%= work.image_url.gsub(/\/\d+-\d+\//, '/100-63!n/') %>'
-                       data-description='<%= contest_description %>'
-                       data-url='<%= "#{request.protocol}#{request.host_with_port}#{contest_work_path(@contest, work)}" %>'>
-                    <div id='vk_contest_work_like_<%= work.slug.gsub('-', '_') %>'></div>
-                  </div>
-                <% end %>
-                <%= link_to(work.title, contest_work_path(@contest, work)) %>
-              </div>
-              <div class='author'><%= work.author_info %></div>
-            </li>
-          <% end %>
+          <%= render :partial => 'list' %>
         </ul>
       </div>
     <% end %>
