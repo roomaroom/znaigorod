@@ -8,11 +8,19 @@ else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
 
-every :day, :at => '8am' do
-  rake 'cron'
+every :day, :at => '7:15 am' do
+  rake 'sync:fakel'
 end
 
-every 2.hours do
+every :day, :at => '7:20 am' do
+  rake 'sync:kinomax'
+end
+
+every :day, :at => '7:25 am' do
+  rake 'sync:kinomir'
+end
+
+every 4.hours do
   rake 'statistics:all'
 end
 
