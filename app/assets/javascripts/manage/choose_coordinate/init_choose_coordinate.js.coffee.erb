@@ -1,4 +1,8 @@
+$map = null
+$marker = null
+
 $.fn.show_map = (coordinate) ->
+  return $map if $map?
   container = this[0]
   if coordinate != null
     point = new DG.GeoPoint(coordinate.lon, coordinate.lat)
@@ -6,8 +10,9 @@ $.fn.show_map = (coordinate) ->
     point = new DG.GeoPoint('84.952222232222', '56.488611121111')
   map = new DG.Map(container)
   scale = 16
-  DG.autoload ->
+  DG.load ->
   map.controls.add(new DG.Controls.Zoom())
+  map.fullscreen.disable()
   map.setCenter(point, scale)
   return map
 
@@ -25,10 +30,12 @@ create_marker = (coordinate) ->
 $.fn.add_click_handler = () ->
   $this = $(this)
   $this.click ->
-    container = $('<div class="map_wrapper" style="width:640px; height: 480px;" />').appendTo('body').hide()
+    if $('.map_wrapper').length
+      container = $('.map_wrapper')
+    else
+      container = $('<div class="map_wrapper" style="width:640px; height: 480px;" />').appendTo('body').hide()
     latitude = $('.latitude', $(this).parent())
     longitude = $('.longitude', $(this).parent())
-    map = null
     observer = null
     coordinate = null
     if latitude.val().length
@@ -42,26 +49,24 @@ $.fn.add_click_handler = () ->
       width: 640
       zIndex: 700
       open: ->
-        map = container.show_map(coordinate)
-        marker = null
+        $map = container.show_map(coordinate)
         if coordinate != null
-          marker = create_marker(coordinate)
-          map.markers.add(marker)
-        observer = map.addEventListener(map.getContainerId(),'DgClick', (event) ->
+          $map.markers.remove($marker) if $marker != null
+          $marker = create_marker(coordinate)
+          $map.markers.add($marker)
+          $map.setCenter(new DG.GeoPoint(coordinate.lon, coordinate.lat), 16)
+        observer = $map.addEventListener($map.getContainerId(),'DgClick', (event) ->
           coordinate = event.getGeoPoint()
           latitude.val coordinate.lat
           longitude.val coordinate.lon
           $this.addClass('with_coordinates')
-          map.markers.remove(marker) if marker != null
-          marker = create_marker(coordinate)
-          map.markers.add(marker)
-          marker = marker.getId()
+          $map.markers.remove($marker) if $marker != null
+          $marker = create_marker(coordinate)
+          $map.markers.add($marker)
+          $marker = $marker.getId()
         )
       close: ->
         observer.cleanup()
-        map.destroy()
-        map = null
-        marker = null
     )
 
     false
