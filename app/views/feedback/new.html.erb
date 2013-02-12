@@ -1,0 +1,28 @@
+<% content_for :subtitle, "Обратная связь" %>
+
+<% content_for :extra_meta do %>
+  <meta name='description' content='<%= I18n.t("meta_description.feedback") %> <%= I18n.t("meta_description.main_page") %>' />
+<% end %>
+
+<div class="content_wrapper">
+  <div class="feedback">
+    <div class="right_side">
+    </div>
+
+    <h1>Обратная связь</h1>
+
+    <div class='flash_message'>
+      <%= flash[:notice] %>
+    </div>
+
+    <%= simple_form_for @feedback, :url => new_feedback_path, :html => {:novalidate => true} do |f| %>
+      <div class="inputs">
+        <%= f.input :fullname %>
+        <%= f.input :email %>
+        <%= f.input :message %>
+      </div>
+      <%= f.submit 'Отправить', :class => 'submit' %>
+    <% end %>
+
+  </div>
+</div>

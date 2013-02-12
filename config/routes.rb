@@ -111,6 +111,9 @@ Znaigorod::Application.routes.draw do
     resources :works, :only => :show
   end
 
+  #resources :feedback, :only => [:new, :create]
+  get 'feedback' => 'feedback#new', :as => :new_feedback
+  post 'feedback' => 'feedback#create', :as => :create_feedback
 
   constraints(Subdomain) do
     match '/' => 'organizations#show'

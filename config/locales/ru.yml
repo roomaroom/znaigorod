@@ -512,6 +512,7 @@
       meal: Заведение питания
       exhibition: Выставки
       entertainment: Развлекательное заведение
+      feedback: Обратная связь
       master_class: Мастер-классы
       masterclass: Мастер-классы
       movie: Кино
@@ -585,6 +586,11 @@
 
       attachment:
         description: Описание
+
+      feedback:
+        fullname: Фамилия Имя
+        email: Электронная почта
+        message: Сообщение
 
       showing:
         ends_at: Окончание
