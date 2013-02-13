@@ -1,5 +1,6 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
+require "delayed/recipes"
 
 load "config/deploy/settings"
 load "config/deploy/assets"
@@ -63,6 +64,7 @@ after "deploy", "deploy:reload_servers"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:crontab"
 after "deploy", "deploy:refresh_sitemaps"
+after "deploy:restart", "delayed_job:restart"
 after "deploy", "deploy:airbrake"
 
 # deploy:rollback
