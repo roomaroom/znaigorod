@@ -17,6 +17,7 @@ group :default do
   gem 'auto_html'
   gem 'curb',                                         :require => false
   gem 'default_value_for'
+  gem 'delayed_job_active_record'
   gem 'draper'
   gem 'el_vfs_client'
   gem 'esp-ckeditor'

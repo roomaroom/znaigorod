@@ -20,3 +20,13 @@ errors:
 
 storage:
   url:                  http://storage.host
+
+mail:
+  address:              host
+  port:                 25
+  domain:               appname
+  login:                user@host
+  password:             secret
+  from:                 noreply@host
+  to:                   user@host
+
