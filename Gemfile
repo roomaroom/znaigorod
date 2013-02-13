@@ -36,6 +36,7 @@ group :default do
   gem 'pg',                                           :require => false
   gem 'progress_bar'
   gem 'rails'
+  gem 'recaptcha',                                    :require => 'recaptcha/rails'
   gem 'russian'
   gem 'simple-navigation'
   gem 'simple_form'

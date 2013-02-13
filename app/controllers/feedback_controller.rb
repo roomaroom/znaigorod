@@ -8,7 +8,7 @@ class FeedbackController < ApplicationController
 
   def create
     @feedback = Feedback.new(params[:feedback])
-    if @feedback.save
+    if verify_recaptcha(:model => @feedback) && @feedback.save
       redirect_to new_feedback_path, :notice => 'Сообщение отправлено успешно, спасибо за обращение.'
     else
       @feedback.valid?

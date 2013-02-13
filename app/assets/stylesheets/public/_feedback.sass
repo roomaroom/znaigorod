@@ -8,12 +8,16 @@
     padding-top: 243px
 
   .feedback
-    margin: 0 0 40px 0
+    +clearfix
+    padding: 0 0 40px 0
 
     .flash_message
       color: #514721
       font-size: 1.4em
       text-align: center
+
+    .recaptcha
+      margin: 0 0 10px 0
 
     form
       +clearfix
@@ -27,9 +31,12 @@
 
         label
           color: #818181
+          display: block
           font-size: 1.2em
-          float: left
-          width: 160px
+          margin: 0 0 5px 0
+
+          abbr
+            display: none
 
         input, textarea
           border: 1px solid #835999
@@ -37,8 +44,8 @@
           font-size: 1.2em
           line-height: 1.4em
           margin: 0
-          padding: 0 3px
-          width: 400px
+          padding: 5px
+          width: 429px
 
         textarea
           height: 200px
@@ -47,7 +54,7 @@
           color: #cf373f
           font-size: 12px
           display: block
-          margin: 3px 0 0 160px
+          margin: 3px 0 0 0
 
           &:before
             content: '\2b11'
@@ -59,8 +66,8 @@
         border: 1px solid #649dba
         color: #fff
         display: block
-        font-size: 12px
-        line-height: 12px
+        font-size: 16px
+        line-height: 16px
         margin: 0
         padding: 4px 8px
         position: relative

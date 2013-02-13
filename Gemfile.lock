@@ -236,6 +236,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
+    recaptcha (0.3.4)
     redcarpet (2.2.2)
     ref (1.0.2)
     responders (0.6.5)
@@ -363,6 +364,7 @@ DEPENDENCIES
   quiet_assets
   rails
   rails-erd
+  recaptcha
   rspec-rails
   russian
   rvm-capistrano

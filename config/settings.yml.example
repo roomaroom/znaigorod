@@ -30,3 +30,6 @@ mail:
   from:                 noreply@host
   to:                   user@host
 
+recaptcha:
+  public:               token
+  private:              token

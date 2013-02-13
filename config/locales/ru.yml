@@ -588,9 +588,9 @@
         description: Описание
 
       feedback:
-        fullname: Фамилия Имя
-        email: Электронная почта
-        message: Сообщение
+        fullname: Ваше имя
+        email: Ваш адрес электронной почты
+        message: Текст вашего сообщения
 
       showing:
         ends_at: Окончание
