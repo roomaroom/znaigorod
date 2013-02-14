@@ -16,6 +16,7 @@ group :default do
   gem 'attribute_normalizer'
   gem 'auto_html'
   gem 'curb',                                         :require => false
+  gem 'daemons'
   gem 'default_value_for'
   gem 'delayed_job_active_record'
   gem 'draper'

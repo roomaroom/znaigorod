@@ -336,6 +336,7 @@ DEPENDENCIES
   coffee-rails
   compass-rails
   curb
+  daemons
   default_value_for
   delayed_job_active_record
   draper
