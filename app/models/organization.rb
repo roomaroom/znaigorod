@@ -142,7 +142,7 @@ class Organization < ActiveRecord::Base
   end
 
   def index_suborganizations
-    suborganizations.map(&:index)
+    suborganizations.map(&:sunspot_index)
   end
 
   def self.grouped_collection_for_select

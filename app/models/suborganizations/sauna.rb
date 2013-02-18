@@ -26,6 +26,10 @@ class Sauna < Entertainment
 
   delegate :title, :to => :organization, :prefix => true
 
+  def sunspot_index
+    index and sauna_halls.map(&:index)
+  end
+
   use_for_rating :sauna_halls, :sauna_accessory, :sauna_broom, :sauna_alcohol, :sauna_oil, :sauna_child_stuff, :sauna_stuff, :sauna_massage
 
   presents_as_checkboxes :category,
