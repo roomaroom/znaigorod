@@ -132,6 +132,6 @@ Znaigorod::Application.routes.draw do
     "/#{a.class.model_name.downcase}/#{a.slug}"
   }
 
-  match '/popular', :to => redirect('application#main_page')
+  match '/popular', :to => redirect('/')
 
 end
