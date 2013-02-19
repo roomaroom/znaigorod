@@ -23,7 +23,7 @@ class ApplicationDecorator < Draper::Base
     return "бесплатно".hyphenate if price_min == 0 && (price_max.nil? || price_max == 0)
     return "#{price_min} руб.".hyphenate if price_min > 0 && ((price_max.nil? || price_max == 0) || price_max == price_min)
     return "#{price_min} &ndash; #{price_max} руб.".hyphenate.html_safe if price_min > 0 && price_max > 0
-    return "бесплатно &ndash; #{price_max} руб.".hyphenate.html_safe if price_min == 0 && price_max > 0
+    return "от 0 до #{price_max} руб.".hyphenate.html_safe if price_min == 0 && price_max > 0
   end
 
   def open_closed(from, to)
