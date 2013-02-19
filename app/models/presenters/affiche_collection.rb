@@ -16,6 +16,7 @@ class AfficheCollection
     self.categories ||= ""
     self.kind ||= 'affiches'
     self.period ||= 'all'
+    raise ActionController::RoutingError.new('Not Found') unless self.tags.present?
     query = "categories/#{self.categories}/tags/#{self.tags}"
     query = "categories/#{self.categories}" if self.categories.include?('tags')
     parameters = {}
