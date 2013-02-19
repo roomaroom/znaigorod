@@ -13,6 +13,7 @@
     <%= yield :extra_meta %>
     <%= yield :twitter_cards %>
     <%= csrf_meta_tags %>
+    <%= yield :metrics %>
   </head>
   <body<%= raw(" class='noisy'") if @body_class == 'noisy' %>>
     <%= yield :content %>
