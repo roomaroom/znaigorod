@@ -1,7 +1,7 @@
 class HitDecorator < ApplicationDecorator
   decorates 'sunspot/search/hit'
 
-  AFFICHE_FIELDS = %w[original_title tag]
+  AFFICHE_FIELDS = %w[tag]
   ORGANIZATION_FIELDS = %w[category cuisine feature offer payment]
   ADDITIONAL_FIELDS = AFFICHE_FIELDS + ORGANIZATION_FIELDS
 
