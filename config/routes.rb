@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Znaigorod::Application.routes.draw do
   mount Affiches::API => '/'
 
@@ -58,6 +60,24 @@ Znaigorod::Application.routes.draw do
 
     root :to => 'organizations#index'
   end
+
+  # legacy urls
+
+  get 'affiches' =>  redirect('/affiches/all')
+
+  get 'affiches/:id' => redirect { |params, req|
+    a = Affiche.find(params[:id])
+    "/#{a.class.model_name.downcase}/#{a.slug}"
+  }
+
+  match URI.encode("/meals/доставка готовых блюд"), :to => redirect(URI.encode("/meals/доставка еды"))
+  match URI.encode("/meals/доставка готовых блюд/(*query)"), :to => redirect { |params, req|
+    URI.encode("/meals/доставка еды/#{params[:query]}")
+  }
+
+  match '/popular', :to => redirect('/')
+
+  # / legacy urls
 
   get 'search' => 'search#search', :as => :search
 
@@ -122,16 +142,5 @@ Znaigorod::Application.routes.draw do
   root :to => 'application#main_page'
 
   mount ElVfsClient::Engine => '/'
-
-  # legacy urls
-
-  get 'affiches' =>  redirect('/affiches/all')
-
-  get 'affiches/:id' => redirect { |params, req|
-    a = Affiche.find(params[:id])
-    "/#{a.class.model_name.downcase}/#{a.slug}"
-  }
-
-  match '/popular', :to => redirect('/')
 
 end
