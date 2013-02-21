@@ -7,6 +7,7 @@
   add_image: Добавить изображение
   add_organization: "&plus;&nbsp;заведение"
   add_showing: Добавить сеанс
+  add_social_links: Добавить ссылку
   affiche: Афиша
   choose_file: Выбрать файл
   clear_filters: Очистить фильтры
@@ -48,6 +49,7 @@
   remove_this_hall: Удалить этот зал
   remove_this_image: Удалить это изображение
   remove_this_showing: Удалить этот сеанс
+  remove_this_social_link: Удалить эту ссылку
   sign_in: "Вход в&nbsp;кабинет"
   site_title: "Знай\u00ADГород - афиша, заведения Томска"
   twitter_timeline: Эфир
@@ -635,6 +637,10 @@
         guarded:            Охрана
         video_observation:  Видеонаблюдение
 
+      social_link:
+        title: Название
+        url: Ссылка
+
       culture:
         category: Категория
         category_list: Категория
@@ -875,6 +881,9 @@
         offer: 'Предложение услуг, например: банкеты, бизнес-ланч и т.д.'
         payment: 'Например: наличными, Visa, MasterCard и т.п.'
         phone: 'Номера указываются через запятую в одной из следующих форм: 22-33-44, (3822)11-22-33, 333-444, (3822)333-444, 8-333-444-55-66'
+
+      social_link:
+        url: 'Ссылка в формате http://vk.com/znaigorod'
 
   views:
     pagination:

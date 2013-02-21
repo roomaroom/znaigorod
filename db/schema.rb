@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221020030) do
+ActiveRecord::Schema.define(:version => 20130221031242) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -483,6 +483,16 @@ ActiveRecord::Schema.define(:version => 20130221020030) do
   end
 
   add_index "showings", ["affiche_id"], :name => "index_showings_on_affiche_id"
+
+  create_table "social_links", :force => true do |t|
+    t.integer  "organization_id"
+    t.text     "title"
+    t.text     "url"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "social_links", ["organization_id"], :name => "index_social_links_on_organization_id"
 
   create_table "sports", :force => true do |t|
     t.datetime "created_at",      :null => false

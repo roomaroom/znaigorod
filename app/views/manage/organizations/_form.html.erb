@@ -9,6 +9,13 @@
 <%= f.input :phone %>
 <%= f.input :email %>
 <%= f.input :site %>
+
+<fieldset class='organization_social_links'>
+  <legend>Ссылки</legend>
+  <%= f.simple_fields_for :social_links %>
+  <%= f.link_to_add t('add_social_links'), :social_links %>
+</fieldset>
+
 <%= f.input :subdomain %>
 <%= f.input :tour_link %>
 <%= f.input :non_cash %>

@@ -5,7 +5,8 @@ class Organization < ActiveRecord::Base
                   :images_attributes, :organization_id, :phone, :schedules_attributes,
                   :site, :subdomain, :title, :vfs_path, :attachments_attributes,
                   :logotype_url, :tour_link, :non_cash, :priority_suborganization_kind,
-                  :comment, :organization_stand_attributes, :additional_rating
+                  :comment, :organization_stand_attributes, :additional_rating,
+                  :social_links_attributes
 
   belongs_to :organization
 
@@ -17,6 +18,7 @@ class Organization < ActiveRecord::Base
   has_many :schedules,      :dependent => :destroy
   has_many :sauna_halls,    :through => :sauna
   has_many :showings,       :dependent => :destroy
+  has_many :social_links,   :dependent => :destroy
 
   has_one :address,             :dependent => :destroy
   has_one :culture,             :dependent => :destroy
@@ -46,6 +48,7 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :images,              :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :organization_stand,  :reject_if => :all_blank
   accepts_nested_attributes_for :schedules,           :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :social_links,        :reject_if => :all_blank, :allow_destroy => true
 
   delegate :category, :cuisine, :feature, :offer, :payment,
            :to => :meal, :allow_nil => true, :prefix => true
