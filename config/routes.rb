@@ -68,8 +68,6 @@ Znaigorod::Application.routes.draw do
     URI.encode("/meals/доставка еды/#{params[:query]}")
   }
 
-  match '/popular', :to => redirect('/')
-
   # / legacy urls
 
   get 'search' => 'search#search', :as => :search
