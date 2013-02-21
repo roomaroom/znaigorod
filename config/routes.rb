@@ -117,7 +117,9 @@ Znaigorod::Application.routes.draw do
   get ':organization_class/(:category)/(*query)' => 'organizations#index',
       :organization_class => /organizations|meals|entertainments|cultures|sports|creations|saunas/, :as => :organizations
 
-  resources :posts, :only => [:index, :show]
+  resources :posts, :only => [:index, :show] do
+    get :draft, :on => :collection, :as => :draft
+  end
 
   get '/contests/fotokonkurs-par-goroda-polovinki-loventinki' => 'works#index', :as => :first_contest
   resources :contests, :only => [] do

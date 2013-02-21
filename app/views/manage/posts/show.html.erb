@@ -2,7 +2,7 @@
   <h1>
     <%= @post.title %>
     <%= link_to "Редактировать пост", edit_manage_post_path, :class => 'edit_link' %>
-    <%= link_to "Посмотреть в публичном виде", post_path(@post), :class => 'edit_link' %>
+    <%= link_to "Посмотреть в публичном виде", post_path(@post), :class => 'edit_link', :target => '_blank' %>
   </h1>
 
   <div class="annotation">

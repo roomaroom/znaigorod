@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :annotation, :content, :poster_url, :title, :vfs_path
+  attr_accessible :annotation, :content, :poster_url, :status, :title, :vfs_path
 
   has_many :post_images, :order => 'post_images.id'
 
@@ -10,6 +10,9 @@ class Post < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   default_scope order('id DESC')
+
+  scope :published, -> { where(:status => true) }
+  scope :draft,     -> { where(:status => false) }
 
   def self.generate_vfs_path
     "/znaigorod/posts/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"

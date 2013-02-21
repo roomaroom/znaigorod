@@ -576,6 +576,7 @@
 
       post:
         title: Название
+        status: Опубликовать
 
       post_image:
         attachment: Изображение

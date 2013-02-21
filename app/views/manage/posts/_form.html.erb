@@ -7,6 +7,7 @@
     <%= f.input :title %>
     <%= f.input :annotation, :as => :ckeditor, :label => false %>
     <%= f.input :content, :as => :ckeditor, :label => false %>
+    <%= f.input :status, :as => :boolean, :label => false %>
   <% end %>
 
   <%= f.actions do %>
