@@ -29,6 +29,7 @@ $ ->
   init_iconize_info() if $('.organization_info .iconize_info li').length
   init_included_photos() if $('.organization_info .photogallery li').length
   init_included_photos() if $('.post .photogallery li').length
+  init_post_photos() if $('.post a[rel="colorbox"]').length
   init_schedule_toggle() if $('.organization_info .more_schedule').length
   init_photogallery() if $('.content_wrapper .was_in_city_photos li').length
   init_loading_items() if $('.content_wrapper .affiches_list ul.items_list li').length
