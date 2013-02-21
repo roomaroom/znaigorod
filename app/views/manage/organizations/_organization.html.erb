@@ -44,6 +44,19 @@
   </div>
 
   <div>
+    <span class="label">Ссылки:</span>
+    <% if resource.social_links.present? %>
+      <ul>
+        <% resource.social_links.each do |link| %>
+          <li><span class="value"><%= link_to link.title, link.url, :target => '_blank' %></span></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
     <span class="label">Поддомен:</span>
     <% if resource.subdomain.present? %>
       <span class="value"><%= resource.subdomain %></span>
