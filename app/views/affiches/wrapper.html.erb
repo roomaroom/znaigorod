@@ -89,22 +89,27 @@
           </div>
         <% end %>
         <% if !@affiche.scheduled_showings? && !@affiche.distribution_movie? && @affiche.showings.many? %>
-          <div class="many_showings">
-            <div class="head">
-              <div class="places">
-                <% @affiche.places.each do |place| %>
-                  <%= place.place %>
-                <% end %>
+          <% @affiche.showings.group_by(&:place).each do |place, showings| %>
+            <div class="many_showings">
+              <div class="head">
+                <div class="places">
+                  <p>
+                    <span class='name'><%= place %></span>,
+                    <span class='address'>
+                      <a href="#" class="show_map_link" latitude="<%= showings.first.latitude %>" longitude="<%= showings.first.longitude %>" title="Показать на карте">показать на карте</a>
+                    </span>
+                  </p>
+                </div>
               </div>
+              <ul>
+                <% showings.each do |showing| %>
+                  <li class="<%= cycle('odd', 'even') %>">
+                    <%= showing.for_schedule %>
+                  </li>
+                <% end %>
+              </ul>
             </div>
-            <ul>
-              <% @affiche.showings.each do |showing| %>
-                <li class="<%= cycle('odd', 'even') %>">
-                  <%= showing.for_schedule %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
       <% if Rails.env.production? %>
