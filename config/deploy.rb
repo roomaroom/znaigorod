@@ -3,7 +3,6 @@ require "rvm/capistrano"
 require "delayed/recipes"
 
 load "config/deploy/settings"
-load "config/deploy/assets"
 load "config/deploy/database"
 load "config/deploy/solr"
 load "config/deploy/tag"
