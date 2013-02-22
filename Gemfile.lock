@@ -41,9 +41,10 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    airbrake (3.1.6)
+    airbrake (3.1.8)
+      activesupport
       builder
-      girl_friday
+      json
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -53,7 +54,7 @@ GEM
       rinku (~> 1.5.0)
     backports (2.6.5)
     builder (3.0.4)
-    capistrano (2.13.5)
+    capistrano (2.14.2)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
@@ -79,7 +80,6 @@ GEM
     configliere (0.4.18)
       highline (>= 1.5.2)
       multi_json (>= 1.1)
-    connection_pool (0.9.3)
     curb (0.8.3)
     daemons (1.1.9)
     default_value_for (2.0.1)
@@ -119,9 +119,6 @@ GEM
     friendly_id (4.0.9)
     fssm (0.2.9)
     gilenson (1.2.2)
-    girl_friday (0.11.1)
-      connection_pool (~> 0.9.0)
-      rubinius-actor
     grape (0.2.2)
       activesupport
       hashie (~> 1.2)
@@ -161,13 +158,13 @@ GEM
     multi_xml (0.5.1)
     multipart-post (1.1.5)
     nested_form (0.3.1)
-    net-scp (1.0.4)
-      net-ssh (>= 1.99.1)
-    net-sftp (2.0.5)
-      net-ssh (>= 2.0.9)
-    net-ssh (2.6.2)
-    net-ssh-gateway (1.1.0)
-      net-ssh (>= 1.99.1)
+    net-scp (1.1.0)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.5)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.5.5)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -190,7 +187,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
-    paperclip-elvfs (0.0.5)
+    paperclip-elvfs (0.0.5.2)
       curb
       paperclip
     pg (0.14.1)
@@ -254,16 +251,13 @@ GEM
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
       rspec-mocks (~> 2.12.0)
-    rubinius-actor (0.0.2)
-      rubinius-core-api
-    rubinius-core-api (0.0.1)
     ruby-graphviz (1.0.8)
     russian (0.6.0)
       i18n (>= 0.5.0)
     rvm-capistrano (1.2.7)
       capistrano (>= 2.0.0)
-    sass (3.2.3)
-    sass-rails (3.2.5)
+    sass (3.2.5)
+    sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
