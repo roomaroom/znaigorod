@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   helper_method :banners, :hot_offers, :page, :per_page
 
-  layout 'public'
+  layout 'contests/spring_mood'
 
   def main_page
     @affiche_today = AfficheToday.new 'movies'
