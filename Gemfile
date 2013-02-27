@@ -52,7 +52,7 @@ end
 
 group :development do
   gem 'annotate',                   :require => false
-  gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'hirb'
   gem 'quiet_assets'
   gem 'rails-erd'
