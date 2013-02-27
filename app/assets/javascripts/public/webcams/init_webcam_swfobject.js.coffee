@@ -22,8 +22,6 @@ render_swfobject_dialog = (width, height, file_hash, dialog_title) ->
   webcam_dialog.html("").hide()
   $("<center><div id='swfobject_container' /></center>").appendTo(webcam_dialog)
   conf = swf_config(width, height, file_hash)
-  console.log conf.width
-  console.log conf.height
   swfobject.embedSWF(
     conf.swfUrl,
     conf.id,

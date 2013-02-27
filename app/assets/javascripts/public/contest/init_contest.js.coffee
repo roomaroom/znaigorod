@@ -77,7 +77,6 @@
           return true unless data.length
           list.append(data)
           last_item = first_item.siblings().last()
-          console.log last_item
           last_item_top = last_item.position().top
           page += 1
           busy = false
