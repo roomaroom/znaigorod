@@ -8,7 +8,7 @@ GIT
       responders (~> 0.6.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     RedCloth (4.2.9)
     actionmailer (3.2.12)
@@ -54,7 +54,7 @@ GEM
       rinku (~> 1.5.0)
     backports (2.6.5)
     builder (3.0.4)
-    capistrano (2.14.2)
+    capistrano (2.14.1)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
