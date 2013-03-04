@@ -10,6 +10,7 @@
 
 <div class="content_wrapper">
 
+
   <div class="affiches_list">
     <h1><span class="strong"><%= @affiche_collection.human_kind %></span> <%= @affiche_collection.human_period.mb_chars.downcase %> в Томске</h1>
     <div class="list_settings">
@@ -28,6 +29,9 @@
         </ul>
       </div>
     </div>
+
+    <%= render :partial => 'advertisment' if DateTime.now <= DateTime.new(2013, 3, 8, 13, 00, 00, '+7') %>
+
     <% unless @affiche_collection.affiches.blank? %>
       <ul class="items_list <%= @affiche_collection.presentation_mode %>">
         <%= render partial: @affiche_collection.view_partial %>
@@ -81,7 +85,8 @@
         <%= link_to image_tag("public/avtovokzal.jpg", size: "200x200", alt: "Online продажа автобусных билетов"),
                     "http://avtovokzal.tomsk.ru/",
                     target: :_blank,
-                    rel: :nofollow %>
+                    rel: :nofollow,
+                    class: Rails.env.production? ? "avtovokzal_tomsk_ru" : "avtovokzal_tomsk_ru development" %>
       </div>
     </div>
     <div class="vk_group_wrapper">
