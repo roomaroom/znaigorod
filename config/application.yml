@@ -57,7 +57,7 @@ app:
         food_delivery:
           category: meal
           options:
-            category: доставка готовых блюд
+            category: доставка еды
       '15-18':
         museums:
           category: culture
@@ -75,7 +75,7 @@ app:
         food_delivery:
           category: meal
           options:
-            category: доставка готовых блюд
+            category: доставка еды
         sauna:
           category: entertainment
           options:
