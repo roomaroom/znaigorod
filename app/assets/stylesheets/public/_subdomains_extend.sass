@@ -19,12 +19,20 @@ body
   .paradise_wrapper
     background: #333 image_url('public/paradise/bg.png') repeat
     +background-image(image_url('public/paradise/bg.png'), linear-gradient(#000, #fff))
-    .paradise_logo
-      height: 1040px
-      height: 150px
-      background: transparent image_url('public/paradise/logo.png') no-repeat center center
     .paradise
-      +subdomain_common_style
+      width: 1200px
+      margin: 0 auto
+      .paradise_logo
+        height: 1200px
+        height: 150px
+        background: transparent image_url('public/paradise_logo.png') no-repeat center center
+      .header_wrapper
+        +border-top-left-radius(10px)
+        +border-top-right-radius(10px)
+      .content_wrapper
+        background-color: #fff
+        margin-top: 0
+        padding-top: 15px
 
   .globus_wrapper
     background-color: #daedfe
