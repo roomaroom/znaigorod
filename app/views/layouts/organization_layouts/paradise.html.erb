@@ -8,6 +8,10 @@
   <%= javascript_include_tag 'public/application' %>
 <% end %>
 
+<% content_for :metrics do %>
+  <%= render :partial => 'commons/google_analytics' if Rails.env.production? %>
+<% end %>
+
 <%= content_for :content do %>
   <div class='paradise_wrapper'>
     <div class='paradise'>
@@ -18,6 +22,7 @@
     </div>
   </div>
   <%= render :partial => 'commons/public_footer' %>
+  <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
 <% end %>
 
 <%= render :template => 'layouts/base' %>
