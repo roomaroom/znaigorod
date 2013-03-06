@@ -9,7 +9,7 @@ body
       .paradise_logo
         height: 1000px
         height: 150px
-        background: image_url('public/paradise_logo.png') no-repeat center center
+        background: transparent image_url('public/paradise_logo.png') no-repeat center center
       .header_wrapper
         +border-top-left-radius(10px)
         +border-top-right-radius(10px)
@@ -24,7 +24,7 @@ body
     .globus_logo
       height: 1040px
       height: 150px
-      background: image_url('public/globus/logo.png') no-repeat center center
+      background: transparent image_url('public/globus/logo.png') no-repeat center center
       margin: 0 auto
     .globus
       width: 1040px
@@ -41,3 +41,31 @@ body
         padding-top: 15px
         padding-left: 20px
         padding-right: 20px
+
+  .paris_wrapper
+    background: #ffe3c5 image_url('public/paris/bg.png') repeat
+    +background-image(image_url('public/paris/bg.png'), linear-gradient(#fff2d7, #fecbb0))
+    .paris_logo_wrapper
+      height: 150px
+      background: transparent image_url('public/paris/logo_bg.png') no-repeat center 30px
+      .paris_logo
+        height: 1040px
+        height: 150px
+        background: transparent image_url('public/paris/logo.png') no-repeat center center
+        margin: 0 auto
+    .paris
+      width: 1040px
+      +box-shadow(#777 0 0 5px)
+      +border-top-left-radius(10px)
+      +border-top-right-radius(10px)
+      margin: 0 auto
+      .header_wrapper
+        +border-top-left-radius(10px)
+        +border-top-right-radius(10px)
+      .content_wrapper
+        background-color: #fff
+        margin-top: 0
+        padding-top: 15px
+        padding-left: 20px
+        padding-right: 20px
+
