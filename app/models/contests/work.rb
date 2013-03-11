@@ -10,6 +10,7 @@ class Work < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   scope :ordered, order('created_at desc')
+  scope :ordered_by_likes, order('vk_likes desc')
 
   def vfs_path
     "/znaigorod/contests/#{contest.id}"
@@ -28,5 +29,7 @@ end
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  slug        :string(255)
+#  vk_likes    :integer
 #
 
