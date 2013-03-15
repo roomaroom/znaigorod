@@ -23,6 +23,7 @@ group :default do
   gem 'delayed_job_active_record'
   gem 'draper'
   gem 'el_vfs_client'
+  gem 'enumerize'
   gem 'esp-ckeditor'
   gem 'fastimage'
   gem 'formtastic'
