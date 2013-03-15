@@ -4,7 +4,9 @@ group :assets do
   gem 'coffee-rails'
   gem 'compass-rails'
   gem 'jquery-rails',               '2.0.3'
+  gem 'libv8',                      '~> 3.11.8' unless RUBY_PLATFORM =~ /freebsd/
   gem 'sass-rails'
+  gem 'therubyracer',               :platforms => :ruby, :require => 'v8'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier'
 end
