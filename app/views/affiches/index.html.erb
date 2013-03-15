@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <%= render :partial => 'advertisment' if DateTime.now <= DateTime.new(2013, 3, 8, 13, 00, 00, '+7') %>
+    <%= render :partial => 'advertisment' if DateTime.now <= DateTime.new(2013, 3, 22, 22, 00, 00, '+7') %>
 
     <% unless @affiche_collection.affiches.blank? %>
       <ul class="items_list <%= @affiche_collection.presentation_mode %>">
