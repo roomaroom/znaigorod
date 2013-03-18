@@ -535,6 +535,7 @@
         at_least_one_value_should_be_checked: необходимо выбрать хотя бы одну категорию
     models:
       affiche: Вся афиша
+      activity: Активность
       concert: Концерты
       contact: Контакт
       contest: Конкурс
@@ -568,6 +569,13 @@
       sport: Спорт
 
     attributes:
+      activity:
+        title: Описание
+        status: Планируемый статус заведения после активности
+        state: Статус активности
+        activity_at: Когда
+        manager: Менеджер
+        contact: Контактное лицо организации
       address:
         house: Дом
         latitude: Широта
