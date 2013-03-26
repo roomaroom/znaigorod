@@ -145,13 +145,13 @@ Znaigorod::Application.routes.draw do
     "/organizations/#{o.slug}"
   }
 
-  resources :organizations, :only => :show do
-    get 'affiche/:period/(:on)/(tags/*tags)' => 'organizations#affiche',
-      :defaults => {period: :all},
-      :period => /today|weekly|weekend|all|daily/, :on => :member, :as => :affiche
-  end
 
-  resources :organizations, :only => :index
+  # legacy view uniq subdomain organization url
+  Organization.where('subdomain is not null').each do |organization|
+    get "organizations/#{organization.slug}" => redirect("http://#{organization.subdomain}.znaigorod.ru")
+  end
+  # <= legacy view uniq subdomain organization url
+  resources :organizations, :only => [:index, :show]
 
   Organization.available_suborganization_kinds.each do |kind|
     resources kind.pluralize, :only => :index
