@@ -119,6 +119,12 @@ class ShowingsPresenter
     }
   end
 
+  def keywords
+    [].tap { |keywords|
+      keywords.concat(categories_filter.human_names) if keywords.empty?
+    }.join(', ')
+  end
+
   def searcher_params
     @searcher_params ||= {}.tap do |params|
       params[:age_max]          = age_filter.maximum         if age_filter.maximum.present?

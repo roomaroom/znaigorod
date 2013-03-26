@@ -46,6 +46,17 @@ module OrganizationsPresenter
     @order_by
   end
 
+  def keywords
+    [].tap { |keywords|
+      keywords.concat(categories_filter.selected) if respond_to?(:categories_filter) && categories_filter.used?
+      keywords.concat(features_filter.selected)   if respond_to?(:features_filter)   && features_filter.used?
+      keywords.concat(offers_filter.selected)     if respond_to?(:offers_filter)     && offers_filter.used?
+      keywords.concat(cuisines_filter.selected)   if respond_to?(:cuisines_filter)   && cuisines_filter.used?
+
+      keywords.concat(categories_filter.available) if keywords.empty?
+    }.join(', ')
+  end
+
   def sort_by_popularity?
     order_by == 'popularity'
   end

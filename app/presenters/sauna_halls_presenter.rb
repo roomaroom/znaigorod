@@ -231,9 +231,13 @@ class SaunaHallsPresenter
     [popularity_sort_link, price_sort_link, distance_sort_link].join(separator).html_safe
   end
 
-  def meta_description
-    desc = "Подбор сауны в Томске."
+  def keywords
+    [].tap { |keywords|
+      keywords.concat(selected_pool_features)   if pool_features_filter_used?
+      keywords.concat(selected_baths)           if baths_filter_used?
+      keywords.concat(selected_features)        if features_filter_used?
 
-    "<meta name='description' content='#{desc.squish}' />".html_safe
+      keywords.concat(available_baths)  if keywords.empty?
+    }.join(', ')
   end
 end
