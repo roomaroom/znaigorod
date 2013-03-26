@@ -9,10 +9,10 @@
     +single-box-shadow(#bcbcbc)
     background: #f4eff6
     border: 1px solid #fffdff
-    margin: 0 auto
+    margin: 0 13px
     padding: 12px 0 8px
     position: relative
-    width: $common_width - 30px
+    width: $common_width - 35px
 
     h1
       border-bottom: 1px dotted #a5a2a9
@@ -86,7 +86,7 @@
             margin: 5px 10px 5px 0
 
       &.date_filter
-        +min-height(26px)
+        +min-height(23px)
         ul
           +clearfix
           li
@@ -94,19 +94,26 @@
             margin-right: 10px
             label
               +inline-block
-              margin-bottom: 4px
+              margin: 5px 0 0 0
+            input
+              +inline-block
+              margin: 5px 0 0 0
+            &.period_date
+              label,
+              input
+                margin: 0
             .date_picker_wrapper
               +inline-block
               input
                 width: 65px
                 font-size: 11px
                 border: 1px solid #b492c5
-                margin-bottom: 5px
                 padding: 2px
+                margin: 2px 0 0
               img
                 cursor: pointer
                 +inline-block
-                margin: 0 0 4px 3px
+                margin: 1px 0 0 3px
 
       .filter_input_label
         float: left

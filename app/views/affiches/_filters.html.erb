@@ -20,23 +20,23 @@
 
       <div class="filter show date_filter" id='calendar'>
         <ul>
-          <li>
+          <li class='period_all'>
             <%= radio_button_tag :period, 'all', @presenter.period_filter.all? %>
             <%= label_tag :period_all, 'Все' %>
           </li>
-          <li>
+          <li class='period_today'>
             <%= radio_button_tag :period, 'today', @presenter.period_filter.today? %>
             <%= label_tag :period_today, 'Сегодня' %>
           </li>
-          <li>
+          <li class='period_week'>
             <%= radio_button_tag :period, 'week', @presenter.period_filter.week? %>
             <%= label_tag :period_week, 'На этой неделе' %>
           </li>
-          <li>
+          <li class='period_weekend'>
             <%= radio_button_tag :period, 'weekend', @presenter.period_filter.weekend? %>
             <%= label_tag :period_weekend, 'На этих выходных' %>
           </li>
-          <li>
+          <li class='period_date'>
             <%= radio_button_tag :period, @presenter.period_filter.date, @presenter.period_filter.date?, id: :period_date %>
             <%= label_tag :period_date, 'Дата' %>
             <div class='date_picker_wrapper'>

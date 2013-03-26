@@ -292,20 +292,12 @@ filter_date_handler = () ->
     buttonImage: "assets/public/calendar.png",
     buttonImageOnly: true
     onSelect: (dateText, inst) ->
-      $('#period_date', filter).val(dateText)
-  if $('#period_date').is(':checked')
-    $('.date_picker_wrapper', filter).show()
-    $('.date_picker_wrapper input', filter).removeAttr('disabled')
-  else
-    $('.date_picker_wrapper', filter).hide()
-    $('.date_picker_wrapper input', filter).attr('disabled', 'disabled')
+      $('#period_date', filter).attr('checked', 'checked').val(dateText)
   $('input[type=radio]', filter).change ->
     if $(this).attr('id') == 'period_date'
-      $('.date_picker_wrapper', filter).show()
-      $('.date_picker_wrapper input', filter).removeAttr('disabled').focus().select()
+      $('.date_picker_wrapper input', filter).focus()
     else
-      $('.date_picker_wrapper', filter).hide()
-      $('.date_picker_wrapper input', filter).attr('disabled', 'disabled')
+      $('.date_picker_wrapper input', filter).val('')
     true
 
 @init_filter_handler = () ->
