@@ -1,10 +1,9 @@
 class Manage::OrganizationsController < Manage::ApplicationController
+  belongs_to :organization, :optional => true
 
   has_scope :ordered_by_updated_at, :default => true, :type => :boolean
   has_scope :page, :default => 1
   has_scope :parental, :default => true, :type => :boolean, :only => :index
-
-  belongs_to :organization, :optional => true
 
   before_filter :check_role
   before_filter :build_resource, :only => :new
@@ -23,13 +22,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
     end unless resource.schedules.any?
   end
 
-  alias_method :old_collection, :collection
   def collection
-    if params[:utf8]
-      HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => per_page).results
-    else
-      old_collection
-    end
+    HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => per_page).results
   end
 
   def check_role
