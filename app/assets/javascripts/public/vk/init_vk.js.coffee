@@ -20,14 +20,14 @@ if typeof VK != "undefined"
 @init_vk_comments = () ->
   VK.Widgets.Comments "vk_comments",
     limit: 10
-    width: "760"
+    width: "950"
     attach: "*"
   true
 
 @init_vk_organization_comments = () ->
   VK.Widgets.Comments "vk_organization_comments",
     limit: 10
-    width: "1000"
+    width: "1200"
     attach: "*"
   true
 

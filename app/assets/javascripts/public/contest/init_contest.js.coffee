@@ -36,9 +36,9 @@
         pageDescription: page_description
         text: page_description
     if $('#vk_contest_work_comments').length
-      VK.Widgets.Comments 'vk_contest_work_comments'
+      VK.Widgets.Comments 'vk_contest_work_comments',
         limit: '10'
-        width: '980'
+        width: '1180'
         attach: '*'
 
   return true unless $('.content_wrapper nav.pagination').length
