@@ -4,7 +4,7 @@ class CategoriesFilter
   attr_accessor :selected, :available, :human_names
 
   def initialize(categories)
-    @selected    = categories || []
+    @selected    = (categories || []).delete_if(&:blank?)
     @available   = Affiche.ordered_descendants.map(&:name).map(&:downcase)
     @human_names = Affiche.ordered_descendants.map(&:model_name).map(&:human)
   end
@@ -154,7 +154,7 @@ class TagsFilter
   attr_accessor :selected, :available
 
   def initialize(tags)
-    @selected = tags || []
+    @selected = (tags || []).delete_if(&:blank?)
     @available = HasSearcher.searcher(:showings).actual.facets.facet(:tags).rows.map(&:value)
   end
 
