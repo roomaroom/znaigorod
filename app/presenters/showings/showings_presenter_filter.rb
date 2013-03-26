@@ -33,7 +33,7 @@ class PeriodFilter
   end
 
   def used?
-    date? || !!@period
+    true
   end
 
   def self.available_period_values

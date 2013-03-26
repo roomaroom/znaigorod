@@ -160,7 +160,7 @@ class ShowingsPresenter
       s.groups
       s.send("order_by_#{order_by}")
 
-      if period_filter.used? && !period_filter.date?
+      unless period_filter.date?
         case period_filter.period
         when 'all'
           s.actual
@@ -171,8 +171,6 @@ class ShowingsPresenter
         when 'weekend'
           s.weekend.actual
         end
-      else
-        s.actual
       end
     }
   end
