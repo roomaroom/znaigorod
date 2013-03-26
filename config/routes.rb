@@ -147,9 +147,9 @@ Znaigorod::Application.routes.draw do
 
 
   # legacy view uniq subdomain organization url
-  Organization.where('subdomain is not null').each do |organization|
-    get "organizations/#{organization.slug}" => redirect("http://#{organization.subdomain}.znaigorod.ru")
-  end
+  #Organization.where('subdomain is not null').each do |organization|
+    #get "organizations/#{organization.slug}" => redirect("http://#{organization.subdomain}.znaigorod.ru")
+  #end
   # <= legacy view uniq subdomain organization url
   resources :organizations, :only => [:index, :show]
 
