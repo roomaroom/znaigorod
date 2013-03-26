@@ -3,38 +3,46 @@
 
   <div class="clearfix">
 
-    <div class="post">
-      <div class="post_meta">
-        <h2><%= @post.title %></h2>
-        <span class="date"><%= l(@post.created_at, :format => "%d %B %Y") %></span>
-      </div>
-
-      <div class="post_content">
-        <div class="post_annotation">
-          <% if @post.post_images.any? %>
-            <%= image_tag @post.post_images.first.attachment_url.gsub(/\/\d+-\d+\//, '/380-284!/'), :alt => @post.post_images.first.title, :class => 'preview' %>
-          <% end %>
-          <%= raw @post.annotation %>
+    <div class="post_wrapper">
+      <div class="post">
+        <div class="post_meta">
+          <h2><%= @post.title %></h2>
+          <span class="date"><%= l(@post.created_at, :format => "%d %B %Y") %></span>
         </div>
+
         <div class="post_content">
-          <%= raw @post.content %>
+          <div class="post_annotation">
+            <% if @post.post_images.any? %>
+              <%= image_tag @post.post_images.first.attachment_url.gsub(/\/\d+-\d+\//, '/380-284!/'), :alt => @post.post_images.first.title, :class => 'preview' %>
+            <% end %>
+            <%= raw @post.annotation %>
+          </div>
+          <div class="post_content">
+            <%= raw @post.content %>
+          </div>
+
+          <% if @post.post_images.many? %>
+            <div class="photogallery">
+              <ul>
+                <% @post.post_images.each do |image| %>
+                  <li><%= link_to(image_tag_for(image.attachment_url, 124, 94, true, 'n'), image.attachment_url, rel: :info_gallery) %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         </div>
 
-        <% if @post.post_images.many? %>
-          <div class="photogallery">
-            <ul>
-              <% @post.post_images.each do |image| %>
-                <li><%= link_to(image_tag_for(image.attachment_url, 124, 94, true, 'n'), image.attachment_url, rel: :info_gallery) %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-      </div>
+        <div class="share">
+          <%= render :partial => "commons/share_this" %>
+        </div>
 
-      <div class="share">
-        <%= render :partial => "commons/share_this" %>
       </div>
+      <% if Rails.env.production? %>
+        <div id="vk_comments"></div>
+        <%= render :partial => "commons/fb_comments" %>
+      <% end %>
     </div>
+
 
     <div class="right_side">
       <div class="more_like_this">
@@ -59,10 +67,5 @@
 
     </div>
   </div>
-
-  <% if Rails.env.production? %>
-    <div id="vk_comments"></div>
-    <%= render :partial => "commons/fb_comments" %>
-  <% end %>
 
 </div>
