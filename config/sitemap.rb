@@ -64,23 +64,37 @@ SitemapGenerator::Sitemap.create do
   # Размещение информации
   add cooperation_path,        :changefreq => 'weekly', :priority => 0.7, :lastmod => DateTime.now - 7.days
 
-  #max_popularity = Affiche.all.map(&:popularity).max
+  # Мероприятия
+  max_popularity = Affiche.all.map(&:popularity).max
+  Affiche.find_each do |affiche|
+    add send("#{affiche.class.name.downcase}_path", affiche),
+      :changefreq => 'weekly',
+      :priority => affiche.popularity/max_popularity,
+      :lastmod => affiche.updated_at #,
+      #:images => [{ :loc => affiche.poster_url, :title => affiche.title }]
+  end
 
-  #Affiche.find_each do |affiche|
-    #add send("#{affiche.class.name.downcase}_path", affiche),
-      #:changefreq => 'weekly',
-      #:priority => 0.9*affiche.popularity/max_popularity,
-      #:lastmod => affiche.updated_at #,
-      ##:images => [{ :loc => affiche.poster_url, :title => affiche.title }]
-  #end
+  max_rating = Organization.all.map(&:rating).max
+  Organization.find_each do |organization|
+    if organization.subdomain.blank?
+      add organization_path(organization),
+        :changefreq => 'weekly',
+        :priority => organization.rating/max_rating,
+        :lastmod => organization.updated_at #,
+      #:images => [{ :loc => organization.logotype_url, :title => organization.title }]
+    else
+      add '',
+        :changefreq => 'weekly',
+        :priority => organization.rating/max_rating,
+        :lastmod => organization.updated_at,
+        :host => "http://#{organization.subdomain}.znaigorod.ru"
+    end
+  end
 
-  #max_rating = Organization.all.map(&:rating).max
-
-  #Organization.find_each do |organization|
-    #add organization_path(organization),
-      #:changefreq => 'weekly',
-      #:priority => 0.9*organization.rating/max_rating,
-      #:lastmod => organization.updated_at #,
-      ##:images => [{ :loc => organization.logotype_url, :title => organization.title }]
-  #end
+  Post.find_each do |post|
+    add post_path(post),
+      :changefreq => 'monthly',
+      :priority => 0.6,
+      :lastmod => post.updated_at
+  end
 end
