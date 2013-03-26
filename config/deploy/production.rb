@@ -137,7 +137,7 @@ after "deploy", "deploy:copy_unicorn_config"
 after "deploy", "deploy:reload_servers"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:crontab"
-#after "deploy", "deploy:refresh_sitemaps"
+after "deploy", "deploy:refresh_sitemaps"
 after "deploy:restart", "delayed_job:restart"
 after "deploy", "deploy:airbrake"
 

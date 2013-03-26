@@ -25,5 +25,5 @@ every 4.hours do
 end
 
 every :day, :at => '5am' do
-  rake "-s sitemap:refresh"
+  rake "refresh_sitemaps"
 end
