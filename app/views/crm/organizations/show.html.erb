@@ -5,7 +5,11 @@
 
     <div class='info'>
       <div class='image'>
-        <%= image_tag @organization.logotype_url.gsub(/\/\d+-\d+\//, '/150-150!/') %>
+        <% if @organization.logotype_url.present? %>
+          <%= image_tag @organization.logotype_url.gsub(/\/\d+-\d+\//, '/150-150!/') %>
+        <% else %>
+          <%= image_tag "stub.jpg", :width => '150', :height => '110', :alt => @organization.title, :title => @organization.title %>
+        <% end %>
       </div>
       <div class='details'>
         <ul>
