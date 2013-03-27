@@ -2,7 +2,7 @@
   <%= t("organization.singularize_title.#{suborganization.class.name.underscore}") %>
   <%= link_to t('edit'), [:edit, :manage, resource, suborganization.class.name.underscore], :class => 'edit_link' %>
   <%= link_to t('add_image'), [:new, :manage, suborganization, :image], :class => 'edit_link' %>
-  <%= link_to t('delete'), [:manage, resource, suborganization], :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+  <%= link_to t('delete'), [:manage, resource, suborganization.class.name.underscore], :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
 </h3>
 
 <% %w[title description category cuisine feature offer].each do |attribute| %>
