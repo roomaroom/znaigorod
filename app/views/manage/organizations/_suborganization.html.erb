@@ -1,0 +1,27 @@
+<h3>
+  <%= t("organization.singularize_title.#{suborganization.class.name.underscore}") %>
+  <%= link_to t('edit'), [:edit, :manage, resource, suborganization.class.name.underscore], :class => 'edit_link' %>
+  <%= link_to t('add_image'), [:new, :manage, suborganization, :image], :class => 'edit_link' %>
+  <%= link_to t('delete'), [:manage, resource, suborganization], :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+</h3>
+
+<% %w[title description category cuisine feature offer].each do |attribute| %>
+  <% if suborganization.respond_to?(attribute) %>
+    <div>
+      <span class="label"><%= suborganization.class.human_attribute_name(attribute) %></span>
+      <% if suborganization.send(attribute).present? %>
+        <span class="value"><%= suborganization.send(attribute) %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div>
+  <% suborganization.images.each do |image| %>
+    <%= image_tag(resized_image_url(image.url, 100, 100, false), :alt => image.description, :title => image.description) %>
+    <%= link_to t('delete'), [:manage, suborganization, image], :method => :delete, :confirm => 'Вы уверены?' %>
+  <% end %>
+</div>
+

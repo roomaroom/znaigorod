@@ -233,6 +233,8 @@
       sport: Спортивное заведение
       billiard: Бильярдный зал
       creation: Творчество и развитие
+      sauna: Сауна
+      car_wash: Автомойка
     filters:
       category: Категории
       cuisine: Кухня

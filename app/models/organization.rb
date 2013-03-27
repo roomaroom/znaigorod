@@ -205,6 +205,7 @@ class Organization < ActiveRecord::Base
     @text_description ||= html_description.as_text
   end
 
+  # TODO: сделать ахеренна
   def self.available_suborganization_kinds
     Dir.chdir(Rails.root.join('app/models/suborganizations')) {
       Dir['*.rb'].map { |f| f.gsub('.rb', '') }
@@ -221,6 +222,10 @@ class Organization < ActiveRecord::Base
 
   def available_suborganization_kinds
     self.class.available_suborganization_kinds
+  end
+
+  def self.available_suborganization_classes
+    available_suborganization_kinds.map(&:classify).map(&:constantize)
   end
 
   def suborganizations
