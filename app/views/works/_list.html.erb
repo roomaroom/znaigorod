@@ -1,7 +1,7 @@
 <% @works.each do |work| %>
-  <li class='<%= cycle('first', 'second', 'third') %>'>
+  <li class='<%= cycle('first', 'second', 'third', 'fourth') %>'>
     <div class='image'>
-      <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/300-225!n/')), contest_work_path(@contest, work)) %>
+      <%= link_to(image_tag(work.image_url.gsub(/\/\d+-\d+\//, '/265-200!n/')), contest_work_path(@contest, work)) %>
     </div>
     <% contest_description = work.author_info
        contest_description += '. ' + work.description.squish if work.description.present?
