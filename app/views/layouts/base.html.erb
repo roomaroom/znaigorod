@@ -15,7 +15,7 @@
     <%= csrf_meta_tags %>
     <%= yield :metrics %>
   </head>
-  <body<%= raw(" class='noisy'") if @body_class == 'noisy' %>>
+  <body>
     <%= yield :content %>
   </body>
 </html>

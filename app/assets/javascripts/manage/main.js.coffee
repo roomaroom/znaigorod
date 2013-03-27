@@ -1,5 +1,4 @@
 $ ->
-  init_noisy() if $('body').hasClass('noisy')
   init_new_affiche() if $('.dropdown').length
   init_choose_file() if $('.choose_file').length
   init_datetime_picker()
