@@ -1,7 +1,7 @@
 class Manage::ImagesController < Manage::ApplicationController
   actions :new, :create, :destroy, :update, :edit
 
-  belongs_to :culture, :entertainment, :meal, :sauna, :sport, :billiard, :creation,
+  belongs_to *Organization.available_suborganization_kinds,
     :polymorphic => true, :optional => true
 
   belongs_to :affiche, :organization, :sauna_hall,
@@ -28,7 +28,7 @@ class Manage::ImagesController < Manage::ApplicationController
         manage_organization_path(parent)
       when SaunaHall
         manage_organization_sauna_sauna_hall_path(@organization, parent)
-      when Culture, Entertainment, Meal, Sauna, Sport, Billiard, Creation
+      when *Organization.available_suborganization_classes
         manage_organization_path(parent.organization)
       end
     end

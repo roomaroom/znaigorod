@@ -1,11 +1,8 @@
 class SetRightCaseForSuborganizationAttributes < ActiveRecord::Migration
-  def models
-    @models ||= Organization.new.available_suborganization_kinds.map { |kind| kind.classify.constantize }
-  end
-
   def up
-    models.each do |model|
-      next if model == Sauna # model added in the future, table does't exist
+    Organization.available_suborganization_classes.each do |model|
+      next unless ActiveRecord::Base.connection.table_exists?(model.name.underscore.pluralize)
+
       puts model.name
       pb = ProgressBar.new(model.count)
 
