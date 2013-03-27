@@ -51,16 +51,16 @@ class AfficheDecorator < ApplicationDecorator
 
   def all_affiches_link
     h.link_to "Все #{human_kind.mb_chars.downcase} (#{counter.all})",
-              h.affiches_path(kind: kind.pluralize, period: :all)
+              h.affiches_path('categoriea[]' => kind)
   end
 
   def breadcrumbs
     links = []
     links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to("Вся афиша", h.affiches_path(kind: "affiches", period: :all)), :class => "crumb")
+    links << h.content_tag(:li, h.link_to("Вся афиша Томска", h.affiches_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to("Все #{human_kind.mb_chars.downcase}", h.affiches_path(kind: kind.pluralize, period: :all)), :class => "crumb")
+    links << h.content_tag(:li, h.link_to("Все #{human_kind.mb_chars.downcase} в Томске", h.affiches_path('categories[]' => kind)), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     links << h.content_tag(:li, h.link_to(title, kind_affiche_path), :class => "crumb")
     %w(photogallery trailer).each do |method|
