@@ -315,18 +315,9 @@
         color: #fff
 
     .age
-      +border-radius(25px)
-      +text-shadow(#c4102b 1px 1px 1px)
-      background-color: #e3223f
-      color: #fff
-      font-size: 23px
-      height: 50px
-      line-height: 50px
-      position: absolute
+      +has_age(50px, 23px)
       right: 10px
-      text-align: center
       top: 50px
-      width: 50px
 
     .head
       margin-bottom: 15px
@@ -827,6 +818,10 @@
         +has_ribbon
         .ribbon_wrapper
           margin-top: -5px
+        .age
+          +has_age
+          margin: 177px 0 0 125px
+
       .places
         font-size: 11px
         color: #626262

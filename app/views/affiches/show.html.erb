@@ -9,9 +9,7 @@
 
 <% content_for :affiche_content do %>
   <%= content_tag(:div, link_to(@affiche.human_kind, affiches_path(period: 'all', categories: [@affiche.kind])), class: 'kind') %>
-  <div class="age">
-    <%= @affiche.age_min.to_i %>+
-  </div>
+  <%= content_tag :div, "#{@affiche.age_min.to_i}+", class: :age if @affiche.age_min.present? %>
 
   <div class="head">
     <%= content_tag :h1, @affiche.title.text_gilensize %>

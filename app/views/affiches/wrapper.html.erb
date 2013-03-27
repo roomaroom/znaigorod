@@ -135,6 +135,7 @@
                 <div class="title"><%= link_to affiche.title.text_gilensize, affiche.kind_affiche_path %></div>
                 <div class="image">
                   <%= affiche.has_ribbon %>
+                  <%= content_tag :div, "#{affiche.age_min.to_i}+", class: :age if affiche.age_min.present? %>
                   <%= affiche.more_like_this_poster %>
                 </div>
                 <%= content_tag :div, affiche.main_page_place, :class => "places" unless affiche.main_page_place.blank? %>
