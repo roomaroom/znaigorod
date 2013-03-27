@@ -530,9 +530,14 @@
     with_site: с сайтом
     with_images: с фотографиями
 
+  recaptcha:
+    errors:
+      verification_failed: неверное значение
+
   activerecord:
     errors:
       messages:
+        invalid: имеет неверное значение
         at_least_one_value_should_be_checked: необходимо выбрать хотя бы одну категорию
     models:
       affiche: Вся афиша

@@ -1,22 +1,20 @@
-<% content_for :subtitle, "Обратная связь" %>
+<% content_for :subtitle, 'Обратная связь' %>
 
 <% content_for :extra_meta do %>
-  <meta name='description' content='<%= I18n.t("meta_description.feedback") %> <%= I18n.t("meta_description.main_page") %>' />
+  <meta name='description' content='<%= I18n.t('meta_description.feedback') %> <%= I18n.t('meta_description.main_page') %>' />
 <% end %>
 
-<div class="content_wrapper">
-  <div class="feedback">
-    <div class="right_side">
+<div class='content_wrapper'>
+  <div class='feedback'>
+    <div class='right_side'>
     </div>
 
     <h1>Обратная связь</h1>
 
-    <div class='flash_message'>
-      <%= flash[:notice] %>
-    </div>
+    <%= content_tag :div, flash[:notice], class: :flash_message if flash[:notice] %>
 
     <%= simple_form_for @feedback, :url => new_feedback_path, :html => {:novalidate => true} do |f| %>
-      <div class="inputs">
+      <div class='inputs'>
         <%= f.input :fullname %>
         <%= f.input :email %>
         <%= f.input :message %>
@@ -24,9 +22,12 @@
 
       <div class='recaptcha'>
         <%= recaptcha_tags :display => {:theme => 'clean'}, :ajax => true %>
+        <%= content_tag :span, 'неверное значение', class: :error if flash[:recaptcha_error] %>
       </div>
 
-      <%= f.submit 'Отправить', :class => 'submit' %>
+      <div class='actions'>
+        <%= f.button :submit, 'Отправить', :class => 'submit' %>
+      </div>
     <% end %>
 
   </div>

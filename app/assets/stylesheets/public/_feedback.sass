@@ -13,9 +13,12 @@
       padding-top: 243px
 
     .flash_message
+      +clearfix
+      width: 417px
       color: #514721
       font-size: 1.4em
       text-align: center
+      margin-bottom: 15px
 
     .recaptcha
       margin: 0 0 10px 0
@@ -37,7 +40,7 @@
           margin: 0 0 5px 0
 
           abbr
-            display: none
+            color: #880000
 
         input, textarea
           border: 1px solid #835999
@@ -46,7 +49,7 @@
           line-height: 1.4em
           margin: 0
           padding: 5px
-          width: 429px
+          width: 428px
 
         textarea
           height: 200px
@@ -56,7 +59,16 @@
           font-size: 12px
           display: block
           margin: 3px 0 0 0
+          &:before
+            content: '\2b11'
+            margin: 0 5px 0 0
 
+      .recaptcha
+        .error
+          color: #cf373f
+          font-size: 12px
+          display: block
+          margin: 3px 0 0 0
           &:before
             content: '\2b11'
             margin: 0 5px 0 0
