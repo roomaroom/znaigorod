@@ -3,6 +3,7 @@
   <div class="info">
     <div class="title">
       <%= link_to organization.title, crm_organization_path(organization) %>
+      (<%= organization.manager ? organization.manager : 'менеджер не выбран' %>)
     </div>
     <div class="address">
       <%= organization.address %>

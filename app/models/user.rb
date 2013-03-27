@@ -61,5 +61,9 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
 
+  def manager_of?(organization)
+    is?(:sales_manager) && organization.manager == self
+  end
+
   alias_attribute :to_s, :name
 end
