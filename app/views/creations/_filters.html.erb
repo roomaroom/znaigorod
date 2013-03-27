@@ -1,7 +1,4 @@
-<% content_for :extra_meta do %>
-  <meta name='keywords' content='<%= @presenter.keywords %>' />
-  <meta name='description' content='<%= t("organization.list_title.#{@presenter.kind}") %> в городе Томске' />
-<% end %>
+<%= render 'commons/filters_meta' %>
 
 <div class='filters_wrapper'>
   <div class="filters">

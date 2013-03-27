@@ -57,6 +57,10 @@ module OrganizationsPresenter
     }.join(', ')
   end
 
+  def canonical_link
+    Settings['app']['url'] + '/' + self.kind.pluralize
+  end
+
   def sort_by_popularity?
     order_by == 'popularity'
   end

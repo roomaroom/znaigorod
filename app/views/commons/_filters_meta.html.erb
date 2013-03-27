@@ -1,0 +1,5 @@
+<% content_for :extra_meta do %>
+  <link rel="canonical" href="<%= @presenter.canonical_link %>" />
+  <meta name='keywords' content='<%= @presenter.keywords %>' />
+  <meta name='description' content='<%= t("organization.list_title.#{@presenter.kind}") %> в городе Томске' />
+<% end %>

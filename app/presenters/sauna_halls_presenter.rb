@@ -240,4 +240,8 @@ class SaunaHallsPresenter
       keywords.concat(available_baths)  if keywords.empty?
     }.join(', ')
   end
+
+  def canonical_link
+    Settings['app']['url'] + saunas_path
+  end
 end

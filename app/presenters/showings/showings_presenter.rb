@@ -125,6 +125,10 @@ class ShowingsPresenter
     }.join(', ')
   end
 
+  def canonical_link
+    Settings['app']['url'] + '/affiches'
+  end
+
   def searcher_params
     @searcher_params ||= {}.tap do |params|
       params[:age_max]          = age_filter.maximum         if age_filter.maximum.present?
