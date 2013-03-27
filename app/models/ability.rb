@@ -11,7 +11,7 @@ class Ability
       can :manage, Affiche      if user.is? :affiches_editor
       can :manage, Post         if user.is? :posts_editor
       if user.is? :organizations_editor
-        can :manage, [Organization] + Organization.available_suborganization_kinds.map(&:classify).map(&:constantize)
+        can :manage, [Organization] + Organization.available_suborganization_classes
       end
     when 'crm'
       can :manage, Organization do |organization|

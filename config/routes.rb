@@ -54,15 +54,15 @@ Znaigorod::Application.routes.draw do
     end
 
     resources :organizations do
-      (Organization.basic_suborganization_kinds - ['sauna']).each do |kind|
+      (Organization.available_suborganization_kinds).each do |kind|
         resource kind, :except => [:index, :show]
       end
 
-      resource :billiard, :except => [:index, :show] do
+      resource :billiard, :only => [] do
         resources :pool_tables, :except => [:index, :show]
       end
 
-      resource :sauna, :except => [:index, :show] do
+      resource :sauna, :except => [] do
         resources :sauna_halls, :except => :index
       end
 
