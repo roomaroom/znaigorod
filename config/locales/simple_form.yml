@@ -24,3 +24,31 @@ ru:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'
 
+    fieldset:
+      address: Адрес организации
+      affiche_schedule: Расписание
+      concert: Концерт
+      eating: Заведение (еда)
+      exhibition: Выставка
+      funny: Заведение (развлечения)
+      halls: Залы
+      image: Изображения
+      attachment: Прикрепленные файлы
+      movie: Кино
+      organization: Организация
+      party: Вечеринка
+      schedules: Расписание работы
+      showings: Сеансы
+      sports_event: Спортивное мероприятие
+
+    hints:
+      organization:
+        organization_categories: 'Например: кафе, бар и т.п.'
+        cuisine: 'Например: русская, итальянская и т.п.'
+        feature: 'Отличительные особенности, например: wifi, парковка и т.д.'
+        offer: 'Предложение услуг, например: банкеты, бизнес-ланч и т.д.'
+        payment: 'Например: наличными, Visa, MasterCard и т.п.'
+        phone: 'Номера указываются через запятую в одной из следующих форм: 22-33-44, (3822)11-22-33, 333-444, (3822)333-444, 8-333-444-55-66'
+
+      social_link:
+        url: 'Ссылка в формате http://vk.com/znaigorod'

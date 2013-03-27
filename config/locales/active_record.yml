@@ -1,0 +1,314 @@
+ru:
+  activerecord:
+    errors:
+      messages:
+        invalid: имеет неверное значение
+        at_least_one_value_should_be_checked: необходимо выбрать хотя бы одну категорию
+
+    models:
+      activity:                           Активность
+      contact:                            Контакт
+      contest:                            Конкурс
+      feedback:                           Обратная связь
+
+      affiche:                            Вся афиша
+      concert:                            Концерты
+      exhibition:                         Выставки
+      master_class:                       Мастер-классы
+      masterclass:                        Мастер-классы
+      movie:                              Кино
+      other:                              Другое
+      party:                              Вечеринки
+      spectacle:                          Спектакли
+      sports_event:                       Спорт
+      sportsevent:                        Спортивные мероприятия и соревнования
+
+      billiard:                           Бильярд
+      car_wash:                           Автомойки
+      creation:                           Творчество
+      culture:                            Культура
+      entertainment:                      Развлекательное заведение
+      meal:                               Заведение питания
+      organization:                       Организации
+      sauna:                              Сауна
+      sport:                              Спорт
+
+      sauna_accessory:                    Общая информация
+      sauna_alcohol:                      Алкоголь
+      sauna_broom:                        Веники
+      sauna_child_stuff:                  Для детей
+      sauna_massage:                      Массаж
+      sauna_oil:                          Ароматические масла
+      sauna_stuff:                        Разное
+
+    attributes:
+      common_attributes: &common_attributes
+        title: Название
+        description: Описание
+        category: Категория
+        feature: Особенности
+        offer: Предложения
+        title: Название
+        category_list: Категория
+        offer_list: Предложения
+        feature_list: Особенности
+
+      activity:
+        activity_at: Когда
+        contact: Контактное лицо организации
+        contact_id: Контактное лицо
+        manager: Менеджер
+        state: Статус активности
+        status: Результат (статус заведения)
+        title: Описание
+        user_id: Менеджер
+
+      address:
+        house: Дом
+        latitude: Широта
+        longitude: Долгота
+        street: Улица
+
+      contact:
+        email: Email
+        facebook: facebook
+        full_name: Фамилия Имя
+        mobile_phone: Сотовый
+        phone: Телефон
+        post: Должность
+        skype: skype
+        vkontakte: ВКонтакте
+
+      contest:
+        <<: *common_attributes
+        ends_on: Дата окончания
+        published: Опубликован
+        starts_on: Дата начала
+
+      work:
+        <<: *common_attributes
+        author_info: Информация об авторе
+
+      affiche:
+        <<: *common_attributes
+        age_max: Максимальный возраст
+        age_min: Минимальный возраст
+        constant: Постоянная экспозиция
+        distribution_ends_on: Окончание проката
+        distribution_starts_on: Начало проката
+        image_url: Изображение для главной страницы
+        original_title: Оригинальное название
+        poster_url: Постер для события
+        tag: Теги
+        trailer_code: Код трейлера
+        vk_aid: Код альбома события ВКонтакте
+        yandex_fotki_url: URL альбома из Фотки.Яндекс
+
+      affiche_schedule:
+        ends_at: Время окончания
+        ends_on: Дата окончания
+        hall: Зал
+        holidays: Нерабочие дни
+        place: Место проведения
+        price_max: Максимальная цена
+        price_min: Минимальная цена
+        starts_at: Время начала
+        starts_on: Дата начала
+
+      post:
+        <<: *common_attributes
+        status: Опубликовать
+
+      post_image:
+        <<: *common_attributes
+        attachment: Изображение
+
+      image:
+        <<: *common_attributes
+
+      attachment:
+        <<: *common_attributes
+
+      feedback:
+        email: Ваш адрес электронной почты
+        fullname: Ваше имя
+        message: Текст вашего сообщения
+
+      showing:
+        ends_at: Окончание
+        hall: Зал
+        place: Место
+        price_max: Максимальная цена
+        price_min: Минимальная цена
+        starts_at: Начало
+
+      hall:
+        seating_capacity: Вместимость
+        title: Название зала
+
+      organization:
+        <<: *common_attributes
+        additional_rating: Дополнительный рейтинг
+        address: Адрес организации
+        category: Категория
+        comment: Комментарий
+        created_at: Создано
+        email: Электронная почта
+        logotype_url: Логотип организации
+        non_cash: Безналичный расчет
+        organization: Родительская организация
+        organization_id: Родительская организация
+        payment: Способы оплаты
+        phone: Телефоны
+        priority_suborganization_kind: Приоритетная подорганизация
+        schedules: Расписание работы
+        site: Сайт
+        subdomain: Поддомен
+        tour_link: Ссылка на 3D-тур
+        updated_at: Обновлено
+        user_id: Менеджер
+
+      organization_stand:
+        guarded:            Охрана
+        places:             Количество мест
+        video_observation:  Видеонаблюдение
+
+      social_link:
+        <<: *common_attributes
+        url: Ссылка
+
+      culture:
+        <<: *common_attributes
+
+      meal:
+        <<: *common_attributes
+        cuisine: Кухня
+        cuisine_list: Кухня
+
+      entertainment:
+        <<: *common_attributes
+
+      billiard:
+        <<: *common_attributes
+
+      pool_table:
+        kind: Тип
+        size: Размер (ф)
+        count: Количество
+
+      pool_table_price:
+        day: День недели
+        from: с
+        to: до
+        price: Цена
+
+      sauna:
+        <<: *common_attributes
+
+      sauna_accessory:
+        sheets: Простыни
+        sneakers: Тапочки
+        bathrobes: Халаты
+        towels: Полотенца
+        ware: Посуда
+        title: Название
+        description: Описание
+
+      sauna_broom:
+        ability: Возможность использовать веники
+        sale: Веники в продаже
+
+      sauna_alcohol:
+        ability_own: Возможность принести алкоголь с собой
+        sale: Алкоголь в продаже
+
+      sauna_oil:
+        ability: Возможность использовать ароматические масла
+        sale: Ароматические масла в продаже
+
+      sauna_massage:
+        spa: Спа
+        classical: Классический
+        anticelltilitis: Антицеллюлитный
+
+      sauna_child_stuff:
+        life_jacket: Жилеты
+        cartoons: Мультфильмы
+        games: Игры
+        rubber_ring: Надувные круги
+
+      sauna_stuff:
+        wifi:     WiFi
+        safe:     Сейф
+
+      sauna_hall:
+        title: Название
+        tour_link: Ссылка на 3D-тур
+        description: Описание
+
+      sauna_hall_schedule:
+        day: День недели
+        from: с
+        to: до
+        price: Цена
+
+      sauna_hall_bath:
+        finnish:      Финская
+        infrared:     Инфракрасная (лечебная)
+        japanese:     Японская (водяная)
+        russian:      Русская
+        turkish:      Турецкая
+
+      sauna_hall_capacity:
+        default: Вместительность
+        maximal: Максимальная вместительность
+        extra_guest_cost: Стоимость дополнительного человека
+
+      sauna_hall_entertainment:
+        karaoke:      Караоке
+        tv:           Теле/видео аппаратура
+        billiard:     Бильярд
+        ping_pong:    Настольный теннис
+        aerohockey:   Аэрохоккей
+        hookah:       Кальян
+        checkers:     Шашки
+        chess:        Шахматы
+        backgammon:   Нарды
+        guitar:       Гитара
+
+      sauna_hall_interior:
+        pit:          Танцпол
+        pylon:        Пилон
+        barbecue:     Мангал/барбекю
+        floors:       Количество этажей (уровней)
+        lounges:      Количество комнат отдыха
+
+      sauna_hall_pool:
+        size:         Размеры
+        contraflow:   Противоток
+        geyser:       Гейзер
+        waterfall:    Водопад
+        water_filter: Система очистки воды
+        jacuzzi:      Джакузи
+        bucket:       Ведро-обливайка
+
+      schedule:
+        day:          День недели
+        from:         с
+        to:           до
+        holiday:      Выходной
+
+      service:
+        <<: *common_attributes
+        age:          Возраст
+        tag:          Тэги
+
+      sport:
+        <<: *common_attributes
+
+      creation:
+        <<: *common_attributes
+
+      car_wash:
+        <<: *common_attributes
+

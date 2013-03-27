@@ -1,0 +1,55 @@
+ru:
+  affiche:
+    empty:
+      movies: кино
+      concerts: концертов
+      parties: вечеринок
+      spectacles: спектаклей
+      exhibitions: выставок
+      sportsevents: спортивных мероприятий и соревнований
+      others: других мероприятий
+      masterclasses: мастер-классов
+
+    sort:
+      closest: По ближайшему сеансу
+      newest: По новизне
+      popular: По популярности
+
+      creation: По новизне
+      nearness: По отдаленности
+      popularity: По популярности
+      starts_at: По ближайшему сеансу
+
+
+  affiche_periods:
+    today: Сегодня
+    weekly: На этой неделе
+    week: На этой неделе
+    weekend: На этих выходных
+    daily: Выбрать дату
+    all:
+      affiches: Вся афиша мероприятий
+      movies: Всё кино
+      concerts: Все концерты
+      parties: Все вечеринки
+      spectacles: Все спектакли
+      exhibitions: Все выставки
+      sportsevents: Все спортивные мероприятия и соревнования
+      others: Все другие мероприятия
+      masterclasses: Все мастер-классы
+
+  actual_organizations:
+    sauna: Сауны
+    night_club: Ночные клубы
+    bari: Бары
+    breakfast: Завтраки
+    coffe_house: Кофейни
+    detskie_kafe: Детские кафе
+    stolovie: Столовые
+    buiseness_lanch: Бизнес-ланч
+    food_delivery: Доставка еды
+    museums: Музеи
+    cafe: Кафе
+    billiard: Бильярдные залы
+    theatre: Театры
+

@@ -1,0 +1,61 @@
+ru:
+  add_attachment: Добавить файл
+  add_event: "&plus;&nbsp;событие"
+  add_hall: Добавить зал
+  add_image: Добавить изображение
+  add_organization: "&plus;&nbsp;заведение"
+  add_showing: Добавить сеанс
+  add_social_links: Добавить ссылку
+  affiche: Афиша
+  back: Назад
+  choose_file: Выбрать файл
+  clear_filters: Очистить фильтры
+  confirm_ask: Вы уверены?
+  delete: Удалить
+  eating: Заведения
+  edit: Редактировать
+  edit_concert: Редактировать информацию о концерте
+  edit_contest: Редактировать информацию о конкурсе
+  edit_exhibition: Редактировать информацию о выставке
+  edit_master_class: Редактировать информацию о мастер-классе
+  edit_movie: Редактировать информацию о фильме
+  edit_organization: Редактировать информацию о заведении
+  edit_other: Редактировать информацию о событии
+  edit_party: Редактировать информацию о вечеринке
+  edit_spectacle: Редактировать информацию о спектакле
+  edit_sports_event: Редактировать информацию о спортивном событии
+  email: Почта
+  entertainment: Развлечения
+  find: Найти
+  funny: Заведения
+  meal: Заведения питания
+  name: Имя
+  new_affiche: Добавить новое событие
+  new_concert: Новый концерт
+  new_contest: Новый конкурс
+  new_exhibition: Новая выставка
+  new_master_class: Новый мастер-класс
+  new_movie: Новый фильм
+  new_organization: Добавить новое заведение
+  new_other: Другое
+  new_party: Новая вечеринка
+  new_spectacle: Новый спектакль
+  new_sports_event: Новое спортивное мероприятие
+  organization: Заведения
+  organizations: Заведения
+  our_social_link: Контакты
+  remove_affiche_schedule: Удалить расписание
+  remove_link: Удалить файл
+  remove_showing: Удалить сеанс
+  remove_this_attachment: Удалить этот файл
+  remove_this_hall: Удалить этот зал
+  remove_this_image: Удалить это изображение
+  remove_this_showing: Удалить этот сеанс
+  remove_this_social_link: Удалить эту ссылку
+  save: Сохранить
+  show: Показать
+  sign_in: "Вход в&nbsp;кабинет"
+  site_title: "Знай\u00ADГород - афиша, заведения Томска"
+  twitter_timeline: Эфир
+  uid: UID
+

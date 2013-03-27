@@ -1,0 +1,56 @@
+ru:
+  organization:
+    kind:
+      meal: Еда
+      entertainment: Развлечения
+      culture: Культура
+      sport: Спорт
+      billiard: Бильярд
+      creation: Творчество и развитие
+      sauna: Сауны
+      car_wash: Автомойки
+    all:
+      meal: Все заведения питания
+      entertainment: Все развлекательные заведения
+      culture: Все культурные заведения
+      sport: Все спортивные заведения
+      billiard: Все бильярдные клубы
+      creation: Всё творчество и развитие
+    list_title:
+      organization: Заведения города
+      meal: Заведения общественного питания
+      entertainment: Развлекательные заведения
+      culture: Культурные заведения
+      sport: Спортивные заведения
+      billiard: Бильярдные клубы
+      creation: Творчество и развитие
+      sauna: Сауны
+    singularize_title:
+      organization: Заведение города
+      meal: Заведение общественного питания
+      entertainment: Развлекательное заведение
+      culture: Культурное заведение
+      sport: Спортивное заведение
+      billiard: Бильярдный зал
+      creation: Творчество и развитие
+      sauna: Сауна
+      car_wash: Автомойка
+    filters:
+      category: Категории
+      cuisine: Кухня
+      offer: Предложения
+      feature: Особенности
+      stuff: ''
+    photogallery: Фотографии
+    tour: 3D-тур
+    affiche: Афиша
+    show: Описание
+
+  organization_stand:
+    places:
+      zero: не предусмотрена
+      one: "%{count} место"
+      few: "%{count} места"
+      many: "%{count} мест"
+      other: "%{count} места"
+
