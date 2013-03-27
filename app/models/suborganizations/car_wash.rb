@@ -1,5 +1,5 @@
 class CarWash < ActiveRecord::Base
-  attr_accessible :category, :description, :title
+  attr_accessible :category, :description, :title, :offer
 
   belongs_to :organization
 
@@ -23,7 +23,10 @@ class CarWash < ActiveRecord::Base
     :validates_presence => true,
     :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
 
+  presents_as_checkboxes :offer,
+    :available_values => -> { HasSearcher.searcher(:car_washes).facet(:car_wash_offer).rows.map(&:value) }
+
   include SearchWithFacets
 
-  search_with_facets :category
+  search_with_facets :category, :offer
 end
