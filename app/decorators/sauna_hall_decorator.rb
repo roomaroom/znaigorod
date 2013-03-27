@@ -26,7 +26,7 @@ class SaunaHallDecorator < ApplicationDecorator
     orderly_grouped_schedule = {}
     grouped_schedule.each do |price, schedules|
       schedules.each do |schedule_time, days|
-        decorated_days = schedule_day_names(days)
+        decorated_days = h.content_tag(:span, schedule_day_names(days), class: :days)
         orderly_grouped_schedule[decorated_days] ||= []
         orderly_grouped_schedule[decorated_days] << {schedule_time => price}
       end

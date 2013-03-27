@@ -9,13 +9,13 @@
       'left': link.position().left
       'z-index': 99999
     link.addClass('clickable').click () ->
-      $(item).removeClass('visible').toggle()
+      $(item).removeClass('need_close_by_click').toggle()
       setTimeout ->
-        $(item).addClass('visible')
+        $(item).addClass('need_close_by_click')
       , 1
       true
     true
   true
 
   $(document).click ->
-    $(".organization_info .more_schedule.visible").removeClass('visible').hide()
+    $(".organization_info .more_schedule.need_close_by_click").removeClass('need_close_by_click').hide()
