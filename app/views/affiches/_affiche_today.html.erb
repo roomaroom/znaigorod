@@ -29,6 +29,7 @@
             <li>
               <div class="item">
                 <%= affiche.has_ribbon %>
+                <%= content_tag :div, "#{affiche.age_min.to_i}+", class: :age if affiche.age_min.present? %>
                 <div class="title"><%= affiche.main_page_link %></div>
                 <div class="image"><%= affiche.main_page_poster %></div>
                 <div class="place"><%= affiche.main_page_place %></div>
