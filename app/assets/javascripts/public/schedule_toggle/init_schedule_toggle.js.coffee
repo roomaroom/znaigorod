@@ -9,7 +9,13 @@
       'left': link.position().left
       'z-index': 99999
     link.addClass('clickable').click () ->
-      $(item).toggle()
+      $(item).removeClass('visible').toggle()
+      setTimeout ->
+        $(item).addClass('visible')
+      , 1
       true
     true
   true
+
+  $(document).click ->
+    $(".organization_info .more_schedule.visible").removeClass('visible').hide()
