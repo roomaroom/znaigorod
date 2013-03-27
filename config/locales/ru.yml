@@ -545,6 +545,7 @@
     models:
       affiche: Вся афиша
       activity: Активность
+      car_wash: Автомойки
       concert: Концерты
       contact: Контакт
       contest: Конкурс

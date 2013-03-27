@@ -10,8 +10,8 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :organisations, 'Заведения', manage_organizations_path,
       :highlights_on => ->(){ (controller_name == 'organizations' || resource_class.try(:superclass) == Organization) && namespace != 'crm'},
       :if => -> { can?(:manage, Organization) } do |org_item|
-        [Meal, Entertainment, Culture, Sauna, Sport, Creation].each do |kind|
-          org_item.item kind, kind.model_name.human, [:manage, kind.model_name.underscore.pluralize]
+        Organization.available_suborganization_classes.each do |klass|
+          org_item.item klass, klass.model_name.human, [:manage, klass.model_name.underscore.pluralize]
         end
     end
 

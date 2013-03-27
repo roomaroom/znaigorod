@@ -1,5 +1,5 @@
 <ul class='kind_links'>
-  <% Organization.basic_suborganization_kinds.each do |kind| %>
+  <% Organization.available_suborganization_kinds.each do |kind| %>
     <li>
       <%= link_to t("organization.kind.#{kind}"), [:manage, kind.pluralize] %>
     </li>
