@@ -300,9 +300,10 @@
 
   .content
     float: left
-    margin: 0 0 0 10px
-    width: 950px
     line-height: 1.4
+    margin: 0 0 0 10px
+    position: relative
+    width: 950px
     .kind
       float: right
       font-size: 11px
@@ -312,6 +313,20 @@
       margin: 10px 0 0 10px
       a
         color: #fff
+
+    .age
+      +border-radius(25px)
+      +text-shadow(#c4102b 1px 1px 1px)
+      background-color: #e3223f
+      color: #fff
+      font-size: 23px
+      height: 50px
+      line-height: 50px
+      position: absolute
+      right: 10px
+      text-align: center
+      top: 50px
+      width: 50px
 
     .head
       margin-bottom: 15px
