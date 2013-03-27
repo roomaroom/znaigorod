@@ -69,6 +69,7 @@ class Organization < ActiveRecord::Base
   has_one :billiard,            :dependent => :destroy
   has_one :creation,            :dependent => :destroy
   has_one :organization_stand,  :dependent => :destroy
+  has_one :car_wash,            :dependent => :destroy
 
   validates_presence_of :title, :priority_suborganization_kind
 
