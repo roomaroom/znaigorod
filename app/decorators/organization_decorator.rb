@@ -69,7 +69,7 @@ class OrganizationDecorator < ApplicationDecorator
     links = []
     links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}"), h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
+    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     links << h.content_tag(:li, h.link_to(title, organization_url), :class => "crumb")
 
@@ -83,7 +83,7 @@ class OrganizationDecorator < ApplicationDecorator
     links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
 
-    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}"), h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
+    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     links << h.content_tag(:li, link_to_priority_category, :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
@@ -185,7 +185,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def link_to_priority_category
-    h.link_to(priority_category, h.send("#{fake_kind.pluralize}_path", categories: [priority_category.mb_chars.downcase]))
+    h.link_to(priority_category + " Томска ", h.send("#{fake_kind.pluralize}_path", categories: [priority_category.mb_chars.downcase]))
   end
 
   def sauna_category_link
