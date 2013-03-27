@@ -15,7 +15,9 @@ class Ability
                       Culture, Sport, Billiard, Creation]
       end
     when 'crm'
-      can :manage, :crm
+      if user.is?(:sales_manager)
+        can :manage, [Organization, Contact, Activity]
+      end
     end
 
   end
