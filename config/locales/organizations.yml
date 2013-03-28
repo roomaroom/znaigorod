@@ -54,3 +54,9 @@ ru:
       many: "%{count} мест"
       other: "%{count} места"
 
+  suborganizations:
+    filter:
+      features: Особенности
+      offers: Предложения
+      cuisines: Кухня
+

@@ -4,7 +4,7 @@
   <div class="filters">
     <h1><%= t("organization.list_title.#{@presenter.kind}") %> в Томске</h1>
 
-    <%= form_tag entertainments_path, :method => :get do %>
+    <%= form_tag send("#{@presenter.pluralized_kind}_path"), :method => :get do %>
       <%= hidden_field_tag :order_by, @presenter.order_by %>
 
       <div class='filter show categories_filter' id='categories'>
@@ -19,33 +19,22 @@
         </div>
       </div>
 
-      <div class='filter <%= @presenter.features_filter.used? ? 'show' : 'hide' %>' id='features'>
-        <%= link_to "убрать", '#', :class => 'remove_filter_link' %>
-        <%= link_to "очистить", '#', :class => 'clear_filter_link' %>
-        <div class="filter_label wide">Особенности</div>
-        <div class="filter_checkboxes">
-          <% @presenter.features_filter.available.each_with_index do |category, index| %>
-            <div class="checkbox">
-              <%= check_box_tag 'features[]', category, (@presenter.features_filter.selected.include?(category)), :id => "feature_#{index}" %>
-              <%= label_tag "feature_#{index}", @presenter.features_filter.available[index] %>
-            </div>
-          <% end %>
+      <% @presenter.class.filters.each do |filter_name| %>
+        <% next if filter_name == :categories %>
+        <div class='filter <%= @presenter.send("#{filter_name}_filter").used? ? 'show' : 'hide' %>' id='<%= filter_name %>'>
+          <%= link_to "убрать", '#', :class => 'remove_filter_link' %>
+          <%= link_to "очистить", '#', :class => 'clear_filter_link' %>
+          <div class="filter_label wide"><%= t("suborganizations.filter.#{filter_name}") %></div>
+          <div class="filter_checkboxes">
+            <% @presenter.send("#{filter_name}_filter").available.each_with_index do |value, index| %>
+              <div class="checkbox">
+                <%= check_box_tag "#{filter_name}[]", value, (@presenter.send("#{filter_name}_filter").selected.include?(value)), :id => "#{filter_name.to_s.singularize}_#{index}" %>
+                <%= label_tag "#{filter_name.to_s.singularize}_#{index}", @presenter.send("#{filter_name}_filter").available[index] %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-
-      <div class='filter  <%= @presenter.offers_filter.used? ? 'show' : 'hide' %>' id='offers'>
-        <%= link_to "убрать", '#', :class => 'remove_filter_link' %>
-        <%= link_to "очистить", '#', :class => 'clear_filter_link' %>
-        <div class="filter_label wide">Предложения</div>
-        <div class="filter_checkboxes">
-          <% @presenter.offers_filter.available.each_with_index do |category, index| %>
-            <div class="checkbox">
-              <%= check_box_tag 'offers[]', category, (@presenter.offers_filter.selected.include?(category)), :id => "offer_#{index}" %>
-              <%= label_tag "offer_#{index}", @presenter.offers_filter.available[index] %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
 
       <div class="filter <%= @presenter.geo_filter.used? ? 'used show' : 'hide' %>" id='geo'>
         <%= link_to "убрать", '#', :class => 'remove_filter_link' %>
@@ -72,12 +61,12 @@
       <div class="criteria_list">
         <div class="criteria_label">Добавить критерии:</div>
         <ul>
-          <li>
-            <%= link_to "Особенности", '#', :class => 'features' %>
-          </li>
-          <li>
-            <%= link_to "Предложения", '#', :class => 'offers' %>
-          </li>
+          <% @presenter.class.filters.each do |filter_name| %>
+            <% next if filter_name == :categories %>
+            <li>
+              <%= link_to t("suborganizations.filter.#{filter_name}"), '#', :class => filter_name %>
+            </li>
+          <% end %>
           <li>
             <%= link_to "Местоположение", '#', :class => 'geo' %>
           </li>
@@ -97,4 +86,5 @@
     <% end %>
   </div>
 </div>
+
 

@@ -151,9 +151,10 @@ Znaigorod::Application.routes.draw do
   # <= legacy view uniq subdomain organization url
   resources :organizations, :only => [:index, :show]
 
-  Organization.available_suborganization_kinds.each do |kind|
-    resources kind.pluralize, :only => :index
+  Organization.basic_suborganization_kinds.each do |kind|
+    get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
   end
+
   # legacy v2 url
   get ':organization_class/(:category)/(*query)',
           :organization_class => /meals|entertainments|cultures|sports|creations|saunas/, :to => redirect { |params, req|
