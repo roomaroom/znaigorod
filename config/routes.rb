@@ -155,6 +155,8 @@ Znaigorod::Application.routes.draw do
     get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
   end
 
+  get '/entertainments' => 'suborganizations#index', :as => :billiards, :constraints => { :kind => 'entertainments' }, :defaults => { :kind => 'entertainments' }
+
   # legacy v2 url
   get ':organization_class/(:category)/(*query)',
           :organization_class => /meals|entertainments|cultures|sports|creations|saunas/, :to => redirect { |params, req|
