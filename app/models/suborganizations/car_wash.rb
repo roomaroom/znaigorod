@@ -1,5 +1,5 @@
 class CarWash < ActiveRecord::Base
-  attr_accessible :category, :description, :title, :offer
+  attr_accessible :category, :description, :title, :offer, :feature
 
   belongs_to :organization
 
@@ -18,13 +18,11 @@ class CarWash < ActiveRecord::Base
 
   include PresentsAsCheckboxes
 
-  presents_as_checkboxes :category,
-    :validates_presence => true,
-    :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
-
+  presents_as_checkboxes :category
+  presents_as_checkboxes :feature
   presents_as_checkboxes :offer
 
   include SearchWithFacets
 
-  search_with_facets :category, :offer
+  search_with_facets :category, :feature, :offer
 end

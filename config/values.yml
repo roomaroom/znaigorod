@@ -39,7 +39,11 @@ billiard:
 
 car_wash:
   categories:
-    - Автомойки
+    - легковые
+    - грузовые
+    - автобусы
+
+  features: []
 
   offers:
     - бесконтактная мойка
