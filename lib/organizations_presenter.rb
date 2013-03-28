@@ -61,6 +61,15 @@ module OrganizationsPresenter
     Settings['app']['url'] + '/' + self.kind.pluralize
   end
 
+  def page_subtitle
+    title = ""
+    categories_filter.selected.each_with_index do |category, index|
+      title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
+      title << category.mb_chars.capitalize
+    end
+    title += " в Томске " unless title.blank?
+  end
+
   def sort_by_popularity?
     order_by == 'popularity'
   end
