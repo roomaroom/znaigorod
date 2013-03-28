@@ -282,7 +282,6 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def actual_affiches_count
-    #HasSearcher.searcher(:affiche, organization_id: organization.id).actual.order_by_starts_at.affiches.group(:affiche_id_str).total
     HasSearcher.searcher(:showings, organization_ids: [organization.id]).actual.order_by_starts_at.groups.group(:affiche_id_str).total
   end
 
@@ -299,11 +298,6 @@ class OrganizationDecorator < ApplicationDecorator
     if description.present?
       link = h.link_to('информация', '#', :class => :description_icon, :'data-link' => :description_text, title: 'информация')
       text = h.content_tag(:div, description.as_html, :class => :description_text)
-      content << h.content_tag(:li, "#{link}\n#{text}".html_safe)
-    end
-    if tour_link.present?
-      link = h.link_to('3D-тур', '#', :class => :tour_icon, :'data-link' => :tour_link, title: '3D-тур')
-      text = h.content_tag(:div, tour_link, class: :tour_link)
       content << h.content_tag(:li, "#{link}\n#{text}".html_safe)
     end
     h.content_tag :ul, content.html_safe, class: :iconize_info if content.present?

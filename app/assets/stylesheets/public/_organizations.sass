@@ -212,6 +212,19 @@
       .tour_icon
         +iconize_style
         background: transparent image_url('public/icon_tour.png') no-repeat center center
+
+    .tour_link
+      float: right
+      display: block
+      width: 240px
+      height: 170px
+      +clearfix
+      text-indent: -9999em
+      background: transparent image_url('public/tour_link.png') no-repeat 0 0
+      margin-left: 10px
+      &:hover
+        background-position: 0 -170px
+
     .suborganization_info
       td
         position: relative

@@ -28,6 +28,7 @@
  * = require public/prepare_organizations
  * = require public/prepare_sauna
  * = require public/iconize_info
+ * = require public/tour_link
  * = require public/included_photos
  * = require public/post_photos
  * = require public/schedule_toggle
