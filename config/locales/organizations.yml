@@ -8,6 +8,7 @@ ru:
       billiard: Бильярд
       creation: Творчество и развитие
       sauna: Сауны
+      car_sales_center: Автосалоны
       car_wash: Автомойки
     all:
       meal: Все заведения питания
@@ -35,6 +36,7 @@ ru:
       billiard: Бильярдный зал
       creation: Творчество и развитие
       sauna: Сауна
+      car_sales_center: Автосалон
       car_wash: Автомойка
     filters:
       category: Категории

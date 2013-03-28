@@ -24,6 +24,7 @@ ru:
       sportsevent:                        Спортивные мероприятия и соревнования
 
       billiard:                           Бильярд
+      car_sales_center:                   Автосалоны
       car_wash:                           Автомойки
       creation:                           Творчество
       culture:                            Культура
@@ -307,6 +308,9 @@ ru:
         <<: *common_attributes
 
       creation:
+        <<: *common_attributes
+
+      car_sales_center:
         <<: *common_attributes
 
       car_wash:
