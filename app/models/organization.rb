@@ -254,8 +254,10 @@ class Organization < ActiveRecord::Base
   def set_rating
     filling     = summary_rating + nearest_affiches.count + images.count
     popularity  = 0.3 * yandex_metrika_page_views.to_f + vkontakte_likes.to_f
+    status_dependence_rating = 100 if status.client?
+    status_dependence_rating = -50 if status.non_cooperation?
 
-    self.rating = 0.1 * filling + popularity + additional_rating.to_i
+    self.rating = 0.1 * filling + popularity + status_dependence_rating + additional_rating.to_i
   end
 
   include Rating
