@@ -10,7 +10,7 @@ module PresentsAsCheckboxes
       attr_accessible "#{field}_list"
 
       define_method "available_#{field.to_s.pluralize}" do
-        options[:available_values].call if options[:available_values]
+        Values.instance.send(self.class.name.underscore).send(field.to_s.pluralize)
       end
 
       define_method "set_#{field}" do

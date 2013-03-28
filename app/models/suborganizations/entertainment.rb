@@ -32,15 +32,11 @@ class Entertainment < ActiveRecord::Base
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :category,
-    :available_values => -> { HasSearcher.searcher(:entertainments).facet(:entertainment_category).rows.map(&:value).map(&:mb_chars).map(&:capitalize).map(&:to_s) },
     :validates_presence => true,
     :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
 
-  presents_as_checkboxes :feature,
-    :available_values => -> { HasSearcher.searcher(:entertainments).facet(:entertainment_feature).rows.map(&:value) }
-
-  presents_as_checkboxes :offer,
-    :available_values => -> { HasSearcher.searcher(:entertainments).facet(:entertainment_offer).rows.map(&:value) }
+  presents_as_checkboxes :feature
+  presents_as_checkboxes :offer
 
   include SearchWithFacets
 

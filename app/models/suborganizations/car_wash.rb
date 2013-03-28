@@ -19,12 +19,10 @@ class CarWash < ActiveRecord::Base
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :category,
-    :available_values => -> { HasSearcher.searcher(:car_washes).facet(:car_wash_category).rows.map(&:value).map(&:mb_chars).map(&:capitalize).map(&:to_s) },
     :validates_presence => true,
     :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
 
-  presents_as_checkboxes :offer,
-    :available_values => -> { HasSearcher.searcher(:car_washes).facet(:car_wash_offer).rows.map(&:value) }
+  presents_as_checkboxes :offer
 
   include SearchWithFacets
 
