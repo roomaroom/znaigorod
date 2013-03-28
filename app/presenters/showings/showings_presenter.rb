@@ -129,6 +129,20 @@ class ShowingsPresenter
     Settings['app']['url'] + '/affiches'
   end
 
+  def page_subtitle
+    title = ""
+    categories_filter.selected.each_with_index do |category, index|
+      title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
+      title << categories_filter.human_names[index]
+    end
+    title += " в Томске " unless title.blank?
+    title += " сегодня" if period_filter.period == 'today'
+    title += " на этой неделе" if period_filter.period == 'week'
+    title += " на выходных" if period_filter.period == 'weekend'
+    title += "за #{I18n.l(period_filter.date, format: "%d %B")}" if period_filter.date?
+    title
+  end
+
   def searcher_params
     @searcher_params ||= {}.tap do |params|
       params[:age_max]          = age_filter.maximum         if age_filter.maximum.present?

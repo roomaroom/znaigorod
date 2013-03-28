@@ -46,7 +46,7 @@
             <%= radio_button_tag :period, @presenter.period_filter.date, @presenter.period_filter.date?, id: :period_date %>
             <%= label_tag :period_date, 'Дата' %>
             <div class='date_picker_wrapper'>
-              <%= text_field_tag :date_picker_input, params[:date_picker_input] %>
+              <%= text_field_tag :date_picker_input, @presenter.period_filter.date? ? l(@presenter.period_filter.date) : ''%>
             </div>
           </li>
         </ul>
