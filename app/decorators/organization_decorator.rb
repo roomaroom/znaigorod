@@ -97,7 +97,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def decorated_suborganizations
-    suborganizations.map { |suborganization| "#{suborganization.class.name.downcase}_decorator".classify.constantize.decorate suborganization }
+    suborganizations.map { |suborganization| "#{suborganization.class.name.underscore}_decorator".classify.constantize.decorate suborganization }
   end
 
   def categories
@@ -200,7 +200,7 @@ class OrganizationDecorator < ApplicationDecorator
         suborganization.categories.each do |category|
          arr << Link.new(
            title: category,
-           url: h.send("#{suborganization.class.name.downcase.pluralize}_path", categories: [category.mb_chars.downcase])
+           url: h.send("#{suborganization.class.name.underscore.pluralize}_path", categories: [category.mb_chars.downcase])
          )
         end
       end
