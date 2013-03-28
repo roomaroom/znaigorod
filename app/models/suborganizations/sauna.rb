@@ -74,7 +74,7 @@ end
 
 # == Schema Information
 #
-# Table name: entertainments
+# Table name: saunas
 #
 #  id              :integer          not null, primary key
 #  category        :text
@@ -82,10 +82,9 @@ end
 #  offer           :text
 #  payment         :string(255)
 #  organization_id :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
 #  title           :string(255)
 #  description     :text
-#  type            :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 

@@ -1,9 +1,3 @@
-Fabricator(:exhibition) do
-  description 'exhibition description'
-  poster_url 'http://poster.url'
-  title 'exhibition title'
-end
-
 # == Schema Information
 #
 # Table name: affiches
@@ -29,7 +23,12 @@ end
 #  vk_aid                    :string(255)
 #  yandex_fotki_url          :string(255)
 #  popularity                :float
-#  age_min                   :integer
-#  age_max                   :integer
+#  age_min                   :float
+#  age_max                   :float
 #
 
+Fabricator(:exhibition) do
+  description 'exhibition description'
+  poster_url 'http://poster.url'
+  title 'exhibition title'
+end

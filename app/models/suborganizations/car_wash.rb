@@ -26,3 +26,19 @@ class CarWash < ActiveRecord::Base
 
   search_with_facets :category, :feature, :offer
 end
+
+# == Schema Information
+#
+# Table name: car_washes
+#
+#  id              :integer          not null, primary key
+#  category        :text
+#  organization_id :integer
+#  title           :string(255)
+#  description     :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  offer           :text
+#  feature         :text
+#
+

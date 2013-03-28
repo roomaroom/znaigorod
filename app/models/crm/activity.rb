@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: activities
-#
-#  id              :integer          not null, primary key
-#  title           :text
-#  organization_id :integer
-#  user_id         :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  status          :string(255)
-#  state           :string(255)
-#  activity_at     :datetime
-#  contact_id      :integer
-#
-
 class Activity < ActiveRecord::Base
   attr_accessible :title, :state, :activity_at, :user_id, :contact_id, :status
 
@@ -43,3 +27,20 @@ class Activity < ActiveRecord::Base
       organization.save
     end
 end
+
+# == Schema Information
+#
+# Table name: activities
+#
+#  id              :integer          not null, primary key
+#  title           :text
+#  organization_id :integer
+#  user_id         :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  status          :string(255)
+#  state           :string(255)
+#  activity_at     :datetime
+#  contact_id      :integer
+#
+
