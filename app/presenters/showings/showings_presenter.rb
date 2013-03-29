@@ -129,18 +129,17 @@ class ShowingsPresenter
     Settings['app']['url'] + '/affiches'
   end
 
-  def page_subtitle
+  def page_title
     title = ""
     categories_filter.selected.each_with_index do |category, index|
       title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-      title << categories_filter.human_names[index]
+      title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase
     end
-    title += " в Томске " unless title.blank?
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
     title += " на выходных" if period_filter.period == 'weekend'
     title += "за #{I18n.l(period_filter.date, format: "%d %B")}" if period_filter.date?
-    title
+    title.blank? ? I18n.t('meta.affiches.title') : "Томская афиша - #{title}"
   end
 
   def searcher_params

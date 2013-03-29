@@ -205,6 +205,13 @@ class AfficheDecorator < ApplicationDecorator
     h.resized_image_url(affiche.poster_url, width, height, crop)
   end
 
+  def meta_description
+    description.truncate(200, separator: ' ')
+  end
+
+  def meta_keywords
+    [human_kind, affiche.tags, raw_places].flatten.map(&:mb_chars).map(&:downcase).join(', ')
+  end
 
   def tags_for_vk
     desc = ""
@@ -216,7 +223,6 @@ class AfficheDecorator < ApplicationDecorator
     desc = desc.gsub(/<table>.*<\/table>/m, '').gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe
     image = resized_image_url(poster_url, 180, 242, false)
     res = ""
-    res << "<meta name='description' content='#{desc.truncate(700, :separator => ' ').html_safe}' />\n"
     res << "<meta property='og:description' content='#{desc.truncate(350, :separator => ' ').html_safe}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
     res << "<meta property='og:title' content='#{title.text_gilensize}' />\n"
@@ -229,14 +235,6 @@ class AfficheDecorator < ApplicationDecorator
 
   def raw_places
     showings.with_organization.map(&:organization).uniq.map(&:title).map { |t| t.split(',').join(' ') }
-  end
-
-  def keywords_content
-    [human_kind, affiche.tags, raw_places].flatten.map(&:mb_chars).map(&:downcase).join(',')
-  end
-
-  def meta_keywords
-    h.tag(:meta, name: 'keywords', content: keywords_content)
   end
 
   def list_poster

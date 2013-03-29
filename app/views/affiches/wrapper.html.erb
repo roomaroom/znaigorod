@@ -1,10 +1,11 @@
-<% content_for :subtitle do %>
+<% content_for :page_title do %>
   <%= @affiche.title.text_gilensize %>, <%= @affiche.human_kind.mb_chars.downcase %> в Томске
 <% end %>
+<% content_for :meta_keywords, @affiche.meta_keywords %>
+<% content_for :meta_description, @affiche.meta_description %>
 
 <% content_for :extra_meta do %>
   <%= @affiche.tags_for_vk %>
-  <%= @affiche.meta_keywords %>
 <% end %>
 
 <div class="content_wrapper">
