@@ -244,7 +244,6 @@ class OrganizationDecorator < ApplicationDecorator
 
   def tags_for_vk
     res = ""
-    res << "<meta name='description' content='#{text_description.truncate(700, :separator => ' ')}' />\n"
     res << "<meta property='og:description' content='#{text_description.truncate(350, :separator => ' ')}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
     res << "<meta property='og:url' content='#{organization_url}' />\n"
@@ -258,7 +257,11 @@ class OrganizationDecorator < ApplicationDecorator
     res.html_safe
   end
 
-  def keywords_content
+  def meta_description
+    text_description.truncate(700, :separator => ' ')
+  end
+
+  def meta_keywords
     keywords = categories
     suborganizations.each do |suborganization|
       %w[features offers cuisines].each do |field|
@@ -266,10 +269,6 @@ class OrganizationDecorator < ApplicationDecorator
       end
     end
     keywords.map(&:mb_chars).map(&:downcase).join(',')
-  end
-
-  def meta_keywords
-    h.tag(:meta, name: 'keywords', content: keywords_content)
   end
 
   def actual_affiches_count

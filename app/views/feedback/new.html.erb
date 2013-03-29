@@ -1,8 +1,6 @@
-<% content_for :subtitle, 'Обратная связь' %>
-
-<% content_for :extra_meta do %>
-  <meta name='description' content='<%= I18n.t('meta_description.feedback') %> <%= I18n.t('meta_description.main_page') %>' />
-<% end %>
+<% content_for :page_title, t('meta.feedback.title') %>
+<% content_for :meta_description, t('meta.feedback.description') %>
+<% content_for :meta_keywords, t('meta.feedback.keywords') %>
 
 <div class='content_wrapper'>
   <div class='feedback'>

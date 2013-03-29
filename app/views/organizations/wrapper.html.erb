@@ -1,10 +1,9 @@
-<% content_for :subtitle do %>
-  <%= @organization.title.text_gilensize %>
-<% end %>
+<% content_for :page_title, @organization.title.text_gilensize + " - " + I18n.t("organization.list_title.#{@organization.fake_kind}") + " Томска" %>
+<% content_for :meta_keywords, @organization.meta_keywords %>
+<% content_for :meta_description, @organization.meta_description %>
 
 <% content_for :extra_meta do %>
   <%= @organization.tags_for_vk %>
-  <%= @organization.meta_keywords %>
 <% end %>
 
 <div class="content_wrapper">

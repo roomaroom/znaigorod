@@ -1,8 +1,6 @@
-<% content_for :subtitle, "Было в Томске" %>
-
-<% content_for :extra_meta do %>
-  <meta name='description' content='<%= I18n.t("meta_description.photogalleries_list.#{@photogallery.period}") %>' />
-<% end %>
+<% content_for :page_title, t('meta.photogalleries.title') %>
+<% content_for :meta_description, t('meta.photogalleries.description') %>
+<% content_for :meta_keywords, t('meta.photogalleries.keywords') %>
 
 <div class="content_wrapper">
 

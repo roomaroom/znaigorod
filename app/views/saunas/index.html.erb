@@ -1,10 +1,6 @@
-<% content_for :subtitle do %>
-  Сауны Томска
-<% end %>
-
-<% content_for :extra_meta do %>
-  <meta name='description' content='Сауны Томска' />
-<% end %>
+<% content_for :page_title, t('meta.saunas.title') %>
+<% content_for :meta_description, t('meta.saunas.description') %>
+<% content_for :meta_keywords, t('meta.saunas.keywords') %>
 
 <div class="content_wrapper">
   <%= render :partial => 'filters' %>

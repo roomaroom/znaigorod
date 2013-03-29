@@ -61,13 +61,13 @@ module OrganizationsPresenter
     Settings['app']['url'] + '/' + self.kind.pluralize
   end
 
-  def page_subtitle
+  def page_title
     title = ""
     categories_filter.selected.each_with_index do |category, index|
       title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-      title << category.mb_chars.capitalize
+      title << category
     end
-    title += " в Томске " unless title.blank?
+    title.blank? ? I18n.t("meta.#{pluralized_kind}.title") : "#{title} Томска".mb_chars.capitalize
   end
 
   def sort_by_popularity?
