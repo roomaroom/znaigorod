@@ -1,10 +1,6 @@
-<% content_for :subtitle do %>
-  Заведения города Томска
-<% end %>
-
-<% content_for :extra_meta do %>
-  <%= @organizations_catalog_presenter.meta_description %>
-<% end %>
+<% content_for :page_title, t('meta.organizations.title') %>
+<% content_for :meta_description, t('meta.organizations.description') %>
+<% content_for :meta_keywords, t('meta.organizations.keywords') %>
 
 <div class="content_wrapper">
   <div class="organizations_catalog">
