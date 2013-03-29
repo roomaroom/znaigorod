@@ -65,28 +65,19 @@ class OrganizationDecorator < ApplicationDecorator
     [Billiard].include?(suborganization.class) ? Entertainment : suborganization.class
   end
 
-  def sauna_breadcrumbs
-    links = []
-    links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
-    links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
-    links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, h.link_to(title, organization_url), :class => "crumb")
-
-    h.content_tag :ul, links.join("\n").html_safe, :class => "breadcrumbs"
-  end
-
   def breadcrumbs
-    return sauna_breadcrumbs if priority_suborganization.is_a?(Sauna)
-
     links = []
     links << h.content_tag(:li, h.link_to("Знай\u00ADГород", h.root_path), :class => "crumb")
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
 
     links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
-    links << h.content_tag(:li, link_to_priority_category, :class => "crumb")
-    links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
+
+    if organization.suborganizations.flat_map(&:categories).many?
+      links << h.content_tag(:li, link_to_priority_category, :class => "crumb")
+      links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
+    end
+
     links << h.content_tag(:li, h.link_to(title, organization_url), :class => "crumb")
 
     h.content_tag :ul, links.join("\n").html_safe, :class => "breadcrumbs"
