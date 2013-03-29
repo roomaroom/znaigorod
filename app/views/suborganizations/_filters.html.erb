@@ -7,17 +7,19 @@
     <%= form_tag send("#{@presenter.pluralized_kind}_path"), :method => :get do %>
       <%= hidden_field_tag :order_by, @presenter.order_by %>
 
-      <div class='filter show categories_filter' id='categories'>
-        <%= link_to "очистить", '#', :class => 'clear_filter_link' %>
-        <div class="filter_checkboxes">
-          <% @presenter.categories_filter.available.each_with_index do |category, index| %>
-            <div class="checkbox">
-              <%= check_box_tag 'categories[]', category, (@presenter.categories_filter.selected.include?(category)), :id => "category_#{index}" %>
-              <%= label_tag "category_#{index}", @presenter.categories_filter.available[index] %>
-            </div>
-          <% end %>
+      <% if Values.instance.send(@presenter.kind).categories.many? %>
+        <div class='filter show categories_filter' id='categories'>
+          <%= link_to "очистить", '#', :class => 'clear_filter_link' %>
+          <div class="filter_checkboxes">
+            <% @presenter.categories_filter.available.each_with_index do |category, index| %>
+              <div class="checkbox">
+                <%= check_box_tag 'categories[]', category, (@presenter.categories_filter.selected.include?(category)), :id => "category_#{index}" %>
+                <%= label_tag "category_#{index}", @presenter.categories_filter.available[index] %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <% @presenter.class.filters.each do |filter_name| %>
         <% next if filter_name == :categories %>
