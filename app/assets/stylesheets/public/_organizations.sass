@@ -23,6 +23,9 @@
 .content_wrapper
   +clearfix
 
+  .clearfix
+    +clearfix
+
   .organizations_catalog
     fieldset
       border: 1px dotted #ababab
@@ -298,6 +301,22 @@
               font-weight: bold
               float: none !important
               margin: 0 !important
+
+    .description
+      +clearfix
+      clear: both
+      line-height: 1.4
+      border: 1px dotted #858585
+      +border-radius
+      background-color: #fff
+      padding: 5px 10px
+      margin-top: 10px
+      p
+        margin: 5px 0
+      ul
+        li:before
+          content: "\2013"
+          padding-right: 5px
 
     .photogallery
       clear: left
