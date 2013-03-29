@@ -39,5 +39,4 @@ class MealDecorator < SuborganizationDecorator
   def htmlise_features_on_show
     features.map {|f| h.content_tag(:li, f)}.join("\n").html_safe if features.any?
   end
-
 end

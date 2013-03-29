@@ -14,7 +14,7 @@ class SuborganizationDecorator < ApplicationDecorator
   end
 
   def viewable?
-    false
+    true
   end
 
   def iconize_info

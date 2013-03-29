@@ -10,5 +10,4 @@ class SportDecorator < CreationDecorator
   def htmlise_title_on_show
     h.content_tag :h1, title, :class => 'sport'
   end
-
 end
