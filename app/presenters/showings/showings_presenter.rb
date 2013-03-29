@@ -133,7 +133,7 @@ class ShowingsPresenter
     title = ""
     categories_filter.selected.each_with_index do |category, index|
       title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-      title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase
+      title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase if categories_filter.available.include?(category)
     end
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
