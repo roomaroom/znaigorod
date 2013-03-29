@@ -46,5 +46,3 @@ Znaigorod::Application.configure do
     end
   end
 end
-
-ActiveRecord::Base.logger = Logger.new('/dev/null')

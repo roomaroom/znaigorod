@@ -18,7 +18,7 @@ class CarWash < ActiveRecord::Base
 
   include PresentsAsCheckboxes
 
-  presents_as_checkboxes :category
+  presents_as_checkboxes :category, :default_value => Values.instance.car_wash.categories
   presents_as_checkboxes :feature
   presents_as_checkboxes :offer
 

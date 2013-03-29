@@ -14,10 +14,11 @@ module PresentsAsCheckboxes
       end
 
       define_method "set_#{field}" do
+        self.send "#{field}_list=", [*options[:default_value]] if options[:default_value]
         self.send "#{field}=", self.send("#{field}_list").delete_if(&:blank?).join(', ') if self.send("#{field}_list")
       end
 
-      before_validation "set_#{field}", :if => "#{field}_list?"
+      before_validation "set_#{field}"
 
       define_method field.to_s.pluralize do
         (self.send(field) || '').split(',').map(&:squish)

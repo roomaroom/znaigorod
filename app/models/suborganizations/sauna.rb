@@ -60,9 +60,7 @@ class Sauna < ActiveRecord::Base
 
   include PresentsAsCheckboxes
 
-  presents_as_checkboxes :category,
-    :validates_presence => true,
-    :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
+  presents_as_checkboxes :category, :default_value => Values.instance.sauna.categories
 
   presents_as_checkboxes :feature
   presents_as_checkboxes :offer
