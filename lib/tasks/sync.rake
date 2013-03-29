@@ -51,7 +51,7 @@ class MovieSyncer
                                     :affiche_id => movie.id).tap do |s|
 
                 if place =~ /Факел/
-                 #s.place = 'Факел, центр досуга и спорта'
+                 s.place = 'Факел, кинозал'
                  s.organization_id = 449
                 else
                  s.place = cinematheatre.title
