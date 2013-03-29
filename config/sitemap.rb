@@ -6,57 +6,29 @@ SitemapGenerator::Sitemap.create_index = false
 SitemapGenerator::Sitemap.create do
 
   # Списки афиши
-  ([''] + ShowingsPresenter.new({}).categories_filter.available).each do |category|
-    (%w( today week weekend) + ['']).each do |period|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-      params.merge!('period' => period) unless period.blank?
-      add affiches_path(params), :changefreq => 'daily', :priority => 0.7, :lastmod => Affiche.unscoped.last.updated_at
-    end
-  end
+  add affiches_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Affiche.unscoped.last.updated_at
   # Фотогалереи
   add photogalleries_path('all'),               :changefreq => 'daily', :priority => 0.5, :lastmod => Affiche.unscoped.last.updated_at
-
   # Заведения города Томска
   add organizations_path,                       :changefreq => 'daily', :priority => 0.5, :lastmod => Organization.unscoped.last.updated_at
 
   # Заведения общественного питания в Томске
-  ([''] + MealsPresenter.new({}).categories_filter.available).each do |category|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-    add meals_path(params),              :changefreq => 'daily', :priority => 0.7, :lastmod => Meal.unscoped.last.updated_at
-  end
+  add meals_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Meal.unscoped.last.updated_at
 
   # Развлекательные заведения в Томске
-  ([''] + EntertainmentsPresenter.new({}).categories_filter.available).each do |category|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-    add entertainments_path(params),              :changefreq => 'daily', :priority => 0.7, :lastmod => Entertainment.unscoped.last.updated_at
-  end
+  add entertainments_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Entertainment.unscoped.last.updated_at
 
   # Сауны
   add saunas_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Sauna.unscoped.last.updated_at
 
   # Культурные заведения в Томске
-  ([''] + CulturesPresenter.new({}).categories_filter.available).each do |category|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-    add cultures_path(params),              :changefreq => 'daily', :priority => 0.7, :lastmod => Culture.unscoped.last.updated_at
-  end
+  add cultures_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Culture.unscoped.last.updated_at
 
   # Спортивные заведения
-  ([''] + SportsPresenter.new({}).categories_filter.available).each do |category|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-    add sports_path(params),              :changefreq => 'daily', :priority => 0.7, :lastmod => Sport.unscoped.last.updated_at
-  end
+  add sports_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Sport.unscoped.last.updated_at
 
   # Творчество и развитие
-  ([''] + CreationsPresenter.new({}).categories_filter.available).each do |category|
-      params = {}
-      params.merge!('categories[]' => category) unless category.blank?
-    add creations_path(params),              :changefreq => 'daily', :priority => 0.7, :lastmod => Creation.unscoped.last.updated_at
-  end
+  add creations_path,              :changefreq => 'daily', :priority => 0.7, :lastmod => Creation.unscoped.last.updated_at
 
   # Публикации
   add posts_path,              :changefreq => 'weekly', :priority => 0.7, :lastmod => Post.unscoped.last.updated_at
@@ -79,7 +51,7 @@ SitemapGenerator::Sitemap.create do
     if organization.subdomain.blank?
       add organization_path(organization),
         :changefreq => 'weekly',
-        :priority => organization.rating/max_rating,
+        :priority => organization.rating > 0 ? organization.rating/max_rating : 0,
         :lastmod => organization.updated_at #,
       #:images => [{ :loc => organization.logotype_url, :title => organization.title }]
     else
