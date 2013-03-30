@@ -50,7 +50,7 @@ class HitDecorator < ApplicationDecorator
   def suborganization_categories_hash
     @suborganization_categories_hash ||= suborganization.organization.suborganizations.
       map(&:class).map(&:name).
-      map { |class_name| "#{class_name.pluralize.downcase}_presenter" }.
+      map { |class_name| "#{class_name.underscore.pluralize}_presenter" }.
       map(&:classify).map(&:constantize).map(&:new).map { |presenter| [presenter.pluralized_kind, presenter.categories_filter.available] }
 
     Hash[@suborganization_categories_hash]
