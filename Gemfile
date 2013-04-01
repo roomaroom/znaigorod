@@ -59,11 +59,12 @@ end
 group :development do
   gem 'annotate',                   :require => false
   gem 'brakeman'
-  gem 'capistrano-ext'
+  gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
+  gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
   gem 'hirb'
+  gem 'openteam-capistrano'
   gem 'quiet_assets'
   gem 'rails-erd'
-  gem 'rvm-capistrano'
   gem 'sunspot_solr',               '2.0.0.pre.120925'
   gem 'thin'
 end

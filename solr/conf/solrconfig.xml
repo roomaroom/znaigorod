@@ -932,4 +932,12 @@
       <str name='mlt.mindf'>2</str>
     </lst>
   </requestHandler>
+
+  <requestHandler name="/replication" class="solr.ReplicationHandler">
+    <lst name="master">
+      <str name="replicateAfter">commit</str>
+      <str name="replicateAfter">startup</str>
+      <str name="replicateAfter">optimize</str>
+    </lst>
+  </requestHandler>
 </config>
