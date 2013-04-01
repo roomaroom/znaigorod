@@ -73,7 +73,7 @@ class OrganizationDecorator < ApplicationDecorator
     links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
 
-    if organization.suborganizations.flat_map(&:categories).many?
+    unless priority_category == I18n.t("organization.list_title.#{fake_kind}")
       links << h.content_tag(:li, link_to_priority_category, :class => "crumb")
       links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     end
@@ -84,7 +84,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def suborganizations
-    @suborganizations ||= [priority_suborganization] + (%w[meal entertainment culture sport creation billiard sauna] - [priority_suborganization_kind]).map { |kind| organization.send(kind) }.compact.uniq
+    @suborganizations ||= [priority_suborganization] + (Organization.available_suborganization_kinds - [priority_suborganization_kind]).map { |kind| organization.send(kind) }.compact.uniq
   end
 
   def decorated_suborganizations
