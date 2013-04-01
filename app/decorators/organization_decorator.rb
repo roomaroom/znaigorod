@@ -285,11 +285,6 @@ class OrganizationDecorator < ApplicationDecorator
       text = h.content_tag(:span, 'безналичный расчет', class: 'non_cash', title: 'безналичный расчет')
       content << h.content_tag(:li, "#{text}".html_safe)
     end
-    if description.present?
-      link = h.link_to('информация', '#', :class => :description_icon, :'data-link' => :description_text, title: 'информация')
-      text = h.content_tag(:div, description.as_html, :class => :description_text)
-      content << h.content_tag(:li, "#{link}\n#{text}".html_safe)
-    end
     h.content_tag :ul, content.html_safe, class: :iconize_info if content.present?
   end
 

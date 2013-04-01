@@ -311,6 +311,13 @@
       background-color: #fff
       padding: 5px 10px
       margin-top: 10px
+      a.toggler
+        float: right
+        margin: 5px 0 5px 10px
+        &.closed:after
+          content: ' \25be'
+        &.opened:after
+          content: ' \25b4'
       p
         margin: 5px 0
       ul
