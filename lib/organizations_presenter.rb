@@ -23,7 +23,7 @@ module OrganizationsPresenter
         define_method "#{filter}_filter" do
           instance_variable_get("@#{filter}_filter") ||
             instance_variable_set("@#{filter}_filter", Hashie::Mash.new.tap { |h|
-            h[:selected] = send(filter) || []
+            h[:selected] = (send(filter) || []).delete_if(&:blank?)
             h[:available] = HasSearcher.searcher(pluralized_kind.to_sym).facet("#{kind}_#{filter.singularize}").rows.map(&:value)
             h['used?'] = send(filter).present? && send(filter).any?
           })
