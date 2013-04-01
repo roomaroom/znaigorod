@@ -33,14 +33,6 @@
           <%= sauna_hall.schedule %>
         </div>
           <ul class="iconize_info">
-            <% if sauna_hall.description? %>
-              <li>
-                <%= link_to 'информация', '#', :class => 'description_icon', 'data-link' => 'description_text', :title => 'информация'  %>
-                <div class="description_text">
-                  <%= sauna_hall.description %>
-                </div>
-              </li>
-            <% end %>
             <% if sauna_hall.tour_link? %>
               <li>
                 <%= link_to '3D-тур', '#', :class => 'tour_icon', 'data-link' => 'tour_link', :title => '3D-тур'  %>
@@ -54,6 +46,11 @@
           <%= sauna_hall.htmlise_capacity_on_show %>
         </div>
       </div>
+      <% if sauna_hall.description.present? %>
+        <div class='sauna_hall_description'>
+          <%= sauna_hall.description.as_html %>
+        </div>
+      <% end %>
       <div class='sauna_hall_details'>
         <%= sauna_hall.htmlise_bath_on_show %>
         <%= sauna_hall.htmlise_pool_on_show %>

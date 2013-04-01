@@ -74,6 +74,30 @@
             margin-top: 2px
           .capacity_extra_guest_cost
             margin-right: 10px
+
+      .sauna_hall_description
+        +clearfix
+        clear: both
+        line-height: 1.4
+        border: 1px dotted #858585
+        +border-radius
+        background-color: #fff
+        padding: 5px 10px
+        margin: 10px
+        a.toggler
+          float: right
+          margin: 5px 0 5px 10px
+          &.closed:after
+            content: ' \25be'
+          &.opened:after
+            content: ' \25b4'
+        p
+          margin: 5px 0
+        ul
+          li:before
+            content: "\2013"
+            padding-right: 5px
+
       .sauna_hall_details
         +clearfix
         margin: 10px
