@@ -65,7 +65,7 @@ group :development do
   gem 'openteam-capistrano'
   gem 'quiet_assets'
   gem 'rails-erd'
-  gem 'sunspot_solr',               '2.0.0.pre.120925'
+  gem 'sunspot_solr'
   gem 'thin'
 end
 

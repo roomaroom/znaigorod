@@ -20,7 +20,6 @@
           </div>
         </div>
       <% end %>
-
       <% @presenter.class.filters.each do |filter_name| %>
         <% next if filter_name == :categories %>
         <div class='filter <%= @presenter.send("#{filter_name}_filter").used? ? 'show' : 'hide' %>' id='<%= filter_name %>'>
@@ -29,7 +28,7 @@
           <div class="filter_label wide"><%= t("suborganizations.filter.#{filter_name}") %></div>
           <div class="filter_checkboxes">
             <% @presenter.send("#{filter_name}_filter").available.each_with_index do |value, index| %>
-              <div class="checkbox">
+              <div class="checkbox <%= cycle('first', 'second', 'third', 'fourth', 'fifth', name: filter_name) %>">
                 <%= check_box_tag "#{filter_name}[]", value, (@presenter.send("#{filter_name}_filter").selected.include?(value)), :id => "#{filter_name.to_s.singularize}_#{index}" %>
                 <%= label_tag "#{filter_name.to_s.singularize}_#{index}", @presenter.send("#{filter_name}_filter").available[index] %>
               </div>
