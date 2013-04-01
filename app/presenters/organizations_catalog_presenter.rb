@@ -4,17 +4,18 @@ class OrganizationsCatalogPresenter
   include Rails.application.routes.url_helpers
 
   def self.suborganization_models
-    [Meal, Entertainment, Sauna, Culture, Sport, Creation]
+    [Meal, Entertainment, Sauna, CarWash, Culture, Sport, Creation]
   end
 
-  self.suborganization_models.map(&:name).map(&:downcase).each do |kind|
+  self.suborganization_models.map(&:name).map(&:underscore).each do |kind|
     define_method "#{kind}_searcher" do |params = {}|
       HasSearcher.searcher(kind.pluralize.to_sym)
     end
 
     define_method "#{kind}_categories_links" do
       self.send("#{kind}_categories").map do |row|
-        Link.new(title: "#{row.value.mb_chars.capitalize} (#{row.count})", url: send("#{kind.pluralize}_path", categories: [row.value.mb_chars.downcase]))
+        options = row.value == I18n.t("organization.list_title.#{kind}").mb_chars.downcase ? {} : { categories: [row.value.mb_chars.downcase]}
+        Link.new(title: "#{row.value.mb_chars.capitalize} (#{row.count})", url: send("#{kind.pluralize}_path", options))
       end
     end
 
@@ -25,7 +26,7 @@ class OrganizationsCatalogPresenter
 
   def catalog
     {}.tap do |hash|
-      self.class.suborganization_models.map(&:name).map(&:downcase).each do |kind|
+      self.class.suborganization_models.map(&:name).map(&:underscore).each do |kind|
         hash[Link.new(title: I18n.t("organization.kind.#{kind}"), url: send("#{kind.pluralize}_path"))] = send("#{kind}_categories_links")
       end
     end
