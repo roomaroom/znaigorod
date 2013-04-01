@@ -40,11 +40,7 @@ class SuborganizationDecorator < ApplicationDecorator
   end
 
   def category_links
-    @category_links ||= Hash[
-      model.organization.suborganizations.map(&:class).map(&:name).
-      map { |class_name| "#{class_name.pluralize}Presenter" }.map(&:constantize).map(&:new).
-      map { |presenter| [presenter.pluralized_kind, presenter.categories_filter.available & categories] }
-    ]
+    @category_links ||= OrganizationDecorator.new(model.organization).category_links
   end
 
   def snipped_links
@@ -94,5 +90,4 @@ class SuborganizationDecorator < ApplicationDecorator
   def has_photogallery?
     images.any?
   end
-
 end

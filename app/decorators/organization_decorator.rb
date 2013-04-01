@@ -179,20 +179,15 @@ class OrganizationDecorator < ApplicationDecorator
     h.link_to(priority_category + " Томска ", h.send("#{fake_kind.pluralize}_path", categories: [priority_category.mb_chars.downcase]))
   end
 
-  def sauna_category_link
-    [Link.new(title: priority_suborganization.categories.first, url: h.saunas_path)]
-  end
-
   def category_links
-    return sauna_category_link if priority_suborganization.is_a?(Sauna)
-
     [].tap do |arr|
       suborganizations.each do |suborganization|
         suborganization.categories.each do |category|
-         arr << Link.new(
-           title: category,
-           url: h.send("#{suborganization.class.name.underscore.pluralize}_path", categories: [category.mb_chars.downcase])
-         )
+          options = category == I18n.t("organization.list_title.#{suborganization.class.name.underscore}") ? {} : { categories: [category.mb_chars.downcase]}
+          arr << Link.new(
+            title: category,
+            url: h.send("#{suborganization.class.name.underscore.pluralize}_path", options)
+          )
         end
       end
     end
