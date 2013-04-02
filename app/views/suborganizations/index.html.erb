@@ -1,4 +1,7 @@
 <% content_for :page_title, @presenter.page_title %>
+<% content_for :meta_description, t("meta.#{@presenter.pluralized_kind}.description") %>
+<% content_for :meta_keywords, t("meta.#{@presenter.pluralized_kind}.keywords") %>
+
 <div class="content_wrapper">
   <%= render :partial => 'filters' %>
   <div class="organizations_list">
