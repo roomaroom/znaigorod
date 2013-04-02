@@ -3,8 +3,12 @@
 <% end %>
 
 <div class='filters_wrapper'>
-  <div class="filters">
+  <div class='filters'>
     <h1>Афиша мероприятий Томска</h1>
+
+    <div class='introduction'>
+      <%= t('meta.affiches.introduction').as_html %>
+    </div>
 
     <%= form_tag affiches_path, :method => :get do %>
       <%= hidden_field_tag :order_by, @presenter.order_by %>
