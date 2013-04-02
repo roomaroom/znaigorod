@@ -240,7 +240,7 @@ class OrganizationDecorator < ApplicationDecorator
   def tags_for_vk
     res = ""
     res << "<meta property='og:description' content='#{text_description.truncate(350, :separator => ' ')}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
+    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
     res << "<meta property='og:url' content='#{organization_url}' />\n"
     res << "<meta property='og:title' content='#{title.text_gilensize}' />\n"
     if logotype_url

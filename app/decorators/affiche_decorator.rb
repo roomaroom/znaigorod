@@ -224,7 +224,7 @@ class AfficheDecorator < ApplicationDecorator
     image = resized_image_url(poster_url, 180, 242, false)
     res = ""
     res << "<meta property='og:description' content='#{desc.truncate(350, :separator => ' ').html_safe}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('site_title')}' />\n"
+    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
     res << "<meta property='og:title' content='#{title.text_gilensize}' />\n"
     res << "<meta property='og:url' content='#{kind_affiche_url}' />\n"
     res << "<meta property='og:image' content='#{image}' />\n"
