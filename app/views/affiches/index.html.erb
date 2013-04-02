@@ -1,5 +1,6 @@
 <% content_for :page_title, @presenter.page_title %>
-<% content_for :meta_description, t('meta.affiches.description') %>
+<% content_for :meta_description, @presenter.meta_description %>
+<% content_for :meta_keywords, @presenter.meta_keywords %>
 <div class="content_wrapper">
   <%= render :partial => 'filters' %>
   <div class="affiches_list">

@@ -131,15 +131,43 @@ class ShowingsPresenter
 
   def page_title
     title = ""
-    categories_filter.selected.each_with_index do |category, index|
-      title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-      title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase if categories_filter.available.include?(category)
+    if categories_filter.selected.one?
+      case categories_filter.selected.first
+      when 'exhibition', 'sportsevent'
+        title = I18n.t("meta.affiches.#{categories_filter.selected.first}.title")
+      end
+    else
+      categories_filter.selected.each_with_index do |category, index|
+        title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
+        title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase if categories_filter.available.include?(category)
+      end
+      title = title.mb_chars.capitalize
     end
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
     title += " на выходных" if period_filter.period == 'weekend'
     title += "за #{I18n.l(period_filter.date, format: "%d %B")}" if period_filter.date?
-    title.blank? ? I18n.t('meta.affiches.title') : "Томская афиша - #{title}"
+    title.blank? ? I18n.t('meta.affiches.title') : "#{title} в Томске"
+  end
+
+  def meta_description
+    if categories_filter.selected.one?
+      case categories_filter.selected.first
+      when 'exhibition', 'sportsevent'
+        I18n.t("meta.affiches.#{categories_filter.selected.first}.description")
+      else
+        I18n.t('meta.affiches.description')
+      end
+    else
+      I18n.t('meta.affiches.description')
+    end
+  end
+
+  def meta_keywords
+    case categories_filter.selected.first
+    when 'exhibition', 'sportsevent'
+      I18n.t("meta.affiches.#{categories_filter.selected.first}.keywords")
+    end if categories_filter.selected.one?
   end
 
   def searcher_params
