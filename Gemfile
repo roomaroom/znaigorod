@@ -24,8 +24,6 @@ group :default do
   gem 'enumerize'
   gem 'esp-ckeditor'
   gem 'fastimage'
-  gem 'formtastic'
-  gem 'formtastic'
   gem 'friendly_id'
   gem 'gilenson'
   gem 'grape'

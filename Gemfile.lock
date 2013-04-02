@@ -404,7 +404,6 @@ DEPENDENCIES
   esp-ckeditor
   fabrication
   fastimage
-  formtastic
   freeze_time
   friendly_id
   gilenson
