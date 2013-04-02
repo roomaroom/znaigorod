@@ -1,6 +1,5 @@
 <%= content_tag :div, link_to(hit.image_item, hit.show_url), class: "image" if hit.image? %>
 
-<%= content_tag :ul, hit.kind_links, class: "kind" unless hit.kind_links.blank? %>
 
 <div class="title">
   <%= hit.title_link %>
@@ -20,6 +19,9 @@
     </ul>
   <% end %>
 <% end %>
+
+<%= content_tag :ul, hit.kind_links, class: "kind" unless hit.kind_links.blank? %>
+
 <% if Rails.env.development? %>
   <div class='debug'>
     <%= hit.score %> |
