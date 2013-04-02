@@ -19,6 +19,25 @@
       margin: 0
       padding: 0 10px 12px
 
+    .introduction
+      +clearfix
+      font-size: 12px
+      line-height: 1.75
+      background-color: #fff
+      border: 1px dotted #858585
+      +border-radius
+      padding: 5px 10px
+      margin: 10px
+      .toggler
+        float: right
+        margin: 5px 0 5px 10px
+        &.closed:after
+          content: ' \25be'
+        &.opened:after
+          content: ' \25b4'
+      p
+        margin: 5px 0
+
     .filter
       +clearfix
       +min-height(35px)

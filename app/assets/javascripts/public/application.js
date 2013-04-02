@@ -27,6 +27,7 @@
  * = require public/filter_handler
  * = require public/prepare_organizations
  * = require public/organization_info
+ * = require public/introduction
  * = require public/prepare_sauna
  * = require public/iconize_info
  * = require public/tour_link

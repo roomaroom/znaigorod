@@ -26,6 +26,7 @@ $ ->
   init_contest() if $('.content_wrapper .contest').length
   init_prepare_organizations() if $('.organizations_list .info .characteristics').length
   init_organization_info() if $('.organization_info .info .description').length
+  init_introduction() if $('.filters .introduction').length
   init_prepare_sauna() if $('.organization_info .sauna_hall_details').length
   init_iconize_info() if $('.organization_info .iconize_info li').length
   init_tour_link() if $('.organization_info .tour_link').length
