@@ -631,16 +631,18 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
   add_index "user_ratings", ["user_id"], :name => "index_user_ratings_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "oauth_key"
     t.integer  "roles_mask"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "uid"
+    t.integer  "sign_in_count",      :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.text     "auth_raw_info"
   end
-
-  add_index "users", ["oauth_key"], :name => "index_users_on_oauth_key", :unique => true
 
   create_table "works", :force => true do |t|
     t.text     "image_url"
