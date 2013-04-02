@@ -15,7 +15,7 @@
   <h1><%= @work.contest.title.excerpt %></h1>
   <div class='contest'>
     <div class='description'>
-      <%= @work.contest.description.as_html.hyphenate %>
+      <%= @work.contest.description.as_html %>
     </div>
     <div class='work'>
       <%= link_to 'Все участники конкурса', contest_path(@work.contest), :class => :link_to_contest %>
@@ -33,7 +33,7 @@
         <% end %>
         <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
       </div>
-      <%= content_tag :div, @work.description.as_html.hyphenate, :class => :description if @work.description.present? %>
+      <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
     </div>
     <% if Rails.env.production? && @work.contest.ends_on >= Date.today %>
       <div id='vk_contest_work_comments'></div>
