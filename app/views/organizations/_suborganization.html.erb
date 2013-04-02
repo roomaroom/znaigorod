@@ -1,15 +1,15 @@
 <%= content_tag :div, suborganization.logo_link, :class => "image" unless suborganization.logo_link.blank? %>
 
 <div class="info">
-  <ul class="categories">
-    <% suborganization.category_links.each do |category_link| %>
-      <li><%= category_link %></li>
-    <% end %>
-  </ul>
 
   <h2><%= suborganization.title_link %></h2>
 
   <%= content_tag :div, suborganization.address_link, :class => "place" unless suborganization.address_link.blank? %>
 
   <%= suborganization.schedule_today %>
+  <ul class="categories">
+    <% suborganization.category_links.each do |category_link| %>
+      <li><%= category_link %></li>
+    <% end %>
+  </ul>
 </div>
