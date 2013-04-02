@@ -15,10 +15,10 @@
             <% if @post.post_images.any? %>
               <%= image_tag @post.post_images.first.attachment_url.gsub(/\/\d+-\d+\//, '/380-284!/'), :alt => @post.post_images.first.title, :class => 'preview' %>
             <% end %>
-            <%= raw @post.annotation %>
+            <%= @post.annotation.as_html %>
           </div>
           <div class="post_content">
-            <%= raw @post.content %>
+            <%= @post.content.as_html %>
           </div>
 
           <% if @post.post_images.many? %>
