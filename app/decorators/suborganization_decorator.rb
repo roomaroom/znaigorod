@@ -7,7 +7,7 @@ class SuborganizationDecorator < ApplicationDecorator
 
   delegate :logo_link, :title_link, :address_link, :html_description,
     :truncated_description, :site_link, :email_link, :stand_info, :schedule_today,
-    :to => :decorated_organization
+    :organization_url, :to => :decorated_organization
 
   def decorated_title
     h.content_tag :h3, title, class: :suborganization if title?
@@ -33,6 +33,21 @@ class SuborganizationDecorator < ApplicationDecorator
     content << email_link unless email_link.blank?
     content << site_link unless site_link.blank?
     h.content_tag(:div, content.join(", ").html_safe, class: :contacts) unless content.blank?
+  end
+
+  def truncated_title_link
+    if organization.title.length > 80
+      h.link_to h.truncate(organization.title, length: 80).text_gilensize, organization_url, title: organization.title
+    else
+      h.link_to organization.title.text_gilensize, organization_url
+    end
+  end
+
+  def decorated_phones
+    return if phone.blank?
+    phones = phone.squish.split(', ')
+    return h.content_tag :div, phones.first, class: 'phone' if phones.one?
+    return h.content_tag :div, "#{phones.first}&hellip;".html_safe, class: 'phone many', title: phones.join(', ') if phones.many?
   end
 
   def categories

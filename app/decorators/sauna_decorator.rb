@@ -25,7 +25,6 @@ class SaunaDecorator < SuborganizationDecorator
     %w[sauna_accessory sauna_alcohol sauna_broom sauna_oil sauna_massage sauna_child_stuff].each do |model_name|
       content << sauna_model_decorate(model_name)
     end
-    #content << sauna_halls_decorate
     content = h.content_tag :div, content.html_safe, class: :sauna_characteristics
     content.html_safe
   end

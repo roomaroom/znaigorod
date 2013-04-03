@@ -60,37 +60,70 @@
       font-size: 22px
       color: #777
       margin: 40px 0 20px 10px
-    ul
+    .items_list
       li
-        background-color: #efeaf1
-        padding: 5px
-        margin-bottom: 10px
+        border: 1px solid #bfbfbf
+        padding: 1px
+        margin-bottom: 15px
         +clearfix
         .image
           float: left
+          border: 1px solid #efe7f4
           width: 80px
           height: 80px
-          margin: 0 10px 0 0
-          img
-            width: 80px
-            height: 80px
         .info
           +clearfix
+          .head
+            +clearfix
+            background-color: #efe7f4
+            h2
+              float: left
+              line-height: 1.6
+              margin: 0 10px
+            .right
+              float: right
+              font-size: 11px
+              line-height: 2
+              +clearfix
+              .phone
+                float: left
+                border-left: 1px dotted #7c747f
+                padding: 0 10px
+                &.many
+                  cursor: help
+              .schedule_today
+                float: left
+                border-left: 1px dotted #7c747f
+                background-color: transparent
+                background-repeat: no-repeat
+                background-position: 7px center
+                padding: 0 10px 0 65px
+                &.twenty_four
+                  background-image: image_url('public/organization_twenty_four.png')
+                &.opened
+                  background-image: image_url('public/organization_opened.png')
+                &.closed
+                  background-image: image_url('public/organization_closed.png')
+              .place
+                float: left
+                border-left: 1px dotted #7c747f
+                padding: 0 10px
+                a
+                  padding-left: 13px
+                  background: transparent image_url('public/address.png') no-repeat -3px 0
+
           .categories
             +clearfix
             font-size: 11px
             line-height: 1.4
+            margin: 5px 10px
             li
               float: left
+              border: none
               margin: 0 10px 3px 0
               padding: 0
             a
               color: #333
-
-          h2
-            font-size: 16px
-            font-weight: bold
-            line-height: 1.4
 
           .snipped_links
             +clearfix
@@ -99,34 +132,6 @@
               line-height: 1.4
               margin: 0 10px 0 0
               padding: 0
-
-          .place
-            font-size: 11px
-            line-height: 1.4
-            a
-              +inline-block
-              height: 16px
-              padding-left: 13px
-              background: transparent image_url('public/address.png') no-repeat -3px 0
-
-          .schedule_today
-            &.twenty_four
-              line-height: 2
-              background: transparent image_url('public/organization_twenty_four.png') no-repeat left
-              padding-left: 57px
-            &.opened
-              line-height: 2
-              background: transparent image_url('public/organization_opened.png') no-repeat left
-              padding-left: 57px
-            &.closed
-              line-height: 2
-              background: transparent image_url('public/organization_closed.png') no-repeat left
-              padding-left: 57px
-
-          .schedule_today,
-          .contacts
-            line-height: 1.2
-            font-size: 11px
 
   .organization_info
     +clearfix
