@@ -6,6 +6,10 @@
   <div class="filters">
     <h1>Сауны Томска</h1>
 
+    <div class='introduction'>
+      <%= t("meta.saunas.introduction").as_html %>
+    </div>
+
     <%= form_tag saunas_path, :method => :get do %>
 
       <div class="filter <%= @presenter.price_filter_used? ? 'used' : 'not_used' %>" id='amount'>
