@@ -3,14 +3,23 @@
 class CategoriesFilter
   attr_accessor :selected, :available, :human_names
 
-  def initialize(categories)
+  def initialize(categories, hidden = false)
     @selected    = (categories || []).delete_if(&:blank?)
     @available   = Affiche.ordered_descendants.map(&:name).map(&:downcase)
     @human_names = Affiche.ordered_descendants.map(&:model_name).map(&:human)
+    @hidden = !!hidden
   end
 
   def used?
     selected.any?
+  end
+
+  def hidden?
+    @hidden
+  end
+
+  def only_category
+    selected.first if hidden?
   end
 end
 
@@ -151,11 +160,16 @@ class OrganizationsFilter
 end
 
 class TagsFilter
-  attr_accessor :selected, :available
+  attr_accessor :selected
 
-  def initialize(tags)
+  def initialize(tags, category = nil)
     @selected = (tags || []).delete_if(&:blank?)
-    @available = HasSearcher.searcher(:showings).actual.facets.facet(:tags).rows.map(&:value)
+    @category = category
+  end
+
+  def available
+    options = @category ? { categories: [@category] } : {}
+    @available ||= HasSearcher.searcher(:showings, options).actual.facets.facet(:tags).rows.map(&:value)
   end
 
   def used?

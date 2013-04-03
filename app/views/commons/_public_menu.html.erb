@@ -6,7 +6,7 @@
         <li><a href="/affiches">Все мероприятия</a></li>
         <% Affiche.ordered_descendants.each do |klass| %>
           <li>
-            <%= link_to klass.model_name.human, affiches_path(categories: [klass.name.downcase]) %>
+            <%= link_to klass.model_name.human, send("#{klass.name.downcase.pluralize}_path") %>
           </li>
         <% end %>
       </ul>

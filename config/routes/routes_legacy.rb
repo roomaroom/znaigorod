@@ -1,6 +1,11 @@
 # encoding: utf-8
 
 Znaigorod::Application.routes.draw do
+  Affiche.descendants.map(&:name).map(&:downcase).map(&:pluralize).each do |kind|
+    get kind => 'affiches#index', :as => kind, :defaults => { :categories => [kind.singularize], :hide_categories => true }
+    match "/#{kind}/all" => redirect("/#{kind}")
+  end
+
   get ':kind/:period/(:on)/(categories/*categories)/(tags/*tags)',
     :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches|masterclasses/,
     :period => /today|weekly|weekend|all|daily/,

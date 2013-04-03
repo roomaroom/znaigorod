@@ -19,6 +19,11 @@ Znaigorod::Application.routes.draw do
     get "#{type.name.downcase}/:id" => 'affiches#show', :as => "#{type.name.downcase}"
     get "#{type.name.downcase}/:id/photogallery" => 'affiches#photogallery', :as => "#{type.name.downcase}_photogallery"
     get "#{type.name.downcase}/:id/trailer" => 'affiches#trailer', :as => "#{type.name.downcase}_trailer"
+
+    #get type.name.downcase.pluralize => 'affiches#index', :as => type.name.downcase.pluralize, :defaults => { :categories => [type.name.downcase.pluralize], :hide_categories => true }
+  end
+
+  Affiche.descendants.map(&:name).map(&:downcase).map(&:pluralize).each do |kind|
   end
 
   Organization.basic_suborganization_kinds.each do |kind|

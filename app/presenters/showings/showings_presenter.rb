@@ -15,7 +15,8 @@ class ShowingsPresenter
                 :lat, :lon, :radius,
                 :order_by,
                 :page, :per_page,
-                :view
+                :view,
+                :hide_categories
 
   def initialize(args)
     super(args)
@@ -29,13 +30,13 @@ class ShowingsPresenter
   end
 
   def initialize_filters
-    @categories_filter    ||= CategoriesFilter.new(categories)
+    @categories_filter    ||= CategoriesFilter.new(categories, hide_categories)
     @period_filter        ||= PeriodFilter.new(period)
     @price_filter         ||= PriceFilter.new(price_min, price_max)
     @age_filter           ||= AgeFilter.new(age_min, age_max)
     @time_filter          ||= TimeFilter.new(time_from, time_to)
     @organizations_filter ||= OrganizationsFilter.new(organization_ids)
-    @tags_filter          ||= TagsFilter.new(tags)
+    @tags_filter          ||= TagsFilter.new(tags, @categories_filter.only_category)
     @geo_filter           ||= GeoFilter.new(lat, lon, radius)
   end
   attr_reader :age_filter, :categories_filter, :organizations_filter, :period_filter,
@@ -60,6 +61,12 @@ class ShowingsPresenter
     @order_by = (available_sortings & [@order_by]).any? ? @order_by : available_sortings.first if !geo_filter.used?
 
     @order_by
+  end
+
+  def url
+    return 'affiches' unless categories_filter.hidden?
+
+    categories_filter.selected.first.try(:pluralize) || 'affiches'
   end
 
   def collection
@@ -130,44 +137,20 @@ class ShowingsPresenter
   end
 
   def page_title
-    title = ""
-    if categories_filter.selected.one?
-      case categories_filter.selected.first
-      when 'exhibition', 'sportsevent'
-        title = I18n.t("meta.affiches.#{categories_filter.selected.first}.title")
-      end
-    else
-      categories_filter.selected.each_with_index do |category, index|
-        title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-        title << categories_filter.human_names[categories_filter.available.index(category)].mb_chars.downcase if categories_filter.available.include?(category)
-      end
-      title = title.mb_chars.capitalize
-    end
+    title = I18n.t("meta.#{url}.title")
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
     title += " на выходных" if period_filter.period == 'weekend'
     title += "за #{I18n.l(period_filter.date, format: "%d %B")}" if period_filter.date?
-    title.blank? ? I18n.t('meta.affiches.title') : "#{title} в Томске"
+    title
   end
 
   def meta_description
-    if categories_filter.selected.one?
-      case categories_filter.selected.first
-      when 'exhibition', 'sportsevent'
-        I18n.t("meta.affiches.#{categories_filter.selected.first}.description")
-      else
-        I18n.t('meta.affiches.description')
-      end
-    else
-      I18n.t('meta.affiches.description')
-    end
+    I18n.t("meta.#{url}.description", default: I18n.t('meta.default.description'))
   end
 
   def meta_keywords
-    case categories_filter.selected.first
-    when 'exhibition', 'sportsevent'
-      I18n.t("meta.affiches.#{categories_filter.selected.first}.keywords")
-    end if categories_filter.selected.one?
+    I18n.t("meta.#{url}.keywords", default: I18n.t('meta.default.description'))
   end
 
   def searcher_params
