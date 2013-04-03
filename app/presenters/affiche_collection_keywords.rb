@@ -19,7 +19,7 @@ class AfficheCollectionKeywords
     keywords = []
 
     keywords << 'aфиша'
-    keywords << 'томск'
+    keywords << 'Томск'
     keywords << 'киноафиша' if movies?
     keywords << 'расписание сеансов' if movies?
 

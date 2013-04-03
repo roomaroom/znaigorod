@@ -67,7 +67,7 @@ module OrganizationsPresenter
       title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
       title << category
     end
-    title.blank? ? I18n.t("meta.#{pluralized_kind}.title") : "#{title} Томска".mb_chars.capitalize
+    title.blank? ? I18n.t("meta.#{pluralized_kind}.title") : "#{title.mb_chars.capitalize} Томска"
   end
 
   def sort_by_popularity?

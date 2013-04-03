@@ -18,7 +18,7 @@ class OrganizationCollectionKeywords
   def keywords
     keywords = []
 
-    keywords << 'томск'
+    keywords << 'Томск'
     keywords += categories
     keywords += features
   end
