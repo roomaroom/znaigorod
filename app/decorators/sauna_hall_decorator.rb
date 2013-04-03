@@ -61,13 +61,14 @@ class SaunaHallDecorator < ApplicationDecorator
 
   def htmlise_pool_on_show
     return "" unless sauna_hall_pool.present?
-    content = "#{I18n.t('sauna.sauna_hall_pool.title')}: "
     pools = []
     pool_attrs = []
     %w[size waterfall contraflow geyser].each do |field|
       pool_attrs << attribute_decorate(sauna_hall_pool, field)
     end
-    pools << pool_attrs.compact.join(", ")
+    pool_attrs.delete_if(&:blank?)
+    pools << pool_attrs.join(", ") if pool_attrs.any?
+    content = pool_attrs.empty? ? '' : "#{I18n.t('sauna.sauna_hall_pool.title')}: "
     %w[jacuzzi bucket].each do |field|
       pools << attribute_decorate(sauna_hall_pool, field)
     end
