@@ -37,6 +37,20 @@ billiard:
     - русский бильярд
     - снукер
 
+salon_center:
+  categories: []
+
+  features: []
+
+  offers:
+    - парикмахерские
+    - маникюр
+    - педикюр
+    - солярии
+    - макияж
+    - spa-салоны
+    - массаж
+
 car_service_center:
   categories: []
 

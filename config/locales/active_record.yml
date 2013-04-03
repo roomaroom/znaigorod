@@ -24,6 +24,7 @@ ru:
       sportsevent:                        Спортивные мероприятия и соревнования
 
       billiard:                           Бильярд
+      salon_center:                       Красота
       car_sales_center:                   Автосалоны
       car_wash:                           Автомойки
       car_service_center:                 Автосервис
@@ -309,6 +310,9 @@ ru:
         <<: *common_attributes
 
       creation:
+        <<: *common_attributes
+
+      salon_center:
         <<: *common_attributes
 
       car_service_center:
