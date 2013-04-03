@@ -132,10 +132,6 @@ class ShowingsPresenter
     }.join(', ')
   end
 
-  def canonical_link
-    Settings['app']['url'] + '/affiches'
-  end
-
   def page_title
     title = I18n.t("meta.#{url}.title")
     title += " сегодня" if period_filter.period == 'today'

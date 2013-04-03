@@ -1,5 +1,6 @@
 <% content_for :extra_meta do %>
-  <link rel="canonical" href="<%= @presenter.canonical_link %>" />
+  <link rel="canonical" href="<%= send("#{@presenter.url}_url") %>" />
+
 <% end %>
 
 <div class='filters_wrapper'>
