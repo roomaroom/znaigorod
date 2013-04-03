@@ -48,7 +48,11 @@ class SaunaDecorator < SuborganizationDecorator
     when String
       h.content_tag :li, [I18n.t("sauna.#{model.class.name.underscore}.#{field}"), value].join(": ")
     when Fixnum
-      h.content_tag :li, I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: value)
+      if value < 0
+        h.content_tag :li, I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: 0.1)
+      else
+        h.content_tag :li, I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: value)
+      end
     when TrueClass
       h.content_tag :li, I18n.t("sauna.#{model.class.name.underscore}.#{field}.true")
     when FalseClass

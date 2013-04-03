@@ -93,7 +93,11 @@ class SaunaHallDecorator < ApplicationDecorator
     when String
       value
     when Fixnum
-      I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: value)
+      if value < 0
+        I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: 0.1)
+      else
+        I18n.t("sauna.#{model.class.name.underscore}.#{field}", count: value)
+      end
     when TrueClass
       I18n.t("sauna.#{model.class.name.underscore}.#{field}.true")
     when FalseClass
