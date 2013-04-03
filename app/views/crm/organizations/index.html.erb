@@ -41,7 +41,9 @@
   <% end %>
 </div>
 
+
 <% if @organizations.present? %>
+  <p>Организаций: <%= @organizations.total_count %></p>
   <ul class="organization_list">
     <%= render OrganizationDecorator.decorate(@organizations) %>
   </ul>
