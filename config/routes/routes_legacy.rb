@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Znaigorod::Application.routes.draw do
   get ':kind/:period/(:on)/(categories/*categories)/(tags/*tags)',
     :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches|masterclasses/,
