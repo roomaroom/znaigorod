@@ -170,7 +170,6 @@ GEM
       virtus
     haml (4.0.1)
       tilt
-    gravatarify (3.0.0)
     has_scope (0.5.1)
     has_searcher (0.0.97)
       rails (~> 3.2.3)
@@ -430,7 +429,6 @@ DEPENDENCIES
   friendly_id
   gilenson
   grape
-  gravatarify (~> 3.0.0)
   has_scope
   has_searcher
   hashie
