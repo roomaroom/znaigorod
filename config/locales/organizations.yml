@@ -10,6 +10,7 @@ ru:
       sauna: Сауны
       car_sales_center: Автосалоны
       car_wash: Автомойки
+      car_service_center: Автосервис
     all:
       meal: Все заведения питания
       entertainment: Все развлекательные заведения
@@ -26,7 +27,9 @@ ru:
       billiard: Бильярдные клубы
       creation: Творчество и развитие
       sauna: Сауны
+      car_sales_center: Автосалоны
       car_wash: Автомойки
+      car_service_center: Автосервис
     singularize_title:
       organization: Заведение города
       meal: Заведение общественного питания
@@ -36,8 +39,9 @@ ru:
       billiard: Бильярдный зал
       creation: Творчество и развитие
       sauna: Сауна
-      car_sales_center: Автосалон
-      car_wash: Автомойка
+      car_sales_center: Автосалоны
+      car_wash: Автомойки
+      car_service_center: Автосервис
     filters:
       category: Категории
       cuisine: Кухня

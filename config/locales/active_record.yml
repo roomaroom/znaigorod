@@ -26,6 +26,7 @@ ru:
       billiard:                           Бильярд
       car_sales_center:                   Автосалоны
       car_wash:                           Автомойки
+      car_service_center:                 Автосервис
       creation:                           Творчество
       culture:                            Культура
       entertainment:                      Развлекательное заведение
@@ -308,6 +309,9 @@ ru:
         <<: *common_attributes
 
       creation:
+        <<: *common_attributes
+
+      car_service_center:
         <<: *common_attributes
 
       car_sales_center:

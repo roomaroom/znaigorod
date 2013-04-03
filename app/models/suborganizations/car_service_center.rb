@@ -1,4 +1,4 @@
-class CarSalesCenter < ActiveRecord::Base
+class CarServiceCenter < ActiveRecord::Base
   belongs_to :organization
   attr_accessible :category, :description, :feature, :offer, :title
   delegate :address, :phone, :latitude, :longitude, :to => :organization

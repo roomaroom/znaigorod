@@ -1,0 +1,24 @@
+<div class="suborganization_info car_service_center">
+  <table>
+    <tr>
+      <td class='border'>
+        <%= car_service_center.htmlise_title_on_show %>
+      </td>
+      <td>
+        <%= car_service_center.iconize_info %>
+        <div class="details">
+          <%= car_service_center.htmlise_offers_and_features_on_show %>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <% if car_service_center.has_photogallery? %>
+    <div class="photogallery">
+      <ul>
+        <% car_service_center.images.each do |image| %>
+          <li><%= link_to(image_tag_for(image.url, 124, 94, true, 'n'), image.url, rel: :car_service_center_gallery) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

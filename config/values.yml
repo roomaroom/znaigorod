@@ -37,8 +37,29 @@ billiard:
     - русский бильярд
     - снукер
 
+car_service_center:
+  categories: []
+
+  features: []
+
+  offers:
+    - кузовной ремонт
+    - электрика
+    - ремонт двигателя
+    - ремонт ходовой части
+    - тюнинг
+    - мелкосрочный ремонт
+    - шиномонтаж
+    - ремонт коробки передач
+    - автостекла
+    - ТО
+
 car_sales_center:
-  categories:
+  categories: []
+
+  features: []
+
+  offers:
     - европейские
     - отечественные
     - японские
@@ -51,10 +72,6 @@ car_sales_center:
     - мотоциклы
     - прицепы
     - водный транспорт
-
-  features: []
-
-  offers: []
 
 car_wash:
   categories:

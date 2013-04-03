@@ -43,7 +43,7 @@ class Organization < ActiveRecord::Base
   available_suborganization_kinds.each do |kind|
     has_one kind, :dependent => :destroy
   end
-  has_one :entertainment,       :dependent => :destroy, :conditions => { type: nil }
+  has_one :entertainment, :dependent => :destroy, :conditions => { type: nil }
 
   validates_presence_of :title, :priority_suborganization_kind
 
