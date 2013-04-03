@@ -5,7 +5,7 @@ Znaigorod::Application.routes.draw do
     :to => redirect { |params, req|
       parameters = {}
       parameters['categories'] = []
-      (params[:categories] || "").split('/').each do |word|
+      (params[:categories] || params[:kind] || "").split('/').each do |word|
         parameters['categories'] << word
       end
       period = case params[:period]
