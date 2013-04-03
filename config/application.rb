@@ -35,7 +35,7 @@ module Znaigorod
                                 #{config.root}/lib
                                )
 
-    config.paths['config/routes'] += Dir[Rails.root.join('config', 'routes', '*.rb')]
+    config.paths['config/routes'] += Dir[Rails.root.join('config', 'routes', '*.rb')].sort
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
