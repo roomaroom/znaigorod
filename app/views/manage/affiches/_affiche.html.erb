@@ -112,9 +112,13 @@
       <ul>
         <% resource.images.each do |image| %>
           <li>
-            <%= image_tag image.url, :alt => image.description, :title => image.description %>
-            <%= link_to "Удалить", manage_affiche_image_path(resource, image), :method => :delete, :confirm => 'Вы уверены?' %>
-            <%= link_to 'Редактировать', edit_manage_affiche_image_path(resource, image) %>
+            <p>
+              <%= link_to(image_tag(image.url.gsub(/\/\d+-\d+\//, '/200-200!n/'), :alt => image.description, :title => image.description), image.url, target: '_blank') %>
+            </p>
+            <p>
+              <%= link_to "Удалить", manage_affiche_image_path(resource, image), :method => :delete, :confirm => 'Вы уверены?' %>
+              <%= link_to 'Редактировать', edit_manage_affiche_image_path(resource, image) %>
+            </p>
           </li>
         <% end %>
       </ul>
