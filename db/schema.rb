@@ -619,13 +619,14 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
 
   create_table "user_ratings", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "organization_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
     t.integer  "value"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "user_ratings", ["organization_id"], :name => "index_user_ratings_on_organization_id"
+  add_index "user_ratings", ["rateable_id", "rateable_type"], :name => "index_user_ratings_on_rateable_id_and_rateable_type"
   add_index "user_ratings", ["user_id"], :name => "index_user_ratings_on_user_id"
 
   create_table "users", :force => true do |t|

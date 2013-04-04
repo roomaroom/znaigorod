@@ -5,7 +5,7 @@ module QualityRating
 
   included do
     after_save :recalculate_rating
-    has_many :user_ratings
+    has_many :user_ratings, :as => :rateable
   end
 
   module ClassMethods
