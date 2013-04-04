@@ -42,11 +42,11 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def kind_affiche_photogallery_path(options = {})
-    h.send "#{kind}_photogallery_path", affiche, options
+    h.send "#{kind}_path", affiche, options.merge({:anchor => 'photogallery'})
   end
 
   def kind_affiche_trailer_path(options = {})
-    h.send "#{kind}_trailer_path", affiche, options
+    h.send "#{kind}_path", affiche, options.merge({:anchor => 'trailer'})
   end
 
   def all_affiches_link
