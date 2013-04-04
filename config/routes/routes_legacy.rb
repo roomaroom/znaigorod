@@ -6,6 +6,15 @@ Znaigorod::Application.routes.draw do
     match "/#{kind}/all" => redirect("/#{kind}")
   end
 
+  Affiche.descendants.map(&:name).map(&:downcase).each do |kind|
+    get "#{kind}/:id/photogallery", :to => redirect { |params, req|
+      "/#{kind}/#{params[:id]}#photogallery"
+    }
+    get "#{kind}/:id/trailer", :to => redirect { |params, req|
+      "/#{kind}/#{params[:id]}#trailer"
+    }
+  end
+
   get ':kind/:period/(:on)/(categories/*categories)/(tags/*tags)',
     :kind => /movies|concerts|parties|spectacles|exhibitions|sportsevents|others|affiches|masterclasses/,
     :period => /today|weekly|weekend|all|daily/,
