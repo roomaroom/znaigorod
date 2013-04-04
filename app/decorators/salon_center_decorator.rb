@@ -4,7 +4,7 @@ class SalonCenterDecorator < SuborganizationDecorator
   decorates :salon_center
 
   def title
-    salon_center.title? ? salon_center.title : 'Автосервис'
+    salon_center.title? ? salon_center.title : 'Красота'
   end
 
   def htmlise_title_on_show

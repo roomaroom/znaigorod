@@ -25,6 +25,7 @@ ru:
     add_car_sales_center: Добавление автосалона
     add_car_wash: Добавление автомойки
     add_car_service_center: Добавление автосервиса
+    add_salon_center: Добавление салона красоты
     edit_affiche: Редактирование информации о событии
     edit_billiard: Редактирование бильярдного зала
     edit_concert: Редактирование информации о концерте
@@ -47,6 +48,7 @@ ru:
     edit_car_sales_center: Редактирование автосалона
     edit_car_wash: Редактирование автомойки
     edit_car_service_center: Редактирование автосервиса
+    edit_salon_center: Редактирование салона красоты
 
     admin:
       admin: Администратор
