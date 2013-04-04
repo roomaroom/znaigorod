@@ -32,16 +32,18 @@ class Organization < ActiveRecord::Base
   has_many :social_links,   :dependent => :destroy
 
   has_one :address,             :dependent => :destroy
-  has_one :culture,             :dependent => :destroy
-  has_one :entertainment,       :dependent => :destroy, :conditions => { type: nil }
-  has_one :meal,                :dependent => :destroy
-  has_one :sauna,               :dependent => :destroy
-  has_one :sport,               :dependent => :destroy
-  has_one :billiard,            :dependent => :destroy
-  has_one :creation,            :dependent => :destroy
   has_one :organization_stand,  :dependent => :destroy
-  has_one :car_wash,            :dependent => :destroy
-  has_one :car_sales_center,    :dependent => :destroy
+
+  def self.available_suborganization_kinds
+    Dir.chdir(Rails.root.join('app/models/suborganizations')) {
+      Dir['*.rb'].map { |f| f.gsub('.rb', '') }
+    }
+  end
+
+  available_suborganization_kinds.each do |kind|
+    has_one kind, :dependent => :destroy
+  end
+  has_one :entertainment,       :dependent => :destroy, :conditions => { type: nil }
 
   validates_presence_of :title, :priority_suborganization_kind
 
@@ -177,12 +179,6 @@ class Organization < ActiveRecord::Base
     @text_description ||= html_description.as_text
   end
 
-  # TODO: сделать ахеренна
-  def self.available_suborganization_kinds
-    Dir.chdir(Rails.root.join('app/models/suborganizations')) {
-      Dir['*.rb'].map { |f| f.gsub('.rb', '') }
-    }
-  end
 
   def self.inherited_suborganization_kinds
     available_suborganization_kinds.map(&:classify).map(&:constantize).flat_map(&:descendants).map(&:name).map(&:downcase)
