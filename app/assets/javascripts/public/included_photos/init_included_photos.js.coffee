@@ -9,10 +9,6 @@
     $('.photogallery li a').attr('rel', 'affiche_gallery')
     scroll = 5
     visible = 6
-    if window.location.hash == '#photogallery' && $.fn.scrollTo
-      setTimeout ->
-        $.scrollTo($('.content .affiche .photogallery'), 500, { offset: {top: -50} })
-      , 300
   $('.photogallery ul').jcarousel
     scroll: scroll
     visible: visible

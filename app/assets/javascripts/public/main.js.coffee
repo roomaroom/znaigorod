@@ -15,6 +15,8 @@ $ ->
     init_affiches_map() if $('.show_map_link').length
 
   init_main_page() if $('.main_page_affiche').length
+  init_affiches_extend() if $('.content .affiche .photogallery')
+  init_affiches_extend() if $('.content .affiche .trailer')
   init_affiches_filter() if $('.affiches_filter .periods .daily').length
   init_affiches_filter() if $('.navigation .periods .daily').length
   init_tabs() if $('.content .tabs').length
