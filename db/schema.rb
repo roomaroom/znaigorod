@@ -312,6 +312,7 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
     t.string   "subdomain"
     t.integer  "user_id"
     t.string   "status"
+    t.float    "total_rating"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
@@ -615,6 +616,17 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
     t.string   "title"
     t.text     "description"
   end
+
+  create_table "user_ratings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.integer  "value"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "user_ratings", ["organization_id"], :name => "index_user_ratings_on_organization_id"
+  add_index "user_ratings", ["user_id"], :name => "index_user_ratings_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -232,6 +232,8 @@ class Organization < ActiveRecord::Base
 
   include Rating
   use_for_rating :culture, :entertainment, :meal, :sauna, :sport, :billiard, :creation, :organization_stand
+
+  include QualityRating
 end
 
 # == Schema Information
