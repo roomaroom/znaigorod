@@ -30,6 +30,7 @@ $ ->
   init_prepare_sauna() if $('.organization_info .sauna_hall_details').length
   init_iconize_info() if $('.organization_info .iconize_info li').length
   init_tour_link() if $('.organization_info .tour_link').length
+  init_included_photos() if $('.affiche .photogallery li').length
   init_included_photos() if $('.organization_info .photogallery li').length
   init_included_photos() if $('.post .photogallery li').length
   init_post_photos() if $('.post a[rel="colorbox"]').length
@@ -44,6 +45,7 @@ $ ->
   init_swfkrpano() if $('#krpano').length
   init_webcam_axis() if $('.webcams_list .webcam_axis').length
   init_webcam_swfobject() if $('.webcams_list .webcam_swfobject').length
+
   true
 
 $(window).load ->

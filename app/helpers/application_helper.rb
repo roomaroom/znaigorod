@@ -17,6 +17,22 @@ module ApplicationHelper
     image_tag resized_image_url(affiche.image_url, width, height, true), :alt => affiche.title, :title => affiche.title
   end
 
+  def resized_link_image(image, resized_width, resized_height)
+    if image.thumbnail_url?
+      if image.width.present? && !image.width.zero? && image.height.present? && !image.height.zero?
+        if (image.height * resized_width / image.width) > resized_height
+          link_to(image_tag(image.thumbnail_url, :title => image.description, width: resized_width, height: (image.height * resized_width / image.width)), image.url)
+        else
+          link_to(image_tag(image.thumbnail_url, :title => image.description, width: (image.width * resized_height / image.height), height: resized_height), image.url, class: 'wide')
+        end
+      else
+        link_to(image_tag(image.thumbnail_url, :title => image.description), image.url)
+      end
+    else
+      link_to(image_tag_for(image.url, resized_width, resized_height, true, 'n', image.description), image.url)
+    end
+  end
+
   def price_for(showing)
     return 'бесплатно' if showing.price_min.zero? && showing.price_max.zero?
     return number_to_currency(showing.price_min, :precision => 0) if showing.price_max.zero?
@@ -164,12 +180,13 @@ module ApplicationHelper
     end
   end
 
-    def resized_image_url(url, width, height, crop, orientation = '')
-      image_url, image_id, image_width, image_height, image_crop, image_filename =
-          url.match(%r{(.*)/files/(\d+)/(?:(\d+)-(\d+)(\!)?/)?(.*)})[1..-1]
+  def resized_image_url(url, width, height, crop, orientation = '')
+    image_url, image_id, image_width, image_height, image_crop, image_filename =
+      url.match(%r{(.*)/files/(\d+)/(?:(\d+)-(\d+)(\!)?/)?(.*)})[1..-1]
 
-      image_crop = crop ? '!' : ''
+    image_crop = crop ? '!' : ''
 
-      "#{image_url}/files/#{image_id}/#{width}-#{height}#{image_crop}#{orientation}/#{image_filename}"
-    end
+    "#{image_url}/files/#{image_id}/#{width}-#{height}#{image_crop}#{orientation}/#{image_filename}"
+  end
+
 end

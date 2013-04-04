@@ -5,6 +5,10 @@
   if $('.photogallery').closest('.post').length
     scroll = 5
     visible = 6
+  if $('.photogallery').closest('.affiche').length
+    $('.photogallery li a').attr('rel', 'affiche_gallery')
+    scroll = 5
+    visible = 6
   $('.photogallery ul').jcarousel
     scroll: scroll
     visible: visible
