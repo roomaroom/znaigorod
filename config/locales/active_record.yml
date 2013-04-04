@@ -28,6 +28,7 @@ ru:
       car_sales_center:                   Автосалоны
       car_wash:                           Автомойки
       car_service_center:                 Автосервис
+      hotel:                              Гостиницы
       creation:                           Творчество
       culture:                            Культура
       entertainment:                      Развлекательное заведение
@@ -313,6 +314,9 @@ ru:
         <<: *common_attributes
 
       salon_center:
+        <<: *common_attributes
+
+      hotel:
         <<: *common_attributes
 
       car_service_center:
