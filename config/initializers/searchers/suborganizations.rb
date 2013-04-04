@@ -1,4 +1,4 @@
-Organization.available_suborganization_kinds.each do |kind|
+Organization.basic_suborganization_kinds.each do |kind|
   klass = kind.classify.constantize
 
   HasSearcher.create_searcher kind.pluralize.to_sym do
@@ -17,6 +17,11 @@ Organization.available_suborganization_kinds.each do |kind|
         facet field, sort: :index
       end
 
+    end
+
+    # OPTIMIZE: special cases
+    scope :remove_duplicated do
+      with(:show_in_search_results, true) if klass == Entertainment
     end
 
     property :location do |search|
