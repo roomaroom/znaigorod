@@ -8,11 +8,9 @@ class UserRating < ActiveRecord::Base
   validates :user, :organization, :presence => true
   validates :user_id, :uniqueness => { :scope => :organization_id }
 
-  after_save :organization_save!
+  after_save :organization_recalculate_rating
 
   private
 
-  def organization_save!
-    organization.save!
-  end
+  delegate :recalculate_rating, :to => :organization, :prefix => true
 end

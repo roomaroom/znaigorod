@@ -4,7 +4,7 @@ module QualityRating
   extend ActiveSupport::Concern
 
   included do
-    before_save :set_total_rating
+    after_save :recalculate_rating
     has_many :user_ratings
   end
 
@@ -19,9 +19,11 @@ module QualityRating
     end
   end
 
-  def set_total_rating
-    self.total_rating = calculate_total_rating
+  def recalculate_rating
+    update_column(:total_rating, calculate_total_rating)
   end
+
+  private
 
   def calculate_total_rating
     user_rating - (user_rating - quality_rating) / (user_ratings.count + 1)**((user_ratings.count * 0.02)/(user_rating + 0.1))
