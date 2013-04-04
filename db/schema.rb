@@ -381,6 +381,15 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
     t.boolean  "status",     :default => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
+
   create_table "salon_centers", :force => true do |t|
     t.text     "category"
     t.text     "description"
