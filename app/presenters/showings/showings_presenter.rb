@@ -24,7 +24,7 @@ class ShowingsPresenter
 
     @page ||= 1
     @per_page = 12
-    @view     = %w[list posters].include?(view) ? view : 'posters'
+    @view     = 'posters'
 
     initialize_filters
   end
@@ -57,8 +57,8 @@ class ShowingsPresenter
   end
 
   def order_by
-    @order_by = available_sortings.include?(@order_by) ? @order_by : available_sortings.first
-    @order_by = (available_sortings & [@order_by]).any? ? @order_by : available_sortings.first if !geo_filter.used?
+    @order_by = available_sortings.include?(@order_by) ? @order_by : 'creation'
+    @order_by = (available_sortings & [@order_by]).any? ? @order_by : 'creation' if !geo_filter.used?
 
     @order_by
   end
