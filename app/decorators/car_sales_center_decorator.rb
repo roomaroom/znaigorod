@@ -4,7 +4,7 @@ class CarSalesCenterDecorator < SuborganizationDecorator
   decorates :car_sales_center
 
   def title
-    car_sales_center.title? ? car_sales_center.title : 'Автосервис'
+    car_sales_center.title? ? car_sales_center.title : 'Автосалон'
   end
 
   def htmlise_title_on_show
