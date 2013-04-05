@@ -383,7 +383,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def scheduled_showings?
-    !affiche.affiche_schedule.nil? && affiche.is_a?(Exhibition)
+    !affiche.affiche_schedule.nil? && affiche.constant?
   end
 
   private
