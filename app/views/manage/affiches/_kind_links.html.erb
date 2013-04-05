@@ -1,0 +1,7 @@
+<ul class='kind_links'>
+  <% Affiche.ordered_descendants.each do |kind| %>
+    <li>
+      <%= link_to kind.model_name.human, [:manage, kind.model_name.underscore.pluralize] %>
+    </li>
+  <% end %>
+</ul>
