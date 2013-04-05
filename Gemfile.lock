@@ -161,7 +161,7 @@ GEM
     haml (4.0.1)
       tilt
     has_scope (0.5.1)
-    has_searcher (0.0.96)
+    has_searcher (0.0.97)
       rails (~> 3.2.3)
     hashie (1.2.0)
     highline (1.6.16)
