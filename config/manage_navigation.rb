@@ -13,6 +13,8 @@ SimpleNavigation::Configuration.run do |navigation|
         Organization.available_suborganization_classes.each do |klass|
           org_item.item klass, klass.model_name.human, [:manage, klass.model_name.underscore.pluralize]
         end
+
+        org_item.item :rated, 'Рейтинг организаций', manage_organizations_rated_path
     end
 
     primary.item :affiches, 'Мероприятия города', manage_affiches_path,
