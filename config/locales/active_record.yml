@@ -72,6 +72,7 @@ ru:
         latitude: Широта
         longitude: Долгота
         street: Улица
+        office: Офис
 
       contact:
         email: Email

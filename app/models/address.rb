@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  attr_accessible :house, :latitude, :longitude, :street
+  attr_accessible :house, :latitude, :longitude, :street, :office
 
   belongs_to :organization
 
