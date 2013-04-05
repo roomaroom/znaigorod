@@ -30,6 +30,10 @@ class OrganizationDecorator < ApplicationDecorator
       :longitude => organization.address.longitude
   end
 
+  def office
+    return ", #{organization.address.office.squish}" unless organization.address.office.blank?
+  end
+
   def show_url
     organization_url
   end
