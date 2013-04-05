@@ -103,6 +103,7 @@ class Organization < ActiveRecord::Base
 
   searchable do
     float :rating
+    float :total_rating
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 

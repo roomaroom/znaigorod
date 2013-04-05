@@ -8,6 +8,7 @@ module Rateable
   included do
     has_many :user_ratings, :as => :rateable
     after_save :recalculate_rating
+    scope :ordered_by_rating, -> { order(:total_rating) }
   end
 
   def self.calculate_fullness_rating(object, options={})

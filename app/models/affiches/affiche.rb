@@ -54,6 +54,8 @@ class Affiche < ActiveRecord::Base
   alias_attribute :title_translit,  :title
 
   searchable do
+    float :total_rating
+
     float :age_min
     float :age_max
 

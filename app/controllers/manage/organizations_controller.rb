@@ -23,7 +23,9 @@ class Manage::OrganizationsController < Manage::ApplicationController
   end
 
   def collection
-    HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => per_page).results
+    searcher = HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => per_page)
+    searcher.order_by(:total_rating, :desc) if params[:rated]
+    searcher.results
   end
 
   def check_role

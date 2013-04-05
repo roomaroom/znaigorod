@@ -23,6 +23,8 @@ Znaigorod::Application.routes.draw do
       resources :post_images
     end
 
+    get 'organizations/rated' => 'organizations#index', :defaults => { :rated => true }
+
     resources :organizations do
       (Organization.available_suborganization_kinds).each do |kind|
         resource kind, :except => [:index, :show]
