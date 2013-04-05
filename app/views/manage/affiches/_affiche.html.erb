@@ -2,7 +2,7 @@
   <% if resource.poster_url.present? %>
     <%= image_tag_for resource.poster_url, 290, 390 %>
   <% else %>
-    <%= image_tag "stub.jpg", :width => '137', :height => '100', :alt => resource.title, :title => resource.title %>
+    <%= image_tag "manage/stub.jpg", :width => '137', :height => '100', :alt => resource.title, :title => resource.title %>
   <% end %>
 </div>
 

@@ -108,12 +108,12 @@ create_marker = (coords, type) ->
   if type == 'self'
     icon = new DG.Icon()
     icon = new DG.Icon(
-      '/assets/self_marker.png',
+      '/assets/public/self_marker.png',
       new DG.Size(17, 31)
     )
   else
     icon = new DG.Icon(
-      '/assets/item_marker.png',
+      '/assets/public/item_marker.png',
       new DG.Size(16, 20)
     )
 

@@ -1,9 +1,0 @@
-<div class="poster">
-  <% if resource.logotype_url.present? %>
-    <%= image_tag_for(resource.logotype_url, 290, 390) %>
-  <% else %>
-    <%= image_tag "stub.jpg", :width => '274', :height => '200', :alt => resource.title, :title => resource.title %>
-  <% end %>
-  <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-  <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,lj,gplus"></div>
-</div>
