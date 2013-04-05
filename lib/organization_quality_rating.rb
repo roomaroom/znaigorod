@@ -5,14 +5,7 @@ module OrganizationQualityRating
 
   include Rateable
 
-  SKIPED_ATTRIBUTES = /^id$|^created_at$|^updated_at$|^rating$|^comment$|^slug$|_id$|_rating$|^yandex|^vkontakte/
-  ATRRIBUTE_MODELS = [:address, :social_links]
-
-  def self.calculate_fullness_rating(object)
-    attributes = object.attributes.delete_if{|k,v| k =~ SKIPED_ATTRIBUTES }
-    filled_attributes = attributes.select{|k,v| !v.nil? && v.to_s.present? }
-    1.0 * filled_attributes.count / attributes.count
-  end
+  SKIPPED_ATTRIBUTES = /^id$|^created_at$|^updated_at$|^rating$|^comment$|^slug$|_id$|_rating$|^yandex|^vkontakte/
 
   private
 
@@ -21,12 +14,12 @@ module OrganizationQualityRating
   end
 
   def self_fullness_rating
-    OrganizationQualityRating.calculate_fullness_rating(self)
+    Rateable.calculate_fullness_rating(self, :skip => SKIPPED_ATTRIBUTES)
   end
 
   def fullness_rating
     sum_ratings = suborganizations.inject(self_fullness_rating) do |sum, suborganization|
-      sum += OrganizationQualityRating.calculate_fullness_rating(suborganization)
+      sum += Rateable.calculate_fullness_rating(suborganization, :skip => SKIPPED_ATTRIBUTES)
     end
     sum_ratings / (suborganizations.count + 1)
   end

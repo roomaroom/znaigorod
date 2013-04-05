@@ -144,6 +144,8 @@ class Affiche < ActiveRecord::Base
     false
   end
 
+  include AfficheQualityRating
+
   private
 
   def affiche_schedule_attributes_blank?(attributes)

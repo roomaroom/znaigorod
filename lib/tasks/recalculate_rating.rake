@@ -2,11 +2,19 @@
 
 require 'progress_bar'
 
-desc "Пересчет рейтинга организиции"
-task :recalculate_rating => :environment do
-  bar = ProgressBar.new(Organization.count)
-  Organization.find_each do |organization|
-    organization.recalculate_rating
+def recalculate_rating(options={})
+  clazz = options.delete(:class)
+  puts "recalculate rating for #{clazz}"
+  bar = ProgressBar.new(clazz.count)
+  clazz.find_each do |object|
+    object.recalculate_rating
     bar.increment!
   end
 end
+
+desc "Пересчет рейтинга организиции"
+task :recalculate_rating => :environment do
+  recalculate_rating :class => Organization
+  recalculate_rating :class => Affiche
+end
+
