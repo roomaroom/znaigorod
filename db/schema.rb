@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405044819) do
+ActiveRecord::Schema.define(:version => 20130408052132) do
 
   create_table "activities", :force => true do |t|
     t.text     "title"
@@ -665,6 +665,18 @@ ActiveRecord::Schema.define(:version => 20130405044819) do
     t.string   "provider"
     t.text     "auth_raw_info"
   end
+
+  add_index "users", ["oauth_key"], :name => "index_users_on_oauth_key", :unique => true
+
+  create_table "virtual_tours", :force => true do |t|
+    t.string   "link"
+    t.integer  "tourable_id"
+    t.string   "tourable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "virtual_tours", ["tourable_id", "tourable_type"], :name => "index_virtual_tours_on_tourable_id_and_tourable_type"
 
   create_table "works", :force => true do |t|
     t.text     "image_url"
