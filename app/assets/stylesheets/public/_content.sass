@@ -429,8 +429,8 @@
             width: 100px
 
       .photogallery_header
-        font-size: 20px
-        line-height: 1.5
+        font-size: 18px
+        line-height: 1.7
         background: #e1d2e9 image_url('public/affiche_photogallery_header_bg.png') no-repeat left center
         margin: 0 -10px 5px -10px
         padding-left: 40px
@@ -491,59 +491,51 @@
           background-position: -3px 3px
 
     .distribution
-      margin: 20px 0
       .dates
-        +clearfix
         position: relative
         height: 41px
-        background: #787B85 image_url('public/today_in_city_menu_bg.png') repeat left top
+        background-color: #e1d2e9
+        border-bottom: 1px solid #784391
+        margin: 0 -10px
         li
           float: left
-          color: #fff
-          border-right: 1px dotted #d3d7da
+          color: #333
+          height: 29px
+          border-left: 1px solid #e1d2e9
+          border-right: 1px solid #e1d2e9
         .first
           font-size: 22px
-          background-color: #fff
-          border-bottom: 1px solid #c6c5cd
           h3
             height: 29px
-            background: #784391 image_url('public/distribution_nav_arrow.png') no-repeat right center
-            padding: 2px 20px 7px 10px
+            padding: 2px 15px 7px 10px
             margin: 1px 10px 1px 0
         .text
           cursor: pointer
           text-align: center
           padding: 6px 15px
           .day_of_week
-            color: #d1d1d1
+            color: #707070
             font-size: 10px
             text-transform: lowercase
-        .before_selected
-          border-right: none
         .selected
           cursor: default
+          height: 29px
           position: relative
-          background-color: #eaeaea
-          border-left: 1px solid #c6c5cd
-          border-right: 1px solid #c6c5cd
-          border-top: 4px solid #d0e1e9
+          background-color: #efeaf1
+          border-left: 1px solid #784391
+          border-right: 1px solid #784391
+          border-top: 1px solid #784391
           border-bottom: none
-          padding-top: 2px
+          padding-top: 5px
           padding-bottom: 7px
-          .date
-            color: #302046
-          .day_of_week
-            color: #432a62
       .theaters
         +clearfix
         display: none
-        background-color: #eaeaea
         &:first-child
           display: block
         ul
           +clearfix
           border-bottom: 1px dotted #919191
-          margin: 0 10px
           padding: 10px 0 0
           &:last-child
             border-bottom: none
@@ -600,55 +592,44 @@
           padding-left: 13px
 
     .many_showings
-      margin: 20px 0
       .head
-        +head_style
-        .places
-          margin: 2px 0 7px 10px
-          .name
-            font-size: 22px
-            font-weight: normal
-          .address
-            font-size: 16px
-            background-position: -3px 3px
+        font-size: 18px
+        line-height: 1.7
+        background: #e1d2e9 image_url('public/affiche_schedule_header_bg.png') no-repeat left center
+        margin: 0 -10px 5px -10px
+        padding-left: 40px
+        .address
+          font-size: 12px
       ul
+        +clearfix
+        margin: 10px 0 0 0
         li
-          +clearfix
-          padding: 10px
-          &.odd
-            background-color: #e8e0eb
-          &.even
-            background-color: #eaeaea
-          p
-            float: left
-            &.date
-              width: 118px
-              margin-right: 55px
-              background-color: #ded1e3
-              +border-radius(3px)
-              padding: 0 5px 3px 3px
-              span
-                display: block
-              .day
-                float: left
-                font-size: 28px
-                width: 36px
-                text-align: right
-              .month
-                font-size: 13px
-                font-weight: bold
-                margin-left: 40px
-                margin-top: 2px
-              .day_of_week
-                font-size: 11px
-                margin-left: 40px
-            &.time
-              font-size: 20px
-              margin-right: 40px
-              margin-top: 5px
-            &.price
-              font-size: 16px
-              margin-top: 7px
+          float: left
+          width: 124px
+          margin: 0 10px 10px 0
+          &:nth-child(7n)
+            margin-right: 0
+          .date
+            +clearfix
+            background-color: #fff
+            +border-radius
+            padding: 5px
+            margin-bottom: 3px
+            .day
+              float: left
+              display: block
+              font-size: 22px
+              margin-right: 5px
+            .month
+              display: block
+              font-size: 11px
+              font-weight: bold
+            .day_of_week
+              display: block
+              font-size: 10px
+          .time,
+          .price
+            text-align: center
 
     .sheduled
       margin: 20px 0
