@@ -4,6 +4,8 @@ class Manage::SaunaHallsController < Manage::ApplicationController
   #before_filter :build_resource, :only => :new
   #before_filter :build_nested_objects, :only => [:new, :edit]
 
+  before_filter :build_virtual_tour, :only => [:new, :edit]
+
   belongs_to :organization do
     belongs_to :sauna, :singleton => true
   end
@@ -13,6 +15,10 @@ class Manage::SaunaHallsController < Manage::ApplicationController
   end
 
   private
+
+  def build_virtual_tour
+    resource.virtual_tour || resource.build_virtual_tour
+  end
 
   def build_nested_objects
     (1..7).each do |day|

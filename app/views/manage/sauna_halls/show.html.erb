@@ -17,6 +17,18 @@
       <% end %>
 
       <fieldset>
+        <legend>3D-тур</legend>
+        <% if @sauna_hall.virtual_tour %>
+          <div>
+            <span class="label"><%= VirtualTour.human_attribute_name('link') %>:</span>
+            <span class="value"><%= content_tag :abbr, truncate(resource.virtual_tour_link, :length => 20), :title => resource.virtual_tour_link %></span>
+          </div>
+        <% else %>
+          не указано
+        <% end %>
+      </fieldset>
+
+      <fieldset>
         <legend>Вместительность</legend>
         <% if @sauna_hall.sauna_hall_capacity %>
           <% @sauna_hall.sauna_hall_capacity.useful_attributes.each do |field| %>
