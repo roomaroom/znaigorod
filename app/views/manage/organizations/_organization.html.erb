@@ -67,8 +67,8 @@
 
   <div>
     <span class="label">Ссылка на 3D-тур:</span>
-    <% if resource.tour_link.present? %>
-      <span class="value"><%= content_tag :abbr, truncate(resource.tour_link, :length => 20), :title => resource.tour_link %></span>
+    <% if resource.virtual_tour %>
+      <span class="value"><%= content_tag :abbr, truncate(resource.virtual_tour_link, :length => 20), :title => resource.virtual_tour_link %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>

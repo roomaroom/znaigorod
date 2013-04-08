@@ -16,8 +16,13 @@
   <%= f.link_to_add t('add_social_links'), :social_links %>
 </fieldset>
 
+<fieldset class='organization_virtual_tour virtual_tour_fields'>
+  <legend>3D-тур</legend>
+  <%= f.simple_fields_for :virtual_tour %>
+  <%= f.link_to_add t('add_social_links'), :virtual_tour, :class => 'add_vitual_tour' %>
+</fieldset>
+
 <%= f.input :subdomain %>
-<%= f.input :tour_link %>
 <%= f.input :non_cash %>
 <%= f.input :priority_suborganization_kind,
   :as => :select,

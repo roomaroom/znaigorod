@@ -172,7 +172,6 @@ ru:
         schedules: Расписание работы
         site: Сайт
         subdomain: Поддомен
-        tour_link: Ссылка на 3D-тур
         updated_at: Обновлено
         user_id: Менеджер
 
@@ -251,7 +250,6 @@ ru:
 
       sauna_hall:
         title: Название
-        tour_link: Ссылка на 3D-тур
         description: Описание
 
       sauna_hall_schedule:
@@ -332,3 +330,6 @@ ru:
       car_wash:
         <<: *common_attributes
 
+      virtual_tour:
+        link: Ссылка
+        _destroy: Удалить

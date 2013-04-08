@@ -15,5 +15,6 @@
  * = require ./vk_token
  * = require ./new_affiche
  * = require ./saunas
+ * = require ./has_virtual_tour
  * = require ./main
  */
