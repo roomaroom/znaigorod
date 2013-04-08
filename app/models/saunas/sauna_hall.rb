@@ -1,5 +1,7 @@
 class SaunaHall < ActiveRecord::Base
+  # ActiveSupport::Concern extentions
   include UsefulAttributes
+  include HasVirtualTour
 
   attr_accessible :title, :tour_link, :vfs_path, :description, :sauna_hall_schedules_attributes,
     :sauna_hall_bath_attributes, :sauna_hall_capacity_attributes, :sauna_hall_entertainment_attributes,

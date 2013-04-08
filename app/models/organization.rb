@@ -1,4 +1,8 @@
 class Organization < ActiveRecord::Base
+  # ActiveSupport::Concern extentions
+  include OrganizationQualityRating
+  include HasVirtualTour
+
   extend FriendlyId
 
   attr_accessible :address_attributes, :description, :email, :halls_attributes,
@@ -234,8 +238,6 @@ class Organization < ActiveRecord::Base
 
   include Rating
   use_for_rating :culture, :entertainment, :meal, :sauna, :sport, :billiard, :creation, :organization_stand
-
-  include OrganizationQualityRating
 end
 
 # == Schema Information
