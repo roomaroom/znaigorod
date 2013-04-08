@@ -37,12 +37,14 @@
         <li class='google'>
           <%= link_to 'Google', user_omniauth_authorize_path(:google_oauth2), :title => 'Google' %>
         </li>
-        <li class='mail_ru'>
-          <%= link_to 'Mail.Ru', 'user_omniauth_authorize_path(:mail_ru)', :title => 'Mail.Ru' %>
-        </li>
-        <li class='odnoklassniki'>
-          <%= link_to 'Одноклассники', 'user_omniauth_authorize_path(:odnoklassniki)', :title => 'Одноклассники' %>
-        </li>
+        <% if false %>
+          <li class='mail_ru'>
+            <%= link_to 'Mail.Ru', 'user_omniauth_authorize_path(:mail_ru)', :title => 'Mail.Ru' %>
+          </li>
+          <li class='odnoklassniki'>
+            <%= link_to 'Одноклассники', 'user_omniauth_authorize_path(:odnoklassniki)', :title => 'Одноклассники' %>
+          </li>
+        <% end %>
       </ul>
     <% end %>
   <% end %>

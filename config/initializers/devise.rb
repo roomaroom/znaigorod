@@ -213,11 +213,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook,      Settings['facebook.app_id'], Settings['facebook.app_secret']
-  config.omniauth :google_oauth2, Settings['google.app_id'], Settings['google.app_secret'], :scope => 'https://www.googleapis.com/auth/userinfo.profile'
-  config.omniauth :twitter,       Settings['twitter.app_id'], Settings['twitter.app_secret']
-  config.omniauth :vkontakte,     Settings['vk.app_id'], Settings['vk.app_secret'], :scope => '', :display => 'popup'
-  config.omniauth :yandex,        Settings['yandex.app_id'], Settings['yandex.app_secret']
+  config.omniauth :facebook,      Settings['facebook.app_id'], Settings['facebook.app_secret'], :display => 'popup'
+  config.omniauth :google_oauth2, Settings['google.app_id'],   Settings['google.app_secret'],   :scope => 'https://www.googleapis.com/auth/userinfo.profile'#, display => 'popup'
+  config.omniauth :twitter,       Settings['twitter.app_id'],  Settings['twitter.app_secret'],  :display => 'popup'
+  config.omniauth :vkontakte,     Settings['vk.app_id'],       Settings['vk.app_secret'],       :display => 'popup'
+  config.omniauth :yandex,        Settings['yandex.app_id'],   Settings['yandex.app_secret']#,   :display => 'popup'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
