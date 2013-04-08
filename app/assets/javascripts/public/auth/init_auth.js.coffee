@@ -7,6 +7,6 @@ draw_popup = (url, width, height, name) ->
   $('.auth_links').on 'click', (evt) ->
     target = $(evt.target)
     if target.is('a')
-      draw_popup(target.attr('href'), 600, 400, '...Авторизация...')
+      draw_popup(target.attr('href'), 700, 400, '...Авторизация...')
 
     return false
