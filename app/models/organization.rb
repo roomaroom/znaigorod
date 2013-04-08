@@ -17,7 +17,7 @@ class Organization < ActiveRecord::Base
   has_many :contacts,   :dependent => :destroy
 
   extend Enumerize
-  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh
+  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
 
   # CRM ===>
 
