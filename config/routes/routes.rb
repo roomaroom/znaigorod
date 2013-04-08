@@ -2,21 +2,34 @@ Znaigorod::Application.routes.draw do
   mount Affiches::API => '/'
   mount ElVfsClient::Engine => '/'
 
+  devise_for :users, :controllers => { :omniauth_callbacks =>  'omniauth_callbacks' }
+
+  devise_scope :user do
+    delete '/users/sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+
   get 'cooperation'       => 'cooperation#index'
   get 'geocoder'          => 'geocoder#get_coordinates'
   get 'search'            => 'search#search',             :as => :search
   get 'webcams'           => 'webcams#index'
 
   resources :affiches,      :only => :index
-  resources :organizations, :only => [:index, :show]
+  resources :organizations, :only => [:index, :show] do
+    resources :comments, :only => [:new, :create, :show]
+  end
   resources :saunas,        :only => :index
 
-  get 'masterclass/:id'                 => 'affiches#show',         :as => :master_class
   get 'photogalleries/:period/(*query)' => 'photogalleries#index',  :as => :photogalleries, :period => /all|month|week/
-  get 'sportsevent/:id'                 => 'affiches#show',         :as => :sports_event
 
-  Affiche.descendants.each do |type|
-    get "#{type.name.downcase}/:id" => 'affiches#show', :as => "#{type.name.downcase}"
+  Affiche.descendants.map{ |d| d.name.underscore }.each do |type|
+    get  "#{type}/:#{type}_id/comments/new" => 'comments#new',    :as => "new_#{type}_comment"
+    get  "#{type}/:#{type}_id/comments/:id" => 'comments#show',   :as => "#{type}_comment"
+    post "#{type}/:#{type}_id/comments"     => 'comments#create', :as => "#{type}_comments"
+
+    get "#{type}/:id"                           => 'affiches#show',         :as => "#{type}"
+    get "#{type.gsub('_','')}/:id"              => 'affiches#show',         :as => "#{type.gsub('_','')}"
+    get "#{type.gsub('_','')}/:id/photogallery" => 'affiches#photogallery', :as => "#{type.gsub('_','')}_photogallery"
+    get "#{type.gsub('_','')}/:id/trailer"      => 'affiches#trailer',      :as => "#{type.gsub('_','')}_trailer"
   end
 
   Affiche.descendants.map(&:name).map(&:downcase).map(&:pluralize).each do |kind|
@@ -29,6 +42,8 @@ Znaigorod::Application.routes.draw do
 
   resources :posts, :only => [:index, :show] do
     get :draft, :on => :collection, :as => :draft
+
+    resources :comments, :only => [:new, :create, :show]
   end
 
   resources :contests, :only => :show do

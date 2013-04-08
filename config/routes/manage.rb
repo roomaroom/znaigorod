@@ -2,9 +2,10 @@ Znaigorod::Application.routes.draw do
   namespace :manage do
     post 'red_cloth' => 'red_cloth#show'
 
-    resources :search, :only => :index
+    resources :comments,  :only => [:index, :destroy]
+    resources :search,    :only => :index
+    resources :sessions,  :only => [:new, :create, :destroy]
 
-    resources :sessions, :only => [:new, :create, :destroy]
 
     Affiche.descendants.each do |type|
       resources type.name.underscore.pluralize

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Manage::ApplicationController < InheritedResources::Base
-  helper_method :per_page, :current_user, :namespace
+  helper_method :per_page, :namespace
 
   layout 'manage'
 
