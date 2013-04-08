@@ -33,11 +33,11 @@
           <%= sauna_hall.schedule %>
         </div>
           <ul class="iconize_info">
-            <% if sauna_hall.tour_link? %>
+            <% if sauna_hall.virtual_tour %>
               <li>
-                <%= link_to '3D-тур', '#', :class => 'tour_icon', 'data-link' => 'tour_link', :title => '3D-тур'  %>
-                <div class="tour_link">
-                  <%= sauna_hall.tour_link %>
+                <%= link_to '3D-тур', '#', :class => 'tour_icon', 'data-link' => 'virtual_tour_link', :title => '3D-тур'  %>
+                <div class="virtual_tour_link">
+                  <%= sauna_hall.virtual_tour_link %>
                 </div>
               </li>
             <% end %>

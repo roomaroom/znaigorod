@@ -31,7 +31,7 @@ $ ->
   init_introduction() if $('.filters .introduction').length
   init_prepare_sauna() if $('.organization_info .sauna_hall_details').length
   init_iconize_info() if $('.organization_info .iconize_info li').length
-  init_tour_link() if $('.organization_info .tour_link').length
+  init_virtual_tour_link() if $('.organization_info .virtual_tour_link').length
   init_included_photos() if $('.affiche .photogallery li').length
   init_included_photos() if $('.organization_info .photogallery li').length
   init_included_photos() if $('.post .photogallery li').length

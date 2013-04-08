@@ -3,7 +3,7 @@ class SaunaHall < ActiveRecord::Base
   include UsefulAttributes
   include HasVirtualTour
 
-  attr_accessible :title, :tour_link, :vfs_path, :description, :sauna_hall_schedules_attributes,
+  attr_accessible :title, :vfs_path, :description, :sauna_hall_schedules_attributes,
     :sauna_hall_bath_attributes, :sauna_hall_capacity_attributes, :sauna_hall_entertainment_attributes,
     :sauna_hall_interior_attributes, :sauna_hall_pool_attributes
 
@@ -115,7 +115,7 @@ class SaunaHall < ActiveRecord::Base
 
   def features
     features = sauna_hall_entertainment_features + sauna_hall_interior_features
-    features << self.class.human_attribute_name(:tour_link).mb_chars.downcase if tour_link?
+    features << self.class.human_attribute_name(:virtual_tour_link).mb_chars.downcase if virtual_tour
     features
   end
 end
@@ -129,7 +129,7 @@ end
 #  title       :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  tour_link   :string(255)
+#  virtual_tour_link   :string(255)
 #  vfs_path    :text
 #  description :text
 #

@@ -1,4 +1,7 @@
 ru:
+  attributes:
+    virtual_tour_link: 3D-тур
+
   activerecord:
     errors:
       messages:

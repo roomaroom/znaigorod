@@ -1,5 +1,5 @@
 @init_swfkrpano = () ->
-  link = $('#krpano a.tour_link')
+  link = $('#krpano a.virtual_tour_link')
 
   if link.length && link.attr('href').compact().match('milana')
     data =

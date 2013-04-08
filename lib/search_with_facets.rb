@@ -11,7 +11,7 @@ module SearchWithFacets
     def search_with_facets(*args)
       self.facets = args
 
-      delegate :rating, :tour_link?, :site?, :images, to: :organization, prefix: true
+      delegate :rating, :virtual_tour_link, :site?, :images, to: :organization, prefix: true
       delegate :latitude, :longitude, :to => :organization
 
       klass = self
@@ -40,7 +40,7 @@ module SearchWithFacets
 
   def stuff
     stuffs = [].tap do |array|
-      array << I18n.t('suborganizations.with_3d_tour') if organization_tour_link?
+      array << I18n.t('suborganizations.with_3d_tour') if organization.virtual_tour
       array << I18n.t('suborganizations.with_site')    if organization_site?
       array << I18n.t('suborganizations.with_images')  if organization_images.any?
     end

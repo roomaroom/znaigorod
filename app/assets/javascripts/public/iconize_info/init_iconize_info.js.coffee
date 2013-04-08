@@ -21,13 +21,13 @@
         box_height = 'auto'
         data += $('.description_text', block_item).html()
 
-      if $(this).attr('data-link') == 'tour_link'
+      if $(this).attr('data-link') == 'virtual_tour_link'
         box_width = '790px'
         box_height = '760px'
         data += "
           <div id='krpano'>
             <noscript><center>ERROR: Javascript not activated</center></noscript>
-            <a href='#{$('.tour_link', block_item).text()}' class='tour_link'>#{$('.tour_link', block_item).text()}</a>
+            <a href='#{$('.virtual_tour_link', block_item).text()}' class='virtual_tour_link'>#{$('.virtual_tour_link', block_item).text()}</a>
           </div>
           <div class='ad'>
             <a href='http://tomsk.3dtour.me/' class='3dtourme' rel='nofollow' target='_blank'>
