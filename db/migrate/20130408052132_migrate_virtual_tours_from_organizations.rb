@@ -14,9 +14,12 @@ class MigrateVirtualToursFromOrganizations < ActiveRecord::Migration
   def up
     migrate_tours(Organization)
     migrate_tours(SaunaHall)
+    remove_column :organizations, :tour_link
+    remove_column :sauna_halls, :tour_link
   end
 
   def down
-    VirtualTour.delete_all
+    add_column :organizations, :tour_link, :string
+    add_column :sauna_halls, :tour_link, :string
   end
 end

@@ -315,7 +315,6 @@ ActiveRecord::Schema.define(:version => 20130408052132) do
     t.integer  "organization_id"
     t.text     "logotype_url"
     t.string   "slug"
-    t.text     "tour_link"
     t.float    "rating"
     t.boolean  "non_cash"
     t.string   "priority_suborganization_kind"
@@ -533,7 +532,6 @@ ActiveRecord::Schema.define(:version => 20130408052132) do
     t.string   "title"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "tour_link"
     t.text     "vfs_path"
     t.text     "description"
   end
