@@ -334,5 +334,10 @@ ru:
         <<: *common_attributes
 
       virtual_tour:
+        attachment: Изображение
         link: Ссылка
+        image: Изображение
         _destroy: Удалить
+
+      paperclip_attachment:
+        attachment: Выберите файл

@@ -6,6 +6,7 @@ ru:
   add_organization: "&plus;&nbsp;заведение"
   add_showing: Добавить сеанс
   add_social_links: Добавить ссылку
+  add_vitual_tour: Добавить 3D-тур
   back: Назад
   choose_file: Выбрать файл
   clear_filters: Очистить фильтры
@@ -51,6 +52,7 @@ ru:
   remove_this_image: Удалить это изображение
   remove_this_showing: Удалить этот сеанс
   remove_this_social_link: Удалить эту ссылку
+  remove_virtual_tour: Удалить 3D-тур
   save: Сохранить
   show: Показать
   sign_in: "Вход в&nbsp;кабинет"
