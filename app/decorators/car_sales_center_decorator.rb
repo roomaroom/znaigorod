@@ -3,6 +3,10 @@
 class CarSalesCenterDecorator < SuborganizationDecorator
   decorates :car_sales_center
 
+  def viewable?
+    features.any? || offers.any?
+  end
+
   def title
     car_sales_center.title? ? car_sales_center.title : 'Автосалон'
   end

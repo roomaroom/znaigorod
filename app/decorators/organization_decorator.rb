@@ -77,7 +77,7 @@ class OrganizationDecorator < ApplicationDecorator
     links << h.content_tag(:li, h.link_to(I18n.t("organization.list_title.#{fake_kind}") + " Томска ", h.send("#{fake_kind.pluralize}_path"), :class => "crumb"))
     links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
 
-    unless priority_category == I18n.t("organization.list_title.#{fake_kind}")
+    if priority_category != I18n.t("organization.list_title.#{fake_kind}") && !%w(car_sales_center).include?(fake_kind)
       links << h.content_tag(:li, link_to_priority_category, :class => "crumb")
       links << h.content_tag(:li, h.content_tag(:span, "&nbsp;".html_safe), :class => "separator")
     end
@@ -187,6 +187,7 @@ class OrganizationDecorator < ApplicationDecorator
     [].tap do |arr|
       suborganizations.each do |suborganization|
         suborganization.categories.each do |category|
+
           options = category == I18n.t("organization.list_title.#{suborganization.class.name.underscore}") ? {} : { categories: [category.mb_chars.downcase]}
           arr << Link.new(
             title: category,
