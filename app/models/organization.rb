@@ -110,7 +110,7 @@ class Organization < ActiveRecord::Base
 
     string :status
     integer :user_id
-    string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:downcase) }
+    string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:underscore) }
 
     string(:kind) { 'organization' }
 
