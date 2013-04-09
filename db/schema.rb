@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408052132) do
+ActiveRecord::Schema.define(:version => 20130409032351) do
 
   create_table "activities", :force => true do |t|
     t.text     "title"
@@ -330,6 +330,21 @@ ActiveRecord::Schema.define(:version => 20130408052132) do
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
   add_index "organizations", ["user_id"], :name => "index_organizations_on_user_id"
+
+  create_table "paperclip_attachments", :force => true do |t|
+    t.integer  "attacheable_id"
+    t.string   "attacheable_type"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.text     "attachment_url"
+    t.string   "attachment_type"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "paperclip_attachments", ["attacheable_id", "attacheable_type"], :name => "index_paperclip_attachments_on_attacheable_fields"
 
   create_table "pool_table_prices", :force => true do |t|
     t.integer  "pool_table_id"
