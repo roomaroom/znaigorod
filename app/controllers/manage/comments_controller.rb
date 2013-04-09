@@ -3,6 +3,6 @@ class Manage::CommentsController < Manage::ApplicationController
   actions :index, :destroy
 
   def collection
-    super.page(params[:page])
+    super.order('id desc').page(params[:page])
   end
 end
