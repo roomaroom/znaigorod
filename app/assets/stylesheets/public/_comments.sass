@@ -1,4 +1,5 @@
 .comments
+  +clearfix
   @include background(image_url('divider.png') no-repeat center top, image_url('divider.png') no-repeat center bottom)
   margin: 25px 20px
   padding: 25px 0
@@ -125,9 +126,11 @@
     margin: 0
 
     li
+      +clearfix
       margin: 20px 0 0
 
       ul
+        +clearfix
         margin: 0 0 0 20px
 
     .comment_item

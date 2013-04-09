@@ -17,6 +17,6 @@ save_comment = () ->
     target = $(evt.target)
     if target.is('a')
       save_comment()
-      draw_popup(target.attr('href'), 700, 400, '...Авторизация...')
+      draw_popup(target.attr('href'), 700, 400, 'Авторизация')
 
     return false

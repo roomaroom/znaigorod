@@ -15,7 +15,7 @@ remove_comment_form = () ->
 scroll = () ->
   target = $('.ajaxed_item', '.comments')
   y_coord = Math.abs($(window).height() - target.offset().top - target.height())
-  $("html, body").animate({ scrollTop: y_coord})
+  $("html, body").animate({ scrollTop: y_coord })
 
 remove_highlight = () ->
   $('.active', '.comments').removeClass('active')
@@ -24,14 +24,14 @@ remove_highlight = () ->
 $.fn.new_comment = (response) ->
   remove_comment_form()
   $(this).hide().siblings('ul').append(response)
-  $(this).siblings('ul').trigger('added_form')
   scroll()
+  $(this).siblings('ul').trigger('added_form')
 
 $.fn.new_answer = (response) ->
   remove_comment_form()
   $(this).hide().closest('.comment_wrapper').addClass('active').siblings('ul').append(response)
-  $(this).closest('.comment_item').trigger('added_form')
   scroll()
+  $(this).closest('.comment_item').trigger('added_form')
 
 $.fn.submit_form = (response) ->
   $(this).closest('.ajaxed_item').replaceWith(response)
@@ -42,7 +42,7 @@ restore_comment = () ->
   unless (typeof(window.localStorage) == 'undefined')
     id = window.localStorage.getItem('comment_id')
     body = window.localStorage.getItem('comment_body')
-    if id && body
+    if id
       if id.match(/new_comment/)
         link = $('.new_comment')
         link.click()
@@ -60,7 +60,6 @@ restore_comment = () ->
     window.localStorage.clear()
 
 @init_comments = () ->
-  restore_comment()
   $(".ajaxed").on "ajax:success", (evt, response, status, jqXHR) ->
     target = $(evt.target)
 
@@ -71,3 +70,4 @@ restore_comment = () ->
 
     cancel_handler()
     init_auth()
+  restore_comment()
