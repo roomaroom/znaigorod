@@ -16,6 +16,7 @@
  * = require public/swfobject
  *
  * = require public/yandex_stat
+ * = require public/yandex_map
  * = require public/common
  * = require public/comments
  * = require public/jscrollpane

@@ -4,6 +4,8 @@
 <% content_for :meta_keywords, @affiche.meta_keywords %>
 <% content_for :meta_description, @affiche.meta_description %>
 
+<% content_for :extra_javascripts, javascript_include_tag('http://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU') %>
+
 <% content_for :extra_meta do %>
   <%= @affiche.tags_for_vk %>
 <% end %>
@@ -158,6 +160,17 @@
     </div>
 
     <div class='right_side'>
+
+      <% if @affiche.places.any? %>
+        <div class='yandex_map'>
+          <h2>На карте города</h2>
+          <div class='map'
+            data-latitude='<%= @affiche.places.first.latitude %>'
+            data-longitude='<%= @affiche.places.first.longitude %>'
+            data-hint='<%= @affiche.places.first.title.as_html %>'>
+          </div>
+        </div>
+      <% end %>
 
       <% unless @affiche.similar_affiches.blank? %>
         <div class='more_like_this'>

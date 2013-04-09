@@ -8,6 +8,13 @@ class PlaceDecorator
   attr_accessor :latitude, :longitude, :title
   attribute :organization
 
+  def initialize(params)
+    super
+    self.latitude ||= organization.latitude
+    self.longitude ||= organization.longitude
+    self.title ||= organization.title
+  end
+
   def place
     content_tag(:p, content_tag(:span, link_title, :class => :name) + ", " + content_tag(:span, address_link, :class => :address))
   end
