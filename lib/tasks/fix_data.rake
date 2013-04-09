@@ -3,8 +3,9 @@
 task :fix_data => :environment do
   p "FIX SalonCenter category"
   pb = ProgressBar.new(SalonCenter.count)
+
   SalonCenter.find_each do |salon_center|
-    category = salon_center.category
+    category = salon_center.category.dup
 
     category.gsub!('SPA-салон', 'SPA-салоны')
     category.gsub!('парикмахерская', 'Парикмахерские')
@@ -15,19 +16,20 @@ task :fix_data => :environment do
     category.gsub!('визаж-студия', 'Визаж-студии')
 
     salon_center.update_attributes! category: category
-    #salon_center.organization.index
+
+    salon_center.organization.index
     pb.increment!
   end
 
   p "FIX CarSalesCenter feature offer"
   pb = ProgressBar.new(CarSalesCenter.count)
   CarSalesCenter.find_each do |car_sales_center|
-      feature = car_sales_center.feature
+      feature = car_sales_center.feature.dup
 
       feature.gsub!('Новые', 'новые')
       feature.gsub!('С пробегом', 'с пробегом')
 
-      offer = car_sales_center.offer
+      offer = car_sales_center.offer.dup
 
       offer.gsub!('Кредит', 'кредит')
       offer.gsub!('Лизинг', 'лизинг')
@@ -36,7 +38,7 @@ task :fix_data => :environment do
       offer.gsub!('Продажа запчастей', 'продажа запчастей')
 
       car_sales_center.update_attributes! feature: feature, offer: offer
-      #car_sales_center.organization.index
+      car_sales_center.organization.index
       pb.increment!
   end
 end

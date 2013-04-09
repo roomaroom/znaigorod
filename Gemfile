@@ -65,6 +65,7 @@ group :development do
   gem 'brakeman'
   gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
   gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
+  gem 'debugger'
   gem 'hirb'
   gem 'openteam-capistrano'
   gem 'quiet_assets'
