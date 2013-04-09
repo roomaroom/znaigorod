@@ -35,6 +35,15 @@ class OrganizationsController < ApplicationController
   end
 
   def in_bounding_box
-    render :json => HasSearcher.searcher(:organizations, params).results.map(&:to_json)
+    data = OrganizationDecorator.decorate(HasSearcher.searcher(:organizations, params).results).map do |organization|
+      {
+        title: organization.title,
+        logo: organization.logotype_url,
+        address: organization.address.to_s,
+        latitude: organization.address.latitude,
+        longitude: organization.address.longitude
+      }
+    end
+    render :json => data
   end
 end

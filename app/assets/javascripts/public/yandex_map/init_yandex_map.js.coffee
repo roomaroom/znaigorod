@@ -12,7 +12,7 @@
     right: 5
     top: 5
 
-  placemark = new ymaps.GeoObject
+  affiche_placemark = new ymaps.GeoObject
     geometry:
       type: 'Point'
       coordinates: [$map.attr('data-latitude'), $map.attr('data-longitude')]
@@ -21,16 +21,15 @@
   ,
     cursor: 'help'
     hasBalloon: false
-    iconImageHref: '/assets/public/balloon.png'
-    iconImageSize: [24, 24]
-    iconImageOffset: [-16, -25]
+    iconImageHref: '/assets/public/affiche_placemark.png'
+    iconImageOffset: [-18, -40]
 
-  map.geoObjects.add(placemark)
+  map.geoObjects.add(affiche_placemark)
 
-  request_organizations(map, without_organization_id)
+  #request_organizations(map, affiche_placemark, without_organization_id)
 
   map.events.add 'actionend', (event) ->
-    request_organizations(map, without_organization_id)
+    #request_organizations(map, affiche_placemark, without_organization_id)
     true
 
   $(document).ajaxError (event, jqXHR, ajaxSettings, thrownError) ->
@@ -43,14 +42,12 @@
 
   true
 
-request_organizations = (map, without_organization_id) ->
+request_organizations = (map, affiche_placemark, without_organization_id) ->
 
   a_x = map.getBounds()[0][0]
   a_y = map.getBounds()[0][1]
   b_x = map.getBounds()[1][0]
   b_y = map.getBounds()[1][1]
-
-  console.log without_organization_id
 
   link = "/organizations/in_bounding_box?location[ax]=#{a_x}&location[ay]=#{a_y}&location[bx]=#{b_x}&location[by]=#{b_y}"
   link += "&without=#{without_organization_id}" if without_organization_id?
@@ -59,6 +56,9 @@ request_organizations = (map, without_organization_id) ->
     type: 'GET'
     url: link
     success: (data, textStatus, jqXHR) ->
-      console.log data
+      map.geoObjects
+      $.each data, (index, item) ->
+        true
+      true
 
   true
