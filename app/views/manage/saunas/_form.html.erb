@@ -9,6 +9,7 @@
     <li><a href="#sauna_massage">Массаж</a></li>
     <li><a href="#sauna_child_stuff">Для детей</a></li>
     <li><a href="#sauna_stuff">Разное</a></li>
+    <li><a href="#sauna_virtual_tour">3D-тур</a></li>
   </ul>
 
   <div id="sauna_accessory_attributes">
@@ -66,5 +67,13 @@
       <%= form.input :wifi, :input_html => { :class => "cost" } %>
       <%= form.input :safe, :input_html => { :class => "cost" } %>
     <% end %>
+  </div>
+
+  <div id="sauna_virtual_tour">
+    <fieldset class='organization_virtual_tour virtual_tour_fields'>
+      <legend>3D-тур</legend>
+      <%= f.simple_fields_for :virtual_tour %>
+      <%= f.link_to_add t('add_virtual_tour'), :virtual_tour, :class => 'add_virtual_tour' %>
+    </fieldset>
   </div>
 </div>

@@ -1,4 +1,7 @@
 class Sauna < ActiveRecord::Base
+  # ActiveSupport::Concern extentions
+  include HasVirtualTour
+
   attr_accessible :category, :feature, :offer, :payment, :title, :description
 
   belongs_to :organization
