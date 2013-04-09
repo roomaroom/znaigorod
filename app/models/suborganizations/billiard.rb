@@ -1,4 +1,6 @@
 class Billiard < Entertainment
+  include HasVirtualTour
+
   has_many :pool_tables, :dependent => :destroy
 
   presents_as_checkboxes :category, :default_value => Values.instance.billiard.categories

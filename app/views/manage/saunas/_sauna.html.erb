@@ -4,18 +4,7 @@
   <div class="sauna_info">
     <%= render :partial => "manage/saunas/info", :locals => { :sauna => sauna } %>
 
-    <fieldset>
-      <legend>3D-тур</legend>
-      <% if sauna.virtual_tour %>
-        <div>
-          <span class="label"><%= VirtualTour.human_attribute_name('link') %>:</span>
-          <span class="value"><%= content_tag :abbr, truncate(sauna.virtual_tour_link, :length => 20), :title => sauna.virtual_tour_link %></span>
-        </div>
-        <%= image_tag_for(sauna.virtual_tour.attachment_url, 334, 164, true, 'n') if sauna.virtual_tour.attachment_url? %>
-      <% else %>
-        не указано
-      <% end %>
-    </fieldset>
+    <%= render sauna.virtual_tour %>
 
     <fieldset>
       <legend>Залы</legend>

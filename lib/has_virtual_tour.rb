@@ -9,4 +9,8 @@ module HasVirtualTour
     accepts_nested_attributes_for :virtual_tour, :allow_destroy => true
     delegate :link, :to => :virtual_tour, :prefix => true
   end
+
+  def virtual_tour
+    super || build_virtual_tour
+  end
 end

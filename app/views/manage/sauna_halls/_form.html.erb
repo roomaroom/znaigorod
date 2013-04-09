@@ -1,12 +1,6 @@
 <%= f.input :title %>
 <%= f.input :description %>
 
-<fieldset class='sauna_hall_virtual_tour virtual_tour_fields'>
-  <legend>3D-тур</legend>
-  <%= f.simple_fields_for :virtual_tour %>
-  <%= f.link_to_add t('add_virtual_tour'), :virtual_tour, :class => 'add_virtual_tour' %>
-</fieldset>
-
 <div id="sauna_tabs">
   <ul>
     <li><a href="#sauna_hall_capacity_attributes">Вместительность</a></li>
@@ -15,6 +9,7 @@
     <li><a href="#sauna_hall_bath_attributes">Парные</a></li>
     <li><a href="#sauna_hall_pool_attributes">Бассейн</a></li>
     <li><a href="#sauna_hall_interior_attributes">Интерьер</a></li>
+    <li><a href="#sauna_virtual_tour">3D-тур</a></li>
   </ul>
 
   <div id="sauna_hall_capacity_attributes">
@@ -77,6 +72,10 @@
       <%= interior_form.input :floors, :input_html => { :class => "required count" } %>
       <%= interior_form.input :lounges, :input_html => { :class => "required count" } %>
     <% end %>
+  </div>
+
+  <div id="sauna_virtual_tour">
+    <%= render :partial => 'virtual_tour_form_fields', :locals => { :f => f } %>
   </div>
 </div>
 
