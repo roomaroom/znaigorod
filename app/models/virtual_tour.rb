@@ -7,7 +7,7 @@ class VirtualTour < ActiveRecord::Base
 
   accepts_nested_attributes_for :image, :allow_destroy => true
 
-  validates_presence_of :link
+  validates :link, :format => URI::regexp(%w(http https)), :presence => true
 
   normalize_attribute :link
 
