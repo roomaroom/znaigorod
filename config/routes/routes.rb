@@ -28,11 +28,6 @@ Znaigorod::Application.routes.draw do
 
     get "#{type}/:id"                           => 'affiches#show',         :as => "#{type}"
     get "#{type.gsub('_','')}/:id"              => 'affiches#show',         :as => "#{type.gsub('_','')}"
-    get "#{type.gsub('_','')}/:id/photogallery" => 'affiches#photogallery', :as => "#{type.gsub('_','')}_photogallery"
-    get "#{type.gsub('_','')}/:id/trailer"      => 'affiches#trailer',      :as => "#{type.gsub('_','')}_trailer"
-  end
-
-  Affiche.descendants.map(&:name).map(&:downcase).map(&:pluralize).each do |kind|
   end
 
   Organization.basic_suborganization_kinds.each do |kind|
