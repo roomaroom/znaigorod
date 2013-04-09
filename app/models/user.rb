@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
       auth_raw_info.try(:[], :info).try(:[], :image)
     end
 
-    avatar_url || 'http://placekitten.com/g/50/50'
+    avatar_url || Settings['default_avatar_url']
   end
 
   def profile

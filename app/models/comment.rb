@@ -6,6 +6,20 @@ class Comment < ActiveRecord::Base
 
   normalize_attribute :body, :ancestry
   validates_presence_of :body
+  validate :authenticated_user
 
-  delegate :name, :avatar, :profile, :to => :user, :prefix => true
+  delegate :name, :avatar, :profile, :to => :user, :prefix => true, :allow_nil => true
+
+  def name
+    user ? user_name : 'неизвестный автор'
+  end
+
+  def avatar
+    user ? user_avatar : Settings['default_avatar_url']
+  end
+
+  private
+    def authenticated_user
+      errors.add :body, 'Комментарии могут оставлять только зарегистрированные пользователи' if user.nil?
+    end
 end

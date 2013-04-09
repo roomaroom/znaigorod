@@ -6,7 +6,6 @@ class Ability
 
     can :manage, :all     if user.is_admin?
     can :manage, :crm     if user.is_admin? || user.is_sales_manager?
-    can :create, Comment  if user.persisted?
 
     case namespace
     when 'manage'

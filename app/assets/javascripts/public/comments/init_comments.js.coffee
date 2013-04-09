@@ -24,11 +24,13 @@ remove_highlight = () ->
 $.fn.new_comment = (response) ->
   remove_comment_form()
   $(this).hide().siblings('ul').append(response)
+  $(this).siblings('ul').trigger('added_form')
   scroll()
 
 $.fn.new_answer = (response) ->
   remove_comment_form()
   $(this).hide().closest('.comment_wrapper').addClass('active').siblings('ul').append(response)
+  $(this).closest('.comment_item').trigger('added_form')
   scroll()
 
 $.fn.submit_form = (response) ->
@@ -36,7 +38,29 @@ $.fn.submit_form = (response) ->
   remove_highlight()
   show_link()
 
+restore_comment = () ->
+  unless (typeof(window.localStorage) == 'undefined')
+    id = window.localStorage.getItem('comment_id')
+    body = window.localStorage.getItem('comment_body')
+    if id && body
+      if id.match(/new_comment/)
+        link = $('.new_comment')
+        link.click()
+        target = link.siblings('ul')
+        target.on 'added_form', ->
+          target.find('li.comment_form textarea').val(body)
+          target.off 'added_form'
+      else
+        target = $('#'+id)
+        $('.new_answer:first', target).click()
+        target.on 'added_form', ->
+          target.children('ul').find('li.comment_form textarea').val(body)
+          target.off 'added_form'
+
+    window.localStorage.clear()
+
 @init_comments = () ->
+  restore_comment()
   $(".ajaxed").on "ajax:success", (evt, response, status, jqXHR) ->
     target = $(evt.target)
 
@@ -46,3 +70,4 @@ $.fn.submit_form = (response) ->
       else target.submit_form(jqXHR.responseText)
 
     cancel_handler()
+    init_auth()

@@ -1,20 +1,18 @@
-<li class='comment_item'>
+<li class='comment_item' id='comment_<%= comment.id %>'>
   <div class='comment_wrapper'>
     <div class="avatar">
-      <%= image_tag comment.user_avatar %>
+      <%= image_tag comment.avatar, :title => comment.name %>
     </div>
     <div class="user_info">
       <% if  comment.user_profile %>
-        <%= link_to comment.user_name, comment.user_profile, :target => '_blank', :class => 'profile_link' %>,
+        <%= link_to comment.name, comment.user_profile, :target => '_blank', :class => 'profile_link' %>,
       <% else %>
-        <span class='profile_link'><%= comment.user_name %></span>,
+        <span class='profile_link'><%= comment.name %></span>,
       <% end %>
       <span class="date">
         <%= l comment.created_at, :format => :long %>
       </span>
-      <% if can?(:create, comment.children.new) %>
-        <%= link_to "ответить", polymorphic_path([:new, comment.commentable, :comment], :comment => {:parent_id => comment.id}), :remote => true, :class => 'new_answer' %>
-      <% end %>
+      <%= link_to "ответить", polymorphic_path([:new, comment.commentable, :comment], :comment => {:parent_id => comment.id}), :remote => true, :class => 'new_answer' %>
     </div>
     <div class="body">
       <%= strip_tags comment.body %>
