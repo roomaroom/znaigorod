@@ -23,6 +23,7 @@
             <span class="label"><%= VirtualTour.human_attribute_name('link') %>:</span>
             <span class="value"><%= content_tag :abbr, truncate(resource.virtual_tour_link, :length => 20), :title => resource.virtual_tour_link %></span>
           </div>
+          <%= image_tag_for(@sauna_hall.virtual_tour.attachment_url, 334, 164, true, 'n') if @sauna_hall.virtual_tour.attachment_url? %>
         <% else %>
           не указано
         <% end %>
