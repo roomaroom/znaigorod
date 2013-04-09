@@ -1,4 +1,6 @@
 class Entertainment < ActiveRecord::Base
+  include HasVirtualTour
+
   attr_accessible :category, :feature, :offer, :payment, :title, :description
 
   belongs_to :organization

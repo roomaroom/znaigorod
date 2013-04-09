@@ -5,3 +5,5 @@
   <%= f.simple_fields_for :services %>
   <p class="add"><%= f.link_to_add 'Добавить услугу', :services %></p>
 </div>
+
+<%= render :partial => 'virtual_tour_form_fields', :locals => { :f => f } %>

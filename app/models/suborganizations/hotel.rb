@@ -1,4 +1,6 @@
 class Hotel < ActiveRecord::Base
+  include HasVirtualTour
+
   attr_accessible :category, :description, :title, :offer, :feature
 
   belongs_to :organization

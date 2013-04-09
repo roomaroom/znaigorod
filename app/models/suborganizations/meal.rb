@@ -1,4 +1,6 @@
 class Meal < ActiveRecord::Base
+  include HasVirtualTour
+
   attr_accessible :category, :cuisine, :feature, :offer, :payment, :title, :description
 
   belongs_to :organization

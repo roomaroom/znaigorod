@@ -4,3 +4,4 @@
 <%= f.input :feature_list, :as => :check_boxes, :collection => f.object.available_features, :checked => f.object.features %>
 <%= f.input :offer_list, :as => :check_boxes, :collection => f.object.available_offers, :checked => f.object.offers %>
 
+<%= render :partial => 'virtual_tour_form_fields', :locals => { :f => f } %>

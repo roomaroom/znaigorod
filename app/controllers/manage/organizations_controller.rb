@@ -16,7 +16,6 @@ class Manage::OrganizationsController < Manage::ApplicationController
   def build_nested_objects
     resource.organization_stand || resource.build_organization_stand
     resource.address || resource.build_address
-    resource.virtual_tour || resource.build_virtual_tour
 
     (1..7).each do |day|
       resource.schedules.build(:day => day)

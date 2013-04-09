@@ -1,4 +1,6 @@
 class Sport < ActiveRecord::Base
+  include HasVirtualTour
+
   attr_accessible :services_attributes, :title, :description
 
   belongs_to :organization
