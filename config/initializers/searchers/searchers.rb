@@ -72,6 +72,12 @@ HasSearcher.create_searcher :organizations do
       search_object.location[:ax] && search_object.location[:ax] &&
       search_object.location[:bx] && search_object.location[:bx]
   end
+
+  property :without do |search|
+    if organization = Organization.find_by_id(search_object.without.to_i)
+      search.without(organization)
+    end
+  end
 end
 
 HasSearcher.create_searcher :manage_organization do
