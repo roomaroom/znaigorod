@@ -167,7 +167,8 @@
           <div class='map'
             data-latitude='<%= @affiche.places.first.latitude %>'
             data-longitude='<%= @affiche.places.first.longitude %>'
-            data-hint='<%= @affiche.places.first.title.as_html %>'>
+            data-hint='<%= @affiche.places.first.title.as_html %>'
+            <%= "data-without-id=#{@affiche.places.first.organization.id}" if @affiche.places.first.organization %>>
           </div>
         </div>
       <% end %>
