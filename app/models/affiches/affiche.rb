@@ -6,6 +6,8 @@ require 'curb'
 class Affiche < ActiveRecord::Base
   extend FriendlyId
 
+  include HasVirtualTour
+
   attr_accessible :description, :poster_url, :image_url, :showings_attributes,
                   :tag, :title, :vfs_path, :affiche_schedule_attributes,
                   :images_attributes, :attachments_attributes,
