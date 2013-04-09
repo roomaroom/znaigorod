@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   alias_attribute :to_s, :name
 
   def avatar
-    avatar_url = case provider
+    case provider
     when 'vkontakte', 'google_oauth2', 'facebook', 'twitter'
       auth_raw_info.try(:[], :info).try(:[], :image)
+    else
+      nil
     end
-
-    avatar_url || Settings['default_avatar_url']
   end
 
   def profile

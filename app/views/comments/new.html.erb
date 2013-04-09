@@ -35,7 +35,7 @@
       <span class='profile_link'><%= current_user.name %></span>
     <% end %>
   <% else %>
-    <%= image_tag Settings['default_avatar_url'], :class => 'avatar', :title => 'неизвестный автор' %>
+    <%= image_tag @comment.avatar, :class => 'avatar', :title => 'неизвестный автор' %>
     <span class="profile_link">неизвестный автор</span>
   <% end %>
   <%= simple_form_for [association_chain, @comment].flatten, :html => { :remote => true } do |f| %>

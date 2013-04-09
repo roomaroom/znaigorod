@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
   end
 
   def avatar
-    user ? user_avatar : Settings['default_avatar_url']
+    user && user_avatar ? user_avatar : Settings['default_avatar_url']
   end
 
   private
