@@ -203,7 +203,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def has_tour?
-    organization.virtual_tour
+    organization.virtual_tour.link?
   end
 
   def has_affiche?

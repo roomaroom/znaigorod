@@ -1,9 +1,9 @@
 <% content_for :organization_content do  %>
   <div class="info">
     <div class="clearfix">
-      <% if @organization.virtual_tour %>
+      <% if @organization.has_tour? %>
         <%= link_to('#', :class => :virtual_tour_link, :'data-link' => @organization.virtual_tour.link, title: '3D-тур') do %>
-          <%  if @organization.virtual_tour.attachment_url? %>
+          <% if @organization.virtual_tour.attachment_url? %>
             <%= image_tag_for(@organization.virtual_tour.attachment_url, 334, 164, true, 'n') %>
           <% else %>
             <%= image_tag "public/virtual_tour_link.png" %>
