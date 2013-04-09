@@ -58,6 +58,7 @@ $(window).load ->
   init_avtovokzal_tomsk_ru_stat() if $('a.avtovokzal_tomsk_ru').length
   init_dobrynin_stat() if $('a.dobrynin').length
   init_skoda_stat() if $('a.skoda').length
+  init_peugeot_stat() if $('a.peugeot').length
 
   init_move_to_top() if $('a.move_to_top').length
 
