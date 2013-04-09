@@ -664,8 +664,6 @@ ActiveRecord::Schema.define(:version => 20130408052132) do
     t.text     "auth_raw_info"
   end
 
-  add_index "users", ["oauth_key"], :name => "index_users_on_oauth_key", :unique => true
-
   create_table "virtual_tours", :force => true do |t|
     t.string   "link"
     t.integer  "tourable_id"

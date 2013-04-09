@@ -33,4 +33,8 @@ class OrganizationsController < ApplicationController
   def tour
     @organization = OrganizationDecorator.find(params[:id])
   end
+
+  def in_bounding_box
+    render :json => HasSearcher.searcher(:organizations, params).results.map(&:to_json)
+  end
 end

@@ -14,10 +14,13 @@ Znaigorod::Application.routes.draw do
   get 'webcams'           => 'webcams#index'
 
   resources :affiches,      :only => :index
+  resources :saunas,        :only => :index
+
   resources :organizations, :only => [:index, :show] do
+    get :in_bounding_box, :on => :collection
+
     resources :comments, :only => [:new, :create, :show]
   end
-  resources :saunas,        :only => :index
 
   get 'photogalleries/:period/(*query)' => 'photogalleries#index',  :as => :photogalleries, :period => /all|month|week/
 

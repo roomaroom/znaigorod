@@ -63,16 +63,14 @@ end
 
 HasSearcher.create_searcher :organizations do
   models :organization
-  keywords :q
 
-  scope :order_by_rating do
-    order_by(:rating, :desc)
-  end
-
-  # NOTE: как передать значения в scope? o_O
-  scope :nearest do |search|
-    search.with(:location).in_radius(search_object.latitude, search_object.longitude, 0.5, bbox: true)
-    search.order_by_geodist(:location, search_object.latitude, search_object.longitude)
+  property :location do |search|
+    search.with(:location).in_bounding_box(
+      [search_object.location[:ax], search_object.location[:ay]],
+      [search_object.location[:bx], search_object.location[:by]]
+    ) if search_object.location &&
+      search_object.location[:ax] && search_object.location[:ax] &&
+      search_object.location[:bx] && search_object.location[:bx]
   end
 end
 
