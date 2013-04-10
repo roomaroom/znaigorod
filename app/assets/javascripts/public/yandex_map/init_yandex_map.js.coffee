@@ -23,6 +23,8 @@
       iconImageHref: '/assets/public/affiche_placemark.png'
       iconImageOffset: [-18, -40]
       iconImageSize: [37, 42]
+      zIndex: 1000
+      zIndexHover: 1100
 
     map.geoObjects.add(affiche_placemark)
 
