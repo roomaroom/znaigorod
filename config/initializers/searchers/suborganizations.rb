@@ -4,8 +4,6 @@ Organization.basic_suborganization_kinds.each do |kind|
   HasSearcher.create_searcher kind.pluralize.to_sym do
     models kind.to_sym
 
-    #includes :organization => [:address, :showings => [:affiche]]
-
     klass.facets.map { |facet| "#{kind}_#{facet}" }.each do |field|
       property field do |search|
         search.with(field, search_object.send(field)) if search_object.send(field).try(:any?)
@@ -33,5 +31,7 @@ Organization.basic_suborganization_kinds.each do |kind|
     scope :order_by_nearness do |search|
       search.order_by_geodist(:location, search_object.location.lat, search_object.location.lon) if search_object.location
     end
+
+    scope(:order_by_title) { order_by :organization_title }
   end
 end

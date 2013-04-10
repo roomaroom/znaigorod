@@ -2,18 +2,24 @@
   <li>
     <%= link_to t('affiche.sort.popularity'),
       send("#{@presenter.pluralized_kind}_path", @presenter.query.merge('order_by' => 'popularity')),
-      { data: 'popularity' }.merge(@presenter.sort_by_popularity? ? { class: 'selected' } : {}) %>
+      @presenter.sort_by_popularity? ? { class: 'selected' } : {} %>
+  </li>
+  <li><span class="separator">&nbsp;</span></li>
+  <li>
+    <%= link_to t('affiche.sort.title'),
+      send("#{@presenter.pluralized_kind}_path", @presenter.query.merge('order_by' => 'title')),
+      @presenter.sort_by_title? ? { class: 'selected' } : {} %>
   </li>
   <li><span class="separator">&nbsp;</span></li>
   <li>
     <% if @presenter.geo_filter.used? %>
       <%= link_to t('affiche.sort.nearness'),
         send("#{@presenter.pluralized_kind}_path", @presenter.query.merge('order_by' => 'nearness')),
-        { data: 'nearness' }.merge(@presenter.sort_by_nearness? ? { class: 'selected' } : {}) %>
+        @presenter.sort_by_nearness? ? { class: 'selected' } : {} %>
     <% else %>
       <%= link_to t('affiche.sort.nearness'),
         send("#{@presenter.pluralized_kind}_path", @presenter.query.merge('order_by' => 'nearness')),
-        { data: 'nearness', class: 'disabled' } %>
+        class: 'disabled' %>
     <% end %>
   </li>
 </ul>

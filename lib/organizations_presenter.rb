@@ -8,6 +8,14 @@ module OrganizationsPresenter
 
   attr_accessor :order_by
 
+  included do
+    available_sortings.each do |sorting|
+      define_method "sort_by_#{sorting}?" do
+        order_by == sorting
+      end
+    end
+  end
+
   module ClassMethods
     include Rails.application.routes.url_helpers
     attr_accessor :kind, :filters
@@ -30,6 +38,14 @@ module OrganizationsPresenter
         end
       end
     end
+
+    def available_sortings
+      %w[popularity nearness title]
+    end
+
+    def available_sortings_without_nearness
+      available_sortings - ['nearness']
+    end
   end
 
   def initialize(args = {})
@@ -40,8 +56,8 @@ module OrganizationsPresenter
   end
 
   def order_by
-    @order_by ||= %w[nearness popularity].include?(@order_by) ? @order_by : 'popularity'
-    @order_by = 'popularity' unless geo_filter.used?
+    @order_by = self.class.available_sortings.include?(@order_by) ? @order_by : self.class.available_sortings.first
+    @order_by = self.class.available_sortings_without_nearness.include?(@order_by) ? @order_by : self.class.available_sortings.first unless geo_filter.used?
 
     @order_by
   end
@@ -68,14 +84,6 @@ module OrganizationsPresenter
       title << category
     end
     title.blank? ? I18n.t("meta.#{pluralized_kind}.title") : "#{title.mb_chars.capitalize} Томска"
-  end
-
-  def sort_by_popularity?
-    order_by == 'popularity'
-  end
-
-  def sort_by_nearness?
-    order_by == 'nearness'
   end
 
   def kind
