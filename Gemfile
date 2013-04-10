@@ -64,8 +64,8 @@ end
 group :development do
   gem 'annotate',                   :require => false
   gem 'brakeman'
-  gem 'capistrano-db-tasks', :git => 'git://github.com/openteam/capistrano-db-tasks'
-  gem 'capistrano-unicorn',  :git => 'git://github.com/sosedoff/capistrano-unicorn'
+  gem 'capistrano-db-tasks', :git => 'git://github.com/sgruhier/capistrano-db-tasks'
+  gem 'capistrano-unicorn'
   gem 'debugger'
   gem 'hirb'
   gem 'openteam-capistrano'
