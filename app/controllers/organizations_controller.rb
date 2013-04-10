@@ -41,7 +41,8 @@ class OrganizationsController < ApplicationController
         logo: organization.logotype_url,
         address: organization.address.to_s,
         latitude: organization.address.latitude,
-        longitude: organization.address.longitude
+        longitude: organization.address.longitude,
+        suborganization: organization.priority_suborganization_kind
       }
     end
     render :json => data
