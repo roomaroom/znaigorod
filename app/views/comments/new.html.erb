@@ -21,10 +21,10 @@
         <li class='mail_ru'>
           <%= link_to 'Mail.Ru', 'user_omniauth_authorize_path(:mail_ru)', :title => 'Mail.Ru' %>
         </li>
-        <li class='odnoklassniki'>
-          <%= link_to 'Одноклассники', 'user_omniauth_authorize_path(:odnoklassniki)', :title => 'Одноклассники' %>
-        </li>
       <% end %>
+      <li class='odnoklassniki'>
+        <%= link_to 'Одноклассники', user_omniauth_authorize_path(:odnoklassniki), :title => 'Одноклассники' %>
+      </li>
     </ul>
   <% end %>
   <% if current_user %>

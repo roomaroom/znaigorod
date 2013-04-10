@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :uid, :provider, :auth_raw_info, :roles_attributes
 
   devise :trackable, :omniauthable,
-    omniauth_providers: [:vkontakte, :google_oauth2, :yandex, :facebook, :twitter]
+    omniauth_providers: [:vkontakte, :google_oauth2, :yandex, :facebook, :twitter, :odnoklassniki]
 
   has_many :activities,     dependent:  :destroy
   has_many :comments

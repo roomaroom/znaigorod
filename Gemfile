@@ -39,6 +39,7 @@ group :default do
   gem 'nested_form'
   gem 'omniauth-facebook'
   gem 'omniauth-google-oauth2'
+  gem 'omniauth-odnoklassniki'
   gem 'omniauth-twitter'
   gem 'omniauth-vkontakte'
   gem 'omniauth-yandex'
