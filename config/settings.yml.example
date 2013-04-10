@@ -36,8 +36,7 @@ odnoklassniki:
 
 mailru:
   app_id:               app_id
-  app_secret:           app_secret
-  app_public:           app_public
+  app_private:          app_private
 
 errors:
   key:                  api_key

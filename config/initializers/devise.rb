@@ -222,7 +222,7 @@ Devise.setup do |config|
   # f*cking bullshit
   config.omniauth :mailru,
     Settings['mailru.app_id'],
-    Settings['mailru.app_public'],
+    Settings['mailru.app_private'],
     provider_ignores_state: true
 
   config.omniauth :odnoklassniki,
