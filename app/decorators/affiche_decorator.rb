@@ -28,6 +28,10 @@ class AfficheDecorator < ApplicationDecorator
     affiche.class.name.downcase
   end
 
+  def geo_present?
+    places.any? && places.first.latitude && places.first.longitude
+  end
+
   auto_html_for :trailer_code do
     youtube(:width => 740, :height => 450)
     vimeo(:width => 740, :height => 450)

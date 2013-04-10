@@ -10,9 +10,11 @@ class PlaceDecorator
 
   def initialize(params)
     super
-    self.latitude ||= organization.latitude
-    self.longitude ||= organization.longitude
-    self.title ||= organization.title
+    if organization
+      self.latitude ||= organization.latitude
+      self.longitude ||= organization.longitude
+      self.title ||= organization.title
+    end
   end
 
   def place
