@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def avatar
     case provider
-    when 'vkontakte', 'google_oauth2', 'facebook', 'twitter'
+    when 'vkontakte', 'google_oauth2', 'facebook', 'twitter', 'odnoklassniki'
       auth_raw_info.try(:[], :info).try(:[], :image)
     else
       nil
@@ -43,12 +43,8 @@ class User < ActiveRecord::Base
 
   def profile
     case provider
-    when 'vkontakte'
-      auth_raw_info[:info][:urls][:Vkontakte]
-    when 'facebook'
-      auth_raw_info[:info][:urls][:Facebook]
-    when 'twitter'
-      auth_raw_info[:info][:urls][:Twitter]
+    when 'vkontakte', 'facebook', 'twitter', 'odnoklassniki'
+      auth_raw_info[:info][:urls][provider.capitalize.to_sym]
     when 'google_oauth2'
       auth_raw_info[:extra][:raw_info][:link]
     else

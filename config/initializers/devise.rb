@@ -218,7 +218,14 @@ Devise.setup do |config|
   config.omniauth :twitter,       Settings['twitter.app_id'],       Settings['twitter.app_secret'],       display: 'popup'
   config.omniauth :vkontakte,     Settings['vk.app_id'],            Settings['vk.app_secret'],            display: 'popup'
   config.omniauth :yandex,        Settings['yandex.app_id'],        Settings['yandex.app_secret']
-  config.omniauth :odnoklassniki, Settings['odnoklassniki.app_id'], Settings['odnoklassniki.app_secret'], public_key: Settings['odnoklassniki.app_public'], scope: 'VALUABLE ACCESS'
+
+  # f*cking bullshit
+  config.omniauth :odnoklassniki,
+    Settings['odnoklassniki.app_id'],
+    Settings['odnoklassniki.app_secret'],
+    public_key: Settings['odnoklassniki.app_public'],
+    scope: 'VALUABLE ACCESS',
+    provider_ignores_state: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
