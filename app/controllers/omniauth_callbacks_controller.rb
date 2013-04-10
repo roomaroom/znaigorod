@@ -19,6 +19,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def odnoklassniki
   end
 
+  def mailru
+  end
+
   def after_sign_in_path_for(resource_or_scope)
     return request.env['omniauth.origin'] if request.env['omniauth.origin']
 

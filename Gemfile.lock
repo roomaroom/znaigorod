@@ -226,6 +226,9 @@ GEM
     omniauth-google-oauth2 (0.1.13)
       omniauth (~> 1.0)
       omniauth-oauth2
+    omniauth-mailru (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -455,6 +458,7 @@ DEPENDENCIES
   nested_form
   omniauth-facebook
   omniauth-google-oauth2
+  omniauth-mailru
   omniauth-odnoklassniki
   omniauth-twitter
   omniauth-vkontakte
