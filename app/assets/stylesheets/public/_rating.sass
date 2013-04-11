@@ -1,0 +1,114 @@
+.rating
+  margin: 0 0 15px
+
+  .current_rating, .user_rating
+    +inline-block
+
+  .current_rating
+    margin: 0 15px 0 0
+
+  .user_rating
+    img
+      +inline-block
+      height: 24px
+      width: 24px
+
+  .title
+    +inline-block
+    font-weight: bold
+    height: 21px
+    line-height: 21px
+    margin: 0 5px 0 0
+
+  .star_wrapper
+    +clearfix
+    +inline-block
+    padding: 3px
+
+    div
+      background: image_url('stars.png') no-repeat top right
+      border-right: 1px solid #f6eff7
+      float: left
+      height: 15px
+      width: 15px
+
+    .active
+      background-position-x: left
+
+    .hover
+      cursor: pointer
+      background-position-x: left
+
+    .half
+      background-position-x: center
+
+  form
+    position: relative
+
+    div
+      display: none
+
+    .cloud_wrapper
+      +border-radius(5px)
+      +single-box-shadow(#888, 0, 0, 4px)
+      background: #fff
+      display: block
+      position: absolute
+      margin-left: -98px
+      margin-top: 12px
+
+    .cloud_inner_wrapper
+      +clearfix
+      background: image_url('cloud_top_triangle.png') no-repeat top center
+      display: block
+      padding: 22px 15px 5px
+      position: relative
+      text-align: center
+      top: -12px
+      width: 400px
+
+
+      h4
+        line-height: 18px
+        margin: 0 0 10px 0
+
+      ul
+        text-align: center
+
+        li
+          +inline-block
+          margin: 0 5px
+
+          a
+            display: block
+            height: 33px
+            text-indent: -99999px
+            width: 33px
+
+          &.vkontakte
+            a
+              background: image_url('social_icons.png') no-repeat 0 0
+
+          &.yandex
+            a
+              background: image_url('social_icons.png') no-repeat -33px 0
+
+          &.facebook
+            a
+              background: image_url('social_icons.png') no-repeat -66px 0
+
+          &.twitter
+            a
+              background: image_url('social_icons.png') no-repeat -99px 0
+
+          &.google
+            a
+              background: image_url('social_icons.png') no-repeat -132px 0
+
+          &.mail_ru
+            a
+              background: image_url('social_icons.png') no-repeat -165px 0
+
+          &.odnoklassniki
+            a
+              background: image_url('social_icons.png') no-repeat -198px 0

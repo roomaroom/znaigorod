@@ -1,0 +1,31 @@
+<div class="current_rating">
+  <span class='title'>Рейтинг: <%= rating = (parent_obj.total_rating*5*2).round/2.0 %>/5</span>
+  <% n,m = rating.to_s.split('.') %>
+  <div class="star_wrapper">
+    <% 5.times do |i| %>
+      <div class="star_<%= i %> <%= (n.to_i >= i+1) ? 'selected active' : (m.to_i > 0 && n.to_i == i) ? 'half' : '' %>"></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="user_rating">
+  <span class='title'>Ваша оценка:</span>
+  <%= image_tag current_user ? current_user.avatar : User.new.avatar %>
+  <div class="star_wrapper">
+    <% 5.times do |i| %>
+      <div class="star_<%= i %>"></div>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [parent_obj, (parent_obj.user_ratings.where(:user_id => current_user.try(:id)).first || @user_rating || parent_obj.user_ratings.new)], :remote => true do |f| %>
+    <%= f.input :value, :as => :radio_buttons, :collection => 0..4 %>
+    <% if f.object.errors.any? %>
+      <div class="cloud_wrapper">
+        <div class="cloud_inner_wrapper">
+          <h4>Оценивать могут только зарегистрированные пользователи. Пожалуйста, войдите с помощью одной из социальных сетей:</h4>
+          <%= render :partial => 'commons/social_auth' %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

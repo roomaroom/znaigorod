@@ -61,6 +61,7 @@ $(window).load ->
   init_affiche_yandex_map() if $('.yandex_map .map').length
   init_comments() if $('.comments').length
   init_auth() if ('.auth_links').length
+  init_rating() if ('.rating').length
 
   init_move_to_top() if $('a.move_to_top').length
 

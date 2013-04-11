@@ -10,7 +10,7 @@ Znaigorod::Application.routes.draw do
 
   get 'cooperation'       => 'cooperation#index'
   get 'geocoder'          => 'geocoder#get_coordinates'
-  get 'search'            => 'search#search',             :as => :search
+  get 'search'            => 'search#search',              :as => :search
   get 'webcams'           => 'webcams#index'
 
   resources :affiches,      :only => :index
@@ -20,6 +20,7 @@ Znaigorod::Application.routes.draw do
     get :in_bounding_box, :on => :collection
 
     resources :comments, :only => [:new, :create, :show]
+    resources :user_ratings, :only => [:new, :create, :edit, :update, :show]
   end
 
   get 'photogalleries/:period/(*query)' => 'photogalleries#index',  :as => :photogalleries, :period => /all|month|week/

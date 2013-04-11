@@ -1,14 +1,5 @@
 <div class="comments ajaxed">
-  <h3>
-    Комментарии
-    <% if user_signed_in? %>
-      <div class="logged">
-        <%= image_tag current_user.avatar %>
-        <%= link_to current_user.name, current_user.profile %>
-        <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    </div>
-    <% end %>
-  </h3>
+  <h3>Комментарии</h3>
 
   <ul>
     <% parent_obj.comments.roots.order('created_at ASC').each do |comment| %>

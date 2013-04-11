@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     when 'mailru'
       auth_raw_info.try(:[], :extra).try(:[], :raw_info).try(:[], :pic)
     else
-      nil
+      Settings['app.default_avatar_url']
     end
   end
 

@@ -5,6 +5,7 @@
  * = require jquery_ujs
  * = require magicsuggest
  * = require public/auth
+ * = require public/rating
  * = require public/md5
  * = require public/twitter
  * = require public/vk

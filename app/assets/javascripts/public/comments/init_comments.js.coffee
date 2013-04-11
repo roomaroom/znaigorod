@@ -57,7 +57,7 @@ restore_comment = () ->
           target.children('ul').find('li.comment_form textarea').val(body)
           target.off 'added_form'
 
-    window.localStorage.clear()
+      window.localStorage.clear()
 
 @init_comments = () ->
   $(".ajaxed").on "ajax:success", (evt, response, status, jqXHR) ->
