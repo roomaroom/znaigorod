@@ -254,11 +254,24 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def affiche_distribution?
-    affiche.distribution_starts_on?
+    affiche.distribution_starts_on? || affiche.distribution_ends_on? || affiche.constant?
   end
 
   def affiche_actual?
     affiche.showings.actual.count > 0
+  end
+
+  def viewable_showings?
+    return false if affiche.is_a?(Other) && affiche_distribution?
+    affiche_actual? && other_showings.any?
+  end
+
+  def distribution_movie?
+    affiche.is_a?(Movie) && affiche_distribution?
+  end
+
+  def scheduled_showings?
+    affiche.affiche_schedule && affiche_distribution? && (affiche.is_a?(Exhibition) || affiche.is_a?(MasterClass))
   end
 
   def human_when
@@ -266,14 +279,14 @@ class AfficheDecorator < ApplicationDecorator
     return "Время проведения неизвестно" unless nealest_showing.showing
     if affiche_actual?
       if affiche.constant?
-        case affiche.class
-        when Exhibition
+        case affiche.class.name
+        when 'Exhibition'
           return "Постоянная экспозиция"
         else
           return "Постоянное мероприятие"
         end
       end
-      return human_distribution if affiche.distribution_starts_on?
+      return human_distribution if affiche_distribution?
     else
       case affiche.class.name
       when 'Movie'
@@ -303,12 +316,14 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def human_distribution
-    return nil unless distribution_starts_on?
     if distribution_starts_on? && distribution_ends_on?
       return "С #{distribution_starts_on.day} по #{I18n.l(distribution_ends_on, :format => '%e %B')}".squish if  distribution_starts_on.month == distribution_ends_on.month
       return "С #{I18n.l(distribution_starts_on, :format => '%e %B')} по #{I18n.l(distribution_ends_on, :format => '%e %B')}".squish
+    elsif distribution_starts_on?
+      return "С #{I18n.l(distribution_starts_on, :format => '%e %B')}".squish
+    elsif distribution_ends_on?
+      return "До #{I18n.l(distribution_ends_on, :format => '%e %B')}".squish
     end
-    return "С #{I18n.l(distribution_starts_on, :format => '%e %B')}".squish
   end
 
   def kind
@@ -353,10 +368,6 @@ class AfficheDecorator < ApplicationDecorator
     ((other_showings[0..1].map(&:html_other_showing)).compact.join(", <br />") + "&nbsp;" + html_many_other_showings.to_s).html_safe
   end
 
-  def distribution_movie?
-    affiche.is_a?(Movie) && affiche_distribution?
-  end
-
   def distribution_movie_nearlest_grouped_showings
     other_showings.any? ? other_showings.group_by(&:starts_on).first.second.group_by(&:place) : []
   end
@@ -384,10 +395,6 @@ class AfficheDecorator < ApplicationDecorator
   def trailer
     return "" if trailer_code.blank?
     trailer_code.html_safe
-  end
-
-  def scheduled_showings?
-    !affiche.affiche_schedule.nil? && affiche.constant?
   end
 
   private
