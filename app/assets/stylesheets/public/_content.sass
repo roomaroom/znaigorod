@@ -567,35 +567,11 @@
             .price
               font-size: 11px
 
-    =head_style
-      +clearfix
-      margin-bottom: 1px
-      background-color: #87bfd8
-      h3
-        float: left
-        color: #fff
-        font-size: 22px
-        height: 29px
-        background: #784391 image_url('public/many_show_nav_arrow.png') no-repeat right center
-        padding: 2px 26px 7px 10px
-      .places
-        float: left
-        color: #fff
-        margin: 10px 0 0 15px
-        a
-          color: #fff
-        .name
-          font-weight: bold
-        .address
-          font-size: 11px
-          background: transparent image_url("public/address.png") no-repeat -3px 0
-          padding-left: 13px
-
     .many_showings
       .head
         font-size: 18px
         line-height: 1.7
-        background: #e1d2e9 image_url('public/affiche_schedule_header_bg.png') no-repeat left center
+        background: #e1d2e9 image_url('public/affiche_schedule_header_bg.png') no-repeat left top
         margin: 0 -10px 5px -10px
         padding-left: 40px
         .address
@@ -632,17 +608,28 @@
             text-align: center
 
     .sheduled
-      margin: 20px 0
       .head
-        +head_style
+        line-height: 1.7
+        +clearfix
+        background: #e1d2e9 image_url('public/affiche_schedule_header_bg.png') no-repeat left top
+        margin: 0 -10px 5px -10px
+        padding-left: 40px
+        h3
+          float: left
+          width: 110px
+          font-size: 18px
+        .places
+          float: left
+          width: 780px
+          margin: 6px 10px 4px
       .shedule
-        background-color: #e8e0eb
-        padding: 10px
+        margin: 10px 0 0 0
         .price
           font-size: 16px
           margin-bottom: 10px
         ul
           +clearfix
+          margin-bottom: 10px
           li
             float: left
             width: 88px
@@ -655,8 +642,8 @@
             span
               display: block
             .date_wrapper
-              background-color: #ded1e3
-              +border-radius(3px)
+              background-color: #fff
+              +border-radius
               padding: 0 0 3px
               .day_of_week
                 font-size: 18px
