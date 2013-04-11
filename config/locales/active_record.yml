@@ -32,6 +32,7 @@ ru:
       car_wash:                           Автомойки
       car_service_center:                 Автосервис
       hotel:                              Гостиницы
+      travel:                             Туристическое агентство
       creation:                           Творчество
       culture:                            Культура
       entertainment:                      Развлекательное заведение
@@ -322,6 +323,9 @@ ru:
         <<: *common_attributes
 
       hotel:
+        <<: *common_attributes
+
+      travel:
         <<: *common_attributes
 
       car_service_center:
