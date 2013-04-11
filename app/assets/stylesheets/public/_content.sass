@@ -629,30 +629,37 @@
           margin-bottom: 10px
         ul
           +clearfix
-          margin-bottom: 10px
           li
             float: left
-            width: 88px
-            text-align: center
-            margin: 0 10px
-            &:first-child
-              margin-left: 0
-            &:last-child
+            width: 124px
+            margin: 0 10px 10px 0
+            &:nth-child(7n)
               margin-right: 0
             span
               display: block
-            .date_wrapper
+            .date
+              +clearfix
               background-color: #fff
               +border-radius
-              padding: 0 0 3px
-              .day_of_week
-                font-size: 18px
-                text-transform: uppercase
-              .date
+              padding: 5px
+              margin-bottom: 3px
+              .day
+                float: left
+                display: block
+                font-size: 22px
+                margin-right: 5px
+              .month
+                display: block
                 font-size: 11px
+                font-weight: bold
+              .day_of_week
+                display: block
+                font-size: 10px
+                text-transform: lowercase
             .work_time_wrapper
               +clearfix
               font-size: 18px
+              text-align: center
               padding: 1px 0 4px
               .weekend
                 font-size: 15px
@@ -660,8 +667,8 @@
             &.current
               color: #fff
               background-color: #784391
-              +border-radius(3px)
-              .date_wrapper
+              +border-radius
+              .date
                 background: none
     #vk_comments
       margin-bottom: 20px

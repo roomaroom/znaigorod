@@ -31,7 +31,7 @@ class AfficheScheduleDecorator < ApplicationDecorator
     res << h.content_tag(:span, day, :class => :day)
     res << h.content_tag(:span, month, :class => :month)
     res << h.content_tag(:span,  I18n.l(date, :format => '%A'), :class => :day_of_week)
-    h.content_tag :p, res.html_safe, :class => :date_wrapper
+    h.content_tag :p, res.html_safe, :class => :date
   end
 
   def li_date_with_worktime(date)
