@@ -57,6 +57,10 @@
             </li>
           <% end  %>
         </ul>
+
+        <div class="all_posts">
+          <%= link_to "Все обзоры (#{@posts.count})", posts_path %>
+        </div>
       </div>
 
       <div class="vk_group_wrapper">
