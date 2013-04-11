@@ -18,6 +18,7 @@ class PlaceDecorator
   end
 
   def place
+    return content_tag(:p, content_tag(:span, link_title, :class => :name)) unless address_link
     content_tag(:p, content_tag(:span, link_title, :class => :name) + ", " + content_tag(:span, address_link, :class => :address))
   end
 
@@ -34,10 +35,12 @@ class PlaceDecorator
                    :latitude => organization.latitude,
                    :longitude => organization.longitude,
                    :class => 'show_map_link') if organization?
-    return link_to('показать на карте', '#', :title => "Показать на карте",
-                   :latitude => latitude,
-                   :longitude => longitude,
-                   :class => 'show_map_link')
+    unless latitude.blank? && longitude.blank?
+      return link_to('показать на карте', '#', :title => "Показать на карте",
+                     :latitude => latitude,
+                     :longitude => longitude,
+                     :class => 'show_map_link')
+    end
   end
 
   def link_to_organization(gsub = nil)

@@ -29,7 +29,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def geo_present?
-    places.any? && places.first.latitude && places.first.longitude
+    places.any? && !places.first.latitude.blank? && !places.first.longitude.blank?
   end
 
   auto_html_for :trailer_code do
