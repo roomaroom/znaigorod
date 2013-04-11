@@ -34,16 +34,41 @@ class SaunaHallsPresenter
     self.lon    = self.lon.blank? ? nil : self.lon
     self.radius = self.radius.blank? ? nil : self.radius
     self.page     ||= 1
-
-    self.order_by  = %w[distance popularity price].include?(self.order_by) ? self.order_by : 'popularity'
   end
 
-  def criterion
-    order_by == 'price' ? 'price_min' : order_by
+  def self.available_sortings
+    %w[popularity price title distance]
+  end
+
+  available_sortings.each do |sorting|
+    define_method "order_by_#{sorting}?" do
+      @order_by == sorting
+    end
+
+    define_method "#{sorting}_sort_link" do
+      html_options = self.send("order_by_#{sorting}?") ? { class: "selected #{sorting}" } : {}
+
+      content_tag :li, link_to(I18n.t("sauna.sort.#{sorting}"), saunas_path(params.merge(order_by: sorting)), html_options)
+    end
+  end
+
+  def order_by
+    @order_by = self.class.available_sortings.include?(@order_by) ? @order_by : self.class.available_sortings.first
+
+    if order_by_distance? && (lat.blank? || lon.blank? || radius.blank?)
+      @order_by = (self.class.available_sortings - ['distance']).include?(@order_by) ? @order_by : self.class.available_sortings.first
+    end
+
+    @order_by
+  end
+  alias_method :criterion, :order_by
+
+  def sortings
+    { 'popularity' => 'desc', 'price' => 'asc', 'title' => 'asc' }
   end
 
   def direction
-    criterion == 'popularity' ? 'desc' : 'asc'
+    sortings[order_by]
   end
 
   def capacity_hash
@@ -103,12 +128,8 @@ class SaunaHallsPresenter
         with(:pool_features, feature)
       end
 
-      if order_by_distance?
-        if lat && lon && radius
-          order_by_geodist(:location, lat, lon)
-        else
-          order_by(:popularity, :desc)
-        end
+      if order_by_distance? && lat && lon && radius
+        order_by_geodist(:location, lat, lon)
       else
         order_by(criterion, direction)
       end
@@ -201,22 +222,6 @@ class SaunaHallsPresenter
     end
   end
 
-  %w[popularity price].each do |name|
-    define_method "order_by_#{name}?" do
-      order_by == name
-    end
-
-    define_method "#{name}_sort_link" do
-      html_options = self.send("order_by_#{name}?") ? { class: "selected #{name}" } : {}
-
-      content_tag :li, link_to(I18n.t("sauna.sort.#{name}"), saunas_path(params.merge(order_by: name)), html_options)
-    end
-  end
-
-  def order_by_distance?
-    order_by == 'distance'
-  end
-
   def distance_sort_link
     html_options = {}
     html_options = { class: 'disabled distance', title: 'Не активно, если не определено ваше местоположение.' } unless geo_filter_used?
@@ -228,7 +233,7 @@ class SaunaHallsPresenter
   def sort_links
     separator = content_tag(:li, content_tag(:span, '&nbsp;', class: 'separator')).html_safe
 
-    [popularity_sort_link, price_sort_link, distance_sort_link].join(separator).html_safe
+    [popularity_sort_link, price_sort_link, title_sort_link, distance_sort_link].join(separator).html_safe
   end
 
   def keywords

@@ -35,6 +35,7 @@ class SaunaHall < ActiveRecord::Base
     integer :capacity
     integer :price_max
     integer :price_min
+    integer(:price) { price_min }
 
     float(:popularity) { sauna.organization.rating }
 
@@ -44,6 +45,7 @@ class SaunaHall < ActiveRecord::Base
     string :features,       :multiple => true
     string :pool_features,  :multiple => true
     string :sauna_id
+    string(:title) { organization_title }
   end
 
   include Rating
