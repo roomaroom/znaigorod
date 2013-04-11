@@ -617,6 +617,7 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
     t.datetime "updated_at",   :null => false
     t.text     "category"
     t.text     "description"
+    t.text     "offer"
   end
 
   create_table "showings", :force => true do |t|

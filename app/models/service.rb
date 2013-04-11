@@ -3,7 +3,7 @@ class Service < ActiveRecord::Base
 
   belongs_to :context, :polymorphic => true
 
-  validates_presence_of :category
+  validates_presence_of :title
 
   alias_attribute :to_s, :title
 
@@ -13,6 +13,16 @@ class Service < ActiveRecord::Base
   normalize_attributes :feature, :title, :with => :blank
 
   scope :filled, -> { where('title IS NOT NULL') }
+
+  include PresentsAsCheckboxes
+
+  presents_as_checkboxes :category,
+    :validates_presence => true,
+    :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked'),
+    :available_values => Values.instance.salon_center.categories
+
+  presents_as_checkboxes :offer,
+    :available_values => Values.instance.salon_center.offers
 end
 
 # == Schema Information

@@ -8,6 +8,9 @@ class SalonCenter < ActiveRecord::Base
   delegate :address, :phone, :latitude, :longitude, :to => :organization
   delegate :title, :to => :organization, :prefix => true
 
+  has_many :services, :as => :context, :dependent => :destroy, :order => 'id'
+  validates_associated :services
+
   # OPTIMIZE: <--- similar code
   attr_accessor :vfs_path
   attr_accessible :vfs_path

@@ -50,7 +50,8 @@ salon_center:
 
   features: []
 
-  offers: []
+  offers:
+    - мужские стрижки
 
 hotel:
   categories:
