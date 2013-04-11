@@ -117,7 +117,7 @@ class SaunaHall < ActiveRecord::Base
 
   def features
     features = sauna_hall_entertainment_features + sauna_hall_interior_features
-    features << self.class.human_attribute_name(:virtual_tour_link).mb_chars.downcase if virtual_tour
+    features << self.class.human_attribute_name(:virtual_tour_link).mb_chars.downcase if virtual_tour_link
     features
   end
 end
