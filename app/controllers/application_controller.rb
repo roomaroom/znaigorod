@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   layout 'public'
 
   def main_page
-    @presenter = ShowingsPresenter.new(categories: ['movie'])
+    @presenter = ShowingsPresenter.new(categories: ['movie'], period: 'today')
     @photoreport = Photogallery.new
     @actual_organizations = ActualOrganizations.new
   end
