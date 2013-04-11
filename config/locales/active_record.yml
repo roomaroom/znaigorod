@@ -351,3 +351,9 @@ ru:
 
       paperclip_attachment:
         attachment: Выберите файл
+
+      price:
+        kind:    Тип
+        count:   Количество
+        period:  Срок
+        value:   Цена

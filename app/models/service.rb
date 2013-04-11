@@ -1,11 +1,18 @@
 class Service < ActiveRecord::Base
-  attr_accessible :age, :title, :feature, :category, :description
+  attr_accessible :age, :title, :feature, :category, :description, :price_attributes
 
   belongs_to :context, :polymorphic => true
 
   validates_presence_of :title
 
   alias_attribute :to_s, :title
+
+  has_one :price, :dependent => :destroy
+  accepts_nested_attributes_for :price, :allow_destroy => true
+
+  after_initialize do
+    self.price ||= self.build_price()
+  end
 
   delegate :index, :to => :context, :prefix => true
   after_save :context_index

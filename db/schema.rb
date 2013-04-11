@@ -396,6 +396,18 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
     t.boolean  "status",     :default => false
   end
 
+  create_table "prices", :force => true do |t|
+    t.string   "kind"
+    t.integer  "value"
+    t.integer  "count"
+    t.string   "period"
+    t.integer  "service_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
+
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
     t.string   "role"
