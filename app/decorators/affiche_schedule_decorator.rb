@@ -27,8 +27,10 @@ class AfficheScheduleDecorator < ApplicationDecorator
 
   def wday_with_date(date)
     res = ""
-    res << h.content_tag(:span,  I18n.l(date, :format => '%a'), :class => :day_of_week)
-    res << h.content_tag(:span, I18n.l(date, :format => '%e %B'), :class => :date)
+    day, month = I18n.l(date, :format => '%e %B').squish.split(" ")
+    res << h.content_tag(:span, day, :class => :day)
+    res << h.content_tag(:span, month, :class => :month)
+    res << h.content_tag(:span,  I18n.l(date, :format => '%A'), :class => :day_of_week)
     h.content_tag :p, res.html_safe, :class => :date_wrapper
   end
 
