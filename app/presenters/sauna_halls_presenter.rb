@@ -37,7 +37,7 @@ class SaunaHallsPresenter
   end
 
   def self.available_sortings
-    %w[popularity price title distance]
+    %w[rating price title distance]
   end
 
   available_sortings.each do |sorting|
@@ -64,7 +64,7 @@ class SaunaHallsPresenter
   alias_method :criterion, :order_by
 
   def sortings
-    { 'popularity' => 'desc', 'price' => 'asc', 'title' => 'asc' }
+    { 'rating' => 'desc', 'price' => 'asc', 'title' => 'asc' }
   end
 
   def direction
@@ -233,7 +233,7 @@ class SaunaHallsPresenter
   def sort_links
     separator = content_tag(:li, content_tag(:span, '&nbsp;', class: 'separator')).html_safe
 
-    [popularity_sort_link, price_sort_link, title_sort_link, distance_sort_link].join(separator).html_safe
+    [rating_sort_link, price_sort_link, title_sort_link, distance_sort_link].join(separator).html_safe
   end
 
   def keywords

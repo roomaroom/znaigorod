@@ -11,9 +11,7 @@ module SearchWithFacets
     def search_with_facets(*args)
       self.facets = args
 
-      delegate :rating, :virtual_tour_link, :site?, :images, :title,
-        to: :organization,
-        prefix: true
+      delegate :total_rating, :virtual_tour_link, :site?, :images, to: :organization, prefix: true
       delegate :latitude, :longitude, :to => :organization
 
       klass = self
@@ -26,7 +24,8 @@ module SearchWithFacets
           text facet
         end
 
-        float :organization_rating
+        float :organization_total_rating
+
         integer(:organization_ids, multiple: true) { [organization_id] }
         string :organization_title
 

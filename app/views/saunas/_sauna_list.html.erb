@@ -20,6 +20,9 @@
           <%= organization.phone %>
         </div>
       </div>
+      <div class="rating">
+        <%= render :partial => 'user_ratings/current_rating', :locals => { :parent_obj => organization } %>
+      </div>
     </div>
 
     <ul>

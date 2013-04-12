@@ -26,7 +26,7 @@ Organization.basic_suborganization_kinds.each do |kind|
       search.with(:location).in_radius(search_object.location[:lat], search_object.location[:lon], search_object.location[:radius]) if search_object.location
     end
 
-    scope(:order_by_popularity) { order_by :organization_rating, :desc }
+    scope(:order_by_rating) { order_by :organization_total_rating, :desc }
 
     scope :order_by_nearness do |search|
       search.order_by_geodist(:location, search_object.location.lat, search_object.location.lon) if search_object.location

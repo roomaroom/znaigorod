@@ -56,7 +56,7 @@ HasSearcher.create_searcher :actual_organization do
 
   scope do
     #adjust_solr_params { |params| params[:q] = "{!boost b=organization_rating_f}*:*" }
-    order_by(:organization_rating, :desc)
+    order_by(:organization_total_rating, :desc)
   end
 end
 
@@ -113,7 +113,7 @@ HasSearcher.create_searcher :global do
       function {
         sum(
           div(:popularity, Affiche.maximum(:popularity)),
-          div(:rating, Organization.maximum(:rating))
+          div(:total_rating, Organization.maximum(:total_rating))
         )
       }
     )

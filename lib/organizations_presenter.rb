@@ -40,7 +40,7 @@ module OrganizationsPresenter
     end
 
     def available_sortings
-      %w[popularity nearness title]
+      %w[rating nearness title]
     end
 
     def available_sortings_without_nearness

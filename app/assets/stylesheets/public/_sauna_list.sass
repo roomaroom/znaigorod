@@ -15,6 +15,7 @@
       background: #f4eff6
       display: inline-block
       height: 60px
+      position: relative
       width: 100%
 
       .organization_title
@@ -34,6 +35,11 @@
             display: block
             height: 60px
             width: 60px
+
+      .rating
+        position: absolute
+        right: 0
+        top: 36px
 
       .attributes
         +border-left-radius(5px)
@@ -195,15 +201,6 @@
         text-align: left
         //width: 200px
         width: 402px
-
-      .bedrooms
-        background: #e5f0df
-        border: 1px dashed #d1d8d0
-        float: left
-        height: 24px
-        line-height: 24px
-        text-align: center
-        width: 200px
 
   .loosers
     +clearfix

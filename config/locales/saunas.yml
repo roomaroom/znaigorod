@@ -257,7 +257,7 @@ ru:
       barbecue:
         "true": "Есть мангал/барбекю"
     sort:
-      popularity: По популярности
+      rating:     По рейтингу
       title:      По алфавиту
       price:      По цене
       distance:   По расстоянию

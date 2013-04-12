@@ -37,5 +37,4 @@
       <%= content_tag(:span, 'Бассейн:') unless sauna_hall.pool_size.blank? %> <%= [sauna_hall.pool_size.gsub(/-/,''), sauna_hall.pool_features].flatten.delete_if(&:blank?).join(', ') %>
     </div>
   <% end %>
-  <%#<div class="bedrooms"><span>1 комната отдыха</span></div>%>
 </div>

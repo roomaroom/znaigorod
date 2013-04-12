@@ -37,7 +37,7 @@ class SaunaHall < ActiveRecord::Base
     integer :price_min
     integer(:price) { price_min }
 
-    float(:popularity) { sauna.organization.rating }
+    float(:rating) { sauna.organization.total_rating }
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 
