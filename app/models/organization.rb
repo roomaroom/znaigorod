@@ -210,8 +210,7 @@ class Organization < ActiveRecord::Base
   end
 
   def services
-    suborganizations.select{ |s| s.respond_to?(:services) }.
-      flat_map { |suborganization| suborganization.services }
+    Service.where :id => suborganizations.select{ |s| s.respond_to?(:services) }.flat_map(&:service_ids)
   end
 
   def priority_suborganization

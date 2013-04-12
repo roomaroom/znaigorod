@@ -27,8 +27,10 @@ Znaigorod::Application.routes.draw do
     get 'organizations/rated' => 'organizations#index', :defaults => { :rated => true }
 
     resources :organizations do
-      (Organization.available_suborganization_kinds).each do |kind|
-        resource kind, :except => [:index, :show]
+      Organization.available_suborganization_kinds.each do |kind|
+        resource kind, :except => [:index, :show] do
+          resources :services, :except => :show
+        end
       end
 
       resource :billiard, :only => [] do
@@ -46,6 +48,7 @@ Znaigorod::Application.routes.draw do
       resources :attachments, :only => [:new, :create, :destroy, :edit, :update]
       resources :images, :only => [:new, :create, :destroy, :edit, :update]
       resources :organizations, :only => [:new, :create, :destroy]
+
     end
 
     Organization.available_suborganization_kinds.each do |kind|
