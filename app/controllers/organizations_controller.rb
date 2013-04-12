@@ -37,6 +37,7 @@ class OrganizationsController < ApplicationController
   def in_bounding_box
     data = OrganizationDecorator.decorate(HasSearcher.searcher(:organizations, params).results).map do |organization|
       {
+        id: organization.id,
         title: organization.title,
         logo: organization.logotype_url,
         address: organization.address.to_s,
