@@ -43,6 +43,7 @@ mailru:
 errors:
   key:                  api_key
   host:                 host
+  url:                  http://errors.host
 
 storage:
   url:                  http://storage.host
