@@ -35,9 +35,10 @@
             </a>
           </div>"
       $.colorbox
-        width: box_width
         height: box_height
         html: data
+        opacity: 0.6
+        width: box_width
         onComplete: () ->
           init_swfkrpano()
           true

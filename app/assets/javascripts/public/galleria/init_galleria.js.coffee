@@ -9,12 +9,12 @@
     $("a", this).attr("rel", "colorbox")
     true
   $(".content .gallery_container li a").colorbox
-    "maxWidth": "90%"
-    "maxHeight": "98%"
-    "opacity": "0.5"
-    "photo": "true"
-    "current": "{current} / {total}"
-    "previous": "предыдущая"
-    "next": "следующая"
     "close": "закрыть"
+    "current": "{current} / {total}"
+    "maxHeight": "98%"
+    "maxWidth": "90%"
+    "next": "следующая"
+    "opacity": "0.6"
+    "photo": "true"
+    "previous": "предыдущая"
   true

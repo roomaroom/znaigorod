@@ -10,6 +10,9 @@
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
       zoom: 15
       behaviors: []
+    ,
+      maxZoom: 23
+      minZoom: 10
 
     zoomButton = new ymaps.control.Button
       data:
@@ -128,8 +131,9 @@ render_organizations = (map, without_organization_id) ->
       need_delete_placemarks = []
 
       $.each data, (index, item) ->
-        builded_placemarks["id_#{item.id}"] = build_placemark(item)
-        builded_placemark_ids.add "id_#{item.id}"
+        unless item.logo.isBlank()
+          builded_placemarks["id_#{item.id}"] = build_placemark(item)
+          builded_placemark_ids.add "id_#{item.id}"
         true
 
       map.geoObjects.each (geoObject) ->
