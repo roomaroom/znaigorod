@@ -1,35 +1,34 @@
 class Service < ActiveRecord::Base
   attr_accessible :age, :title, :feature, :category, :description, :price_attributes
 
-  belongs_to :context, :polymorphic => true
+  belongs_to :context, polymorphic: true
 
   validates_presence_of :title
 
   alias_attribute :to_s, :title
 
-  has_one :price, :dependent => :destroy
-  accepts_nested_attributes_for :price, :allow_destroy => true
+  has_one :price, dependent: :destroy
+  accepts_nested_attributes_for :price, allow_destroy: true
 
   after_initialize do
     self.price ||= self.build_price()
   end
 
-  delegate :index, :to => :context, :prefix => true
+  delegate :index, to: :context, prefix: true
   after_save :context_index
 
-  normalize_attributes :feature, :title, :with => :blank
+  normalize_attributes :feature, :title, with: :blank
 
   scope :filled, -> { where('title IS NOT NULL') }
 
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :category,
-    :validates_presence => true,
-    :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked'),
-    :available_values => Values.instance.salon_center.categories
+    validates_presence: true,
+    message: I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked'),
+    available_values: []
 
-  presents_as_checkboxes :offer,
-    :available_values => Values.instance.salon_center.offers
+  presents_as_checkboxes :offer, available_values: []
 end
 
 # == Schema Information
