@@ -10,9 +10,6 @@
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
       zoom: 15
       behaviors: []
-    ,
-      maxZoom: 23
-      minZoom: 10
 
     zoomButton = new ymaps.control.Button
       data:
@@ -72,6 +69,9 @@
           center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
           zoom: 15
           behaviors: ['drag', 'scrollZoom']
+        ,
+          maxZoom: 23
+          minZoom: 12
 
         affiche_placemark = new ymaps.GeoObject
           geometry:
