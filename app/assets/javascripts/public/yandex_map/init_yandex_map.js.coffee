@@ -49,11 +49,14 @@
 
 @init_modal_affiche_yandex_map = () ->
 
+  dialog_width = $(window).innerWidth() * 70 / 100
+  dialog_height = $(window).innerHeight() * 80 /100
+
   ymaps.ready ->
 
     $('<div id=\'modal_affiche_yandex_map\'></div>').dialog
-      width: 800
-      height: 600
+      width: dialog_width
+      height: dialog_height
       modal: true
       resizable: false
       open: (event, ui) ->
@@ -80,6 +83,7 @@
           iconImageHref: '/assets/public/affiche_placemark.png'
           iconImageOffset: [-18, -42]
           iconImageSize: [37, 42]
+          zIndex: 700
 
         map.geoObjects.add(affiche_placemark)
 
