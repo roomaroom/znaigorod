@@ -25,7 +25,7 @@ class AfficheCollection
 
     self.list_settings = list_settings.present? ? JSON.parse(list_settings) : {}
     self.presentation_mode = list_settings['presentation'] || 'posters'
-    self.sort = !!list_settings['sort'].try(:any?) ? list_settings['sort'] : ['popular']
+    self.sort = !!list_settings['sort'].try(:any?) ? list_settings['sort'] : ['rating']
   end
 
   def meta_keywords
@@ -188,15 +188,15 @@ class AfficheCollection
 
   def sort_scopes
     [].tap do |scopes|
-      scopes << 'order_by_starts_at'          if sort.include?('closest')
-      scopes << 'order_by_affiche_created_at' if sort.include?('newest')
-      scopes << 'order_by_affiche_popularity' if sort.include?('popular')
+      scopes << 'order_by_starts_at'            if sort.include?('closest')
+      scopes << 'order_by_affiche_created_at'   if sort.include?('newest')
+      scopes << 'order_by_affiche_total_rating' if sort.include?('rating')
     end
   end
 
   def sort_links
     [].tap  { |links|
-      %w[popularity creation starts_at].each do |sorting|
+      %w[rating creation starts_at].each do |sorting|
         links << content_tag(:li,
                              Link.new(
                                title: I18n.t("affiche.sort.#{sorting}"),

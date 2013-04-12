@@ -81,7 +81,7 @@ class Organization < ActiveRecord::Base
   scope :ordered_by_updated_at, order('updated_at DESC')
   scope :parental,              where(:organization_id => nil)
 
-  before_save :set_rating
+  #before_save :set_rating
   after_save :index_suborganizations
 
   alias_attribute :to_s, :title

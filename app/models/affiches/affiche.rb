@@ -42,7 +42,7 @@ class Affiche < ActiveRecord::Base
 
   default_value_for :yandex_metrika_page_views, 0
   default_value_for :vkontakte_likes,           0
-  before_save :set_popularity
+  #before_save :set_popularity
 
   friendly_id :title, use: :slugged
 

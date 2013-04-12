@@ -26,7 +26,7 @@
       set_cookie(view, order_by)
   else
     json = JSON.parse($.cookie('znaigorod_affiches_list_settings'))
-    if (json.view != 'list' && json.view != 'posters') || (json.order_by != 'popularity' && json.order_by != 'nearness')
+    if (json.view != 'list' && json.view != 'posters') || (json.order_by != 'rating' && json.order_by != 'nearness')
       $.removeCookie('znaigorod_affiches_list_settings')
 
   $('.content_wrapper .affiches_list .list_settings .sort a').click (event) ->

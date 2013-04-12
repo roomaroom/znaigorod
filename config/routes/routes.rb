@@ -33,8 +33,8 @@ Znaigorod::Application.routes.draw do
     get  "#{type}/:#{type}_id/user_ratings/:id"          => 'user_ratings#show',     :as => "#{type}_user_rating"
     get  "#{type}/:#{type}_id/user_ratings/new"          => 'user_ratings#new',      :as => "new_#{type}_user_rating"
     post "#{type}/:#{type}_id/user_ratings"              => 'user_ratings#create',   :as => "#{type}_user_ratings"
-    get  "#{type}/:#{type}_id/user_ratings/:id/edit"     => 'user_ratings#edit',     :as => "new_#{type}_user_rating"
-    put  "#{type}/:#{type}_id/user_ratings/:id"          => 'user_ratings#update',   :as => "#{type}_user_ratings"
+    get  "#{type}/:#{type}_id/user_ratings/:id/edit"     => 'user_ratings#edit',     :as => "edit_#{type}_user_rating"
+    put  "#{type}/:#{type}_id/user_ratings/:id"          => 'user_ratings#update',   :as => "#{type}_user_rating"
 
     get "#{type}/:id"                           => 'affiches#show',         :as => "#{type}"
     get "#{type.gsub('_','')}/:id"              => 'affiches#show',         :as => "#{type.gsub('_','')}"

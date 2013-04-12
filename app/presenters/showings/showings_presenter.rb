@@ -43,7 +43,7 @@ class ShowingsPresenter
     :price_filter, :tags_filter, :time_filter, :geo_filter
 
   def self.available_sortings
-    %w[popularity creation starts_at nearness]
+    %w[rating creation starts_at nearness]
   end
 
   available_sortings.each do |sorting|

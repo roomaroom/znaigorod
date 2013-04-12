@@ -37,11 +37,11 @@ SitemapGenerator::Sitemap.create do
   add cooperation_path,        :changefreq => 'weekly', :priority => 0.7, :lastmod => DateTime.now - 7.days
 
   # Мероприятия
-  max_popularity = Affiche.all.map(&:popularity).max
+  max_rating = Affiche.all.map(&:total_rating).max
   Affiche.find_each do |affiche|
     add send("#{affiche.class.name.downcase}_path", affiche),
       :changefreq => 'weekly',
-      :priority => affiche.popularity/max_popularity,
+      :priority => affiche.total_rating/max_rating,
       :lastmod => affiche.updated_at #,
       #:images => [{ :loc => affiche.poster_url, :title => affiche.title }]
   end

@@ -112,7 +112,7 @@ HasSearcher.create_searcher :global do
     boost(
       function {
         sum(
-          div(:popularity, Affiche.maximum(:popularity)),
+          div(:total_rating, Affiche.maximum(:total_rating)),
           div(:total_rating, Organization.maximum(:total_rating))
         )
       }
