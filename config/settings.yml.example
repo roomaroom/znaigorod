@@ -1,5 +1,7 @@
 app:
   secret:               secret
+  host:                 host.name
+  url:                  http://host.name
 
 solr:
   url:                  http://localhost:8982/solr
