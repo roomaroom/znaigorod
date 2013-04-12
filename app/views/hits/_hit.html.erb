@@ -9,6 +9,11 @@
 <%= hit.snipped_links %>
 <%= hit.closest %>
 <%= hit.places %>
+
+  <div class="rating" style='margin: 5px 10px;'>
+    <%= render :partial => 'user_ratings/current_rating', :locals => { :parent_obj => hit.result_decorator.model } %>
+  </div>
+
 <div class='excerpt'><%= hit.excerpt %></div>
 <% HitDecorator::ADDITIONAL_FIELDS.each do |field| %>
   <% if (hit.highlights(field) + hit.highlights("#{field}_ru")).any? %>

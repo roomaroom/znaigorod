@@ -1,5 +1,8 @@
 <div class="item">
   <%= affiche.has_ribbon %>
+  <div class="rating">
+    <%= render :partial => 'user_ratings/current_rating', :locals => { :parent_obj => affiche.model } %>
+  </div>
   <%= content_tag :div, "#{affiche.age_min.to_i}+", class: :age if affiche.age_min.present? %>
   <div class="title"><%= affiche.posters_title_link %></div>
   <div class="image"><%= affiche.posters_list_poster %></div>
