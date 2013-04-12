@@ -42,6 +42,7 @@
             <%= @affiche.item_poster %>
           </div>
           <div class='description'>
+            <%= render :partial => 'user_ratings/block', :locals => { :parent_obj => @affiche.model } %>
             <div class='closest'>
               <%= @affiche.when_with_price %>
             </div>
