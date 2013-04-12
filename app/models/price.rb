@@ -8,13 +8,7 @@ class Price < ActiveRecord::Base
   enumerize :kind, in: [:single, :multiple], predicates: true
 
   validates_presence_of :kind, :value
-  validates_presence_of :count, :period, :if => :kind_is_multiple?
-
-  private
-
-  def kind_is_multiple?
-    self.kind.multiple?
-  end
+  validates_presence_of :count, :period, :if => :kind_multiple?
 end
 
 # == Schema Information

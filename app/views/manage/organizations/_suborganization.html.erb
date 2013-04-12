@@ -18,6 +18,24 @@
   <% end %>
 <% end %>
 
+<ul>
+  <span class="label">Услуги</span>
+  <% resource.services.each do |service| %>
+    <li>
+      <%= service.title %>
+
+      <% if service.price.multiple? %>
+        <%= service.price.kind_text %>,
+        <%= service.price.count %>,
+        <%= service.price.period %>,
+        <%= service.price.value %>
+      <% else %>
+        <%= service.price.value %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 <%= render suborganization.virtual_tour %>
 
 <div>
