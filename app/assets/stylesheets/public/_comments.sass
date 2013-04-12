@@ -1,8 +1,7 @@
 .comments
   +clearfix
-  @include background(image_url('divider.png') no-repeat center top, image_url('divider.png') no-repeat center bottom)
   margin: 25px 20px
-  padding: 25px 0
+  padding: 5px 0
 
   h3, h4
     color: #575656
@@ -11,12 +10,12 @@
   h3
     font-size: 18px
     line-height: 20px
-    margin: 0 0 25px
+    margin: 0
 
   h4
     font-size: 14px
     line-height: 18px
-    margin: 25px 0 0
+    margin: 0
 
   .social_signin_links
     +clearfix
@@ -30,76 +29,36 @@
       a
         display: block
         text-indent: -9999px
-        height: 34px
-        width: 34px
-
-        &:hover
-          background-position-y: -34px !important
+        height: 33px
+        width: 33px
 
       &.vkontakte
         a
-          background: image_url('social_icons_small.png') no-repeat 0 0
+          background: image_url('social_icons.png') no-repeat 0 0
 
       &.yandex
         a
-          background: image_url('social_icons_small.png') no-repeat -34px 0
+          background: image_url('social_icons.png') no-repeat -33px 0
 
       &.facebook
         a
-          background: image_url('social_icons_small.png') no-repeat -68px 0
+          background: image_url('social_icons.png') no-repeat -66px 0
 
       &.twitter
         a
-          background: image_url('social_icons_small.png') no-repeat -102px 0
+          background: image_url('social_icons.png') no-repeat -99px 0
 
       &.google
         a
-          background: image_url('social_icons_small.png') no-repeat -136px 0
+          background: image_url('social_icons.png') no-repeat -132px 0
 
       &.mail_ru
         a
-          background: image_url('social_icons_small.png') no-repeat -170px 0
+          background: image_url('social_icons.png') no-repeat -165px 0
 
       &.odnoklassniki
         a
-          background: image_url('social_icons_small.png') no-repeat -204px 0
-
-      //a
-        //display: block
-        //text-indent: -9999px
-        //height: 68px
-        //width: 68px
-
-        //&:hover
-          //background-position-y: -68px !important
-
-      //&.vkontakte
-        //a
-          //background: image_url('social_icons_big.png') no-repeat 0 0
-
-      //&.yandex
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -68px 0
-
-      //&.facebook
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -136px 0
-
-      //&.twitter
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -204px 0
-
-      //&.google
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -272px 0
-
-      //&.mail_ru
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -340px 0
-
-      //&.odnoklassniki
-        //a
-          //background: image_url('social_icons_big.png') no-repeat -408px 0
+          background: image_url('social_icons.png') no-repeat -198px 0
 
   ul
     +clearfix
@@ -119,7 +78,6 @@
         margin: 0 15px 0 0
 
         img
-          +border-radius(50px)
           display: block
           height: 50px
           width: 50px
@@ -177,11 +135,10 @@
     margin: 15px 0
 
     img.avatar
-      +border-radius(50px)
       display: block
       float: left
       height: 50px
-      margin: 0 15px 0 0
+      margin: 0 7px 0 0
       width: 50px
 
     .profile_link
@@ -189,6 +146,8 @@
       margin: 0 0 3px 0
 
     form
+      +clearfix
+      margin: 2px 0 0 0
       padding: 2px
 
     .error
@@ -199,15 +158,20 @@
       position: absolute
       left: 275px
 
-    textarea
+    div.text
       border: 1px solid #ddd
-      color: #555
-      height: 60px
       margin: 0 auto 10px
       padding: 5px
+
+    textarea
+      border: none
+      color: #555
+      height: 60px
+      outline: none
       resize: none
-      width: 80%
+      width: 100%
 
     .buttons
       input
-      a
+        font-size: 16px
+        margin: 0 15px 0 0
