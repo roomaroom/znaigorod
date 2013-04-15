@@ -7,7 +7,7 @@
             <%= link_to current_user.name, current_user.profile %>
             <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
           <% else %>
-            <%= link_to 'Вход' %>
+            <%= render :partial => 'commons/social_auth' %>
           <% end %>
         </div>
       <%= form_tag search_path, :method => :get do %>
