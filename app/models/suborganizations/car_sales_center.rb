@@ -1,9 +1,12 @@
 class CarSalesCenter < ActiveRecord::Base
   include HasVirtualTour
 
-  belongs_to :organization
   attr_accessible :category, :description, :feature, :offer, :title
+
+  belongs_to :organization
+
   delegate :address, :phone, :latitude, :longitude, :to => :organization
+  delegate :title, :to => :organization, :prefix => true
 
   # OPTIMIZE: <--- similar code
   attr_accessor :vfs_path

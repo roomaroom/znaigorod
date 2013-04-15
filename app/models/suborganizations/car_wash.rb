@@ -6,6 +6,7 @@ class CarWash < ActiveRecord::Base
   belongs_to :organization
 
   delegate :address, :phone, :latitude, :longitude, :to => :organization
+  delegate :title, :to => :organization, :prefix => true
 
   # OPTIMIZE: <--- similar code
   attr_accessor :vfs_path
