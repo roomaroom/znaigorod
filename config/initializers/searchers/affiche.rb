@@ -82,7 +82,7 @@ HasSearcher.create_searcher :affiche do
     order_by(:affiche_created_at, :desc)
   end
 
-  scope :order_by_affiche_total_ratng do
+  scope :order_by_affiche_total_rating do
     order_by(:affiche_total_rating, :desc)
   end
 
