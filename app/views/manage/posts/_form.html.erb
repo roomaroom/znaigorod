@@ -9,5 +9,6 @@
   <%= f.input :status, :as => :boolean %>
   <div class='actions'>
     <%= f.submit "Сохранить" %>
+    <%= link_to 'Удалить'.html_safe, resource_path, method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
   </div>
 <% end %>
