@@ -137,14 +137,14 @@ class AfficheDecorator < ApplicationDecorator
     links
   end
 
-  def affiche_place(length = 45)
+  def affiche_place(length = 45, separator = ' ')
     max_lenght = length
     place_output = ""
     places.each_with_index do |place, index|
       place_title = place.organization ? place.organization.title : place.title
       place_link_title = place_title.dup
       place_title = place_title.gsub(/,.*/, '')
-      place_title = place_title.truncate(max_lenght, :separator => ' ')
+      place_title = place_title.truncate(max_lenght, :separator => separator)
       max_lenght -= place_title.size
       if place.organization
         place_output += h.link_to place_title.text_gilensize.hyphenate, OrganizationDecorator.decorate(place.organization).organization_url, :title => place_link_title.text_gilensize
@@ -162,7 +162,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def posters_place
-    affiche_place(23)
+    affiche_place(22, nil)
   end
 
   def places
