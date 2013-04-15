@@ -28,8 +28,8 @@ Znaigorod::Application.routes.draw do
 
     resources :organizations do
       Organization.available_suborganization_kinds.each do |kind|
-        resource kind, :except => [:index, :show] do
-          resources :services, :except => :show
+        resource kind, :except => [:index] do
+          resources :services, :except => [:index, :show]
         end
       end
 

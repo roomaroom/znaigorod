@@ -16,5 +16,6 @@
  * = require ./new_affiche
  * = require ./saunas
  * = require ./has_virtual_tour
+ * = require ./services
  * = require ./main
  */

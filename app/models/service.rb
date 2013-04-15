@@ -1,5 +1,7 @@
 class Service < ActiveRecord::Base
-  attr_accessible :age, :title, :feature, :category, :description, :price_attributes
+  extend Enumerize
+
+  attr_accessible :age, :title, :feature, :category, :description, :kind, :prices_attributes
 
   belongs_to :context, polymorphic: true
 
@@ -7,12 +9,8 @@ class Service < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  has_one :price, dependent: :destroy
-  accepts_nested_attributes_for :price, allow_destroy: true
-
-  after_initialize do
-    self.price ||= self.build_price()
-  end
+  has_many :prices, dependent: :destroy
+  accepts_nested_attributes_for :prices, allow_destroy: true
 
   delegate :index, to: :context, prefix: true
   after_save :context_index
@@ -29,6 +27,8 @@ class Service < ActiveRecord::Base
     available_values: []
 
   presents_as_checkboxes :offer, available_values: []
+
+  enumerize :kind, in: [:class, :visit], predicates: true
 end
 
 # == Schema Information

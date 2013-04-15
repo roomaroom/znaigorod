@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Price < ActiveRecord::Base
   extend Enumerize
 
@@ -9,6 +11,14 @@ class Price < ActiveRecord::Base
 
   validates_presence_of :kind, :value
   validates_presence_of :count, :period, :if => :multiple?
+
+  def to_s
+    if single?
+      "Разовое посещение #{value} руб."
+    else
+      "Абонимент на #{count} ___ #{period} #{value} руб."
+    end
+  end
 end
 
 # == Schema Information

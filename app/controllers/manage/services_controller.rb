@@ -1,5 +1,5 @@
 class Manage::ServicesController < Manage::ApplicationController
-  actions :all, except: :show
+  actions :all, except: [:index, :show]
 
   belongs_to :organization
 
@@ -16,7 +16,7 @@ class Manage::ServicesController < Manage::ApplicationController
   end
 
   def smart_collection_url
-    [:manage, @organization, resource.context.class.name.underscore, :services]
+    [:manage, @organization, resource.context.class.name.underscore]
   end
 
   def context_type

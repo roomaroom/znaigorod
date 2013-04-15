@@ -16,11 +16,4 @@
 <%= f.input :description, :input_html => { :class => 'service_description' } %>
 <%= f.input :age %>
 
-<%= f.simple_fields_for :price do |pf| %>
-  <%= pf.input :kind, :as => :select, :include_blank => false %>
-  <%= pf.input :count %>
-  <%= pf.input :period %>
-  <%= pf.input :value %>
-<% end %>
-
 <%= f.link_to_remove 'Удалить эту услугу' %>

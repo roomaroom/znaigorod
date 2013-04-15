@@ -27,6 +27,11 @@ ru:
         meeting_contract:  Встреча для подписания договора
         meeting_payment:   Встреча для получения денег
 
+    service:
+      kind:
+        class:                 Занятие
+        visit:                 Посещение
+
     price:
       kind:
         single:                Разовая

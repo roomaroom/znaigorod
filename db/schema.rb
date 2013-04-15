@@ -630,6 +630,7 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
     t.text     "category"
     t.text     "description"
     t.text     "offer"
+    t.string   "kind"
   end
 
   create_table "showings", :force => true do |t|

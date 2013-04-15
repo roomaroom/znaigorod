@@ -1,6 +1,8 @@
 <%= simple_nested_form_for [:manage, @organization, context_type, resource],
   :html => { :novalidate => true } do |f| %>
 
+  <%= f.input :kind %>
+
   <%= f.input :category_list,
     :as => :check_boxes,
     :collection => Values.instance.send(context_type).categories,
@@ -19,12 +21,16 @@
   <%= f.input :description, :input_html => { :class => 'service_description' } %>
   <%= f.input :age %>
 
-  <%= f.simple_fields_for :price do |pf| %>
+  <div>
+  <%= f.simple_fields_for :prices do |pf| %>
     <%= pf.input :kind, :as => :select, :include_blank => false %>
     <%= pf.input :count %>
     <%= pf.input :period %>
     <%= pf.input :value %>
+    <%= pf.link_to_remove t('remove_price'), :class => 'remove_price' %>
   <% end %>
+  <%= f.link_to_add t('add_price'), :prices, :class => 'add_price' %>
+  </div>
 
   <%= f.submit "Сохранить" %>
 <% end %>

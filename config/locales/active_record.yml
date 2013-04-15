@@ -317,6 +317,7 @@ ru:
       service:
         <<: *common_attributes
         age:          Возраст
+        kind:         Тип услуги
         tag:          Тэги
 
       sport:

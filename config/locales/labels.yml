@@ -5,7 +5,9 @@ ru:
   add_image: Добавить изображение
   add_organization: "&plus;&nbsp;заведение"
   add_showing: Добавить сеанс
+  add_service: Добавить услугу
   add_social_links: Добавить ссылку
+  add_price: Добавить стоимость
   add_virtual_tour: Добавить 3D-тур
   back: Назад
   choose_file: Выбрать файл
@@ -24,6 +26,7 @@ ru:
   edit_party: Редактировать информацию о вечеринке
   edit_spectacle: Редактировать информацию о спектакле
   edit_sports_event: Редактировать информацию о спортивном событии
+  edit_salon_center: Редактировать информацию о подзаведении
   email: Почта
   entertainment: Развлечения
   find: Найти
@@ -47,6 +50,7 @@ ru:
   remove_affiche_schedule: Удалить расписание
   remove_link: Удалить файл
   remove_showing: Удалить сеанс
+  remove_price: Удалить
   remove_this_attachment: Удалить этот файл
   remove_this_hall: Удалить этот зал
   remove_this_image: Удалить это изображение
