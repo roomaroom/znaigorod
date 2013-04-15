@@ -3,7 +3,6 @@
   block = $(".river").closest(".info")
   $(".image", block).css
     "float": "right"
-  $(".closest", block).hide()
   $(".text h3", block).css
     "margin": "10px 0"
   $(".river").each (index, item) ->
