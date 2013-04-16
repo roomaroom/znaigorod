@@ -1,5 +1,6 @@
 class Creation < ActiveRecord::Base
   include HasVirtualTour
+  # include HasServices
 
   attr_accessible :services_attributes, :title, :description
 

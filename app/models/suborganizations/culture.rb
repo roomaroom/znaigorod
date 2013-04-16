@@ -1,5 +1,6 @@
 class Culture < ActiveRecord::Base
   include HasVirtualTour
+  include HasServices
 
   attr_accessible :category, :feature, :offer, :payment, :title, :description
 

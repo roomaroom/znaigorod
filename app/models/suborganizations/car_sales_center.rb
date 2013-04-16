@@ -1,5 +1,6 @@
 class CarSalesCenter < ActiveRecord::Base
   include HasVirtualTour
+  include HasServices
 
   attr_accessible :category, :description, :feature, :offer, :title
 

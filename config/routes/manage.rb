@@ -48,7 +48,6 @@ Znaigorod::Application.routes.draw do
       resources :attachments, :only => [:new, :create, :destroy, :edit, :update]
       resources :images, :only => [:new, :create, :destroy, :edit, :update]
       resources :organizations, :only => [:new, :create, :destroy]
-
     end
 
     Organization.available_suborganization_kinds.each do |kind|

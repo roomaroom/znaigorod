@@ -4,19 +4,21 @@
   <%= f.input :kind %>
 
   <%= f.input :category_list,
-    :as => :check_boxes,
+    :as => :select,
+    :selected => f.object.categories,
     :collection => Values.instance.send(context_type).categories,
-    :checked => f.object.categories,
-    :wrapper_html => { :class => :category_list } %>
+    :wrapper_html => { :class => :category_list },
+    :include_blank => false %>
 
   <%= f.input :title %>
   <%= f.input :feature %>
 
   <%= f.input :offer_list,
-    :as => :check_boxes,
+    :as => :select,
+    :selected => f.object.offers,
     :collection => Values.instance.send(context_type).offers,
-    :checked => f.object.offers,
-    :wrapper_html => { :class => :category_list } %>
+    :wrapper_html => { :class => :category_list },
+    :include_blank => false %>
 
   <%= f.input :description, :input_html => { :class => 'service_description' } %>
   <%= f.input :age %>

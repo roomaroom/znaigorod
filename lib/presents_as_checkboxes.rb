@@ -22,7 +22,7 @@ module PresentsAsCheckboxes
 
       define_method "set_#{field}" do
         self.send "#{field}_list=", [*options[:default_value]] if options[:default_value]
-        self.send "#{field}=", self.send("#{field}_list").delete_if(&:blank?).join(', ') if self.send("#{field}_list")
+        self.send "#{field}=", [*self.send("#{field}_list")].delete_if(&:blank?).join(', ') if self.send("#{field}_list")
       end
 
       before_validation "set_#{field}"

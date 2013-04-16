@@ -1,19 +1,16 @@
 class Sport < ActiveRecord::Base
   include HasVirtualTour
+  include HasServices
 
   attr_accessible :services_attributes, :title, :description
 
   belongs_to :organization
-
-  has_many :services, :as => :context, :dependent => :destroy, :order => 'id'
 
   delegate :address, :phone, :schedules, :halls,
            :site?, :site, :email?, :email, :affiches,
            :latitude, :longitude, :nearest_affiches, :to => :organization
 
   delegate :title, :description, :description?, :to => :organization, :prefix => true
-
-  accepts_nested_attributes_for :services, :reject_if => :all_blank, :allow_destroy =>  true
 
   delegate :save, to: :organization, prefix: true
   after_save :organization_save
