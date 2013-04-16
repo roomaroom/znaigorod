@@ -8,8 +8,10 @@
     </td>
   <% end %>
   <td class='kind <%= activity.kind %>'>
-    <%= image_tag "crm/activity_kind_#{activity.kind}.png",
-      title: activity.kind_text, alt: activity.kind_text, size: '16x16' %>
+    <% if activity.kind %>
+      <%= image_tag "crm/activity_kind_#{activity.kind}.png",
+        title: activity.kind_text, alt: activity.kind_text, size: '16x16' %>
+    <% end %>
   </td>
   <td class='title'><%= activity.title %></td>
   <td class='status <%= activity.status %>'><%= activity.status_text %></td>
