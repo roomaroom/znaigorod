@@ -12,11 +12,13 @@ class Price < ActiveRecord::Base
   validates_presence_of :kind, :value
   validates_presence_of :count, :period, :if => :multiple?
 
+  default_scope order('value ASC')
+
   def to_s
     if single?
-      "Разовое посещение #{value} руб."
+      "#{I18n.t("price_kind.#{service.kind}", count: 1)} #{value} руб."
     else
-      "Абонимент на #{count} ___ #{period} #{value} руб."
+      "Абонимент на #{I18n.t("price_kind.#{service.kind}", count: count)} #{period} #{value} руб."
     end
   end
 end

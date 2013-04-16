@@ -631,6 +631,7 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
     t.text     "description"
     t.text     "offer"
     t.string   "kind"
+    t.integer  "min_value"
   end
 
   create_table "showings", :force => true do |t|

@@ -63,3 +63,15 @@ ru:
   twitter_timeline: Эфир
   uid: UID
 
+  price_kind:
+    visiting:
+      one:   "Одно посещение"
+      few:   "%{count} посещения"
+      many:  "%{count} посещений"
+      other: "%{count} посещений"
+
+    lesson:
+      one:   "Одно занятие"
+      few:   "%{count} занятия"
+      many:  "%{count} занятий"
+      other: "%{count} занятий"

@@ -28,7 +28,11 @@ class Service < ActiveRecord::Base
 
   presents_as_checkboxes :offer, available_values: []
 
-  enumerize :kind, in: [:class, :visit], predicates: true
+  enumerize :kind, in: [:visiting, :lesson], predicates: true
+
+  def min_price
+    prices.map { |p| p.single? ? p.value : p.value / p.count }.min
+  end
 end
 
 # == Schema Information
