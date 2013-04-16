@@ -24,14 +24,14 @@
   <%= f.input :age %>
 
   <div>
-  <%= f.simple_fields_for :prices do |pf| %>
-    <%= pf.input :kind, :as => :select, :include_blank => false %>
-    <%= pf.input :count %>
-    <%= pf.input :period %>
-    <%= pf.input :value %>
-    <%= pf.link_to_remove t('remove_price'), :class => 'remove_price' %>
-  <% end %>
-  <%= f.link_to_add t('add_price'), :prices, :class => 'add_price' %>
+    <%= f.simple_fields_for :prices do |pf| %>
+      <%= pf.input :kind, :as => :select, :include_blank => false %>
+      <%= pf.input :count %>
+      <%= pf.input :period %>
+      <%= pf.input :value %>
+      <%= pf.link_to_remove t('remove_price'), :class => 'remove_price' %>
+    <% end %>
+    <%= f.link_to_add t('add_price'), :prices, :class => 'add_price' %>
   </div>
 
   <%= f.submit "Сохранить" %>
