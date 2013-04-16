@@ -1,10 +1,16 @@
 <tr>
   <td class='organization'><%= link_to activity.organization, crm_organization_path(activity.organization) %></td>
-  <td class='activity_at'><%= l(activity.activity_at, :format => :short) %></td>
+  <td class='activity_at'><%= l(activity.activity_at, :format => :long) %></td>
   <% unless @organization %>
-    <td class='state <%= activity.state %>'><%= activity.state_text %></td>
+    <td class='state <%= activity.state %>'>
+      <%= image_tag "crm/activity_state_#{activity.state}.png",
+        title: activity.state_text, alt: activity.state_text, size: '16x16' %>
+    </td>
   <% end %>
-  <td class='kind <%= activity.kind %>'><%= activity.kind_text %></td>
+  <td class='kind <%= activity.kind %>'>
+    <%= image_tag "crm/activity_kind_#{activity.kind}.png",
+      title: activity.kind_text, alt: activity.kind_text, size: '16x16' %>
+  </td>
   <td class='title'><%= activity.title %></td>
   <td class='status <%= activity.status %>'><%= activity.status_text %></td>
   <td class='manager'><%= activity.manager %></td>

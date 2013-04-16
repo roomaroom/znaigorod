@@ -1,0 +1,42 @@
+<h1>План встреч</h1>
+
+<div class='all_activities_list'>
+  <table>
+    <thead>
+      <tr>
+        <th class='date'>Дата</th>
+        <th class='activity_at'>Время</th>
+        <th class='state'>Состояние</th>
+        <th class='kind'>Тип</th>
+        <th class='title'>Описание</th>
+        <th class='status'>Статус</th>
+      </tr>
+    </thead>
+    <% @activities.each do |user, activities| %>
+      <% next unless activities.any? %>
+      <tr><td colspan='6'><h2><%= user %></h2></td></tr>
+      <% activities.each do |date, activities| %>
+        <tr>
+          <td class='date' rowspan='<%= activities.size+1 %>'><%= l(date, format: :long) %></td>
+          <td class='activity_at'></td>
+          <td class='organization'></td>
+          <td class='kind'></td>
+          <td class='title'></td>
+          <td class='status'></td>
+        </tr>
+        <% activities.each do |activity| %>
+          <tr>
+            <td class='activity_at'><%= l(activity.activity_at, :format => '%H:%M') %></td>
+            <td class='organization'><%= link_to activity.organization, crm_organization_path(activity.organization) %></td>
+            <td class='kind <%= activity.kind %>'>
+              <%= image_tag "crm/activity_kind_#{activity.kind}.png",
+                title: activity.kind_text, alt: activity.kind_text, size: '16x16' %>
+            </td>
+            <td class='title'><%= activity.title %></td>
+            <td class='status <%= activity.status %>'><%= activity.status_text %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
