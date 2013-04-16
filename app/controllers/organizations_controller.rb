@@ -47,8 +47,11 @@ class OrganizationsController < ApplicationController
         latitude: organization.address.latitude,
         logo: organization.logotype_url,
         longitude: organization.address.longitude,
+        phones: organization.decorated_suborganizations.first.decorated_phones,
+        schedule_today: organization.decorated_suborganizations.first.schedule_today,
         suborganization: organization.priority_suborganization_kind,
         title: organization.title,
+        url: organization.show_url,
       }
     end
 

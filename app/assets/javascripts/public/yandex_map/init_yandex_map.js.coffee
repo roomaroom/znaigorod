@@ -95,7 +95,6 @@
             balloonContentHeader: $map.attr('data-hint')
             balloonContent: $map.attr('data-description')
           affiche_placemark.options.set
-            balloonMaxWidth: 300
             hasBalloon: true
         else
           affiche_placemark.options.set
@@ -197,6 +196,21 @@ build_placemark = (item) ->
     when 'sauna'            then item_preset = 'twirl#orangeDotIcon'
     when 'sport'            then item_preset = 'twirl#nightDotIcon'
 
+
+  item_description = "" +
+    "<div class='organization_description'>" +
+    "<div class='image'>" +
+    "<a href='#{item.url}'>" +
+    "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' />" +
+    "</a>" +
+    "</div>" +
+    "<p class='address'>#{item.address}</p>"
+  item_description += item.phones if item.phones?
+  item_description += item.schedule_today
+  item_description += "" +
+    "<p class='link'><a href='#{item.url}'>страница организации</a></p>" +
+    "</div>"
+
   new ymaps.GeoObject
     geometry:
       type: 'Point'
@@ -205,8 +219,7 @@ build_placemark = (item) ->
       id: "id_#{item.id}"
       hintContent: item.title
       balloonContentHeader: item.title
-      balloonContent: item.description
+      balloonContent: item_description
   ,
     preset: item_preset
-    balloonMaxWidth: 300
     hasBalloon: true
