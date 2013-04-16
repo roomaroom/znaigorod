@@ -64,6 +64,7 @@
         $map.attr('data-latitude', $('.yandex_map .map').attr('data-latitude'))
         $map.attr('data-longitude', $('.yandex_map .map').attr('data-longitude'))
         $map.attr('data-hint', $('.yandex_map .map').attr('data-hint'))
+        $map.attr('data-description', $('.yandex_map .map').attr('data-description'))
         without_organization_id = $('.yandex_map .map').attr('data-without-id')
         map = new ymaps.Map this,
           center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
@@ -81,12 +82,21 @@
             id: 'affiche_placemark'
             hintContent: $map.attr('data-hint')
         ,
-          cursor: 'help'
-          hasBalloon: false
           iconImageHref: '/assets/public/affiche_placemark.png'
-          iconImageOffset: [-18, -42]
+          iconImageOffset: [-18, -40]
           iconImageSize: [37, 42]
           zIndex: 700
+
+        if $map.attr('data-description')?
+          affiche_placemark.properties.set
+            balloonContentHeader: $map.attr('data-hint')
+            balloonContent: $map.attr('data-description')
+          affiche_placemark.options.set
+            hasBalloon: true
+        else
+          affiche_placemark.options.set
+            cursor: 'help'
+            hasBalloon: false
 
         map.geoObjects.add(affiche_placemark)
 
@@ -99,6 +109,10 @@
         map.events.add 'actionend', (event) ->
           render_organizations(map, without_organization_id)
           true
+
+        $('.organization_description .link a').live 'click', (event) ->
+          window.location.pathname = $(this).attr('href')
+          false
 
         true
 
@@ -131,7 +145,7 @@ render_organizations = (map, without_organization_id) ->
       need_delete_placemarks = []
 
       $.each data, (index, item) ->
-        unless item.logo.isBlank()
+        unless (item.logo + '').isBlank()
           builded_placemarks["id_#{item.id}"] = build_placemark(item)
           builded_placemark_ids.add "id_#{item.id}"
         true

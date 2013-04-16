@@ -49,4 +49,11 @@ class PlaceDecorator
     link_title = link_to place_title.text_gilensize, OrganizationDecorator.decorate(organization).organization_url, :title => organization.title
   end
 
+  def balloon_description
+    description = ""
+    description += content_tag(:p, organization.address, class: :address) + "\n"
+    description += content_tag(:p, link_to('страница организации', organization_path(organization)), class: :link) + "\n"
+
+    content_tag :div, description, class: :organization_description
+  end
 end

@@ -187,6 +187,7 @@
             data-latitude='<%= @affiche.places.first.latitude %>'
             data-longitude='<%= @affiche.places.first.longitude %>'
             data-hint='<%= @affiche.places.first.title.as_html %>'
+            <%= "data-description='#{@affiche.places.first.balloon_description}'".html_safe if @affiche.places.first.organization %>
             <%= "data-without-id=#{@affiche.places.first.organization.id}" if @affiche.places.first.organization %>>
           </div>
         </div>
