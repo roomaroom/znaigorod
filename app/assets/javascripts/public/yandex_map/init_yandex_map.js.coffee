@@ -11,20 +11,20 @@
       zoom: 15
       behaviors: []
 
-    #zoomButton = new ymaps.control.Button
-      #data:
-        #image: '/assets/public/affiche_icon_magnifier.png'
-        #title: 'Нажмите для увеличения карты'
-    #,
-      #selectOnClick: false
-      #position:
-        #left: 5
-        #top: 5
+    zoomButton = new ymaps.control.Button
+      data:
+        image: '/assets/public/affiche_icon_magnifier.png'
+        title: 'Нажмите для увеличения карты'
+    ,
+      selectOnClick: false
+      position:
+        left: 5
+        top: 5
 
-    #zoomButton.events.add 'click', (event) ->
-      #init_modal_affiche_yandex_map()
+    zoomButton.events.add 'click', (event) ->
+      init_modal_affiche_yandex_map()
 
-    #map.controls.add(zoomButton)
+    map.controls.add(zoomButton)
 
     affiche_placemark = new ymaps.GeoObject
       geometry:
@@ -181,6 +181,17 @@ render_organizations = (map, without_organization_id) ->
   true
 
 build_placemark = (item) ->
+  switch item.suborganization
+    when 'billiard'         then item_preset = 'twirl#darkgreenDotIcon'
+    when 'car_sales_center' then item_preset = 'twirl#darkblueDotIcon'
+    when 'car_wash'         then item_preset = 'twirl#blueDotIcon'
+    when 'creation'         then item_preset = 'twirl#greenDotIcon'
+    when 'culture'          then item_preset = 'twirl#greyDotIcon'
+    when 'entertainment'    then item_preset = 'twirl#blackDotIcon'
+    when 'meal'             then item_preset = 'twirl#darkorangeDotIcon'
+    when 'salon_center'     then item_preset = 'twirl#yellowDotIcon'
+    when 'sauna'            then item_preset = 'twirl#orangeDotIcon'
+    when 'sport'            then item_preset = 'twirl#nightDotIcon'
   new ymaps.GeoObject
     geometry:
       type: 'Point'
@@ -191,13 +202,6 @@ build_placemark = (item) ->
       balloonContentHeader: item.title
       balloonContent: item.description
   ,
+    preset: item_preset
     balloonMaxWidth: 300
-    fillColor: 'ffffff'
     hasBalloon: true
-    iconImageHref: item.logo.replace(/\/\d+-\d+\//, '/35-35!/')
-    iconImageOffset: [-21, -43]
-    iconImageSize: [35, 35]
-    iconShadow: true
-    iconShadowImageHref: '/assets/public/affiche_organization_placemark_bg.png'
-    iconShadowImageOffset: [-23, -44]
-    iconShadowImageSize: [55, 45]
