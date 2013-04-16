@@ -71,7 +71,7 @@
 
         map = new ymaps.Map this,
           center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
-          zoom: 15
+          zoom: 16
           behaviors: ['drag', 'scrollZoom']
         ,
           maxZoom: 23
@@ -196,30 +196,19 @@ build_placemark = (item) ->
     when 'sauna'            then item_preset = 'twirl#orangeDotIcon'
     when 'sport'            then item_preset = 'twirl#nightDotIcon'
 
-
-  item_description = "" +
-    "<div class='organization_description'>" +
-    "<div class='image'>" +
-    "<a href='#{item.url}'>" +
-    "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' />" +
-    "</a>" +
-    "</div>" +
-    "<p class='address'>#{item.address}</p>"
-  item_description += item.phones if item.phones?
-  item_description += item.schedule_today
-  item_description += "" +
-    "<p class='link'><a href='#{item.url}'>страница организации</a></p>" +
-    "</div>"
-
-  new ymaps.GeoObject
+  point = new ymaps.GeoObject
     geometry:
       type: 'Point'
       coordinates: [item.latitude, item.longitude]
     properties:
       id: "id_#{item.id}"
       hintContent: item.title
-      balloonContentHeader: item.title
-      balloonContent: item_description
   ,
+    cursor: 'help'
+    hasBalloon: false
     preset: item_preset
-    hasBalloon: true
+
+  point.events.add 'click', (event) ->
+    true
+
+  point

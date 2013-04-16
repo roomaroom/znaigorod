@@ -54,8 +54,8 @@ class PlaceDecorator
     description = ""
     description += content_tag(:div, organization.logo_link(60, 60), class: :image) + "\n"
     description += content_tag(:p, organization.address, class: :address) + "\n"
-    description += organization.decorated_suborganizations.first.decorated_phones + "\n"
-    description += organization.decorated_suborganizations.first.schedule_today + "\n"
+    description += organization.decorated_suborganizations.first.decorated_phones.to_s + "\n"
+    description += organization.decorated_suborganizations.first.schedule_today.to_s + "\n"
     description += content_tag(:p, link_to('страница организации', organization.show_url), class: :link)
 
     content_tag :div, description, class: :organization_description

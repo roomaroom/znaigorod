@@ -42,16 +42,16 @@ class OrganizationsController < ApplicationController
 
     data = OrganizationDecorator.decorate(searcher.results).map do |organization|
       {
-        address: organization.address.to_s,
+        #address: organization.address.to_s,
         id: organization.id,
         latitude: organization.address.latitude,
-        logo: organization.logotype_url,
+        #logo: organization.logotype_url,
         longitude: organization.address.longitude,
-        phones: organization.decorated_suborganizations.first.decorated_phones,
-        schedule_today: organization.decorated_suborganizations.first.schedule_today,
+        #phones: organization.decorated_suborganizations.first.decorated_phones,
+        #schedule_today: organization.decorated_suborganizations.first.schedule_today,
         suborganization: organization.priority_suborganization_kind,
         title: organization.title,
-        url: organization.show_url,
+        #url: organization.show_url,
       }
     end
 
