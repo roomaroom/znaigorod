@@ -7,6 +7,8 @@ class Service < ActiveRecord::Base
 
   validates_presence_of :title
 
+  before_save :set_min_value
+
   alias_attribute :to_s, :title
 
   has_many :prices, dependent: :destroy
@@ -30,8 +32,10 @@ class Service < ActiveRecord::Base
 
   enumerize :kind, in: [:visiting, :lesson], predicates: true
 
-  def min_price
-    prices.map { |p| p.single? ? p.value : p.value / p.count }.min
+  private
+
+  def set_min_value
+    self.min_value = prices.map { |p| p.single? ? p.value : p.value / p.count }.min
   end
 end
 
