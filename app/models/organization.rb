@@ -46,7 +46,8 @@ class Organization < ActiveRecord::Base
   end
 
   available_suborganization_kinds.each do |kind|
-    has_one kind, :dependent => :destroy
+    # без to_sym почему-то не работает добавление фоток к залу сауны
+    has_one kind.to_sym, :dependent => :destroy
   end
   has_one :entertainment, :dependent => :destroy, :conditions => { type: nil }
 
