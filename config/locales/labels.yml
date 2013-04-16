@@ -75,3 +75,10 @@ ru:
       few:   "%{count} занятия"
       many:  "%{count} занятий"
       other: "%{count} занятий"
+
+    washing:
+      one:   "Одна мойка"
+      few:   "%{count} мойки"
+      many:  "%{count} моек"
+      other: "%{count} моек"
+

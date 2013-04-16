@@ -17,6 +17,8 @@ class Service < ActiveRecord::Base
   delegate :index, to: :context, prefix: true
   after_save :context_index
 
+  validates_presence_of :kind
+
   normalize_attributes :feature, :title, with: :blank
 
   scope :filled, -> { where('title IS NOT NULL') }
@@ -30,7 +32,7 @@ class Service < ActiveRecord::Base
 
   presents_as_checkboxes :offer, available_values: []
 
-  enumerize :kind, in: [:visiting, :lesson], predicates: true
+  enumerize :kind, in: [:visiting, :lesson, :washing], predicates: true
 
   private
 
