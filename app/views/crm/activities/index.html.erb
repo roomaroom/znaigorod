@@ -16,6 +16,13 @@
       include_blank: true,
       required: false %>
 
+    <%= f.input :kind,
+      label: 'Тип',
+      collection: Activity.kind.options,
+      selected: params[:search].try(:[], :kind),
+      include_blank: true,
+      required: false %>
+
     <%= f.input 'activity[from]',
       label: 'от',
       as: :date_picker,

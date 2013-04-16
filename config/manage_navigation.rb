@@ -41,6 +41,7 @@ SimpleNavigation::Configuration.run do |navigation|
         [Organization, Activity].each do |kind|
           crm_item.item kind, kind.model_name.human, [:crm, kind.model_name.underscore.pluralize]
         end
+        crm_item.item 'meetings', 'План встреч', [:meetings, :crm, :activities]
     end
 
     primary.item :main_page, 'Публичный вид', root_url

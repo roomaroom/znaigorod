@@ -29,4 +29,11 @@ class Crm::ActivitiesController < Crm::ApplicationController
     end
   end
 
+  def meetings
+    @activities = {}
+    User.sales_managers.each do |u|
+      @activities[u] = Activity.unscoped.where(user_id: u.id).with_state(:planned).with_meeting.where(activity_at: (Date.today - 1.day).beginning_of_day..(Date.today + 6.day).end_of_day).order(:activity_at).group_by(&:activity_date)
+    end
+  end
+
 end

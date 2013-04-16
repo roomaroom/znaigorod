@@ -11,6 +11,7 @@ class Activity < ActiveRecord::Base
   searchable do
     string   :state
     string   :status
+    string   :kind
     integer  :user_id
     date     :activity_at
   end
@@ -21,6 +22,11 @@ class Activity < ActiveRecord::Base
   enumerize :kind, in: [:phone, :email, :meeting, :meeting_contract, :meeting_payment]
 
   scope :with_state, ->(state) {where(state: state)}
+  scope :with_meeting, -> {where(kind: [:meeting, :meeting_payment, :meeting_contract])}
+
+  def activity_date
+    activity_at.to_date
+  end
 
   private
     def set_organization_status

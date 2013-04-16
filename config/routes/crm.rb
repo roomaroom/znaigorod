@@ -7,7 +7,9 @@ Znaigorod::Application.routes.draw do
       resources :contacts, except: :show
     end
 
-    resources :activities, only: :index
+    resources :activities, only: :index do
+      get :meetings, on: :collection
+    end
 
     root to: 'organizations#index'
   end
