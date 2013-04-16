@@ -36,7 +36,7 @@
       cursor: 'help'
       hasBalloon: false
       iconImageHref: '/assets/public/affiche_placemark.png'
-      iconImageOffset: [-18, -40]
+      iconImageOffset: [-15, -40]
       iconImageSize: [37, 42]
       zIndex: 1000
       zIndexHover: 1100
@@ -83,7 +83,7 @@
             hintContent: $map.attr('data-hint')
         ,
           iconImageHref: '/assets/public/affiche_placemark.png'
-          iconImageOffset: [-18, -40]
+          iconImageOffset: [-15, -40]
           iconImageSize: [37, 42]
           zIndex: 700
 
@@ -92,6 +92,7 @@
             balloonContentHeader: $map.attr('data-hint')
             balloonContent: $map.attr('data-description')
           affiche_placemark.options.set
+            balloonMaxWidth: 300
             hasBalloon: true
         else
           affiche_placemark.options.set
@@ -145,9 +146,8 @@ render_organizations = (map, without_organization_id) ->
       need_delete_placemarks = []
 
       $.each data, (index, item) ->
-        unless (item.logo + '').isBlank()
-          builded_placemarks["id_#{item.id}"] = build_placemark(item)
-          builded_placemark_ids.add "id_#{item.id}"
+        builded_placemarks["id_#{item.id}"] = build_placemark(item)
+        builded_placemark_ids.add "id_#{item.id}"
         true
 
       map.geoObjects.each (geoObject) ->
@@ -188,10 +188,12 @@ build_placemark = (item) ->
     properties:
       id: "id_#{item.id}"
       hintContent: item.title
+      balloonContentHeader: item.title
+      balloonContent: item.description
   ,
-    cursor: 'help'
-    hasBalloon: false
+    balloonMaxWidth: 300
     fillColor: 'ffffff'
+    hasBalloon: true
     iconImageHref: item.logo.replace(/\/\d+-\d+\//, '/35-35!/')
     iconImageOffset: [-21, -43]
     iconImageSize: [35, 35]
