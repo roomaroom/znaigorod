@@ -18,6 +18,7 @@ Znaigorod::Application.routes.draw do
 
   resources :organizations, :only => [:index, :show] do
     get :in_bounding_box, :on => :collection
+    get :details_for_balloon, :on => :member
 
     resources :comments, :only => [:new, :create, :show]
     resources :user_ratings, :only => [:new, :create, :edit, :update, :show]

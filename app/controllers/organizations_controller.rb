@@ -42,18 +42,27 @@ class OrganizationsController < ApplicationController
 
     data = OrganizationDecorator.decorate(searcher.results).map do |organization|
       {
-        #address: organization.address.to_s,
         id: organization.id,
         latitude: organization.address.latitude,
-        #logo: organization.logotype_url,
         longitude: organization.address.longitude,
-        #phones: organization.decorated_suborganizations.first.decorated_phones,
-        #schedule_today: organization.decorated_suborganizations.first.schedule_today,
         suborganization: organization.priority_suborganization_kind,
         title: organization.title,
-        #url: organization.show_url,
       }
     end
+
+    render :json => data
+  end
+
+  def details_for_balloon
+    organization = OrganizationDecorator.decorate(Organization.find(params[:id]))
+    data = {
+      address: organization.address.to_s,
+      logo: organization.logotype_url,
+      phones: organization.decorated_suborganizations.first.decorated_phones,
+      schedule_today: organization.decorated_suborganizations.first.schedule_today,
+      title: organization.title,
+      url: organization.show_url,
+    }
 
     render :json => data
   end

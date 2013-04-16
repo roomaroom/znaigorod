@@ -50,7 +50,7 @@
 @init_modal_affiche_yandex_map = () ->
 
   dialog_width = $(window).innerWidth() * 70 / 100
-  dialog_height = $(window).innerHeight() * 80 /100
+  dialog_height = $(window).innerHeight() * 90 /100
 
   ymaps.ready ->
 
@@ -204,11 +204,38 @@ build_placemark = (item) ->
       id: "id_#{item.id}"
       hintContent: item.title
   ,
-    cursor: 'help'
-    hasBalloon: false
+    hasBalloon: true
     preset: item_preset
 
   point.events.add 'click', (event) ->
+    return false if point.options.get('freeze')
+    point.options.set('freeze', true)
+    $.ajax
+      method: 'GET'
+      url: "/organizations/#{item.id}/details_for_balloon"
+      data: { id: item.id }
+      success: (data, textStatus, jqXHR) ->
+        item = data
+        item_description = "" +
+          "<div class='organization_description'>" +
+          "<div class='image'>" +
+          "<a href='#{item.url}'>" +
+          "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' />" +
+          "</a>" +
+          "</div>" +
+          "<div class='clearfix'>"
+          "<p class='address'>#{item.address}</p>"
+        item_description += item.phones if item.phones?
+        item_description += item.schedule_today
+        item_description += "" +
+           "<p class='link'><a href='#{item.url}'>страница организации</a></p>" +
+           "</div>"
+           "</div>"
+        point.properties.set
+          balloonContentHeader: item.title
+          balloonContent: item_description
+        point.balloon.open()
+        true
     true
 
   point

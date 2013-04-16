@@ -52,11 +52,13 @@ class PlaceDecorator
 
   def balloon_description
     description = ""
-    description += content_tag(:div, organization.logo_link(60, 60), class: :image) + "\n"
+    description += (content_tag(:div, organization.logo_link(60, 60), class: :image) + "\n") if organization.logotype_url.present?
+    description += "<div class='clearfix'>"
     description += content_tag(:p, organization.address, class: :address) + "\n"
     description += organization.decorated_suborganizations.first.decorated_phones.to_s + "\n"
     description += organization.decorated_suborganizations.first.schedule_today.to_s + "\n"
     description += content_tag(:p, link_to('страница организации', organization.show_url), class: :link)
+    description += "</div>"
 
     content_tag :div, description, class: :organization_description
   end
