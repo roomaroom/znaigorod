@@ -12,6 +12,7 @@
       </td>
     </tr>
   </table>
+
   <% if salon_center.has_photogallery? %>
     <div class="photogallery">
       <ul>
@@ -21,4 +22,42 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="services">
+    <% salon_center.services.group_by(&:category).each do |category, services| %>
+      <div class="service_header">
+        <h2><%= category %></h2>
+      </div>
+      <ul>
+        <% services.group_by(&:offer).each do |offer, services| %>
+          <h3><%= offer %></h3>
+          <% services.each do |service| %>
+            <li>
+              <div class='info'>
+                <span class="label"><%= service.title %></span>
+
+                <span class="value">
+                  <% if service.min_value? %>
+                    от <%=  service.min_value %> руб.
+                  <% end %>
+                  <%= link_to 'Подробнее', '#', class: :closed %>
+                </span>
+
+                <div class="details">
+                  <span class="value"><%= service.description %></span>
+                  <ul>
+                    <% service.prices.each do |price| %>
+                      <li>
+                        <%= price %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
