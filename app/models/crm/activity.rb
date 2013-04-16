@@ -1,10 +1,10 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :title, :state, :activity_at, :user_id, :contact_id, :status
+  attr_accessible :title, :state, :activity_at, :user_id, :contact_id, :status, :kind
 
   belongs_to :organization
   belongs_to :manager, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :contact
-  validates_presence_of :title, :state, :status, :activity_at, :manager
+  validates_presence_of :title, :state, :status, :activity_at, :manager, :kind
   after_save :set_organization_status, if: :state_completed?
   default_scope order('activity_at desc')
 
@@ -18,6 +18,7 @@ class Activity < ActiveRecord::Base
   extend Enumerize
   enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh
   enumerize :state, in: [:planned, :completed], default: :planned, predicates: { prefix: true }
+  enumerize :kind, in: [:phone, :email, :meeting, :meeting_contract, :meeting_payment]
 
   scope :with_state, ->(state) {where(state: state)}
 

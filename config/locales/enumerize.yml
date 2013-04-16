@@ -17,3 +17,11 @@ ru:
     state:
       planned:             Запланированное
       completed:           Завершено
+
+    activity:
+      kind:
+        phone:             Телефонный звонок
+        email:             E-mail переписка
+        meeting:           Встреча
+        meeting_contract:  Встреча для подписания договора
+        meeting_payment:   Встреча для получения денег

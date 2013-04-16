@@ -1,9 +1,15 @@
 <tr>
   <td class='organization'><%= link_to activity.organization, crm_organization_path(activity.organization) %></td>
-  <td class='activity_at'><%= l(activity.activity_at, :format => :long) %></td>
+  <td class='activity_at'><%= l(activity.activity_at, :format => :short) %></td>
+  <% unless @organization %>
+    <td class='state <%= activity.state %>'><%= activity.state_text %></td>
+  <% end %>
+  <td class='kind <%= activity.kind %>'><%= activity.kind_text %></td>
   <td class='title'><%= activity.title %></td>
   <td class='status <%= activity.status %>'><%= activity.status_text %></td>
   <td class='manager'><%= activity.manager %></td>
-  <td class='contacts'><%= activity.contact %></td>
+  <% if @organization %>
+    <td class='contact'><%= activity.contact %></td>
+  <% end %>
   <td class='edit'><%= link_to "Редактировать", edit_crm_organization_activity_path(activity.organization, activity) %></td>
 </tr>
