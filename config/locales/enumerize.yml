@@ -35,5 +35,6 @@ ru:
 
     price:
       kind:
+        certificate:           Подарочный сертификат
         single:                Разовая
         multiple:              Абонимент

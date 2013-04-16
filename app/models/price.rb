@@ -7,7 +7,7 @@ class Price < ActiveRecord::Base
 
   belongs_to :service
 
-  enumerize :kind, in: [:single, :multiple], predicates: true
+  enumerize :kind, in: [:single, :multiple, :certificate], predicates: true
 
   validates_presence_of :kind, :value
   validates_presence_of :count, :period, :if => :multiple?
@@ -18,7 +18,7 @@ class Price < ActiveRecord::Base
     if single?
       "#{I18n.t("price_kind.#{service.kind}", count: 1)} #{value} руб."
     else
-      "Абонимент на #{I18n.t("price_kind.#{service.kind}", count: count)} #{period} #{value} руб."
+      "#{kind_text} на #{I18n.t("price_kind.#{service.kind}", count: count)} #{period} #{value} руб."
     end
   end
 end
