@@ -11,20 +11,20 @@
       zoom: 15
       behaviors: []
 
-    zoomButton = new ymaps.control.Button
-      data:
-        image: '/assets/public/affiche_icon_magnifier.png'
-        title: 'Нажмите для увеличения карты'
-    ,
-      selectOnClick: false
-      position:
-        left: 5
-        top: 5
+    #zoomButton = new ymaps.control.Button
+      #data:
+        #image: '/assets/public/affiche_icon_magnifier.png'
+        #title: 'Нажмите для увеличения карты'
+    #,
+      #selectOnClick: false
+      #position:
+        #left: 5
+        #top: 5
 
-    zoomButton.events.add 'click', (event) ->
-      init_modal_affiche_yandex_map()
+    #zoomButton.events.add 'click', (event) ->
+      #init_modal_affiche_yandex_map()
 
-    map.controls.add(zoomButton)
+    #map.controls.add(zoomButton)
 
     affiche_placemark = new ymaps.GeoObject
       geometry:
