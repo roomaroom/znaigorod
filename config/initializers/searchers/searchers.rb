@@ -73,6 +73,14 @@ HasSearcher.create_searcher :organizations do
       search_object.location[:bx] && search_object.location[:bx]
   end
 
+  scope :with_logotype do
+    with(:logotyped, true)
+  end
+
+  scope :order_by_rating do
+    order_by(:total_rating, :desc)
+  end
+
   property :without do |search|
     if organization = Organization.find_by_id(search_object.without.to_i)
       search.without(organization)

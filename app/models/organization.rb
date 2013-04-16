@@ -107,15 +107,17 @@ class Organization < ActiveRecord::Base
   alias_attribute :address_ru, :address
 
   searchable do
+    boolean(:logotyped) { logotype_url? }
+
     float :rating
     float :total_rating
+
+    integer :user_id
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 
     string :status
-    integer :user_id
     string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:underscore) }
-
     string(:kind) { 'organization' }
 
     text :title,                :boost => 1.0 * 1.2
