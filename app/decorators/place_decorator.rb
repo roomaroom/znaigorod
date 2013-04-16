@@ -14,6 +14,7 @@ class PlaceDecorator
       self.latitude ||= organization.latitude
       self.longitude ||= organization.longitude
       self.title ||= organization.title
+      self.organization = OrganizationDecorator.decorate organization
     end
   end
 
@@ -51,8 +52,11 @@ class PlaceDecorator
 
   def balloon_description
     description = ""
+    description += content_tag(:div, organization.logo_link(60, 60), class: :image) + "\n"
     description += content_tag(:p, organization.address, class: :address) + "\n"
-    description += content_tag(:p, link_to('страница организации', organization_path(organization)), class: :link) + "\n"
+    description += organization.decorated_suborganizations.first.decorated_phones + "\n"
+    description += organization.decorated_suborganizations.first.schedule_today + "\n"
+    description += content_tag(:p, link_to('страница организации', organization.show_url), class: :link)
 
     content_tag :div, description, class: :organization_description
   end

@@ -61,11 +61,14 @@
       resizable: false
       open: (event, ui) ->
         $map = $(this)
+
         $map.attr('data-latitude', $('.yandex_map .map').attr('data-latitude'))
         $map.attr('data-longitude', $('.yandex_map .map').attr('data-longitude'))
         $map.attr('data-hint', $('.yandex_map .map').attr('data-hint'))
         $map.attr('data-description', $('.yandex_map .map').attr('data-description'))
+
         without_organization_id = $('.yandex_map .map').attr('data-without-id')
+
         map = new ymaps.Map this,
           center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
           zoom: 15
@@ -111,8 +114,8 @@
           render_organizations(map, without_organization_id)
           true
 
-        $('.organization_description .link a').live 'click', (event) ->
-          window.location.pathname = $(this).attr('href')
+        $('.organization_description .link a, .organization_description .image a').live 'click', (event) ->
+          window.location.href = $(this).attr('href')
           false
 
         true
@@ -181,6 +184,7 @@ render_organizations = (map, without_organization_id) ->
   true
 
 build_placemark = (item) ->
+
   switch item.suborganization
     when 'billiard'         then item_preset = 'twirl#darkgreenDotIcon'
     when 'car_sales_center' then item_preset = 'twirl#darkblueDotIcon'
@@ -192,6 +196,7 @@ build_placemark = (item) ->
     when 'salon_center'     then item_preset = 'twirl#yellowDotIcon'
     when 'sauna'            then item_preset = 'twirl#orangeDotIcon'
     when 'sport'            then item_preset = 'twirl#nightDotIcon'
+
   new ymaps.GeoObject
     geometry:
       type: 'Point'

@@ -23,7 +23,7 @@ class OrganizationDecorator < ApplicationDecorator
 
   def address_link(address = organization.address)
     return "" if organization.address.to_s.blank?
-    h.link_to address.to_s.hyphenate,
+    h.link_to address.to_s,
       organization_url,
       :class => 'show_map_link',
       :latitude => organization.address.latitude,
