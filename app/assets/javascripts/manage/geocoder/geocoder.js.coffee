@@ -37,7 +37,7 @@ update_coordinates = (organization, context) ->
         organization[context+'[address_attributes][latitude]']  = ''
         $('#'+context+'_address_attributes_longitude').val('')
         $('#'+context+'_address_attributes_latitude').val('')
-        alert "Координаты по указанному адресу не найдены!\nПожалуйста уточните адрес"
+        alert "Координаты по указанному адресу не найдены!\nПожалуйста уточните адрес\nИли сохраняйте без указания координат"
 
 $.fn.handler = (form, map_container, context) ->
   this.click ->
