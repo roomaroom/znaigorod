@@ -9,11 +9,12 @@ class Activity < ActiveRecord::Base
   default_scope order('activity_at desc')
 
   searchable do
-    string   :state
-    string   :status
-    string   :kind
-    integer  :user_id
-    date     :activity_at
+    date(:activity_on) { activity_at.try :to_date }
+    integer :user_id
+    string  :kind
+    string  :state
+    string  :status
+    time    :activity_at
   end
 
   extend Enumerize
