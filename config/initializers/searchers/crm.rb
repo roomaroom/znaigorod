@@ -1,6 +1,6 @@
 HasSearcher.create_searcher(:activities) do
   models :activity
-  scope { order_by(:activity_at, :asc) }
+  scope { order_by(:activity_at, :desc) }
 
   property :activity do |search|
     if search_object.activity
