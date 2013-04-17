@@ -4,8 +4,6 @@ class Ability
   def initialize(user, namespace=nil)
     user ||= User.new
 
-    return false if user.new_record?
-
     can :manage, :all     if user.is_admin?
     can :manage, :crm     if user.is_admin? || user.is_sales_manager?
 
@@ -18,6 +16,8 @@ class Ability
         can :manage, [Organization] + Organization.available_suborganization_classes
       end
     when 'crm'
+      return false if user.new_record?
+
       can :manage, Organization do |organization|
         organization.manager.nil? || user.manager_of?(organization)
       end
