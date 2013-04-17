@@ -3,12 +3,13 @@
 require 'curb'
 
 class Geocoder
+
   def self.get_coordinates(street, house)
     address = [street, house].join(', ')
 
     parameters = { :q => address, :version => '1.3', :key => Settings['2gis.api_key'], :output => 'json', :project => 3, :types => 'street,house,place', :limit => 50 }
 
-    result = ['84.952222232222', '56.488611121111']
+    result = [nil, nil]
 
     c = Curl::Easy.new("http://catalog.api.2gis.ru/geo/search?#{parameters.to_query}") do |curl|
       curl.on_success do |easy|
@@ -30,4 +31,5 @@ class Geocoder
 
     Hash[[:longitude, :latitude, :response_code].zip(result)]
   end
+
 end

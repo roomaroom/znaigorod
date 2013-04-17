@@ -26,16 +26,12 @@ update_coordinates = (organization, context) ->
       console.log(errorThrown)
     success: (data, textStatus, jqXHR) ->
       json = jQuery.parseJSON jqXHR.responseText
-      if json.response_code == '200'
-        organization[context+'[address_attributes][longitude]'] = json.longitude
-        organization[context+'[address_attributes][latitude]']  = json.latitude
-        $('#'+context+'_address_attributes_longitude').val(json.longitude)
-        $('#'+context+'_address_attributes_latitude').val(json.latitude)
-      else
-        organization[context+'[address_attributes][longitude]'] = ''
-        organization[context+'[address_attributes][latitude]']  = ''
-        $('#'+context+'_address_attributes_longitude').val('')
-        $('#'+context+'_address_attributes_latitude').val('')
+      console.log json
+      organization[context+'[address_attributes][longitude]'] = json.longitude
+      organization[context+'[address_attributes][latitude]']  = json.latitude
+      $('#'+context+'_address_attributes_longitude').val(json.longitude)
+      $('#'+context+'_address_attributes_latitude').val(json.latitude)
+      if json.response_code != '200'
         alert "Координаты по указанному адресу не найдены!\nПожалуйста уточните адрес\nИли сохраняйте без указания координат"
 
 $.fn.handler = (form, map_container, context) ->
