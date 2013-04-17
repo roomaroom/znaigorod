@@ -220,7 +220,7 @@ build_placemark = (item) ->
           "<div class='organization_description'>" +
           "<div class='image'>" +
           "<a href='#{item.url}'>" +
-          "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' />" +
+          "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' width='60' height='60' />" +
           "</a>" +
           "</div>" +
           "<div class='clearfix'>"

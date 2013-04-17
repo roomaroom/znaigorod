@@ -14,7 +14,7 @@ $.fn.draw_map = (organization, context) ->
   marker = new DG.Markers.Common({ geoPoint: point })
   DG.autoload ->
     map.controls.add(new DG.Controls.Zoom())
-  map.setCenter(point, 15)
+  map.setCenter(point, 16)
   map.markers.add(marker)
 
 update_coordinates = (organization, context) ->
