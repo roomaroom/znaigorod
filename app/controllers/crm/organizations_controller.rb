@@ -1,5 +1,4 @@
 class Crm::OrganizationsController < Crm::ApplicationController
-
   actions :index, :show, :edit, :update
 
   has_scope :page, default: 1
@@ -12,5 +11,4 @@ class Crm::OrganizationsController < Crm::ApplicationController
   def update
     update! { render partial: 'manager' and return }
   end
-
 end

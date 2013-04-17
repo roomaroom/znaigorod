@@ -1,5 +1,4 @@
 class Crm::ActivitiesController < Crm::ApplicationController
-
   actions :all, except: :show
 
   belongs_to :organization, optional: true

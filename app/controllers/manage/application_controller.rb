@@ -12,8 +12,6 @@ class Manage::ApplicationController < InheritedResources::Base
   load_and_authorize_resource
   check_authorization
 
-  private
-
   def per_page
     @per_page ||= Settings['pagination.per_page'] || 10
   end

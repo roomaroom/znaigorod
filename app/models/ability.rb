@@ -4,6 +4,8 @@ class Ability
   def initialize(user, namespace=nil)
     user ||= User.new
 
+    return false if user.new_record?
+
     can :manage, :all     if user.is_admin?
     can :manage, :crm     if user.is_admin? || user.is_sales_manager?
 
