@@ -6,8 +6,10 @@ $.fn.get_object = ->
   form_object
 
 $.fn.draw_map = (organization, context) ->
+  longitude = organization[context+'[address_attributes][longitude]'] || '84.952222232222'
+  latitude = organization[context+'[address_attributes][latitude]'] || '56.488611121111'
   container = this[0]
-  point = new DG.GeoPoint(organization[context+'[address_attributes][longitude]'], organization[context+'[address_attributes][latitude]'])
+  point = new DG.GeoPoint(longitude, latitude)
   map = new DG.Map(container)
   marker = new DG.Markers.Common({ geoPoint: point })
   scale = organization['scale'] || 15
@@ -23,14 +25,19 @@ update_coordinates = (organization, context) ->
     data:     'street='+organization[context+'[address_attributes][street]']+'&house='+organization[context+'[address_attributes][house]']
     error: (jqXHR, textStatus, errorThrown) ->
       console.log(errorThrown)
-
     success: (data, textStatus, jqXHR) ->
       json = jQuery.parseJSON jqXHR.responseText
-      organization[context+'[address_attributes][longitude]'] = json.longitude
-      organization[context+'[address_attributes][latitude]']  = json.latitude
-      organization['scale'] = json.scale
-      $('#'+context+'_address_attributes_longitude').val(json.longitude)
-      $('#'+context+'_address_attributes_latitude').val(json.latitude)
+      if json.response_code == '200'
+        organization[context+'[address_attributes][longitude]'] = json.longitude
+        organization[context+'[address_attributes][latitude]']  = json.latitude
+        $('#'+context+'_address_attributes_longitude').val(json.longitude)
+        $('#'+context+'_address_attributes_latitude').val(json.latitude)
+      else
+        organization[context+'[address_attributes][longitude]'] = ''
+        organization[context+'[address_attributes][latitude]']  = ''
+        $('#'+context+'_address_attributes_longitude').val('')
+        $('#'+context+'_address_attributes_latitude').val('')
+        alert "Координаты по указанному адресу не найдены!\nПожалуйста уточните адрес"
 
 $.fn.handler = (form, map_container, context) ->
   this.click ->
@@ -45,6 +52,5 @@ $ ->
     organization = form.get_object()
     map_container = $('#map')
     context = form.attr('id').replace(/(new|edit)_/, '').replace(/_\d+/, '')
-    update_coordinates(organization, context)
     map_container.draw_map(organization, context)
     $('.get_coordinates').handler(form, map_container, context)
