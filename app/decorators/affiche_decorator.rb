@@ -54,8 +54,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def all_affiches_link
-    h.link_to "Все #{human_kind.mb_chars.downcase} (#{counter.all})",
-              h.affiches_path('categoriea[]' => kind)
+    h.link_to "Все #{human_kind.mb_chars.downcase} (#{counter.all})", h.affiches_path(categories: [kind])
   end
 
   def breadcrumbs
@@ -420,6 +419,6 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def counter
-    Counter.new(:kind => kind)
+    Counter.new(:category => kind)
   end
 end
