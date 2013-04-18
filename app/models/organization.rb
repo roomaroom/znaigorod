@@ -82,7 +82,7 @@ class Organization < ActiveRecord::Base
   scope :ordered_by_updated_at, order('updated_at DESC')
   scope :parental,              where(:organization_id => nil)
 
-  #before_save :set_rating
+  before_save :set_rating
   after_save :index_suborganizations
 
   alias_attribute :to_s, :title
@@ -229,18 +229,12 @@ class Organization < ActiveRecord::Base
   private
 
   def set_rating
-    filling     = summary_rating + nearest_affiches.count + images.count
-    popularity  = 0.3 * yandex_metrika_page_views.to_f + vkontakte_likes.to_f
-
-    status_dependence_rating = 0
-    status_dependence_rating = 100 if status.client?
-    status_dependence_rating = -50 if status.non_cooperation?
-
-    self.rating = 0.1 * filling + popularity + status_dependence_rating + additional_rating.to_i
+    self.recalculate_rating
   end
 
   include Rating
-  use_for_rating :culture, :entertainment, :meal, :sauna, :sport, :billiard, :creation, :organization_stand
+  use_for_rating :billiard, :car_sales_center, :car_service_center, :car_wash, :creation, :culture, :entertainment,
+                 :hotel, :meal, :salon_center, :sauna, :sport, :travel, :organization_stand
 end
 
 # == Schema Information
@@ -259,7 +253,7 @@ end
 #  organization_id               :integer
 #  logotype_url                  :text
 #  slug                          :string(255)
-#  virtual_tour_link                     :text
+#  virtual_tour_link             :text
 #  rating                        :float
 #  non_cash                      :boolean
 #  priority_suborganization_kind :string(255)

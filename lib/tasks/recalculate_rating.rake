@@ -15,6 +15,6 @@ end
 desc "Пересчет рейтинга организиции"
 task :recalculate_rating => :environment do
   recalculate_rating :class => Organization
-  recalculate_rating :class => Affiche
+#  recalculate_rating :class => Affiche
 end
 
