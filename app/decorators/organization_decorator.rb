@@ -27,7 +27,7 @@ class OrganizationDecorator < ApplicationDecorator
       organization_url,
       :'data-latitude' => organization.address.latitude,
       :'data-longitude' => organization.address.longitude,
-      :'data-hint' => organization.title.as_html,
+      :'data-hint' => organization.title.text_gilensize,
       :'data-id' => organization.id,
       :class => 'show_map_link'
   end

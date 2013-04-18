@@ -157,9 +157,10 @@
                       <% if showings.first.latitude.present? && showings.first.longitude.present? %>
                         <span class='address'>
                           <a href='#' class='show_map_link'
-                            data-hint='<%= place.gilensize %>'
+                            data-hint='<%= place.text_gilensize %>'
                             data-latitude='<%= showings.first.latitude %>'
                             data-longitude='<%= showings.first.longitude %>'
+                            <%= "data-id='#{showings.first.organization.id}'".html_safe if showings.first.organization.present? %>
                             title='Показать на карте'>показать на карте</a>
                         </span>
                       <% end %>
@@ -192,7 +193,7 @@
           <div class='map'
             data-latitude='<%= @affiche.places.first.latitude %>'
             data-longitude='<%= @affiche.places.first.longitude %>'
-            data-hint='<%= @affiche.places.first.title.as_html %>'
+            data-hint='<%= @affiche.places.first.title.text_gilensize %>'
             <%= "data-id=#{@affiche.places.first.organization.id}" if @affiche.places.first.organization %>>
           </div>
         </div>

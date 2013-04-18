@@ -60,7 +60,7 @@ class OrganizationsController < ApplicationController
       logo: organization.logotype_url,
       phones: organization.decorated_suborganizations.first.decorated_phones,
       schedule_today: organization.decorated_suborganizations.first.schedule_today,
-      title: organization.title,
+      title: organization.title.text_gilensize,
       url: organization.show_url,
     }
 
