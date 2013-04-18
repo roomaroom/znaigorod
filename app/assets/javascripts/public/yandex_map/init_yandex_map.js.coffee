@@ -65,9 +65,9 @@
         $map.attr('data-latitude', $('.yandex_map .map').attr('data-latitude'))
         $map.attr('data-longitude', $('.yandex_map .map').attr('data-longitude'))
         $map.attr('data-hint', $('.yandex_map .map').attr('data-hint'))
-        $map.attr('data-description', $('.yandex_map .map').attr('data-description'))
+        $map.attr('data-id', $('.yandex_map .map').attr('data-id'))
 
-        without_organization_id = $('.yandex_map .map').attr('data-without-id')
+        without_organization_id = $('.yandex_map .map').attr('data-id')
 
         map = new ymaps.Map this,
           center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
@@ -90,12 +90,23 @@
           iconImageSize: [37, 42]
           zIndex: 700
 
-        if $map.attr('data-description')?
-          affiche_placemark.properties.set
-            balloonContentHeader: $map.attr('data-hint')
-            balloonContent: $map.attr('data-description')
-          affiche_placemark.options.set
-            hasBalloon: true
+        if $map.attr('data-id')?
+          affiche_placemark.events.add 'click', (event) ->
+            return false if affiche_placemark.options.get('freeze')
+            affiche_placemark.options.set('freeze', true)
+            $.ajax
+              method: 'GET'
+              url: "/organizations/#{$map.attr('data-id')}/details_for_balloon"
+              success: (data, textStatus, jqXHR) ->
+                item = data
+                affiche_placemark.properties.set
+                  balloonContentHeader: item.title
+                  balloonContent: generate_item_description(item)
+                affiche_placemark.options.set
+                  hasBalloon: true
+                affiche_placemark.balloon.open()
+                true
+            true
         else
           affiche_placemark.options.set
             cursor: 'help'
@@ -213,29 +224,32 @@ build_placemark = (item) ->
     $.ajax
       method: 'GET'
       url: "/organizations/#{item.id}/details_for_balloon"
-      data: { id: item.id }
       success: (data, textStatus, jqXHR) ->
         item = data
-        item_description = "" +
-          "<div class='organization_description'>" +
-          "<div class='image'>" +
-          "<a href='#{item.url}'>" +
-          "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' width='60' height='60' />" +
-          "</a>" +
-          "</div>" +
-          "<div class='clearfix'>"
-          "<p class='address'>#{item.address}</p>"
-        item_description += item.phones if item.phones?
-        item_description += item.schedule_today
-        item_description += "" +
-           "<p class='link'><a href='#{item.url}'>страница организации</a></p>" +
-           "</div>"
-           "</div>"
         point.properties.set
           balloonContentHeader: item.title
-          balloonContent: item_description
+          balloonContent: generate_item_description(item)
         point.balloon.open()
         true
     true
 
   point
+
+generate_item_description = (item) ->
+  item_description = "" +
+    "<div class='organization_description'>" +
+    "<div class='image'>" +
+    "<a href='#{item.url}'>" +
+    "<img alt='#{item.title}' title='#{item.title}' src='#{item.logo.replace(/\/\d+-\d+\//, '/60-60!/')}' width='60' height='60' />" +
+    "</a>" +
+    "</div>" +
+    "<div class='clearfix'>"
+    "<p class='address'>#{item.address}</p>"
+  item_description += item.phones if item.phones?
+  item_description += item.schedule_today
+  item_description += "" +
+     "<p class='link'><a href='#{item.url}'>страница организации</a></p>" +
+     "</div>"
+     "</div>"
+
+  item_description
