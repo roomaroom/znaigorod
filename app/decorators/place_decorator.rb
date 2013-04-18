@@ -33,14 +33,17 @@ class PlaceDecorator
 
   def address_link
     return link_to(organization.address, '#', :title => 'Показать на карте',
-                   :latitude => organization.latitude,
-                   :longitude => organization.longitude,
-                   :class => 'show_map_link') if organization?
+                    :'data-latitude' => organization.latitude,
+                    :'data-longitude' => organization.longitude,
+                    :'data-hint' => organization.title.as_html,
+                    :'data-id' => organization.id,
+                    :class => 'show_map_link') if organization?
     unless latitude.blank? && longitude.blank?
       return link_to('показать на карте', '#', :title => "Показать на карте",
-                     :latitude => latitude,
-                     :longitude => longitude,
-                     :class => 'show_map_link')
+                      :'data-latitude' => latitude,
+                      :'data-longitude' => longitude,
+                      :'data-hint' => title.as_html,
+                      :class => 'show_map_link')
     end
   end
 

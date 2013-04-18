@@ -11,9 +11,6 @@ $ ->
     init_vk_group_news() if $('#vk_group_news').length
     init_vk_group_subscribers() if $('#vk_group_subscribers').length
 
-  if typeof DG != 'undefined'
-    init_affiches_map() if $('.show_map_link').length
-
   init_main_page() if $('.main_page_affiche').length
   init_affiches_extend() if $('.content .affiche .photogallery')
   init_affiches_extend() if $('.content .affiche .trailer')
@@ -59,6 +56,7 @@ $(window).load ->
   init_skoda_stat() if $('a.skoda').length
   init_peugeot_stat() if $('a.peugeot').length
   init_affiche_yandex_map() if $('.yandex_map .map').length
+  init_affiches_map() if $('.show_map_link').length
   init_comments() if $('.comments').length
   init_auth() if ('.auth_links').length
   init_rating() if ('.rating').length

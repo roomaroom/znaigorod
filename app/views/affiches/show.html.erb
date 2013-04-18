@@ -153,10 +153,16 @@
                 <div class='head'>
                   <div class='places'>
                     <p>
-                      <span class='name'><%= place %></span>,
-                      <span class='address'>
-                        <a href='#' class='show_map_link' latitude='<%= showings.first.latitude %>' longitude='<%= showings.first.longitude %>' title='Показать на карте'>показать на карте</a>
-                      </span>
+                      <span class='name'><%= place.gilensize %></span>
+                      <% if showings.first.latitude.present? && showings.first.longitude.present? %>
+                        <span class='address'>
+                          <a href='#' class='show_map_link'
+                            data-hint='<%= place.gilensize %>'
+                            data-latitude='<%= showings.first.latitude %>'
+                            data-longitude='<%= showings.first.longitude %>'
+                            title='Показать на карте'>показать на карте</a>
+                        </span>
+                      <% end %>
                     </p>
                   </div>
                 </div>

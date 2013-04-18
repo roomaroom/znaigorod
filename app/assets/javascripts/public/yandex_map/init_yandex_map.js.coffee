@@ -4,8 +4,6 @@
 
     $map = $('.yandex_map .map')
 
-    without_organization_id = $map.attr('data-without-id')
-
     map = new ymaps.Map $map[0],
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
       zoom: 15
@@ -22,7 +20,7 @@
         top: 5
 
     zoomButton.events.add 'click', (event) ->
-      init_modal_affiche_yandex_map()
+      init_modal_affiche_yandex_map($map)
 
     map.controls.add(zoomButton)
 
@@ -47,7 +45,7 @@
 
   true
 
-@init_modal_affiche_yandex_map = () ->
+@init_modal_affiche_yandex_map = (data_block) ->
 
   dialog_width = $(window).innerWidth() * 70 / 100
   dialog_height = $(window).innerHeight() * 90 /100
@@ -62,15 +60,13 @@
       open: (event, ui) ->
         $map = $(this)
 
-        $map.attr('data-latitude', $('.yandex_map .map').attr('data-latitude'))
-        $map.attr('data-longitude', $('.yandex_map .map').attr('data-longitude'))
-        $map.attr('data-hint', $('.yandex_map .map').attr('data-hint'))
-        $map.attr('data-id', $('.yandex_map .map').attr('data-id'))
-
-        without_organization_id = $('.yandex_map .map').attr('data-id')
+        $map.attr('data-latitude', data_block.attr('data-latitude'))
+        $map.attr('data-longitude', data_block.attr('data-longitude'))
+        $map.attr('data-hint', data_block.attr('data-hint'))
+        $map.attr('data-id', data_block.attr('data-id'))
 
         map = new ymaps.Map this,
-          center: [$('.yandex_map .map').attr('data-latitude'), $('.yandex_map .map').attr('data-longitude')]
+          center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
           zoom: 16
           behaviors: ['drag', 'scrollZoom']
         ,
@@ -118,10 +114,10 @@
           top: 5
           left: 5
 
-        render_organizations(map, without_organization_id)
+        render_organizations(map, $map.attr('data-id'))
 
         map.events.add 'actionend', (event) ->
-          render_organizations(map, without_organization_id)
+          render_organizations(map, $map.attr('data-id'))
           true
 
         $('.organization_description .link a, .organization_description .image a').live 'click', (event) ->
@@ -135,6 +131,15 @@
         $(this).remove()
         true
 
+    true
+
+  $(document).ajaxError (event, jqXHR, ajaxSettings, thrownError) ->
+    wrapped = $("<div>#{jqXHR.responseText}</div>")
+    wrapped.find('title').remove()
+    wrapped.find('style').remove()
+    wrapped.find('head').remove()
+    console.error wrapped.html().stripTags().unescapeHTML().trim() if console && console.error
+    wrapped.remove()
     true
 
   true
@@ -181,15 +186,6 @@ render_organizations = (map, without_organization_id) ->
         true
 
       true
-
-  $(document).ajaxError (event, jqXHR, ajaxSettings, thrownError) ->
-    wrapped = $("<div>#{jqXHR.responseText}</div>")
-    wrapped.find('title').remove()
-    wrapped.find('style').remove()
-    wrapped.find('head').remove()
-    console.error wrapped.html().stripTags().unescapeHTML().trim() if console && console.error
-    wrapped.remove()
-    true
 
   true
 

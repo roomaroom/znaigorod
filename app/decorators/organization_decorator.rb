@@ -25,9 +25,11 @@ class OrganizationDecorator < ApplicationDecorator
     return "" if organization.address.to_s.blank?
     h.link_to address.to_s,
       organization_url,
-      :class => 'show_map_link',
-      :latitude => organization.address.latitude,
-      :longitude => organization.address.longitude
+      :'data-latitude' => organization.address.latitude,
+      :'data-longitude' => organization.address.longitude,
+      :'data-hint' => organization.title.as_html,
+      :'data-id' => organization.id,
+      :class => 'show_map_link'
   end
 
   def office
