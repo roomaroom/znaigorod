@@ -820,16 +820,16 @@
       cursor: pointer
       +border-radius(0.5em)
       +box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px)
-      border: solid 1px #555
-      background-color: #6e6e6e
+      border: solid 1px #b7b7b7
+      background-color: #fff
       background-repeat: no-repeat
       background-position: 50% 50%
-      +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#888888, #575757))
+      +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(white, #ededed))
       &:hover
-        background-color: #616161
-        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#757575, #4b4b4b))
+        background-color: #ededed
+        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(white, gainsboro))
       &:active
-        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#4b4b4b, #757575))
+        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(gainsboro, white))
         margin-top: 1px
         margin-left: 1px
 
@@ -902,11 +902,10 @@
         background-color: transparent
         background-repeat: no-repeat
         background-position: 0 0
-        padding-left: 24px
-        background: image_url('public/schedule_marker.png') no-repeat 6px center
-        //&.twenty_four
-          //background-image: image_url('public/organization_twenty_four.png')
-        //&.opened
-          //background-image: image_url('public/organization_opened.png')
-        //&.closed
-          //background-image: image_url('public/organization_closed.png')
+        padding-left: 55px
+        &.twenty_four
+          background-image: image_url('public/organization_twenty_four.png')
+        &.opened
+          background-image: image_url('public/organization_opened.png')
+        &.closed
+          background-image: image_url('public/organization_closed.png')
