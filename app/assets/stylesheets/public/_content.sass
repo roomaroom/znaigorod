@@ -896,16 +896,17 @@
       margin-right: 10px
     .clearfix
       +clearfix
+      .phone
+        background: image_url('public/phone.png') no-repeat left center
+        padding-left: 18px
       .schedule_today
         +clearfix
         line-height: 1.8
-        background-color: transparent
-        background-repeat: no-repeat
-        background-position: 0 0
-        padding-left: 55px
-        &.twenty_four
-          background-image: image_url('public/organization_twenty_four.png')
+        padding-left: 18px
+        background: image_url('public/icon_clock_green.png') no-repeat left center
+        //&.twenty_four
+          //background-image: image_url('public/organization_twenty_four.png')
         &.opened
-          background-image: image_url('public/organization_opened.png')
+          background-image: image_url('public/icon_clock_green.png')
         &.closed
-          background-image: image_url('public/organization_closed.png')
+          background-image: image_url('public/icon_clock_gray.png')

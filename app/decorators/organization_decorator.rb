@@ -110,6 +110,9 @@ class OrganizationDecorator < ApplicationDecorator
     more_schedule = ''
     from = schedules.pluck(:from).uniq
     to   = schedules.pluck(:to).uniq
+    week_day = Time.zone.today.cwday
+    content = week_day
+    schedule = organization.schedules.find_by_day(week_day)
     if from.one? && to.one?
       if from == to
         content = 'Работает круглосуточно'
@@ -117,9 +120,6 @@ class OrganizationDecorator < ApplicationDecorator
         content = "Работает ежедневно #{schedule_time(from[0], to[0])}"
       end
     else
-      week_day = Time.zone.today.cwday
-      content = week_day
-      schedule = organization.schedules.find_by_day(week_day)
       content = "Сегодня <span class='show_more_schedule'>#{schedule_time(schedule.from, schedule.to)}</span>".html_safe
       hash_schedule = {}
       schedules.each do |schedule|
@@ -133,7 +133,7 @@ class OrganizationDecorator < ApplicationDecorator
       end
       more_schedule = h.content_tag(:ul, more_schedule.html_safe, class: :more_schedule)
     end
-    h.content_tag(:div, content, :class => 'schedule_wrapper work_schedule') + more_schedule
+    h.content_tag(:div, content, :class => "schedule_wrapper work_schedule #{open_closed(schedule.from, schedule.to)}") + more_schedule
   end
 
   def schedule_content

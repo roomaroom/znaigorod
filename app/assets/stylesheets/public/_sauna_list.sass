@@ -50,11 +50,13 @@
         padding: 0 10px 0 0
 
 
-        .phone, .address, .schedule
+        .phone, .address, .schedule .schedule_today
           border-left: 1px dotted #a49fa5
           float: right
           font-size: 10px
+          line-height: 30px
           height: 30px
+          margin: 0
           padding: 0 10px 0 25px
 
         .phone
@@ -67,7 +69,17 @@
             color: #6f6f6d
 
         .schedule
-          background: image_url('public/schedule_marker.png') no-repeat 8px 47%
+          +clearfix
+          float: right
+
+          .schedule_today
+            background: image_url('public/schedule_marker.png') no-repeat 8px 47%
+
+            &.opened
+              background-image: image_url('public/icon_clock_green.png')
+
+            &.closed
+              background-image: image_url('public/icon_clock_gray.png')
 
     .top_info_block
       +clearfix
