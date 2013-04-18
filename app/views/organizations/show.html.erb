@@ -21,7 +21,7 @@
       <%= render :partial => 'user_ratings/block', :locals => { :parent_obj => @organization } %>
       <%= content_tag(:div, @organization.address_link + @organization.office, class: :place) if  @organization.address_link.present? %>
       <%= @organization.work_schedule %>
-      <%= content_tag(:div, @organization.phone, class: :phone) if @organization.phone.present? %>
+      <%= content_tag(:div, @organization.phone, class: :phone_wrapper) if @organization.phone.present? %>
       <%= content_tag(:div, @organization.contact_links, class: :links) if @organization.contact_links.present? %>
 
       <% if @organization.social_links.present? %>
