@@ -13,22 +13,25 @@
 
     map.events.add 'click', (event) ->
       init_modal_affiche_yandex_map($map)
-      yaCounter14923525.reachGoal('affiche_map_click')
+      yaCounter14923525.reachGoal('affiche_map_click') if yaCounter14923525?
       true
+
+    magnifier_layout = ymaps.templateLayoutFactory.createClass("<div class='magnifier_button'></div>")
 
     magnifier_button = new ymaps.control.Button
       data:
-        image: '/assets/public/affiche_icon_magnifier.png'
         title: 'Нажмите для увеличения карты'
     ,
-      selectOnClick: false
+      layout: magnifier_layout
       position:
         left: 5
         top: 5
+      selectOnClick: false
 
     magnifier_button.events.add 'click', (event) ->
-      yaCounter14923525.reachGoal('affiche_magnifier_click')
+      yaCounter14923525.reachGoal('affiche_magnifier_click') if yaCounter14923525?
       init_modal_affiche_yandex_map($map)
+      true
 
     map.controls.add(magnifier_button)
 

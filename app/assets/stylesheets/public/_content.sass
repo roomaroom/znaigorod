@@ -814,6 +814,25 @@
       height: 275px
       border: 1px solid #bfbfbf
       border-top: none
+    .magnifier_button
+      width: 32px
+      height: 32px
+      cursor: pointer
+      +border-radius(0.5em)
+      +box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px)
+      border: solid 1px #555
+      background-color: #6e6e6e
+      background-repeat: no-repeat
+      background-position: 50% 50%
+      +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#888888, #575757))
+      &:hover
+        background-color: #616161
+        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#757575, #4b4b4b))
+      &:active
+        +background-image(image_url('public/affiche_icon_magnifier.png'), linear-gradient(#4b4b4b, #757575))
+        margin-top: 1px
+        margin-left: 1px
+
     .ymaps-copyrights-pane
       display: none
 
