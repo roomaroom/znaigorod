@@ -9,7 +9,14 @@
       zoom: 15
       behaviors: []
 
-    zoomButton = new ymaps.control.Button
+    map.cursors.push('pointer')
+
+    map.events.add 'click', (event) ->
+      init_modal_affiche_yandex_map($map)
+      yaCounter14923525.reachGoal('affiche_map_click')
+      true
+
+    magnifier_button = new ymaps.control.Button
       data:
         image: '/assets/public/affiche_icon_magnifier.png'
         title: 'Нажмите для увеличения карты'
@@ -19,10 +26,11 @@
         left: 5
         top: 5
 
-    zoomButton.events.add 'click', (event) ->
+    magnifier_button.events.add 'click', (event) ->
+      yaCounter14923525.reachGoal('affiche_magnifier_click')
       init_modal_affiche_yandex_map($map)
 
-    map.controls.add(zoomButton)
+    map.controls.add(magnifier_button)
 
     affiche_placemark = new ymaps.GeoObject
       geometry:
