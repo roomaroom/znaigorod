@@ -20,8 +20,9 @@ ru:
 
     activity:
       kind:
-        phone:             Телефонный звонок
+        phone:             Первичный звонок
         email:             E-mail переписка
+        repeated_phone:    Повторный звонок
         meeting:           Встреча
         meeting_contract:  Встреча для подписания договора
         meeting_payment:   Встреча для получения денег

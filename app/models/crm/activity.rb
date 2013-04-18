@@ -20,7 +20,7 @@ class Activity < ActiveRecord::Base
   extend Enumerize
   enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh
   enumerize :state, in: [:planned, :completed], default: :planned, predicates: { prefix: true }
-  enumerize :kind, in: [:phone, :email, :meeting, :meeting_contract, :meeting_payment]
+  enumerize :kind, in: [:phone, :email, :repeated_phone, :meeting, :meeting_contract, :meeting_payment]
 
   scope :with_state, ->(state) {where(state: state)}
   scope :with_meeting, -> {where(kind: [:meeting, :meeting_payment, :meeting_contract])}

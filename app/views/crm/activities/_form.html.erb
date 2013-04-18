@@ -5,7 +5,10 @@
       <%= f.input :state %>
       <%= f.input :status %>
       <%= f.input :kind %>
-      <%= f.input :user_id, as: :select, collection: User.sales_managers, selected: @organization.manager ? @organization.user_id : current_user.id, include_blank: true %>
+      <%= f.input :user_id, as: :select,
+        collection: User.sales_managers,
+        selected: @activity.user_id || (@organization.manager ? @organization.user_id : current_user.id),
+        include_blank: true %>
       <%= f.input :contact_id, as: :select, collection: @organization.contacts %>
     </div>
     <div class='line'>
