@@ -12,7 +12,7 @@
       <%= link_to "Мне нравится", comment_change_vote_path(voteable), :method => :put, :remote => true %>
     <% end %>
   </div>
-  <% if @vote %>
+  <% if @vote && @vote.errors.any? %>
     <div class="cloud_wrapper">
       <div class="cloud_inner_wrapper">
         <h4>Оценивать могут только зарегистрированные пользователи. Пожалуйста, войдите с помощью одной из социальных сетей:</h4>

@@ -18,11 +18,12 @@ save_rating = () ->
     window.localStorage.setItem('rating', $('.user_rating .star_wrapper div.selected').attr('class').match(/star_\d/)[0])
 
 @init_auth = () ->
-  $('.auth_links').on 'click', (evt) ->
+  $('.auth_links a').on 'click', (evt) ->
     target = $(evt.target)
-    if target.is('a')
-      save_comment() if target.parent().parent().parent().hasClass('comment_form')
-      save_rating() if target.parent().parent().parent().hasClass('cloud_inner_wrapper')
-      draw_popup(target.attr('href'), 700, 400, 'Авторизация')
+
+    save_comment() if target.parent().parent().parent().hasClass('comment_form')
+    save_rating() if target.closest('form').prev('.star_wrapper').length
+
+    draw_popup(target.attr('href'), 700, 400, 'Авторизация')
 
     return false
