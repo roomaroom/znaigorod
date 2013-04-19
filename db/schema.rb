@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416005420) do
+ActiveRecord::Schema.define(:version => 20130419025615) do
 
   create_table "activities", :force => true do |t|
     t.text     "title"
@@ -702,6 +702,18 @@ ActiveRecord::Schema.define(:version => 20130416005420) do
   end
 
   add_index "virtual_tours", ["tourable_id", "tourable_type"], :name => "index_virtual_tours_on_tourable_id_and_tourable_type"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "like"
+    t.integer  "voteable_id"
+    t.string   "voteable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["voteable_id"], :name => "index_votes_on_voteable_id"
 
   create_table "works", :force => true do |t|
     t.text     "image_url"
