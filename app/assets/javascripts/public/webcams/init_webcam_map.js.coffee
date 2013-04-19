@@ -26,6 +26,10 @@
         properties:
           id: id
           hintContent: title
+      ,
+        iconImageHref: '/assets/public/icon_map_webcam.png'
+        iconImageOffset: [-15, -40]
+        iconImageSize: [37, 42]
 
       point.events.add 'click', (event) ->
         link.click()
