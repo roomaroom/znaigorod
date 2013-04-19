@@ -101,13 +101,6 @@
   </div>
 
   <div>
-    <span class="label">Рейтинг:</span>
-    <span class="value">
-      <%= resource.total_rating.round(2) %>
-    </span>
-  </div>
-
-  <div>
     <span class="label">Парковка:</span>
     <% if resource.organization_stand %>
       <span class="value">
@@ -167,6 +160,18 @@
       <span class="blank">Не указано</span>
     <% end %>
     <%= link_to 'Добавить вложенную организацию', new_manage_organization_organization_path(resource) if resource.organization_id.nil? %>
+  </div>
+
+  <div>
+    <span class="label">Общий рейтинг:</span>
+    <span class="value">
+      <%= resource.total_rating.round(2) %>
+    </span>
+  </div>
+
+  <div>
+    <span class="label">Рейтинг заполненности: </span>
+    <span class="value"><%= resource.fullness_rating.round(2) %></span>
   </div>
 </div>
 
