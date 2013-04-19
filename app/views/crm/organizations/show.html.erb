@@ -45,27 +45,35 @@
       </div>
     </div>
 
-    <div class="slave_organizations">
-      <h4>Связанные организации:</h4>
-      <ul>
-        <% @organization.slave_organizations.each do |organization| %>
-          <li>
-            <%= link_to organization.title, crm_organization_path(organization) %> (<%= organization.status_text %>)
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
     <div class='activities'>
+      <% if @organization.slave_organizations.any? %>
+        <div class="slave_organizations">
+          <h4>Связанные организации:</h4>
+          <ul>
+            <% @organization.slave_organizations.each do |organization| %>
+              <li>
+                <%= link_to organization.title, crm_organization_path(organization) %> (<%= organization.status_text %>)
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @organization.primary_organization %>
+        <div class="primary_organization">
+          <h4>Связана с <%= link_to @organization.primary_organization.title, crm_organization_path(@organization.primary_organization) %></h4>
+          <%= render partial: 'crm/activities/list', locals: { organization: @organization.primary_organization } %>
+        </div>
+      <% end %>
+
       <div class='activities_head'>
         <h2>
           Активность
           <%= link_to 'добавить', new_crm_organization_activity_url(@organization), class: :new_activity %>
         </h2>
       </div>
-      <%= render file: 'crm/activities/list' %>
+      <%= render partial: 'crm/activities/list', locals: { organization: @organization } %>
     </div>
-
   </div>
 
   <div class='right'>
@@ -75,5 +83,4 @@
     </h2>
     <%= render :file => 'crm/contacts/index' %>
   </div>
-
 </div>

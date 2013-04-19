@@ -1,7 +1,7 @@
 <div class='activities_list'>
   <% %w[planned completed].each do |state| %>
     <h3><%= t("crm.activities.#{state}") %></h3>
-    <% if @organization.activities.with_state(state).present? %>
+    <% if organization.activities.with_state(state).present? %>
       <table>
         <thead>
           <tr>
@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= render @organization.activities.with_state(state) %>
+          <%= render organization.activities.with_state(state) %>
         </tbody>
       </table>
     <% else %>

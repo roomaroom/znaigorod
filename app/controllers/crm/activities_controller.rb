@@ -12,19 +12,22 @@ class Crm::ActivitiesController < Crm::ApplicationController
 
   def create
     create! do |success, failure|
-      success.html { render file: 'crm/activities/list' and return }
+      #success.html { render file: 'crm/activities/list' and return }
+      success.html { render partial: 'crm/activities/list', locals: { organization: @organization } and return }
     end
   end
 
   def update
     update! do |success, failure|
-      success.html { render file: 'crm/activities/list' and return }
+      #success.html { render file: 'crm/activities/list' and return }
+      success.html { render partial: 'crm/activities/list', locals: { organization: @organization } and return }
     end
   end
 
   def destroy
     destroy! do |success, failure|
-      success.html { render file: 'crm/activities/list' and return }
+      #success.html { render file: 'crm/activities/list' and return }
+      success.html { render partial: 'crm/activities/list', locals: { organization: @organization } and return }
     end
   end
 
