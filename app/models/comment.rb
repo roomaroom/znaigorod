@@ -4,7 +4,9 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, :polymorphic => true
   attr_accessible :ancestry, :body, :parent_id
+
   has_ancestry
+  has_many :votes, :as => :voteable, :dependent => :destroy
 
   normalize_attribute :body, :ancestry
   validates_presence_of :body

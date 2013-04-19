@@ -13,6 +13,7 @@
         <%= l comment.created_at, :format => :long %>
       </span>
       <%= link_to "ответить", polymorphic_path([:new, comment.commentable, :comment], :comment => {:parent_id => comment.id}), :remote => true, :class => 'new_answer' %>
+      <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => comment } %>
     </div>
     <div class="body">
       <%= strip_tags comment.body %>

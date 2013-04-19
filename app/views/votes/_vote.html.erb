@@ -1,0 +1,24 @@
+<% if voteable.votes.liked.any? %>
+  <div class="votes_counter" title='<%= t :like, :count => voteable.votes.count %>'>
+    +<%= voteable.votes.liked.count %>
+  </div>
+<% end %>
+
+<% unless current_user == voteable.user %>
+  <div class="user_like">
+    <% if current_user && current_user.liked?(voteable) %>
+      Вам это нравится. <%= link_to "Мне не нравится", comment_change_vote_path(voteable), :method => :put, :remote => true %>
+    <% else %>
+      <%= link_to "Мне нравится", comment_change_vote_path(voteable), :method => :put, :remote => true %>
+    <% end %>
+  </div>
+  <% if @vote %>
+    <div class="cloud_wrapper">
+      <div class="cloud_inner_wrapper">
+        <h4>Оценивать могут только зарегистрированные пользователи. Пожалуйста, войдите с помощью одной из социальных сетей:</h4>
+        <%= render :partial => 'commons/social_auth' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

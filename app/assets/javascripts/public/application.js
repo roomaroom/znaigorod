@@ -21,6 +21,7 @@
  * = require public/yandex_map
  * = require public/common
  * = require public/comments
+ * = require public/votes
  * = require public/jscrollpane
  * = require public/main_page
  * = require public/affiches_extend

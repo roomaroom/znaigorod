@@ -17,7 +17,9 @@ init_state = () ->
   init_auth()
   selected = $('.user_rating .star_'+$('.rating form input:checked').val())
   selected.addClass('selected').add(selected.prevAll('div')).addClass('active')
+  cloud_handler()
 
+@cloud_handler = () ->
   if $('.cloud_wrapper:visible').length
     $(document).on 'keydown', (e) ->
       if e.keyCode == 27

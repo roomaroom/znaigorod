@@ -705,11 +705,11 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
-    t.boolean  "like"
+    t.boolean  "like",          :default => false
     t.integer  "voteable_id"
     t.string   "voteable_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"

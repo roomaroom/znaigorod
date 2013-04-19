@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :organizations
   has_many :roles,          dependent: :destroy
+  has_many :votes
 
   serialize :auth_raw_info
 
@@ -31,6 +32,18 @@ class User < ActiveRecord::Base
   end
 
   alias_attribute :to_s, :name
+
+  def vote_for(voteable)
+    voteable.votes.where(:user_id => self.id)
+  end
+
+  def voted?(voteable)
+    vote_for(voteable).one?
+  end
+
+  def liked?(voteable)
+    voted?(voteable) && vote_for(voteable).first.like?
+  end
 
   def avatar
     case provider

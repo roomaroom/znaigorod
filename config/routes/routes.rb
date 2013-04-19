@@ -16,6 +16,10 @@ Znaigorod::Application.routes.draw do
   resources :affiches,      :only => :index
   resources :saunas,        :only => :index
 
+  resources :comments, :only => [] do
+    put 'change_vote' => 'votes#change_vote', :as => :change_vote
+  end
+
   resources :organizations, :only => [:index, :show] do
     get :in_bounding_box, :on => :collection
     get :details_for_balloon, :on => :member

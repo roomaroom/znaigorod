@@ -46,73 +46,72 @@
   form
     position: relative
 
-    div
-      display: none
+    div.input
+      display: none !important
 
-    .cloud_wrapper
-      +border-radius(5px)
-      +single-box-shadow(#888, 0, 0, 4px)
-      background: #fff
-      display: block
-      position: absolute
-      margin-left: -98px
-      margin-top: 12px
+.cloud_wrapper
+  +border-radius(5px)
+  +single-box-shadow(#888, 0, 0, 4px)
+  background: #fff
+  display: block
+  position: absolute
+  margin-left: -98px
+  margin-top: 12px
 
-    .cloud_inner_wrapper
-      +clearfix
-      background: image_url('cloud_top_triangle.png') no-repeat top center
-      display: block
-      padding: 22px 15px 5px
-      position: relative
-      text-align: center
-      top: -12px
-      width: 400px
+.cloud_inner_wrapper
+  +clearfix
+  background: image_url('cloud_top_triangle.png') no-repeat top center
+  display: block
+  padding: 22px 15px 5px
+  position: relative
+  text-align: center
+  top: -12px
+  width: 400px
 
+  h4
+    line-height: 18px
+    margin: 0 0 10px 0
 
-      h4
-        line-height: 18px
-        margin: 0 0 10px 0
+  ul
+    text-align: center
 
-      ul
-        text-align: center
+    li
+      +inline-block
+      margin: 0 5px
 
-        li
-          +inline-block
-          margin: 0 5px
+      &:before
+        display: none
 
-          &:before
-            display: none
+      a
+        display: block
+        height: 33px
+        text-indent: -99999px
+        width: 33px
 
-          a
-            display: block
-            height: 33px
-            text-indent: -99999px
-            width: 33px
+      &.vkontakte
+        a
+          background: image_url('social_icons.png') no-repeat 0 0
 
-          &.vkontakte
-            a
-              background: image_url('social_icons.png') no-repeat 0 0
+      &.yandex
+        a
+          background: image_url('social_icons.png') no-repeat -33px 0
 
-          &.yandex
-            a
-              background: image_url('social_icons.png') no-repeat -33px 0
+      &.facebook
+        a
+          background: image_url('social_icons.png') no-repeat -66px 0
 
-          &.facebook
-            a
-              background: image_url('social_icons.png') no-repeat -66px 0
+      &.twitter
+        a
+          background: image_url('social_icons.png') no-repeat -99px 0
 
-          &.twitter
-            a
-              background: image_url('social_icons.png') no-repeat -99px 0
+      &.google
+        a
+          background: image_url('social_icons.png') no-repeat -132px 0
 
-          &.google
-            a
-              background: image_url('social_icons.png') no-repeat -132px 0
+      &.mail_ru
+        a
+          background: image_url('social_icons.png') no-repeat -165px 0
 
-          &.mail_ru
-            a
-              background: image_url('social_icons.png') no-repeat -165px 0
-
-          &.odnoklassniki
-            a
-              background: image_url('social_icons.png') no-repeat -198px 0
+      &.odnoklassniki
+        a
+          background: image_url('social_icons.png') no-repeat -198px 0

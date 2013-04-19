@@ -12,7 +12,9 @@ ru:
       activity:                           Активность
       contact:                            Контакт
       contest:                            Конкурс
+      comment:                            Комментарий
       feedback:                           Обратная связь
+      vote:                               Голос
 
       affiche:                            Вся афиша
       concert:                            Концерты
@@ -60,6 +62,9 @@ ru:
         category_list: Категория
         offer_list: Предложения
         feature_list: Особенности
+
+      vote:
+        like: Оценка
 
       activity:
         activity_at: Когда

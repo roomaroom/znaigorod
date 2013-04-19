@@ -2,7 +2,7 @@ class CreateVotes < ActiveRecord::Migration
   def change
     create_table :votes do |t|
       t.references :user
-      t.boolean :like
+      t.boolean :like, :default => false
       t.references :voteable, :polymorphic => true
 
       t.timestamps
