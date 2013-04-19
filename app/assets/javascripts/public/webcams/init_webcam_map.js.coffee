@@ -5,7 +5,14 @@
     map = new ymaps.Map $map[0],
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
       zoom: 12
-      behaviors: []
+      behaviors: ['drag', 'scrollZoom']
+    ,
+      maxZoom: 23
+      minZoom: 12
+
+    map.controls.add 'zoomControl',
+      top: 5
+      left: 5
 
     $('.webcams .webcams_list p').each (index, item) ->
       link = $(item).prev('a')
