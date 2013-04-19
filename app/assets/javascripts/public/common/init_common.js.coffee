@@ -11,6 +11,11 @@
     td.text(td.text().squish() + ':') if !td.text().match(/:$/) && td.text() != ""
     true
 
+  $('.ui-widget-overlay').live 'click', ->
+    $(this).css('cursor', 'pointer')
+    $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close')
+    true
+
   true
 
 randomize = (number) ->
