@@ -9,7 +9,7 @@
         collection: User.sales_managers,
         selected: @activity.user_id || (@organization.manager ? @organization.user_id : current_user.id),
         include_blank: true %>
-      <%= f.input :contact_id, as: :select, collection: @organization.contacts %>
+      <%= f.input :contact_id, as: :select, collection: @organization.primary_organization.try(:contacts) + @organization.contacts %>
     </div>
     <div class='line'>
       <%= f.input :title %>
