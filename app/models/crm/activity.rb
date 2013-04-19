@@ -30,10 +30,11 @@ class Activity < ActiveRecord::Base
   end
 
   private
-    def set_organization_status
-      organization.status = status
-      organization.save
-    end
+
+  def set_organization_status
+    organization.status = status
+    organization.save
+  end
 end
 
 # == Schema Information

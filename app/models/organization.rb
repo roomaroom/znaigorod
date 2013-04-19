@@ -27,6 +27,11 @@ class Organization < ActiveRecord::Base
 
   extend Enumerize
   enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
+
+  after_save :update_slave_organization_statuses
+  def update_slave_organization_statuses
+    slave_organizations.update_all :status => status
+  end
   # CRM ===>
 
   has_many :affiches,       :through => :showings, :uniq => true
