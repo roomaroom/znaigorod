@@ -15,6 +15,7 @@
  * = require public/scroll_to
  * = require public/sugar
  * = require public/swfobject
+ * = require public/urlify
  *
  * = require public/yandex_stat
  * = require public/yandex_map

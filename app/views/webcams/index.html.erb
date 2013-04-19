@@ -1,17 +1,20 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0-stable/?load=package.full&lang=ru-RU') %>
+
 <div class="content_wrapper">
 
   <div class="webcams">
-    <h1><span class="strong">Вебкамеры</span> Томска</h1>
+    <h1><p class="strong">Вебкамеры</p> Томска</h1>
+    <div class="webcam_map" data-latitude="56.495116" data-longitude="84.972128"></div>
 
     <div class="webcams_list">
 
       <div class="webcam_axis"
-           data-width="704"
+        data-width="704"
            data-height="576"
            data-cab="http://cam.admin.tomsk.ru/AxisCamControl.ocx"
            data-cgi="http://cam.admin.tomsk.ru/cgi-bin/cam4.pl">
         <a href="#">Корпус №10 Томского политехнического университета</a>
-        <span>пр. Ленина, 2</span>
+        <p data-latitude="56.456443" data-longitude="84.950326">пр. Ленина, 2</p>
       </div>
 
       <div class="webcam_axis"
@@ -20,7 +23,7 @@
            data-cab="http://webcam.tpu.ru/activex/AxisCamControl.cab"
            data-cgi="http://webcam.tpu.ru/axis-cgi/mjpg/video.cgi">
         <a href="#">Главный корпус Томского политехнического университета</a>
-        <span>пр. Ленина, 30</span>
+        <p data-latitude="56.466096" data-longitude="84.949679">пр. Ленина, 30</p>
       </div>
 
       <div class="webcam_axis"
@@ -29,7 +32,7 @@
            data-cab="http://cam.admin.tomsk.ru/AxisCamControl.ocx"
            data-cgi="http://cam.admin.tomsk.ru/cgi-bin/cam6.pl">
         <a href="#">Площадь Новособорная. Вид со здания Администрации г.Томска</a>
-        <span>пр. Фрунзе, 1</span>
+        <p data-latitude="56.475802" data-longitude="84.950398">пр. Фрунзе, 1</p>
       </div>
 
       <div class="webcam_axis"
@@ -38,7 +41,7 @@
            data-cab="http://ctt.tusur.ru/files/webcam/AxisCamControl.cab"
            data-cgi="http://campus.tusur.ru/axis-cgi/mjpg/video.cgi">
         <a href="#">Площадь Новособорная. Вид с главного корпуса ТУСУР</a>
-        <span>пр. Ленина, 40</span>
+        <p data-latitude="56.474112" data-longitude="84.949634">пр. Ленина, 40</p>
       </div>
 
       <div class="webcam_axis"
@@ -47,7 +50,7 @@
            data-cab="http://ctt.tusur.ru/files/webcam/AxisCamControl.cab"
            data-cgi="http://webcam.fet.tusur.ru/axis-cgi/mjpg/video.cgi">
         <a href="#">Корпус ФЭТ ТУСУР</a>
-        <span>ул. Вершинина проезд, 74</span>
+        <p data-latitude="56.451105" data-longitude="84.964097">ул. Вершинина проезд, 74</p>
       </div>
 
       <div class="webcam_axis"
@@ -56,7 +59,7 @@
            data-cab="http://cam.admin.tomsk.ru/AxisCamControl.ocx"
            data-cgi="http://cam.admin.tomsk.ru/cgi-bin/cam2.pl">
         <a href="#">Дворец зрелищ и спорта</a>
-        <span>ул. Красноармейская, 126</span>
+        <p data-latitude="56.459766" data-longitude="84.972784">ул. Красноармейская, 126</p>
       </div>
 
       <div class="webcam_axis"
@@ -65,7 +68,7 @@
            data-cab="http://217.29.93.100/activex/AMC.cab"
            data-cgi="http://217.29.93.100/axis-cgi/mjpg/video.cgi">
         <a href="#">Пересечение ул. Красноармейская и ул. Усова</a>
-        <span>ул. Красноармейская, 101</span>
+        <p data-latitude="56.460795" data-longitude="84.968193">ул. Красноармейская, 101</p>
       </div>
 
       <div class="webcam_uppod"
@@ -73,7 +76,7 @@
            data-height="480"
            data-file="22AENBw3LkUVT2FQnAxOb7jOIzav5npdQVQvaWQ9m5ntu0c9BMrH">
         <a href="#">Елизаровых - Шевченко</a>
-        <span>ул. Елизаровых, 53/2</span>
+        <p data-latitude="56.465032" data-longitude="84.996041">ул. Елизаровых, 53/2</p>
       </div>
 
       <div class="webcam_uppod"
@@ -81,7 +84,7 @@
            data-height="480"
            data-file="21AEE87GXQ35tlzsNnAhxOb7jObIzv5nphdQVQvadW9m5ntRu0c9BMrD">
         <a href="#">АРЗ</a>
-        <span>пр. Мира, 47</span>
+        <p data-latitude="56.525996" data-longitude="84.980877">пр. Мира, 47</p>
       </div>
 
       <div class="webcam_uppod"
@@ -89,7 +92,7 @@
            data-height="480"
            data-file="81AENBw3LCwEnHBYnAxOb77jOIzv5npedQVQvaW9mk5ntu0c9BMrB">
         <a href="#">Четвёртая поликлиника</a>
-        <span>Северный городок, 6</span>
+        <p data-latitude="56.498172" data-longitude="84.993517">Северный городок, 6</p>
       </div>
 
       <div class="webcam_uppod"
@@ -97,7 +100,7 @@
            data-height="480"
            data-file="61AENBw83LCQnQmwBfHsQcpB0HnAxOb7jOQIzv5npdQ5VQvaW9m5Kntu0c9BMrR">
         <a href="#">Путепровод</a>
-        <span>Северный городок, 6</span>
+        <p data-latitude="56.498172" data-longitude="84.993517">Северный городок, 6</p>
       </div>
 
       <div class="webcam_swf"
@@ -105,7 +108,7 @@
            data-height="480"
            data-file="http://213.210.67.5:15100/webcam.swf">
         <a href="#">Перед транспортной развязкой (р-н 4-ой Поликлиники)</a>
-        <span>Комсомольский, 7</span>
+        <p data-latitude="56.496716" data-longitude="84.982449">Комсомольский, 7</p>
       </div>
 
     </div>

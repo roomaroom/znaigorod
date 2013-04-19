@@ -7,7 +7,7 @@
       height = block.attr("data-height")
       cab_url = block.attr("data-cab")
       cgi_url = block.attr("data-cgi")
-      dialog_title = "#{link.text()}. #{link.next("span").text()}"
+      dialog_title = "#{link.text()}. #{link.next("p").text()}"
       render_axis_dialog(width, height, cab_url, cgi_url, dialog_title)
       false
     true

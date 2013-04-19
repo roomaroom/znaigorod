@@ -6,7 +6,7 @@
       width = block.attr("data-width")
       height = block.attr("data-height")
       file_hash = block.attr("data-file")
-      dialog_title = "#{link.text()}. #{link.next("span").text()}"
+      dialog_title = "#{link.text()}. #{link.next("p").text()}"
       render_swfobject_dialog(width, height, file_hash, dialog_title)
       false
     true
