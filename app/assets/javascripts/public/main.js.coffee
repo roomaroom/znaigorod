@@ -43,7 +43,8 @@ $ ->
   init_affiche_list_settings() if $('.content_wrapper .affiches_list .list_settings').length
   init_swfkrpano() if $('#krpano').length
   init_webcam_axis() if $('.webcams_list .webcam_axis').length
-  init_webcam_swfobject() if $('.webcams_list .webcam_swfobject').length
+  init_webcam_uppod() if $('.webcams_list .webcam_uppod').length
+  init_webcam_swf() if $('.webcams_list .webcam_swf').length
   init_stream_drifting() if $('.content_wrapper .affiche .description .river').length
 
   true

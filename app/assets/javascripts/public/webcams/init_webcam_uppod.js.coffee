@@ -1,5 +1,5 @@
-@init_webcam_swfobject = () ->
-  $(".webcams_list .webcam_swfobject").each (index, item) ->
+@init_webcam_uppod = () ->
+  $(".webcams_list .webcam_uppod").each (index, item) ->
     block = $(this)
     link = $("a", block)
     link.click (event) ->
@@ -52,6 +52,7 @@ swf_config = (width, height, file_hash) ->
     "file": file_hash
     "vast_preroll": "/assets/vastconverter.xml"
     "vast_overlay": "/assets/vastconverter.xml"
+    "st": "/assets/webcam.txt"
   "params":
     "bgcolor": "#ffffff"
     "allowFullScreen": "true"
