@@ -5,20 +5,18 @@ module AfficheQualityRating
 
   include Rateable
 
-  SKIPPED_ATTRIBUTES = /^popularity$|^original_title$|^constant$|^distribution_|^image_url$/
+  def calculate_affiche_total_rating
+    user_rating - (user_rating - quality_rating) / (user_ratings.count + 1)**((user_ratings.count * 0.02)/(user_rating + 0.1))
+  end
 
   private
 
   def quality_rating
-    @quality_rating ||= 0.5*organization_rating + 0.3*fullness_rating + 0.2*images_rating
+    @quality_rating ||= 0.8*organization_rating + 0.2*images_rating
   end
 
   def organization_rating
     organizations.average(:total_rating) || 0.7
-  end
-
-  def fullness_rating
-    Rateable.calculate_fullness_rating(self, :skip => SKIPPED_ATTRIBUTES)
   end
 
   def images_rating
