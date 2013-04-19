@@ -1,7 +1,7 @@
 ru:
   organization:
     kind:
-      meal: Еда
+      meal: Кафе и рестораны
       entertainment: Развлечения
       culture: Культура
       sport: Спорт
@@ -23,9 +23,9 @@ ru:
       creation: Всё творчество и развитие
     list_title:
       organization: Заведения города
-      meal: Заведения общественного питания
+      meal: Кафе и рестораны
       entertainment: Развлекательные заведения
-      culture: Культурные заведения
+      culture: Театры и музеи
       sport: Спортивные заведения
       billiard: Бильярдные клубы
       creation: Творчество и развитие
