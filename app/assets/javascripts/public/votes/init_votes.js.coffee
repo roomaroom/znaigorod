@@ -4,3 +4,4 @@
     target.html(jqXHR.responseText)
     init_votes()
     cloud_handler()
+    init_auth()
