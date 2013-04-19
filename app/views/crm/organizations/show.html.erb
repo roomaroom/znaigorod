@@ -45,6 +45,17 @@
       </div>
     </div>
 
+    <div class="slave_organizations">
+      <h4>Связанные организации:</h4>
+      <ul>
+        <% @organization.slave_organizations.each do |organization| %>
+          <li>
+            <%= link_to organization.title, crm_organization_path(organization) %> (<%= organization.status_text %>)
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
     <div class='activities'>
       <div class='activities_head'>
         <h2>

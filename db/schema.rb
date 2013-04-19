@@ -327,6 +327,7 @@ ActiveRecord::Schema.define(:version => 20130419084055) do
     t.integer  "user_id"
     t.string   "status"
     t.float    "total_rating"
+    t.integer  "primary_organization_id"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

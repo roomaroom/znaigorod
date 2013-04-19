@@ -14,16 +14,19 @@ class Organization < ActiveRecord::Base
                   :user_id
 
   # <=== CRM
+  attr_accessible :primary_organization_id
 
   belongs_to :manager, :class_name => 'User', :foreign_key => 'user_id'
   belongs_to :organization
+  belongs_to :primary_organization, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
+
   has_many :activities, :dependent => :destroy
   has_many :contacts,   :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :slave_organizations, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
 
   extend Enumerize
   enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
-
   # CRM ===>
 
   has_many :affiches,       :through => :showings, :uniq => true
