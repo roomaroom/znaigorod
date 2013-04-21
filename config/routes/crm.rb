@@ -1,7 +1,7 @@
 Znaigorod::Application.routes.draw do
-  get 'crm/organizations' => 'crm/organizations#index', as: :manage_sales
-
   namespace :crm do
+    resources :slave_organizations, only: [:new, :update, :destroy]
+
     resources :organizations, only: [:index, :show, :edit, :update] do
       resources :activities
       resources :contacts, except: :show

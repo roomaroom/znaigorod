@@ -4,6 +4,7 @@ $ ->
   init_manipulate_contacts() if $('.organization_show a.new_contact').length
   init_manipulate_manager() if $('.organization_show .left .info .details .manager').length
   init_manipulate_activities() if $('.organization_show .left .activities a.new_activity').length
+  init_manipulate_slave_organizations()
 
   $(document).ajaxError (event, jqXHR, ajaxSettings, thrownError) ->
     wrapped = $("<div>" + jqXHR.responseText + "</div>")

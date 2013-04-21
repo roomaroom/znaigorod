@@ -1,0 +1,7 @@
+<%= simple_form_for :slave_organization,
+  url: new_crm_slave_organization_path,
+  html: { id: 'new_slave_organization', method: 'put' } do |f|  %>
+  <%= f.input :primary_organization_id, as: :hidden, input_html: { value: @primary_organization.id } %>
+  <%= f.input :title, label: 'Название', input_html: { 'data-organizations' => Organization.all.map { |o| { value: o.id, label: o.title } }.to_json } %>
+  <%= f.submit 'Сохранить' %>
+<% end %>
