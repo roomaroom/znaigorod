@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
       auth_raw_info.try(:[], :info).try(:[], :image)
     when 'mailru'
       auth_raw_info.try(:[], :extra).try(:[], :raw_info).try(:[], :pic)
+    when 'odnoklassniki'
+      Settings['app.odnoklassniki_avatar_url']
     else
       Settings['app.default_avatar_url']
     end

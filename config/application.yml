@@ -1,5 +1,6 @@
 app:
   default_avatar_url: '/assets/public/default_avatar.png'
+  odnoklassniki_avatar_url: '/assets/odnoklassniki_avatar.png'
   affiche_today:
     monday: &workday
       '00-04': ['parties']
