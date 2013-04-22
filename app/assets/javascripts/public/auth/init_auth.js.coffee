@@ -18,7 +18,7 @@ save_rating = () ->
     window.localStorage.setItem('rating', $('.user_rating .star_wrapper div.selected').attr('class').match(/star_\d/)[0])
 
 @init_auth = () ->
-  $('.auth_links a').on 'click', (evt) ->
+  $('.auth_links a').not('.charged').addClass('charged').on 'click', (evt) ->
     target = $(evt.target)
 
     save_comment() if target.parent().parent().parent().hasClass('comment_form')
