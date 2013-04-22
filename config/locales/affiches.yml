@@ -7,6 +7,7 @@ ru:
       spectacles: спектаклей
       exhibitions: выставок
       sportsevents: спортивных мероприятий и соревнований
+      competitions: конкурсов
       others: других мероприятий
       masterclasses: мастер-классов
 
@@ -38,6 +39,7 @@ ru:
       sportsevents: Все спортивные мероприятия и соревнования
       others: Все другие мероприятия
       masterclasses: Все мастер-классы
+      competitions: Все конкурсы
 
   actual_organizations:
     sauna: Сауны

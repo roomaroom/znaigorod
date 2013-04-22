@@ -18,6 +18,7 @@ ru:
   edit: Редактировать
   edit_concert: Редактировать информацию о концерте
   edit_contest: Редактировать информацию о конкурсе
+  edit_competition: Редактировать информацию о конкурсе
   edit_exhibition: Редактировать информацию о выставке
   edit_master_class: Редактировать информацию о мастер-классе
   edit_movie: Редактировать информацию о фильме
@@ -36,6 +37,7 @@ ru:
   new_affiche: Добавить новое событие
   new_concert: Новый концерт
   new_contest: Новый конкурс
+  new_competition: Новый конкурс
   new_exhibition: Новая выставка
   new_master_class: Новый мастер-класс
   new_movie: Новый фильм
