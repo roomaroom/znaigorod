@@ -35,8 +35,9 @@ $.fn.new_answer = (response) ->
 
 $.fn.submit_form = (response) ->
   $(this).closest('.ajaxed_item').replaceWith(response)
-  remove_highlight()
-  show_link()
+  if !$(response).find('form').length
+    remove_highlight()
+    show_link()
 
 restore_comment = () ->
   unless (typeof(window.localStorage) == 'undefined')
