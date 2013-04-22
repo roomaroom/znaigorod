@@ -3,7 +3,7 @@
 class Price < ActiveRecord::Base
   extend Enumerize
 
-  attr_accessible :kind, :value, :count, :period
+  attr_accessible :kind, :value, :count, :period, :description
 
   belongs_to :service
 

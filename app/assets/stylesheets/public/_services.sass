@@ -32,18 +32,60 @@
         font-size: 14px
         font-weight: bold
         color: #8302A5
-        padding: 7px 10px
+        padding: 7px 10px 7px 2px
 
 
       .info
-        margin: 5px 0 5px 25px
+        margin: 5px 0 5px 15px
 
         .details
+          +border-radius(3px)
+          background-color: #f6eff7
           display: none
+          padding: 15px
+          margin: 0 15px 0 0
 
-          ul
-            li
-              margin: 5px 0
+
+          .service_description
+            float: left
+            margin: 0 40px 0 0
+            width: 180px
+
+            .label
+              display: block
+              font-size: 14px
+              font-weight: bold
+              color: #222
+
+            .value
+
+            ul
+              li
+                margin: 5px 0
+
+                .service_price_value
+                  font-weight: bold
+                  float: right
+                  color: #e4344b
+
+          .wide
+            width: 1120px
+
+            ul
+              li
+
+                .service_price_value
+                  float: left
+
+          .one_price
+            color: #222
+            font-size: 14px
+            font-weight: bold
+            margin: 0 20px 5px 0
+            width: 310px
+
+            .service_price_value
+              color: #e4344b
 
     .services_tables
       border-top: 1px dotted #cfcfd1

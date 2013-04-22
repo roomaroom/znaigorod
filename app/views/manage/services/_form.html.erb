@@ -1,6 +1,7 @@
 <%= simple_nested_form_for [:manage, @organization, context_type, resource],
   :html => { :novalidate => true } do |f| %>
 
+  <%= f.input :title %>
   <%= f.input :kind %>
 
   <%= f.input :category_list,
@@ -10,12 +11,10 @@
     :wrapper_html => { :class => :category_list },
     :include_blank => false %>
 
-  <%= f.input :title %>
   <%= f.input :feature %>
 
   <%= f.input :offer_list,
     :as => :select,
-    :selected => f.object.offers,
     :collection => Values.instance.send(context_type).offers,
     :wrapper_html => { :class => :category_list },
     :include_blank => false %>
@@ -26,6 +25,7 @@
   <div>
     <%= f.simple_fields_for :prices do |pf| %>
       <%= pf.input :kind, :as => :select, :include_blank => false %>
+      <%= pf.input :description %>
       <%= pf.input :count %>
       <%= pf.input :period %>
       <%= pf.input :value %>

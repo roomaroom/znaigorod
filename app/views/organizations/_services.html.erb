@@ -1,0 +1,48 @@
+<% services.group_by(&:offer).each do |offer, services| %>
+  <div class='info'>
+    <h3>
+      <%= link_to '#', class: :closed do %>
+        <%= offer %> от <%= services.map(&:min_value).min %> руб.
+      <% end %>
+    </h3>
+
+    <div class="details">
+      <% services.each do |service| %>
+        <% if service.description? %>
+          <div class="service_description wide">
+            <span class="label"><%= service.title %></span>
+            <span class="value"><%= service.description %></span>
+            <ul>
+              <% service.prices.each do |price| %>
+                <li>
+                  <%= price.description %>
+                  <span class="service_price_value"><%= price %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% else %>
+          <% if service.prices.many? %>
+            <div class="service_description">
+              <span class="label"><%= service.title %></span>
+              <span class="value"><%= service.description %></span>
+              <ul>
+                <% service.prices.each do |price| %>
+                  <li>
+                    <%= price.description %>
+                    <span class="service_price_value"><%= price %></span>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% else %>
+            <div class="service_description one_price">
+              <%= service.title %>
+              <span class="service_price_value"><%= service.prices.first.value %></span>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div><!-- details -->
+  </div>
+<% end %>

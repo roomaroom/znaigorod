@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419025615) do
+ActiveRecord::Schema.define(:version => 20130419084055) do
 
   create_table "activities", :force => true do |t|
     t.text     "title"
@@ -402,8 +402,9 @@ ActiveRecord::Schema.define(:version => 20130419025615) do
     t.integer  "count"
     t.string   "period"
     t.integer  "service_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
   end
 
   add_index "prices", ["service_id"], :name => "index_prices_on_service_id"

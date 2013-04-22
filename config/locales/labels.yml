@@ -65,7 +65,7 @@ ru:
 
   price_kind:
     visiting:
-      one:   "Одно посещение"
+      one:   ""
       few:   "%{count} посещения"
       many:  "%{count} посещений"
       other: "%{count} посещений"

@@ -354,6 +354,7 @@ ru:
         attachment: Выберите файл
 
       price:
+        description: Описание
         kind:    Тип
         count:   Количество
         period:  Срок
