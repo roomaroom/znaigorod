@@ -23,8 +23,8 @@ class String
     self.html_safe? ? result.html_safe : result
   end
 
-  def truncated(length=230)
-    self.truncate(length, :separator => ' ', :omission => '…')
+  def truncated(length = 230, separator = ' ')
+    self.truncate(length, :separator => separator, :omission => '…')
   end
 
   def excerpt

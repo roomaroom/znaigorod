@@ -70,7 +70,7 @@ class OrganizationsController < ApplicationController
   end
 
   def allow_cross_domain_access
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers['Access-Control-Allow-Origin'] = '*'
   end
 
 end

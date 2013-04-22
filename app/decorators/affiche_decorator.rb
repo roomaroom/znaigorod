@@ -17,7 +17,7 @@ class AfficheDecorator < ApplicationDecorator
   end
 
   def posters_title_link
-    truncated_link(25)
+    truncated_link(23, nil, nil)
   end
 
   def has_ribbon
@@ -398,8 +398,8 @@ class AfficheDecorator < ApplicationDecorator
 
   private
 
-  def truncated_link(length, anchor = nil)
-    h.link_to affiche.title.text_gilensize.truncated(length), kind_affiche_path(anchor: anchor), :title => affiche.title
+  def truncated_link(length, anchor = nil, separator = ' ')
+    h.link_to affiche.title.text_gilensize.truncated(length, separator), kind_affiche_path(anchor: anchor), :title => affiche.title
   end
 
   def in_one_day?
