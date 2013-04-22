@@ -48,9 +48,7 @@ class Organization < ActiveRecord::Base
   has_one :organization_stand,  :dependent => :destroy
 
   def self.available_suborganization_kinds
-    Dir.chdir(Rails.root.join('app/models/suborganizations')) {
-      Dir['*.rb'].map { |f| f.gsub('.rb', '') }
-    }
+    Dir[Rails.root.join('app/models/suborganizations/*.rb')].map { |f| f.split('/').last.gsub '.rb', '' }
   end
 
   available_suborganization_kinds.each do |kind|
