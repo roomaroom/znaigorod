@@ -24,7 +24,7 @@ class SearchPresenter
   end
 
   def hits
-    HitDecorator.decorate(collection.hits).select { |h| !h.organization? || h.raw_suborganization }
+    HitDecorator.decorate(collection.hits).select { |h| h.result && (!h.organization? || h.raw_suborganization) }
   end
 
   def hits?
