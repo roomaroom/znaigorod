@@ -1,31 +1,21 @@
 @init_manipulate_slave_organizations = ->
-  $('.activities').on 'ajax:complete', (evt, jqXHR)->
-    $('.slave_organization_form').html(jqXHR.responseText)
+  $(document).on 'click', '.delete_slave_organization', ->
+    $(this).parent().attr('class', 'form')
 
-    $('#slave_organization_title').autocomplete
+  $('.slave_organizations').on 'ajax:complete', (evt, jqXHR)->
+    $(this).find('.form').remove()
+    $(this).find('ul').append(jqXHR.responseText)
+
+    $(this).find('#title').autocomplete
       minLength: 2,
       select: (event, ui)->
-        $('#slave_organization_title').val(ui.item.label)
-        action = $('.simple_form.slave_organization').attr('action').split('/')
+        $(this).val(ui.item.label)
+        form = $(this).parents('form')
+        action = form.attr('action').split('/')
         action.pop()
         action.push ui.item.value
         action = action.join('/')
-        $('.simple_form.slave_organization').attr('action', action)
+        form.attr('action', action)
 
         false
-      source: $('#slave_organization_title').data('organizations')
-
-    $('#new_slave_organization').submit ->
-      url = $(this).attr('action')
-      primary_organization_id = $('#slave_organization_primary_organization_id').val()
-
-      $.ajax
-        type: 'PUT',
-        url: url,
-        data: { slave_organization: { primary_organization_id: primary_organization_id } },
-        success: (data, textStatus, jqXHR)->
-          $('.slave_organizations').replaceWith(data)
-
-          false
-
-      false
+      source: $('input#title').data('organizations')

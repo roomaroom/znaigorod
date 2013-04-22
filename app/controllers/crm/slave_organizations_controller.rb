@@ -10,13 +10,22 @@ class Crm::SlaveOrganizationsController < ApplicationController
   end
 
   def update
-    @organization = Organization.find(params[:slave_organization][:primary_organization_id])
-
     if slave_organization = Organization.find_by_id(params[:id])
-      slave_organization.update_attributes(params[:slave_organization])
-    end
+      slave_organization.primary_organization_id = params[:primary_organization_id]
+      slave_organization.save
 
-    render partial: 'crm/organizations/slave_organizations'
+    render partial: 'crm/organizations/slave_organization', locals: { slave_organization: slave_organization }
+    else
+      render nothing: true
+    end
+  end
+
+  def destroy
+    slave_organization = Organization.find(params[:id])
+    slave_organization.primary_organization_id = nil
+    slave_organization.save
+
+    render nothing: true
   end
 
   private

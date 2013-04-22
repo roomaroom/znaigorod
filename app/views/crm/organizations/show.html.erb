@@ -46,7 +46,17 @@
     </div>
 
     <div class='activities'>
-      <%= render :partial => 'slave_organizations', locals: { organization: @organization } %>
+      <div class="slave_organizations">
+        <h4>
+          Связанные организации
+          <%= link_to 'добавить', new_crm_slave_organization_path(primary_organization_id: @organization), remote: true, class: 'new_slave_organization_link' %>
+        </h4>
+        <ul>
+          <% @organization.slave_organizations.each do |slave_organization| %>
+            <%= render :partial => 'slave_organization', locals: { slave_organization: slave_organization } %>
+          <% end %>
+        </ul>
+      </div>
 
       <% if @organization.primary_organization %>
         <div class="primary_organization">

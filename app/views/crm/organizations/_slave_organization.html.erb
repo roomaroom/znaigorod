@@ -1,0 +1,5 @@
+<li>
+  <%= link_to slave_organization.title, crm_organization_path(slave_organization) %> (<%= slave_organization.status_text %>)
+  <%= link_to 'удалить', crm_slave_organization_path(slave_organization), method: :delete, remote: true, class: 'delete_slave_organization' %>
+</li>
+

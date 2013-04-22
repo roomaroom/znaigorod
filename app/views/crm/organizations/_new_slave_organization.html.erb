@@ -1,7 +1,11 @@
-<%= simple_form_for :slave_organization,
-  url: new_crm_slave_organization_path,
-  html: { id: 'new_slave_organization', method: 'put' } do |f|  %>
-  <%= f.input :primary_organization_id, as: :hidden, input_html: { value: @primary_organization.id } %>
-  <%= f.input :title, label: 'Название', input_html: { 'data-organizations' => Organization.all.map { |o| { value: o.id, label: o.title } }.to_json } %>
-  <%= f.submit 'Сохранить' %>
-<% end %>
+<li class="form">
+  <%= form_tag new_crm_slave_organization_path, method: :put, remote: true do %>
+    <div class="input">
+      <%= hidden_field_tag :primary_organization_id, @primary_organization.id %>
+      <%= label_tag :title, 'Название' %>
+      <%= text_field_tag :title, nil, 'data-organizations' => Organization.includes(:address).map { |o| { value: o.id, label: "#{o.title}" } }.to_json %>
+    </div>
+
+    <%= submit_tag 'Добавить' %>
+  <% end %>
+</li>
