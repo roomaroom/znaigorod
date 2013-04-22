@@ -3,6 +3,8 @@
 class OrganizationsController < ApplicationController
   has_scope :page, :default => 1
 
+  before_filter :allow_cross_domain_access
+
   def index
     @organizations_catalog_presenter = OrganizationsCatalogPresenter.new
   end
@@ -66,4 +68,9 @@ class OrganizationsController < ApplicationController
 
     render :json => data
   end
+
+  def allow_cross_domain_access
+    response.headers["Access-Control-Allow-Origin"] = "*"
+  end
+
 end

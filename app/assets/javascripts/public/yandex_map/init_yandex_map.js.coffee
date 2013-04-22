@@ -104,6 +104,7 @@
             $.ajax
               method: 'GET'
               url: "/organizations/#{$map.attr('data-id')}/details_for_balloon"
+              crossDomain: true
               success: (data, textStatus, jqXHR) ->
                 item = data
                 affiche_placemark.properties.set
@@ -168,6 +169,7 @@ render_organizations = (map, without_organization_id) ->
   $.ajax
     type: 'GET'
     url: link
+    crossDomain: true
     success: (data, textStatus, jqXHR) ->
       builded_placemarks = {}
       builded_placemark_ids = []
@@ -231,6 +233,7 @@ build_placemark = (item) ->
     $.ajax
       method: 'GET'
       url: "/organizations/#{item.id}/details_for_balloon"
+      crossDomain: true
       success: (data, textStatus, jqXHR) ->
         item = data
         point.properties.set
