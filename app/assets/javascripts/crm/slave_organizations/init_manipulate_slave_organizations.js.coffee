@@ -16,15 +16,13 @@
       source: $('#slave_organization_title').data('organizations')
 
     $('#new_slave_organization').submit ->
-      console.log '123'
       url = $(this).attr('action')
       primary_organization_id = $('#slave_organization_primary_organization_id').val()
 
       $.ajax
         type: 'PUT',
         url: url,
-        data:
-          slave_organization: { primary_organization_id: primary_organization_id },
+        data: { slave_organization: { primary_organization_id: primary_organization_id } },
         success: (data, textStatus, jqXHR)->
           $('.slave_organizations').replaceWith(data)
 

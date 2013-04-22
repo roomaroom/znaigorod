@@ -1,5 +1,5 @@
 class Crm::SlaveOrganizationsController < ApplicationController
-  load_and_authorize_resource class: Organization
+  before_filter :check_permissions
 
   layout false
 
@@ -10,10 +10,19 @@ class Crm::SlaveOrganizationsController < ApplicationController
   end
 
   def update
-    slave_organization = Organization.find(params[:id])
-    slave_organization.update_attributes(params[:slave_organization])
-    @organization = slave_organization.primary_organization
+    @organization = Organization.find(params[:slave_organization][:primary_organization_id])
+
+    if slave_organization = Organization.find_by_id(params[:id])
+      slave_organization.update_attributes(params[:slave_organization])
+    end
 
     render partial: 'crm/organizations/slave_organizations'
+  end
+
+  private
+
+  def check_permissions
+    ability = Ability.new(current_user)
+    redirect_to manage_root_path unless ability.can?(:manage, :crm)
   end
 end
