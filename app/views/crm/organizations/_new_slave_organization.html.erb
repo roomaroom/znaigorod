@@ -1,9 +1,9 @@
 <li class="form">
-  <%= form_tag new_crm_slave_organization_path, method: :put, remote: true do %>
+  <%= form_tag new_crm_slave_organization_path, method: :put, remote: true, class: 'slave_organization_form' do %>
     <div class="input">
       <%= hidden_field_tag :primary_organization_id, @primary_organization.id %>
       <%= label_tag :title, 'Название' %>
-      <%= text_field_tag :title, nil, 'data-organizations' => Organization.includes(:address).map { |o| { value: o.id, label: "#{o.title}" } }.to_json %>
+      <%= text_field_tag :title, nil, 'data-organizations' => Organization.includes(:address).map { |o| { value: o.id, label: "#{o.title} (#{o.address})" } }.to_json %>
     </div>
 
     <%= submit_tag 'Добавить' %>
