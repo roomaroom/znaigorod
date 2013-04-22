@@ -38,6 +38,10 @@ billiard:
     - снукер
 
 salon_center:
+  singularized_categories:
+    Парикмахерские: Парикмахерская
+    SPA-салоны: SPA-салон
+
   categories:
     - SPA-салоны
     - Визаж-студии
