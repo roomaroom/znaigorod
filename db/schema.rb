@@ -274,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20131015051531) do
     t.datetime "complete_at"
     t.text     "categories"
     t.text     "affiliate_url"
+    t.string   "payment_system"
   end
 
   add_index "coupons", ["organization_id"], :name => "index_coupons_on_organization_id"
@@ -899,6 +900,7 @@ ActiveRecord::Schema.define(:version => 20131015051531) do
     t.text     "email_addressess"
     t.integer  "undertow"
     t.string   "state"
+    t.string   "payment_system"
   end
 
   add_index "tickets", ["afisha_id"], :name => "index_ticket_infos_on_affiche_id"

@@ -1,8 +1,10 @@
 # encoding: utf-8
 
 class Ticket < ActiveRecord::Base
-  include Copies
   extend Enumerize
+
+  include Copies
+  include PaymentSystems
 
   attr_accessible :number, :original_price, :price, :description,
     :stale_at, :organization_price, :email_addressess, :undertow, :state
