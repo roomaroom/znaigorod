@@ -140,6 +140,7 @@ ru:
         price_without_discount: Сумма услуг без скидки
         stale_at: Продажа заканчивается
         title: Название
+        payment_system: Платежная система
 
       afisha:
         <<: *common_attributes
@@ -413,6 +414,7 @@ ru:
         number:             Количество
         organization_price: Сколько заплатит заведению
         original_price:     Цена заведения
+        payment_system:     Платежная система
         price:              Цена со скидкой
         stale_at:           Актуально до
         undertow:           Откат заведению
