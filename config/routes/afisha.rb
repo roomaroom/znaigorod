@@ -2,9 +2,9 @@ Znaigorod::Application.routes.draw do
   mount Affiches::API => '/'
   mount Mobile::API => '/'
 
-  resources :afisha, :only => :show, :controller => :afishas
+  get "/afisha/bilety" => 'afishas#index', :as => :afisha_with_tickets_index, :defaults => {:has_tickets => true}
 
-  resources :afisha, :only => [], :controller => 'afishas' do
+  resources :afisha, :only => :show, :controller => 'afishas' do
     resources :comments, :only => [:new, :show, :create]
     resources :visits
 
@@ -33,7 +33,6 @@ Znaigorod::Application.routes.draw do
 
   get '/affiches', :to => redirect('/afisha')
 
-  get "/afisha/bilety" => 'afishas#index', :as => :afisha_with_tickets_index, :defaults => {:has_tickets => true}
 
   Afisha.kind.values.map(&:pluralize).each do |kind|
     get "/#{kind}",
