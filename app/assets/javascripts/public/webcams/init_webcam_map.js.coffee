@@ -15,6 +15,20 @@
       top: 5
       left: 5
 
+    trafficControl = new ymaps.control.TrafficControl
+      providerKey: 'traffic#actual'
+      shown: true
+    ,
+      position:
+        top: 5
+        right: 5
+
+    trafficControl.getProvider('traffic#actual').state.set('infoLayerShown', true)
+    trafficControl.collapse()
+
+    map.controls.add trafficControl
+
+
     $('.webcams .webcams_list p').each (index, item) ->
       link = $('a', item)
       id = link.attr('id')

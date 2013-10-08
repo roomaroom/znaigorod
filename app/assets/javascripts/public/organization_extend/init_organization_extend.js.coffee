@@ -4,7 +4,6 @@
     $.cookie('_znaigorod_jump_to_afisha', true)
     true
 
-
   if $.cookie('_znaigorod_jump_to_afisha')
     setTimeout ->
       $.scrollTo $('.organization_show .afisha_details'), 500, { offset: {top: -50} }
