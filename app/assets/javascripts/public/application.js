@@ -62,7 +62,6 @@
  * = require ./photogallery
  * = require ./distribution
  * = require ./back_to_top
- * = require ./galleria
  * = require ./filters_toggler
  * = require ./filter_handler
  * = require ./organization_extend

@@ -20,7 +20,7 @@
     $(this).closest('a').colorbox
       'close': 'закрыть'
       'current': '{current} / {total}'
-      'maxHeight': '98%'
+      'maxHeight': '90%'
       'maxWidth': '90%'
       'next': 'следующая'
       'opacity': '0.6'

@@ -1,7 +1,7 @@
 @init_post_photos = () ->
   $('.post a[rel="colorbox"]').colorbox
     'maxWidth': '90%'
-    'maxHeight': '98%'
+    'maxHeight': '90%'
     'photo': 'true'
     'current': '{current} / {total}'
     'previous': 'предыдущая'

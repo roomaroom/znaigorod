@@ -38,7 +38,7 @@ add_point_on_side_map = (item, map) ->
     $('.balloon_photos a').colorbox
       close: 'закрыть'
       current: '{current} из {total}'
-      maxHeight: '98%'
+      maxHeight: '90%'
       maxWidth: '90%'
       next: 'следующая'
       opacity: '0.5'
@@ -199,7 +199,7 @@ add_point_on_side_map = (item, map) ->
     lat = addresses.first().data('latitude')
 
     map = new ymaps.Map $map[0],
-      center: [lat, long] 
+      center: [lat, long]
       zoom: 17
       behaviors: ['drag', 'scrollZoom']
     ,
