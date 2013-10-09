@@ -6,8 +6,6 @@ class WebcamsController < ApplicationController
 
   has_scope :published, :type => :boolean, :default => true
 
-  caches_page :index
-
   def show
     show! {
       @tickets = Ticket.available.sort {|a, b| rand <=> rand }[0..4]
