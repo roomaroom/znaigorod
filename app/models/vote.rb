@@ -7,6 +7,7 @@ class Vote < ActiveRecord::Base
   belongs_to :voteable, :polymorphic => true
 
   has_many :messages, :as => :messageable, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   validate :authenticated_user
 
