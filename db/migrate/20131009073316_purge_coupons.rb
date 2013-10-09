@@ -3,10 +3,9 @@ end
 
 class PurgeCoupons < ActiveRecord::Migration
   def up
-    drop_table :coupons
+    Coupon.destroy_all
 
-    coupon_copies = Copy.where(:copyable_type => 'Coupon')
-    coupon_copies.destroy_all
+    drop_table :coupons
   end
 
   def down
