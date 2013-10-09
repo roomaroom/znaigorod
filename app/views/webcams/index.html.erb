@@ -36,16 +36,18 @@
     <%= render :partial => 'commons/share_this', :locals => { :url => webcams_url } %>
   </div>
 
-  <div class='webcams_list'>
-    <% @webcams.each do |resource| %>
-      <p data-latitude='<%= resource.latitude %>' data-longitude='<%= resource.longitude %>'
-         data-width='<%= resource.width %>' data-height='<%= resource.height %>'
-         data-title='<%= resource.title.as_html %>' data-address='<%= resource.address %>'
-         data-image='<%= resized_image_url(resource.snapshot_href, 200, 150) %>'>
-        <%= link_to "#{resource.title.as_html}. #{resource.address}", webcam_url(resource), :id => resource.slug %>
-      </p>
-    <% end %>
-  </div>
+  <% cache('all_available_webcams') do %>
+    <div class='webcams_list'>
+      <% @webcams.each do |resource| %>
+        <p data-latitude='<%= resource.latitude %>' data-longitude='<%= resource.longitude %>'
+          data-width='<%= resource.width %>' data-height='<%= resource.height %>'
+          data-title='<%= resource.title.as_html %>' data-address='<%= resource.address %>'
+          data-image='<%= resized_image_url(resource.snapshot_href, 200, 150) %>'>
+          <%= link_to "#{resource.title.as_html}. #{resource.address}", webcam_url(resource), :id => resource.slug %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
 
