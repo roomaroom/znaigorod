@@ -38,7 +38,7 @@ module AccountHelper
         content += '</p>'
       end
     end
-    content
+    content.present? ? content : 'Приглашает или ждет приглашения'
   end
 
 end
