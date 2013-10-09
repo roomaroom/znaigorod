@@ -55,25 +55,6 @@ ru:
         meeting_contract:  Встреча для подписания договора
         meeting_payment:   Встреча для получения денег
 
-    coupon:
-      kind:
-        coupon: Купон
-        certificate: Сертификат
-      categories:
-        meal: Кафе и рестораны
-        entertainment: Развлекательные заведения
-        culture: Театры и музеи
-        sport: Спортивные заведения
-        billiard: Бильярдные клубы
-        creation: Творчество и развитие
-        sauna: Сауны
-        hotel: Гостиницы
-        travel: Туристические агентства
-        salon_center: Красота
-        car_sales_center: Автосалоны
-        car_wash: Автомойки
-        car_service_center: Автосервис
-
     visit:
       inviter_gender:
         all: Неважно

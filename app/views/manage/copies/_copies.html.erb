@@ -12,22 +12,14 @@
       <ul class='manage'>
         <% items.each do |item| %>
           <li>
-            <% if item.class.name.underscore == "ticket"  %>
-              <p>
-                <%= link_to item.afisha.title, polymorphic_url([:manage, item.afisha]) %>
-                <%= link_to 'Редактировать', edit_manage_ticket_path(item) %>
-              </p>
+            <p>
+              <%= link_to item.afisha.title, polymorphic_url([:manage, item.afisha]) %>
+              <%= link_to 'Редактировать', edit_manage_ticket_path(item) %>
+            </p>
 
-              <div class="poster">
-                <%= link_to image_tag(resized_image_url(item.afisha.poster_url, 70, 100), size: '70x100'), manage_afisha_show_path(item.afisha) %>
-              </div>
-            <% else %>
-              <p><%= link_to item.title, manage_coupon_path(item) %></p>
-
-              <div class='poster'>
-                <%= link_to image_tag(resized_image_url(item.image_url, 70, 100), size: '70x100'), manage_coupon_path(item) %>
-              </div>
-            <% end %>
+            <div class="poster">
+              <%= link_to image_tag(resized_image_url(item.afisha.poster_url, 70, 100), size: '70x100'), manage_afisha_show_path(item.afisha) %>
+            </div>
 
             <div class="details">
               <% if item.class.name.underscore == "ticket"  %>
@@ -58,19 +50,12 @@
         <div class="text">
           <p>Коды для <%= link_to organization.title, organization_path(organization) %>:</p>
           <% items.each do |item| %>
-            <% if item.class.name.underscore == "ticket"  %>
-              <% afisha = AfishaDecorator.new(item.afisha) %>
-              <p>
-                <%= link_to "#{afisha.human_when} #{afisha.title}".html_safe, manage_afisha_show_path(afisha) %> -
-                <%= item.copies.map(&:code).join(', ') %>
-                (<%= item.description %>)
-              </p>
-            <% else %>
-              <p>
-                <%= link_to item.title, coupon_path(item) %> -
-                <%= item.copies.map(&:code).join(', ') %>
-              </p>
-            <% end %>
+            <% afisha = AfishaDecorator.new(item.afisha) %>
+            <p>
+              <%= link_to "#{afisha.human_when} #{afisha.title}".html_safe, manage_afisha_show_path(afisha) %> -
+              <%= item.copies.map(&:code).join(', ') %>
+              (<%= item.description %>)
+            </p>
           <% end %>
         </div>
       <% end %>

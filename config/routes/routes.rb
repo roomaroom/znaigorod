@@ -52,14 +52,6 @@ Znaigorod::Application.routes.draw do
   get 'yamp_geocoder' => 'geocoder#get_yamp_coordinates'
   get 'yamp_geocoder_photo' => 'geocoder#get_yamp_house_photo'
 
-  resources :coupons, :only => [:index, :show] do
-    get 'page/:page', :action => :index, :on => :collection
-    put 'change_vote' => 'votes#change_vote', :as => :change_vote
-    put 'liked' => 'votes#liked', :as => :liked
-
-    resources :comments, :only => [:new, :create, :show]
-  end
-
   resources :comments, :only => [] do
     put 'change_vote' => 'votes#change_vote', :as => :change_vote
     put 'liked' => 'votes#liked', :as => :liked

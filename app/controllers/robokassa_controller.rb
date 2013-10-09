@@ -24,8 +24,6 @@ class RobokassaController < ApplicationController
     case payment.paymentable
     when Ticket
       redirect_to afisha_index_path(:has_tickets => true)
-    when Coupon
-      redirect_to coupons_path
     when Bet
       redirect_to my_root_path
     when nil
@@ -45,8 +43,6 @@ class RobokassaController < ApplicationController
     if paymentable
       if paymentable.is_a?(Ticket)
         redirect_to afisha_index_path(:has_tickets => true)
-      else
-        redirect_to coupons_path
       end
 
       return

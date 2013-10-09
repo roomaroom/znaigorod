@@ -8,7 +8,4 @@ task :refresh_copies => :environment do
     end if ticket.copies.sold.any?
     ticket.stale!
   end
-
-  Coupon.stale.flat_map(&:copies).map(&:stale!)
 end
-

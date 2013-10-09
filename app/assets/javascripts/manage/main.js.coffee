@@ -11,7 +11,6 @@ $ ->
   init_has_virtual_tour() if $('.virtual_tour_fields').length
   init_address() if $('.address_fields').length
   init_curtail() if $('.curtail').length
-  init_discount_hidden() if $('#coupon_discount').length
   init_file_upload() if $('.file_upload').length
   init_ajax_delete() if $('.ajax_delete').length
   init_crop()

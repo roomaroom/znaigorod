@@ -29,10 +29,6 @@ SimpleNavigation::Configuration.run do |navigation|
         afisha_item.item 'draft', "Черновики (#{Afisha.draft.count})", by_state_manage_afisha_index_path(:draft)
     end
 
-    primary.item :coupons, 'Купоны', manage_coupons_path,
-      :highlights_on => ->(){ resource_class == Coupon },
-      :if => -> { can?(:manage, Coupon) }
-
     primary.item :posts, 'Конкурсы', manage_contests_path,
       :highlights_on => ->(){ resource_class == Contest },
       :if => -> { can?(:manage, Contest) }

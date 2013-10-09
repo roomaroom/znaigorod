@@ -14,7 +14,6 @@ class Copy < ActiveRecord::Base
 
   scope :by_state, ->(state) { where :state => state }
 
-  scope :for_coupons, -> { where :copyable_type => 'Coupon' }
   scope :for_tickets, -> { where :copyable_type => 'Ticket' }
 
   scope :for_sale, -> { by_state 'for_sale' }
@@ -73,7 +72,6 @@ class Copy < ActiveRecord::Base
     case copyable
     when Ticket
       "#{copyable.afisha.showings.last.try(:organization).try(:title)} #{copyable.try(:afisha).try(:title)}"
-    when Coupon
     end
   end
 

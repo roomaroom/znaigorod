@@ -29,13 +29,6 @@
       many: "Осталось %{count} сертификатов"
       other: "Осталось %{count} сертификата"
 
-    coupon:
-      zero: "Купонов больше нет"
-      one: "Остался %{count} купон"
-      few: "Осталось %{count} купона"
-      many: "Осталось %{count} купонов"
-      other: "Осталось %{count} купона"
-
   photoreport_periods:
     weekly: Фотогалереи этой недели
     monthly: Фотогалереи этого месяца

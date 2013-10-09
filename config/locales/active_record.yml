@@ -123,25 +123,6 @@ ru:
         <<: *common_attributes
         author_info: Информация об авторе
 
-      coupon:
-        <<: *common_attributes
-        categories: Категории
-        complete_at: Срок действия до
-        number: Количество
-        description: Описание
-        discount: Скидка, %
-        image: Изображение
-        kind: Тип
-        organization_id: Организация
-        organization_quota: Доля организации
-        place: Организация
-        price: Стоимость
-        price_with_discount: Сумма услуг со скидкой
-        price_without_discount: Сумма услуг без скидки
-        stale_at: Продажа заканчивается
-        title: Название
-        payment_system: Платежная система
-
       afisha:
         <<: *common_attributes
         allow_auction: Позволять пользователям предлагать свою цену

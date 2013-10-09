@@ -5,7 +5,6 @@ class VotesController < ApplicationController
 
   belongs_to :afisha, :polymorphic => true, :optional => true
   belongs_to :comment, :polymorphic => true, :optional => true
-  belongs_to :coupon, :polymorphic => true, :optional => true
   belongs_to :organization, :polymorphic => true, :optional => true
   belongs_to :work, :polymorphic => true, :optional => true
   belongs_to :post, :polymorphic => true, :optional => true

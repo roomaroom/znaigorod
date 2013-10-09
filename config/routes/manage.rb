@@ -35,10 +35,6 @@ Znaigorod::Application.routes.draw do
       resources :works, :except => [:index, :show]
     end
 
-    resources :coupons
-    resources :affiliate_coupons, :only => :index
-
-
     resources :posts do
       resources :gallery_images, :except => [:index, :show] do
         delete 'destroy_file', :on => :member, :as => :destroy_file
