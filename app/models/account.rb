@@ -8,7 +8,7 @@ class Account < ActiveRecord::Base
   has_many :afisha,          through: :users
   has_many :discounts
   has_many :showings,        through: :users
-  has_many :comments,        through: :users, order: 'comments.created_at DESC'
+  has_many :comments,        through: :users, order: 'comments.created_at DESC', :as => :feedable
   has_many :roles,           through: :users
   has_many :votes,           through: :users, order: 'votes.id DESC'
   has_many :visits,          through: :users, order: 'visits.created_at DESC'
