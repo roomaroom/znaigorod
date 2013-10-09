@@ -2,6 +2,12 @@
 
 class CommentObserver < ActiveRecord::Observer
   def after_create(comment)
+    Feed.create(
+      :feedable => comment,
+      :account => comment.user.account,
+      :created_at => comment.created_at,
+      :updated_at => comment.updated_at
+    )
     # уведомление об ответе на комментарий
     if comment.parent.present? && comment.user != comment.parent.user
       NotificationMessage.delay(:queue => 'critical').create(

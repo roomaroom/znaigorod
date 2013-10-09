@@ -338,6 +338,17 @@ ActiveRecord::Schema.define(:version => 20131101034813) do
 
   add_index "entertainments", ["organization_id"], :name => "index_entertainments_on_organization_id"
 
+  create_table "feeds", :force => true do |t|
+    t.integer  "feedable_id"
+    t.string   "feedable_type"
+    t.integer  "account_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "feeds", ["account_id"], :name => "index_feeds_on_account_id"
+  add_index "feeds", ["feedable_id"], :name => "index_feeds_on_feedable_id"
+
   create_table "friends", :force => true do |t|
     t.integer  "account_id"
     t.integer  "friendable_id"

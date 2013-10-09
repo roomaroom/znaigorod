@@ -1,14 +1,16 @@
 # encoding: utf-8
 
 class Comment < ActiveRecord::Base
+  attr_accessible :ancestry, :body, :parent_id
+
   belongs_to :user
   has_one :account, through: :user
   belongs_to :commentable, :polymorphic => true
-  attr_accessible :ancestry, :body, :parent_id
 
   has_ancestry
   has_many :votes, :as => :voteable, :dependent => :destroy
   has_many :messages, :as => :messageable, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   scope :rendereable,      -> { where(:commentable_type => ['Afisha', 'Organization']) }
 
@@ -31,9 +33,11 @@ class Comment < ActiveRecord::Base
   end
 
   private
+
     def authenticated_user
       errors.add :body, 'Комментарии могут оставлять только зарегистрированные пользователи' if user.nil?
     end
+
 end
 
 # == Schema Information
