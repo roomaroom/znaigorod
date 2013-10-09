@@ -166,6 +166,7 @@ class AccountsPresenter
       params[:acts_as]            = acts_as_filter.acts_as if acts_as_filter.used?
       params[:with_avatar]        = true if with_avatar.present?
       params[:inviter_categories] = inviter_categories_filter.selected
+      params[:invited_categories] = invited_categories_filter.selected
     end
   end
 
