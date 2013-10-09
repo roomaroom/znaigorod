@@ -278,17 +278,36 @@
     background: #e8e8e8
     width: 650px
     padding: 7px 0
+
     .actions
       text-align: center
 
-    .button, .cancel
-      height: 19px
+      .button, .cancel
+        +inline-block
+        background: none
+        border: none
+        color: #000
+        font-size: 12px
+        height: 19px
+        line-height: 19px
+        margin: 0 !important
+        outline: none
+        padding: 0 8px !important
 
-    .button
-      +button_style
+        &:hover
+          +single-text-shadow(none)
+          cursor: pointer
+          text-decoration: none
 
-    .cancel
-      +grey-button-style
+      .button
+        +button_style
+        height: 21px
+        line-height: 21px
+        vertical-align: top
+
+      .cancel
+        +grey-button-style
+        vertical-align: bottom
 
 .visitors
   .invitation_status
