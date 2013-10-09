@@ -6,8 +6,7 @@
     </div>
     <div class="line">
       <span>Дата рождения</span>
-      <%= f.input :birthday, label: false, as: :date_picker, start_year: Date.today.year - 90,
-                             end_year: Date.today.year, order: [:day, :month, :year] %>
+      <%= f.input :birthday, label: false, as: :date_picker %>
     </div>
   </div>
   <div class="button_place">

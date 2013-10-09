@@ -2,6 +2,7 @@
   $('input.date_picker').datepicker
     changeMonth: true
     changeYear: true
+    yearRange: "c-80:c"
 
   $('form').on 'nested:fieldAdded', (event) ->
     $(event.field).find('input.date_picker').removeClass('hasDatepicker').datepicker
