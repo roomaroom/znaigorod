@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   def self.find_or_create_by_oauth(auth_raw_info)
     provider, uid = auth_raw_info.provider, auth_raw_info.uid.to_s
 
-    user = find_or_initialize_by_provider_and_uid(provider, uid)
+    user = find_or_initialize_by_provider_and_uid(provider.squish, uid.squish)
     user.auth_raw_info = auth_raw_info
     user.save!
 
