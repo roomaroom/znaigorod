@@ -15,6 +15,7 @@ class Account < ActiveRecord::Base
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
 
+
   has_many :invitations,     dependent: :destroy
   has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
 
