@@ -10,7 +10,7 @@ class CreateFeeds < ActiveRecord::Migration
     add_index :feeds, :feedable_id
     add_index :feeds, :account_id
 
-    %w[comment vote].each do |model|
+    %w[comment vote visit].each do |model|
       items = model.capitalize.constantize.where('user_id IS NOT NULL')
       bar = ProgressBar.new(items.count)
       items.each do |item|

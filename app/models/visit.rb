@@ -8,6 +8,7 @@ class Visit < ActiveRecord::Base
   belongs_to :user
 
   has_many :messages, :as => :messageable, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   validate :authenticated_user
 
