@@ -136,7 +136,10 @@ class AccountsPresenter
   def count(params)
     params.delete(:kind) if params[:kind] == 'all'
     params.delete(:gender) if params[:gender] == 'undefined'
+
     params.merge!(:with_avatar => true) if with_avatar.present?
+    params.merge!(:inviter_categories => inviter_categories_filter.selected) if inviter_categories_filter.used?
+    params.merge!(:invited_categories => invited_categories_filter.selected) if invited_categories_filter.used?
 
     HasSearcher.searcher(:accounts, params).total
   end
