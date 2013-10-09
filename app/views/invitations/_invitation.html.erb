@@ -1,13 +1,12 @@
 <li>
   <%= t "enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}" %>
 
-  <% invitation.categories.each do |category| %>
-    <%= link_to category %>
-  <% end unless invitation.inviteable %>
 
   <% if invitation.inviteable %>
     <%= Preposition.new(invitation.inviteable).value %>
     <%= link_to invitation.inviteable.title, invitation.inviteable %>
+  <% else %>
+    <%= link_to invitation.category %>
   <% end %>
 
   <% if invitation.description? %>

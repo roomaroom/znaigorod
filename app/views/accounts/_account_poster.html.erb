@@ -10,7 +10,9 @@
     <%= link_to account_path(account), class: :details do %>
       <span class='first_line'>
         <span class='show_tipsy to_go' title='Друзья'><%= account.friends.count %></span>
-        <span class='show_tipsy wait_invite' title='Ждет приглашений'><%= account.invitations.invited.count %></span>
+        <span class='show_tipsy wait_invite' title='<%= invitations_for_tipsy(account.invitations) %>'>
+          <%= account.invitations.without_invited.count %>
+        </span>
         <span class='show_tipsy comments' title='Комментарии'><%= account.comments.count %></span>
       </span>
       <span class='second_line'>
