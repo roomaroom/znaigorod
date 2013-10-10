@@ -1,9 +1,10 @@
-class Coupon < ActiveRecord::Base
+class LegacyCoupon < ActiveRecord::Base
+  set_table_name :coupons
 end
 
 class PurgeCoupons < ActiveRecord::Migration
   def up
-    Coupon.destroy_all
+    LegacyCoupon.destroy_all
 
     drop_table :coupons
   end

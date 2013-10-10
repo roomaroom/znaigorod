@@ -22,14 +22,8 @@ module Znaigorod
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
+    config.autoload_paths += Dir.glob(Rails.root.join('app/models/*')).select { |f| File.directory? f }
     config.autoload_paths += %W(
-                                #{config.root}/app/models/billiards
-                                #{config.root}/app/models/contests
-                                #{config.root}/app/models/crm
-                                #{config.root}/app/models/messages
-                                #{config.root}/app/models/observers
-                                #{config.root}/app/models/saunas
-                                #{config.root}/app/models/suborganizations
                                 #{config.root}/app/presenters
                                 #{config.root}/app/presenters/afisha
                                 #{config.root}/app/presenters/suborganizations
