@@ -154,6 +154,13 @@ ru:
         starts_at: Время начала
         starts_on: Дата начала
 
+      discount:
+        <<: *common_attributes
+        discount: Скидка
+        ends_at: Дата окончания
+        kind: Tип
+        starts_at: Дата начала
+
       post:
         <<: *common_attributes
         status: Опубликовать

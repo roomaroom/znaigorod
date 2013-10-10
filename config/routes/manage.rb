@@ -35,6 +35,8 @@ Znaigorod::Application.routes.draw do
       resources :works, :except => [:index, :show]
     end
 
+    resources :certificates
+    resources :coupons
     resources :discounts
 
     resources :posts do

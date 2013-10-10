@@ -55,6 +55,12 @@ ru:
         meeting_contract:  Встреча для подписания договора
         meeting_payment:   Встреча для получения денег
 
+    discount:
+      kind:
+        beauty: Красота
+        entertainment: Развлечения
+        sport: Спорт
+
     visit:
       inviter_gender:
         all: Неважно

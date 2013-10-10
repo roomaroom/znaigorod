@@ -1,0 +1,19 @@
+<ul>
+  <li><%= link_to 'Добавить скидку', new_manage_discount_path %></li>
+  <li><%= link_to 'Добавить купон', new_manage_coupon_path %></li>
+  <li><%= link_to 'Добавить сертификат', new_manage_certificate_path %></li>
+</ul>
+
+<ul class="collection">
+  <% collection.each do |item| %>
+    <li>
+      <% if item.poster_url? %>
+        <%= image_tag(resized_image_url(item.poster_url, 40, 60), size: '40x60') %>
+      <% else %>
+        <%= image_tag 'public/stub_poster.png', size: '40x60' %>
+      <% end %>
+      <%= link_to item.title, [:manage, item] %>
+      <%= content_tag :span, item.kind.map(&:text).join(', '), :class => 'category' %>
+    </li>
+  <% end %>
+</ul>

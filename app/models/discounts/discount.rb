@@ -2,7 +2,7 @@
 
 class Discount < ActiveRecord::Base
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
-                  :discount, :payment_system, :organization_id, :type
+                  :discount, :payment_system, :organization_id
 
   belongs_to :account
   belongs_to :organization

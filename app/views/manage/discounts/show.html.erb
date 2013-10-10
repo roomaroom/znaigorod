@@ -1,0 +1,41 @@
+<div class="show">
+  <h1><%= resource.title %></h1>
+  <%= link_to "редактировать", edit_manage_discount_path(resource), :class => 'edit_link' %>
+  <%= link_to "посмотреть в публичном виде", '#', :target => :_blank, :class => 'edit_link floatr' %>
+
+  <div class="logo">
+    <% if resource.poster_url? %>
+      <%= image_tag(resized_image_url(resource.poster_url, 290, 390), :size => '290x390') %>
+    <% else %>
+      <%= image_tag 'public/stub_poster.png', size: '290x390' %>
+    <% end %>
+    <%= link_to 'изменить постер', '#' %>
+  </div>
+
+  <div class="right_side">
+    <div>
+      <span class="label">Описание:</span>
+      <span class="value"><%= resource.description %></span>
+    </div>
+
+    <div>
+      <span class="label">Тип:</span>
+      <span class="value"><%= resource.kind.values.map(&:text).join(', ') %></span>
+    </div>
+
+    <div>
+      <span class="label">Дата начала:</span>
+      <span class="value"><%= l resource.starts_at, :format => :short %></span>
+    </div>
+
+    <div>
+      <span class="label">Дата окончания:</span>
+      <span class="value"><%= l resource.ends_at, :format => :short %></span>
+    </div>
+
+    <div>
+      <span class="label">Скидка:</span>
+      <span class="value"><%= resource.discount %>%</span>
+    </div>
+  </div>
+</div>
