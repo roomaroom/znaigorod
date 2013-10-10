@@ -37,5 +37,50 @@
       <span class="label">Скидка:</span>
       <span class="value"><%= resource.discount %>%</span>
     </div>
+
+    <div>
+      <span class="label">Цена без скидки:</span>
+      <% if resource.origin_price? %>
+        <span class="value"><%= resource.origin_price %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
+      <span class="label">Цена со скидкой:</span>
+      <% if resource.discounted_price? %>
+        <span class="value"><%= resource.discounted_price %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
+      <span class="label">Цена сертификата (купона):</span>
+      <% if resource.price? %>
+        <span class="value"><%= resource.price %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
+      <span class="label">Количество сертификатов (купонов):</span>
+      <% if resource.number? %>
+        <span class="value"><%= resource.number %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
+      <span class="label">Платежная система:</span>
+      <% if resource.payment_system? %>
+        <span class="value"><%= resource.payment_system_text %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
   </div>
 </div>

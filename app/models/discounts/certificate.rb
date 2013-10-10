@@ -1,10 +1,9 @@
 # encoding: utf-8
 
 class Certificate < Discount
-  attr_accessible :origin_price, :discounted_price, :price, :payment_system
+  attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number
 
-  validates_presence_of :origin_price, :discounted_price, :price, :payment_system,
-    :number
+  validates_presence_of :origin_price, :discounted_price, :price, :payment_system, :number
 
   enumerize :payment_system, :in => [:robokassa, :rbkmoney]
 end

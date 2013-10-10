@@ -159,6 +159,7 @@ ru:
         origin_price: Цена без скидки
         discounted_price: Цена со скидкой
         price: Цена сертификата
+        payment_system: Платежная система
 
       discount:
         <<: *common_attributes

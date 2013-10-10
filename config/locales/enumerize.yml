@@ -61,6 +61,11 @@ ru:
         entertainment: Развлечения
         sport: Спорт
 
+    certificate:
+      payment_system:
+        robokassa: Робокасса
+        rbkmoney: РБКмани
+
     visit:
       inviter_gender:
         all: Неважно
