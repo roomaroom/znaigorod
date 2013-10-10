@@ -12,10 +12,13 @@ class Invitation < ActiveRecord::Base
 
   has_many :invite_messages, :as => :messageable, :dependent => :destroy
 
+  has_one :feed, :as => :feedable, :dependent => :destroy
+
   validates_presence_of :kind
 
   after_create :create_invite_message, :if => :invited_id?
   after_create :create_visit, :if => :inviteable_type?
+  after_create :create_feed, :unless => :invited_id?
 
   delegate :index, :to => :account, :prefix => true
   after_save :account_index
@@ -58,6 +61,16 @@ class Invitation < ActiveRecord::Base
   def create_visit
     inviteable.visits.find_or_create_by_user_id account.users.first.id
   end
+
+  def create_feed
+    Feed.create(
+      :feedable => self,
+      :account => self.account,
+      :created_at => self.created_at,
+      :updated_at => self.updated_at
+    )
+  end
+
 end
 
 # == Schema Information

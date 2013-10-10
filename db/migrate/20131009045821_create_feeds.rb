@@ -23,6 +23,21 @@ class CreateFeeds < ActiveRecord::Migration
         bar.increment!
       end
     end
+
+    %w[invitation].each do |model|
+      items = model.capitalize.constantize.where('account_id IS NOT NULL')
+      bar = ProgressBar.new(items.count)
+      items.each do |item|
+        Feed.create(
+          :feedable => item,
+          :account => item.account,
+          :created_at => item.created_at,
+          :updated_at => item.updated_at
+        )
+        bar.increment!
+      end
+    end
+
   end
 
   def down

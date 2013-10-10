@@ -8,16 +8,16 @@ class Account < ActiveRecord::Base
   has_many :afisha,          through: :users
   has_many :discounts
   has_many :showings,        through: :users
-  has_many :comments,        through: :users, order: 'comments.created_at DESC', :as => :feedable
+  has_many :comments,        through: :users, order: 'comments.created_at DESC'
   has_many :roles,           through: :users
-  has_many :votes,           through: :users, order: 'votes.id DESC', :as => :feedable
-  has_many :visits,          through: :users, order: 'visits.created_at DESC', :as => :feedable
+  has_many :votes,           through: :users, order: 'votes.id DESC'
+  has_many :visits,          through: :users, order: 'visits.created_at DESC'
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
 
 
   has_many :invitations,     dependent: :destroy
-  has_many :invite_messages,              order: 'messages.created_at DESC', :through => :invitations
+  has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
 
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => :invited_id
   has_many :received_invite_messages, :source => :invite_messages, order: 'messages.created_at DESC', :through => :received_invitations
