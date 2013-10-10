@@ -2,10 +2,10 @@
 
 class Discount < ActiveRecord::Base
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
-                  :discount, :organization_id, :poster_image, :poster_url,
+                  :discount, :organization_title, :organization_id, :poster_image, :poster_url,
                   :set_region, :crop_x, :crop_y, :crop_width, :crop_height
 
-  attr_accessor :set_region, :crop_x, :crop_y, :crop_width, :crop_height
+  attr_accessor :set_region, :crop_x, :crop_y, :crop_width, :crop_height, :organization_title
 
   belongs_to :account
   belongs_to :organization
