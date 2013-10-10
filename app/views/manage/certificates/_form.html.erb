@@ -1,8 +1,11 @@
-<%= simple_form_for [:manage, @discount] do |f| %>
+<%= simple_form_for [:manage, @certificate] do |f| %>
   <%= f.input :title %>
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :description %>
+  <%= f.input :origin_price %>
+  <%= f.input :discounted_price %>
   <%= f.input :discount %>
+  <%= f.input :price %>
   <%= f.input :starts_at, :as => :date_picker %>
   <%= f.input :ends_at, :as => :date_picker %>
 

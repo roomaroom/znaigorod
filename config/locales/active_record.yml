@@ -154,6 +154,12 @@ ru:
         starts_at: Время начала
         starts_on: Дата начала
 
+      certificate:
+        <<: *common_attributes
+        origin_price: Цена без скидки
+        discounted_price: Цена со скидкой
+        price: Цена сертификата
+
       discount:
         <<: *common_attributes
         discount: Скидка
