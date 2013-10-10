@@ -56,4 +56,3 @@ end
 #  constant                  :boolean
 #  sale                      :boolean          default(FALSE)
 #
-
