@@ -161,7 +161,7 @@ ru:
         ends_at: Дата окончания
         kind: Tип
         number: Количество
-        organization_id: Связанная организация
+        organization_title: Связанная организация
         origin_price: Цена без скидки
         origin_url: Ссылка на источник
         payment_system: Платежная система

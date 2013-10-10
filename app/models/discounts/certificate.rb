@@ -3,12 +3,20 @@
 class Certificate < Discount
   include Copies
 
-  attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number, :origin_url
+  attr_accessible :origin_price, :price, :payment_system, :number, :origin_url
 
   validates :origin_url, :format => URI::regexp(%w(http https)), :if => :origin_url?
   validates_presence_of :origin_price, :price, :payment_system, :number
 
+  before_validation :set_discount
+
   enumerize :payment_system, :in => [:robokassa, :rbkmoney]
+
+  private
+
+  def set_discount
+    self.discount = ((1 - price.to_f / origin_price.to_f) * 100).round
+  end
 end
 
 # == Schema Information
