@@ -6,7 +6,7 @@ class Certificate < Discount
   attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number, :origin_url
 
   validates :origin_url, :format => URI::regexp(%w(http https)), :if => :origin_url?
-  validates_presence_of :origin_price, :discounted_price, :price, :payment_system, :number
+  validates_presence_of :origin_price, :price, :payment_system, :number
 
   enumerize :payment_system, :in => [:robokassa, :rbkmoney]
 end
