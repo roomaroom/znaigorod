@@ -13,6 +13,7 @@
         <%= image_tag 'public/stub_poster.png', size: '40x60' %>
       <% end %>
       <%= link_to item.title, manage_discount_path(item) %>
+      <%= content_tag :span, item.type? ? t("manage.discount.type.#{item.type.underscore}") : 'Скидка' %>
       <%= content_tag :span, item.kind.map(&:text).join(', '), :class => 'category' %>
     </li>
   <% end %>

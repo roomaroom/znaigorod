@@ -76,6 +76,11 @@ ru:
         post: Редактор публикаций
         organization: Редактор организаций
 
+    discount:
+      type:
+        certificate: Сертификат
+        coupon: Купон
+
   state_machine:
     events:
       approve:            Опубликовать

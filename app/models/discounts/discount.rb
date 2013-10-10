@@ -10,11 +10,12 @@ class Discount < ActiveRecord::Base
   belongs_to :account
   belongs_to :organization
 
-  validates_presence_of :title, :description, :kind, :starts_at, :ends_at
+  validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
 
   extend Enumerize
   serialize :kind, Array
   enumerize :kind, :in => [:beauty, :entertainment, :sport], :multiple => true, :predicates => true
+  normalize_attribute :kind, with: :blank_array
 
   extend FriendlyId
   friendly_id :title, use: :slugged
