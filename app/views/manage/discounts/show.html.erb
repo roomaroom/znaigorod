@@ -19,6 +19,15 @@
     </div>
 
     <div>
+      <span class="label">Организация:</span>
+      <% if resource.organization_id? %>
+        <span class="value"><%= link_to resource.organization, manage_organization_path(resource.organization), :target => :blank %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
       <span class="label">Тип:</span>
       <span class="value"><%= resource.kind.values.map(&:text).join(', ') %></span>
     </div>
@@ -78,6 +87,15 @@
       <span class="label">Платежная система:</span>
       <% if resource.payment_system? %>
         <span class="value"><%= resource.payment_system_text %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
+      <span class="label">Ссылка на источник:</span>
+      <% if resource.origin_url? %>
+        <span class="value"><%= link_to resource.origin_url, resource.origin_url, :target => :blank %></span>
       <% else %>
         <span class="blank">Не указано</span>
       <% end %>
