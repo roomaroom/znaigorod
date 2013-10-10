@@ -7,6 +7,7 @@ class Friend < ActiveRecord::Base
   belongs_to :friendable, :polymorphic => true
 
   has_many :messages, :as => :messageable, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   scope :approved, -> { where(friendly: true) }
 

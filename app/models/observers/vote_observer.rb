@@ -22,8 +22,6 @@ class VoteObserver < ActiveRecord::Observer
       Feed.create(
         :feedable => vote,
         :account => vote.user.account,
-        :created_at => vote.created_at,
-        :updated_at => vote.updated_at
       )
     else
       vote.feed.destroy if vote.feed

@@ -4,4 +4,5 @@
   <%= render partial: 'feeds/feed_invitation', locals: { invitaion: feed.feedable } if feed.feedable.is_a?(Invitation) %>
   <%= render partial: 'feeds/feed_comment', locals: { comment: feed.feedable } if feed.feedable.is_a?(Comment) %>
   <%= render partial: 'feeds/feed_visit', locals: { visit: feed.feedable } if feed.feedable.is_a?(Visit) %>
+  <%= render partial: 'feeds/feed_friend', locals: { friend: feed.feedable } if feed.feedable.is_a?(Friend) %>
 </li>
