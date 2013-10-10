@@ -10,7 +10,8 @@ class CreateFeeds < ActiveRecord::Migration
     add_index :feeds, :feedable_id
     add_index :feeds, :account_id
 
-    %w[comment vote visit].each do |model|
+    %w[comment vote visit afisha].each do |model|
+      puts model.capitalize
       items = model.capitalize.constantize.where('user_id IS NOT NULL')
       bar = ProgressBar.new(items.count)
       items.each do |item|
@@ -24,18 +25,17 @@ class CreateFeeds < ActiveRecord::Migration
       end
     end
 
-    %w[invitation].each do |model|
-      items = model.capitalize.constantize.where('account_id IS NOT NULL')
-      bar = ProgressBar.new(items.count)
-      items.each do |item|
-        Feed.create(
-          :feedable => item,
-          :account => item.account,
-          :created_at => item.created_at,
-          :updated_at => item.updated_at
-        )
-        bar.increment!
-      end
+    puts 'Invitation'
+    items = Invitation.where('account_id IS NOT NULL')
+    bar = ProgressBar.new(items.count)
+    items.each do |item|
+      Feed.create(
+        :feedable => item,
+        :account => item.account,
+        :created_at => item.created_at,
+        :updated_at => item.updated_at
+      )
+      bar.increment!
     end
 
   end

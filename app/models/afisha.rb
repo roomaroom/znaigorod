@@ -41,6 +41,7 @@ class Afisha < ActiveRecord::Base
   has_many :organizations, :through => :showings, :uniq => true
 
   has_one :affiche_schedule, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   serialize :kind, Array
   enumerize :kind, in: [:child, :movie, :concert, :party, :spectacle, :exhibition, :sportsevent, :masterclass, :competition, :other], multiple: true, predicates: true
