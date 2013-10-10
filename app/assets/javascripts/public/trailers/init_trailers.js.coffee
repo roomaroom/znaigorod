@@ -24,7 +24,10 @@
       'height': wrapper.height()
       'cursor': 'pointer'
     overlay.click ->
-      trailer_dialog = $('<div class="trailer_dialog" />').appendTo('body').html(iframe.clone()).hide()
+      iframe_clone = iframe.clone()
+      iframe_clone_src = iframe_clone.attr('src')
+      iframe_clone.attr('src', "#{iframe_clone_src}?autoplay=1")
+      trailer_dialog = $('<div class="trailer_dialog" />').appendTo('body').html(iframe_clone).hide()
       trailer_dialog.css
         'text-align': 'center'
       $('iframe', trailer_dialog).css
