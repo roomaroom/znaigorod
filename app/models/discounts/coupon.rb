@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Coupon < Discount
+  include Copies
+
   attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number, :origin_url
 
   validates :origin_url, :format => URI::regexp(%w(http https)), :if => :origin_url?
