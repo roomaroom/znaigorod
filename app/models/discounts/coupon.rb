@@ -1,8 +1,9 @@
 # encoding: utf-8
 
 class Coupon < Discount
-  attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number
+  attr_accessible :origin_price, :discounted_price, :price, :payment_system, :number, :origin_url
 
+  validates :origin_url, :format => URI::regexp(%w(http https)), :if => :origin_url?
   validates_presence_of :origin_price, :discounted_price, :price, :payment_system, :number
 
   enumerize :payment_system, :in => [:robokassa, :rbkmoney]

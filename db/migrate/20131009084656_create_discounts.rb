@@ -22,6 +22,7 @@ class CreateDiscounts < ActiveRecord::Migration
       t.integer :discount
       t.string :payment_system
       t.string :state
+      t.text :origin_url
       t.references :organization
       t.references :account
 

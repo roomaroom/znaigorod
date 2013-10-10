@@ -154,18 +154,17 @@ ru:
         starts_at: Время начала
         starts_on: Дата начала
 
-      certificate:
-        <<: *common_attributes
-        origin_price: Цена без скидки
-        discounted_price: Цена со скидкой
-        price: Цена сертификата
-        payment_system: Платежная система
-
       discount:
         <<: *common_attributes
         discount: Скидка
+        discounted_price: Цена со скидкой
         ends_at: Дата окончания
         kind: Tип
+        number: Количество
+        origin_price: Цена без скидки
+        origin_url: Ссылка на источник
+        payment_system: Платежная система
+        price: Цена сертификата
         starts_at: Дата начала
 
       post:

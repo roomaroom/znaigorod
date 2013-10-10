@@ -312,6 +312,7 @@ ActiveRecord::Schema.define(:version => 20131015051531) do
     t.integer  "discount"
     t.string   "payment_system"
     t.string   "state"
+    t.text     "origin_url"
     t.integer  "organization_id"
     t.integer  "account_id"
     t.datetime "created_at",                :null => false
