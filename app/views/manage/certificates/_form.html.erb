@@ -1,4 +1,5 @@
 <%= simple_form_for [:manage, @certificate] do |f| %>
+  <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
   <%= f.input :title %>
   <%= f.input :organization_id, :collection => Organization.grouped_collection_for_select, :include_blank => true %>
   <%= f.input :kind, :as => :check_boxes %>
