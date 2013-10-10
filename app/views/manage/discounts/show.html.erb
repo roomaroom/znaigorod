@@ -9,7 +9,7 @@
     <% else %>
       <%= image_tag 'public/stub_poster.png', size: '290x390' %>
     <% end %>
-    <%= link_to 'изменить постер', '#' %>
+    <%= link_to 'изменить постер', poster_manage_discount_path(resource) %>
   </div>
 
   <div class="right_side">

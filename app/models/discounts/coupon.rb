@@ -35,6 +35,7 @@ end
 #  discount                  :integer
 #  payment_system            :string(255)
 #  state                     :string(255)
+#  origin_url                :text
 #  organization_id           :integer
 #  account_id                :integer
 #  created_at                :datetime         not null
