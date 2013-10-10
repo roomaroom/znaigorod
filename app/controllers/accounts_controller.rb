@@ -25,6 +25,13 @@ class AccountsController < ApplicationController
       @votes = @account.votes.rendereable.page(1).per(3)
       @visits = @account.visits.rendereable.page(1).per(3)
       @account.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+      @feeds = Kaminari.paginate_array(@account.feeds).page(1).per(10)
     }
   end
+
+  def feeds_next_page
+    @account = Account.find(params[:account_id])
+    render partial: 'accounts/feeds', locals: { collection:  Kaminari.paginate_array(@account.feeds).page(params[:page]).per(10) }
+  end
+
 end

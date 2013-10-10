@@ -1,0 +1,14 @@
+<div class="feeds list">
+  <ul>
+    <% collection.each do |feed| %>
+      <%= render partial: 'feeds/feed', locals: { feed: feed } %>
+    <% end %>
+  </ul>
+
+  <% unless collection.first_page? && collection.last_page? %>
+    <div class="pagination">
+      <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if collection.first_page? }", :remote => true %>
+      <%= link_to '&darr;'.html_safe, account_feeds_next_page_path(@account, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }", :remote => true %>
+    </div>
+  <% end %>
+</div>

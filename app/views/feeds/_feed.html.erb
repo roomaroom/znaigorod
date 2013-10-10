@@ -1,0 +1,7 @@
+<li>
+  <%= render partial: 'feeds/feed_afisha', locals: { afisha: feed.feedable } if feed.feedable.is_a?(Afisha) %>
+  <%= render partial: 'feeds/feed_vote', locals: { vote: feed.feedable } if feed.feedable.is_a?(Vote) %>
+  <%= render partial: 'feeds/feed_invitation', locals: { invitaion: feed.feedable } if feed.feedable.is_a?(Invitation) %>
+  <%= render partial: 'feeds/feed_comment', locals: { comment: feed.feedable } if feed.feedable.is_a?(Comment) %>
+  <%= render partial: 'feeds/feed_visit', locals: { visit: feed.feedable } if feed.feedable.is_a?(Visit) %>
+</li>
