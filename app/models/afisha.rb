@@ -80,8 +80,6 @@ class Afisha < ActiveRecord::Base
     false
   end
 
-  # >>>>>>>>>>>> Wizard  >>>>>>>>>>>>
-
   attr_accessor :step, :social_gallery_url
   attr_accessible :step, :social_gallery_url
 
