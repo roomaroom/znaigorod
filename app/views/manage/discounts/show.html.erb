@@ -100,5 +100,18 @@
         <span class="blank">Не указано</span>
       <% end %>
     </div>
+
+    <div>
+      <span class="label">Коды:</span>
+      <table class='tickets'>
+        <% resource.copies.each do |copy| %>
+          <tr>
+            <td class='code'><%= copy.code %></td>
+            <td class='phone'><%= copy.copy_payment ? copy.copy_payment.phone : '' %></td>
+            <td class='state'><%= copy.state_text %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

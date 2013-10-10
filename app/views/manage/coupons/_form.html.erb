@@ -5,7 +5,7 @@
   <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :description %>
-  <%= f.input :number %>
+  <%= f.input :number if @coupon.new_record? %>
   <%= f.input :origin_price %>
   <%= f.input :discounted_price %>
   <%= f.input :price %>
