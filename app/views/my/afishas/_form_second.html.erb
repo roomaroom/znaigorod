@@ -20,6 +20,7 @@
       <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
       <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
       <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
+      <%= hidden_field_tag :aspect_ratio, 290.0 / 390.0 %>
       <%= image_tag resized_image_url(@afisha.poster_image_url,
                                       @afisha.poster_image_resized_dimensions[:width],
                                       @afisha.poster_image_resized_dimensions[:height]), :class => 'jcrop' %>

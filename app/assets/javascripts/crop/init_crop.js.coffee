@@ -3,10 +3,11 @@
   crop_y = parseInt($('[id*="crop_y"]').val()) || 0
   crop_width = parseInt($('[id*="crop_width"]').val()) || 0
   crop_height = parseInt($('[id*="crop_height"]').val()) || 0
+  aspect_ratio = parseFloat($('[id*="aspect_ratio"]').val()) || 1
 
   $('.jcrop').Jcrop
     setSelect: [ crop_x, crop_y, crop_x + crop_width, crop_y + crop_height ]
-    aspectRatio: 290 / 390
+    aspectRatio: aspect_ratio
     onChange: (coords) ->
       update_crop(coords)
       crop_x = $('[id*="crop_x"]').val(coords.x)
