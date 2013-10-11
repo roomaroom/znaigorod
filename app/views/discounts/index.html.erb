@@ -1,4 +1,4 @@
-<div class="presentation_filters accounts">
+<div class="presentation_filters discounts">
   <div class='order_by'>
     <p>Сортировать по:</p>
     <ul>
@@ -13,6 +13,8 @@
 
 <div class="discounts_list">
   <ul class="posters">
+    <%= render :partial => 'discounts/discount_posters', :locals => { collection: @presenter.collection } %>
+    <%= render :partial => 'discounts/discount_posters', :locals => { collection: @presenter.collection } %>
     <%= render :partial => 'discounts/discount_posters', :locals => { collection: @presenter.collection } %>
   </ul>
 </div>

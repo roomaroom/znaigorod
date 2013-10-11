@@ -1,0 +1,99 @@
+.discounts_list
+  float: left
+  margin: 20px 0 0 0
+  width: 100%
+
+  .posters
+    +clearfix
+    padding: 0 10px
+
+    li
+      float: left
+      margin: 0 20px 20px 0
+      width: 220px
+      &:nth-child(5n)
+        margin-right: 0
+
+      .item
+        border: 1px solid #ccc
+        height: 172px
+        margin: 0 auto
+        width: 220px
+
+        .title
+          margin: 3px 0
+          text-align: center
+
+        .image
+          +clearfix
+          height: 120px
+          position: relative
+          width: 220px
+
+        .info
+          .certificate
+            span
+              color: #f60
+              font-weight: bold
+              font-size: 18px
+              line-height: 30px
+              margin: 0 0 0 7px
+              vertical-align: middle
+
+            .origin_price
+              background: #ececec
+              color: #000
+              float: right
+              height: 30px
+              line-height: 30px
+              padding: 0
+              width: 70px
+              margin: 0
+              font-size: 16px
+
+              &:before
+                background: #fff
+                float: left
+                border: 15px solid transparent
+                border-left: 0
+                border-right-color: #ececec
+                content: ''
+                height: 0
+                width: 0
+
+            .discounted_price
+              background: #009bdb
+              color: #fff
+              float: right
+              height: 30px
+              line-height: 30px
+              padding: 0 10px 0 0
+              width: 70px
+              margin: 0
+              font-size: 16px
+
+              &:before
+                background: #ececec
+                float: left
+                border: 15px solid transparent
+                border-left: 0
+                border-right-color: #009bdb
+                content: ''
+                height: 0
+                width: 0
+
+          .coupon
+
+          .discount
+            strong
+              font-size: 13px
+              margin: 0 5px 0 10px
+
+            span
+              color: #f60
+              font-weight: bold
+              font-size: 18px
+              line-height: 30px
+              vertical-align: middle
+
+
