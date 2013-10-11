@@ -43,6 +43,10 @@ class String
     self.gsub("&ndash;", "-").gsub("&mdash;", "-").gsub("&nbsp;", " ").gsub("&#160;", " ")
   end
 
+  def from_russian_to_param
+    Russian.translit(self).underscore.gsub(/\s+|\//, "_")
+  end
+
   alias_method_chain :gilensize, :html_safe
 
 end

@@ -4,20 +4,6 @@
 
   .filters.account
 
-    .by_acts_as
-      margin-right: 10px
-
-      ul
-        +clearfix
-
-        li
-          float: right
-          margin-left: 5px
-          +toggable-links
-
-          &:last-child
-            margin-left: 0
-
     .by_gender
       float: left
       margin-left: 10px
@@ -31,27 +17,58 @@
           &:last-child
             margin-right: 0
 
+    .by_with_avatar
+      width: 200px
+      text-align: center
+      margin: 0 auto
+
+      ul
+        +inline-block
+        li
+          +toggable-links
+
     .by_acts_as
       float: right
-
-    .by_kind
-      width: 35%
-      margin: 20px auto
+      margin-right: 10px
 
       ul
         +clearfix
 
         li
-          width: percentage(1/3)
           float: left
+          margin-right: 5px
+          +toggable-links
+
+          &:last-child
+            margin-right: 0
+
+    .by_category
+      margin: 20px auto
+
+      ul
+        width: 100%
+        display: table
+        text-align: center
+
+        li:first-child:nth-last-child(1)
+          width: 100%
+
+        @for $i from 2 through 10
+          li:first-child:nth-last-child(#{$i}),
+          li:first-child:nth-last-child(#{$i}) ~ li
+            width: percentage(1/$i)
+
+        li
+          display: table-cell
           text-align: center
+          vertical-align: top
+          margin: 0 5px 10px
 
           a
             +inline-block
             white-space: nowrap
             padding-top: 25px
             margin: 0 0 1px 0
-            background: transparent image_url('public/account_kind_sprite.png') no-repeat center center
 
             .name
               color: #000
@@ -74,8 +91,61 @@
           &.selected a .name
             color: #f60
 
+          &.title
+            text-align: left
+
+            .text
+              +inline-block
+              color: #fff
+              position: relative
+              background-color: #009bdb
+              padding: 3px 5px 3px 10px
+              white-space: nowrap
+
+              &:after
+                left: 100%
+                border: solid transparent
+                content: " "
+                height: 0
+                width: 0
+                position: absolute
+                pointer-events: none
+                border-color: rgba(0, 155, 219, 0)
+                border-left-color: #009bdb
+                border-width: 11px
+                top: 50%
+                margin-top: -11px
+
+            .with_avatar
+              margin-top: 5px
+
+              input,
+              label
+                +inline-block
+
+          &.more_link
+            a
+              color: #000
+              border: 1px solid #ccc
+              +border-radius
+              background: none
+              background-color: #e8e8e8
+              padding: 2px 10px 3px
+
+              &:hover
+                color: #f60
+
+            &.selected a
+              color: white
+              background: none
+              background-color: #f60
+              border: none
+              +box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 2px inset)
+              padding: 2px 8px 3px
+
           &.all
             a
+              background: transparent image_url('public/account_kind_sprite.png') no-repeat center center
               background-position: 0 0
 
               &:hover
@@ -87,31 +157,215 @@
               &:hover
                 background-position: 0 -67px
 
-          &.admin
+          &.v_kino
             a
-              background-position: -79px 0
+              background: transparent image_url('public/afisha_kind.png') no-repeat center center
+              background-position: -112px 0
 
               &:hover
-                background-position: -79px -67px
+                background-position: -112px -76px
 
             &.selected a
-              background-position: -79px -136px
+              background-position: -112px -151px
 
               &:hover
-                background-position: -79px -67px
+                background-position: -112px -76px
 
-          &.afisha_editor
+          &.v_kafe_bar_restoran
             a
-              background-position: -196px -1px
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -86px -29px
 
               &:hover
-                background-position: -196px -68px
+                background-position: -86px -109px
 
             &.selected a
-              background-position: -196px -136px
+              background-position: -86px -179px
 
               &:hover
-                background-position: -196px -68px
+                background-position: -86px -109px
+
+          &.v_saunu
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -147px -278px
+
+              &:hover
+                background-position: -147px -358px
+
+            &.selected a
+              background-position: -147px -428px
+
+              &:hover
+                background-position: -147px -358px
+
+          &.v_nochnoy_klub
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -423px -278px
+
+              &:hover
+                background-position: -423px -358px
+
+            &.selected a
+              background-position: -423px -428px
+
+              &:hover
+                background-position: -423px -358px
+
+          &.v_teatr
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -147px -1025px
+
+              &:hover
+                background-position: -147px -1105px
+
+            &.selected a
+              background-position: -147px -1175px
+
+              &:hover
+                background-position: -147px -1105px
+
+          &.v_muzey
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -517px -1025px
+
+              &:hover
+                background-position: -517px -1105px
+
+            &.selected a
+              background-position: -517px -1175px
+
+              &:hover
+                background-position: -517px -1105px
+
+          &.na_kontsert
+            a
+              background: transparent image_url('public/afisha_kind.png') no-repeat center center
+              background-position: -218px 0
+
+              &:hover
+                background-position: -218px -77px
+
+            &.selected a
+              background-position: -218px -152px
+
+              &:hover
+                background-position: -218px -77px
+
+          &.poigrat_v_bilyard
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -217px -280px
+
+              &:hover
+                background-position: -217px -360px
+
+            &.selected a
+              background-position: -217px -430px
+
+              &:hover
+                background-position: -217px -360px
+
+          &.igrat_v_bouling
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -606px -277px
+
+              &:hover
+                background-position: -606px -357px
+
+            &.selected a
+              background-position: -606px -427px
+
+              &:hover
+                background-position: -606px -357px
+
+          &.popet_karaoke
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -331px -278px
+
+              &:hover
+                background-position: -331px -358px
+
+            &.selected a
+              background-position: -331px -428px
+
+              &:hover
+                background-position: -331px -358px
+
+          &.zanyatsya_sportom
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -1085px -1536px
+
+              &:hover
+                background-position: -1085px -1626px
+
+            &.selected a
+              background-position: -1085px -1696px
+
+              &:hover
+                background-position: -1085px -1626px
+
+          &.pokatatsya_na_mashine
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -1013px -531px
+
+              &:hover
+                background-position: -1013px -621px
+
+            &.selected a
+              background-position: -1013px -681px
+
+              &:hover
+                background-position: -1013px -621px
+
+          &.uchitsya
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -328px -1025px
+
+              &:hover
+                background-position: -328px -1105px
+
+            &.selected a
+              background-position: -328px -1175px
+
+              &:hover
+                background-position: -328px -1105px
+
+          &.progulyatsya
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -1199px -526px
+
+              &:hover
+                background-position: -1199px -616px
+
+            &.selected a
+              background-position: -1199px -683px
+
+              &:hover
+                background-position: -1199px -616px
+
+          &.za_pokupkami
+            a
+              background: transparent image_url('public/organizations_kind.png') no-repeat center center
+              background-position: -1340px -526px
+
+              &:hover
+                background-position: -1340px -620px
+
+            &.selected a
+              background-position: -1340px -687px
+
+              &:hover
+                background-position: -1340px -620px
 
     .advanced
 

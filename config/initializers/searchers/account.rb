@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 HasSearcher.create_searcher :accounts do
   models :account
 
@@ -11,6 +13,13 @@ HasSearcher.create_searcher :accounts do
 
   property :acts_as do |search|
     search.with(:acts_as, search_object.acts_as) if search_object.acts_as.try(:present?)
+  end
+
+  property :category do |search|
+    search.any_of do |search|
+      search.with(:inviter_categories, search_object.category)
+      search.with(:invited_categories, search_object.category)
+    end if search_object.category.present?
   end
 
   property :inviter_categories do |search|

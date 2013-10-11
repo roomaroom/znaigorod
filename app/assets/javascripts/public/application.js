@@ -51,7 +51,7 @@
  * = require ./afisha_extend
  * = require ./afisha_filter
  * = require ./afisha_map
- * = require ./account_extend
+ * = require ./account
  * = require ./social_actions
  * = require ./bets
  * = require ./dialogs

@@ -52,8 +52,8 @@ class OrganizationsCatalogPresenter
         searcher_parameter = excluded_categories.include?(category) ? {} : { "#{kind}_category".to_sym => [category] }
         array << {
           title: category.mb_chars.capitalize,
-          klass: FromRussianToParam.convert(category),
-          url: excluded_categories.include?(category) ? "#{kind.pluralize}_path" :  "#{kind.pluralize}_#{FromRussianToParam.convert(category).pluralize}_path",
+          klass: category.from_russian_to_param,
+          url: excluded_categories.include?(category) ? "#{kind.pluralize}_path" :  "#{kind.pluralize}_#{category.from_russian_to_param.pluralize}_path",
           parameters: {},
           selected: categories_filter[:selected].include?(category),
           count: HasSearcher.searcher(kind.pluralize.to_sym, searcher_parameter).total

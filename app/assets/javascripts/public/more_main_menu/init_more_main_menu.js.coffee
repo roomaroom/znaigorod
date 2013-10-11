@@ -1,5 +1,5 @@
 @init_more_categories_menu = () ->
-  link = $('.filters .by_categories .more_link a')
+  link = $('.filters .more_link a')
   block = $('.filters_wrapper .more')
 
   block.css

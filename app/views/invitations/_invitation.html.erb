@@ -1,7 +1,6 @@
 <li>
   <%= t "enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}" %>
 
-
   <% if invitation.inviteable %>
     <%= Preposition.new(invitation.inviteable).value %>
     <%= link_to invitation.inviteable.title, invitation.inviteable %>

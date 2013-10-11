@@ -1,3 +1,13 @@
+@init_account_filter_with_avatar = () ->
+  $('.filters_wrapper .account #with_avatar').change ->
+    block = $(this).closest('div')
+    $(this).attr('disabled', 'disabled')
+    $('label', block).attr('disabled', 'disabled').css('color', '#999')
+    window.location.replace($('#with_avatar_link', block).val())
+    true
+
+  true
+
 @init_account_extend = () ->
   target = $('#account_avatar')
   target.on 'change', ->

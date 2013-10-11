@@ -1,39 +1,60 @@
-<% content_for :advanced_filters do %>
-  <%= render :partial => 'advanced_filters' %>
-<% end %>
+<div class='filters_wrapper'>
 
-<div class="filters_wrapper">
-  <div class="filters account">
-    <div class="by_gender">
+  <div class='filters account'>
+
+    <div class='by_gender'>
       <ul>
-        <% @presenter.gender_filter.available_values.each do |value, text| %>
-          <li class='<%= value %><%=  %><%= " selected".html_safe if @presenter.gender_filter.send("#{value}_selected?") %>'>
-            <%= link_to text, accounts_path(@presenter.link_params.merge(:gender => value, :acts_as => @presenter.acts_as_filter.acts_as)) %>
+        <% @presenter.gender_links.each do |link| %>
+          <li class='<%= link[:klass] %><%=  %><%= " selected".html_safe if link[:selected] %>'>
+            <%= link_to link[:title], accounts_path(link[:parameters]) %>
           </li>
         <% end %>
       </ul>
     </div>
 
-    <div class="by_acts_as">
+    <div class='by_acts_as'>
       <ul>
-        <% @presenter.acts_as_filter.available_values.each do |value, text| %>
-          <li class='<%= value %><%= " selected".html_safe if @presenter.acts_as_filter.send("#{value}_selected?") %>'>
-            <%= link_to text, accounts_path(@presenter.link_params(value)) %>
+        <% @presenter.acts_as_links.each do |link| %>
+          <li class='<%= link[:klass] %><%=  %><%= " selected".html_safe if link[:selected] %>'>
+            <%= link_to link[:title], accounts_path(link[:parameters]) %>
           </li>
         <% end %>
       </ul>
     </div>
+
   </div>
 
-  <div class="filters account">
-    <div class="by_kind">
+  <div class='filters account'>
+    <div class='by_category'>
       <ul>
-        <% @presenter.kind_filter.available_values.each do |value, text| %>
-          <li class='<%= value %><%= " selected".html_safe if @presenter.kind_filter.send("#{value}_selected?") %>'>
-            <%= link_to accounts_path(@presenter.link_params.merge(:kind => value, :acts_as => @presenter.acts_as_filter.acts_as)) do %>
-              <span class='name'><%= text %></span>
-              <span class='count'><%= @presenter.count(:kind => value, :gender => @presenter.gender_filter.gender, :acts_as => @presenter.acts_as_filter.acts_as) %></span>
+        <li class='all<%= ' selected' unless @presenter.category_filter.used? %>'>
+          <%= link_to accounts_path(@presenter.searcher_parameters(category: nil)) do %>
+            <span class='name'>Все</span>
+            <span class='count'><%= @presenter.count(category: nil) %></span>
+          <% end %>
+        </li>
+        <li class='title'>
+          <div class='text'>Ищут компанию:</div>
+          <div class='with_avatar'>
+            <%= hidden_field_tag 'with_avatar_link', accounts_path(@presenter.searcher_parameters(:with_avatar => @presenter.with_avatar ? nil : true)) %>
+            <%= check_box_tag 'with_avatar', 'with_avatar', params[:with_avatar] %>
+            <%= label_tag 'with_avatar', 'Только с фото' %>
+          </div>
+        </li>
+        <% more_is_selected = true %>
+        <% @presenter.categories_links.take(6).each do |link| %>
+          <% more_is_selected = false if link[:selected] %>
+          <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
+            <%= link_to accounts_path(link[:parameters]) do %>
+              <span class='name'><%= link[:title] %></span>
+              <span class='count'><%= link[:count] %></span>
             <% end %>
+          </li>
+        <% end %>
+
+        <% if @presenter.categories_links.count > 6 %>
+          <li class='more_link<%= ' selected' if more_is_selected && @presenter.category_filter.used? %>'>
+            <a href='#'>&darr; Ещё категории</a>
           </li>
         <% end %>
       </ul>
@@ -41,6 +62,19 @@
 
     <%= yield :advanced_filters %>
   </div>
+
+  <% if @presenter.categories_links.count > 6 %>
+    <ul class='more'>
+      <% @presenter.categories_links.from(6).each do |link| %>
+        <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
+          <%= link_to accounts_path(link[:parameters]) do %>
+            <span class='name'><%= link[:title] %></span>
+            <span class='count'><%= link[:count] %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <% if content_for?(:advanced_filters) %>
     <div class='advanced_filters_toggler'>

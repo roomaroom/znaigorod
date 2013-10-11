@@ -32,9 +32,9 @@
   <div class='order_by'>
     <p>Сортировать по:</p>
     <ul>
-      <% @presenter.order_by_filter.available_values.each do |value, title| %>
-        <li<%= " class=selected" if value == @presenter.order_by_filter.order_by %>>
-          <%= link_to title, accounts_path(:order_by => value) %>
+      <% @presenter.order_by_links.each do |link| %>
+        <li<%= " class=selected" if link[:selected] %>>
+          <%= link_to link[:title], accounts_path(link[:parameters]), :class => link[:klass] %>
         </li>
       <% end %>
     </ul>

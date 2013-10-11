@@ -233,7 +233,7 @@ class OrganizationDecorator < ApplicationDecorator
       suborganizations.each do |suborganization|
         suborganization.categories.each do |category|
           url = suborganization.need_categories? ?
-            "#{suborganization.class.name.underscore.pluralize}_#{FromRussianToParam.convert(category.mb_chars.downcase).pluralize}_path"
+            "#{suborganization.class.name.underscore.pluralize}_#{category.mb_chars.downcase.from_russian_to_param.pluralize}_path"
           :
             "#{suborganization.class.name.underscore.pluralize}_path"
           arr << Link.new(

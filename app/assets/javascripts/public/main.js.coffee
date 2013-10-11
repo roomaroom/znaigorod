@@ -37,7 +37,7 @@ $ ->
   init_filters_toggler() if $('.need_toggler li').length
   init_filter_handler() if $('.filters_wrapper').length
   init_organization_jump_to_afisha() if $('.organization_show').length
-  init_more_categories_menu() if $('.filters .by_categories .more_link').length
+  init_more_categories_menu() if $('.filters .more_link').length
   init_sauna_advanced_filter() if $('.filters_wrapper .advanced_filters_toggler').length
   init_sauna_halls_scroll() if $('.organizations_list .sauna_halls').length
   init_iconize_info() if $('.organization_show .show_description_link').length
@@ -51,6 +51,7 @@ $ ->
   init_account_pagination() if $('.content .account_show .right').length
   init_account_extend() if $('.account_show').length
   init_account_social_actions() if $('.account_show, .accounts_list').length
+  init_account_filter_with_avatar() if $('.filters_wrapper .account #with_avatar').length
   init_messages() if $('#messages_filter').length
   init_messages_tabs() if $('#messages_filter').length
   init_list_settings() if $('.content_wrapper .presentation_filters').length

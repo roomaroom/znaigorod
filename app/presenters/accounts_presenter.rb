@@ -1,27 +1,6 @@
 # encoding: utf-8
 
 class AccountsPresenter
-  class KindFilter
-    attr_accessor :kind
-
-    def initialize(kind)
-      @kind = available_values.keys.include?(kind) ? kind : available_values.keys.first
-    end
-
-    def self.available_values
-      { 'all' => 'Все', 'admin' => 'Администраторы', 'afisha_editor' => 'Авторы афиш' }
-    end
-
-    def available_values
-      self.class.available_values
-    end
-
-    available_values.each do |value, _|
-      define_method "#{value}_selected?" do
-        kind == value
-      end
-    end
-  end
 
   class GenderFilter
     attr_accessor :gender
@@ -31,7 +10,7 @@ class AccountsPresenter
     end
 
     def self.available_values
-      { 'undefined' => 'Все', 'female' => 'Девушки', 'male' => 'Парни' }
+      { 'undefined' => 'Все пользователи', 'female' => 'Девушки', 'male' => 'Парни' }
     end
 
     def available_values
@@ -43,17 +22,21 @@ class AccountsPresenter
         gender == value
       end
     end
+
+    def used?
+      gender != 'undefined'
+    end
   end
 
   class ActsAsFilter
     attr_accessor :acts_as
 
     def initialize(acts_as)
-      @acts_as = acts_as
+      @acts_as = available_values.keys.include?(acts_as) ? acts_as : available_values.keys.first
     end
 
     def self.available_values
-      { 'inviter' => 'Приглашают', 'invited' => 'Ждут приглашения' }
+      { 'all' => 'Все', 'inviter' => 'Приглашают', 'invited' => 'Ждут приглашения' }
     end
 
     def available_values
@@ -67,20 +50,20 @@ class AccountsPresenter
     end
 
     def used?
-      acts_as.present?
+      @acts_as != 'all'
     end
   end
 
-  class CategoriesFilter
-    attr_accessor :selected, :available
+  class CategoryFilter
+    attr_accessor :category, :available_values
 
-    def initialize(categories)
-      @available = Values.instance.invitation.categories
-      @selected  = (categories || []).delete_if(&:blank?) & @available
+    def initialize(category)
+      @available_values = Values.instance.invitation.categories
+      @category  = @available_values.include?(category) ? category : nil
     end
 
     def used?
-      selected.any?
+      @category.present?
     end
   end
 
@@ -98,17 +81,15 @@ class AccountsPresenter
     def available_values
       self.class.available_values
     end
+
   end
 
   include ActiveAttr::MassAssignment
 
-  attr_accessor :gender, :kind, :acts_as,
-                :inviter_categories, :invited_categories,
-                :with_avatar,
-                :order_by, :page, :per_page
+  attr_accessor :gender, :with_avatar, :acts_as,
+                :category, :order_by, :page, :per_page
 
-  attr_reader :kind_filter, :gender_filter, :acts_as_filter,
-    :inviter_categories_filter, :invited_categories_filter, :order_by_filter
+  attr_reader :gender_filter, :acts_as_filter, :category_filter, :order_by_filter
 
   def initialize(args)
     super(args)
@@ -117,16 +98,71 @@ class AccountsPresenter
     initialize_filters
   end
 
-  def link_params(acts_as = nil)
-    { :kind => kind_filter.kind, :gender => gender_filter.gender, :order_by => order_by_filter.order_by }.tap do |hash|
-      hash.merge!(:with_avatar => true) if with_avatar.present?
-
-      if acts_as_filter.used?
-        hash[:acts_as] = acts_as if acts_as_filter.acts_as != acts_as
-      else
-        hash[:acts_as] = acts_as
+  def gender_links
+    @gender_links ||= [].tap do |links|
+      gender_filter.available_values.each do |value, caption|
+        links << {
+          title: caption,
+          klass: value,
+          url: 'accounts_path',
+          parameters: searcher_parameters(gender: value == 'undefined' ? nil : value),
+          selected: gender_filter.gender == value
+        }
       end
     end
+  end
+
+  def acts_as_links
+    @acts_as_links ||= [].tap do |links|
+      acts_as_filter.available_values.each do |value, caption|
+        links << {
+          title: caption,
+          klass: value,
+          url: 'accounts_path',
+          parameters: searcher_parameters(acts_as: value == 'all' ? nil : value),
+          selected: acts_as_filter.acts_as == value
+        }
+      end
+    end
+  end
+
+  def categories_links
+    @categories_links ||= [].tap do |links|
+      category_filter.available_values.each do |value|
+        links << {
+          title: value,
+          klass: value.from_russian_to_param,
+          url: 'accounts_path',
+          parameters: searcher_parameters(category: value),
+          selected: category_filter.category == value,
+          count: count(category: value)
+        }
+      end
+      links.sort! {|a,b| b[:count] <=> a[:count]}
+    end
+  end
+
+  def order_by_links
+    @order_by_links ||= [].tap do |links|
+      order_by_filter.available_values.each do |value, caption|
+        links << {
+          title: caption,
+          klass: value,
+          url: 'accounts_path',
+          parameters: searcher_parameters(order_by: value),
+          selected: order_by_filter.order_by == value,
+        }
+      end
+    end
+  end
+
+  def searcher_parameters(hash = {})
+    {
+      gender: gender_filter.used? ? gender_filter.gender : nil,
+      acts_as: acts_as_filter.used? ? acts_as_filter.acts_as : nil,
+      category: category_filter.used? ? category_filter.category : nil,
+      with_avatar: with_avatar ? true : nil
+    }.merge(hash).select {|k,v| v}
   end
 
   def collection
@@ -134,47 +170,25 @@ class AccountsPresenter
   end
 
   def count(params)
-    params.delete(:kind) if params[:kind] == 'all'
-    params.delete(:gender) if params[:gender] == 'undefined'
-
-    params.merge!(:with_avatar => true) if with_avatar.present?
-    params.merge!(:inviter_categories => inviter_categories_filter.selected) if inviter_categories_filter.used?
-    params.merge!(:invited_categories => invited_categories_filter.selected) if invited_categories_filter.used?
-
-    HasSearcher.searcher(:accounts, params).total
+    HasSearcher.searcher(:accounts, searcher_parameters(params)).total
   end
 
   private
 
+  def initialize_filters
+    @acts_as_filter  ||= ActsAsFilter.new(acts_as)
+    @category_filter ||= CategoryFilter.new(category)
+    @gender_filter   ||= GenderFilter.new(gender)
+    @order_by_filter ||= OrderByFilter.new(order_by)
+  end
+
   def normalize_args
-    @inviter_categories ||= []
-    @invited_categoires ||= []
     @page               ||= 1
     @per_page           = 18
   end
 
-  def initialize_filters
-    @kind_filter               ||= KindFilter.new(kind)
-    @gender_filter             ||= GenderFilter.new(gender)
-    @acts_as_filter            ||= ActsAsFilter.new(acts_as)
-    @inviter_categories_filter ||= CategoriesFilter.new(inviter_categories)
-    @invited_categories_filter ||= CategoriesFilter.new(invited_categories)
-    @order_by_filter           ||= OrderByFilter.new(order_by)
-  end
-
-  def searcher_params
-    @searcher_params ||= {}.tap do |params|
-      params[:kind]               = kind_filter.kind unless kind_filter.all_selected?
-      params[:gender]             = gender_filter.gender unless gender_filter.undefined_selected?
-      params[:acts_as]            = acts_as_filter.acts_as if acts_as_filter.used?
-      params[:with_avatar]        = true if with_avatar.present?
-      params[:inviter_categories] = inviter_categories_filter.selected
-      params[:invited_categories] = invited_categories_filter.selected
-    end
-  end
-
   def searcher
-    @searcher ||= HasSearcher.searcher(:accounts, searcher_params).tap { |s|
+    @searcher ||= HasSearcher.searcher(:accounts, searcher_parameters).tap { |s|
       s.send "order_by_#{order_by_filter.order_by}"
       s.paginate(page: page, per_page: per_page)
     }
