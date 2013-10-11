@@ -1,3 +1,11 @@
+<% content_for :page_title do %>
+  <%= @account.title.text_gilensize %>,
+  ЗнайГород
+<% end %>
+
+<% content_for :meta_keywords, t('meta.account.keywords') %>
+<% content_for :meta_description, t('meta.account.description') %>
+
 <div class="account_show">
   <div class="left">
     <div class="image">
