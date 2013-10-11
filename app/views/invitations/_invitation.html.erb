@@ -37,7 +37,7 @@
           'data-preposition' => (Preposition.new(invitation.inviteable).value if invitation.inviteable),
           'data-attachments' => (data_attachments(invitation.inviteable) if invitation.inviteable),
           'data-inviteable_title' => (invitation.inviteable if invitation.inviteable),
-          'data-link' => 'http://znaigorod.ru',
+          'data-link' => account_url(current_user.account),
           'data-gender' => ''
         %>
       <% end %>
