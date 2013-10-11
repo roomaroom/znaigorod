@@ -1,0 +1,37 @@
+.feeds
+  .filters_feed
+    margin-top: 10px
+    padding-bottom: 10px
+    border-bottom: solid 1px #ccc
+    ul
+      +clearfix
+      li
+        +toggable-links
+        float: left
+        margin-right: 5px
+        &:last-child
+          margin-right: 0
+
+  .comment,.friend,.afisha
+    border-bottom: solid 1px #ccc
+    margin-top: 10px
+    padding-bottom: 10px
+    .time
+      color: #999
+
+  .friend
+    .avatar
+      +avatar-style
+    .details
+      span
+        color: #999
+
+  .line
+    background-color: #e8e8e8
+    font-size: 14px
+    h3
+      color: black
+      height: 24px
+      line-height: 24px
+      padding: 0 0 0 10px
+

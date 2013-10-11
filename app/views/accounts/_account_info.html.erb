@@ -1,18 +1,22 @@
 <div class="account_info">
-  <div class="row">
-    <div class="label_cell">
-      День рождения:
+  <% if !account.birthday.nil? %>
+    <div class="row">
+      <div class="label_cell">
+        День рождения:
+      </div>
+      <div class="content_cell">
+        <%= I18n.l(account.birthday, :format => '%d %B %Y')  %>
+      </div>
     </div>
-    <div class="content_cell">
-      <%= I18n.l(account.birthday, :format => '%d %B %Y') if !account.birthday.nil? %>
+  <% end %>
+  <% if !account.gender.nil? %>
+    <div class="row">
+      <div class="label_cell">
+        Пол:
+      </div>
+      <div class="content_cell">
+        <%= t(account.gender) %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="label_cell">
-      Пол:
-    </div>
-    <div class="content_cell">
-      <%= t(account.gender) if !account.gender.nil?%>
-    </div>
-  </div>
+  <% end %>
 </div>

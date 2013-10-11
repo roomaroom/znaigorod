@@ -1,0 +1,16 @@
+<%
+  img = resized_image_url(feed_friend.feedable.friendable.avatar_url, 50, 50)
+  name =  feed_friend.feedable.friendable.first_name + " " + feed_friend.feedable.friendable.last_name
+%>
+<div class='friend'>
+  <div class='avatar'>
+    <%= link_to image_tag( img, :size => '50x50', :title => feed_friend.feedable.friendable.title), feed_friend.feedable.friendable %>
+  </div>
+  <div class='details'>
+    <%= link_to(name, feed_friend.feedable.friendable) %><span> добавлен в друзья</span>
+  </div>
+  <div class='time'>
+    <%= time_ago_in_words(feed_friend.created_at) %> назад
+  </div>
+</div>
+

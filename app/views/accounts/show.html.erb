@@ -15,12 +15,6 @@
     <div class="image">
       <%= image_tag(resized_image_url(@account.avatar.url, 200, 200), size: '200x200', title: @account.title, alt: @account.title) %>
     </div>
-    <h1><%= @account.title %></h1>
-    <% if @account.link_to_social.present? %>
-      <div class='link_to_social'>
-        <%= link_to('профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
-      </div>
-    <% end %>
 
     <div class="social_actions">
       <% if current_user.nil? || (current_user.account != @account.model) %>
@@ -45,10 +39,23 @@
   </div>
 
   <div class="right">
+    <div class='last_visit'>
+      последнее посещение было
+      <%= l(@account.users.first.current_sign_in_at, :format => '%d %B %Y %H:%M') %>
+    </div>
 
-    <%= render partial: 'accounts/account_info', locals: { account: @account } %>
+    <h1><%= @account.title %></h1>
 
-    <%= render partial: 'accounts/feeds', locals: { collection: @feeds } %>
+    <div class="account_info">
+      <%= content_tag :div, "День рождения: #{l(@account.birthday)}", :class => :row if @account.birthday? %>
+      <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
+    </div>
+
+    <% if @account.link_to_social.present? %>
+      <div class='link_to_social'>
+        <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+      </div>
+    <% end %>
 
     <div class="invitations_wrapper">
       <div class="invitations header">
@@ -80,46 +87,44 @@
       </div>
     </div>
 
-    <div class="visits header">
-      <%= t "account.wants_to_visit.#{@account.gender}" %>
+    <div class='feeds'>
+      <div class='line'>
+        <h3>
+          Новости
+        </h3>
+      </div>
+      <div class='filters_feed'>
+        <ul>
+          <li>
+            <a href="#">Все</a>
+          </li>
+          <li>
+            <a href="#">Комментарии</a>
+          </li>
+          <li>
+            <a href="#">Афиши</a>
+          </li>
+          <li>
+            <a href="#">Друзья</a>
+          </li>
+          <li>
+            <a href="#">Приглашения</a>
+          </li>
+          <li>
+           <a href="#">Нравится</a>
+          </li>
+        </ul>
+      </div>
+      <ul>
+        <%= render @feeds %>
+      </ul>
+      <% unless @feeds.first_page? && @feeds.last_page? %>
+        <div class="pagination">
+          <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if @feeds.first_page? }", :remote => true %>
+          <%= link_to '&darr;'.html_safe, account_feeds_path(@account, :page => @feeds.current_page + 1), :class => "next_page #{ 'disabled' if @feeds.last_page? }", :remote => true %>
+        </div>
+      <% end %>
     </div>
-    <% if @visits.any? %>
-      <div class="visits list">
-        <%= render 'accounts/visits' %>
-      </div>
-    <% end %>
 
-    <% if @votes.any? %>
-      <div class="votes header">
-        Нравится
-      </div>
-      <div class="votes list">
-        <%= render 'accounts/votes' %>
-      </div>
-    <% end %>
-
-    <% if @events.published.any? %>
-      <div class="events header">
-        <% if @account.gender? %>
-          <%= @account.first_name %>
-          <%= t "account.add_afisha.#{@account.gender}" %>
-          <%= t 'account.events', count: @account.afisha.published.count %>
-        <% else %>
-          <%= t 'account.events_without_genger', count: @account.afisha.published.count %>
-        <% end %>
-      </div>
-      <div class="events list">
-        <%= render partial: 'events/account_events', locals: { collection: @events.published, state: :published } %>
-      </div>
-    <% end %>
-
-    <% if @comments.any? %>
-      <div class="comments header">
-        Комментарии
-      </div>
-      <div class="comments list">
-        <%= render 'accounts/comments' %>
-      </div>
-    <% end %>
   </div>
 </div>

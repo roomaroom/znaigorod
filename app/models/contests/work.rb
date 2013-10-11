@@ -20,6 +20,14 @@ class Work < ActiveRecord::Base
   def vfs_path
     "/znaigorod/contests/#{contest.id}"
   end
+
+  def to_feed_title
+    if self.title.empty?
+      return self.slug
+    end
+    self.title
+  end
+
 end
 
 # == Schema Information
