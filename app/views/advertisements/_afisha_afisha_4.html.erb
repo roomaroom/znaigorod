@@ -1,0 +1,36 @@
+<% afisha = afisha.decorated_afisha %>
+<div class='item afisha_4'>
+  <div class='title'><%= afisha.truncated_title_link(44, separator: nil) %></div>
+  <div class='image'>
+    <% if afisha.has_tickets_for_sale? %>
+      <% if afisha.max_tickets_discount > 0 %>
+        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
+          Скидка на билеты <%= afisha.max_tickets_discount %>%
+        </div>
+      <% else %>
+        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
+          Есть билеты в продаже
+        </div>
+      <% end %>
+    <% end %>
+    <%= afisha.poster_with_link(378, 510) %>
+    <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere?  %>
+    <% if afisha.has_tickets_for_sale? %>
+      <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
+    <% end %>
+    <%= link_to afisha_show_path(afisha), class: :details do %>
+      <span class='first_line'>
+        <span class='show_tipsy to_go' title='Участники'><%= afisha.visits.count %></span>
+        <span class='show_tipsy wait_invite' title='Приглашения'><%= afisha.invitations.inviter.without_invited.count %></span>
+        <span class='show_tipsy comments' title='Комментарии'><%= afisha.comments.count %></span>
+      </span>
+      <span class='second_line'>
+        <span class='show_tipsy likes' title='Понравилось'><%= afisha.likes_count %></span>
+        <span class='show_tipsy visits' title='Просмотры'><%= afisha.page_visits.count %></span>
+        <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возростное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
+      </span>
+    <% end %>
+  </div>
+  <div class='place'><%= afisha.afisha_place(44, nil) %></div>
+  <div class='human_when'><%= afisha.human_when ? afisha.human_when : "&nbsp;".html_safe %></div>
+</div>

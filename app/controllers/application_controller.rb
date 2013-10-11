@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :banners, :hot_offers, :page, :per_page
 
+  before_filter :detect_robots_in_development
+
   layout :resolve_layout
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -12,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def detect_robots_in_development
+    render :nothing => true, status: :forbidden and return if request.user_agent.match(/\(.*https?:\/\/.*\)/) && Rails.env.development?
+  end
 
   def resolve_layout
     request.xhr? ? false : 'public'

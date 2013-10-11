@@ -24,6 +24,10 @@ HasSearcher.create_searcher :showings do
   property :afisha_id
   property :afisha_state
   property :has_tickets
+  property :without do |search|
+    search.without search_object.send(:without) if search_object.send(:without).try(:any?)
+  end
+
 
   # categories tags organizations
   [:categories, :tags, :organization_ids].each do |field|

@@ -17,7 +17,8 @@ class AfishaPresenter
                 :page, :per_page,
                 :view,
                 :hide_categories,
-                :has_tickets
+                :has_tickets,
+                :advertisement
 
   def initialize(args)
     super(args)
@@ -26,6 +27,7 @@ class AfishaPresenter
     @page     ||= 1
     @per_page   = 18
     @view       = 'posters'
+    @advertisement = Advertisement.new(list: 'afisha', page: @page)
 
     initialize_filters
   end
@@ -61,18 +63,22 @@ class AfishaPresenter
   end
 
   def decorated_collection
-    collection.map do |group|
-      afisha = Afisha.find(group.value)
-      showings = group.hits.map(&:result).compact
+    @decorated_collection ||= [].tap do |list|
+      collection.each do |group|
+        afisha = Afisha.find(group.value)
+        showings = group.hits.map(&:result).compact
 
-      AfishaDecorator.new(afisha, ShowingDecorator.decorate(showings))
+        list << AfishaDecorator.new(afisha, ShowingDecorator.decorate(showings))
+      end
+      advertisement.places_at(page).each do |adv|
+        list.insert(adv.position, adv)
+      end
     end
     #collection.page(page).per(per_page).map {|afisha| AfishaDecorator.new(afisha, afisha.showings)}
   end
 
   def paginated_collection
-    searcher.group(:afisha_id_str).groups
-    #collection.page(page).per(per_page)
+    collection
   end
 
   def total_count
@@ -200,6 +206,7 @@ class AfishaPresenter
       params[:from]             = time_filter.from           if time_filter.from.present?
       params[:to]               = time_filter.to             if time_filter.to.present?
       params[:has_tickets]      = true                       if has_tickets
+      params[:without]          = advertisement.afishas.flat_map(&:showings) if advertisement.afishas.any?
 
       params[:location] = Hashie::Mash.new(lat: geo_filter.lat, lon: geo_filter.lon, radius: geo_filter.radius) if geo_filter.used?
     end
