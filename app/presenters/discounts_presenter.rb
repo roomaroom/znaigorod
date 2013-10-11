@@ -3,6 +3,16 @@
 class DiscountsPresenter
   include ActiveAttr::MassAssignment
 
+  class Parameters
+    include Singleton
+
+    attr_accessor :type, :kind, :order_by
+
+    def params
+      { :type => type, :kind => kind, :order_by => order_by }
+    end
+  end
+
   class TypeFilter
     include Rails.application.routes.url_helpers
 
@@ -10,6 +20,7 @@ class DiscountsPresenter
 
     def initialize(type)
       @type = type
+      Parameters.instance.type = selected
     end
 
     def available
@@ -25,7 +36,7 @@ class DiscountsPresenter
         Hashie::Mash.new(
           :title => title,
           :klass => "#{value}".tap { |s| s << " selected" if value == selected },
-          :path => discounts_path(:type => value)
+          :path => discounts_path(Parameters.instance.params.merge(:type => value))
         )
       end
     end
@@ -38,6 +49,7 @@ class DiscountsPresenter
 
     def initialize(kind)
       @kind = kind
+      Parameters.instance.kind = selected
     end
 
     def available
@@ -53,8 +65,38 @@ class DiscountsPresenter
         Hashie::Mash.new(
           :value => value,
           :title => title,
-          :class => "#{value}".tap { |s| s << " selected" if value == selected },
-          :path => discounts_path(:kind => value)
+          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
+          :path => discounts_path(Parameters.instance.params.merge(:kind => value))
+        )
+      end
+    end
+  end
+
+  class OrderByFilter
+    include Rails.application.routes.url_helpers
+
+    attr_accessor :order_by
+
+    def initialize(order_by)
+      @order_by = order_by
+      Parameters.instance.order_by = selected
+    end
+
+    def available
+      { 'creation' => 'Новизне', 'rating' => 'Рейтингу' }
+    end
+
+    def selected
+      available.keys.compact.include?(order_by) ? order_by : available.keys.first
+    end
+
+    def links
+      available.map do |value, title|
+        Hashie::Mash.new(
+          :value => value,
+          :title => title,
+          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
+          :path => discounts_path(Parameters.instance.params.merge(:order_by => value))
         )
       end
     end
@@ -63,7 +105,7 @@ class DiscountsPresenter
   attr_accessor :type, :kind,
                 :order_by, :page, :per_page
 
-  attr_reader :type_filter, :kind_filter
+  attr_reader :type_filter, :kind_filter, :order_by_filter
 
   def initialize(args)
     super(args)
@@ -84,8 +126,9 @@ class DiscountsPresenter
   end
 
   def initialize_filters
-    @type_filter = TypeFilter.new(type)
-    @kind_filter = KindFilter.new(kind)
+    @type_filter     = TypeFilter.new(type)
+    @kind_filter     = KindFilter.new(kind)
+    @order_by_filter = OrderByFilter.new(order_by)
   end
 
   def searcher_params

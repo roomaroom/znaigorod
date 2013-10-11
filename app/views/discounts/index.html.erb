@@ -2,6 +2,11 @@
   <div class='order_by'>
     <p>Сортировать по:</p>
     <ul>
+      <% @presenter.order_by_filter.links.each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.title, link.path %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
