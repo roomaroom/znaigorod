@@ -136,7 +136,7 @@ module OrganizationsPresenter
   def selected_category
     @selected_category ||= "".tap do |str|
       str << (categories_filter[:selected].first || pluralized_kind)
-      str.replace FromRussianToParam.convert(str)
+      str.replace str.from_russian_to_param
     end
   end
 
@@ -159,8 +159,8 @@ module OrganizationsPresenter
       HasSearcher.searcher(pluralized_kind.to_sym).facet("#{kind}_category").rows.map do |row|
         array << {
           title: row.value.mb_chars.capitalize,
-          klass: FromRussianToParam.convert(row.value),
-          url: "#{kind.pluralize}_#{FromRussianToParam.convert(row.value).pluralize}_path",
+          klass: row.value.from_russian_to_param,
+          url: "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path",
           parameters: {},
           selected: categories_filter[:selected].include?(row.value.mb_chars.downcase),
           count: row.count
