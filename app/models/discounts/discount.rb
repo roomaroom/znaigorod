@@ -22,10 +22,14 @@ class Discount < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   searchable do
-    text :title, :stored => true
-    string(:kind, :multiple => true) { kind.map(&:value) }
     date :created_at
+
     #float :rating
+
+    string(:kind, :multiple => true) { kind.map(&:value) }
+    string(:type) { self.class.name.underscore }
+
+    text :title, :stored => true
   end
 
   def copies

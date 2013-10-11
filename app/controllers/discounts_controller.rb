@@ -5,7 +5,7 @@ class DiscountsController < ApplicationController
 
   def index
     index! {
-      @presenter = DiscountsPresenter.new
+      @presenter = DiscountsPresenter.new(params)
 
       render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
     }

@@ -1,7 +1,13 @@
 <div class="filters_wrapper">
   <div class="filters account">
-    <div class="by_kind">
+    <div class="by_type">
+      <% p @presenter.type_filter.links %>
       <ul>
+        <% @presenter.type_filter.links.each do |link| %>
+          <li class="<%= link.klass %>">
+            <%= link_to link.title, link.path %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -9,6 +15,11 @@
   <div class="filters account">
     <div class="by_kind">
       <ul>
+        <% @presenter.kind_filter.links.each do |link| %>
+          <li class="<%= link.class %>">
+            <%= link_to link.title, link.path %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
