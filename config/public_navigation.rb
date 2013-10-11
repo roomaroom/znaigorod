@@ -39,6 +39,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' }
     primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
     primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' }
+    primary.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
     primary.item :more, 'Ещё &#9662;', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests webcams cooperation].include?(params[:controller]) } do |more|
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { params[:controller] == nil }
