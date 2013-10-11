@@ -206,8 +206,28 @@ $desktop_default_width: 1200px
     border-style: solid
     border-color: #0065cd transparent transparent #0065cd
 
-/* animations */
+/* стрелочки */
+=left-arrow($arrow-color: #009bdb, $background: #ececec, $text-color: #fff)
+  background: $arrow-color
+  color: $text-color
+  float: right
+  height: 30px
+  line-height: 30px
+  padding: 0 10px 0 0
+  margin: 0
+  font-size: 14px
 
+  &:before
+    background: $background
+    float: left
+    border: 15px solid transparent
+    border-left: 0
+    border-right-color: $arrow-color
+    content: ''
+    height: 0
+    width: 0
+
+/* animations */
 =animate_blink($speed: 1s, $repeat: true)
   animation: fade $speed forwards
   -webkit-animation: fade $speed forwards
@@ -285,3 +305,4 @@ $desktop_default_width: 1200px
     opacity: 1
   100%
     opacity: 1
+

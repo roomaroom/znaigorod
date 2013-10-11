@@ -1,6 +1,6 @@
 .discounts_list
   float: left
-  margin: 20px 0 0 0
+  margin: 0
   width: 100%
 
   .posters
@@ -31,98 +31,25 @@
           width: 220px
 
         .info
-          .certificate
-            span
-              color: #f60
-              font-weight: bold
-              font-size: 18px
-              line-height: 30px
-              margin: 0 0 0 7px
-              vertical-align: middle
+          span
+            color: #f60
+            font-weight: bold
+            font-size: 18px
+            line-height: 30px
+            margin: 0 0 0 7px
+            vertical-align: middle
 
-            .origin_price
-              background: #ececec
-              color: #000
-              float: right
-              height: 30px
-              line-height: 30px
-              padding: 0
-              margin: 0
-              font-size: 14px
+          strong
+            font-size: 13px
+            margin: 0 5px 0 10px
 
-              &:before
-                background: #fff
-                float: left
-                border: 15px solid transparent
-                border-left: 0
-                border-right-color: #ececec
-                content: ''
-                height: 0
-                width: 0
+          .origin_price
+            +left-arrow(#ececec, #fff, #000)
 
-            .price
-              background: #009bdb
-              color: #fff
-              float: right
-              height: 30px
-              line-height: 30px
-              padding: 0 10px 0 0
-              margin: 0
-              font-size: 14px
-
-              &:before
-                background: #ececec
-                float: left
-                border: 15px solid transparent
-                border-left: 0
-                border-right-color: #009bdb
-                content: ''
-                height: 0
-                width: 0
+          .price
+            +left-arrow(#009bdb, #ececec, #fff)
 
           .coupon
-            strong
-              font-size: 13px
-              margin: 0 5px 0 10px
-
-            span
-              color: #f60
-              font-weight: bold
-              font-size: 18px
-              line-height: 30px
-              margin: 0 0 0 7px
-              vertical-align: middle
-
             .price
-              background: #009bdb
-              color: #fff
-              float: right
-              height: 30px
-              line-height: 30px
-              padding: 0 10px 0 0
-              margin: 0
-              font-size: 14px
-
-              &:before
-                background: #fff
-                float: left
-                border: 15px solid transparent
-                border-left: 0
-                border-right-color: #009bdb
-                content: ''
-                height: 0
-                width: 0
-
-          .discount
-            strong
-              font-size: 13px
-              margin: 0 5px 0 10px
-
-            span
-              color: #f60
-              font-weight: bold
-              font-size: 18px
-              line-height: 30px
-              vertical-align: middle
-
+              +left-arrow(#009bdb, #fff, #fff)
 
