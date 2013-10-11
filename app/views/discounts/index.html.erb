@@ -1,0 +1,15 @@
+<div class="presentation_filters accounts">
+  <div class='order_by'>
+    <p>Сортировать по:</p>
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<div class="discounts_list">
+  <ul class="posters">
+    <%= render :partial => 'discounts/discount_posters', :locals => { collection: @presenter.collection } %>
+  </ul>
+</div>
+
+<%= paginate @presenter.collection %>

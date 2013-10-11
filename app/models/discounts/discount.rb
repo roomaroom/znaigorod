@@ -20,6 +20,13 @@ class Discount < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  searchable do
+    text :title, :stored => true
+    string(:kind, :multiple => true) { kind.map(&:value) }
+    date :created_at
+    float :rating
+  end
+
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
   validates_attachment :poster_image, :presence => true, :content_type => {
