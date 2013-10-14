@@ -72,7 +72,7 @@ class AfishaPresenter
       end
       advertisement.places_at(page).each do |adv|
         list.insert(adv.position, adv)
-      end
+      end unless @organizations_filter.used?
     end
     #collection.page(page).per(per_page).map {|afisha| AfishaDecorator.new(afisha, afisha.showings)}
   end
