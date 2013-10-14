@@ -1,3 +1,5 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+
 <%= simple_form_for [:manage, @webcam] do |f| %>
   <%= content_tag :p, @webcam.errors.full_messages.join(', '), class: :full_error__messages if @webcam.errors.messages.present? %>
   <%= f.input :kind, placeholder: 'тут выбрать надо...' %>
@@ -8,8 +10,9 @@
   <%= f.input :width, placeholder: '640' %>
   <%= f.input :height, placeholder: '480' %>
   <%= f.input :address, as: :string, placeholder: 'ул. Бакунина, 3' %>
-  <%= f.input :latitude, placeholder: '56.488746' %>
-  <%= f.input :longitude, placeholder: '84.954833' %>
+  <div id='webcam_map' data-latitude='56.493246' data-longitude='84.982112'></div>
+  <%= f.input :latitude, placeholder: '56.488746', :readonly => true %>
+  <%= f.input :longitude, placeholder: '84.954833', :readonly => true %>
   <%= f.input :state %>
   <div class='published actions'>
     <%= f.submit "Сохранить" %>

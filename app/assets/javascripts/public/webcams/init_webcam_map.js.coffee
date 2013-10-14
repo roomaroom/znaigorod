@@ -28,7 +28,6 @@
 
     map.controls.add trafficControl
 
-
     $('.webcams .webcams_list p').each (index, item) ->
       link = $('a', item)
       id = link.attr('id')
