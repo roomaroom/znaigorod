@@ -21,7 +21,7 @@
   else
     last_item = first_item
   last_item_top = last_item.position().top
-  last_item_offset = 200
+  last_item_offset = 400
   page = 1
   busy = false
   $(window).scroll ->
