@@ -48,25 +48,6 @@ class Organization < ActiveRecord::Base
 
   has_many :coupons
 
-  attr_accessible :phone_for_sms, :balance_delta
-  attr_accessor :balance_delta
-
-  validates_format_of :phone_for_sms, :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/, :if => :phone_for_sms?
-
-  before_save :update_balance, :if => :balance_delta
-  def update_balance
-    self.balance = self.balance.to_f + balance_delta.to_f
-  end
-  private :update_balance
-
-  def enough_balance?
-    balance.present? && balance >= Settings['sms_claim.price']
-  end
-
-  def sms_claimable?
-    phone_for_sms? && enough_balance?
-  end
-
   def claimable_suborganizations
     I18n.t('sms_claim').keys.map { |kind| send(kind) }.compact
   end

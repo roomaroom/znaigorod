@@ -3,11 +3,17 @@ class Reservation < ActiveRecord::Base
 
   belongs_to :reserveable, :polymorphic => true
 
-  validates_presence_of :phone, :placeholder, :title
+  validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+
+  validates_presence_of :placeholder, :title
 
   after_initialize :set_default_title_and_placeholder, :if => :new_record?
 
   default_value_for :balance, 0
+
+  def enough_balance?
+    balance.present? && balance >= Settings['sms_claim.price']
+  end
 
   private
 

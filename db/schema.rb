@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014025429) do
+ActiveRecord::Schema.define(:version => 20131014091132) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -491,8 +491,6 @@ ActiveRecord::Schema.define(:version => 20131014025429) do
     t.float    "total_rating"
     t.integer  "primary_organization_id"
     t.boolean  "ability_to_comment",            :default => true
-    t.string   "phone_for_sms"
-    t.float    "balance"
     t.integer  "fb_likes"
     t.integer  "odn_likes"
     t.string   "poster_vk_id"
