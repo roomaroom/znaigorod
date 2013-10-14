@@ -52,6 +52,11 @@ class Advertisement
 
   class AfishaAdvertisementPlace < AdvertisementPlace
     attr_accessor :slug, :afisha
+    delegate :title, :human_when, :human_price, :places, :poster_url,
+             :distribution_ends_on?, :showings, :tickets, :truncated_title_link,
+             :has_tickets_for_sale?, :poster_with_link, :premiere?,
+             :visits, :invitations, :comments, :likes_count, :page_visits,
+             :age_min, :afisha_place, to: :decorated_afisha
 
     def initialize(args)
       super(args)
