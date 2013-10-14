@@ -18,4 +18,11 @@ class DiscountsController < ApplicationController
       @members = @discount.members.page(1).per(3)
     }
   end
+
+  def show
+    show! {
+      @presenter = DiscountsPresenter.new(params)
+      @discount = DiscountDecorator.new Discount.find(params[:id])
+    }
+  end
 end
