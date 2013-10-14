@@ -11,6 +11,12 @@ Znaigorod::Application.routes.draw do
       get :meetings, on: :collection
     end
 
+    Organization.available_suborganization_kinds.each do |kind|
+      resources kind.pluralize, :only => [] do
+        resource :reservation, :except => :show
+      end
+    end
+
     root to: 'organizations#index'
   end
 end

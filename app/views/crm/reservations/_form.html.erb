@@ -1,0 +1,17 @@
+<tr class="grey">
+  <td colspan="4">
+    <%= simple_form_for @reservation, :url => [:crm, parent, :reservation], :remote => true do |f| %>
+      <%= f.input :title %>
+      <%= f.input :placeholder %>
+      <%= f.input :phone %>
+      <%= f.input :balance %>
+
+      <div class="actions">
+        <%= f.submit 'Сохранить', :class => 'button' %>
+        <%= link_to 'Отмена', '#', :class => 'cancel button' %>
+        <%= link_to 'удалить', [:crm, parent, :reservation], :method => :delete, :confirm => 'Вы уверены?', :remote => true, :class => 'button' if @reservation.persisted? %>
+      </div>
+    <% end %>
+
+  </td>
+</tr>

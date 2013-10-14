@@ -77,6 +77,26 @@
         </div>
       <% end %>
 
+      <div class="reservations">
+        <h4>Бронирование услуг</h4>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="kind">Тип</th>
+              <th class="phone">Телефон</th>
+              <th class="balance">Баланс</th>
+              <th class="action"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @organization.claimable_suborganizations.each do |suborganization| %>
+              <%= render :partial => 'crm/reservations/reservation', :locals => { :suborganization => suborganization } %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
       <div class='activities_head'>
         <h2>
           Активность

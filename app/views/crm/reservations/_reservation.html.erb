@@ -1,0 +1,12 @@
+<tr>
+  <td><%= suborganization.class.model_name.human %></td>
+  <td><%= suborganization.reservation.try(:phone) %></td>
+  <td><%= suborganization.reservation.try(:balance) %></td>
+  <td>
+    <% if suborganization.reservation %>
+      <%= link_to 'редактировать', [:edit, :crm, suborganization, :reservation], :remote => true, :class => '.reservation_link' %>
+    <% else %>
+      <%= link_to 'добавить', [:new, :crm, suborganization, :reservation], :remote => true, :class => '.reservation_link' %>
+    <% end %>
+  </td>
+</tr>

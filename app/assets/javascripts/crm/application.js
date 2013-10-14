@@ -9,5 +9,6 @@
  * = require ./datetime_picker
  * = require ./organization
  * = require ./slave_organizations
+ * = require ./reservations
  * = require ./main
  */

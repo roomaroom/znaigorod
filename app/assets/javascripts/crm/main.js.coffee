@@ -5,6 +5,7 @@ $ ->
   init_manipulate_additional() if $('.organization_show .left .info .details .additional').length
   init_manipulate_activities() if $('.organization_show .left .activities a.new_activity').length
   init_manipulate_slave_organizations()
+  init_manipulate_reservations() #if $('.reservation_link').length
 
   $(document).ajaxError (event, jqXHR, ajaxSettings, thrownError) ->
     wrapped = $("<div>" + jqXHR.responseText + "</div>")

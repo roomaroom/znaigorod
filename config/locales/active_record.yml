@@ -427,6 +427,12 @@ ru:
         row:           Ряд
         seat:          Место
 
+      reservation:
+        title: Название кнопки
+        placeholder: Вступительный текст
+        phone: Телефон для смс
+        balance: Баланс
+
       sms_claim:
         name:     Имя
         phone:    Телефон
