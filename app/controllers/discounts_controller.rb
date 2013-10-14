@@ -10,4 +10,11 @@ class DiscountsController < ApplicationController
       render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
     }
   end
+
+  def show
+    show! {
+      @presenter = DiscountsPresenter.new(params)
+      @discount = DiscountDecorator.new Discount.find(params[:id])
+    }
+  end
 end

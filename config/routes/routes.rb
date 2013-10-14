@@ -108,7 +108,9 @@ Znaigorod::Application.routes.draw do
     resources :visits, :only => :index
   end
 
-  resources :discounts, :only => [:index, :show]
+  resources :discounts, :only => [:index, :show] do
+    resources :comments, :only => [:new, :show, :create]
+  end
 
   resources :webcams, :only => [:index, :show]
 
