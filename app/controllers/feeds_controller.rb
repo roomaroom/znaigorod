@@ -8,8 +8,12 @@ class FeedsController < ApplicationController
 
   def index
     index! {
-      @feeds = end_of_association_chain.page(params[:page]).per(30)
-      render @feeds and return
+      unless params[:kind].nil?
+        @feeds = end_of_association_chain.where(:feedable_type => params[:kind]).page(params[:page]).per(10)
+      else
+        @feeds = end_of_association_chain.page(params[:page]).per(10)
+      end
+    render @feeds and return
     }
   end
 
