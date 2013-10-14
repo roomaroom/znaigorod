@@ -8,7 +8,21 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def human_when
-    return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
+    if price.nil?
+      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
+    elsif free?
+      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, бесплатно".squish
+    else
+      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, #{h.number_to_currency(price, :unit => 'р.', :precision => 0)}".squish
+    end
+  end
+
+  def free?
+    return true if price.nil? || price.zero?
+  end
+
+  def paid?
+    return true if price? && price > 0
   end
 
   def place

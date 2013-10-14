@@ -22,13 +22,43 @@
       font-size: 14px
       margin: 0 4px 4px 4px
 
-      .discount
+      .discount, .coupon, .certificate
         strong
           font-weight: normal
 
-        .discount
+        .discount, .price
           font-weight: bold
 
+        .free
+          font-weight: normal
+
+      .certificate
+        .discount
+          display: none
+
+        .origin_price
+          position: relative
+
+          &:after
+            +rotate(-10deg)
+            border-top: 1px solid #fff
+            content: ""
+            left: 0
+            position: absolute
+            top: 45%
+            width: 90%
+
+    .action
+      text-align: center
+      margin: 10px 0
+
+      .participate
+        +button-style
+        font-size: 12px
+        padding: 4px 15px 5px
+
+        &:active
+          padding: 5px 15px 4px
 
     .counter
       +background(linear-gradient(top, #fff, #e8e8e8))

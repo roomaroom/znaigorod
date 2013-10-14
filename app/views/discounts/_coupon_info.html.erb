@@ -1,8 +1,13 @@
 <div class="<%= discount.class.name.underscore %>">
   <strong>Скидка</strong>
   <span class="discount"><%= discount.discount %>%</span>
-  <strong>за</strong>
-  <span class="price">
-    <%= discount.price.zero? ? 'Бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %>
+
+  <% if discount.price.zero? %>
+    <span class="price free">бесплатно</span>
+  <% else %>
+    <strong>за</strong>
+    <span class="price">
+      <%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %>
+    <% end %>
   </span>
 </div>
