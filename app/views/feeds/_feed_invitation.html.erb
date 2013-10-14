@@ -1,1 +1,18 @@
-<%= feed_invitation.inspect %>
+<div class="invitation">
+  <% if feed_invitation.feedable.kind == "inviter"  %>
+    <%= "Приглашает" %>
+  <% else %>
+    <%= "Ждет приглашения" %>
+  <% end %>
+  <%= t "enumerize.invitation.gender.custom.#{feed_invitation.feedable.kind}.#{feed_invitation.feedable.gender}" %>
+  <% if feed_invitation.feedable.inviteable %>
+    <%= Preposition.new(feed_invitation.feedable.inviteable).value %>
+    <%= link_to feed_invitation.feedable.inviteable.title, feed_invitation.feedable.inviteable %>
+  <% end %>
+  <% if feed_invitation.feedable.inviteable_type.nil? && !feed_invitation.feedable.category.nil? %>
+    <%= feed_invitation.feedable.category %>
+  <% end %>
+  <div class='time'>
+    <%= time_ago_in_words(feed_invitation.created_at) %> назад
+  </div>
+</div>
