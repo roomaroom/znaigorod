@@ -7,5 +7,5 @@
 <p>
 Нравится афиша
 </p>
-<div class='kind'><%= t(feed_vote_afisha.feedable.voteable.kind.first) %></div>
+<div class='kind'><%= t "enumerize.afisha.kind.#{feed_vote_afisha.feedable.voteable.kind.first}" %></div>
 <div class='time'><%= time_ago_in_words(feed_vote_afisha.created_at) %> назад</div>

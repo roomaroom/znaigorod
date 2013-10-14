@@ -8,6 +8,6 @@
   <p>
   <%= link_to(feed_afisha.feedable.title, feed_afisha.feedable) %>
   </p>
-  <div class='kind'><%= t(feed_afisha.feedable.kind.first) %></div>
+  <div class='kind'><%= t "enumerize.afisha.kind.#{feed_afisha.feedable.kind.first}" %></div>
   <div class='time'><%= time_ago_in_words(feed_afisha.created_at) %> назад</div>
 </div>
