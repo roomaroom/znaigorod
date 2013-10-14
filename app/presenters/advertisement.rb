@@ -74,6 +74,13 @@ class Advertisement
   end
 
   class WebcamAdvertisementPlace < AdvertisementPlace
+    attr_accessor :webcam
+
+    def initialize(args)
+      super(args)
+      @webcam ||= Webcam.published.order('RANDOM()').limit(1).first
+    end
+
     def partial
       "advertisements/#{list}_webcam_#{replaced_count}"
     end

@@ -9,6 +9,7 @@
 
       .item
         width: 178px
+        height: 302px
         border: 1px solid #ccc
         margin: 0 auto
 
@@ -123,6 +124,7 @@
         .place
           text-align: center
           margin: 3px 0 0 0
+
         .human_when
           text-align: center
           margin: 2px 0 3px 0
@@ -164,3 +166,35 @@
               &.minimal_age
                 background: none
                 padding-left: 18px
+
+        &.webcam
+          width: 180px
+          height: 304px
+          border: none
+
+          .bg
+            top: 0
+            left: 0
+            position: absolute
+            display: block
+            width: 180px
+            height: 240px
+            background: transparent image_url('public/webcam_bg.png') no-repeat -10px -74px
+
+          .play
+            top: 55px
+            left: 57px
+            position: absolute
+            display: block
+            width: 64px
+            height: 64px
+            background: transparent image_url('public/webcam_play.png') no-repeat center center
+
+          .webcam_place
+            height: 62px
+            width: 180px
+            line-height: 24px
+            display: table-cell
+            text-align: center
+            vertical-align: middle
+            background: transparent image_url('public/webcam_bg.png') no-repeat -10px -9px
