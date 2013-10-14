@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
   actions :index, :show, :new, :create
 
   belongs_to :afisha, :polymorphic => true, :optional => true
+  belongs_to :certificate, :polymorphic => true, :optional => true
+  belongs_to :coupon, :polymorphic => true, :optional => true
   belongs_to :discount, :polymorphic => true, :optional => true
   belongs_to :organization, :polymorphic => true, :optional => true
   belongs_to :post, :polymorphic => true, :optional => true
