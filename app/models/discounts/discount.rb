@@ -11,6 +11,8 @@ class Discount < ActiveRecord::Base
   belongs_to :account
   belongs_to :organization
 
+  has_many :comments, :dependent => :destroy, :as => :commentable
+
   validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
 
   extend Enumerize
@@ -23,13 +25,14 @@ class Discount < ActiveRecord::Base
 
   searchable do
     date :created_at
+    time :ends_at
 
     #float :rating
 
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
 
-    text :title, :stored => true
+    text :title, :stored => true, :more_like_this => true
   end
 
   def copies

@@ -1,0 +1,88 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+
+<div class="discount_show">
+  <div class="left">
+    <div class="image">
+      <%= image_tag(resized_image_url(@discount.poster_url, 200, 120), :size => '200x120', :title => @discount.title, :alt => @discount.title) %>
+    </div>
+    <div class="info">
+      <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
+    </div>
+    <div class="counter">
+      <h2>До завершения осталось</h2>
+      <%= distance_of_time_in_words(Time.zone.now, @discount.ends_at) %>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="wrapper">
+      <% if @discount.geo_present? %>
+        <div class="yandex_map">
+          <div class="map"
+            data-latitude="<%= @discount.organization.latitude %>"
+            data-longitude="<%= @discount.organization.longitude %>"
+            data-hint="<%= @discount.organization.title.text_gilensize %>"
+            <%= "data-id=#{@discount.organization.id}" %>>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @discount.similar_discount.present? %>
+        <div class="more_like_this">
+          <p class="title">Другие скидки</p>
+          <ul>
+            <% @discount.similar_discount.each do |discount| %>
+              <li>
+                <div class="image">
+                  <%= link_to discount_path(discount) do %>
+                    <%= image_tag resized_image_url(discount.poster_url, 65, 65), :size => '65x65', :alt => discount.title.text_gilensize %>
+                  <% end %>
+                </div>
+                <div class="clearfix">
+                  <div class="title"><%= link_to discount.title.text_gilensize, discount_path(discount) %></div>
+                  <%= content_tag :div, discount.place.place, :class => "places" if discount.geo_present? %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="center">
+    <h1><%= @discount.title.text_gilensize %></h1>
+
+    <div class="closest">
+      <%= @discount.when_with_price %>
+    </div>
+
+    <% if @discount.geo_present? %>
+      <div class="place">
+        <%= @discount.place.place %>
+      </div>
+    <% end %>
+
+    <div class="text">
+      <%= @discount.html_description %>
+    </div>
+
+    <div class="share_and_likes">
+      <%= render :partial => 'commons/share_this', :locals => { :url => discount_path(@discount.model) } %>
+    </div>
+
+    <div class="tags_and_visits">
+      <ul class="tags">
+        <% @discount.kind.map(&:text).each do |tag| %>
+          <li><%= tag %></li>
+        <%end%>
+      </ul>
+
+      <div class="details">
+      </div>
+    </div>
+
+    <%= render :partial => 'comments/block', :locals => { :parent_obj => @discount } %>
+
+  </div>
+</div>
