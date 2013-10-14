@@ -1,1 +1,3 @@
-<%= visit.inspect %>
+<div class='visit'>
+  <%= render partial: "feeds/feed_visit_#{feed_visit.feedable.visitable.class.name.underscore}", :object => feed_visit %>
+</div>

@@ -1,0 +1,11 @@
+<div>
+  <div class='poster'>
+    <%= link_to image_tag(resized_image_url(feed_vote_work.feedable.voteable.image_url, 87 , 65 ), :size => '87x65'), [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable] %>
+  </div>
+  <%= link_to("Работа " + feed_vote_work.feedable.voteable.to_feed_title, [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable])  %>
+</div>
+<p>
+Нравится работа
+</p>
+<div class='time'><%= time_ago_in_words(feed_vote_work.created_at) %> назад</p>
+</div>

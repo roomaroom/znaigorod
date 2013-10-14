@@ -12,12 +12,53 @@
         &:last-child
           margin-right: 0
 
-  .comment,.friend,.afisha
+  .comment,.friend,.afisha,.vote,.visit
     border-bottom: solid 1px #ccc
     margin-top: 10px
-    padding-bottom: 10px
-    .time
+    overflow: hidden
+    position: relative
+    padding-bottom: 5px
+    .time,.kind
       color: #999
+    .poster
+      float: left
+      position: relative
+      margin-right: 10px
+      .stub_poster
+        display: block
+        width: 65px
+        height: 65px
+        background: #ccc image_url('public/organization_stub_poster_kind_small.png') no-repeat top left
+
+        &.billiard
+          background-position: -70px -2px
+
+        &.car_sales_center
+          background-position: -1px -71px
+
+        &.car_wash
+          background-position: -1px -71px
+
+        &.creation
+          background-position: -279px -2px
+
+        &.culture
+          background-position: -140px -2px
+
+        &.entertainment
+          background-position: -70px -2px
+
+        &.meal
+          background-position: -1px -2px
+
+        &.salon_center
+          background-position: -70px -71px
+
+        &.sauna
+          background-position: -140px -71px
+
+        &.sport
+          background-position: -209px -2px
 
   .friend
     .avatar
@@ -34,4 +75,3 @@
       height: 24px
       line-height: 24px
       padding: 0 0 0 10px
-

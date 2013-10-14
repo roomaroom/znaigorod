@@ -1,1 +1,3 @@
-<%= vote.inspect %>
+<div class='vote'>
+  <%= render partial: "feeds/feed_vote_#{feed_vote.feedable.voteable.class.name.underscore}", :object => feed_vote unless feed_vote.feedable.voteable.class.name.underscore == "nil_class" %>
+</div>

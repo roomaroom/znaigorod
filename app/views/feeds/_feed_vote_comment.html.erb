@@ -1,0 +1,12 @@
+<p>
+<%= link_to feed_vote_comment.feedable.voteable.commentable.title, feed_vote_comment.feedable.voteable.commentable %>
+</p>
+<p>
+Нравится комментарий
+</p>
+<p>
+<%= link_to feed_vote_comment.feedable.voteable.user.name, feed_vote_comment.feedable.voteable.user.account %>: <%= feed_vote_comment.feedable.voteable.body %>
+</p>
+<div class='time');>
+  <%= time_ago_in_words(feed_vote_comment.created_at) %> назад
+</div>

@@ -1,0 +1,14 @@
+<div class='poster'>
+  <%= link_to image_tag( resized_image_url(feed_visit_afisha.feedable.visitable.poster_url, 65 , 87 ), :size => '65x87', :title => feed_visit_afisha.feedable.visitable.title), feed_visit_afisha.feedable.visitable  %>
+</div>
+<p>
+<%= link_to(feed_visit_afisha.feedable.visitable.title, feed_visit_afisha.feedable.visitable) %>
+</p>
+<p>
+<% if feed_visit_afisha.feedable.visitable.actual? %>
+  <%= "Хочет посетить" %>
+<% else %>
+  <%= "Посетил" %>
+<% end %>
+</p>
+<div class='time'><%= time_ago_in_words(feed_visit_afisha.created_at) %> назад</div>
