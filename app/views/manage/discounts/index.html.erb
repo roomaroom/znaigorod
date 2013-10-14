@@ -8,9 +8,9 @@
   <% collection.each do |item| %>
     <li>
       <% if item.poster_url? %>
-        <%= image_tag(resized_image_url(item.poster_url, 40, 60), size: '40x60') %>
+        <%= image_tag(resized_image_url(item.poster_url, 60, 60), size: '60x60') %>
       <% else %>
-        <%= image_tag 'public/stub_poster.png', size: '40x60' %>
+        <%= image_tag 'public/stub_poster.png', size: '60x60' %>
       <% end %>
       <%= link_to item.title, manage_discount_path(item) %>
       <%= content_tag :span, item.type? ? t("manage.discount.type.#{item.type.underscore}") : 'Скидка' %>
