@@ -26,7 +26,7 @@ module SearchWithFacets
           text facet
         end
 
-        boolean(:sms_claimable) { sms_claimable? }
+        boolean(:sms_claimable) { respond_to?(:sms_claimable?) ? sms_claimable? : false }
 
         float :organization_total_rating
 

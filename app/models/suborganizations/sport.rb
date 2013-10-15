@@ -41,7 +41,6 @@ class Sport < ActiveRecord::Base
     :validates_presence => true,
     :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
   presents_as_checkboxes :feature
-
 end
 
 # == Schema Information
