@@ -1,0 +1,14 @@
+@init_countdown = () ->
+  console.log timer = $('.countdown')
+  console.log countdown_time = timer.data('countdown_time')
+  console.log new Date(countdown_time)
+
+  timer.countdown
+    until: new Date(countdown_time)
+    format: "dHM"
+    timezone: +7
+    layout: "<div class=\"timer\">" +
+      "<div class=\"timer_days\" class=\"timer_numbers\">{dnn}</div> <div class=\"label_days\">д.</div>" +
+      "<div class=\"timer_hours\" class=\"timer_numbers\">{hnn}</div> <div class=\"label_hours\">ч.</div>" +
+      "<div class=\"timer_mins\" class=\"timer_numbers\">{mnn}</div> <div class=\"label_mins\">м.</div>" +
+      "</div>"

@@ -87,5 +87,6 @@
  * = require ./invitation_list_popup
  * = require ./infinite_scroll
  * = require ./additional_info
+ * = require ./countdown
  * = require ./main
  */

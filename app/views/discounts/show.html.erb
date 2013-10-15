@@ -16,7 +16,7 @@
 
     <div class="counter">
       <h2>До завершения осталось</h2>
-      <%= distance_of_time_in_words(Time.zone.now, @discount.ends_at) %>
+      <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
     </div>
   </div>
 

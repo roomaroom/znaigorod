@@ -3,6 +3,10 @@
 class DiscountDecorator < ApplicationDecorator
   decorates :discount
 
+  def countdown_time
+    I18n.l(ends_at, :format => '%Y, %m, %d, %H')
+  end
+
   def when_with_price
     h.content_tag :p, h.content_tag(:span, human_when, :class => :when)
   end

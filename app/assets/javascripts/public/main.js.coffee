@@ -85,4 +85,6 @@ $(window).load ->
   init_move_to_top() if $('a.move_to_top').length
   init_crop()
 
+  init_countdown() if $('.countdown').length
+
   true

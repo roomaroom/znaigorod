@@ -63,11 +63,48 @@
     .counter
       +background(linear-gradient(top, #fff, #e8e8e8))
       border-top: 1px solid #ccc
+      height: 70px
       text-align: center
 
       h2
         font-size: 12px
-        line-height: 22px
+        line-height: 30px
+
+      .timer
+        font-size: 18px
+        line-height: 20px
+        position: relative
+
+        .timer_days, .timer_hours, .timer_mins, .label_days, .label_hours, .label_mins
+          position: absolute
+
+        .timer_days, .timer_hours, .timer_mins
+          +border-radius(4px)
+          background: #fff
+          border: 2px solid #ccc
+          padding: 3px
+
+        .label_days, .label_hours, .label_mins
+          font-size: 14px
+          top: 4px
+
+        .timer_days
+          left: 35px
+
+        .label_days
+          left: 68px
+
+        .timer_hours
+          left: 84px
+
+        .label_hours
+          left: 116px
+
+        .timer_mins
+          left: 130px
+
+        .label_mins
+          left: 162px
 
   .right
     float: right
