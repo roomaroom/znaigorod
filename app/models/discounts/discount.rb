@@ -13,6 +13,7 @@ class Discount < ActiveRecord::Base
   belongs_to :organization
 
   has_many :comments,    :dependent => :destroy, :as => :commentable
+  has_many :members,     :dependent => :destroy, :as => :memberable
   has_many :page_visits, :dependent => :destroy, :as => :page_visitable
   has_many :votes,       :dependent => :destroy, :as => :voteable
 
