@@ -56,6 +56,7 @@ Znaigorod::Application.routes.draw do
 
     # from legacy
     get "/#{kind.pluralize}/(:category)/(*query)",
+      :constraints => lambda { |req| !req.original_fullpath.match(/^\/#{kind.pluralize}\/\d+/) },
       :to => redirect { |params, req|
         url = "/#{kind.pluralize}"
         if params[:category] == 'all'
