@@ -18,9 +18,10 @@ class AccountsController < ApplicationController
   def show
     show! {
       @presenter = AccountsPresenter.new(params)
+      @feeds_presenter = FeedsPresenter.new(params)
       @account = AccountDecorator.new Account.find(params[:id])
-      unless params[:kind].nil?
-        @feeds = Kaminari.paginate_array(@account.feeds.where(:feedable_type => params[:kind]).order('created_at DESC')).page(1).per(10)
+      unless params[:kind].nil? || (params[:kind] == 'all')
+        @feeds = Kaminari.paginate_array(@account.feeds.where(:feedable_type => params[:kind].capitalize).order('created_at DESC')).page(1).per(10)
       else
         @feeds = Kaminari.paginate_array(@account.feeds.order('created_at DESC')).page(1).per(10)
       end

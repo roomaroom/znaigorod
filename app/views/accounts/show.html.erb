@@ -41,7 +41,7 @@
   <div class="right">
     <div class='last_visit'>
       последнее посещение было
-      <%= l(@account.users.first.current_sign_in_at, :format => '%d %B %Y %H:%M') %>
+      <%= time_ago_in_words @account.users.first.current_sign_in_at %> назад
     </div>
 
     <h1><%= @account.title %></h1>
@@ -93,36 +93,18 @@
           Новости
         </h3>
       </div>
-      <div class='filters_feed'>
-        <ul>
-          <li>
-            <a href="#">Все</a>
-          </li>
-          <li>
-            <a href="#">Комментарии</a>
-          </li>
-          <li>
-            <a href="#">Афиши</a>
-          </li>
-          <li>
-            <a href="#">Друзья</a>
-          </li>
-          <li>
-            <a href="#">Приглашения</a>
-          </li>
-          <li>
-           <a href="#">Нравится</a>
-          </li>
+      <%= render 'feeds_filters' %>
+      <% if @feeds.any? %>
+        <ul class='feed'>
+          <%= render @feeds %>
         </ul>
-      </div>
-      <ul>
-        <%= render @feeds %>
-      </ul>
-      <% unless @feeds.first_page? && @feeds.last_page? %>
-        <div class="pagination">
-          <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if @feeds.first_page? }", :remote => true %>
-          <%= link_to '&darr;'.html_safe, account_feeds_path(@account, :page => @feeds.current_page + 1), :class => "next_page #{ 'disabled' if @feeds.last_page? }", :remote => true %>
-        </div>
+        <% unless @feeds.first_page? && @feeds.last_page? %>
+          <div class="feed_pagination">
+            <%= link_to ''.html_safe, account_feeds_path(@account, :page => @feeds.current_page + 1, :kind => @feeds_presenter.kind_filter.kind), :class => "next_page #{ 'disabled' if @feeds.last_page? }", :remote => true %>
+          </div>
+        <% end %>
+      <% else %>
+        Ничего не найдено =(
       <% end %>
     </div>
 
