@@ -28,15 +28,6 @@
       <div class='phone'>
         <%= organization.decorated_phones %>
       </div>
-
-      <ul class='sms_claims'>
-        <% organization.claimable_suborganizations.select(&:sms_claimable?).each do |suborganization| %>
-          <li>
-            <%= link_to t("sms_claim.#{suborganization.class.name.underscore}.link_title").html_safe,
-              send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization) %>
-          </li>
-        <% end %>
-      </ul>
     </div>
 
     <ul class='sauna_halls'>
