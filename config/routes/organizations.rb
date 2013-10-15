@@ -54,7 +54,6 @@ Znaigorod::Application.routes.draw do
           :defaults => {:kind => kind, :categories => [row.value]}
         end
       rescue Exception => e
-        p e
       end
       get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
 
