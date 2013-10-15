@@ -59,15 +59,6 @@
         <div class='phone'>
           <%= organization.decorated_phones %>
         </div>
-        <% if organization.sms_claimable? %>
-          <ul class='sms_claims'>
-            <% organization.claimable_suborganizations.each do |suborganization| %>
-              <li>
-                <%= link_to t("sms_claim.#{suborganization.class.name.underscore}.link_title"), send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization) %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
       </div>
     </li>
   <% end %>
