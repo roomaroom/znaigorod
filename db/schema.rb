@@ -402,6 +402,17 @@ ActiveRecord::Schema.define(:version => 20131015051531) do
 
   add_index "meals", ["organization_id"], :name => "index_meals_on_organization_id"
 
+  create_table "members", :force => true do |t|
+    t.integer  "memberable_id"
+    t.string   "memberable_type"
+    t.integer  "account_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "members", ["account_id"], :name => "index_members_on_account_id"
+  add_index "members", ["memberable_id"], :name => "index_members_on_memberable_id"
+
   create_table "menu_positions", :force => true do |t|
     t.integer  "menu_id"
     t.string   "position"

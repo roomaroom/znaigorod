@@ -17,6 +17,8 @@ class Discount < ActiveRecord::Base
   has_many :page_visits, :dependent => :destroy, :as => :page_visitable
   has_many :votes,       :dependent => :destroy, :as => :voteable
 
+  has_many :accounts, :through => :members
+
   validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
 
   extend Enumerize

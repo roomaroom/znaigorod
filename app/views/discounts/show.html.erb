@@ -10,13 +10,17 @@
     </div>
 
     <div class="action">
-      <%= link_to 'Участвовать', '#', :class => 'participate' if @discount.free? %>
+      <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true if @discount.free? %>
       <%= link_to 'Купить', '#', :class => 'participate' if @discount.paid? %>
     </div>
 
     <div class="counter">
       <h2>До завершения осталось</h2>
       <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+    </div>
+
+    <div class="members">
+      <%= render :partial => 'members/members', :locals => { :memberable => @discount } %>
     </div>
   </div>
 
