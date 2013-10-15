@@ -264,3 +264,33 @@
             color: #000
             padding-left: 0
             padding-right: 0
+
+      .details
+        float: right
+        color: #999
+        font-size: 11px
+        margin-top: 5px
+        margin-bottom: 10px
+
+        span
+          cursor: help
+          +inline-block
+          background: transparent url(/assets/public/details_sprite.png) no-repeat 10px 3px
+          margin-left: 5px
+
+          &.to_go
+            background-position: 0 4px
+            padding-left: 13px
+
+          &.comments
+            background-position: 0 -35px
+            padding-left: 19px
+            margin-bottom: 0
+
+          &.likes
+            background-position: 0 -56px
+            padding-left: 13px
+
+          &.visits
+            background-position: 0 -76px
+            padding-left: 19px

@@ -7,7 +7,7 @@ desc 'Get social likes for afishas,organizations and posts'
 task :social_likes => :environment do
   likes = SocialLikes.new
 
-  ['Afisha','Organization', 'Post'].each do |klass|
+  ['Afisha','Organization', 'Post', 'Discount'].each do |klass|
     if klass == 'Afisha'
       collection = klass.constantize.with_showings
     else

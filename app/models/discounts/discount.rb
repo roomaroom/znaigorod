@@ -2,6 +2,7 @@
 
 class Discount < ActiveRecord::Base
   include CropedPoster
+  include MakePageVisit
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :organization_id
@@ -11,7 +12,9 @@ class Discount < ActiveRecord::Base
   belongs_to :account
   belongs_to :organization
 
-  has_many :comments, :dependent => :destroy, :as => :commentable
+  has_many :comments,    :dependent => :destroy, :as => :commentable
+  has_many :page_visits, :dependent => :destroy, :as => :page_visitable
+  has_many :votes,       :dependent => :destroy, :as => :voteable
 
   validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
 
@@ -37,6 +40,10 @@ class Discount < ActiveRecord::Base
 
   def copies
     []
+  end
+
+  def likes_count
+    self.votes.liked.count
   end
 end
 

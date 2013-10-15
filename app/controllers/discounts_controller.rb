@@ -15,6 +15,7 @@ class DiscountsController < ApplicationController
     show! {
       @presenter = DiscountsPresenter.new(params)
       @discount = DiscountDecorator.new Discount.find(params[:id])
+      @discount.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     }
   end
 end

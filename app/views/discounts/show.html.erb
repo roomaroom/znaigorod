@@ -97,6 +97,10 @@
       </ul>
 
       <div class="details">
+        <span class="show_tipsy to_go" title="Участники"><%#= @discount.visits.count %></span>
+        <span class="show_tipsy comments" title="Комментарии"><%= @discount.comments.count %></span>
+        <span class="show_tipsy likes" title="Понравилось"><%= @discount.likes_count %></span>
+        <span class="show_tipsy visits" title="Просмотры"><%= @discount.page_visits.count %></span>
       </div>
     </div>
 
