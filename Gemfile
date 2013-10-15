@@ -55,7 +55,6 @@ group :default do
   gem 'pg'
   gem 'progress_bar'
   gem 'rails'
-  gem 'recaptcha',                  :require => 'recaptcha/rails'
   gem 'russian'
   gem 'sanitize'
   gem 'sass-rails'

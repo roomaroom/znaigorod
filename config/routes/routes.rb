@@ -14,6 +14,8 @@ Znaigorod::Application.routes.draw do
     get method => "cooperation##{method}"
   end
 
+  get 'feedback' => 'feedback#show'
+
   get 'accounts_search' => 'accounts_search#show',         :as => :accounts_search
   get '/cooperation' => redirect('/services')
   get 'geocoder'        => 'geocoder#get_coordinates'
@@ -115,9 +117,6 @@ Znaigorod::Application.routes.draw do
   end
 
   resources :webcams, :only => [:index, :show]
-
-  get 'feedback' => 'feedback#new', :as => :new_feedback
-  post 'feedback' => 'feedback#create', :as => :create_feedback
 
   match '/' => redirect{|p, req| "#{req.url.sub(req.subdomain+'.', '')}organizations/#{Organization.find_by_subdomain(req.subdomain).slug}"}, :constraints => lambda{|r| r.subdomain.present? && Organization.pluck(:subdomain).uniq.delete_if{|s| s.nil? || s.blank?}.include?(r.subdomain) }
 

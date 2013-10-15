@@ -15,7 +15,6 @@ ru:
       contact:                            Контакт
       contest:                            Конкурс
       comment:                            Комментарий
-      feedback:                           Обратная связь
       vote:                               Голос
       invitation:                         Приглашение
 
@@ -185,11 +184,6 @@ ru:
       attachment:
         <<: *common_attributes
         file: Выберите файл
-
-      feedback:
-        email: Ваш адрес электронной почты
-        fullname: Ваше имя
-        message: Текст вашего сообщения
 
       showing:
         ends_at: Окончание

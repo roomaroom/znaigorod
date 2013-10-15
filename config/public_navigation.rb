@@ -44,6 +44,7 @@ SimpleNavigation::Configuration.run do |navigation|
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? params[:controller] }
       more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
       more.item :cooperation, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
+      more.item :cooperation, 'Отзывы и предложения', feedback_path, highlights_on: -> { params[:controller] == 'feedback' }
     end
 
     # Add an item to the primary navigation. The following params apply:
