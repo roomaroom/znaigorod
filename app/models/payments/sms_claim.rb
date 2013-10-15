@@ -20,11 +20,11 @@ class SmsClaim < ActiveRecord::Base
   private
 
   def check_balance
-    errors[:base] << I18n.t('activerecord.errors.messages.not_enough_money') unless claimed.enough_balance?
+    errors[:base] << I18n.t('activerecord.errors.messages.not_enough_money') unless claimed.reservation.enough_balance?
   end
 
   def send_sms_to_organization
-    smses.create! :phone => claimed.organization.phone_for_sms, :message => message_for_organization
+    smses.create! :phone => claimed.reservation.phone, :message => message_for_organization
   end
 
   def send_sms_to_purchaser
@@ -32,9 +32,8 @@ class SmsClaim < ActiveRecord::Base
   end
 
   def pay
-    organization = claimed.organization
-    organization.balance_delta = -Settings['sms_claim.price']
-    organization.save :validate => false
+    claimed.reservation.balance -= Settings['sms_claim.price']
+    claimed.reservation.save!
   end
 
   def normalized_phone
