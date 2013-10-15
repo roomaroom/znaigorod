@@ -71,6 +71,18 @@
 
     <div class="text">
       <%= @discount.html_description %>
+
+      <% if @discount.account.present? && ![4, 13, 1936, 2303].include?(@discount.account.id) %>
+        <p class="discount_owner">
+          <span>Автор:</span>
+          <%= link_to(@discount.account.title, @discount.account) %>
+        </p>
+      <% else %>
+        <p class="discount_owner">
+          <span>Автор:</span>
+          <%= link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') %>
+        </p>
+      <% end %>
     </div>
 
     <div class="share_and_likes">
