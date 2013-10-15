@@ -9,9 +9,15 @@
   <%= hit.result_decorator.when_with_price %>
   <%= hit.places %>
 
+  <% if hit.result_decorator.has_tickets_for_sale? %>
+    <div class='has_tickets'>
+      <%= link_to 'Купить билет', afisha_show_path(hit.result_decorator, anchor: :buy_ticket), class: :button %>
+    </div>
+  <% end %>
+
   <div class='excerpt'><%= hit.excerpt %></div>
 
-  <div class="details">
+  <div class='details'>
     <%= content_tag :span, hit.result_decorator.visits.count, class: :to_go %>
     <%= content_tag :span, hit.result_decorator.comments.count, class: :comments %>
     <%= content_tag :span, hit.result_decorator.votes.liked.count, class: :likes %>
