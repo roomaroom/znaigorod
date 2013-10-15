@@ -1,7 +1,6 @@
 @init_countdown = () ->
-  console.log timer = $('.countdown')
-  console.log countdown_time = timer.data('countdown_time')
-  console.log new Date(countdown_time)
+  timer = $('.countdown')
+  countdown_time = timer.data('countdown_time')
 
   timer.countdown
     until: new Date(countdown_time)

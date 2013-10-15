@@ -4,7 +4,7 @@ class DiscountDecorator < ApplicationDecorator
   decorates :discount
 
   def countdown_time
-    I18n.l(ends_at, :format => '%Y, %m, %d, %H')
+    I18n.l(ends_at, :format => '%Y, %m, %d, %H:%M')
   end
 
   def when_with_price
