@@ -36,13 +36,13 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :afisha, 'Афиша', root_path, highlights_on: -> { params[:controller] == 'afishas' }
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first }
-    primary.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
+    primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
     primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' }
     primary.item :more, 'Ещё &#9662;', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests webcams cooperation].include?(params[:controller]) } do |more|
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { params[:controller] == nil }
+      more.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? params[:controller] }
-      more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
       more.item :cooperation, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
       more.item :cooperation, 'Отзывы и предложения', feedback_path, highlights_on: -> { params[:controller] == 'feedback' }
     end
