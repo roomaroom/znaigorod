@@ -31,7 +31,7 @@ module Mobile
       def affishes(kind, period, sorting, page)
         period ||= 'all'
         sorting ||= 'creation'
-        AfishaPresenter.new(:categories => (kind == 'all' ?  [] : [kind]), :period => period, :order_by => sorting, :page => page )
+        AfishaPresenter.new(:categories => (kind == 'all' ?  [] : [kind]), :period => period, :order_by => sorting, :page => page, :for_mobile_api => true )
       end
 
       def affisha_updated_at(affisha)
