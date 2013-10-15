@@ -1,16 +1,13 @@
 <div class='poster'>
-<% unless feed_vote_organization.feedable.voteable.logotype_url == "" %>
-    <%= link_to image_tag(resized_image_url(feed_vote_organization.feedable.voteable.logotype_url, 65 , 65 ), :size => '65x65'), feed_vote_organization.feedable.voteable %>
+<% unless feed_vote_organization.voteable.logotype_url == "" %>
+    <%= link_to image_tag(resized_image_url(feed_vote_organization.voteable.logotype_url, 65 , 65 ), :size => '65x65'), feed_vote_organization.voteable %>
 <% else %>
-  <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.feedable.voteable.priority_suborganization_kind.first) %>
+  <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.voteable.priority_suborganization_kind.first) %>
 <% end %>
 </div>
 <p>
-<%= link_to feed_vote_organization.feedable.voteable.title, feed_vote_organization.feedable.voteable %>
+<%= link_to feed_vote_organization.voteable.title, feed_vote_organization.voteable %>
 </p>
 <p>
 Нравится организация
 </p>
-<div class='time'>
-  <%= time_ago_in_words feed_vote_organization.created_at %>
-</div>

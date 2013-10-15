@@ -16,6 +16,16 @@ ru:
         spectacle: Спектакли
         child: Детям
         all: Вся афиша
+      feed_kind:
+        party: Вечеринка
+        other: Другое
+        masterclass: Мастер-класс
+        concert: Концерт
+        sportsevent: Спорт
+        exhibition: Выставка
+        movie: Кино
+        competition: Конкурс
+        spectacle: Спектакль
       state:
         draft: Черновик
         pending: На модерации

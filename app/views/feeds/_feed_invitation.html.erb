@@ -1,4 +1,7 @@
 <div class="invitation">
+  <div class='time'>
+    <%= time_ago_in_words(feed_invitation.created_at) %> назад
+  </div>
   <% if feed_invitation.feedable.kind == "inviter"  %>
     <%= "Приглашает" %>
   <% else %>
@@ -12,7 +15,4 @@
   <% if feed_invitation.feedable.inviteable_type.nil? && !feed_invitation.feedable.category.nil? %>
     <%= feed_invitation.feedable.category %>
   <% end %>
-  <div class='time'>
-    <%= time_ago_in_words(feed_invitation.created_at) %> назад
-  </div>
 </div>

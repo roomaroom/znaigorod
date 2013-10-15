@@ -1,14 +1,11 @@
 <div class='poster'>
-  <% if feed_vote_post.feedable.voteable.gallery_images.any? %>
-    <%= link_to image_tag(resized_image_url(feed_vote_post.feedable.voteable.gallery_images.first.file_url, 65 , 65 ), :size => '65x65'), feed_vote_post.feedable.voteable %>
+  <% if feed_vote_post.voteable.gallery_images.any? %>
+    <%= link_to image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 65 , 65 ), :size => '65x65'), feed_vote_post.voteable %>
   <% end %>
 </div>
 <p>
-<%= link_to feed_vote_post.feedable.voteable.title, feed_vote_post.feedable.voteable %>
+<%= link_to feed_vote_post.voteable.title, feed_vote_post.voteable %>
 </p>
 <p>
 Нравится обзор
 </p>
-<div class='time');>
-  <%= time_ago_in_words(feed_vote_post.created_at) %> назад
-</div>

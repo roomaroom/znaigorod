@@ -1,3 +1,4 @@
 <div class='visit'>
-  <%= render partial: "feeds/feed_visit_#{feed_visit.feedable.visitable.class.name.underscore}", :object => feed_visit %>
+  <div class='time'><%= time_ago_in_words(feed_visit.created_at) %> назад</div>
+  <%= render partial: "feeds/feed_visit_#{feed_visit.feedable.visitable.class.name.underscore}", :object => feed_visit.feedable %>
 </div>
