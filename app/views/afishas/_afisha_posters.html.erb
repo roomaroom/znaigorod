@@ -1,4 +1,4 @@
-<% (afishas || @presenter.decorated_collection).each do |afisha| %>
+<% (afishas || @presenter.decorated_collection).compact.each do |afisha| %>
   <li>
     <%= render partial: (afisha.is_a?(AfishaDecorator) ? 'afishas/afisha_poster' : afisha.partial), locals: { afisha: afisha } %>
   </li>
