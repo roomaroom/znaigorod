@@ -26,6 +26,8 @@ module SearchWithFacets
           text facet
         end
 
+        boolean(:sms_claimable) { sms_claimable? }
+
         float :organization_total_rating
 
         integer(:organization_ids, multiple: true) { [organization_id] }
