@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131101034813) do
     t.datetime "avatar_updated_at"
     t.text     "avatar_url"
     t.date     "birthday"
+    t.datetime "last_visit_at"
   end
 
   create_table "activities", :force => true do |t|

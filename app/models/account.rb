@@ -260,5 +260,6 @@ end
 #  avatar_updated_at   :datetime
 #  avatar_url          :text
 #  birthday            :date
+#  last_visit_at       :datetime
 #
 
