@@ -61,4 +61,12 @@ class ApplicationController < ActionController::Base
   def banners
     Affiche.with_images.with_showings.latest(4)
   end
+
+  def update_account_last_visit_at
+    return if current_user.blank? || current_user.account.blank?
+    if current_user.account.last_visit_at.blank? ||
+       current_user.account.last_visit_at < DateTime.now - 5.minute
+      current_user.account.update_column :last_visit_at, DateTime.now
+    end
+  end
 end

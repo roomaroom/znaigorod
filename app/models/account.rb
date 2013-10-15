@@ -87,6 +87,11 @@ class Account < ActiveRecord::Base
     "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
   end
 
+  def age
+    now = Time.now.utc.to_date
+    now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+  end
+
   def create_page_visit(session, user_agent, user)
     my_page_visit = self.my_page_visits.new
     my_page_visit.user_agent = user_agent.to_s.encode('UTF-8', :undef => :replace, :invalid => :replace, :replace => '')

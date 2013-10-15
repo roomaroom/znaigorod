@@ -26,6 +26,13 @@
         </ul>
       <% end %>
 
+      <div class="show_feeds">
+        Активность
+      </div>
+      <div class="show_friends">
+        Друзья <span class="counter"><%= @friends.total_count %></span>
+      </div>
+
       <% if @friends.any? %>
         <div class="friends_counter">
           <div class="floatl">Друзья</div>
@@ -39,15 +46,20 @@
   </div>
 
   <div class="right">
-    <div class='last_visit'>
-      последнее посещение было
-      <%= time_ago_in_words @account.users.first.current_sign_in_at %> назад
-    </div>
+    <% if @account.last_visit_at? %>
+      <div class='last_visit'>
+        <% if @account.last_visit_at > DateTime.now - 5.minute %>
+          сейчас на сайте
+        <% else %>
+          последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
+        <% end %>
+      </div>
+    <% end %>
 
     <h1><%= @account.title %></h1>
 
     <div class="account_info">
-      <%= content_tag :div, "День рождения: #{l(@account.birthday)}", :class => :row if @account.birthday? %>
+      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => @account.age)}", :class => :row if @account.birthday? %>
       <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
     </div>
 
