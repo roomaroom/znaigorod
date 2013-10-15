@@ -1,7 +1,7 @@
 <div class="show">
   <h1><%= resource.title %></h1>
   <%= link_to "редактировать", [:edit, :manage, resource], :class => 'edit_link' %>
-  <%= link_to "посмотреть в публичном виде", '#', :target => :_blank, :class => 'edit_link floatr' %>
+  <%= link_to "посмотреть в публичном виде", discount_path(resource), :target => :_blank, :class => 'edit_link floatr' %>
 
   <div class="logo">
     <% if resource.poster_url? %>
