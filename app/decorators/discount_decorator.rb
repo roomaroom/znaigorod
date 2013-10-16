@@ -4,7 +4,11 @@ class DiscountDecorator < ApplicationDecorator
   decorates :discount
 
   def countdown_time
-    I18n.l(ends_at, :format => '%Y, %m, %d, %H:%M')
+    ends_at.to_i * 1000
+  end
+
+  def passed?
+    return true if ends_at < Time.zone.now
   end
 
   def when_with_price
@@ -12,12 +16,16 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def human_when
-    if price.nil?
-      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
-    elsif free?
-      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, бесплатно".squish
+    if passed?
+      return "Было: #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
     else
-      return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, #{h.number_to_currency(price, :unit => 'р.', :precision => 0)}".squish
+      if price.nil?
+        return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
+      elsif free?
+        return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, бесплатно".squish
+      else
+        return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, #{h.number_to_currency(price, :unit => 'р.', :precision => 0)}".squish
+      end
     end
   end
 

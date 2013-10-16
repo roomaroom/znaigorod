@@ -1,6 +1,6 @@
 @init_countdown = () ->
   timer = $('.countdown')
-  countdown_time = timer.data('countdown_time')
+  countdown_time = parseInt(timer.data('countdown_time'))
 
   timer.countdown
     until: new Date(countdown_time)

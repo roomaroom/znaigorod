@@ -14,10 +14,12 @@
       <%= link_to 'Купить', '#', :class => 'participate' if @discount.paid? %>
     </div>
 
-    <div class="counter">
-      <h2>До завершения осталось</h2>
-      <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
-    </div>
+    <% unless @discount.passed? %>
+      <div class="counter">
+        <h2>До завершения осталось</h2>
+        <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+      </div>
+    <% end %>
 
     <div class="members">
       <%= render :partial => 'members/members', :locals => { :memberable => @discount } %>
