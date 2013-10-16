@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :banners, :hot_offers, :page, :per_page
 
-  before_filter :detect_robots_in_development
+  before_filter :detect_robots_in_development if Rails.env.development?
 
   layout :resolve_layout
 
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def detect_robots_in_development
-    render :nothing => true, status: :forbidden and return if request.user_agent.match(/\(.*https?:\/\/.*\)/) && Rails.env.development?
+    render :nothing => true, status: :forbidden and return if request.user_agent.to_s.match(/\(.*https?:\/\/.*\)/)
   end
 
   def resolve_layout
