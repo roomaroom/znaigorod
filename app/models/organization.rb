@@ -142,6 +142,7 @@ class Organization < ActiveRecord::Base
     string(:inviteable_categories, :multiple => true) { Inviteables.instance.categories_for_organization self }
     string(:kind, :multiple => true) { ['organization'] }
     string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:underscore) }
+    boolean(:sms_claimable) { suborganizations.select {|s| s.respond_to?(:sms_claimable?)}.select {|s| s.sms_claimable?}.any? }
 
     text :title,                :boost => 1.0 * 1.2
     text :title_ru,             :boost => 1.0,              :more_like_this => true
@@ -224,7 +225,7 @@ class Organization < ActiveRecord::Base
   end
 
   def index_suborganizations
-    suborganizations.map(&:index)
+    suborganizations.map(&:sunspot_index)
   end
 
   def self.grouped_collection_for_select

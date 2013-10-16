@@ -44,6 +44,8 @@ class Meal < ActiveRecord::Base
 
   search_with_facets :category, :payment, :cuisine, :feature, :offer, :stuff
 
+  alias_method :sunspot_index, :index
+
   include SmsClaims
 end
 

@@ -32,8 +32,9 @@ Organization.basic_suborganization_kinds.each do |kind|
           facet field, sort: :index
         end
       end
-
     end
+
+    property :sms_claimable
 
     # OPTIMIZE: special cases
     scope :remove_duplicated do

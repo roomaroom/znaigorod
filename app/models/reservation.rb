@@ -9,7 +9,7 @@ class Reservation < ActiveRecord::Base
 
   after_initialize :set_default_title_and_placeholder, :if => :new_record?
 
-  delegate :index, :to => :reserveable, :prefix => true
+  delegate :sunspot_index, :to => :reserveable, :prefix => true
   after_save :reserveable_index
   after_destroy :reserveable_index
 

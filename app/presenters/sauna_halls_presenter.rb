@@ -73,7 +73,7 @@ class SaunaHallsPresenter
   end
 
   def categories_links
-    EntertainmentsPresenter.new(categories: ['sauna']).categories_links
+    @categories_links ||= EntertainmentsPresenter.new(categories: ['sauna']).categories_links
   end
 
   def capacity_hash
@@ -141,6 +141,7 @@ class SaunaHallsPresenter
       order_by(criterion, direction)
 
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
+      with(:sms_claimable, true) if sms_claimable
 
       facet :baths,         sort: :index, zeros: true
       facet :features,      sort: :index, zeros: true

@@ -11,6 +11,17 @@
         <% end %>
       </ul>
     </div>
+
+    <% if @presenter.collection_sms_claimable? %>
+      <div class="by_sms_claimable">
+        <ul>
+          <li<%= " class=selected" if @presenter.sms_claimable_link[:selected] %>>
+            <%= link_to @presenter.sms_claimable_link[:title],
+              send(@presenter.sms_claimable_link[:url], @presenter.sms_claimable_link[:parameters]) %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
   <div class='filters organization'>

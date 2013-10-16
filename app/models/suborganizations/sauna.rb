@@ -69,6 +69,10 @@ class Sauna < ActiveRecord::Base
     sauna_halls.any?
   end
 
+  def sunspot_index
+    index and sauna_halls.map(&:index)
+  end
+
   include SmsClaims
 end
 

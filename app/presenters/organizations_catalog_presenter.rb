@@ -21,10 +21,10 @@ class OrganizationsCatalogPresenter
     Hashie::Mash.new :selected => [], :available => []
   end
 
-  def searcher_params
+  def searcher_params(aditional = {})
     search_params = super
-    search_params.merge!({:status => 'client'}) if @only_clients
-    search_params
+    search_params.merge!(:status => 'client') if @only_clients
+    search_params.merge(aditional)
   end
 
   def categories_links

@@ -56,6 +56,7 @@ end
 HasSearcher.create_searcher :organizations do
   models :organization
   property :status
+  property :sms_claimable
 
   property :location do |search|
     search.with(:location).in_bounding_box(

@@ -29,6 +29,10 @@ Znaigorod::Application.routes.draw do
   get '/saunas/sauny', :to => redirect('/saunas')
 
   Organization.basic_suborganization_kinds.each do |kind|
+    resources kind.pluralize, :only => [] do
+      resources :sms_claims, :only => [:new, :create]
+    end
+
     # redirects from /kind?categories[]=...
     get "/#{kind.pluralize}",
       :constraints => lambda { |req| req.query_parameters.has_key?('categories') },
@@ -83,10 +87,6 @@ Znaigorod::Application.routes.draw do
         end
         URI.encode(url)
     }
-
-    resources kind.pluralize, :only => [] do
-      resources :sms_claims, :only => [:new, :create]
-    end
   end
 
   get '/entertainments/bilyardnye_zaly' => 'suborganizations#index', :as => :billiards, :constraints => { :kind => 'entertainments' }, :defaults => { :kind => 'entertainments' }

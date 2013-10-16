@@ -6,7 +6,7 @@ module OrganizationsPresenter
   include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
-  attr_accessor :order_by
+  attr_accessor :order_by, :sms_claimable
 
   included do
     available_sortings.each do |sorting|
@@ -61,6 +61,7 @@ module OrganizationsPresenter
 
   def initialize(args = {})
     super(args)
+    self.sms_claimable = self.sms_claimable && collection_sms_claimable?
 
     @page ||= 1
     @per_page = 18
@@ -140,6 +141,16 @@ module OrganizationsPresenter
     end
   end
 
+  def collection_url
+    pluralized_kind == selected_category.pluralize ? "#{pluralized_kind}_path" : "#{pluralized_kind}_#{selected_category.pluralize}_path"
+  end
+
+  def url_parameters(aditional = {})
+    params = {}
+    #params[:sms_claimable] = true if sms_claimable
+    params.merge(aditional)
+  end
+
   def kinds_links
     @kinds_links ||= [].tap do |kinds_links|
       self.class.suborganization_kinds.map(&:name).map(&:underscore).each do |suborganization_kind|
@@ -147,7 +158,7 @@ module OrganizationsPresenter
           title: I18n.t("organization.kind.#{suborganization_kind}"),
           klass: suborganization_kind,
           url: "#{suborganization_kind.pluralize}_path",
-          parameters: {},
+          parameters: url_parameters,
           selected: selected_kind == suborganization_kind,
         }
       end
@@ -161,7 +172,7 @@ module OrganizationsPresenter
           title: row.value.mb_chars.capitalize,
           klass: row.value.from_russian_to_param,
           url: "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path",
-          parameters: {},
+          parameters: url_parameters,
           selected: categories_filter[:selected].include?(row.value.mb_chars.downcase),
           count: row.count
         }
@@ -172,11 +183,24 @@ module OrganizationsPresenter
         title: 'Все',
         klass: 'all',
         url: "#{pluralized_kind}_path",
-        parameters: {},
+        parameters: url_parameters,
         selected: array.select {|a| a[:selected]}.empty?,
         count: HasSearcher.searcher(pluralized_kind.to_sym).total
       })
     }
+  end
+
+  def sms_claimable_link
+    @sms_link ||= {}.tap do |link|
+      link[:title] = 'С возможностью заказа'
+      link[:url] = collection_url
+      link[:parameters] = url_parameters(sms_claimable: sms_claimable ? nil : true)
+      link[:selected] = sms_claimable ? true : false
+    end
+  end
+
+  def collection_sms_claimable?
+    HasSearcher.searcher(pluralized_kind.to_sym, searcher_params(sms_claimable: true)).total > 0
   end
 
   def sortings_links
@@ -184,16 +208,13 @@ module OrganizationsPresenter
       self.class.available_sortings_without_nearness.each do |sorting_value|
         array << {
           title: I18n.t("organization.sort.#{sorting_value}"),
-          url: pluralized_kind == selected_category.pluralize ? "#{pluralized_kind}_path" : "#{pluralized_kind}_#{selected_category.pluralize}_path",
-          parameters: {
-            :order_by => sorting_value
-          },
+          url: collection_url,
+          parameters: url_parameters(order_by: sorting_value),
           selected: order_by == sorting_value
         }
       end
     }
   end
-
 
   def total_count
     searcher.total
@@ -208,13 +229,15 @@ module OrganizationsPresenter
     }
   end
 
-  def searcher_params
+  def searcher_params(aditional = {})
     {}.tap do |params|
       self.class.filters.map(&:to_s).map(&:singularize).each do |filter|
         params["#{kind}_#{filter}".to_sym] = send("#{filter.pluralize}_filter").selected if send("#{filter.pluralize}_filter").used?
       end
 
       params[:location] = Hashie::Mash.new(lat: geo_filter.lat, lon: geo_filter.lon, radius: geo_filter.radius) if geo_filter.used?
+      params[:sms_claimable] = true if sms_claimable
+      params.merge!(aditional)
     end
   end
 

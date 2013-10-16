@@ -18,7 +18,7 @@ class CarSalesCentersPresenter
         title: I18n.t("organization.kind.car_wash"),
         klass: 'car_wash',
         url: "car_washes_path",
-        parameters: {},
+        parameters: url_parameters,
         selected: categories_filter[:selected].include?('car_wash'),
         count: HasSearcher.searcher(:car_washes).total
     })

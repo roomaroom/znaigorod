@@ -48,6 +48,7 @@ class SaunaHall < ActiveRecord::Base
     string :pool_features,  :multiple => true
     string :sauna_id
     string(:title) { organization_title }
+    boolean(:sms_claimable) { sauna.respond_to?(:sms_claimable?) ? sauna.sms_claimable? : false }
   end
 
   def capacity

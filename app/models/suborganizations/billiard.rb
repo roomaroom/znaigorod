@@ -8,6 +8,7 @@ class Billiard < Entertainment
   presents_as_checkboxes :category, :default_value => Values.instance.billiard.categories
   presents_as_checkboxes :feature
   presents_as_checkboxes :offer
+  alias_method :sunspot_index, :index
 
   include SmsClaims
 end
