@@ -1,128 +1,24 @@
-<% content_for :page_title do %>
-  <%= @account.title.text_gilensize %>,
-  ЗнайГород
-<% end %>
-
-<% content_for :meta_keywords, t('meta.account.keywords') %>
-<% content_for :meta_description, t('meta.account.description') %>
-
-<% content_for :extra_meta do %>
-  <%= @account.tags_for_vk %>
-<% end %>
-
-<div class="account_show">
-  <div class="left">
-    <div class="image">
-      <%= image_tag(resized_image_url(@account.avatar.url, 200, 200), size: '200x200', title: @account.title, alt: @account.title) %>
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class='line'>
+      <h3>
+        Новости
+      </h3>
     </div>
-
-    <div class="social_actions">
-      <% if current_user.nil? || (current_user.account != @account.model) %>
-        <ul class="user_actions">
-          <li><%= link_to t('new_message'), new_my_private_message_path(account_id: @account.id), class: 'add_private_message', remote: true %></li>
-          <%= render 'friends/friendship' %>
-          <%= render :partial => 'invitations/account_link', :locals => { :kind => :inviter, :invited_id => @account.id } %>
-          <%= render :partial => 'invitations/account_link', :locals => { :kind => :invited, :invited_id => @account.id } %>
-        </ul>
-      <% end %>
-      <div class="show_feeds">
-        <a href="#">
-          Активность
-        </a>
-      </div>
-      <div class="show_friends">
-        <span class="counter"><%= @friends.total_count %></span>
-        <a href="#">
-          Друзья 
-        </a>
-      </div>
-
-      <% if @friends.any? %>
-        <div class="friends_counter">
-          <div class="floatl">Друзья</div>
-          <div class="floatr"><%= t('account_friends', count: @friends.total_count) %></div>
-        </div>
-        <div class="friends list">
-          <%= render partial: 'friends/account_friends', locals: { collection: @friends } %>
+    <%= render 'feeds_filters' %>
+    <% if @feeds_presenter.collection.any? %>
+      <ul class='feed'>
+        <%= render @feeds_presenter.collection %>
+      </ul>
+      <% unless @feeds_presenter.collection.first_page? && @feeds_presenter.collection.last_page? %>
+        <div class="feed_pagination">
+          <%= link_to ''.html_safe, account_feeds_path(@account, :page => @feeds_presenter.collection.current_page + 1, :kind => @feeds_presenter.kind_filter.kind), :class => "next_page #{ 'disabled' if @feeds_presenter.collection.last_page? }", :remote => true %>
         </div>
       <% end %>
-    </div>
-  </div>
-
-  <div class="right">
-    <% if @account.last_visit_at? %>
-      <div class='last_visit'>
-        <% if @account.last_visit_at > DateTime.now - 5.minute %>
-          сейчас на сайте
-        <% else %>
-          последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
-        <% end %>
-      </div>
+    <% else %>
+      Ничего не найдено =(
     <% end %>
-
-    <h1><%= @account.title %></h1>
-
-    <div class="account_info">
-      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => @account.age)}", :class => :row if @account.birthday? %>
-      <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
-    </div>
-
-    <% if @account.link_to_social.present? %>
-      <div class='link_to_social'>
-        <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
-      </div>
-    <% end %>
-
-    <div class="invitations_wrapper">
-      <div class="invitations header">
-        <h3>Приглашает</h3>
-      </div>
-
-      <div class="invitations list">
-        <ul class="inviter">
-          <% if @account.invitations.inviter.without_invited.select(&:actual?).any? %>
-            <%= render :collection => @account.invitations.inviter.without_invited.select(&:actual?), :partial => 'invitations/invitation' %>
-          <% else %>
-            <li class="empty">Нет приглашений</li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="invitations header">
-        <h3>Ждет приглашения</h3>
-      </div>
-
-      <div class="invitations list">
-        <ul class="invited">
-          <% if @account.invitations.invited.without_invited.select(&:actual?).any? %>
-            <%= render :collection => @account.invitations.invited.without_invited.select(&:actual?), :partial => 'invitations/invitation' %>
-          <% else %>
-            <li class="empty">Нет приглашений</li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
-    <div class='feeds'>
-      <div class='line'>
-        <h3>
-          Новости
-        </h3>
-      </div>
-      <%= render 'feeds_filters' %>
-      <% if @feeds_presenter.collection.any? %>
-        <ul class='feed'>
-          <%= render @feeds_presenter.collection %>
-        </ul>
-        <% unless @feeds_presenter.collection.first_page? && @feeds_presenter.collection.last_page? %>
-          <div class="feed_pagination">
-            <%= link_to ''.html_safe, account_feeds_path(@account, :page => @feeds_presenter.collection.current_page + 1, :kind => @feeds_presenter.kind_filter.kind), :class => "next_page #{ 'disabled' if @feeds_presenter.collection.last_page? }", :remote => true %>
-          </div>
-        <% end %>
-      <% else %>
-        Ничего не найдено =(
-      <% end %>
-    </div>
-
   </div>
-</div>
+<% end %>
+
+<%= render file: "accounts/wrapper" %>

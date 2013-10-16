@@ -20,7 +20,6 @@ class AccountsController < ApplicationController
       @presenter = AccountsPresenter.new(params)
       @feeds_presenter = FeedsPresenter.new(params)
       @account = AccountDecorator.new Account.find(params[:id])
-      @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(1).per(5)
 
       @account.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     }

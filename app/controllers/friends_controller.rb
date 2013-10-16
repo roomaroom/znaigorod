@@ -10,7 +10,11 @@ class FriendsController < ApplicationController
 
   def index
     index! {
-      render partial: 'friends/account_friends', locals: { collection: @accounts }, layout: false and return
+      @presenter = AccountsPresenter.new(params)
+      @account = AccountDecorator.new Account.find(params[:account_id])
+      @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(params[:page]).per(15)
+
+      render partial: 'friends/account_friends', :locals => { :collection => @friends }, layout: false and return if request.xhr?
     }
   end
 

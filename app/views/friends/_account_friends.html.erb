@@ -1,12 +1,29 @@
-<ul class="avatars">
-  <% collection.each do |account| %>
-    <%= render partial: 'friends/account_friend', locals: { account: account } %>
-  <% end %>
-</ul>
+<% collection.each do |account| %>
+  <li>
+  <div class="item">
+    <div class="title">
+      <%= link_to truncate(account.title, length: 20), account %>
+    </div>
 
-<% unless collection.first_page? && collection.last_page? %>
-  <div class="pagination">
-    <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if collection.first_page? }" %>
-    <%= link_to '&darr;'.html_safe, account_friends_path(@account, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <div class="image">
+      <%= link_to image_tag(resized_image_url(account.avatar.url, 178, 178), size: '178x178', title: account, alt: account), account_path(account) %>
+      <%= render :partial => 'accounts/account_poster_link', :locals => { :kind => :inviter, :invited_id => account.id } %>
+      <%= render :partial => 'accounts/account_poster_link', :locals => { :kind => :invited, :invited_id => account.id } %>
+      <%= link_to account_path(account), class: :details do %>
+        <span class='first_line'>
+          <span class='show_tipsy to_go' title='Друзья'><%= account.friends.count %></span>
+          <span class='show_tipsy wait_invite' title='<%= invitations_for_tipsy(account.invitations) %>'>
+            <%= account.invitations.without_invited.count %>
+          </span>
+          <span class='show_tipsy comments' title='Комментарии'><%= account.comments.count %></span>
+        </span>
+        <span class='second_line'>
+          <span class='show_tipsy visits' title='Просмотры профиля'><%= account.my_page_visits.count %></span>
+        </span>
+      <% end %>
+    </div>
+
+    <div class="badges"></div>
   </div>
+  </li>
 <% end %>

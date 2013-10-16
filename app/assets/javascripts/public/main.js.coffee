@@ -46,8 +46,7 @@ $ ->
   init_schedule_toggle() if $('.organization_show .show_more_schedule').length
   init_photogallery() if $('.photogallery ul li').length
   init_back_to_top() if $('nav.pagination').length
-  init_pagination() if $('nav.pagination').length
-  init_feed_pagination() if $('.feeds').length
+  init_pagination() if $('nav.pagination').length or $('.feed_pagination')
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
   init_account_pagination() if $('.content .account_show .right').length
   init_account_extend() if $('.account_show').length

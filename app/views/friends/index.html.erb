@@ -1,7 +1,11 @@
-<div class="accounts_list">
-  <ul class="posters">
-    <%= render partial: 'accounts/account_posters', :locals => { collection: collection } %>
-  </ul>
-</div>
+<% content_for :account_content do %>
+  <div class="accounts_list">
+    <ul class="posters">
+      <%= render partial: 'account_friends', locals: { collection: @friends } %>
+    </ul>
+  </div>
 
-<%= paginate collection %>
+  <%= paginate collection %>
+<% end %>
+
+<%= render file: "accounts/wrapper" %>

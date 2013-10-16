@@ -12,7 +12,8 @@
     '.content_wrapper .accounts_list ul,' +
     '.content_wrapper .posts_list ul,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
-    '.content_wrapper .contest .works ul'
+    '.content_wrapper .contest .works ul,' +
+    '.feeds > ul'
   )
   first_item = $('li:first', list)
   return true unless first_item.length
@@ -21,16 +22,35 @@
   else
     last_item = first_item
   last_item_top = last_item.position().top
-  last_item_offset = 400
+  feeds = $('.feeds .feed').length
+
+  unless feeds
+    last_item_offset = 400
+  else
+    last_item_offset = 200
   page = 1
   busy = false
+  console.log 'iam out'
   $(window).scroll ->
+    console.log 'iam in'
+    console.log ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
     if ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
       busy = true
       search_params = ""
       search_params = window.location.search.replace(/^\?/, "&").replace(/&page=\d+/, "")
+
+      url = $('.feeds .feed_pagination a').attr('href') if feeds
+
+      if url == undefined && feeds
+        return true
+
+      unless feeds
+        url = "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
+      else
+        url = url.replace(/^\?/, "&").replace(/&page=\d+/, "") + '&' + 'page=' + (page+1)
+
       $.ajax
-        url: "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
+        url: url
         beforeSend: (jqXHR, settings) ->
           $('<li class="ajax_loading_items_indicator">&nbsp;</li>').appendTo(list)
           true
