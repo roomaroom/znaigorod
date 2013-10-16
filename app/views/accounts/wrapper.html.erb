@@ -21,12 +21,17 @@
           <%= render :partial => 'invitations/account_link', :locals => { :kind => :invited, :invited_id => @account.id } %>
         </ul>
       <% end %>
-      <div class="show_feeds">
-        <%= link_to 'Активность', @account %>
-      </div>
-      <div class="show_friends">
-        <%= link_to 'Друзья', account_friends_path(@account) %>
-        <span class="counter"><%= @account.friends.count %></span>
+      <div class="user_menu">
+        <div class="show_feeds <%= "selected" if params[:controller] == "accounts" %>">
+          <%= link_to content_tag(:span, 'Активность'), @account %>
+        </div>
+        <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
+          <a href="<%= account_friends_path(@account) %>">
+            <span class="counter"><%= @account.friends.count %></span>
+            <span class="man_icon"></span>
+            <span>Друзья</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

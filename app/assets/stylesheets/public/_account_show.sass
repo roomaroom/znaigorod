@@ -75,18 +75,59 @@
     width: 208px
     border: 1px solid #ccc
 
-    .show_feeds,.show_friends
-      +background(linear-gradient(top, #fff, #e8e8e8))
-      height: 24px
+    .user_menu
+      +clearfix
       border-top: 1px solid #ccc
-      padding-top: 5px
-      font-size: 12px
-      a
-        margin-left: 10px
-      .counter
-        float: right
-        color: #000
-        margin-right: 5px
+      margin-top: 5px
+
+      .selected
+        color: white !important
+        background-color: #999 !important
+        text-decoration: none
+        cursor: pointer
+        .man_icon
+          background: url('user_menu.png') no-repeat -77px -57px !important
+        span
+          color: white
+
+      .show_feeds,.show_friends,.show_afishas
+        +clearfix
+        background-color: white
+        font-size: 12px
+        margin: 4px
+        color: black
+        a
+          +clearfix
+          text-decoration: none
+          display: block
+          color: black
+          height: 24px
+          padding-top: 5px
+          &:hover
+            color: #f60
+          &:hover > .man_icon
+            background: url('user_menu.png') no-repeat -47px -57px
+
+          span
+            margin-left: 10px
+            display: block
+          .man_icon
+            background: url('user_menu.png') no-repeat -15px -57px
+            width: 8px
+            height: 9px
+            float: right
+            margin-top: 4px
+
+        .counter
+          float: right
+          margin-right: 5px
+
+
+        &:hover
+          color: #f60
+          background-color: #e8e8e8
+          text-decoration: none
+          cursor: pointer
 
     .image
       margin: 4px
