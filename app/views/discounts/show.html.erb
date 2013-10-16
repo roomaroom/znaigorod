@@ -12,7 +12,7 @@
     <div class="social_actions">
       <div class="action">
         <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true if @discount.free? %>
-        <%= link_to 'Купить', '#', :class => 'participate' if @discount.paid? %>
+        <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true if @discount.paid? %>
       </div>
 
       <% unless @discount.passed? %>
