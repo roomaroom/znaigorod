@@ -13,6 +13,16 @@ class DiscountsPresenter
     end
   end
 
+  class Counter
+    def initialize(args)
+      @args = args
+    end
+
+    def count
+      HasSearcher.searcher(:discounts, @args).total_count
+    end
+  end
+
   class TypeFilter
     include Rails.application.routes.url_helpers
 
@@ -67,21 +77,27 @@ class DiscountsPresenter
     private
 
     def all_link
+      params = Parameters.instance.params.merge(:kind => nil)
+
       Hashie::Mash.new(
         :value => nil,
         :title => 'Все',
         :klass => "all".tap { |s| s << ' selected' if kind.blank? },
-        :path => discounts_path(Parameters.instance.params.merge(:kind => nil))
+        :path => discounts_path(params),
+        :results_count => Counter.new(params).count
       )
     end
 
     def kind_links
       available.map do |value, title|
+        params = Parameters.instance.params.merge(:kind => value)
+
         Hashie::Mash.new(
           :value => value,
           :title => title,
           :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
-          :path => discounts_path(Parameters.instance.params.merge(:kind => value))
+          :path => discounts_path(params),
+          :results_count => Counter.new(params).count
         )
       end
     end
