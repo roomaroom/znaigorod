@@ -5,7 +5,14 @@
 
   <div class="image">
     <%= link_to image_tag(resized_image_url(discount.poster_url, 220, 120), :size => '220x120', :title => discount.title, :alt => discount.title), discount_path(discount) %>
-    <%= link_to discount_path(discount), :class => :details %>
+    <%= link_to discount_path(discount), :class => :details do %>
+      <span class="first_line">
+        <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>
+        <span class="show_tipsy comments" title="Комментарии"><%= discount.comments.count %></span>
+        <span class="show_tipsy likes" title="Понравилось"><%= discount.likes_count %></span>
+        <span class="show_tipsy visits" title="Просмотры"><%= discount.page_visits.count %></span>
+      </span>
+    <% end %>
   </div>
 
   <div class="info">

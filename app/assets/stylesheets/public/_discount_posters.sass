@@ -30,6 +30,42 @@
           position: relative
           width: 220px
 
+          .details
+            color: #000
+
+          .first_line
+            bottom: 0px
+
+          .first_line
+            display: none
+            left: 0
+            position: absolute
+            width: 100%
+
+            span
+              background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
+              cursor: help
+              display: block
+              float: left
+              padding-left: 25px
+              width: 30px
+
+              &.to_go
+                background-position: 12px 3px
+              &.comments
+                background-position: 5px -36px
+              &.likes
+                background-position: 12px -57px
+              &.visits
+                background-position: 6px -77px
+
+          &:hover
+            img
+              +opacity(0.15)
+
+            .first_line
+              display: block
+
         .info
           font-size: 12px
 
