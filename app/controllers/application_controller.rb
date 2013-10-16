@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :banners, :hot_offers, :page, :per_page
 
   before_filter :detect_robots_in_development if Rails.env.development?
+  before_filter :update_account_last_visit_at
 
   layout :resolve_layout
 
