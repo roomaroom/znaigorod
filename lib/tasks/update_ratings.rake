@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 namespace :update_rating do
-
   desc "Обновление рейтинга пользователей"
   task :accounts => :environment do
     Account.all.map(&:update_rating)
@@ -21,4 +20,12 @@ namespace :update_rating do
   task :posts => :environment do
     Post.all.map(&:update_rating)
   end
+
+  desc "Обновление рейтинга купонов"
+  task :discounts => :environment do
+    Discount.actual.map(&:update_rating)
+  end
+
+  desc "Обновление рейтинга"
+  task :all => [:accounts, :afisha, :organizations, :posts, :discounts]
 end

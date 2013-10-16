@@ -19,7 +19,12 @@ class Discount < ActiveRecord::Base
 
   has_many :accounts, :through => :members
 
+  # stub
+  has_many :copies, :dependent => :destroy, :as => :copyable
+
   validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
+
+  scope :actual, -> { where "ends_at > ?", Time.zone.now }
 
   extend Enumerize
   serialize :kind, Array
@@ -31,26 +36,28 @@ class Discount < ActiveRecord::Base
 
   searchable do
     date :created_at
-    time :ends_at
 
-    #float :rating
+    float(:rating) { total_rating }
 
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
 
     text :title, :stored => true, :more_like_this => true
+
+    time :ends_at, :trie => true
   end
 
   def likes_count
     self.votes.liked.count
   end
 
-  # stub
-  def copies
-    []
+  def update_rating
+    update_attribute :total_rating, (copies.sold.count +
+                                     0.5 * members.count +
+                                     0.1 * votes.liked.count +
+                                     0.01 * page_visits.count)
   end
 
-  # stub
   def emails
     []
   end
