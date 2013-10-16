@@ -45,11 +45,12 @@ class Discount < ActiveRecord::Base
     self.votes.liked.count
   end
 
-  # === STUBS ===
+  # stub
   def copies
     []
   end
 
+  # stub
   def emails
     []
   end

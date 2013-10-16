@@ -15,6 +15,7 @@ class CopyPayment < Payment
   before_validation :check_copies_number
   before_create :set_amount
   after_create :reserve_copies
+  after_create :create_paymentable_member, :if => :paymentable_is_certificate_or_coupoun?
 
   attr_accessor :copy_for_sale_ids, :copies_with_seats
   attr_accessible :copy_for_sale_ids, :copies_with_seats
@@ -70,6 +71,15 @@ class CopyPayment < Payment
     paymentable.emails.each do |email|
       CopyPaymentMailer.delay(:queue => 'mailer').notification(email, self)
     end
+  end
+
+  def paymentable_is_certificate_or_coupoun?
+    paymentable.is_a?(Certificate) || paymentable.is_a?(Coupon)
+  end
+
+  def create_paymentable_member
+    member = paymentable.members.new { |member| member.account = user.account }
+    member.save!
   end
 end
 
