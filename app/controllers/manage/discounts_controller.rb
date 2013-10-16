@@ -11,7 +11,12 @@ class Manage::DiscountsController < Manage::ApplicationController
           redirect_to manage_discount_path(resource)
         end
       }
-      failure.html { render :edit }
+
+      failure.html {
+        render :poster and return if params[:crop]
+
+        render :edit
+      }
     end
   end
 

@@ -1,5 +1,4 @@
 <%= simple_form_for [:manage, @coupon] do |f| %>
-  <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
   <%= f.input :title %>
   <%= f.input :organization_title, :input_html => { :class => 'autosuggest' } %>
   <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>

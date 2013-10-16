@@ -12,9 +12,9 @@ module CropedPoster
 
     validates_attachment :poster_image, :presence => true, :content_type => {
       :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
-      :message => 'Изображение должно быть в формате jpeg, jpg или png' },                :unless => :set_region?
+      :message => 'Изображение должно быть в формате jpeg, jpg или png' },             :if => :poster_image?
 
-    validates :poster_image, :dimensions => { :width_min => 300, :height_min => 300 },    :unless => :set_region?
+    validates :poster_image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :poster_image?
 
     after_validation :set_poster_url, :if => :set_region?
   end

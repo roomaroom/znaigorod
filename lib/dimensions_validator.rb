@@ -6,7 +6,7 @@ class DimensionsValidator < ActiveModel::EachValidator
       min_width, min_height = options[:width_min], options[:height_min]
 
       if value.queued_for_write[:original].try(:path).blank? || record.send("#{attribute}_content_type").match(/image/).nil?
-        dimensions = Paperclip::Geometry.new
+        dimensions = Paperclip::Geometry.parse(StorageImageDimensions.new(record.send("#{attribute}_url")).dimensions)
       else
         dimensions = Paperclip::Geometry.from_file(value.queued_for_write[:original].path)
       end
