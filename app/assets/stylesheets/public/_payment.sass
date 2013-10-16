@@ -8,18 +8,47 @@
       border-bottom: 1px dotted #cbcbcb
       padding: 15px 20px
 
-      .coupon
-        border: 2px solid #F60
+      .certificate, .coupon, .discount
+        border: 2px solid #f60
         float: left
         font-size: 16px
         margin: 0 15px 0 0
         padding: 5px 10px 0 10px
         width: 120px
 
+      .certificate
+        height: 60px
+        position: relative
+
+        .profit
+          display: none
+
+        .origin_price
+          color: #999
+          float: left
+          position: relative
+
+          &:after
+            +rotate(-10deg)
+            border-top: 1px solid #f60
+            content: ""
+            left: 0
+            position: absolute
+            top: 45%
+            width: 90%
+
+        .price
+          color: #f60
+          font-size: 24px
+          font-weight: bold
+          position: absolute
+          top: 25px
+
+      .coupon
         strong
           font-weight: normal
 
-        .discount
+        .profit
           color: #f60
 
         .price
@@ -27,9 +56,8 @@
           font-size: 24px
           font-weight: bold
 
-      .discount
-      .certificate
 
+      .discount
 
       .ticket_prices
         float: left
