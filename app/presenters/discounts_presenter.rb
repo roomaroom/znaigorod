@@ -35,7 +35,7 @@ class DiscountsPresenter
       available.map do |value, title|
         Hashie::Mash.new(
           :title => title,
-          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
+          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
           :path => discounts_path(Parameters.instance.params.merge(:type => value))
         )
       end
@@ -61,11 +61,26 @@ class DiscountsPresenter
     end
 
     def links
+      [all_link] + kind_links
+    end
+
+    private
+
+    def all_link
+      Hashie::Mash.new(
+        :value => nil,
+        :title => 'Все',
+        :klass => "all".tap { |s| s << ' selected' if kind.blank? },
+        :path => discounts_path(Parameters.instance.params.merge(:kind => nil))
+      )
+    end
+
+    def kind_links
       available.map do |value, title|
         Hashie::Mash.new(
           :value => value,
           :title => title,
-          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
+          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
           :path => discounts_path(Parameters.instance.params.merge(:kind => value))
         )
       end
@@ -134,12 +149,13 @@ class DiscountsPresenter
   def searcher_params
     @searcher_params ||= {}.tap do |params|
       params[:type] = type_filter.selected
+      params[:kind] = kind_filter.selected
     end
   end
 
   def searcher
     @searcher ||= HasSearcher.searcher(:discounts, searcher_params).tap { |s|
-      s.send "order_by_#{order_by_filter.order_by}"
+      s.send "order_by_#{order_by_filter.selected}"
       s.paginate(page: page, per_page: per_page)
     }
   end

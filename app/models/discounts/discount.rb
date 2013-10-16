@@ -35,6 +35,8 @@ class Discount < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   searchable do
+    boolean(:actual) { actual? }
+
     date :created_at
 
     float(:rating) { total_rating }
@@ -60,6 +62,10 @@ class Discount < ActiveRecord::Base
 
   def emails
     []
+  end
+
+  def actual?
+    ends_at > Time.zone.now
   end
 end
 
