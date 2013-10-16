@@ -7,10 +7,11 @@ class Afisha < ActiveRecord::Base
   extend Enumerize
   extend FriendlyId
 
-  include VkUpload
   include AutoHtml
+  include CropedPoster
   include HasVirtualTour
   include MakePageVisit
+  include VkUpload
 
   attr_accessible :description, :poster_url, :image_url, :showings_attributes,
                   :tag, :title, :vfs_path, :affiche_schedule_attributes,
@@ -79,8 +80,8 @@ class Afisha < ActiveRecord::Base
 
   # >>>>>>>>>>>> Wizard  >>>>>>>>>>>>
 
-  attr_accessor :step, :set_region, :crop_x, :crop_y, :crop_width, :crop_height, :social_gallery_url
-  attr_accessible :poster_image, :step, :set_region, :crop_x, :crop_y, :crop_width, :crop_height, :social_gallery_url
+  attr_accessor :step, :social_gallery_url
+  attr_accessible :step, :social_gallery_url
 
   def should_generate_new_friendly_id?
     return true if !self.slug? && self.published?
@@ -121,54 +122,6 @@ class Afisha < ActiveRecord::Base
   steps.each do |step|
     define_method("#{step}_step?") { self.step == step }
   end
-
-  def set_region?
-    set_region.present?
-  end
-
-  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
-  validates_attachment :poster_image, :presence => true, :content_type => {
-    :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
-    :message => 'Изображение должно быть в формате jpeg, jpg или png' },                :if => [:draft?, :second_step?], :unless => :set_region?
-
-  validates :poster_image, :dimensions => { :width_min => 300, :height_min => 300 },    :if => [:draft?, :second_step?], :unless => :set_region?
-
-  after_validation :set_poster_url, :if => :set_region?
-
-  def poster_image_original_dimensions
-    @poster_image_original_dimensions ||= {}.tap { |dimensions|
-      dimensions[:width] = poster_image_url.match(/\/(?<dimensions>\d+-\d+)\//)[:dimensions].split('-').first.to_i
-      dimensions[:height] = poster_image_url.match(/\/(?<dimensions>\d+-\d+)\//)[:dimensions].split('-').last.to_i
-    }
-  end
-
-  def side_max_size
-    580.to_f
-  end
-
-  def resize_factor
-    @resize_factor = poster_image_original_dimensions.values.max / side_max_size
-
-    (@resize_factor < 1) ? 1.0 : @resize_factor
-  end
-
-  def poster_image_resized_dimensions
-    return poster_image_original_dimensions if poster_image_original_dimensions.values.max < side_max_size
-
-    {}.tap { |dimensions|
-      dimensions[:width] = (poster_image_original_dimensions[:width] / resize_factor).round
-      dimensions[:height] = (poster_image_original_dimensions[:height] / resize_factor).round
-    }
-  end
-
-  def set_poster_url
-    if poster_image_url?
-      rpl = 'region/' << [crop_width, crop_height, crop_x, crop_y].map(&:to_f).map { |v| v * resize_factor }.map(&:round).join('/')
-      self.poster_url = poster_image_url.gsub(/\/\d+-\d+\//, "/#{rpl}/")
-    end
-  end
-  private :set_poster_url
 
   def ready_for_moderation?
     title.present? && description.present? && poster_image_url? && showings.any? && draft?
