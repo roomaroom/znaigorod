@@ -135,7 +135,7 @@ namespace :sync do
       bar.increment!
     end
 
-    MovieSyncer.new(:place => "Факел", :movies => movies).sync
+    MovieSyncer.new(:place => "Fакел", :movies => movies).sync
   end
 
   desc "Sync movie seances from http://kinomax.tomsk.ru"
