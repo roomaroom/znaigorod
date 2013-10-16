@@ -30,7 +30,10 @@
     last_item_offset = 200
   page = 1
   busy = false
+  console.log 'iam out'
   $(window).scroll ->
+    console.log 'iam in'
+    console.log ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
     if ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
       busy = true
       search_params = ""
