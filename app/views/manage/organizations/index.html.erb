@@ -12,7 +12,7 @@
     <li>
       <%= link_to item.title, [:manage, item] %>
       <%= content_tag :span, 'Клиент, рейтинг: ', :class => 'client_status' if item.client? %>
-      <%= content_tag :span, item.total_rating.round(2), :class => 'rating' %>
+      <%= content_tag :span, item.total_rating.to_f.round(2), :class => 'rating' %>
       <%= content_tag :span, item.category, :class => 'category' %>
     </li>
   <% end %>

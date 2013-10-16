@@ -38,6 +38,8 @@ class Organization < ActiveRecord::Base
   extend Enumerize
   enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
 
+  default_value_for :total_rating, 0
+
   def update_slave_organization_statuses
     slave_organizations.update_all :status => status
   end
