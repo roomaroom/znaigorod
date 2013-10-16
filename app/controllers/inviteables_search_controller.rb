@@ -5,6 +5,7 @@ class InviteablesSearchController < ApplicationController
     @results = Sunspot.search(Afisha, Organization) {
       keywords params[:q], :fields => :title
       with :inviteable_categories, params[:category]
+      with :state, :published
       paginate :page => params[:page] || 1, :per_page => 5
     }.results
 
