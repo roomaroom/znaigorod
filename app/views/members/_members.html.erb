@@ -1,24 +1,21 @@
-<div class="members list">
-  <% if memberable.free? %>
-    <h2>Участники</h2>
-  <% else %>
+<div class="members">
+  <div class="members_counter">
     <h2>Покупатели</h2>
-  <% end %>
+    <span class="members_count"><%= t('discount.members', :count => @discount.members.count) %></span>
+  </div>
 
-  <span class="members_count"><%= t('discount.members', :count => memberable.accounts.count) %></span>
+  <div class="list">
+    <ul class="avatars">
+      <% @members.each do |member| %>
+        <%= render partial: 'members/member', :locals => { :account => member.account } %>
+      <% end %>
+    </ul>
 
-  <ul class="avatars">
-    <% memberable.accounts.each do |account| %>
-      <li>
-        <div class="avatar">
-          <%= link_to account do %>
-            <%= image_tag resized_image_url(account.avatar.url, 35, 35), :size => '35x35', :alt => account %>
-          <% end%>
-        </div>
-        <div class="details">
-          <%= link_to(account, account, :class => :name) %>
-        </div>
-      </li>
+    <% unless @members.first_page? && @members.last_page? %>
+      <div class="pagination">
+        <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if @members.first_page? }" %>
+        <%= link_to '&darr;'.html_safe, discount_members_path(@discount, :page => @members.current_page + 1), :class => "next_page #{ 'disabled' if @members.last_page? }" %>
+      </div>
     <% end %>
-  </ul>
+  </div>
 </div>

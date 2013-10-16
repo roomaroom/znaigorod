@@ -9,19 +9,21 @@
       <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
     </div>
 
-    <div class="action">
-      <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true if @discount.free? %>
-      <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'participate', :class => 'payment_link', :remote => true if @discount.paid? %>
-    </div>
-
-    <% unless @discount.passed? %>
-      <div class="counter">
-        <h2>До завершения осталось</h2>
-        <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+    <div class="social_actions">
+      <div class="action">
+        <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true if @discount.free? %>
+        <%= link_to 'Купить', '#', :class => 'participate' if @discount.paid? %>
       </div>
-    <% end %>
 
-    <%= render :partial => 'members/members', :locals => { :memberable => @discount } %>
+      <% unless @discount.passed? %>
+        <div class="counter">
+          <h2>До завершения осталось</h2>
+          <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+        </div>
+      <% end %>
+
+      <%= render :partial => 'members/members' %>
+    </div>
   </div>
 
   <div class="right">

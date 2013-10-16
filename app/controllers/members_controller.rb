@@ -3,14 +3,26 @@ class MembersController < ApplicationController
 
   load_and_authorize_resource
 
-  actions :create, :destroy
+  actions :index, :create, :destroy
 
   belongs_to :discount, :optional => true
 
+  has_scope :page, :default => 1
+
   layout false
 
+  def index
+    index! {
+      @members = parent.members.page(params[:page]).per(3)
+      render :partial => 'members/members', :locals => { :members => @members } and return
+    }
+  end
+
   def create
-    create! { render :partial => 'members', :locals => { :memberable => parent } and return }
+    create! {
+      @members = parent.members.page(params[:page]).per(3)
+      render :partial => 'members', :locals => { :members => @members } and return
+    }
   end
 
   def destroy

@@ -110,7 +110,7 @@ Znaigorod::Application.routes.draw do
 
   resources :discounts, :only => [:index, :show] do
     resources :comments, :only => [:new, :show, :create]
-    resources :members, :only => [:create, :destroy]
+    resources :members, :only => [:index, :create, :destroy]
   end
 
   resources :coupons, :only => [] do
