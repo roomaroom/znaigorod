@@ -4,11 +4,11 @@
   if trailers.length == 1
     $(trailers).css
       'float': 'none'
-      'width': 760
+      'width': 740
       'height': 462
       'margin-right': 0
     $('iframe', trailers).css
-      'width': 760
+      'width': 740
       'height': 462
     return true
 
