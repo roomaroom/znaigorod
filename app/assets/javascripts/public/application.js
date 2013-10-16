@@ -56,6 +56,7 @@
  * = require ./social_actions
  * = require ./bets
  * = require ./dialogs
+ * = require ./discount_members
  * = require ./payment
  * = require ./tabs
  * = require ./trailers

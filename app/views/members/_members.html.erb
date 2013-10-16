@@ -1,5 +1,24 @@
-<ul>
-  <% memberable.accounts.each do |account| %>
-    <li><%= account %></li>
+<div class="members list">
+  <% if memberable.free? %>
+    <h2>Участники</h2>
+  <% else %>
+    <h2>Покупатели</h2>
   <% end %>
-</ul>
+
+  <span class="members_count"><%= t('discount.members', :count => memberable.accounts.count) %></span>
+
+  <ul class="avatars">
+    <% memberable.accounts.each do |account| %>
+      <li>
+        <div class="avatar">
+          <%= link_to account do %>
+            <%= image_tag resized_image_url(account.avatar.url, 35, 35), :size => '35x35', :alt => account %>
+          <% end%>
+        </div>
+        <div class="details">
+          <%= link_to(account, account, :class => :name) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

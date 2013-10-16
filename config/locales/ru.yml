@@ -6,6 +6,14 @@
       many: '%{count} билетов'
       other: '%{count} билета'
 
+  discount:
+    members:
+      one: '%{count}'
+      few: '%{count}'
+      many: '%{count}'
+      other: '%{count}'
+      zero: 'Еще нет'
+
   contest:
     votes:
       zero: "нет голосов"

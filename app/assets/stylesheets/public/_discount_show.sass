@@ -106,6 +106,28 @@
         .label_mins
           left: 162px
 
+    .members
+      +background(linear-gradient(top, #fff, #e8e8e8))
+      border-top: 1px solid #ccc
+      position: relative
+      font-size: 12px
+
+      h2
+        line-height: 30px
+        margin: 0 5px
+
+      .members_count
+        background: transparent url(/assets/public/details_sprite.png) no-repeat 10px 3px
+        background-position: 0 4px
+        color: #555
+        padding-left: 12px
+        position: absolute
+        right: 5px
+        top: 8px
+
+      .avatars
+        +avatar-list-style
+
   .right
     float: right
     width: 208px
