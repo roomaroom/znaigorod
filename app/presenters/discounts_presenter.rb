@@ -139,7 +139,7 @@ class DiscountsPresenter
 
   def searcher
     @searcher ||= HasSearcher.searcher(:discounts, searcher_params).tap { |s|
-      # s.send "order_by_#{order_by_filter.order_by}"
+      s.send "order_by_#{order_by_filter.order_by}"
       s.paginate(page: page, per_page: per_page)
     }
   end
