@@ -28,7 +28,6 @@
         <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
           <a href="<%= account_friends_path(@account) %>">
             <span class="counter"><%= @account.friends.count %></span>
-            <span class="man_icon"></span>
             <span>Друзья</span>
           </a>
         </div>
