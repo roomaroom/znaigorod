@@ -7,6 +7,9 @@ class FeedsPresenter
     @page = params['page']
     @page ||= 1
     @per_page = 10
+    @account_id = params['id']
+    @searcher_params = {}
+    searcher_params()
   end
 
   def kinds_links
@@ -25,7 +28,12 @@ class FeedsPresenter
   end
 
   def collection
-    @feeds = end_of_association_chain.where(:feedable_type => params[:kind]).page(@page).per(@per_page)
+    @feed ||= Kaminari.paginate_array(Feed.where(@searcher_params).order('created_at DESC')).page(@page).per(@per_page)
+  end
+
+  def searcher_params
+    @searcher_params[:feedable_type] = @kind_filter.kind.capitalize if @kind_filter.used?
+    @searcher_params[:account_id] = @account_id if @account_id.present?
   end
 
 end

@@ -25,12 +25,16 @@
           <%= render :partial => 'invitations/account_link', :locals => { :kind => :invited, :invited_id => @account.id } %>
         </ul>
       <% end %>
-
       <div class="show_feeds">
-        Активность
+        <a href="#">
+          Активность
+        </a>
       </div>
       <div class="show_friends">
-        Друзья <span class="counter"><%= @friends.total_count %></span>
+        <span class="counter"><%= @friends.total_count %></span>
+        <a href="#">
+          Друзья 
+        </a>
       </div>
 
       <% if @friends.any? %>
@@ -106,13 +110,13 @@
         </h3>
       </div>
       <%= render 'feeds_filters' %>
-      <% if @feeds.any? %>
+      <% if @feeds_presenter.collection.any? %>
         <ul class='feed'>
-          <%= render @feeds %>
+          <%= render @feeds_presenter.collection %>
         </ul>
-        <% unless @feeds.first_page? && @feeds.last_page? %>
+        <% unless @feeds_presenter.collection.first_page? && @feeds_presenter.collection.last_page? %>
           <div class="feed_pagination">
-            <%= link_to ''.html_safe, account_feeds_path(@account, :page => @feeds.current_page + 1, :kind => @feeds_presenter.kind_filter.kind), :class => "next_page #{ 'disabled' if @feeds.last_page? }", :remote => true %>
+            <%= link_to ''.html_safe, account_feeds_path(@account, :page => @feeds_presenter.collection.current_page + 1, :kind => @feeds_presenter.kind_filter.kind), :class => "next_page #{ 'disabled' if @feeds_presenter.collection.last_page? }", :remote => true %>
           </div>
         <% end %>
       <% else %>

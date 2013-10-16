@@ -20,16 +20,7 @@ class AccountsController < ApplicationController
       @presenter = AccountsPresenter.new(params)
       @feeds_presenter = FeedsPresenter.new(params)
       @account = AccountDecorator.new Account.find(params[:id])
-      unless params[:kind].nil? || (params[:kind] == 'all')
-        @feeds = Kaminari.paginate_array(@account.feeds.where(:feedable_type => params[:kind].capitalize).order('created_at DESC')).page(1).per(10)
-      else
-        @feeds = Kaminari.paginate_array(@account.feeds.order('created_at DESC')).page(1).per(10)
-      end
-      @comments = @account.comments.rendereable.page(1).per(3)
       @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(1).per(5)
-      @events = @account.afisha.page(1).per(3)
-      @votes = @account.votes.rendereable.page(1).per(3)
-      @visits = @account.visits.rendereable.page(1).per(3)
 
       @account.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     }
