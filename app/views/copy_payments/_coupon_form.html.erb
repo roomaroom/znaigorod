@@ -1,0 +1,8 @@
+<%= simple_form_for [parent, @copy_payment] do |f| %>
+  <%= f.input :number, label: 'Количество', as: :select, collection: 1..parent.copies_for_sale.count, include_blank: false, require: false %>
+  <%= f.input :phone, label: 'Введите номер мобильного телефона', require: false %>
+
+  <div class='submit'>
+    <%= f.submit 'Купить' %>
+  </div>
+<% end %>

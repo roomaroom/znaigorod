@@ -3,7 +3,10 @@ class CopyPaymentsController < ApplicationController
 
   actions :new, :create
 
-  belongs_to :ticket, :polymorphic => true
+  belongs_to :certificate, :optional => true
+  belongs_to :coupon,      :optional => true
+  belongs_to :discount,    :optional => true
+  belongs_to :ticket,      :optional => true
 
   def create
     create! do |success, failure|

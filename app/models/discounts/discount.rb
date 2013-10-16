@@ -41,12 +41,17 @@ class Discount < ActiveRecord::Base
     text :title, :stored => true, :more_like_this => true
   end
 
+  def likes_count
+    self.votes.liked.count
+  end
+
+  # === STUBS ===
   def copies
     []
   end
 
-  def likes_count
-    self.votes.liked.count
+  def emails
+    []
   end
 end
 
