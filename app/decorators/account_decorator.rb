@@ -21,7 +21,7 @@ class AccountDecorator < ApplicationDecorator
 
   def tags_for_vk
     res = ""
-    vk_image = h.asset_path('vk_logotype.png')
+    vk_image = h.image_url('public/vk_logotype.png')
     res << "<meta property='og:description' content='Ты можешь найти компанию для любого мероприятия и времяпрепровождения. Посмотри, сколько людей приглашают сходить куда-нибудь, а сколько ждут приглашения!'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
     res << "<meta property='og:title' content='Знакомтсва на ЗнайГород' />\n"
