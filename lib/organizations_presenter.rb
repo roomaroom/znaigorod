@@ -90,12 +90,9 @@ module OrganizationsPresenter
   end
 
   def page_title
-    title = ""
-    categories_filter.selected.each_with_index do |category, index|
-      title << (index == 0 ?  "" : (categories_filter.selected.size.eql?(index+1) ? " и " : ", "))
-      title << category
-    end
-    title.blank? ? I18n.t("meta.#{pluralized_kind}.title") : "#{title.mb_chars.capitalize} Томска"
+    title = I18n.t("meta.#{selected_category}.title", default: '')
+    title = title.blank? ? I18n.t("meta.#{pluralized_kind}.title", default: '') : title
+    title
   end
 
   def kind
