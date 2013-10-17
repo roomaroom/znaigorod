@@ -48,6 +48,7 @@ module Znaigorod
                                       :copy_observer,
                                       :friend_observer,
                                       :organization_observer,
+                                      :reservation_observer,
                                       :showing_observer,
                                       :suborganization_observer,
                                       :ticket_observer,
