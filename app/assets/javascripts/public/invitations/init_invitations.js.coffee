@@ -229,7 +229,6 @@ handle_reply_invitation = (target, response)->
 
   $('.invitations_wrapper, .content .left, .accounts_list, .feature_wrapper, .additional_info_wrapper').on 'ajax:success', (evt, response) ->
     return false if $('.invite_form_wrapper').length
-
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
