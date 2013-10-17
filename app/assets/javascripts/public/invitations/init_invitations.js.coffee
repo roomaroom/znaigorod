@@ -228,7 +228,23 @@ handle_reply_invitation = (target, response)->
   init_delete_invitation $('.delete_invitation')
 
   $('.invitations_wrapper, .content .left, .accounts_list, .feature_wrapper, .additional_info_wrapper').on 'ajax:success', (evt, response) ->
-    return false if $(response).hasClass('cloud_wrapper')
+    if $(response).hasClass('cloud_wrapper')
+      signin_container = $('<div class="sign_in_with" />').appendTo('body').hide().html(response)
+      signin_container.dialog
+        autoOpen: true
+        draggable: false
+        modal: true
+        resizable: false
+        title: 'Необходима авторизация'
+        width: '500px'
+        close: (event, ui) ->
+          $(this).dialog('destroy')
+          $(this).remove()
+          true
+
+      init_auth()
+
+      return false
 
     target = $(evt.target)
 
