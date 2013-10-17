@@ -16,7 +16,7 @@
           <%= suborganization.reservation_title %>
         </div>
         <%= link_to suborganization.reservation_title,
-          send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization),
+          send("new_#{suborganization.model.class.name.underscore}_sms_claim_path", suborganization),
           :class => :sms_claim_link %>
       <% end %>
     <% end %>
