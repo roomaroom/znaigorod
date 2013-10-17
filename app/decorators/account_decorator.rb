@@ -25,9 +25,9 @@ class AccountDecorator < ApplicationDecorator
     res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
     res << "<meta property='og:title' content='Знакомтсва на ЗнайГород' />\n"
     res << "<meta property='og:url' content='#{show_url}' />\n"
-    res << "<meta property='og:image' content='#{vk_image}' />\n"
-    res << "<meta name='image' content='#{vk_image}' />\n"
-    res << "<link rel='image_src' href='#{vk_image}' />\n"
+    #res << "<meta property='og:image' content='#{vk_image}' />\n"
+    #res << "<meta name='image' content='#{vk_image}' />\n"
+    #res << "<link rel='image_src' href='#{vk_image}' />\n"
     res.html_safe
   end
 end
