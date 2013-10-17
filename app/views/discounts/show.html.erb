@@ -11,11 +11,16 @@
 
     <div class="social_actions">
       <div class="action">
-        <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true if @discount.free? %>
-        <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true if @discount.paid? %>
+        <% if @discount.free? %>
+          <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true %>
+        <% elsif @discount.price.zero? %>
+          <%= link_to 'Участвовать', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true %>
+        <% else %>
+          <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true %>
+        <% end %>
       </div>
 
-      <% unless @discount.passed? %>
+      <% if @discount.actual? %>
         <div class="counter">
           <h2>До завершения осталось</h2>
           <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>

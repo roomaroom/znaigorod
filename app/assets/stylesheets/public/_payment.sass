@@ -45,6 +45,8 @@
           top: 25px
 
       .coupon
+        width: 125px
+
         strong
           font-weight: normal
 
@@ -52,12 +54,9 @@
           color: #f60
 
         .price
-          color: #F60
+          color: #f60
           font-size: 24px
           font-weight: bold
-
-
-      .discount
 
       .ticket_prices
         float: left
@@ -118,6 +117,9 @@
       &.bolshoy-kontsertnyy-zal-bkz,
       &.organnyy-kontsertnyy-zal
         background-image: image_url('public/ticket_payment_instruction_bkz.png')
+
+      &.free_coupon
+        background-image: image_url('public/ticket_payment_instruction_free_coupon.png')
 
       li
         width: 160px

@@ -7,21 +7,17 @@ class DiscountDecorator < ApplicationDecorator
     ends_at.to_i * 1000
   end
 
-  def passed?
-    return true if ends_at < Time.zone.now
-  end
-
   def when_with_price
     h.content_tag :p, h.content_tag(:span, human_when, :class => :when)
   end
 
   def human_when
-    if passed?
+    unless actual?
       return "Было: #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
     else
       if price.nil?
         return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
-      elsif free?
+      elsif price.zero?
         return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, бесплатно".squish
       else
         return "Действует: #{I18n.l(starts_at, :format => '%e.%m')} - #{I18n.l(ends_at, :format => '%e.%m.%Y')}, #{h.number_to_currency(price, :unit => 'р.', :precision => 0)}".squish
@@ -30,11 +26,7 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def free?
-    return true if price.nil? || price.zero?
-  end
-
-  def paid?
-    return true if price? && price > 0
+    return true if price.nil?
   end
 
   def place
