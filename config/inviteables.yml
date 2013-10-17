@@ -86,7 +86,7 @@
       - театры
       - бары
 
-'поиграть в бильярд':
+'поиграть на бильярде':
   afisha:
     kinds:
       - sportsevent
@@ -177,6 +177,15 @@
 
     categories:
       - аттракционы
+
+'в гости на чай':
+  afisha:
+    kinds: []
+
+  organization:
+    suborganizations: []
+
+    categories: []
 
 'за покупками':
   afisha:
