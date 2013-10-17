@@ -35,22 +35,16 @@
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
     </div>
 
-    <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
-  </div>
-
-  <div class='right'>
     <% if @afisha.allow_auction? %>
-      <div class="wrapper">
-        <div class="auction">
-          <%= render :partial => 'my/bets/form' %>
-
-          <ul class="bets">
+      <div class='auction'>
+        <%= render :partial => 'my/bets/form' %>
+        <% if @afisha.bets.reload.any? %>
+          <ul class='bets'>
             <%= render :collection => @afisha.bets.reload, :partial => 'my/bets/bet' %>
           </ul>
-        </div>
+        <% end %>
       </div>
     <% end %>
-
 
     <% if @afisha.tickets.map(&:copies_for_sale).any? %>
       <ul class='tickets'>
@@ -87,6 +81,11 @@
         <% end %>
       </ul>
     <% end %>
+
+    <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
+  </div>
+
+  <div class='right'>
 
     <div class='wrapper'>
 

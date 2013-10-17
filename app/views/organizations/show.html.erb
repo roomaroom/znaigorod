@@ -18,19 +18,21 @@
       <% end %>
     </div>
 
+    <% if @organization.sms_claimable_suborganizations.any? %>
+      <ul class='sms_claims'>
+        <% @organization.sms_claimable_suborganizations.each do |suborganization| %>
+          <li>
+            <%= link_to suborganization.reservation_title,
+              send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization), :class => :sms_claim_link %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= render :partial => 'commons/social_block', :locals => { :inviteable => @organization.model } %>
   </div>
 
   <div class='right'>
-    <ul class='sms_claims'>
-      <% @organization.claimable_suborganizations.select(&:sms_claimable?).each do |suborganization| %>
-        <li>
-          <%= link_to t("sms_claim.#{suborganization.class.name.underscore}.link_title").html_safe,
-            send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization) %>
-        </li>
-      <% end %>
-    </ul>
-
     <div class='wrapper'>
       <% if @organization.has_tour? %>
         <div class='virtual_tour'>

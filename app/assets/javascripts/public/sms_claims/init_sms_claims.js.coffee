@@ -1,5 +1,5 @@
 @init_sms_claims = () ->
-  $('.sms_claims li a').each (index, element) ->
+  $('a.sms_claim_link').each (index, element) ->
     link = $(this)
     link.unbind('click').click (event) ->
       return false if link.hasClass('busy')
@@ -11,7 +11,7 @@
           container = $('<div class="sms_claim_form_wrapper" />').appendTo('body').hide().html(data)
           container.dialog
             width: 640
-            title: 'Бронирование услуги'
+            title: link.text()
             modal: true
             resizable: false
             open: ->

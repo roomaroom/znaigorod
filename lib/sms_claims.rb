@@ -7,6 +7,7 @@ module SmsClaims
     has_many :sms_claims, :as => :claimed, :dependent => :destroy
 
     has_one :reservation, :dependent => :destroy, :as => :reserveable
+    delegate :title, :placeholder, :to => :reservation, :prefix => true
   end
 
   def sms_claimable?

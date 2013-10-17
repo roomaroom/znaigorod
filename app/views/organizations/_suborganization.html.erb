@@ -1,6 +1,25 @@
 <div class='info'>
   <div class='title'><%= suborganization.truncated_title_link %> </div>
   <div class='image'>
+    <% if suborganization.is_a?(OrganizationDecorator) %>
+      <% if suborganization.sms_claimable? %>
+        <div class='sms_claimable'>
+          <%= suborganization.priority_sms_claimable_suborganization.reservation_title %>
+        </div>
+        <%= link_to suborganization.priority_sms_claimable_suborganization.reservation_title,
+          send("new_#{suborganization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", suborganization.priority_sms_claimable_suborganization),
+          :class => :sms_claim_link %>
+      <% end %>
+    <% else %>
+      <% if suborganization.sms_claimable? %>
+        <div class='sms_claimable'>
+          <%= suborganization.reservation_title %>
+        </div>
+        <%= link_to suborganization.reservation_title,
+          send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization),
+          :class => :sms_claim_link %>
+      <% end %>
+    <% end %>
     <% if suborganization.organization.logotype_url? %>
       <%= link_to organization_path(suborganization.organization) do %>
         <%= image_tag(resized_image_url(suborganization.organization.logotype_url, 178, 178), size: "178x178", alt: suborganization.organization.title) %>

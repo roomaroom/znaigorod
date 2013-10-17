@@ -2,11 +2,10 @@
 
   .sauna_posters
     +clearfix
-    margin-left: 10px
+    padding-left: 10px
 
     > li
       float: left
-      +clearfix
 
       &.clear_left
         clear: left
@@ -56,6 +55,13 @@
           position: relative
           margin-bottom: 3px
 
+          .sms_claimable
+            width: 190px
+            position: absolute
+            top: 0
+            left: -6px
+            +as_blue_ribbon
+
           a
             display: block
             position: absolute
@@ -72,6 +78,15 @@
 
               &.sauna
                 background-position: -385px -196px
+
+          .sms_claim_link
+            display: block
+            width: 130px
+            height: auto
+            top: 50px
+            left: 15px
+            +button-style
+            z-index: 0
 
           .details
             color: #000
@@ -112,6 +127,8 @@
                 padding-left: 18px
 
           &:hover
+            .sms_claim_link
+              z-index: 1
             .stub_poster
               +opacity(0.15)
             img

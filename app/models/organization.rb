@@ -51,7 +51,19 @@ class Organization < ActiveRecord::Base
   has_many :coupons
 
   def claimable_suborganizations
-    I18n.t('sms_claim').keys.map { |kind| send(kind) }.compact
+    @claimable_suborganizations ||= I18n.t('sms_claim').keys.map { |kind| send(kind) }.compact
+  end
+
+  def sms_claimable_suborganizations
+    @sms_claimable_suborganizations ||= claimable_suborganizations.select(&:sms_claimable?)
+  end
+
+  def sms_claimable?
+    sms_claimable_suborganizations.any?
+  end
+
+  def priority_sms_claimable_suborganization
+    @priority_sms_claimable_suborganization ||= sms_claimable_suborganizations.include?(priority_suborganization) ? priority_suborganization : sms_claimable_suborganizations.first
   end
 
   ### Payments ===>

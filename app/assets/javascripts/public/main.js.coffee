@@ -55,7 +55,7 @@ $ ->
   init_messages() if $('#messages_filter').length
   init_messages_tabs() if $('#messages_filter').length
   init_list_settings() if $('.content_wrapper .presentation_filters').length
-  init_sms_claims() if $('.sms_claims li').length
+  init_sms_claims() if $('a.sms_claim_link').length
   init_swfkrpano() if $('#krpano').length
   init_trailers() if $('.afisha_show .trailer p').length
   init_webcam_map() if $('.webcams .webcam_map').length

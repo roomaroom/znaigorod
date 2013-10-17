@@ -10,8 +10,8 @@ class Reservation < ActiveRecord::Base
   after_initialize :set_default_title_and_placeholder, :if => :new_record?
 
   delegate :sunspot_index, :to => :reserveable, :prefix => true
-  after_save :reserveable_index
-  after_destroy :reserveable_index
+  after_save :reserveable_sunspot_index
+  after_destroy :reserveable_sunspot_index
 
   default_value_for :balance, 0
 

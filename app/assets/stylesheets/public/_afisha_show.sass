@@ -5,17 +5,168 @@
   span.alert
     color: #f60
 
+  .tickets
+
+    li
+      font-size: 12px
+      border: 1px solid #f60
+      margin-bottom: 10px
+
+      .wrapper
+        border-top: none
+        border-right: 1px dashed #f60
+        border-bottom: none
+        border-left: 1px dashed #f60
+        margin: 0 10px
+
+      .has_items_for_sale
+        text-align: center
+
+        &.without_discount
+          padding-top: 9px
+
+        .discount
+          font-size: 18px
+          font-weight: bold
+          color: #f60
+
+        .percentage
+          color: #f60
+
+      .ticket_price
+        text-align: center
+
+        .price
+          +inline-block
+          font-weight: bold
+
+      .ticket_prices
+        text-align: center
+
+        .original_price
+          +inline-block
+          color: #a9a9a9
+          margin-right: 10px
+          position: relative
+
+          &:before
+            position: absolute
+            content: ""
+            width: 120%
+            left: -10%
+            top: 50%
+            right: 0
+            border-top: 1px solid
+            border-color: #f93
+            +rotate(-15deg)
+
+        .price
+          +inline-block
+          font-weight: bold
+          margin-left: 10px
+
+      .ticket_for_sale
+        font-size: 11px
+        text-align: center
+        margin: 5px 0
+
+      .buy_ticket
+        text-align: center
+        a
+          +inline-block
+          +button-style
+          padding: 3px 15px 4px
+          &:active
+            padding: 4px 15px 3px
+
+  .auction
+    border: 1px solid #ccc
+    padding: 8px 0
+    margin-bottom: 10px
+
+    form
+
+      .line
+        +clearfix
+        font-size: 12px
+        display: block
+        text-align: center
+        margin-bottom: 5px
+
+        > span,
+        > div
+          +inline-block
+
+        select, input
+          border: 1px solid #999
+          outline: none
+          padding: 2px 4px
+
+        select
+          background-color: #fff
+          width: 50px
+
+        input
+          width: 60px
+
+        .errors
+          color: #f00
+
+      .submit
+        text-align: center
+
+        input[type='submit']
+          +button-style
+          +inline-block
+          padding: 2px 0 4px 0
+          width: 120px
+
+          &:active
+            padding: 3px 0 3px 0
+
+    ul.bets
+      margin: 10px 0 0 0
+
+      li
+        .avatar
+          +avatar-list-style
+          float: left
+
+        .details
+          margin: 0 0 0 50px
+
+          .approved, .canceled, .fresh, .paid
+            padding: 0 0 0 15px
+
+          .approved
+            background: image_url('public/bets_state_sprite.png') no-repeat center center
+            background-position: 0 -11px
+
+          .canceled
+            background: image_url('public/bets_state_sprite.png') no-repeat center center
+            background-position: 0 3px
+
+          .fresh
+            background: image_url('public/bets_state_sprite.png') no-repeat center center
+            background-position: 0 -28px
+
+          .paid
+            background: image_url('public/bets_state_sprite.png') no-repeat center center
+            background-position: 0 -59px
+
   .left
     float: left
-    width: 208px
-    border: 1px solid #ccc
+    width: 210px
 
     .image
       position: relative
       text-align: center
       font-size: 12px
       width: 200px
-      margin: 4px
+      height: 269px
+      border: 1px solid #ccc
+      padding: 4px
+      margin-bottom: 10px
 
       .ribbon
         position: absolute
@@ -26,7 +177,9 @@
         padding: 2px 8px 3px
 
     .social_actions
-      +social_actions_popup
+      position: relative
+      border: 1px solid #ccc
+      padding-top: 8px
 
     .user_actions
       font-size: 12px
@@ -106,152 +259,6 @@
   .right
     float: right
     width: 208px
-
-    .auction
-      form
-
-        .line
-          +clearfix
-          font-size: 12px
-          display: block
-          text-align: center
-          margin-bottom: 5px
-
-          > span,
-          > div
-            +inline-block
-
-          select, input
-            border: 1px solid #999
-            outline: none
-            padding: 2px 4px
-
-          select
-            background-color: #fff
-            width: 50px
-
-          input
-            width: 60px
-
-          .errors
-            color: #f00
-
-        .submit
-          text-align: center
-
-          input[type='submit']
-            +button-style
-            +inline-block
-            padding: 2px 0 4px 0
-            width: 120px
-
-            &:active
-              padding: 3px 0 3px 0
-
-      ul.bets
-        margin: 15px 0 0 0
-
-        li
-          .avatar
-            +avatar-list-style
-            float: left
-
-          .details
-            margin: 0 0 0 50px
-
-            .approved, .canceled, .fresh, .paid
-              padding: 0 0 0 15px
-
-            .approved
-              background: image_url('public/bets_state_sprite.png') no-repeat center center
-              background-position: 0 -11px
-
-            .canceled
-              background: image_url('public/bets_state_sprite.png') no-repeat center center
-              background-position: 0 3px
-
-            .fresh
-              background: image_url('public/bets_state_sprite.png') no-repeat center center
-              background-position: 0 -28px
-
-            .paid
-              background: image_url('public/bets_state_sprite.png') no-repeat center center
-              background-position: 0 -59px
-
-
-    .tickets
-
-      li
-        font-size: 12px
-        border: 1px solid #f60
-        margin-bottom: 10px
-
-        .wrapper
-          border-top: none
-          border-right: 1px dashed #f60
-          border-bottom: none
-          border-left: 1px dashed #f60
-          margin: 0 10px
-
-        .has_items_for_sale
-          text-align: center
-
-          &.without_discount
-            padding-top: 9px
-
-          .discount
-            font-size: 18px
-            font-weight: bold
-            color: #f60
-
-          .percentage
-            color: #f60
-
-        .ticket_price
-          text-align: center
-
-          .price
-            +inline-block
-            font-weight: bold
-
-        .ticket_prices
-          text-align: center
-
-          .original_price
-            +inline-block
-            color: #a9a9a9
-            margin-right: 10px
-            position: relative
-
-            &:before
-              position: absolute
-              content: ""
-              width: 120%
-              left: -10%
-              top: 50%
-              right: 0
-              border-top: 1px solid
-              border-color: #f93
-              +rotate(-15deg)
-
-          .price
-            +inline-block
-            font-weight: bold
-            margin-left: 10px
-
-        .ticket_for_sale
-          font-size: 11px
-          text-align: center
-          margin: 5px 0
-
-        .buy_ticket
-          text-align: center
-          a
-            +inline-block
-            +button-style
-            padding: 3px 15px 4px
-            &:active
-              padding: 4px 15px 3px
 
     .wrapper
       border: 1px solid #ccc

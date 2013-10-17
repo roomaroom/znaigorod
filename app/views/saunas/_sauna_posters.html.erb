@@ -3,6 +3,13 @@
     <div class='info'>
       <div class='title'><%= organization.truncated_title_link %> </div>
       <div class='image'>
+        <% if organization.sauna.sms_claimable? %>
+          <div class='sms_claimable'>
+            <%= organization.sauna.reservation_title %>
+          </div>
+          <%= link_to organization.sauna.reservation_title,
+            send("new_sauna_sms_claim_path", organization.sauna), :class => :sms_claim_link %>
+        <% end %>
         <%= link_to organization_path(organization) do %>
           <% if organization.logotype_url? %>
             <%= image_tag(resized_image_url(organization.logotype_url, 178, 178), :size => '178x178', :alt => organization.title.text_gilensize) %>
