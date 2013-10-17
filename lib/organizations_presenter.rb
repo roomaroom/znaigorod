@@ -189,7 +189,7 @@ module OrganizationsPresenter
 
   def sms_claimable_link
     @sms_link ||= {}.tap do |link|
-      link[:title] = 'С возможностью заказа'
+      link[:title] = 'Бесплатный заказ'
       link[:url] = collection_url
       link[:parameters] = url_parameters(sms_claimable: sms_claimable ? nil : true)
       link[:selected] = sms_claimable ? true : false
