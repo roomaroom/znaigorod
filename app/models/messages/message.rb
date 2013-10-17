@@ -9,12 +9,25 @@ class Message < ActiveRecord::Base
 
   scope :unread, -> { where(state: :unread) }
 
+  has_one :feed, :as => :feedable, :dependent => :destroy
+
+  after_create :create_feed
+
   extend Enumerize
   enumerize :state, in: [:unread, :read], default: :unread, predicates: true, scope: true
 
   def change_message_status
     self.unread? ? self.state = :read : self.state = :unread
     self.save
+  end
+
+  def create_feed
+    Feed.create(
+      :feedable => self,
+      :account => self.account,
+      :created_at => self.created_at,
+      :updated_at => self.updated_at
+    )
   end
 
 end

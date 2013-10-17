@@ -5,7 +5,6 @@ class FeedsController < ApplicationController
   actions :index
 
   layout false
-#TODO should be refactored
   def index
     index! {
       presenter = FeedsPresenter.new params

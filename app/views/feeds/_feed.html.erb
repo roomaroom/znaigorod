@@ -1,3 +1,6 @@
-<li>
+<%= feed.feedable.class.name %>
+<% unless feed.message? %>
+  <li>
   <%= render partial: "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>
-</li>
+  </li>
+<% end %>
