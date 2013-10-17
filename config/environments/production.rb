@@ -48,7 +48,7 @@ Znaigorod::Application.configure do
   config.action_controller.page_cache_directory = Rails.root.join('public/cache/')
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( manage/info_plugin/info_plugin.js )
+  config.assets.precompile += %w( manage/info_plugin/info_plugin.js public/vk_logotype.png )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
