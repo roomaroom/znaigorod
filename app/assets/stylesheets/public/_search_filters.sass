@@ -3,12 +3,12 @@
   .filters.search
 
     .by_kind
-      width: 50%
+      width: 60%
       margin: 20px auto
       ul
         +clearfix
         li
-          width: percentage(1/6)
+          width: percentage(1/7)
           float: left
           text-align: center
           a
@@ -64,6 +64,16 @@
               background-position: -99px -52px
               &:hover
                 background-position: -99px -2px
+
+          &.discount
+            a
+              background-position: -516px -102px
+              &:hover
+                background-position: -516px -2px
+            &.selected a
+              background-position: -516px -48px
+              &:hover
+                background-position: -516px -2px
 
           &.post
             a
