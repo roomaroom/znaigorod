@@ -108,6 +108,50 @@ $desktop_default_width: 1200px
     &:active
       padding: $padding-top 8px $padding-bottom
 
+=social_actions_popup
+  position: relative
+
+  .cloud_wrapper
+
+    .social_signin_links
+      +clearfix
+      margin: 10px 0 0
+      text-align: center
+
+      li
+        +inline-block
+        margin: 0 15px 0 0
+
+        &:last-child
+          margin-right: 0
+
+        a
+          display: block
+          text-indent: -9999px
+          height: 33px
+          width: 33px
+
+        &.vkontakte a
+          background: image_url('social_icons.png') no-repeat 0 0
+
+        &.yandex a
+          background: image_url('social_icons.png') no-repeat -33px 0
+
+        &.facebook a
+          background: image_url('social_icons.png') no-repeat -66px 0
+
+        &.twitter a
+          background: image_url('social_icons.png') no-repeat -99px 0
+
+        &.google a
+          background: image_url('social_icons.png') no-repeat -132px 0
+
+        &.mail_ru a
+          background: image_url('social_icons.png') no-repeat -165px 0
+
+        &.odnoklassniki a
+          background: image_url('social_icons.png') no-repeat -198px 0
+
 =avatar-style
   float: left
   +clearfix
