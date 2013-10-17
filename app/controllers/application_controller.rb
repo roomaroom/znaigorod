@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   private
 
   def detect_robots_in_development
-    puts "DEBUG:---> #{request.user_agent.to_s}"
+    puts
+    puts "DEBUG ---> #{request.user_agent.to_s}"
     render :nothing => true, status: :forbidden and return if request.user_agent.to_s.match(/\(.*https?:\/\/.*\)/)
   end
 
