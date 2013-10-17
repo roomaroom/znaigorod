@@ -32,24 +32,23 @@
       <span class="value"><%= resource.kind.values.map(&:text).join(', ') %></span>
     </div>
 
-    <div>
-      <span class="label">Постоянная скидка:</span>
-      <% if resource.constant? %>
+    <% if resource.constant? %>
+      <div>
+        <span class="label">Постоянная скидка:</span>
         <span class="value">Да</span>
-      <% else %>
-        <span class="blank">Нет</span>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
 
-    <div>
-      <span class="label">Дата начала:</span>
-      <span class="value"><%= l resource.starts_at, :format => :short %></span>
-    </div>
+      <div>
+        <span class="label">Дата начала:</span>
+        <span class="value"><%= l resource.starts_at, :format => :short %></span>
+      </div>
 
-    <div>
-      <span class="label">Дата окончания:</span>
-      <span class="value"><%= l resource.ends_at, :format => :short %></span>
-    </div>
+      <div>
+        <span class="label">Дата окончания:</span>
+        <span class="value"><%= l resource.ends_at, :format => :short %></span>
+      </div>
+    <% end %>
 
     <div>
       <span class="label">Скидка:</span>

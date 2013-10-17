@@ -23,7 +23,8 @@ class Discount < ActiveRecord::Base
   # stub
   has_many :copies, :dependent => :destroy, :as => :copyable
 
-  validates_presence_of :title, :description, :kind, :starts_at, :ends_at, :discount, :kind
+  validates_presence_of :title, :description, :kind, :discount, :kind
+  validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
   scope :actual, -> { where "ends_at > ?", Time.zone.now }
 
@@ -87,7 +88,7 @@ class Discount < ActiveRecord::Base
   end
 
   def actual?
-    ends_at > Time.zone.now
+    constant? ? true : ends_at > Time.zone.now
   end
 end
 
@@ -122,5 +123,6 @@ end
 #  account_id                :integer
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  constant                  :boolean
 #
 
