@@ -46,4 +46,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       render('callback', :layout => false)
     end
   end
+
+  def after_omniauth_failure_path_for(scope)
+    new_my_session_path(scope)
+  end
 end
