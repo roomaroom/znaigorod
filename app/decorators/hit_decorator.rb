@@ -15,6 +15,8 @@ class HitDecorator < ApplicationDecorator
         AccountDecorator.new(result)
       elsif post?
         PostDecorator.new(result)
+      elsif discount?
+        DiscountDecorator.new(result)
       end
   end
 
@@ -32,6 +34,10 @@ class HitDecorator < ApplicationDecorator
 
   def account?
     result.is_a?(Account)
+  end
+
+  def discount?
+    result.is_a?(Discount)
   end
 
   def show_url

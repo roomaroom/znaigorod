@@ -24,7 +24,7 @@ class SearchPresenter
   end
 
   def collection
-    @collection ||= searcher.paginate(page: page, per_page: per_page)  
+    @collection ||= searcher.paginate(page: page, per_page: per_page)
   end
 
   def paginated_collection
@@ -32,7 +32,7 @@ class SearchPresenter
   end
 
   def hits
-    HitDecorator.decorate(collection.hits).select { |h| h.result && (!h.organization? || h.raw_suborganization) } 
+    HitDecorator.decorate(collection.hits).select { |h| h.result && (!h.organization? || h.raw_suborganization) }
   end
 
   def hits?
@@ -71,7 +71,7 @@ class KindFilter
   end
 
   def self.available_kind_values
-    %w[all afisha organization post account address]
+    %w[all afisha organization discount post account address]
   end
 
   def available_kind_values

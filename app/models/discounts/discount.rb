@@ -43,6 +43,7 @@ class Discount < ActiveRecord::Base
 
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
+    string(:search_kind) { :discount }
 
     text :title, :stored => true, :more_like_this => true
 
