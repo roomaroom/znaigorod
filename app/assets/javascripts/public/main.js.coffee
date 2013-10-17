@@ -61,6 +61,7 @@ $ ->
   init_webcam_map() if $('.webcams .webcam_map').length
   init_add_webcam() if $('.webcams .add_webcam').length
   init_my_afisha() if $('.my_afisha_wrapper')
+  init_auth_before_add_my_afisha() if $('.new_my_afisha').length
   init_file_upload() if $('.file_upload').length
   init_ajax_delete() if $('.ajax_delete').length
   init_select_tags() if $('.select_tags').length
@@ -72,16 +73,9 @@ $ ->
 
 $(window).load ->
   init_comments() if $('.comments').length
-  init_auth() if ('.auth_links').length
   init_votes() if $('.user_actions').length
 
   init_3dtourme_stat() if $('a.3dtourme').length
-  init_prokachkov_stat() if $('a.prokachkov').length
-  init_avtovokzal_tomsk_ru_stat() if $('a.avtovokzal_tomsk_ru').length
-  init_dobrynin_stat() if $('a.dobrynin').length
-  init_skoda_stat() if $('a.skoda').length
-  init_peugeot_stat() if $('a.peugeot').length
-  init_trodetfond_stat() if $('a.trodetfond').length
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
 
   init_afisha_yandex_map() if $('.yandex_map .map').length

@@ -29,6 +29,7 @@
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
+      return false if $('body .sign_in_with').length
       $('.cloud_wrapper', target.closest('.social_actions')).remove()
 
       signin_container = $('<div class="sign_in_with" />').appendTo('body').hide().html(response)

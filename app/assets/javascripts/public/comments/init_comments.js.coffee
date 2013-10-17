@@ -17,7 +17,11 @@
   scroll = () ->
     target = $('.ajaxed_item', '.comments')
     y_coord = Math.abs($(window).height() - target.offset().top - target.height()) + 150
-    $("html, body").animate({ scrollTop: y_coord })
+    $("html, body").animate
+      scrollTop: y_coord
+    , ->
+      $('textarea', target).focus()
+      true
 
   remove_highlight = () ->
     $('.active', '.comments').removeClass('active')
@@ -66,17 +70,10 @@
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
+      return false if $('body .sign_in_with').length
       $('.cloud_wrapper', target.closest('.social_actions')).remove()
 
-      wrapped = $("<div>#{response}</div>")
-      $('img.avatar', wrapped).remove()
-      $('span.profile_link', wrapped).remove()
-      $('form.new_comment', wrapped).remove()
-      $('h4', wrapped).remove()
-      $('p:first', wrapped).css('text-align', 'center')
-      wrapped = $('li.ajaxed_item', wrapped).html()
-
-      signin_container = $('<div class="sign_in_with" />').appendTo('body').hide().html(wrapped)
+      signin_container = $('<div class="sign_in_with" />').appendTo('body').hide().html(response)
       signin_container.dialog
         autoOpen: true
         draggable: false
