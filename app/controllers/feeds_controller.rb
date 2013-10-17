@@ -5,14 +5,11 @@ class FeedsController < ApplicationController
   actions :index
 
   layout false
-
+#TODO should be refactored
   def index
     index! {
-      unless params[:kind].nil? || (params[:kind] == 'all')
-        @feeds = end_of_association_chain.where(:feedable_type => params[:kind].capitalize, :account_id => params[:account_id]).order('created_at DESC').page(params[:page]).per(10)
-      else
-        @feeds = end_of_association_chain.where(:account_id => params[:account_id]).order('created_at DESC').page(params[:page]).per(10)
-      end
+      presenter = FeedsPresenter.new params
+      @feeds = presenter.collection
     render @feeds and return
     }
   end

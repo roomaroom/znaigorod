@@ -7,7 +7,8 @@ class FeedsPresenter
     @page = params['page']
     @page ||= 1
     @per_page = 10
-    @account_id = params['id']
+    @account_id = params['id'] if params['id'].present?
+    @account_id = params['account_id'] if params['account_id'].present?
     @searcher_params = {}
     searcher_params()
   end
