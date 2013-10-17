@@ -43,6 +43,7 @@ class Sport < ActiveRecord::Base
   presents_as_checkboxes :feature
 
   alias_method :sunspot_index, :index
+  include SmsClaims
 end
 
 # == Schema Information

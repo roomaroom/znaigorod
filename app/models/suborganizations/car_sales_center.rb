@@ -32,6 +32,7 @@ class CarSalesCenter < ActiveRecord::Base
   search_with_facets :category, :feature, :offer
 
   alias_method :sunspot_index, :index
+  include SmsClaims
 end
 
 # == Schema Information

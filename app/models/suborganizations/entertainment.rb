@@ -40,6 +40,7 @@ class Entertainment < ActiveRecord::Base
   search_with_facets :category, :payment, :feature, :offer, :stuff
 
   alias_method :sunspot_index, :index
+  include SmsClaims
 end
 
 # == Schema Information
