@@ -1,8 +1,8 @@
-<%= content_tag :div, link_to(image_tag(resized_image_url(hit.result_decorator.poster_url, 88, 120), size: '88x120', alt: hit.result_decorator.title), hit.show_url), class: :image %>
+<%= content_tag :div, link_to(image_tag(resized_image_url(hit.result_decorator.poster_url, 108, 80), size: '108x80', alt: hit.result_decorator.title), hit.show_url), class: :image %>
 <%= link_to hit.title, hit.show_url, class: :title %>
 
 <div class="info">
-  <%= hit.result_decorator.description %>
+  <div class='excerpt'><%= hit.excerpt %></div>
   <%= content_tag :div, hit.result_decorator.place.place, :class => "places" if hit.result_decorator.geo_present? %>
 </div>
 

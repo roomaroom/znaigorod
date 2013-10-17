@@ -4,7 +4,7 @@
   </div>
 
   <div class="image">
-    <%= link_to image_tag(resized_image_url(discount.poster_url, 220, 120), :size => '220x120', :title => discount.title, :alt => discount.title), discount_path(discount) %>
+    <%= link_to image_tag(resized_image_url(discount.poster_url, 220, 164), :size => '220x164', :title => discount.title, :alt => discount.title), discount_path(discount) %>
     <%= link_to discount_path(discount), :class => :details do %>
       <span class="first_line">
         <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>

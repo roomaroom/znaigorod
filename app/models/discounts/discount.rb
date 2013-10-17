@@ -34,6 +34,9 @@ class Discount < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  alias_attribute :title_ru,       :title
+  alias_attribute :description_ru, :description
+
   searchable do
     boolean(:actual) { actual? }
 
@@ -45,10 +48,27 @@ class Discount < ActiveRecord::Base
     string(:type) { self.class.name.underscore }
     string(:search_kind) { :discount }
 
-    text :title, :stored => true, :more_like_this => true
+    text :address,        :boost => 0.3 * 1.2
+    text :address_ru,     :boost => 0.3
+    text :description,    :boost => 0.1 * 1.2
+    text :description_ru, :boost => 0.1, :stored => true
+    text :title,          :boost => 1.0 * 1.2, :stored => true
+    text :title_ru,       :boost => 1.0, :more_like_this => true
 
     time :ends_at, :trie => true
   end
+
+  delegate :address, :title, :to => :organization, :allow_nil => true, :prefix => true
+  def address
+    "#{organization_title} #{organization_address}"
+  end
+  alias_method :address_ru, :address
+
+
+  def place
+    showings.pluck(:place).uniq.join(' ')
+  end
+
 
   def likes_count
     self.votes.liked.count

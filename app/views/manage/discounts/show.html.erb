@@ -5,9 +5,9 @@
 
   <div class="logo">
     <% if resource.poster_url? %>
-      <%= image_tag(resized_image_url(resource.poster_url, 290, 215), :size => '290x215') %>
+      <%= image_tag(resized_image_url(resource.poster_url, 288, 215), :size => '288x215') %>
     <% else %>
-      <%= image_tag 'public/stub_poster.png', size: '290x215' %>
+      <%= image_tag 'public/stub_poster.png', size: '288x215' %>
     <% end %>
     <%= link_to 'изменить постер', poster_manage_discount_path(resource) %>
   </div>
