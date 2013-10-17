@@ -5,6 +5,17 @@
 
   <div class="image">
     <%= link_to image_tag(resized_image_url(discount.poster_url, 220, 164), :size => '220x164', :title => discount.title, :alt => discount.title), discount_path(discount) %>
+
+    <%= content_tag(:div, discount.origin_url, :class => :origin_url) if discount.origin_url?  %>
+
+    <% if discount.price.nil? %>
+      <%= link_to 'Участвовать', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
+    <% elsif discount.price.zero? %>
+      <%= link_to 'Участвовать', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
+    <% else %>
+      <%= link_to 'Купить', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
+    <% end %>
+
     <%= link_to discount_path(discount), :class => :details do %>
       <span class="first_line">
         <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>

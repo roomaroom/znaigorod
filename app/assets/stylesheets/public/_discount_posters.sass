@@ -30,11 +30,33 @@
           position: relative
           width: 220px
 
+          .origin_url
+            position: absolute
+            left: 0
+            top: 0
+            color: #fff
+            background-color: #009bdb
+            padding: 3px 8px 3px
+
+          .for_sale
+            +button-style
+            display: none
+            font-size: 12px
+            left: 58px
+            padding: 2px 15.5px 3px
+            position: absolute
+            text-align: center
+            top: 50px
+            width: 75px
+
+            &:active
+              padding: 3px 15.5px 2px
+
           .details
             color: #000
 
           .first_line
-            bottom: 0px
+            bottom: 7px
 
           .first_line
             display: none
@@ -60,10 +82,14 @@
                 background-position: 6px -77px
 
           &:hover
+            .origin_url
+              display: none
+
             img
               +opacity(0.15)
 
-            .first_line
+            .first_line,
+            .for_sale
               display: block
 
         .info
