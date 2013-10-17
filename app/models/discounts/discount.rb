@@ -5,7 +5,8 @@ class Discount < ActiveRecord::Base
   include MakePageVisit
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
-                  :discount, :organization_title, :organization_id
+                  :discount, :organization_title, :organization_id,
+                  :constant
 
   attr_accessor :organization_title
 

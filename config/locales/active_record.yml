@@ -156,6 +156,7 @@ ru:
 
       discount:
         <<: *common_attributes
+        constant: Постоянная скидка
         discount: Скидка
         discounted_price: Цена со скидкой
         ends_at: Дата окончания

@@ -20,7 +20,7 @@
         <% end %>
       </div>
 
-      <% if @discount.actual? %>
+      <% if @discount.actual? && !@discount.constant? %>
         <div class="counter">
           <h2>До завершения осталось</h2>
           <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
