@@ -57,9 +57,17 @@ ru:
 
     discount:
       kind:
-        beauty: Красота
-        entertainment: Развлечения
-        sport: Спорт
+        auto: Авто
+        entertainment: Досуг
+        technique: Техника
+        beauty: Красота и здоровье
+        wear: Одежда и обувь
+        meal: Еда
+        travel: Путешествия
+        home: Для дома
+        cafe: Кафе и рестораны
+        children: Детям
+        other: Другое
 
     certificate:
       payment_system:

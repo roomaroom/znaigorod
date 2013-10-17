@@ -30,8 +30,11 @@ class Discount < ActiveRecord::Base
 
   extend Enumerize
   serialize :kind, Array
-  enumerize :kind, :in => [:beauty, :entertainment, :sport], :multiple => true, :predicates => true
-  normalize_attribute :kind, with: :blank_array
+  enumerize :kind, :in => [:auto, :entertainment, :technique, :beauty, :wear, :meal, :travel, :home, :cafe, :children, :other],
+                   :multiple => true,
+                   :predicates => true
+
+  normalize_attribute :kind, :with => :blank_array
 
   extend FriendlyId
   friendly_id :title, use: :slugged

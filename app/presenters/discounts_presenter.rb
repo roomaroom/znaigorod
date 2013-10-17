@@ -81,7 +81,7 @@ class DiscountsPresenter
 
       Hashie::Mash.new(
         :value => nil,
-        :title => 'Все',
+        :title => 'Все скидки',
         :klass => "all".tap { |s| s << ' selected' if kind.blank? },
         :path => discounts_path(params),
         :results_count => Counter.new(params).count

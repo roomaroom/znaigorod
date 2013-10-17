@@ -14,7 +14,9 @@
   <div class="filters discount">
     <div class="by_kind">
       <ul>
-        <% @presenter.kind_filter.links.each do |link| %>
+        <% more_is_selected = false %>
+        <% @presenter.kind_filter.links.take(7).each do |link| %>
+          <% more_is_selected = false if link[:selected] %>
           <li class="<%= link.klass %>">
             <%= link_to link.path do %>
               <span class="name"><%= link.title %></span>
@@ -22,7 +24,26 @@
             <% end %>
           </li>
         <% end %>
+        <% if @presenter.kind_filter.links.count > 9 %>
+          <li class='more_link<%= ' selected' if more_is_selected %>'>
+            <a href='#'>&darr; Ещё заведения</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
+
+  <% if @presenter.kind_filter.links.count > 9 %>
+    <ul class="more">
+      <% @presenter.kind_filter.links[9..@presenter.kind_filter.links.count].each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.path do %>
+            <span class="name"><%= link.title %></span>
+            <span class="count"><%= link.results_count %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>
