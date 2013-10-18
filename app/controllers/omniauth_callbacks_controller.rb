@@ -23,10 +23,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    return my_root_path if request.env['omniauth.origin'].match(/my\/sessions\/new/)
-    return request.env['omniauth.origin'] if request.env['omniauth.origin']
-
-    root_path
+    if request.env['omniauth.origin']
+      return my_root_path if request.env['omniauth.origin'].match(/my\/sessions\/new/)
+      return request.env['omniauth.origin']
+    else
+      root_path
+    end
   end
 
   private
