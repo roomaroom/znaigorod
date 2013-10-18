@@ -1,0 +1,19 @@
+<div class='comment'>
+  <div class='main'>
+    <div class='type'>
+      Комментарий
+    </div>
+    <div class='time'><%= time_ago_in_words(feed_comment.created_at) %> назад
+    </div>
+    <div class='title'>
+      <% unless feed_comment.feedable.commentable.class.name == "Work"  %>
+        <%= link_to(feed_comment.feedable.commentable.title, feed_comment.feedable.commentable) %>
+      <% else %>
+        <%= link_to("Работа " + feed_comment.feedable.commentable.to_feed_title, [feed_comment.feedable.commentable.contest, feed_comment.feedable.commentable])  %>
+      <% end %>
+    </div>
+    <div class='body'>
+      <%= feed_comment.feedable.body_html  %>
+    </div>
+  </div>
+</div>

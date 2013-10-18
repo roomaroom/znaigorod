@@ -1,0 +1,9 @@
+<div class='filters_feed'>
+  <ul>
+    <% @feeds_presenter.kinds_links.each do |link| %>
+      <li<%= " class='selected'".html_safe if link[:selected] %>>
+        <%= link_to link[:title], my_account_path(link[:parameters]) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

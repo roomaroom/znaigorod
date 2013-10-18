@@ -1,0 +1,13 @@
+<div class='afisha'>
+  <div class='time'><%= time_ago_in_words(feed_afisha.created_at) %> назад</div>
+  <div class='poster'>
+    <%= link_to image_tag( resized_image_url(feed_afisha.feedable.poster_url, 65 , 87 ), :size => '65x87', :title => feed_afisha.feedable.title), feed_afisha.feedable  %>
+  </div>
+  <p>
+  Добавлена афиша
+  </p>
+  <p>
+  <%= link_to(feed_afisha.feedable.title, feed_afisha.feedable) %>
+  </p>
+  <div class='kind'><%= t "enumerize.afisha.feed_kind.#{feed_afisha.feedable.kind.first}" %></div>
+</div>

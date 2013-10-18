@@ -1,0 +1,10 @@
+<div class='poster'>
+  <%= link_to image_tag( resized_image_url(feed_vote_afisha.voteable.poster_url, 65 , 87 ), :size => '65x87', :title => feed_vote_afisha.voteable.title), feed_vote_afisha.voteable  %>
+</div>
+<p>
+<%= link_to(feed_vote_afisha.voteable.title, feed_vote_afisha.voteable) %>
+</p>
+<p>
+Нравится афиша
+</p>
+<div class='kind'><%= t "enumerize.afisha.feed_kind.#{feed_vote_afisha.voteable.kind.first}" %></div>

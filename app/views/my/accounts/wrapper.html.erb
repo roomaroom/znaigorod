@@ -1,0 +1,119 @@
+<div class="account_show">
+  <div class="left">
+    <div class="image">
+      <%= image_tag(resized_image_url(@account.avatar.url, 200, 200), size: '200x200', title: @account.title, alt: @account.title) %>
+      <%= render 'avatar_form' %>
+    </div>
+    <h1><%= @account.title %></h1>
+    <div class="properties">
+      <%= link_to t("edit_profile"), edit_my_account_path %>
+    </div>
+
+    <div class="social_actions">
+      <% if @friends.any? %>
+        <div class="friends_counter">
+          <div class="floatl">Друзья</div>
+          <div class="floatr"><%= t('account_friends', count: @friends.total_count) %></div>
+        </div>
+        <div class="friends list">
+          <%= render partial: 'friends/account_friends', locals: { collection: @friends } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="right">
+    <%= render 'messages' if @notification_messages.any? || @dialogs.any? || @invite_messages.any? %>
+
+    <div class="invitations_wrapper">
+      <div class="invitations header">
+        <%= link_to 'Добавить',
+          new_invitation_path('invitation[kind]' => :inviter),
+          :remote => true,
+          :class => 'invitation_link',
+          :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
+          <h3>
+            <%= link_to 'Хочу пригласить',
+              new_invitation_path('invitation[kind]' => :inviter),
+              :remote => true,
+              :class => 'invitation_link',
+              :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
+            </h3>
+          </div>
+
+          <div class="invitations list">
+            <ul class="inviter">
+              <% if @account.invitations.inviter.without_invited.any? %>
+                <% @account.invitations.inviter.without_invited.each do |invitation| %>
+                  <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
+                <% end %>
+              <% else %>
+                <li class="empty">Нет приглашений</li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="invitations header">
+            <%= link_to 'Добавить',
+              new_invitation_path('invitation[kind]' => :invited),
+              :remote => true,
+              :class => 'invitation_link',
+              :data => { :title => 'Жду приглашения', :target => '.invited' } %>
+              <h3>
+                <%= link_to 'Жду приглашения',
+                  new_invitation_path('invitation[kind]' => :invited),
+                  :remote => true,
+                  :class => 'invitation_link',
+                  :data => { :title => 'Жду приглашения', :target => '.invited' } %>
+                </h3>
+              </div>
+
+              <div class="invitations list">
+                <ul class="invited">
+                  <% if @account.invitations.invited.without_invited.any? %>
+                    <% @account.invitations.invited.without_invited.each do |invitation| %>
+                      <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
+                    <% end %>
+                  <% else %>
+                    <li class="empty">Нет приглашений</li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <%#<%= render 'accounts/events' %>
+
+
+            <% if @visits.any? %>
+              <div class="visits header">
+                <%= t "account.want_to_visit.#{@account.gender}" %>
+              </div>
+              <div class="visits list">
+                <%= render 'accounts/visits' %>
+              </div>
+            <% end %>
+
+            <% if @votes.any? %>
+              <div class="votes header">
+                Нравится
+              </div>
+              <div class="votes list">
+                <%= render 'accounts/votes' %>
+              </div>
+            <% end %>
+
+            <% if @comments.any? %>
+              <div class="comments header">
+                Комментарии
+              </div>
+              <div class="comments list">
+                <%= render 'accounts/comments' %>
+              </div>
+            <% end %>
+
+
+            <%= yield(:account_content) %>
+
+
+          </div>
+        </div>

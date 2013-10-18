@@ -16,7 +16,7 @@ class FeedsPresenter
   end
 
   def private_feed?
-    @controller_name == "my/accounts"
+    %w[my/accounts my/feeds].include?(@controller_name)
   end
 
   def public_feed?
@@ -63,21 +63,28 @@ class FeedsPresenter
     if private_feed?
       if @activity_filter.of_friends?
         @feed ||= Kaminari.paginate_array(Account.find(@account_id).friends_feeds(@searcher_params)).page(@page).per(@per_page)
+
       elsif @activity_filter.of_me?
         @feed ||= Kaminari.paginate_array(Feed.feeds_for_presenter(@searcher_params)).page(@page).per(@per_page)
+
       else
+        friends_params = {}
         if @searcher_params[:feedable_type].present?
           friends_params[:feedable_type] = @searcher_params[:feedable_type]
-        else
-          friends_params = {}
         end
+
         friends_feeds = Account.find(@account_id).friends_feeds(friends_params)
         my_feeds = Feed.feeds_for_presenter(@searcher_params)
+
         @feed = friends_feeds.concat my_feeds
         @feed.compact!
+
         unless @feed.blank?
           @feed = @feed.sort_by(&:created_at).reverse
         end
+        puts @feed.inspect
+        puts @feed.count
+
         @feed = Kaminari.paginate_array(@feed).page(@page).per(@per_page)
       end
     end

@@ -1,0 +1,26 @@
+<div class='poster'>
+  <%= link_to image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.visitable.title), feed_visit_afisha.visitable  %>
+</div>
+<div class='main'>
+  <div class='type'>
+    <% if feed_visit_afisha.visitable.actual? %>
+      <%= "Хочу посетить" %>
+    <% else %>
+      <%= "Посетил" %>
+    <% end %>
+  </div>
+
+  <div class='title'>
+    <%= link_to(feed_visit_afisha.visitable.title, feed_visit_afisha.visitable) %>
+  </div>
+  <%
+    showings = feed_visit_afisha.visitable.showings
+    unless showings.blank?
+      date = "#{l(showings.last.starts_at, :format => "%e %B")}, " if showings.last.starts_at.present?
+      price = humanize_price(showings.map(&:price_min).uniq.compact.min, showings.map(&:price_max).uniq.compact.max)
+    end
+  %>
+  <div class='body'>
+    <p><%= date %><%= price %></p>
+  </div>
+</div>
