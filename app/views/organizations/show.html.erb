@@ -179,6 +179,43 @@
       </div>
     <% end %>
 
+    <% if @discount_presenter.collection.any? %>
+      <div class="suborganization_info discount_details">
+        <div class="title">Скидки</div>
+        <div class="presentation_filters discount">
+          <div class="present_by">
+            <p>Вид:</p>
+            <ul>
+              <li class="selected"><a href="#" class="poster">Постеры</a></li>
+              <li><a href="#" class="list">Список</a></li>
+            </ul>
+          </div>
+
+          <div class="order_by">
+            <p>Сортировать по:</p>
+            <ul>
+              <% @discount_presenter.order_by_filter.links.each do |link| %>
+                <li class="<%= link.klass %>">
+                  <%= link_to link.title, link.path %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="discounts_list">
+          <ul class="posters">
+            <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @discount_presenter.collection } %>
+          </ul>
+        </div>
+
+        <%= paginate @discount_presenter.collection %>
+
+      </div>
+    <% end %>
+
+
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization } if @organization.ability_to_comment? %>
   </div>
 </div>

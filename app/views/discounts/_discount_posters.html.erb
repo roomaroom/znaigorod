@@ -1,3 +1,3 @@
-<% @presenter.collection.each do |discount| %>
-  <li><%= render partial: 'discounts/discount_poster', locals: { discount: discount } %></li>
+<% collection.each do |discount| %>
+  <li><%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount } %></li>
 <% end %>

@@ -1,5 +1,5 @@
 <div class="presentation_filters discounts">
-  <div class='order_by'>
+  <div class="order_by">
     <p>Сортировать по:</p>
     <ul>
       <% @presenter.order_by_filter.links.each do |link| %>
@@ -13,7 +13,7 @@
 
 <div class="discounts_list">
   <ul class="posters">
-    <%= render :partial => 'discounts/discount_posters', :locals => { collection: @presenter.collection } %>
+    <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @presenter.collection } %>
   </ul>
 </div>
 
