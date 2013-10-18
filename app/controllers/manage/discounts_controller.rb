@@ -1,6 +1,5 @@
 class Manage::DiscountsController < Manage::ApplicationController
   actions :all
-  custom_actions :resource => :destroy_image
 
   def update
     update! do |success, failure|
@@ -18,16 +17,6 @@ class Manage::DiscountsController < Manage::ApplicationController
         render :edit
       }
     end
-  end
-
-  def destroy_image
-    destroy_image! {
-      resource.poster_url = nil
-      resource.poster_image.destroy
-      resource.poster_image_url = nil
-      resource.save(:validate => false)
-      redirect_to poster_manage_discount_path(resource) and return
-    }
   end
 
   private

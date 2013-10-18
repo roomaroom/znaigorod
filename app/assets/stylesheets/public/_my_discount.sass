@@ -1,33 +1,17 @@
 .content .my_discount_wrapper
 
-  .breadcrumbs
-    +clearfix
-    font-size: 12px
-    border-bottom: 1px solid #ccc
-    margin-bottom: 10px
-    padding-bottom: 10px
+  .form_wrapper
 
-    a
-      display: block
-      float: left
+    .simple_form
+      .type, .organization
+        label
+          float: left
+          margin: 0 10px 0 0
 
-      &:after
-        content: ""
-        width: 0
-        height: 0
-        display: block
-        float: right
-        border-top: 5px solid transparent
-        border-bottom: 5px solid transparent
-        border-left: 5px solid #06c
-        margin: 5px 10px 0
+      label.checkbox
+        float: left
+        margin-right: 10px
+        width: 150px !important
 
-      &:last-child:after
-        display: inline
-        float: none
-        border: none
-        margin: 0
-
-  h1
-    font-size: 22px
-    margin-bottom: 10px
+        &:nth-child(4n+4)
+          clear: none !important

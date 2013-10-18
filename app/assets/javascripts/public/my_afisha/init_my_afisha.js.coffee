@@ -1,6 +1,6 @@
 @init_my_afisha = ->
   init_afisha_preview_title() if $('#afisha_title').length
-  init_afisha_preview_description() if $('#afisha_description').length
+  init_afisha_preview_description() if $('#markitup_description').length
   init_afisha_preview_tag() if $('#afisha_tag').length
   init_afisha_preview_video() if $('#afisha_trailer_code').length
   init_afisha_preview_map() if $('form.my_afisha_showings .my_afisha_map').length
@@ -28,20 +28,20 @@ init_afisha_preview_title = ->
 init_afisha_preview_description = ->
   $.extend mySettings,
     afterInsert: ->
-      $('#afisha_description').keyup()
+      $('#markitup_description').keyup()
       true
-  $('#afisha_description').markItUp(mySettings).keyup ->
+  $('#markitup_description').markItUp(mySettings).keyup ->
     if $(this).val()
-      $('.my_afisha_wrapper .afisha_preview .description .text').html(textile($(this).val()))
+      $('.my_afisha_wrapper .afisha_preview .description .text', '.my_discount_wrapper .discount_preview .description .text').html(textile($(this).val()))
     else
-      $('.my_afisha_wrapper .afisha_preview .description .text').html('Нет описания')
+      $('.my_afisha_wrapper .afisha_preview .description .text', 'my_discount_wrapper .discount_preview .description .text').html('Нет описания')
     true
-  $('#afisha_description').mouseup (event) ->
+  $('#markitup_description').mouseup (event) ->
     setTimeout ->
-      $('#afisha_description').keyup()
+      $('#markitup_description').keyup()
     , 1
     true
-  $('#afisha_description').keyup()
+  $('#markitup_description').keyup()
 
   true
 

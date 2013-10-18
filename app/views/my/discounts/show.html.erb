@@ -1,0 +1,56 @@
+<div class="my_discount_wrapper">
+  <%= render_navigation :context => 'my', :renderer => :breadcrumbs %>
+
+  <div class="discount_show">
+    <div class="left">
+      <div class="image">
+        <%= link_to image_tag(resized_image_url(@discount.poster_url, 200, 149), :size => '200x149', :title => @discount.title, :alt => @discount.title), @discount.poster_url %>
+        <%= link_to 'изменить', poster_my_discount_path(@discount)  %>
+      </div>
+
+      <div class="info">
+        <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="wrapper">
+        <div class="public_action">
+          <h2>Публикация скидки</h2>
+          <p>Для того, чтобы опубликовать скидку, необходимо заполнить следующие поля:</p>
+          <ul class='requirements'>
+            <li class='<%= @discount.title? ? 'enabled' : 'disabled' %>'>Название</li>
+            <li class='<%= @discount.description? ? 'enabled' : 'disabled' %>'>Описание</li>
+            <li class='<%= @discount.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="center">
+      <h1><%= @discount.title.text_gilensize %> <%= link_to 'изменить', edit_my_discount_path(@discount) %></h1>
+
+      <div class="closest">
+        <%= @discount.when_with_price %>
+      </div>
+
+      <% if @discount.geo_present? %>
+        <div class="place">
+          <%= @discount.place.place %>
+        </div>
+      <% end %>
+
+      <div class="text">
+        <%= @discount.html_description %>
+      </div>
+
+      <div class="tags_and_visits">
+        <ul class="tags">
+          <% @discount.kind.map(&:text).each do |tag| %>
+            <li><%= tag %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

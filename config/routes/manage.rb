@@ -40,8 +40,6 @@ Znaigorod::Application.routes.draw do
     resources :discounts do
       get 'poster' => 'discounts#poster', :on => :member, :as => :poster
       put 'poster' => 'discounts#poster', :on => :member, :as => :poster
-
-      delete 'destroy_image', :on => :member, :as => :destroy_image
     end
 
     resources :posts do

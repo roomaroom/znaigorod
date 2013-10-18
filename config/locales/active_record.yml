@@ -159,15 +159,15 @@ ru:
         constant: Постоянная скидка
         discount: Скидка
         discounted_price: Цена со скидкой
-        ends_at: Дата окончания
-        kind: Tип
+        kind: Категория
         number: Количество
-        organization_title: Связанная организация
+        organization_title: Организатор или место
         origin_price: Цена без скидки
         origin_url: Ссылка на источник
         payment_system: Платежная система
         price: Цена сертификата
         starts_at: Дата начала
+        ends_at: Дата окончания
         type: Тип скидки
 
       post:
