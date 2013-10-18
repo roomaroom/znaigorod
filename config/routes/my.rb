@@ -56,6 +56,8 @@ Znaigorod::Application.routes.draw do
 
     get "/afisha/:id" => "afishas#show", :as => :afisha_show, :controller => 'afishas'
 
+    resources :discounts, :only => [:new, :create, :edit, :update, :destroy]
+
     root to: 'accounts#show'
   end
 end

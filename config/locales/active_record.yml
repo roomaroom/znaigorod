@@ -168,6 +168,7 @@ ru:
         payment_system: Платежная система
         price: Цена сертификата
         starts_at: Дата начала
+        type: Тип скидки
 
       post:
         <<: *common_attributes

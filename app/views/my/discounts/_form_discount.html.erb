@@ -1,0 +1,18 @@
+<%= simple_form_for [:my, @discount] do |f| %>
+  <%= f.input :type, :collection => [:discount, :certificate, :coupon], :as => :select, :include_blank => false %>
+  <%= f.input :title %>
+  <%= f.input :organization_title, :input_html => { :class => 'autosuggest' } %>
+  <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+  <%= link_to 'Удалить', '#', :remote => true, :class => 'clear_autosuggest_link' %>
+  <%= f.input :kind, :as => :check_boxes %>
+  <%= f.input :description %>
+  <%= f.input :discount %>
+  <%= f.input :constant %>
+  <%= f.input :starts_at, :as => :date_picker %>
+  <%= f.input :ends_at, :as => :date_picker %>
+
+  <div class="actions">
+    <%= f.submit 'Сохранить' %>
+    <%= link_to 'Удалить'.html_safe, my_discount_path(resource), method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
+  </div>
+<% end %>

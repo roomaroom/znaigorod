@@ -6,7 +6,7 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :organization_id,
-                  :constant
+                  :constant, :type
 
   attr_accessor :organization_title
 
