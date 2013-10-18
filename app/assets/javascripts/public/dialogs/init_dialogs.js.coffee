@@ -55,8 +55,14 @@
 # Табы jQuery-UI
 @init_messages_tabs = () ->
   $('#messages_filter').tabs
-    show: () ->
+    create: (event, ui) ->
+      if window.location.hash == '#to_invites'
+        $('#messages_filter').tabs('select', '#invites')
+        window.location.hash = ''
+      true
+    show: (event, ui) ->
       process_change_message_status()
+      true
 
 
 # AJAX для табов #dialogs, #invites, #notifications

@@ -20,10 +20,16 @@
   dialog = init_form_dialog('not_answered_invitations', 'Новые приглашения', null, 650, 386).html(not_answered_invitations.show())
 
   $('.to_dialog', dialog).remove()
+  $('.invite_message_actions', dialog).remove()
 
   dialog.on 'dialogclose', ->
     unless (typeof(window.localStorage) == 'undefined')
       window.localStorage.setItem('closed_at', (new Date).getTime())
+
+  $('.button', dialog).click ->
+    unless (typeof(window.localStorage) == 'undefined')
+      window.localStorage.setItem('closed_at', (new Date).getTime())
+    true
 
   dialog.on 'ajax:success', (evt, response) ->
     target = $(evt.target)

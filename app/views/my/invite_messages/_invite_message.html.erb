@@ -24,7 +24,7 @@
           <%= link_to invite_message.messageable.inviteable,
             invite_message.messageable.inviteable.is_a?(Afisha) ? afisha_show_path(invite_message.messageable.inviteable) : organization_path(invite_message.messageable.inviteable) %>
         <% else %>
-          <%= link_to invite_message.messageable.category %>
+          <%= invite_message.messageable.category %>
         <% end %>
       </div>
 
