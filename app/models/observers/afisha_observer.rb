@@ -17,6 +17,7 @@ class AfishaObserver < ActiveRecord::Observer
   end
 
   def after_send_to_author(afisha, transition)
+    afisha.delay.reindex_showings
     if afisha.user.present?
       NotificationMessage.delay(:queue => 'mailer').create(
         account: afisha.user.account,
@@ -26,7 +27,6 @@ class AfishaObserver < ActiveRecord::Observer
   end
 
   def before_save(afisha)
-
     if afisha.published? && afisha.change_versionable?
       afisha.save_version
       MyMailer.delay(:queue => 'mailer').send_afisha_diff(afisha.versions.last) if afisha.versions.last.present?
