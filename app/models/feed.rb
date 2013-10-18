@@ -3,6 +3,10 @@ class Feed < ActiveRecord::Base
   belongs_to :feedable, :polymorphic => true
   belongs_to :account
 
+  def self.feeds_for_presenter(searcher_params)
+    self.where(searcher_params).includes(:feedable).order('created_at DESC')
+  end
+
 end
 
 # == Schema Information

@@ -90,10 +90,17 @@ class Account < ActiveRecord::Base
     friends = self.friends.includes(:friendable => { :feeds => :feedable })
     feeds = [nil]
     friends.each do |friend|
-      feeds = feeds.concat(friend.friendable.feeds.where(search))
+      if friend.friendly?
+        feeds = feeds.concat(friend.friendable.feeds.where(search))
+      end
+    end
+    feeds.compact!
+
+    unless feeds.blank?
+      feeds = feeds.sort_by(&:created_at).reverse
     end
 
-    feeds.compact
+    feeds
   end
 
   def age
