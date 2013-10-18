@@ -12,4 +12,8 @@ Znaigorod::Application.routes.draw do
     post 'success' => 'robokassa#success'
     post 'fail'    => 'robokassa#fail'
   end
+
+  scope 'rbkmoney' do
+    post 'success' => 'rbkmoney#success'
+  end
 end
