@@ -39,7 +39,7 @@ ru:
 
   invitation:
     kind:
-      inviter: Приглашаю
+      inviter: Пригласить
       invited: Пригласи меня
     without_inviteable:
       inviter: Приглашаю тебя
