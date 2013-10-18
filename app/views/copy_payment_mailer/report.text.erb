@@ -8,4 +8,4 @@
   * <%= copy.to_s %>
 <% end %>
 
-Необходимо перечислить <%= number_to_currency @ticket.copies.sold.count * @ticket.undertow %>
+Необходимо перечислить <%= number_to_currency @ticket.copies.sold.count * @ticket.undertow.to_i %>
