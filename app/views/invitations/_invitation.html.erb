@@ -5,7 +5,7 @@
     <%= Preposition.new(invitation.inviteable).value %>
     <%= link_to invitation.inviteable.title, invitation.inviteable %>
   <% else %>
-    <%= link_to invitation.category %>
+    <%= invitation.category %>
   <% end %>
 
   <% if invitation.description? %>
