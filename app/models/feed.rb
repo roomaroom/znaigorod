@@ -3,10 +3,6 @@ class Feed < ActiveRecord::Base
   belongs_to :feedable, :polymorphic => true
   belongs_to :account
 
-  def message?
-    (self.feedable.class.name == "InviteMessage" || self.feedable.class.name == "NotificationMessage" || self.feedable.class.name == "PrivateMessage")
-  end
-
 end
 
 # == Schema Information

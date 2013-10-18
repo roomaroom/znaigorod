@@ -9,7 +9,7 @@ class FeedsController < ApplicationController
     index! {
       presenter = FeedsPresenter.new params
       @feeds = presenter.collection
-    render @feeds and return
+      render @feeds and return
     }
   end
 

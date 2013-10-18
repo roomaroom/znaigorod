@@ -1,6 +1,9 @@
 <%
   img = resized_image_url(feed_friend.feedable.friendable.avatar_url, 50, 50)
-  name =  feed_friend.feedable.friendable.first_name + " " + feed_friend.feedable.friendable.last_name
+  name = ""
+  name += feed_friend.feedable.friendable.first_name if feed_friend.feedable.friendable.first_name.present?
+  name += " "
+  name += feed_friend.feedable.friendable.last_name  if feed_friend.feedable.friendable.last_name.present?
 %>
 <div class='friend'>
   <div class='time'>

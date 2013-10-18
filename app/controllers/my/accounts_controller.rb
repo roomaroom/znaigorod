@@ -16,6 +16,8 @@ class My::AccountsController < My::ApplicationController
 
   def show
     @account = AccountDecorator.new(current_user.account)
+    params['account_id'] = @account.id
+    @feeds_presenter = FeedsPresenter.new(params)
     @comments = @account.comments.rendereable.page(1).per(3)
     @events = @account.afisha.page(1).per(3)
     @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(1).per(5)

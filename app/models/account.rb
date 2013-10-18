@@ -15,7 +15,6 @@ class Account < ActiveRecord::Base
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
 
-
   has_many :invitations,     dependent: :destroy
   has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
 
@@ -85,6 +84,16 @@ class Account < ActiveRecord::Base
     return "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png"  if gender.undefined?
 
     "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
+  end
+
+  def friends_feeds(search)
+    friends = self.friends.includes(:friendable => { :feeds => :feedable })
+    feeds = [nil]
+    friends.each do |friend|
+      feeds = feeds.concat(friend.friendable.feeds.where(search))
+    end
+
+    feeds.compact
   end
 
   def age

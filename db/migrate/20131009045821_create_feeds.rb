@@ -10,33 +10,7 @@ class CreateFeeds < ActiveRecord::Migration
     add_index :feeds, :feedable_id
     add_index :feeds, :account_id
 
-    %w[comment vote visit afisha].each do |model|
-      puts model.capitalize
-      items = model.capitalize.constantize.where('user_id IS NOT NULL')
-      bar = ProgressBar.new(items.count)
-      items.each do |item|
-        Feed.create(
-          :feedable => item,
-          :account => item.user.account,
-          :created_at => item.created_at,
-          :updated_at => item.updated_at
-        )
-        bar.increment!
-      end
-    end
-
-    puts 'Invitation'
-    items = Invitation.where('account_id IS NOT NULL AND invited_id IS NULL')
-    bar = ProgressBar.new(items.count)
-    items.each do |item|
-      Feed.create(
-        :feedable => item,
-        :account => item.account,
-        :created_at => item.created_at,
-        :updated_at => item.updated_at
-      )
-      bar.increment!
-    end
+    Rake::Task['generate_feeds'].invoke
 
   end
 
