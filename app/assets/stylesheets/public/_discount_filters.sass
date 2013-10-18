@@ -38,7 +38,8 @@
             white-space: nowrap
             padding-top: 25px
             margin: 0 0 1px 0
-            background: transparent image_url('public/account_kind_sprite.png') no-repeat center center
+            min-width: 40px
+            background: transparent image_url('public/discount_kind.png') no-repeat center center
 
             .name
               color: #000
@@ -63,16 +64,94 @@
 
           &.all
             a
-              background-position: 0 0
+              background-position: 12px 0px
 
               &:hover
-                background-position: 0 -67px
+                background-position: 12px -70px
 
             &.selected a
-              background-position: 0 -136px
+              background-position: 12px -130px
 
               &:hover
-                background-position: 0 -67px
+                background-position: 12px -70px
+
+          &.auto
+            a
+              background-position: -87px 0px
+
+              &:hover
+                background-position: -87px -70px
+
+            &.selected a
+              background-position: -87px -130px
+
+              &:hover
+                background-position: -87px -70px
+
+          &.entertainment
+            a
+              background-position: -163px 0px
+
+              &:hover
+                background-position: -163px -70px
+
+            &.selected a
+              background-position: -163px -130px
+
+              &:hover
+                background-position: -163px -70px
+
+          &.technique
+            a
+              background-position: -240px 0px
+
+              &:hover
+                background-position: -240px -70px
+
+            &.selected a
+              background-position: -240px -130px
+
+              &:hover
+                background-position: -240px -70px
+
+          &.beauty
+            a
+              background-position: -318px 0px
+
+              &:hover
+                background-position: -318px -70px
+
+            &.selected a
+              background-position: -318px -130px
+
+              &:hover
+                background-position: -318px -70px
+
+          &.wear
+            a
+              background-position: -445px 0px
+
+              &:hover
+                background-position: -445px -70px
+
+            &.selected a
+              background-position: -445px -130px
+
+              &:hover
+                background-position: -445px -70px
+
+          &.meal
+            a
+              background-position: -560px 0px
+
+              &:hover
+                background-position: -560px -70px
+
+            &.selected a
+              background-position: -560px -130px
+
+              &:hover
+                background-position: -560px -70px
 
           &.more_link
             a
