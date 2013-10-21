@@ -33,6 +33,7 @@ init_dialog = () ->
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
+      save_unauthorized_action(target)
       return false if $('body .sign_in_with').length
       $('.cloud_wrapper', target.closest('.social_actions')).remove()
 

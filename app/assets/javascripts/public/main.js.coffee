@@ -67,14 +67,13 @@ $ ->
   init_select_tags() if $('.select_tags').length
   init_afisha_tabs() if $('#events_filter').length
   init_addresses_side_map() if $('.results_with_map').length
-  init_votes() if $('.votes_wrapper').length
+  init_votes() if $('.votes_wrapper, .user_actions').length
+  init_comments() if $('.comments').length
+  apply_unauthorized_action()
 
   true
 
 $(window).load ->
-  init_comments() if $('.comments').length
-  init_votes() if $('.user_actions').length
-
   init_3dtourme_stat() if $('a.3dtourme').length
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
 

@@ -1,7 +1,12 @@
 @init_auth_before_add_my_afisha = ->
-  return false unless $('.cloud_wrapper', $('.new_my_afisha').closest('.dashboard')).length
   $('.new_my_afisha').click ->
-    console.log 'authorize please!'
+    target = $(this)
+    if $('.header .dashboard .user_name').length
+      window.location.href = $(this).attr('href')
+      return false
+    else
+      save_unauthorized_action(target)
+
     $.ajax
       url: '/my/sessions/new'
       success: (response, textStatus, jqXHR) ->

@@ -228,7 +228,13 @@ handle_reply_invitation = (target, response)->
   init_delete_invitation $('.delete_invitation')
 
   $('.invitations_wrapper, .content .left, .accounts_list, .feature_wrapper, .additional_info_wrapper').on 'ajax:success', (evt, response) ->
-    if $(response).hasClass('cloud_wrapper')
+    return false if $('.invite_form_wrapper').length
+    target = $(evt.target)
+
+    if $('.social_signin_links', $(response)).length
+      save_unauthorized_action(target)
+      return false if $('body .sign_in_with').length
+
       signin_container = $('<div class="sign_in_with" />').appendTo('body').hide().html(response)
       signin_container.dialog
         autoOpen: true
@@ -246,8 +252,8 @@ handle_reply_invitation = (target, response)->
 
       return false
 
-    target = $(evt.target)
-
     $('.social_actions').replaceWith(response) if target.hasClass('change_visit')
     handle_new_invitaion_link(target, response) if target.hasClass('invitation_link')
     handle_reply_invitation(target, response) if target.hasClass('new_invitation')
+
+  true

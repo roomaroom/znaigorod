@@ -17,7 +17,7 @@
 
   <% if !voteable.is_a?(Comment) || current_user != voteable.user %>
     <div class="user_like <%= (current_user && current_user.liked?(voteable))? 'liked' : 'dont_liked' %>">
-      <%= link_to 'Мне нравится', polymorphic_url([object_assoc_chain, :change_vote].flatten), :method => :put, :remote => true, :class => 'change_vote' %>
+      <%= link_to 'Мне нравится', polymorphic_url([object_assoc_chain, :change_vote].flatten), :method => :put, :remote => true, :class => "vote_#{voteable.id} change_vote" %>
     </div>
   <% end %>
 </div>

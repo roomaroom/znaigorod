@@ -70,6 +70,7 @@
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
+      save_unauthorized_action(target)
       return false if $('body .sign_in_with').length
       $('.cloud_wrapper', target.closest('.social_actions')).remove()
 
@@ -90,10 +91,12 @@
 
       return false
 
-    switch target.attr('class')
-      when 'new_comment' then target.new_comment(jqXHR.responseText)
-      when 'new_answer'  then target.new_answer(jqXHR.responseText)
-      else target.submit_form(jqXHR.responseText)
+    if target.hasClass('new_comment')
+      target.new_comment(jqXHR.responseText)
+    else if target.hasClass('new_answer')
+      target.new_answer(jqXHR.responseText)
+    else
+      target.submit_form(jqXHR.responseText)
 
     cancel_handler()
     init_auth()

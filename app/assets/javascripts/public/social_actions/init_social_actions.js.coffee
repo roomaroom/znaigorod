@@ -3,6 +3,7 @@
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
+      save_unauthorized_action(target)
       return false if $('body .sign_in_with').length
       $('.cloud_wrapper', target.closest('.social_actions')).remove()
 
@@ -22,9 +23,6 @@
       init_auth()
 
       return false
-
-    #if target.hasClass('change_visit')
-      #$('.social_actions').replaceWith(response)
 
     if target.hasClass('acts_as_inviter') || target.hasClass('acts_as_invited')
 

@@ -26,6 +26,7 @@
  * = require popup_window
  * = require ./share_to_vk_wall
  * = require ./auth
+ * = require ./unauthorized_action
  * = require ./addresses_side_map
  * = require ./md5
  * = require ./twitter

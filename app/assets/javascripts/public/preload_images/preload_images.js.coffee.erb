@@ -1,11 +1,12 @@
 @init_preload_images = () ->
+  wrapper = $('<div class="preload_images" />').appendTo('body')
   [
     "<%= asset_path('public/ajax_loading_items_indicator.gif') %>"
     "<%= asset_path('public/colorbox_loading.gif') %>"
     "<%= asset_path('public/file_upload_indicator.gif') %>"
     "<%= asset_path('public/back_to_top.png') %>"
   ].each (image, index) ->
-    $('<div />').appendTo('body').css
+    $('<div />').appendTo(wrapper).css
       'position': 'absolute'
       'background': "url('#{image}') no-repeat -9999px -9999px"
       'top': '-999em'
