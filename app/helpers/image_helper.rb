@@ -14,4 +14,8 @@ module ImageHelper
     url
   end
 
+  def image_direct_url(path)
+    URI.join(root_url, image_path(path))
+  end
+
 end
