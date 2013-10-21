@@ -9,9 +9,7 @@ class DiscountsPresenter
     attr_accessor :type, :kind, :organization_id, :order_by
 
     def params
-      { :type => type, :kind => kind, :order_by => order_by }.tap do |params|
-        params[:organization_id] = organization_id if organization_id?
-      end
+      { :type => type, :kind => kind, :order_by => order_by }
     end
 
     def organization_id?
