@@ -317,7 +317,6 @@ class Organization < ActiveRecord::Base
                                      0.01*page_visits.count)
     OrganizationObserver.disabled = false
   end
-
 end
 
 # == Schema Information

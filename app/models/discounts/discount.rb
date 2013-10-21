@@ -26,6 +26,9 @@ class Discount < ActiveRecord::Base
   validates_presence_of :title, :description, :kind, :discount, :kind
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
+  after_save :reindex_organization
+  after_destroy :reindex_organization
+
   scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
 
   extend Enumerize
@@ -98,13 +101,13 @@ class Discount < ActiveRecord::Base
 
   def reindex_organization
     if old_organization = Organization.find_by_id(organization_id_was)
-      old_organization.index
-      old_organization.index_suborganizations
+      old_organization.delay.index
+      old_organization.delay.index_suborganizations
     end
 
     if organization
-      organization.index
-      organization.index_suborganizations
+      organization.delay.index
+      organization.delay.index_suborganizations
     end
   end
 end
