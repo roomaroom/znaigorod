@@ -48,7 +48,7 @@ group :default do
   gem 'omniauth-mailru'
   gem 'omniauth-odnoklassniki'
   gem 'omniauth-twitter'
-  gem 'omniauth-vkontakte'
+  gem 'omniauth-vkontakte',         '~> 1.3'
   gem 'omniauth-yandex'
   gem 'openteam-commons'
   gem 'paperclip-elvfs'

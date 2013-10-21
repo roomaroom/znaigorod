@@ -246,8 +246,8 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.2)
     oj (2.1.4)
-    omniauth (1.1.1)
-      hashie (~> 2.0.5)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
@@ -269,10 +269,10 @@ GEM
     omniauth-twitter (0.0.14)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
-    omniauth-vkontakte (1.2.0)
+    omniauth-vkontakte (1.3.1)
       multi_json
-      omniauth (~> 1.1.0)
-      omniauth-oauth2 (~> 1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-yandex (0.0.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
@@ -515,7 +515,7 @@ DEPENDENCIES
   omniauth-mailru
   omniauth-odnoklassniki
   omniauth-twitter
-  omniauth-vkontakte
+  omniauth-vkontakte (~> 1.3)
   omniauth-yandex
   openteam-capistrano
   openteam-commons
