@@ -39,21 +39,6 @@ class FeedsPresenter
     }
   end
 
-  def activity_links
-    @activity_links ||= [].tap { |array|
-      @activity_filter.available_kind_values.each do |kind|
-        array << {
-          title: I18n.t("feed_kinds.#{kind}"),
-          klass: kind,
-          parameters: {
-            kind: kind,
-          },
-          selected: kind == @activity_filter.kind,
-        }
-      end
-    }
-  end
-
   def collection
     puts @searcher_params
 
