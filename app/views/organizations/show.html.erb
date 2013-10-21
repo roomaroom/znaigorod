@@ -196,7 +196,7 @@
             <ul>
               <% @discount_presenter.order_by_filter.links.each do |link| %>
                 <li class="<%= link.klass %>">
-                  <%= link_to link.title, link.path %>
+                  <%= link_to link.title, organization_path(@organization, :params => link.params) %>
                 </li>
               <% end %>
             </ul>

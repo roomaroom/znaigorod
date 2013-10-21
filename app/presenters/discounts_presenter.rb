@@ -130,6 +130,7 @@ class DiscountsPresenter
           :value => value,
           :title => title,
           :klass => "#{value}".tap { |s| s << " selected" if value == selected },
+          :params => Parameters.instance.params.merge(:order_by => value).delete_if { |_, v| v.blank? },
           :path => discounts_path(Parameters.instance.params.merge(:order_by => value))
         )
       end
