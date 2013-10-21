@@ -95,6 +95,18 @@ class Discount < ActiveRecord::Base
   def actual?
     constant? ? true : ends_at > Time.zone.now
   end
+
+  def reindex_organization
+    if old_organization = Organization.find_by_id(organization_id_was)
+      old_organization.index
+      old_organization.index_suborganizations
+    end
+
+    if organization
+      organization.index
+      organization.index_suborganizations
+    end
+  end
 end
 
 # == Schema Information

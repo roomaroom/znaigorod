@@ -27,6 +27,7 @@ module SearchWithFacets
         end
 
         boolean(:sms_claimable) { respond_to?(:sms_claimable?) ? sms_claimable? : false }
+        boolean(:with_discounts) { organization.discounts.actual.any? }
 
         float :organization_total_rating
 

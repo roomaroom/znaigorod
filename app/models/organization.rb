@@ -69,6 +69,7 @@ class Organization < ActiveRecord::Base
   ### Payments ===>
 
   has_many :afisha,       :through => :showings, :uniq => true
+  has_many :discounts,      :dependent => :destroy
   has_many :halls,          :dependent => :destroy
   has_many :organizations
   has_many :schedules,      :dependent => :destroy
@@ -142,6 +143,8 @@ class Organization < ActiveRecord::Base
 
   searchable do
     boolean(:logotyped) { logotype_url? }
+    boolean(:sms_claimable) { suborganizations.select {|s| s.respond_to?(:sms_claimable?)}.select {|s| s.sms_claimable?}.any? }
+    boolean(:with_discounts) { discounts.actual.any? }
 
     float :rating
     float :total_rating
@@ -157,7 +160,6 @@ class Organization < ActiveRecord::Base
     string(:inviteable_categories, :multiple => true) { Inviteables.instance.categories_for_organization self }
     string(:kind, :multiple => true) { ['organization'] }
     string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:underscore) }
-    boolean(:sms_claimable) { suborganizations.select {|s| s.respond_to?(:sms_claimable?)}.select {|s| s.sms_claimable?}.any? }
 
     text :title,                :boost => 1.0 * 1.2
     text :title_ru,             :boost => 1.0,              :more_like_this => true
@@ -308,6 +310,7 @@ class Organization < ActiveRecord::Base
     OrganizationObserver.disabled = true
     update_attribute :total_rating, ((client? ? 10 : 0) +
                                      afisha.map {|a| a.copies.sold.count}.sum +
+                                     discounts.map {|d| d.copies.sold.count}.sum +
                                      0.5*afisha.actual.count +
                                      0.5*visits.count +
                                      0.1*votes.liked.count +

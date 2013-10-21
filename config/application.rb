@@ -40,6 +40,7 @@ module Znaigorod
     config.active_record.observers =  :afisha_observer,
                                       :comment_observer,
                                       :copy_observer,
+                                      :discount_observer,
                                       :friend_observer,
                                       :organization_observer,
                                       :reservation_observer,
