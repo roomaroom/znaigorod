@@ -32,3 +32,58 @@ ru:
       few:   "Добавлено %{count} афиши"
       many:  "Добавлено %{count} афиш"
       other: "Добавлено%{count} афиш"
+
+    writed_a_comment:
+      undefined: "оставил комментарий"
+      male:      "оставил комментарий"
+      female:    "оставила комментарий"
+
+    rated:
+      undefined: "оценил"
+      male:      "оценил"
+      female:    "оценила"
+
+    visited:
+      undefined: "Посетил"
+      male:      "Посетил"
+      female:    "Посетила"
+
+    visited_downcase:
+      undefined: "посетил"
+      male:      "посетил"
+      female:    "посетила"
+
+    want_to_visit_present:
+      undefined: "хочет посетить"
+      male:      "хочет посетить"
+      female:    "хочет посетить"
+
+    i_want_to_visit_present:
+      undefined: "Хочу посетить"
+      male:      "Хочу посетить"
+      female:    "Хочу посетить"
+
+    added_afisha:
+      undefined: "добавил афишу"
+      male:      "добавил афишу"
+      female:    "добавила афишу"
+
+    added_a_friend:
+      undefined: "добавил друга"
+      male:      "добавил друга"
+      female:    "добавила друга"
+
+    added_to_friends:
+      undefined: "добавлен в друзья"
+      male:      "добавлен в друзья"
+      female:    "добавлена в друзья"
+
+    wants_to_visit_downcase:
+      undefined: "хочет посетить/посетил"
+      male:      "хочет посетить/посетил"
+      female:    "хочет посетить/посетила"
+
+    i_want_to_visit:
+      undefined: "Хочу посетить/посетил"
+      male:      "Хочу посетить/посетил"
+      female:    "Хочу посетить/посетила"

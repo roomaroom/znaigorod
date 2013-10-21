@@ -7,6 +7,15 @@ class Feed < ActiveRecord::Base
     self.where(searcher_params).includes(:feedable).order('created_at DESC')
   end
 
+  def friend_name_for_feed_friend
+    name = ""
+    name += self.feedable.friendable.first_name if self.feedable.friendable.first_name.present?
+    name += " "
+    name += self.feedable.friendable.last_name  if self.feedable.friendable.last_name.present?
+    name
+  end
+
+
 end
 
 # == Schema Information

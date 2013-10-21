@@ -1,6 +1,6 @@
 class FeedsPresenter
 
-  attr_accessor :kind_filter
+  attr_accessor :kind_filter, :activity_filter
 
   def initialize(params)
     @controller_name = params['controller']
@@ -31,23 +31,9 @@ class FeedsPresenter
           klass: kind,
           parameters: {
             kind: kind,
+            activity: @activity_filter.kind,
           },
           selected: kind == @kind_filter.kind,
-        }
-      end
-    }
-  end
-
-  def activity_links
-    @activity_links ||= [].tap { |array|
-      @activity_filter.available_kind_values.each do |kind|
-        array << {
-          title: I18n.t("feed_kinds.#{kind}"),
-          klass: kind,
-          parameters: {
-            kind: kind,
-          },
-          selected: kind == @activity_filter.kind,
         }
       end
     }

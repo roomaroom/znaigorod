@@ -3,9 +3,23 @@
     <%= link_to image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 65 , 65 ), :size => '65x65'), feed_vote_post.voteable %>
   <% end %>
 </div>
-<p>
-<%= link_to feed_vote_post.voteable.title, feed_vote_post.voteable %>
-</p>
-<p>
-Нравится обзор
-</p>
+<div class='main'>
+  <% if @account.id == feed_vote_post.user.account.id %>
+    <div class='type'>
+      Нравится обзор
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to image_tag( resized_image_url(feed_vote_post.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_vote_post.user.name), feed_vote_post.user.account  %>
+    </div>
+    <div class='type'>
+      <%= link_to feed_vote_post.user.name, feed_vote_post.user.account  %>
+      <%= t "account.rated.#{feed_vote_post.user.account.gender}" %> обзор
+    </div>
+  <% end %>
+
+
+  <div class='title'>
+    <%= link_to feed_vote_post.voteable.title, feed_vote_post.voteable %>
+  </div>
+</div>

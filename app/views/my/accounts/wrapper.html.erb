@@ -1,3 +1,4 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
 <div class="account_show">
   <div class="left">
     <div class="image">
@@ -8,22 +9,36 @@
     <div class="properties">
       <%= link_to t("edit_profile"), edit_my_account_path %>
     </div>
-
     <div class="social_actions">
-      <% if @friends.any? %>
-        <div class="friends_counter">
-          <div class="floatl">Друзья</div>
-          <div class="floatr"><%= t('account_friends', count: @friends.total_count) %></div>
+      <div class="user_menu">
+        <div class="feeds_filter">
+          <div class="all_feeds <%= "selected" if params[:controller] == "my/accounts" && (params[:activity].nil? || params[:activity] == "all") %>">
+            <%= link_to content_tag(:span, 'Активность'), my_account_path() %>
+          </div>
+          <% if params[:controller] == "my/accounts" %>
+            <div class="sub_filter">
+              <div class="my_feeds <%= "selected" if params[:activity].present? && params[:activity] == "my" %>">
+                <%= link_to content_tag(:span, 'Моя активность'), my_account_path(:activity => "my") %>
+              </div>
+              <div class="friends_feeds <%= "selected" if params[:activity].present? && params[:activity] == "friends" %>">
+                <%= link_to content_tag(:span, 'Активность моих друзей'), my_account_path(:activity => "friends") %>
+              </div>
+            </div>
+          <% end %>
+          <div class="show_friends <%= "selected" if params[:controller] == "my/friends" %>">
+            <a href="<%= my_account_friends_path() %>">
+              <span class="counter"><%= @account.friends.count %></span>
+              <span>Друзья</span>
+            </a>
+          </div>
         </div>
-        <div class="friends list">
-          <%= render partial: 'friends/account_friends', locals: { collection: @friends } %>
-        </div>
-      <% end %>
+
+      </div>
     </div>
+
   </div>
 
   <div class="right">
-    <%= render 'messages' if @notification_messages.any? || @dialogs.any? || @invite_messages.any? %>
 
     <div class="invitations_wrapper">
       <div class="invitations header">
@@ -81,39 +96,7 @@
               </div>
             </div>
 
-            <%#<%= render 'accounts/events' %>
-
-
-            <% if @visits.any? %>
-              <div class="visits header">
-                <%= t "account.want_to_visit.#{@account.gender}" %>
-              </div>
-              <div class="visits list">
-                <%= render 'accounts/visits' %>
-              </div>
-            <% end %>
-
-            <% if @votes.any? %>
-              <div class="votes header">
-                Нравится
-              </div>
-              <div class="votes list">
-                <%= render 'accounts/votes' %>
-              </div>
-            <% end %>
-
-            <% if @comments.any? %>
-              <div class="comments header">
-                Комментарии
-              </div>
-              <div class="comments list">
-                <%= render 'accounts/comments' %>
-              </div>
-            <% end %>
-
-
             <%= yield(:account_content) %>
-
 
           </div>
         </div>

@@ -90,40 +90,67 @@
         span
           color: white
 
-      .show_feeds,.show_friends,.show_afishas
-        +clearfix
-        background-color: white
-        font-size: 12px
-        margin: 4px
-        color: black
-        a
+      .feeds_filter
+        .all_feeds,.show_friends,.show_afishas
           +clearfix
-          text-decoration: none
-          display: block
+          background-color: white
+          font-size: 12px
+          margin: 4px
           color: black
-          height: 24px
-          padding-top: 5px
+          a
+            +clearfix
+            text-decoration: none
+            display: block
+            color: black
+            height: 24px
+            padding-top: 5px
+            &:hover
+              color: #f60
+            &:hover > .counter
+              background: url('user_menu.png') no-repeat -47px -53px
+
+            span
+              margin-left: 10px
+              display: block
+
+          .counter
+            float: right
+            margin-right: 5px
+            padding-left: 11px
+            background: url('user_menu.png') no-repeat -15px -53px
           &:hover
             color: #f60
-          &:hover > .counter
-            background: url('user_menu.png') no-repeat -47px -53px
+            background-color: #e8e8e8
+            text-decoration: none
+            cursor: pointer
 
-          span
-            margin-left: 10px
-            display: block
+        .sub_filter
+          .my_feeds,.friends_feeds
+            +clearfix
+            background-color: white
+            font-size: 12px
+            margin: 4px
+            color: black
+            a
+              +clearfix
+              text-decoration: none
+              display: block
+              color: black
+              height: 24px
+              padding-top: 5px
+              &:hover
+                color: #f60
 
-        .counter
-          float: right
-          margin-right: 5px
-          padding-left: 11px
-          background: url('user_menu.png') no-repeat -15px -53px
+              span
+                margin-left: 20px
+                display: block
+            &:hover
+              color: #f60
+              background-color: #e8e8e8
+              text-decoration: none
+              cursor: pointer
 
 
-        &:hover
-          color: #f60
-          background-color: #e8e8e8
-          text-decoration: none
-          cursor: pointer
 
     .image
       margin: 4px
