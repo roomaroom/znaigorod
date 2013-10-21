@@ -49,6 +49,8 @@ class Discount < ActiveRecord::Base
 
     float(:rating) { total_rating }
 
+    integer :organization_id
+
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
     string(:search_kind) { :discount }

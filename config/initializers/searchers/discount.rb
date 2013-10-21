@@ -2,10 +2,8 @@ HasSearcher.create_searcher :discounts do
   models :discount
 
   property :type
-
-  property :kind do |search|
-    search.with :kind, search_object.kind if search_object.kind.try(:present?)
-  end
+  property :kind
+  property :organization_id
 
   scope do
     with :actual, true

@@ -6,10 +6,16 @@ class DiscountsPresenter
   class Parameters
     include Singleton
 
-    attr_accessor :type, :kind, :order_by
+    attr_accessor :type, :kind, :organization_id, :order_by
 
     def params
-      { :type => type, :kind => kind, :order_by => order_by }
+      { :type => type, :kind => kind, :order_by => order_by }.tap do |params|
+        params[:organization_id] = organization_id if organization_id?
+      end
+    end
+
+    def organization_id?
+      organization_id.present?
     end
   end
 
@@ -28,9 +34,8 @@ class DiscountsPresenter
 
     attr_accessor :type
 
-    def initialize(type)
-      @type = type
-      Parameters.instance.type = selected
+    def initialize
+      @type = Parameters.instance.type
     end
 
     def available
@@ -57,9 +62,8 @@ class DiscountsPresenter
 
     attr_accessor :kind
 
-    def initialize(kind)
-      @kind = kind
-      Parameters.instance.kind = selected
+    def initialize
+      @kind = Parameters.instance.kind
     end
 
     def available
@@ -108,9 +112,8 @@ class DiscountsPresenter
 
     attr_accessor :order_by
 
-    def initialize(order_by)
-      @order_by = order_by
-      Parameters.instance.order_by = selected
+    def initialize
+      @order_by = Parameters.instance.order_by
     end
 
     def available
@@ -133,7 +136,7 @@ class DiscountsPresenter
     end
   end
 
-  attr_accessor :type, :kind,
+  attr_accessor :type, :kind, :organization_id,
                 :order_by, :page, :per_page
 
   attr_reader :type_filter, :kind_filter, :order_by_filter
@@ -142,6 +145,7 @@ class DiscountsPresenter
     super(args)
 
     normalize_args
+    store_parameters
     initialize_filters
   end
 
@@ -156,16 +160,21 @@ class DiscountsPresenter
     @per_page = 10
   end
 
+  def store_parameters
+    %w(type kind organization_id order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
+  end
+
   def initialize_filters
-    @type_filter     = TypeFilter.new(type)
-    @kind_filter     = KindFilter.new(kind)
-    @order_by_filter = OrderByFilter.new(order_by)
+    @type_filter     = TypeFilter.new
+    @kind_filter     = KindFilter.new
+    @order_by_filter = OrderByFilter.new
   end
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|
-      params[:type] = type_filter.selected
-      params[:kind] = kind_filter.selected
+      params[:type]            = type_filter.selected
+      params[:kind]            = kind_filter.selected
+      params[:organization_id] = Parameters.instance.organization_id if Parameters.instance.organization_id?
     end
   end
 
