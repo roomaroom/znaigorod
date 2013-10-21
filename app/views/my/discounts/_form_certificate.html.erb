@@ -10,7 +10,9 @@
     <%= link_to 'Постоянная скидка', '#', :class => 'constant_link', :remote => true %>
   </div>
 
-  <%= f.input :discount %>
+  <%= f.input :number if resource.new_record? %>
+  <%= f.input :origin_price %>
+  <%= f.input :price %>
 
   <div class="organization">
     <%= f.input :organization_title, :input_html => { :class => 'autosuggest wide_input', :placeholder => 'Начинайте вводить название' } %>

@@ -49,3 +49,11 @@ ru:
       fourth:       Фотографии
       fifth:        Видео
       sixth:        Файлы
+
+    discount:
+      title: Добавление скидки
+    certificate:
+      title: Добавление сертификата
+    coupon:
+      title: Добавление купона
+

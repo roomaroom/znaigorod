@@ -1,6 +1,6 @@
 <div class="clearfix">
   <div class="form_wrapper">
-    <%= render 'form_discount' %>
+    <%= render :partial => "my/discounts/form_#{resource.class.name.underscore}" %>
   </div>
   <div class="preview">
     <div class="image">

@@ -25,6 +25,16 @@ SimpleNavigation::Configuration.run do |navigation|
         discount_item.item :poster, 'Постер', poster_my_discount_path(@discount)
       end if @discount && @discount.persisted?
 
+      my_item.item :new_certificate, 'Добавление сертификата', new_my_certificate_path
+      my_item.item :certificate, @certificate.title || 'Нет названия', my_discount_path(@certificate) do |certificate_item|
+        certificate_item.item :poster, 'Постер', poster_my_discount_path(@certificate)
+      end if @certificate && @certificate.persisted?
+
+      my_item.item :new_coupon, 'Добавление купона', new_my_coupon_path
+      my_item.item :coupon, @coupon.title || 'Нет названия', my_discount_path(@coupon) do |coupon_item|
+        coupon_item.item :poster, 'Постер', poster_my_discount_path(@coupon)
+      end if @coupon && @coupon.persisted?
+
     end
     primary.dom_class = 'breadcrumbs'
   end

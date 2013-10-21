@@ -6,6 +6,7 @@
   init_preview_map() if $('form.my_afisha_showings .my_afisha_map').length
   init_autosuggest_handler() if $('.autosuggest').length
   init_afisha_help() if $('.help').length
+  init_constant_discount() if $('.constant_link').length
 
   true
 
@@ -165,4 +166,23 @@ init_afisha_help = ->
     false
   $('.help .close').click ->
     $('.help').toggle()
+    false
+
+
+init_constant_discount = () ->
+  $('.constant_link').on 'click', ->
+
+    date_input = $('.period .date_picker')
+    constant_input = $('.period .constant_wrapper')
+
+    if date_input.is(':visible')
+      date_input.hide()
+      constant_input.show()
+      $(this).html('Выбрать даты')
+
+    else
+      date_input.show()
+      constant_input.hide()
+      $(this).html('Постоянная скидка')
+
     false

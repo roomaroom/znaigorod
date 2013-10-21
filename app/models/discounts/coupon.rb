@@ -15,7 +15,7 @@ class Coupon < Discount
   private
 
   def set_discount
-    self.discount = ((1 - discounted_price.to_f / origin_price.to_f) * 100).round
+    self.discount = origin_price? ? ((1 - discounted_price.to_f / origin_price.to_f) * 100).round : 0
   end
 end
 

@@ -1,6 +1,6 @@
 <% content_for :my_content do %>
 
-  <h1>Общая информация <%= link_to 'помощь', '#', :class => 'show_help' if content_for?(:help) %></h1>
+  <h1><%= t("my.#{resource.class.name.underscore}.title") %>: общая информация <%= link_to 'помощь', '#', :class => 'show_help' if content_for?(:help) %></h1>
 
   <% if content_for?(:help) %>
     <div class="help_wrapper">
@@ -10,7 +10,7 @@
     </div>
   <% end %>
 
-  <%= render 'form' %>
+  <%= render 'my/discounts/form' %>
 
 <% end %>
 
