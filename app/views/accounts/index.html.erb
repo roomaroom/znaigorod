@@ -1,3 +1,15 @@
+<% content_for :meta_keywords, t('meta.account.keywords') %>
+
+<% content_for :extra_meta do %>
+    <meta property='og:description' content='Ты можешь найти компанию для любого мероприятия и времяпрепровождения. Посмотри, сколько людей приглашают сходить куда-нибудь, а сколько ждут приглашения!'/>
+    <meta property='og:site_name' content='<%= t('meta.default.title') %>' />
+    <meta property='og:title' content='Знакомтсва на ЗнайГород' />
+    <meta property='og:url' content=<%= accounts_url %> />
+    <meta property='og:image' content=<%= asset_path('public/vk_logotype.png') %> />
+    <meta name='image' content=<%= asset_path('public/vk_logotype.png') %> />
+    <link rel='image_src' href=<%= asset_path('public/vk_logotype.png') %> />
+<% end %>
+
 <div class="additional_info_wrapper collapsed">
   <%= link_to "Подробнее", '#', :class => 'toggle_link' %>
   <div class="inner_wrapper">
