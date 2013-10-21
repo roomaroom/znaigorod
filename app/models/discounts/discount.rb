@@ -26,7 +26,7 @@ class Discount < ActiveRecord::Base
   validates_presence_of :title, :description, :kind, :discount, :kind
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
-  scope :actual, -> { where "ends_at > ?", Time.zone.now }
+  scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
 
   extend Enumerize
   serialize :kind, Array
