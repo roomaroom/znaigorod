@@ -22,6 +22,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
       my_item.item :new_discount, 'Добавление скидки', new_my_discount_path
       my_item.item :discount, @discount.title || 'Нет названия', my_discount_path(@discount) do |discount_item|
+        discount_item.item :poster, 'Постер', poster_my_discount_path(@discount)
       end if @discount && @discount.persisted?
 
     end

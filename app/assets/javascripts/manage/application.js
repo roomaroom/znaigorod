@@ -25,7 +25,6 @@
  * = require ./has_virtual_tour
  * = require ./address
  * = require ./curtail
- * = require ./clear_autosuggest
  * = require ./webcam
  * = require ./main
  */

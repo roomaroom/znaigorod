@@ -337,14 +337,6 @@ ActiveRecord::Schema.define(:version => 20131017074157) do
 
   add_index "entertainments", ["organization_id"], :name => "index_entertainments_on_organization_id"
 
-  create_table "feedbacks", :force => true do |t|
-    t.string   "email"
-    t.text     "message"
-    t.string   "fullname"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "friends", :force => true do |t|
     t.integer  "account_id"
     t.integer  "friendable_id"
@@ -506,8 +498,6 @@ ActiveRecord::Schema.define(:version => 20131017074157) do
     t.float    "total_rating"
     t.integer  "primary_organization_id"
     t.boolean  "ability_to_comment",            :default => true
-    t.string   "phone_for_sms"
-    t.float    "balance"
     t.integer  "fb_likes"
     t.integer  "odn_likes"
     t.string   "poster_vk_id"
@@ -613,6 +603,20 @@ ActiveRecord::Schema.define(:version => 20131017074157) do
   end
 
   add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
+
+  create_table "reservations", :force => true do |t|
+    t.integer  "reserveable_id"
+    t.string   "reserveable_type"
+    t.text     "placeholder"
+    t.string   "phone"
+    t.string   "title"
+    t.float    "balance"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "reservations", ["reserveable_id"], :name => "index_reservations_on_reserveable_id"
+  add_index "reservations", ["reserveable_type"], :name => "index_reservations_on_reserveable_type"
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"

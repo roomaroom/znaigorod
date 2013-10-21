@@ -1,12 +1,19 @@
-  <div class="clearfix">
-    <div class="form_wrapper">
-      <%= render 'form_discount' %>
+<div class="clearfix">
+  <div class="form_wrapper">
+    <%= render 'form_discount' %>
+  </div>
+  <div class="preview">
+    <div class="image">
+      <% if resource.poster_url? %>
+        <%= link_to image_tag(resized_image_url(resource.poster_url, 200, 149), :size => '200x149', :title => resource.title, :alt => resource.title), resource.poster_url %>
+      <% else %>
+        <%= image_tag 'public/stub_poster.png', size: '200x149' %>
+      <% end %>
     </div>
-    <div class="discount_preview">
-      <div class="title"></div>
-      <div class="description">
-        <div class="text">
-        </div>
+    <div class="title"></div>
+    <div class="description">
+      <div class="text">
       </div>
     </div>
   </div>
+</div>

@@ -8,7 +8,7 @@
   <%= hidden_field_tag :step, @step %>
 
   <%= f.input :kind, required: true, as: :check_boxes %>
-  <%= f.input :title, required: true, input_html: { id: :afisha_title } %>
+  <%= f.input :title, required: true, input_html: { class: :preview_title } %>
   <%= f.input :description, required: true, input_html: { id: :markitup_description } %>
   <%= f.input :vk_event_url %>
   <%= f.input :allow_auction %>

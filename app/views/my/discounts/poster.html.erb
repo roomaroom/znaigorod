@@ -1,6 +1,4 @@
-<div class="my_discount_wrapper">
-  <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
-
+<% content_for :my_content do %>
   <% if resource.poster_image_url? %>
     <% crop_opt = resource.poster_url ? resource.poster_url.match(/(?<=\/region\/)\w+\/\w+\/\w+\/\w+/).to_s.split('/').map{|o| (o.to_i/resource.resize_factor).round} : [] %>
     <% crop_width, crop_height, crop_x, crop_y = crop_opt.any? ? crop_opt : [resource.poster_image_resized_dimensions[:width] / resource.resize_factor, resource.poster_image_resized_dimensions[:height] , 0, 0] %>
@@ -36,4 +34,7 @@
       </div>
     <% end %>
   <% end %>
-</div>
+
+<% end %>
+
+<%= render :template => 'my/discounts/wrapper' %>

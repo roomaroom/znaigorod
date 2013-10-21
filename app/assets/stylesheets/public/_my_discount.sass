@@ -1,12 +1,29 @@
-.content .my_discount_wrapper
+.content .my_wrapper
 
   .form_wrapper
 
     .simple_form
-      .type, .organization
+      .wide_input
+        width: 540px
+
+      .organization
+        float: left
+        position: relative
+
         label
           float: left
-          margin: 0 10px 0 0
+          margin: 0 10px 5px 0
+
+        .ui-autocomplete-input
+          +border-radius(3px)
+          border: 1px solid #909090
+          padding: 5px
+          width: 480px
+
+        .clear_autosuggest_link
+          position: absolute
+          top: 32px
+          right: 30px
 
       label.checkbox
         float: left
@@ -15,3 +32,13 @@
 
         &:nth-child(4n+4)
           clear: none !important
+
+      .period
+        .input
+          float: left
+          margin: 0 25px 10px 0
+
+  .preview
+    .image
+      float: left
+      margin: 0 15px 0 0

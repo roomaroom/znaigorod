@@ -1,5 +1,4 @@
-<div class="my_discount_wrapper">
-  <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
+<% content_for :my_content do %>
 
   <h1>Общая информация <%= link_to 'помощь', '#', :class => 'show_help' if content_for?(:help) %></h1>
 
@@ -12,4 +11,7 @@
   <% end %>
 
   <%= render 'form' %>
-</div>
+
+<% end %>
+
+<%= render :template => 'my/discounts/wrapper' %>

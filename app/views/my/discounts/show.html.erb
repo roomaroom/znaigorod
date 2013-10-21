@@ -1,5 +1,4 @@
-<div class="my_discount_wrapper">
-  <%= render_navigation :context => 'my', :renderer => :breadcrumbs %>
+<% content_for :my_content do %>
 
   <div class="discount_show">
     <div class="left">
@@ -53,4 +52,7 @@
       </div>
     </div>
   </div>
-</div>
+
+<% end %>
+
+<%= render :template => 'my/discounts/wrapper' %>

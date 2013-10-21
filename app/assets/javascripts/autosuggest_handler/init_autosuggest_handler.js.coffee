@@ -22,9 +22,19 @@ $.fn.add_autosuggest = () ->
       target.val(ui.item.id)
 
 @init_autosuggest_handler = () ->
+  init_clear_autosuggest() if $('.clear_autosuggest_link').length
+
   autosuggest = $('.autosuggest')
   autosuggest.add_autosuggest() if autosuggest.length
 
   $('form').on('nested:fieldAdded', (event) ->
     $(event.field).find('.autosuggest').filter(':visible').last().add_autosuggest()
   )
+
+@init_clear_autosuggest = () ->
+  $('.clear_autosuggest_link').on 'click', ->
+
+    $('.autosuggest').val('')
+    $('.autosuggest_target').val('')
+
+    false
