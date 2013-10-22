@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class My::FeedsController < ApplicationController
 
   inherit_resources
 
@@ -10,7 +10,7 @@ class FeedsController < ApplicationController
       presenter = FeedsPresenter.new params
       @account = current_user.account
       @feeds = presenter.collection
-      render @feeds and return
+      render partial: 'my/feeds/feed', :collection => @feeds and return
     }
   end
 

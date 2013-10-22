@@ -1,14 +1,46 @@
+<% decorator = AfishaDecorator.new feed_visit_afisha.visitable %>
+
 <div class='poster'>
-  <%= link_to image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 65 , 87 ), :size => '65x87', :title => feed_visit_afisha.visitable.title), feed_visit_afisha.visitable  %>
+  <%= link_to image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.visitable.title), feed_visit_afisha.visitable  %>
 </div>
-<p>
-<%= link_to(feed_visit_afisha.visitable.title, feed_visit_afisha.visitable) %>
-</p>
-<p>
-<% if feed_visit_afisha.visitable.actual? %>
-  <%= "Хочет посетить" %>
-<% else %>
-  <%= "Посетил" %>
-<% end %>
-</p>
-<div class='kind'><%= t "enumerize.afisha.feed_kind.#{feed_visit_afisha.visitable.kind.first}" %></div>
+<div class='main'>
+
+  <% if @account.id == feed_visit_afisha.user.account.id %>
+    <div class='type'>
+      <% if feed_visit_afisha.visitable.actual? %>
+        <%= t "account.i_want_to_visit_present.#{feed_visit_afisha.user.account.gender}" %>
+      <% else %>
+        <%= t "account.visited.#{feed_visit_afisha.user.account.gender}" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to image_tag( resized_image_url(feed_visit_afisha.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_visit_afisha.user.name), feed_visit_afisha.user.account  %>
+    </div>
+    <div class='type'>
+      <%= link_to feed_visit_afisha.user.name, feed_visit_afisha.user.account  %>
+      <% if feed_visit_afisha.visitable.actual? %>
+        <%= t "account.want_to_visit_present.#{feed_visit_afisha.user.account.gender}" %>
+      <% else %>
+        <%= t "account.visited_downcase.#{feed_visit_afisha.user.account.gender}" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to(feed_visit_afisha.visitable.title, feed_visit_afisha.visitable) %>
+  </div>
+  <div class='body'>
+    <p>
+    <%= decorator.when_with_price %>
+      <% decorator.places.each do |place| %>
+        <div class='place'>
+          <%= place.place %>
+        </div>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class='text'>
+  <%= "#{feed_visit_afisha.visitable.description.first(220)}..." if feed_visit_afisha.visitable.description.present? %>
+</div>

@@ -1,3 +1,4 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
 <% content_for :page_title do %>
   <%= @account.title.text_gilensize %>,
   ЗнайГород
@@ -22,14 +23,16 @@
         </ul>
       <% end %>
       <div class="user_menu">
-        <div class="show_feeds <%= "selected" if params[:controller] == "accounts" %>">
-          <%= link_to content_tag(:span, 'Активность'), @account %>
-        </div>
-        <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
-          <a href="<%= account_friends_path(@account) %>">
-            <span class="counter"><%= @account.friends_count %></span>
-            <span>Друзья</span>
-          </a>
+        <div class="feeds_filter">
+          <div class="all_feeds <%= "selected" if params[:controller] == "accounts"  %>">
+            <%= link_to content_tag(:span, 'Активность'), @account %>
+          </div>
+          <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
+            <a href="<%= account_friends_path(@account) %>">
+              <span class="counter"><%= @account.friends_count %></span>
+              <span>Друзья</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

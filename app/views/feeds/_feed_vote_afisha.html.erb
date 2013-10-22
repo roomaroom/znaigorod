@@ -1,10 +1,37 @@
+<% decorator = AfishaDecorator.new feed_vote_afisha.voteable %>
+
 <div class='poster'>
-  <%= link_to image_tag( resized_image_url(feed_vote_afisha.voteable.poster_url, 65 , 87 ), :size => '65x87', :title => feed_vote_afisha.voteable.title), feed_vote_afisha.voteable  %>
+  <%= link_to image_tag( resized_image_url(feed_vote_afisha.voteable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_vote_afisha.voteable.title), feed_vote_afisha.voteable  %>
 </div>
-<p>
-<%= link_to(feed_vote_afisha.voteable.title, feed_vote_afisha.voteable) %>
-</p>
-<p>
-Нравится афиша
-</p>
-<div class='kind'><%= t "enumerize.afisha.feed_kind.#{feed_vote_afisha.voteable.kind.first}" %></div>
+<div class='main'>
+  <% if @account.id == feed_vote_afisha.user.account.id %>
+    <div class='type'>
+      Нравится афиша
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to image_tag( resized_image_url(feed_vote_afisha.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_vote_afisha.user.name), feed_vote_afisha.user.account  %>
+    </div>
+    <div class='type'>
+      <%= link_to feed_vote_afisha.user.name, feed_vote_afisha.user.account  %>
+      <%= t "account.rated.#{feed_vote_afisha.user.account.gender}" %> афишу
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to(feed_vote_afisha.voteable.title, feed_vote_afisha.voteable) %>
+  </div>
+  <div class='body'>
+    <p>
+    <%= decorator.when_with_price %>
+      <% decorator.places.each do |place| %>
+        <div class='place'>
+          <%= place.place %>
+        </div>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class='text'>
+  <%= "#{feed_vote_afisha.voteable.description.first(220)}..." if feed_vote_afisha.voteable.description.present? %>
+</div>

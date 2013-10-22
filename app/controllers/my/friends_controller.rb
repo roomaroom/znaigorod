@@ -15,7 +15,8 @@ class My::FriendsController < My::ApplicationController
       @account = AccountDecorator.new Account.find(current_user.account.id)
       @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(params[:page]).per(15)
 
-      render partial: 'my/friends/account_friends', :locals => { :collection => @friends }, layout: false and return if request.xhr?
+      render partial: 'friends/account_friends', :locals => { :collection => @friends }, layout: false and return if request.xhr?
+      render 'friends/index' and return
     }
   end
 

@@ -6,11 +6,15 @@
   </div>
   <div class="accounts_list">
     <ul class="posters">
-      <%= render partial: 'account_friends', locals: { collection: @friends } %>
+      <%= render partial: 'friends/account_friends', locals: { collection: @friends } %>
     </ul>
   </div>
 
   <%= paginate collection %>
 <% end %>
-
-<%= render file: "accounts/wrapper" %>
+<% if params["controller"] == "friends" %>
+  <%= render file: "accounts/wrapper" %>
+<% end %>
+<% if params["controller"] == "my/friends" %>
+  <%= render file: "my/accounts/wrapper" %>
+<% end %>
