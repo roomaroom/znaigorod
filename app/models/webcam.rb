@@ -29,13 +29,11 @@ class Webcam < ActiveRecord::Base
   }
 
   def self.snapshot_href_for_index
-    'http://storage.openteam.ru/files/38716/640-480/webcams.jpg'
+    'http://storage.znaigorod.ru/files/38716/640-480/webcams.jpg'
   end
 
   def snapshot_href
-    return self.class.snapshot_href_for_index unless snapshot_image_url?
-
-    snapshot_image_url
+    snapshot_url || snapshot_image_url || self.class.snapshot_href_for_index
   end
 
 end
