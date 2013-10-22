@@ -7,6 +7,7 @@ HasSearcher.create_searcher :discounts do
 
   scope do
     with :actual, true
+    with :state, :published
   end
 
   scope(:order_by_rating)   { order_by(:rating, :desc) }

@@ -55,6 +55,7 @@ class Discount < ActiveRecord::Base
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
     string(:search_kind) { :discount }
+    string :state
 
     text :address,        :boost => 0.3 * 1.2
     text :address_ru,     :boost => 0.3

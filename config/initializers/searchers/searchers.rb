@@ -114,12 +114,14 @@ HasSearcher.create_searcher :global do
         highlight field
       end
     end
+
     boost 1 do
       any_of do
         with(:last_showing_time).greater_than(HasSearcher.cacheable_now)
         with(:kind, ['organization'])
       end
     end
+
     boost(
       function {
         sum(
@@ -129,6 +131,7 @@ HasSearcher.create_searcher :global do
       }
     )
   end
+
   scope do
     without :state, :draft
     without :state, :pending
