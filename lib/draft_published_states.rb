@@ -31,5 +31,4 @@ module DraftPublishedStates
       end
     end
   end
-
 end
