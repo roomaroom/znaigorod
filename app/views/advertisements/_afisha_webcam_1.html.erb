@@ -2,7 +2,11 @@
   <div class='webcam_place'><%= link_to("Веб-камера<br />#{afisha.webcam.address}".html_safe, webcam_path(afisha.webcam)) %></div>
   <div class='image'>
     <%= link_to webcam_path(afisha.webcam) do %>
-      <%= image_tag resized_image_url(afisha.webcam.snapshot_href, 180, 258), :size => '180x258', :alt => afisha.webcam.title %>
+      <% if afisha.webcam.snapshot_href.match /stream/ %>
+        <%= image_tag afisha.webcam.snapshot_href, :size => '459x258', :alt => afisha.webcam.title, :class => :wide_image %>
+      <% else %>
+        <%= image_tag resized_image_url(afisha.webcam.snapshot_href, 180, 258), :size => '180x258', :alt => afisha.webcam.title %>
+      <% end %>
       <span class='bg'></span>
       <span class='play'></span>
     <% end %>
