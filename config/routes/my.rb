@@ -19,6 +19,8 @@ Znaigorod::Application.routes.draw do
     end
 
     resource :account, :only => [:show, :edit, :update] do
+      resources :friends, :only => :index
+      put 'change_friendship' => 'friends#change_friendship', :as => :change_friendship
       resources :feeds, :only => :index
     end
 
