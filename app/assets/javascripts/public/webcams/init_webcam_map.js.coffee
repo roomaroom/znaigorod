@@ -40,6 +40,12 @@
         height: $(item).attr('data-height').toNumber() + 130
         location: 1
 
+      img_width = 200
+      if $(item).attr('data-image').match /stream/
+        img_height = 112
+      else
+        img_height = 150
+
       point = new ymaps.GeoObject
         geometry:
           type: 'Point'
@@ -54,7 +60,7 @@
           balloonContentBody: "" +
             "<center>" +
             "<a href='#{link.attr('href')}' class='balloon_link' data-id='balloon_link_id_#{id}'>" +
-            "<img width='200' height='150' src='#{$(item).attr('data-image')}' />" +
+            "<img width='#{img_width}' height='#{img_height}' src='#{$(item).attr('data-image')}' />" +
             "</a>" +
             "<br />" +
             "<a href='#{link.attr('href')}' class='balloon_link' data-id='balloon_link_id_#{id}'>" +

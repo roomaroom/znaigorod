@@ -33,7 +33,9 @@ class Webcam < ActiveRecord::Base
   end
 
   def snapshot_href
-    snapshot_url || snapshot_image_url || self.class.snapshot_href_for_index
+    return snapshot_url if snapshot_url?
+    return snapshot_image_url if snapshot_image_url?
+    self.class.snapshot_href_for_index
   end
 
 end
