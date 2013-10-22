@@ -14,7 +14,6 @@
           <div class="all_feeds <%= "selected" if params[:controller] == "my/accounts" && (params[:activity].nil? || params[:activity] == "all") %>">
             <%= link_to content_tag(:span, 'Активность'), my_account_path() %>
           </div>
-          <% if params[:controller] == "my/accounts" %>
             <div class="sub_filter">
               <div class="my_feeds <%= "selected" if params[:activity].present? && params[:activity] == "my" %>">
                 <%= link_to content_tag(:span, 'Моя активность'), my_account_path(:activity => "my") %>
@@ -23,7 +22,6 @@
                 <%= link_to content_tag(:span, 'Активность моих друзей'), my_account_path(:activity => "friends") %>
               </div>
             </div>
-          <% end %>
           <div class="show_friends <%= "selected" if params[:controller] == "my/friends" %>">
             <a href="<%= my_account_friends_path() %>">
               <span class="counter"><%= @account.friends_count %></span>
