@@ -5,7 +5,6 @@ require 'curb'
 
 class Afisha < ActiveRecord::Base
   extend Enumerize
-  extend FriendlyId
 
   include AutoHtml
   include CropedPoster
@@ -75,20 +74,20 @@ class Afisha < ActiveRecord::Base
   scope :actual,                -> { includes(:showings).where('showings.starts_at >= ? OR (showings.ends_at is not null AND showings.ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
   scope :archive,               -> { joins(:showings).where('showings.starts_at < ? OR (showings.ends_at is not null AND showings.ends_at < ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
 
-  friendly_id :title, use: :slugged
   normalize_attribute :image_url
 
-  # >>>>>>>>>>>> Wizard  >>>>>>>>>>>>
-
-  attr_accessor :step, :social_gallery_url
-  attr_accessible :step, :social_gallery_url
-
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
   def should_generate_new_friendly_id?
     return true if !self.slug? && self.published?
 
     false
   end
 
+  # >>>>>>>>>>>> Wizard  >>>>>>>>>>>>
+
+  attr_accessor :step, :social_gallery_url
+  attr_accessible :step, :social_gallery_url
 
   def self.available_tags(query)
     pluck(:tag).compact.flat_map { |str| str.split(',') }.compact.map(&:squish).uniq.delete_if(&:blank?).select { |str| str =~ /^#{query}/ }.sort

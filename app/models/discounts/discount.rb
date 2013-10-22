@@ -2,6 +2,7 @@
 
 class Discount < ActiveRecord::Base
   include CropedPoster
+  include DraftPublishedStates
   include MakePageVisit
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
@@ -39,9 +40,6 @@ class Discount < ActiveRecord::Base
 
   normalize_attribute :kind, :with => :blank_array
 
-  extend FriendlyId
-  friendly_id :title, use: :slugged
-
   alias_attribute :title_ru,       :title
   alias_attribute :description_ru, :description
 
@@ -74,11 +72,17 @@ class Discount < ActiveRecord::Base
   end
   alias_method :address_ru, :address
 
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
+  def should_generate_new_friendly_id?
+    return true if !self.slug? && self.published?
+
+    false
+  end
 
   def place
     showings.pluck(:place).uniq.join(' ')
   end
-
 
   def likes_count
     self.votes.liked.count
