@@ -9,14 +9,17 @@
 
       .item
         width: 178px
-        height: 302px
+        height: 318px
         border: 1px solid #ccc
         margin: 0 auto
 
         .title
-          height: 16px
+          height: 38px
+          width: 178px
+          display: table-cell
           text-align: center
-          margin: 3px 0
+          vertical-align: middle
+          padding: 0 3px
 
         .image
           height: 240px
@@ -144,7 +147,7 @@
 
         &.webcam
           width: 180px
-          height: 304px
+          height: 320px
           border: none
 
           .webcam_place
@@ -153,15 +156,17 @@
             display: table-cell
             text-align: center
             vertical-align: middle
-            background: transparent image_url('public/webcam_bg.png') no-repeat -10px -9px
+            background: transparent image_url('public/webcam_bg.png') no-repeat -10px -13px
             padding-top: 5px
 
           .image
-            height: 258px
+            height: 274px
             +clearfix
+            img
+              height: 274px
 
             .wide_image
-              margin-left: -139px
+              margin-left: -153px
 
             .bg
               top: 0
@@ -169,11 +174,11 @@
               position: absolute
               display: block
               width: 180px
-              height: 258px
-              background: transparent image_url('public/webcam_bg.png') no-repeat -10px -56px
+              height: 274px
+              background: transparent image_url('public/webcam_bg.png') no-repeat -10px -37px
 
             .play
-              top: 72px
+              top: 90px
               left: 57px
               position: absolute
               display: block
