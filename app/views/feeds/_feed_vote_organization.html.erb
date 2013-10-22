@@ -2,9 +2,9 @@
 
 <div class='poster'>
   <% unless feed_vote_organization.voteable.logotype_url == "" %>
-    <%= link_to image_tag(resized_image_url(feed_vote_organization.voteable.logotype_url, 65 , 65 ), :size => '65x65'), feed_vote_organization.voteable %>
+    <%= link_to image_tag(resized_image_url(feed_vote_organization.voteable.logotype_url, 100 , 100 ), :size => '100x100'), feed_vote_organization.voteable %>
   <% else %>
-    <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.voteable.priority_suborganization_kind.first) %>
+    <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.voteable.priority_suborganization_kind.first), feed_vote_organization.voteable %>
   <% end %>
 </div>
 <div class='main'>
@@ -14,7 +14,7 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to image_tag( resized_image_url(feed_vote_organization.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_vote_organization.user.name), feed_vote_organization.user.account  %>
+      <%=  link_to image_tag(resized_image_url(feed_vote_organization.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_organization.user.account %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_organization.user.name, feed_vote_organization.user.account  %>

@@ -12,7 +12,7 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to image_tag( resized_image_url(feed_afisha.feedable.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_afisha.feedable.user.name), feed_afisha.feedable.user.account  %>
+      <%=  link_to image_tag(resized_image_url(feed_afisha.feedable.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_afisha.feedable.user.account %>
     </div>
     <div class='type'>
       <%= link_to feed_afisha.feedable.user.name, feed_afisha.feedable.user.account  %>

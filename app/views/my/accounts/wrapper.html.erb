@@ -75,7 +75,6 @@
             <%= link_to 'Хочу пригласить',
               new_invitation_path('invitation[kind]' => :inviter),
               :remote => true,
-              :class => 'invitation_link',
               :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
             </h3>
           </div>
@@ -104,7 +103,6 @@
                 <%= link_to 'Жду приглашения',
                   new_invitation_path('invitation[kind]' => :invited),
                   :remote => true,
-                  :class => 'invitation_link',
                   :data => { :title => 'Жду приглашения', :target => '.invited' } %>
                 </h3>
               </div>

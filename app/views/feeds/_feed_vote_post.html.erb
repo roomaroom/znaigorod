@@ -1,6 +1,6 @@
 <div class='poster'>
   <% if feed_vote_post.voteable.gallery_images.any? %>
-    <%= link_to image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 65 , 65 ), :size => '65x65'), feed_vote_post.voteable %>
+    <%= link_to image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 100 , 100 ), :size => '100x100'), feed_vote_post.voteable %>
   <% end %>
 </div>
 <div class='main'>
@@ -10,7 +10,7 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to image_tag( resized_image_url(feed_vote_post.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_vote_post.user.name), feed_vote_post.user.account  %>
+      <%=  link_to image_tag(resized_image_url(feed_vote_post.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_post.user.account %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_post.user.name, feed_vote_post.user.account  %>

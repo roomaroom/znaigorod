@@ -5,7 +5,7 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to image_tag( resized_image_url(feed_vote_comment.user.account.avatar_url, 23 , 23 ), :size => '23x23', :title => feed_vote_comment.user.name), feed_vote_comment.user.account  %>
+      <%=  link_to image_tag(resized_image_url(feed_vote_comment.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_comment.user.account %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_comment.user.name, feed_vote_comment.user.account  %>
@@ -19,8 +19,8 @@
       <%= link_to("Работа " + feed_vote_comment.voteable.commentable.to_feed_title, [feed_vote_comment.voteable.commentable.contest, feed_vote_comment.voteable.commetable])  %>
     <% end %>
   </div>
-  <div class='body'>
-    <%= link_to "#{feed_vote_comment.voteable.user.name}:", feed_vote_comment.voteable.user.account %>&nbsp; <%= feed_vote_comment.voteable.body.first(200)  %>
-    <%= "..." if  feed_vote_comment.voteable.body.size >= 200 %>
-  </div>
+</div>
+<div class='text'>
+  <%= link_to "#{feed_vote_comment.voteable.user.name}:", feed_vote_comment.voteable.user.account %>&nbsp; <%= feed_vote_comment.voteable.body.first(200)  %>
+  <%= "..." if  feed_vote_comment.voteable.body.size >= 200 %>
 </div>
