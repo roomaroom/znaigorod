@@ -5,14 +5,14 @@
     <div>
       <%= t :like, :count => voteable.votes.liked.count %>
     </div>
-    <% voteable.votes.liked.last(6).map(&:user).each do |user| %>
+    <% voteable.votes.liked.order('updated_at desc').last(6).map(&:user).each do |user| %>
       <%= link_to account_path(user.account) do %>
         <%= image_tag(resized_image_url(user.account.avatar.url, 24, 24), size: '24x24', title: user.name, alt: user.name) %>
       <% end %>
     <% end %>
   </div>
   <div class='votes_counter' title='<%= t :like, :count => voteable.votes.liked.count %>'>
-    <%= link_to voteable.votes.liked.count, polymorphic_url([object_assoc_chain, :liked].flatten), :remote => true, :class => 'who_liked' %>
+    <%= voteable.votes.liked.count %>
   </div>
 
   <% if !voteable.is_a?(Comment) || current_user != voteable.user %>
