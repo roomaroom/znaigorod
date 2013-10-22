@@ -25,7 +25,6 @@ SimpleNavigation::Configuration.run do |navigation|
         Afisha.kind.values.each do |kind|
           afisha_item.item kind, kind.text, by_kind_manage_afisha_index_path(kind.pluralize)
         end
-        afisha_item.item 'pending', "На модерации (#{Afisha.pending.count})", by_state_manage_afisha_index_path(:pending)
         afisha_item.item 'draft', "Черновики (#{Afisha.draft.count})", by_state_manage_afisha_index_path(:draft)
     end
 

@@ -71,7 +71,6 @@ class Afisha < ActiveRecord::Base
   scope :by_kind,               ->(kind) { where(:kind => kind) }
   scope :draft,                 -> { with_state(:draft) }
   scope :published,             -> { with_state(:published) }
-  scope :pending,               -> { with_state(:pending) }
   scope :actual,                -> { includes(:showings).where('showings.starts_at >= ? OR (showings.ends_at is not null AND showings.ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
   scope :archive,               -> { joins(:showings).where('showings.starts_at < ? OR (showings.ends_at is not null AND showings.ends_at < ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
 
@@ -94,15 +93,11 @@ class Afisha < ActiveRecord::Base
       afisha.send(:set_slug)
     end
 
-    event :send_to_moderation do
-      transition :draft => :pending
+    event :to_published do
+      transition :draft => :published
     end
 
-    event :approve do
-      transition [:draft, :pending] => :published
-    end
-
-    event :send_to_author do
+    event :to_draft do
       transition :published => :draft
     end
 

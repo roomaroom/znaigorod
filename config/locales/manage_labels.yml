@@ -79,10 +79,9 @@ ru:
     discount:
       type:
         certificate: Сертификат
-        coupon: Купон
+        coupon:      Купон
 
   state_machine:
     events:
-      approve:            Опубликовать
-      send_to_author:     В черновики
-      send_to_moderation: На модерацию
+      to_published: Опубликовать
+      to_draft:     В черновики
