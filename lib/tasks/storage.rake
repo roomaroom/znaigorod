@@ -2,7 +2,7 @@
 
 require 'progress_bar'
 
-desc 'Migrate data from storage to dev-storage'
+desc 'Migrate data from storage.openteam to storage.znaigorod'
 task :storage => :environment do
 
   models = {
@@ -15,12 +15,14 @@ task :storage => :environment do
     'MenuPosition'  => 'image_url',
     'Organization'  => 'logotype_url',
     'Post'          => 'poster_url',
+    'Webcam'        => 'snapshot_url',
+    'Webcam'        => 'snapshot_image_url',
     'Work'          => 'image_url',
   }
 
   models.map do |klass, field|
     puts "Update #{klass}##{field}"
-    items = klass.classify.constantize.where("#{field} IS NOT NULL AND #{field} LIKE 'http://dev-storage%'")
+    items = klass.classify.constantize.where("#{field} IS NOT NULL AND #{field} LIKE 'http://storage%'")
     bar = ProgressBar.new(items.count)
     items.each do |item|
       item.update_column(field.to_sym, item.send(field).gsub('http://storage.openteam.ru', 'http://storage.znaigorod.ru'))
