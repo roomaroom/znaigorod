@@ -1,6 +1,6 @@
 class FeedsPresenter
 
-  attr_accessor :kind_filter, :activity_filter
+  attr_accessor :kind_filter, :activity_filter, :account_id
 
   def initialize(params)
     @controller_name = params['controller']

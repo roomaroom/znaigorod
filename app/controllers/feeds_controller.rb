@@ -8,7 +8,7 @@ class FeedsController < ApplicationController
   def index
     index! {
       presenter = FeedsPresenter.new params
-      @account = current_user.account
+      @account = Account.find(presenter.account_id)
       @feeds = presenter.collection
       render @feeds and return
     }
