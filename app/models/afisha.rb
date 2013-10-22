@@ -9,6 +9,7 @@ class Afisha < ActiveRecord::Base
 
   include AutoHtml
   include CropedPoster
+  include DraftPublishedStates
   include HasVirtualTour
   include MakePageVisit
   include VkUpload
@@ -88,23 +89,6 @@ class Afisha < ActiveRecord::Base
     false
   end
 
-  state_machine :initial => :draft do
-    after_transition any => :published do |afisha, transition|
-      afisha.send(:set_slug)
-    end
-
-    event :to_published do
-      transition :draft => :published
-    end
-
-    event :to_draft do
-      transition :published => :draft
-    end
-
-    state :published do
-      validates_presence_of :showings, :if => Proc.new { |afisha| !afisha.movie? && !afisha.affiche_schedule.present? }
-    end
-  end
 
   def self.available_tags(query)
     pluck(:tag).compact.flat_map { |str| str.split(',') }.compact.map(&:squish).uniq.delete_if(&:blank?).select { |str| str =~ /^#{query}/ }.sort
