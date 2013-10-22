@@ -1,6 +1,15 @@
 ru:
   activerecord:
     state_machines:
+      state:
+        events:
+          to_draft:     В черновики
+          to_published: Опубликовать
+
+        states:
+          draft:      Черновик
+          published:  Опубликовано
+
       bet:
         state:
           states:

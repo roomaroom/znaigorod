@@ -1,5 +1,6 @@
 class Manage::DiscountsController < Manage::ApplicationController
   actions :all
+  custom_actions :resource => :fire_state_event
 
   def update
     update! do |success, failure|
@@ -17,6 +18,15 @@ class Manage::DiscountsController < Manage::ApplicationController
         render :edit
       }
     end
+  end
+
+  def fire_state_event
+    fire_state_event! {
+      resource.fire_state_event(params[:event]) if resource.state_events.include?(params[:event].to_sym)
+
+      redirect_to manage_discount_path(resource.id), :notice => resource.errors.full_messages and return unless resource.errors.messages.empty?
+      redirect_to manage_discount_path(resource) and return
+    }
   end
 
   private

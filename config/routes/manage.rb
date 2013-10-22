@@ -40,6 +40,8 @@ Znaigorod::Application.routes.draw do
     resources :discounts do
       get 'poster' => 'discounts#poster', :on => :member, :as => :poster
       put 'poster' => 'discounts#poster', :on => :member, :as => :poster
+
+      put 'fire_event_state/:event' => 'discounts#fire_state_event', :on => :member, :as => :fire_state_event
     end
 
     resources :posts do

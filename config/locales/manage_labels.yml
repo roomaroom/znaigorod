@@ -75,13 +75,3 @@ ru:
         afisha: Редактор афиш
         post: Редактор публикаций
         organization: Редактор организаций
-
-    discount:
-      type:
-        certificate: Сертификат
-        coupon:      Купон
-
-  state_machine:
-    events:
-      to_published: Опубликовать
-      to_draft:     В черновики

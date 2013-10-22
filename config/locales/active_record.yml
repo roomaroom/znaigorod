@@ -454,11 +454,3 @@ ru:
         snapshot_image_file_size: Snapshot image_file_size
         snapshot_image_updated_at: Snapshot image_updated_at
         snapshot_image_url: Snapshot image_url
-
-    state_machines:
-      afisha:
-        state:
-          states:
-            draft:      Черновик
-            pending:    На модерации
-            published:  Опубликовано
