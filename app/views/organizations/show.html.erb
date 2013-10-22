@@ -201,20 +201,19 @@
               <% end %>
             </ul>
           </div>
-
         </div>
 
-        <div class="discounts_list">
-          <ul class="posters">
-            <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @discount_presenter.collection } %>
-          </ul>
-        </div>
+        <% if current_user && current_user.is_admin? %>
+          <div class="discounts_list">
+            <ul class="posters">
+              <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @discount_presenter.collection } %>
+            </ul>
+          </div>
 
-        <%= paginate @discount_presenter.collection %>
-
+          <%= paginate @discount_presenter.collection %>
+        <% end %>
       </div>
     <% end %>
-
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization } if @organization.ability_to_comment? %>
   </div>
