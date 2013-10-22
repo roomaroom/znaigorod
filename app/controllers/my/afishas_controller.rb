@@ -8,7 +8,7 @@ class My::AfishasController < My::ApplicationController
   before_filter :current_step
 
   actions :all, :except => [:index]
-  custom_actions :resource => [:destroy_image, :send_to_moderation, :send_to_published, :social_gallery], :collection => [:available_tags, :preview_video]
+  custom_actions :resource => [:destroy_image, :send_to_published, :social_gallery], :collection => [:available_tags, :preview_video]
 
   def show
     @afisha = AfishaDecorator.new(current_user.afisha.find(params[:id]))
@@ -67,13 +67,6 @@ class My::AfishasController < My::ApplicationController
     @afisha.poster_image_url = nil
     @afisha.save(:validate => false)
     redirect_to edit_step_my_afisha_path(@afisha.id, :step => :second)
-  end
-
-  def send_to_moderation
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
-    @afisha.send_to_moderation!
-
-    redirect_to my_root_path, :notice => "Афиша «#{@afisha.title}» добавлена в очередь на модерацию."
   end
 
   def send_to_published

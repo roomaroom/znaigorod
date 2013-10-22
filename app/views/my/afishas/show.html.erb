@@ -45,12 +45,12 @@
 
             <% if can? :send_to_published, @afisha %>
 
-              <% if @afisha.ready_for_moderation? %>
+              <% if @afisha.ready_for_publication? %>
                 <%= link_to t('my.send_to_public'), publish_my_afisha_path(@afisha), method: :put, class: 'enabled', confirm: 'Вы уверены? После публикации афишу, она будет доступна всем пользователям сайта!' %>
               <% else %>
                 <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
               <% end %>
-              <%= link_to t('my.destroy_afisha'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' %>
+              <%= link_to t('my.destroy'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' %>
             <% end %>
           <% else %>
             <h2><%= t("enumerize.afisha.state.#{@afisha.state}") %></h2>

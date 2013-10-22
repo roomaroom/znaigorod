@@ -51,7 +51,7 @@ class Ability
         afisha.state != 'pending' && afisha.user == user
       end
 
-      can [:destroy, :send_to_moderation, :send_to_published], Afisha do |afisha|
+      can [:destroy, :send_to_published], Afisha do |afisha|
         afisha.draft? && afisha.user == user
       end
 
@@ -83,6 +83,20 @@ class Ability
 
       can :manage, Showing do |showing|
         showing.afisha.state != 'pending' && showing.afisha.user == user
+      end
+
+      can [:new, :create], Discount if user.persisted?
+
+      can [:show, :edit, :update, :destroy, :poster], Discount do |discount|
+        discount.account == user.account
+      end
+
+      can :send_to_published, Discount do |discount|
+        discount.draft? && discount.account == user.account
+      end
+
+      can :send_to_draft, Discount do |discount|
+        discount.published? && discount.account == user.account
       end
 
       can [:new, :create], Invitation if user.persisted?

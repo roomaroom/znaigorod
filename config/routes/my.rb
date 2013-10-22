@@ -26,7 +26,7 @@ Znaigorod::Application.routes.draw do
       get 'preview_video'
 
       put 'social_gallery' => 'afishas#social_gallery', :on => :member, :as => :social_gallery
-      put 'moderate' => 'afishas#send_to_moderation', :on => :member, :as => :moderate
+
       put 'publish'  => 'afishas#send_to_published', :on => :member, :as => :publish
       put 'draft' => 'afishas#send_to_draft', :on => :member, :as => :draft
 
@@ -62,6 +62,9 @@ Znaigorod::Application.routes.draw do
     resources :discounts, :except => :index do
       get 'poster' => 'discounts#poster', :on => :member, :as => :poster
       put 'poster' => 'discounts#poster', :on => :member, :as => :poster
+
+      put 'publish'  => 'discounts#send_to_published', :on => :member, :as => :publish
+      put 'draft' => 'discounts#send_to_draft', :on => :member, :as => :draft
     end
 
     root to: 'accounts#show'

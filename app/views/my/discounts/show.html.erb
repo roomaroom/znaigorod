@@ -15,13 +15,33 @@
     <div class="right">
       <div class="wrapper">
         <div class="public_action">
-          <h2>Публикация скидки</h2>
-          <p>Для того, чтобы опубликовать скидку, необходимо заполнить следующие поля:</p>
-          <ul class='requirements'>
-            <li class='<%= @discount.title? ? 'enabled' : 'disabled' %>'>Название</li>
-            <li class='<%= @discount.description? ? 'enabled' : 'disabled' %>'>Описание</li>
-            <li class='<%= @discount.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
-          </ul>
+          <% if @discount.draft? %>
+            <h2>Публикация скидки</h2>
+            <p>Для того, чтобы опубликовать скидку, необходимо заполнить следующие поля:</p>
+            <ul class='requirements'>
+              <li class='<%= @discount.title? ? 'enabled' : 'disabled' %>'>Название</li>
+              <li class='<%= @discount.description? ? 'enabled' : 'disabled' %>'>Описание</li>
+              <li class='<%= @discount.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
+            </ul>
+
+            <% if can? :send_to_published, @discount %>
+              <% if @discount.ready_for_publication? %>
+                <%= link_to t('my.send_to_public'), publish_my_discount_path(@discount), :method => :put, :class => 'enabled',
+                    :confirm => 'Вы уверены? После публикации скидки, она будет доступна всем пользователям сайта!' %>
+              <% else %>
+                <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
+              <% end %>
+              <%= link_to t('my.destroy'), my_discount_path(@discount), :method => :delete, :class => :destroy,
+                  :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' %>
+            <% end %>
+
+          <% else %>
+            <h2><%= t("activerecord.state_machines.state.states.#{@discount.state}") %></h2>
+            <%= content_tag :p, link_to('Посмотреть в публичном виде', discount_path(@discount), target: '_blank') %>
+            <%= link_to t('my.send_to_draft'), draft_my_discount_path(@discount), :method => :put,
+                :confirm => 'Вы уверены? После подтверждения информация о скидке будет недоступна пользователям сайта!' %>
+          <% end %>
+
         </div>
       </div>
     </div>

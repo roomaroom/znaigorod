@@ -115,6 +115,10 @@ class Discount < ActiveRecord::Base
       organization.delay.index_suborganizations
     end
   end
+
+  def ready_for_publication?
+    title.present? && description.present? && poster_image_url? && draft?
+  end
 end
 
 # == Schema Information

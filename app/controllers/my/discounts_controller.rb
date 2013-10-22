@@ -5,7 +5,7 @@ class My::DiscountsController < My::ApplicationController
   load_and_authorize_resource
 
   actions :new, :create, :show, :edit, :update, :destroy
-  custom_actions :resource => :poster
+  custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
   def show
     show! {
@@ -30,4 +30,27 @@ class My::DiscountsController < My::ApplicationController
       }
     end
   end
+
+  def send_to_published
+    @discount = current_user.account.discounts.available_for_edit.find(params[:id])
+    @discount.to_published!
+
+    redirect_to discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» опубликована."
+  end
+
+  def send_to_draft
+    @discount = current_user.account.discounts.available_for_edit.find(params[:id])
+    @discount.to_draft!
+
+    redirect_to my_discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» возвращена в черновики."
+  end
+
+  private
+    alias_method :old_build_resource, :build_resource
+
+    def build_resource
+      old_build_resource.tap do |object|
+        object.account = current_user.account
+      end
+    end
 end

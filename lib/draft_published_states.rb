@@ -2,6 +2,8 @@ module DraftPublishedStates
   extend ActiveSupport::Concern
 
   included do
+    scope :available_for_edit,    -> { where(:state => [:draft, :published]) }
+
     state_machine :initial => :draft do
       after_transition any => :published do |afisha, transition|
         afisha.send(:set_slug)
@@ -20,4 +22,5 @@ module DraftPublishedStates
       end
     end
   end
+
 end

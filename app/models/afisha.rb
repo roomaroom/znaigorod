@@ -66,7 +66,6 @@ class Afisha < ActiveRecord::Base
   before_save :prepare_trailer
   before_save :set_wmode_for_trailer, :if => :published?
 
-  scope :available_for_edit,    -> { where(:state => [:draft, :published]) }
   scope :by_state,              ->(state) { where(:state => state) }
   scope :by_kind,               ->(kind) { where(:kind => kind) }
   scope :draft,                 -> { with_state(:draft) }
@@ -101,7 +100,7 @@ class Afisha < ActiveRecord::Base
     define_method("#{step}_step?") { self.step == step }
   end
 
-  def ready_for_moderation?
+  def ready_for_publication?
     title.present? && description.present? && poster_image_url? && showings.any? && draft?
   end
 
