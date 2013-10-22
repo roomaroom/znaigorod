@@ -41,12 +41,36 @@
   <div class="right">
 
     <div class="invitations_wrapper">
+    <% if @account.last_visit_at? %>
+      <div class='last_visit'>
+        <% if @account.last_visit_at > DateTime.now - 5.minute %>
+          сейчас на сайте
+        <% else %>
+          последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
+        <% end %>
+      </div>
+    <% end %>
+
+    <h1><%= @account.title %></h1>
+
+    <div class="account_info">
+      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => @account.age)}", :class => :row if @account.birthday? %>
+      <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
+    </div>
+
+    <% if @account.link_to_social.present? %>
+      <div class='link_to_social'>
+        <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+      </div>
+    <% end %>
       <div class="invitations header">
         <%= link_to 'Добавить',
           new_invitation_path('invitation[kind]' => :inviter),
           :remote => true,
           :class => 'invitation_link',
           :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
+        <span class="panel"></span>
+        <span class="triangle"></span>
           <h3>
             <%= link_to 'Хочу пригласить',
               new_invitation_path('invitation[kind]' => :inviter),
@@ -74,6 +98,8 @@
               :remote => true,
               :class => 'invitation_link',
               :data => { :title => 'Жду приглашения', :target => '.invited' } %>
+              <span class="panel"></span>
+              <span class="triangle"></span>
               <h3>
                 <%= link_to 'Жду приглашения',
                   new_invitation_path('invitation[kind]' => :invited),
