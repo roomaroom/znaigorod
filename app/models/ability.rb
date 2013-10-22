@@ -35,7 +35,7 @@ class Ability
     case namespace
     when 'manage'
       can :manage, Afisha if user.is_afisha_editor?
-      can :manage, Post    if user.is_posts_editor?
+      can :manage, Post   if user.is_posts_editor?
 
       if user.is_organizations_editor?
         can :manage, [Organization] + Organization.available_suborganization_classes
