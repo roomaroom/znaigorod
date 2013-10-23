@@ -2,30 +2,8 @@
 
   .form_wrapper
 
-    .simple_form
-      .wide_input
-        width: 540px
-
-      .organization
-        float: left
-        position: relative
-
-        label
-          float: left
-          margin: 0 10px 5px 0
-
-        .ui-autocomplete-input
-          +border-radius(3px)
-          border: 1px solid #909090
-          padding: 5px
-          width: 480px
-
-        .clear_autosuggest_link
-          position: absolute
-          top: 32px
-          right: 30px
-
-      label.checkbox
+    .check_boxes
+      .checkbox
         float: left
         margin-right: 10px
         width: 150px !important
@@ -33,31 +11,53 @@
         &:nth-child(4n+4)
           clear: none !important
 
-      .period
-        +clearfix
+    .wide_input
+      width: 540px
 
-        .input
-          float: left
-          margin: 0 25px 10px 0
+    .medium_input
+      width: 280px
 
-          input
-            width: 160px
+    .period, .discount_type
+      +clearfix
+      +border-radius(3px)
+      border: 1px solid #909090
+      margin: 0 0 15px 0
+      padding: 10px 10px 0 10px
+      width: 530px
 
-        .constant_wrapper
-          display: none
+      .input
+        float: left
+        margin: 0 25px 10px 0
 
-          label
-            float: left
+        input
+          width: 160px
 
-          label.checkbox
-            width: 20px !important
+      .boolean
+        input
+          width: 25px
 
-          input
-            float: left
-            margin: 5px 0 0 20px
-            width: 20px
+    .switch_wrapper
+      .boolean
+        display: none
 
-        .constant_link
+    .organization_wrapper
+      float: left
+      position: relative
+
+      label
+        float: left
+        margin: 0 10px 5px 0
+
+      .ui-autocomplete-input
+        +border-radius(3px)
+        border: 1px solid #909090
+        padding: 5px
+        width: 480px
+
+      .clear_autosuggest_link
+        position: absolute
+        top: 32px
+        right: 30px
 
   .preview
     .image

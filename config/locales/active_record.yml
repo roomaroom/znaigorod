@@ -156,7 +156,7 @@ ru:
 
       discount:
         <<: *common_attributes
-        constant: Постоянная скидка
+        constant: является постоянной скидкой (даты начала и окончания необязательны)
         discount: Скидка
         discounted_price: Цена со скидкой
         kind: Категория
@@ -165,10 +165,18 @@ ru:
         origin_price: Цена без скидки
         origin_url: Ссылка на источник
         payment_system: Платежная система
-        price: Цена сертификата
+        sale: является информацией о распродаже (точное значение скидки неизвестно)
         starts_at: Дата начала
         ends_at: Дата окончания
         type: Тип скидки
+
+      certificate:
+        constant: является бессрочным сертификатом
+        price: Цена сертификата
+
+      coupon:
+        constant: является бессрочным купоном
+        price: Цена купона
 
       post:
         <<: *common_attributes

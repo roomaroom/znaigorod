@@ -1,20 +1,22 @@
 <%= simple_form_for [:my, resource] do |f| %>
   <%= f.input :kind, :as => :check_boxes %>
-  <%= f.input :title, :input_html => { :class => 'preview_title wide_input' } %>
-  <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
+  <%= f.input :title, :input_html => { :class => 'preview_title wide_input', :placeholder => 'Название' } %>
+  <%= f.input :description, :required => true, :input_html => { :id => :markitup_description, :placeholder => 'Описание' } %>
 
   <div class="period">
-    <%= f.input :starts_at, :as => :date_picker %>
-    <%= f.input :ends_at, :as => :date_picker %>
-    <%= f.input :constant, :wrapper_html => { :class => 'constant_wrapper' } %>
-    <%= link_to 'Постоянная скидка', '#', :class => 'constant_link', :remote => true %>
+    <%= link_to 'Постоянная скидка', '#', :class => 'switch_link', :remote => true %>
+    <div class="switch_wrapper">
+      <%= f.input :starts_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата начала' } %>
+      <%= f.input :ends_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата окончания' } %>
+      <%= f.input :constant %>
+    </div>
   </div>
 
-  <%= f.input :number if resource.new_record? %>
-  <%= f.input :origin_price %>
-  <%= f.input :price %>
+  <%= f.input :number, :input_html => { :class => 'medium_input', :placeholder => 'Количество сертификатов для продажи' } if resource.new_record? %>
+  <%= f.input :origin_price, :input_html => { :placeholder => 'Цена без скидки' } %>
+  <%= f.input :price, :input_html => { :placeholder => 'Цена сертификата' } %>
 
-  <div class="organization">
+  <div class="organization_wrapper">
     <%= f.input :organization_title, :input_html => { :class => 'autosuggest wide_input', :placeholder => 'Начинайте вводить название' } %>
     <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
     <%= link_to 'Удалить', '#', :remote => true, :class => 'clear_autosuggest_link' %>

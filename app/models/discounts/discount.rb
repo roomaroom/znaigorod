@@ -7,7 +7,7 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :organization_id,
-                  :constant
+                  :constant, :sale
 
   attr_accessor :organization_title
 
@@ -24,8 +24,9 @@ class Discount < ActiveRecord::Base
   # stub
   has_many :copies, :dependent => :destroy, :as => :copyable
 
-  validates_presence_of :title, :description, :kind, :discount, :kind
+  validates_presence_of :title, :description, :kind
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
+  validates_presence_of :discount, :unless => :sale?
 
   after_save :reindex_organization
   after_destroy :reindex_organization
@@ -153,5 +154,6 @@ end
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  constant                  :boolean
+#  sale                      :boolean          default(FALSE)
 #
 
