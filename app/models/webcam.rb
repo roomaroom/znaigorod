@@ -29,7 +29,7 @@ class Webcam < ActiveRecord::Base
   }
 
   def self.snapshot_href_for_index
-    'http://storage.znaigorod.ru/files/38716/640-480/webcams.jpg'
+    "#{Settings['storage.url']}/files/38716/640-480/webcams.jpg"
   end
 
   def snapshot_href
