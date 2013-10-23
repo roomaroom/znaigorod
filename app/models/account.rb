@@ -39,7 +39,7 @@ class Account < ActiveRecord::Base
 
   scope :ordered, -> { order('ID ASC') }
 
-  has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
+  has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
   alias_attribute :file_url, :avatar_url
 
   extend Enumerize
@@ -68,6 +68,14 @@ class Account < ActiveRecord::Base
     string(:invited_categories, :multiple => true) { invitations.invited.with_categories.select(&:actual?).flat_map(&:categories).uniq }
 
     text :title, :as => :term_text
+  end
+
+  def resolve_default_avatar_url
+    return "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png"     if gender.female?
+    return "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png"       if gender.male?
+    return "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png"  if gender.undefined?
+
+    "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
   end
 
   def create_page_visit(session, user_agent, user)
