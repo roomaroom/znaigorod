@@ -103,15 +103,6 @@ class Account < ActiveRecord::Base
     feeds
   end
 
-  def avatar_for_feed
-    if self.avatar_url.present?
-      avatar = self.avatar_url
-    else
-      avatar = "http://storage.openteam.ru/files/28694/default_avatar.png"
-    end
-    avatar
-  end
-
   def friends_count
     self.friends.where(:friendly => true).count
   end

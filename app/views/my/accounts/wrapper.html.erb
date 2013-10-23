@@ -2,7 +2,7 @@
 <div class="account_show">
   <div class="left">
     <div class="image">
-      <%= image_tag(resized_image_url(@account.avatar.url, 200, 200), size: '200x200', title: @account.title, alt: @account.title) %>
+      <%= image_tag(resized_image_url(current_user.account.avatar.url, 200, 200), size: '200x200', alt: current_user.account.title) %>
       <%= render 'my/accounts/avatar_form' %>
     </div>
     <div class="properties">
@@ -24,7 +24,7 @@
             </div>
           <div class="show_friends <%= "selected" if params[:controller] == "my/friends" %>">
             <a href="<%= my_account_friends_path() %>">
-              <span class="counter"><%= @account.friends_count %></span>
+              <span class="counter"><%= current_user.account.friends_count %></span>
               <span>Друзья</span>
             </a>
           </div>
@@ -38,26 +38,26 @@
   <div class="right">
 
     <div class="invitations_wrapper">
-    <% if @account.last_visit_at? %>
+    <% if current_user.account.last_visit_at? %>
       <div class='last_visit'>
-        <% if @account.last_visit_at > DateTime.now - 5.minute %>
+        <% if current_user.account.last_visit_at > DateTime.now - 5.minute %>
           сейчас на сайте
         <% else %>
-          последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
+          последнее посещение было <%= time_ago_in_words current_user.account.last_visit_at %> назад
         <% end %>
       </div>
     <% end %>
 
-    <h1><%= @account.title %></h1>
+    <h1><%= current_user.account.title %></h1>
 
     <div class="account_info">
-      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => @account.age)}", :class => :row if @account.birthday? %>
-      <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
+      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => current_user.account.age)}", :class => :row if current_user.account.birthday? %>
+      <%= content_tag :div, "Пол: #{current_user.account.gender.text.mb_chars.downcase}", :class => :row unless current_user.account.gender == 'undefined' %>
     </div>
 
-    <% if @account.link_to_social.present? %>
+    <% if current_user.account.link_to_social.present? %>
       <div class='link_to_social'>
-        <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+        <%= link_to('Профиль в социальной сети', current_user.account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
       </div>
     <% end %>
     <div class="invitations header">
@@ -73,8 +73,8 @@
 
       <div class="invitations list">
         <ul class="inviter">
-          <% if @account.invitations.inviter.without_invited.any? %>
-            <% @account.invitations.inviter.without_invited.each do |invitation| %>
+          <% if current_user.account.invitations.inviter.without_invited.any? %>
+            <% current_user.account.invitations.inviter.without_invited.each do |invitation| %>
               <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
             <% end %>
           <% else %>
@@ -96,8 +96,8 @@
 
         <div class="invitations list">
           <ul class="invited">
-            <% if @account.invitations.invited.without_invited.any? %>
-              <% @account.invitations.invited.without_invited.each do |invitation| %>
+            <% if current_user.account.invitations.invited.without_invited.any? %>
+              <% current_user.account.invitations.invited.without_invited.each do |invitation| %>
                 <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
               <% end %>
             <% else %>

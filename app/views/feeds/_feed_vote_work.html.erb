@@ -1,20 +1,26 @@
 <div class='poster'>
-  <%= link_to image_tag(resized_image_url(feed_vote_work.voteable.image_url, 100 , 100 ), :size => '100x100'), [feed_vote_work.voteable.contest, feed_vote_work.voteable] %>
+  <%= link_to [feed_vote_work.voteable.contest, feed_vote_work.voteable] do %>
+    <%= image_tag(resized_image_url(feed_vote_work.voteable.image_url, 100 , 100 ),
+                  :size => '100x100')  %>
+  <% end %>
 </div>
 <div class='main'>
-  <% if @account.id == feed_vote_work.user.account.id %>
+  <% if current_user.account.id == feed_vote_work.user.account.id %>
     <div class='type'>
       Нравится работа
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_vote_work.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_work.user.account %>
+        <%= link_to feed_vote_work.user.account do %>
+          <%= image_tag(resized_image_url(feed_vote_work.user.account.avatar.url, 23, 23),
+                        :size => '23x23', :alt => feed_vote_work.user.account.title) %>
+        <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_work.user.name, feed_vote_work.user.account  %>
       <%= t "account.rated.#{feed_vote_work.user.account.gender}" %> работу
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class='title'>
     <%= link_to("Работа " + feed_vote_work.voteable.to_feed_title, [feed_vote_work.voteable.contest, feed_vote_work.voteable])  %>

@@ -1,11 +1,13 @@
 <div class='main'>
-  <% if @account.id == feed_vote_comment.user.account.id %>
+  <% if current_user.account.id == feed_vote_comment.user.account.id %>
     <div class='type'>
       Нравится комментарий
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_vote_comment.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_comment.user.account %>
+      <%= link_to feed_vote_comment.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_comment.user.account.avatar.url, 23, 23), :size => '23x23') %>
+      <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_comment.user.name, feed_vote_comment.user.account  %>
@@ -21,6 +23,5 @@
   </div>
 </div>
 <div class='text'>
-  <%= link_to "#{feed_vote_comment.voteable.user.name}:", feed_vote_comment.voteable.user.account %>&nbsp; <%= feed_vote_comment.voteable.body.first(200)  %>
-  <%= "..." if  feed_vote_comment.voteable.body.size >= 200 %>
+  <%= link_to "#{feed_vote_comment.voteable.user.name}:", feed_vote_comment.voteable.user.account %>&nbsp;<%= feed_vote_comment.voteable.body.truncated.as_html if feed_vote_comment.voteable.body? %>
 </div>

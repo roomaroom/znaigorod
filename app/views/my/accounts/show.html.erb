@@ -12,7 +12,7 @@
       </ul>
       <% unless @feeds_presenter.collection.first_page? && @feeds_presenter.collection.last_page? %>
         <div class="feed_pagination">
-          <%= link_to ''.html_safe, my_account_feeds_path(:account_id => @account.id, :page => @feeds_presenter.collection.current_page + 1, :kind => @feeds_presenter.kind_filter.kind, :activity => @feeds_presenter.activity_filter.kind), :class => "next_page #{ 'disabled' if @feeds_presenter.collection.last_page? }", :remote => true %>
+          <%= link_to ''.html_safe, my_account_feeds_path(:account_id => current_user.account.id, :page => @feeds_presenter.collection.current_page + 1, :kind => @feeds_presenter.kind_filter.kind, :activity => @feeds_presenter.activity_filter.kind), :class => "next_page #{ 'disabled' if @feeds_presenter.collection.last_page? }", :remote => true %>
         </div>
       <% end %>
     <% else %>

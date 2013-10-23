@@ -2,15 +2,14 @@
   <div class='time'>
     <%= time_ago_in_words(feed_invitation.created_at) %> назад
   </div>
-  <% if @account.id == feed_invitation.feedable.account.id %>
+  <% if current_user.account.id == feed_invitation.feedable.account.id %>
     <% if feed_invitation.feedable.kind == "inviter"  %>
       <%= "Приглашаю" %>
     <% else %>
       <%= "Жду приглашения" %>
     <% end %>
   <% else %>
-    <% name = feed_invitation.feedable.account.first_name + " " + feed_invitation.feedable.account.last_name %>
-    <%= link_to name, feed_invitation.feedable.account  %>
+    <%= link_to feed_invitation.feedable.account.title, feed_invitation.feedable.account  %>
     <% if feed_invitation.feedable.kind == "inviter"  %>
       <%= "приглашает" %>
     <% else %>

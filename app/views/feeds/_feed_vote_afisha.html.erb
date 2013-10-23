@@ -1,16 +1,19 @@
-<% decorator = AfishaDecorator.new feed_vote_afisha.voteable %>
-
 <div class='poster'>
-  <%= link_to image_tag( resized_image_url(feed_vote_afisha.voteable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_vote_afisha.voteable.title), feed_vote_afisha.voteable  %>
+  <%= link_to feed_vote_afisha.voteable do %>
+    <%= image_tag( resized_image_url(feed_vote_afisha.voteable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_vote_afisha.voteable.title) %>
+  <% end %>
 </div>
 <div class='main'>
-  <% if @account.id == feed_vote_afisha.user.account.id %>
+  <% if current_user.account.id == feed_vote_afisha.user.account.id %>
     <div class='type'>
       Нравится афиша
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_vote_afisha.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_afisha.user.account %>
+      <%= link_to feed_vote_afisha.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_afisha.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_vote_afisha.user.account.title) %>
+      <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_afisha.user.name, feed_vote_afisha.user.account  %>
@@ -22,16 +25,15 @@
     <%= link_to(feed_vote_afisha.voteable.title, feed_vote_afisha.voteable) %>
   </div>
   <div class='body'>
-    <p>
-    <%= decorator.when_with_price %>
-      <% decorator.places.each do |place| %>
-        <div class='place'>
-          <%= place.place %>
-        </div>
-      <% end %>
-    </p>
+    <% decorator = AfishaDecorator.new feed_vote_afisha.voteable %>
+    <p><%= decorator.when_with_price %></p>
+    <% decorator.places.each do |place| %>
+      <div class='place'>
+        <%= place.place %>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class='text'>
-  <%= "#{feed_vote_afisha.voteable.description.first(220)}..." if feed_vote_afisha.voteable.description.present? %>
+  <%= feed_vote_afisha.voteable.description.truncated.as_html if feed_vote_afisha.voteable.description? %>
 </div>

@@ -1,37 +1,36 @@
-<% decorator = OrganizationDecorator.new feed_visit_organization.visitable %>
-
-
 <div class='poster'>
-<% unless feed_visit_organization.visitable.logotype_url == "" %>
-  <%= link_to image_tag(resized_image_url(feed_visit_organization.visitable.logotype_url, 100 , 100 ), :size => '100x100'), feed_visit_organization.visitable %>
-<% else %>
-  <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_visit_organization.visitable.priority_suborganization_kind.first) %>
-<% end %>
+  <% unless feed_visit_organization.visitable.logotype_url == "" %>
+    <%= link_to feed_visit_organization.visitable do %>
+      <%= image_tag(resized_image_url(feed_visit_organization.visitable.logotype_url, 100 , 100 ), :size => '100x100')  %>
+    <% end %>
+  <% else %>
+    <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_visit_organization.visitable.priority_suborganization_kind.first) %>
+  <% end %>
 </div>
 <div class='main'>
 
-  <% if @account.id == feed_visit_organization.user.account.id %>
+  <% if current_user.account.id == feed_visit_organization.user.account.id %>
     <div class='type'>
-        <%= t "account.i_want_to_visit.#{feed_visit_organization.user.account.gender}" %>
+      <%= t "account.i_want_to_visit.#{feed_visit_organization.user.account.gender}" %>
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_visit_organization.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_visit_organization.user.account %>
+      <%= link_to feed_visit_organization.user.account do %>
+        <%= image_tag(resized_image_url(feed_visit_organization.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_visit_organization.user.account.title) %>
+      <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_visit_organization.user.name, feed_visit_organization.user.account  %>
-        <%= t "account.wants_to_visit_downcase.#{feed_visit_organization.user.account.gender}" %>
+      <%= t "account.wants_to_visit_downcase.#{feed_visit_organization.user.account.gender}" %>
     </div>
   <% end %>
 
   <div class='title'>
-<%= link_to(feed_visit_organization.visitable.title, feed_visit_organization.visitable) %>
-        <div class='place'>
-          <%= decorator.address_link %>
-        </div>
+    <%= link_to(feed_visit_organization.visitable.title, feed_visit_organization.visitable) %>
+    <div class='address'>
+      <%= OrganizationDecorator.new(feed_visit_organization.visitable).address_link %>
+    </div>
   </div>
-  <div class='body'>
-    <p>
-    </p>
-  </div>
+
 </div>

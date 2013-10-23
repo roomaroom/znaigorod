@@ -1,11 +1,11 @@
-<% decorator = AfishaDecorator.new feed_visit_afisha.visitable %>
-
 <div class='poster'>
-  <%= link_to image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.visitable.title), feed_visit_afisha.visitable  %>
+  <%= link_to feed_visit_afisha.visitable do %>
+    <%= image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.visitable.title) %>
+  <% end %>
 </div>
 <div class='main'>
 
-  <% if @account.id == feed_visit_afisha.user.account.id %>
+  <% if current_user.account.id == feed_visit_afisha.user.account.id %>
     <div class='type'>
       <% if feed_visit_afisha.visitable.actual? %>
         <%= t "account.i_want_to_visit_present.#{feed_visit_afisha.user.account.gender}" %>
@@ -15,7 +15,10 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_visit_afisha.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_visit_afisha.user.account %>
+      <%= link_to feed_visit_afisha.user.account do %>
+        <%= image_tag(resized_image_url(feed_visit_afisha.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_visit_afisha.user.account.title) %>
+      <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_visit_afisha.user.name, feed_visit_afisha.user.account  %>
@@ -31,6 +34,7 @@
     <%= link_to(feed_visit_afisha.visitable.title, feed_visit_afisha.visitable) %>
   </div>
   <div class='body'>
+    <% decorator = AfishaDecorator.new feed_visit_afisha.visitable %>
     <p>
     <%= decorator.when_with_price %>
       <% decorator.places.each do |place| %>
@@ -42,5 +46,5 @@
   </div>
 </div>
 <div class='text'>
-  <%= "#{feed_visit_afisha.visitable.description.first(220)}..." if feed_visit_afisha.visitable.description.present? %>
+  <%= feed_visit_afisha.visitable.description.truncated.as_html if feed_visit_afisha.visitable.description? %>
 </div>

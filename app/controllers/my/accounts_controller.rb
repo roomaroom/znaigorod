@@ -15,13 +15,7 @@ class My::AccountsController < My::ApplicationController
   end
 
   def show
-    @account = current_user.account
-    params['account_id'] = @account.id
-    @feeds_presenter = FeedsPresenter.new(params)
-    @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(1).per(5)
-    @notification_messages = @account.notification_messages.page(1).per(5)
-    @dialogs = Kaminari.paginate_array(@account.dialogs).page(1).per(5)
-    @invite_messages = Kaminari.paginate_array([@account.invite_messages, @account.received_invite_messages].flatten.sort_by(&:created_at).reverse!).page(1).per(5)
+    @feeds_presenter = FeedsPresenter.new(params.merge({:account_id => current_user.account.id}))
   end
 
   protected

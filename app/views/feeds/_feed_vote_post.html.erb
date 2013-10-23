@@ -1,16 +1,22 @@
 <div class='poster'>
   <% if feed_vote_post.voteable.gallery_images.any? %>
-    <%= link_to image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 100 , 100 ), :size => '100x100'), feed_vote_post.voteable %>
+    <%= link_to feed_vote_post.voteable do %>
+      <%= image_tag(resized_image_url(feed_vote_post.voteable.gallery_images.first.file_url, 100 , 100 ), :size => '100x100')
+       %>
+    <% end %>
   <% end %>
 </div>
 <div class='main'>
-  <% if @account.id == feed_vote_post.user.account.id %>
+  <% if current_user.account.id == feed_vote_post.user.account.id %>
     <div class='type'>
       Нравится обзор
     </div>
   <% else %>
     <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_vote_post.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_vote_post.user.account %>
+      <%= link_to feed_vote_post.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_post.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_vote_post.user.account.title) %>
+      <% end %>
     </div>
     <div class='type'>
       <%= link_to feed_vote_post.user.name, feed_vote_post.user.account  %>

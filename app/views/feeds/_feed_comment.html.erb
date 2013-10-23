@@ -1,18 +1,20 @@
 <div class='comment'>
-  <div class='time'><%= time_ago_in_words(feed_comment.created_at) %> назад
-  </div>
+  <div class='time'><%= time_ago_in_words(feed_comment.created_at) %> назад</div>
   <div class='main'>
-    <% if @account.id == feed_comment.feedable.user.account.id %>
+    <% if current_user.account.id == feed_comment.feedable.user.account.id %>
       <div class='type'>
         Комментарий
       </div>
     <% else %>
       <div class='avatar'>
-      <%=  link_to image_tag(resized_image_url(feed_comment.feedable.user.account.avatar_for_feed, 23, 23), :size => '23x23'), feed_comment.feedable.user.account %>
+        <%= link_to feed_comment.feedable.user.account do %>
+          <%= image_tag(resized_image_url(feed_comment.feedable.user.account.avatar.url, 23, 23),
+                        :size => '23x23', :alt => feed_comment.feedable.user.account.title) %>
+        <% end %>
       </div>
       <div class='type'>
         <%= link_to feed_comment.feedable.user.name, feed_comment.feedable.user.account  %>
-      <%= t "account.writed_a_comment.#{feed_comment.feedable.user.account.gender}" %>
+        <%= t "account.writed_a_comment.#{feed_comment.feedable.user.account.gender}" %>
       </div>
     <% end %>
     <div class='title'>
@@ -23,8 +25,7 @@
       <% end %>
     </div>
     <div class='body'>
-      <%= feed_comment.feedable.body.first(200)  %>
-      <%= "..." if  feed_comment.feedable.body.size >= 200 %>
+      <%= feed_comment.feedable.body.truncated.as_html if feed_comment.feedable.body? %>
     </div>
   </div>
 </div>
