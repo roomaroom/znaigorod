@@ -23,6 +23,10 @@
   <%= f.input :number, label: 'Количество', as: :select, collection: 1..parent.copies_for_sale.count, include_blank: false, require: false %>
   <%= f.input :phone, label: 'Введите номер мобильного телефона', require: false %>
 
+  <% if parent.payment_system_rbkmoney? %>
+    <%= f.input :email, label: 'Введите адрес электронной почты', require: false %>
+  <% end %>
+
   <div class="submit">
     <%= f.submit 'Купить' %>
   </div>

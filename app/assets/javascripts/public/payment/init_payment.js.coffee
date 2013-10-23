@@ -1,5 +1,9 @@
-@init_payment = () ->
+@is_email = (email) ->
+  regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
 
+  regex.test email
+
+@init_payment = () ->
   $('a.payment_link').each ->
     link = $(this)
     link.click ->
@@ -40,11 +44,14 @@
     $('a.payment_link:first').click()
 
 @init_actions_handler = ->
-
   $('.payment_form_wrapper form input[type=submit]').attr('disabled', 'disabled').addClass('disabled')
 
   $('.payment_form_wrapper form #copy_payment_phone').inputmask 'mask',
     'mask': '+7-(999)-999-9999'
+
+  $('.payment_form_wrapper form #copy_payment_email').inputmask 'Regex',
+    #regex: "[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}"
+    regex: "^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$"
 
   $('.payment_form_wrapper form input[type=submit]').click ->
     $('.payment_form_wrapper form').submit()
@@ -53,14 +60,21 @@
   $('.payment_form_wrapper form').submit ->
     return false if $('.payment_form_wrapper .copies_with_seats input').length && !$('.payment_form_wrapper .copies_with_seats input:checked').length
     return false unless $('.payment_form_wrapper #copy_payment_phone').inputmask('isComplete')
+    return false unless is_email($('.payment_form_wrapper #copy_payment_email').val())
+
     true
 
-  $('.payment_form_wrapper #copy_payment_phone').keyup ->
+  $('.payment_form_wrapper #copy_payment_phone, .payment_form_wrapper #copy_payment_email').keyup ->
     return false if $('.payment_form_wrapper .copies_with_seats input').length && !$('.payment_form_wrapper .copies_with_seats input:checked').length
-    if $(this).inputmask 'isComplete'
-      $('input[type=submit]', $(this).closest('form')).removeAttr('disabled').removeClass('disabled')
+
+    phone = $('.payment_form_wrapper #copy_payment_phone')
+    email = $('.payment_form_wrapper #copy_payment_email')
+
+    if phone.inputmask('isComplete') && is_email(email.val())
+      $('input[type=submit]', phone.closest('form')).removeAttr('disabled').removeClass('disabled')
     else
-      $('input[type=submit]', $(this).closest('form')).attr('disabled', 'disabled').addClass('disabled')
+      $('input[type=submit]', phone.closest('form')).attr('disabled', 'disabled').addClass('disabled')
+
     true
 
   $('.payment_form_wrapper .copies_with_seats input').change ->

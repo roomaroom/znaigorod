@@ -8,6 +8,6 @@ module PaymentSystems
 
     validates_presence_of :payment_system
 
-    enumerize :payment_system, :in => [:robokassa, :rbkmoney]
+    enumerize :payment_system, :in => [:robokassa, :rbkmoney], :predicates => { :prefix => true }
   end
 end

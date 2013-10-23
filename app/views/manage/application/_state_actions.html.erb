@@ -1,3 +1,9 @@
 <% resource.state_events.each do |state_event| %>
-  <%= link_to t("activerecord.state_machines.state.events.#{state_event}"), polymorphic_path([:fire_state_event, :manage, resource], :event => state_event), :method => :put %>
+  <% if resource.is_a? Afisha %>
+    <%= link_to t("activerecord.state_machines.state.events.#{state_event}"), polymorphic_path([:fire_state_event, :manage, resource], :event => state_event), :method => :put %>
+  <% end %>
+
+  <% if resource.is_a? Discount  %>
+    <%= link_to t("activerecord.state_machines.state.events.#{state_event}"), fire_state_event_manage_discount_path(resource, state_event), :method => :put %>
+  <% end %>
 <% end %>

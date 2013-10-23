@@ -2,15 +2,14 @@
 
 class Certificate < Discount
   include Copies
+  include PaymentSystems
 
-  attr_accessible :origin_price, :price, :payment_system, :number, :origin_url
+  attr_accessible :origin_price, :price, :number, :origin_url
 
   validates :origin_url, :format => URI::regexp(%w(http https)), :if => :origin_url?
-  validates_presence_of :origin_price, :price, :payment_system, :number
+  validates_presence_of :origin_price, :price, :number
 
   before_validation :set_discount
-
-  enumerize :payment_system, :in => [:robokassa, :rbkmoney]
 
   private
 
