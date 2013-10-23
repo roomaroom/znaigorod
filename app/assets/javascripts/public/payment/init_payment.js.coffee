@@ -60,7 +60,9 @@
   $('.payment_form_wrapper form').submit ->
     return false if $('.payment_form_wrapper .copies_with_seats input').length && !$('.payment_form_wrapper .copies_with_seats input:checked').length
     return false unless $('.payment_form_wrapper #copy_payment_phone').inputmask('isComplete')
-    return false unless is_email($('.payment_form_wrapper #copy_payment_email').val())
+
+    email = $('.payment_form_wrapper #copy_payment_email')
+    return false if email.length && !is_email($('.payment_form_wrapper #copy_payment_email').val())
 
     true
 
@@ -70,10 +72,16 @@
     phone = $('.payment_form_wrapper #copy_payment_phone')
     email = $('.payment_form_wrapper #copy_payment_email')
 
-    if phone.inputmask('isComplete') && is_email(email.val())
-      $('input[type=submit]', phone.closest('form')).removeAttr('disabled').removeClass('disabled')
+    if email.length
+      if phone.inputmask('isComplete') && is_email(email.val())
+        $('input[type=submit]', phone.closest('form')).removeAttr('disabled').removeClass('disabled')
+      else
+        $('input[type=submit]', phone.closest('form')).attr('disabled', 'disabled').addClass('disabled')
     else
-      $('input[type=submit]', phone.closest('form')).attr('disabled', 'disabled').addClass('disabled')
+      if phone.inputmask('isComplete')
+        $('input[type=submit]', phone.closest('form')).removeAttr('disabled').removeClass('disabled')
+      else
+        $('input[type=submit]', phone.closest('form')).attr('disabled', 'disabled').addClass('disabled')
 
     true
 
