@@ -12,13 +12,21 @@
         &:last-child
           margin-right: 0
 
-  .comment,.friend,.afisha,.vote,.visit,.invitation
+  .feed_wrapper
     border-bottom: solid 1px #ccc
     margin-top: 10px
     overflow: hidden
     position: relative
     padding-bottom: 5px
     font-size: 12px
+
+    .details
+      float: left
+      span
+        color: #999
+
+    .avatar
+      float: left
 
     .text
       width: 870px
@@ -95,14 +103,6 @@
 
         &.sport
           background-position: -321px -3px
-
-  .friend
-    .avatar
-      float: left
-    .details
-      float: left
-      span
-        color: #999
 
   .line
     background-color: #e8e8e8

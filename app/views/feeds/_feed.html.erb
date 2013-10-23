@@ -1,3 +1,5 @@
 <li>
-  <%= render partial: "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>
+  <div class="feed_wrapper">
+    <%= render partial: "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>
+  </div>
 </li>
