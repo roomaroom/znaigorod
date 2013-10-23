@@ -3,7 +3,11 @@
 <div class="discount_show">
   <div class="left">
     <div class="image">
-      <%= link_to image_tag(resized_image_url(@discount.poster_url, 200, 149), :size => '200x149', :title => @discount.title, :alt => @discount.title), @discount.poster_url %>
+      <% if @discount.poster_url? %>
+        <%= link_to image_tag(resized_image_url(@discount.poster_url, 200, 149), :size => '200x149', :title => @discount.title, :alt => @discount.title), @discount.poster_url %>
+      <% else %>
+        <%= image_tag('public/stub_poster.png', :size => '200x149', :alt => :poster) %>
+      <% end %>
     </div>
     <div class="info">
       <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
