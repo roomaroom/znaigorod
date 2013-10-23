@@ -19,5 +19,6 @@ HasSearcher.create_searcher :similar_discount do
 
   scope do
     with(:ends_at).greater_than HasSearcher.cacheable_now
+    with :state, :published
   end
 end
