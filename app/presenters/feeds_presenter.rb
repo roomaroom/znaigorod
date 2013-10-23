@@ -68,8 +68,6 @@ class FeedsPresenter
         unless @feed.blank?
           @feed = @feed.sort_by(&:created_at).reverse
         end
-        puts @feed.inspect
-        puts @feed.count
 
         @feed = Kaminari.paginate_array(@feed).page(@page).per(@per_page)
       end
