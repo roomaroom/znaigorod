@@ -1,5 +1,18 @@
 <div class="my_wrapper">
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
+  <% if content_for?(:help) %>
+    <h1>
+      <%= t("my.#{resource.class.name.underscore}.title") %>: общая информация
+      <%= link_to 'помощь', '#', :class => 'show_help' %>
+    </h1>
+
+    <div class='help_wrapper'>
+      <div class='help'>
+        <%= yield :help %>
+      </div>
+    </div>
+  <% end %>
+
   <%= yield :my_content %>
 </div>

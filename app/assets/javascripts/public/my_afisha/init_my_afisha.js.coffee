@@ -178,11 +178,13 @@ init_constant_discount = () ->
     if date_input.is(':visible')
       date_input.hide()
       constant_input.show()
+      $('input', constant_input).attr('checked', true)
       $(this).html('Выбрать даты')
 
     else
       date_input.show()
       constant_input.hide()
+      $('input', constant_input).attr('checked', false)
       $(this).html('Постоянная скидка')
 
     false

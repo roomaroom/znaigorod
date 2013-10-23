@@ -22,16 +22,19 @@ SimpleNavigation::Configuration.run do |navigation|
 
       my_item.item :new_discount, 'Добавление скидки', new_my_discount_path
       my_item.item :discount, @discount.title || 'Нет названия', my_discount_path(@discount) do |discount_item|
+        discount_item.item :edit, 'Изменение информации', edit_my_discount_path(@discount)
         discount_item.item :poster, 'Постер', poster_my_discount_path(@discount)
       end if @discount && @discount.persisted?
 
       my_item.item :new_certificate, 'Добавление сертификата', new_my_certificate_path
       my_item.item :certificate, @certificate.title || 'Нет названия', my_discount_path(@certificate) do |certificate_item|
+        discount_item.item :edit, 'Изменение информации', edit_my_discount_path(@discount)
         certificate_item.item :poster, 'Постер', poster_my_discount_path(@certificate)
       end if @certificate && @certificate.persisted?
 
       my_item.item :new_coupon, 'Добавление купона', new_my_coupon_path
       my_item.item :coupon, @coupon.title || 'Нет названия', my_discount_path(@coupon) do |coupon_item|
+        discount_item.item :edit, 'Изменение информации', edit_my_discount_path(@discount)
         coupon_item.item :poster, 'Постер', poster_my_discount_path(@coupon)
       end if @coupon && @coupon.persisted?
 

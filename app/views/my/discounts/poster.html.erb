@@ -1,3 +1,8 @@
+<% content_for :help do %>
+  <p>Выберете картинку для постера. Файл загрузится автоматически.</p>
+  <p>После этого можно будет выделить необходимый фрагмент картинки для отображения в виде постера.</p>
+<% end %>
+
 <% content_for :my_content do %>
   <% if resource.poster_image_url? %>
     <% crop_opt = resource.poster_url ? resource.poster_url.match(/(?<=\/region\/)\w+\/\w+\/\w+\/\w+/).to_s.split('/').map{|o| (o.to_i/resource.resize_factor).round} : [] %>

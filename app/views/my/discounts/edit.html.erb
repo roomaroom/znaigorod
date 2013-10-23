@@ -1,17 +1,5 @@
 <% content_for :my_content do %>
-
-  <h1>Общая информация <%= link_to 'помощь', '#', :class => 'show_help' if content_for?(:help) %></h1>
-
-  <% if content_for?(:help) %>
-    <div class="help_wrapper">
-      <div class="help">
-        <%= yield :help %>
-      </div>
-    </div>
-  <% end %>
-
   <%= render 'my/discounts/form' %>
-
 <% end %>
 
 <%= render :template => 'my/discounts/wrapper' %>

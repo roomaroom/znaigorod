@@ -1,4 +1,9 @@
 <div class="clearfix">
+
+  <% content_for :help do %>
+    <p>По мере заполнения общего описания в правой части страницы будет отображаться макет информации о скидке.</p>
+  <% end %>
+
   <div class="form_wrapper">
     <%= render :partial => "my/discounts/form_#{resource.class.name.underscore}" %>
   </div>
