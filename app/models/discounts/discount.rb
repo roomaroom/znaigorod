@@ -24,6 +24,7 @@ class Discount < ActiveRecord::Base
 
   has_many :accounts, :through => :members
   has_many :organizations, :through => :places
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   validates_presence_of :title, :description, :kind
 

@@ -7,6 +7,26 @@ class Feed < ActiveRecord::Base
     self.where(searcher_params).includes(:feedable).order('created_at DESC')
   end
 
+  def self.feeds_for_state_machine(elem)
+    puts 'asd'
+    if %[Discount Coupon Certificate].include?(elem.class.name)
+      self.create(
+        :feedable => elem,
+        :account => elem.account,
+        :created_at => elem.created_at,
+        :updated_at => elem.updated_at
+      )
+    elsif %[Afisha].include?(elem.class.name)
+      self.create(
+        :feedable => elem,
+        :account => elem.user.account,
+        :created_at => elem.created_at,
+        :updated_at => elem.updated_at
+      )
+    end
+
+  end
+
 end
 
 # == Schema Information

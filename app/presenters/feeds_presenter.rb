@@ -40,7 +40,6 @@ class FeedsPresenter
   end
 
   def collection
-    puts @searcher_params
 
     if public_feed?
       @feed ||= Kaminari.paginate_array(Feed.feeds_for_presenter(@searcher_params)).page(@page).per(@per_page)

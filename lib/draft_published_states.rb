@@ -11,6 +11,11 @@ module DraftPublishedStates
     state_machine :initial => :draft do
       after_transition any => :published do |afisha, transition|
         afisha.send(:set_slug)
+        Feed.feeds_for_state_machine(afisha)
+      end
+
+      after_transition :from => :published do |afisha, transition|
+        afisha.feed.destroy if afisha.feed
       end
 
       event :to_published do
