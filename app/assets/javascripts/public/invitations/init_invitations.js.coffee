@@ -228,7 +228,8 @@ handle_reply_invitation = (target, response)->
   init_delete_invitation $('.delete_invitation')
 
   $('.invitations_wrapper, .content .left, .accounts_list, .feature_wrapper, .additional_info_wrapper').on 'ajax:success', (evt, response) ->
-    return false if $('.invite_form_wrapper').length
+    return false if response.compact().length && $(response).hasClass('cloud_wrapper')
+
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
@@ -255,5 +256,6 @@ handle_reply_invitation = (target, response)->
     $('.social_actions').replaceWith(response) if target.hasClass('change_visit')
     handle_new_invitaion_link(target, response) if target.hasClass('invitation_link')
     handle_reply_invitation(target, response) if target.hasClass('new_invitation')
+    target.closest('li').remove() if target.hasClass('change_friendship') && target.closest('.accounts_list').length
 
   true

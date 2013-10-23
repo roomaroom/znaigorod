@@ -25,6 +25,8 @@ class My::FriendsController < My::ApplicationController
     parent = Account.find(params["account_id"])
     @friend = current_user.account.friendly_for(parent).first || current_user.account.friends.create(friendable: parent)
     @friend.change_friendship
+    render :text => '', :status => 200 and return if request.xhr?
+
     redirect_to my_account_friends_path
   end
 end
