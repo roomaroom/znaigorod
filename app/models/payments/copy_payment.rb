@@ -18,9 +18,12 @@ class CopyPayment < Payment
   validate :email, :if => :payment_system_rbkmoney?
 
   before_validation :check_copies_number
+
   before_create :set_amount
+
   after_create :reserve_copies
-  after_create :create_paymentable_member, :if => :paymentable_is_certificate_or_coupoun?
+  after_create :create_member, :if => [:user_id?, :paymentable_is_discount?]
+  after_create :create_visit,  :if => [:user_id?, :paymentable_is_ticket?]
 
   attr_accessor :copy_for_sale_ids, :copies_with_seats
   attr_accessible :copy_for_sale_ids, :copies_with_seats
@@ -78,11 +81,19 @@ class CopyPayment < Payment
     end
   end
 
-  def paymentable_is_certificate_or_coupoun?
-    paymentable.is_a?(Certificate) || paymentable.is_a?(Coupon)
+  def paymentable_is_ticket?
+    paymentable.is_a? Ticket
   end
 
-  def create_paymentable_member
+  def create_visit
+    paymentable.afisha.visits.create! :user_id => user_id
+  end
+
+  def paymentable_is_discount?
+    paymentable.is_a? Discount
+  end
+
+  def create_member
     member = paymentable.members.new { |member| member.account = user.account }
     member.save!
   end
