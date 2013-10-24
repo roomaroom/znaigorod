@@ -60,6 +60,12 @@ ru:
     edit_travel: Редактирование туристического агентства
     edit_salon_center: Редактирование салона красоты
 
+    afisha:
+      accounts_for_lottery:
+        one: '%{count} участник'
+        few: '%{count} участника'
+        many: '%{count} участников'
+
     admin:
       admin: Администратор
       all_users: Все пользователи

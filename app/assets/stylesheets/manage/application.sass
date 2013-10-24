@@ -518,13 +518,26 @@ a
             margin: 0 0 0 17px
 
   div
+
     .label
       font-weight: bold
       color: #464646
 
+      &.toggable
+        color: #218ab2
+
+        &.down:after
+          content: ' \25BC'
+
+        &.up:after
+          content: ' \25B2'
+
     .value
       +clearfix
       font-size: 0.9em
+
+      &.hidden
+        display: none
 
     .blank
       font-size: 0.9em
@@ -533,6 +546,22 @@ a
 
     ul
       list-style: disc inside
+
+    ol
+      list-style: decimal inside
+
+    &.accounts_for_lottery
+      .label
+
+        &.down:after
+          content: ' \25BC'
+
+        &.up:after
+          content: ' \25B2'
+
+      .value
+        border: 1px solid #ccc
+        padding: 10px
 
   .error
     font-weight: bold

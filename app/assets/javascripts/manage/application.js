@@ -26,5 +26,6 @@
  * = require ./address
  * = require ./curtail
  * = require ./webcam
+ * = require ./accounts_for_lottery
  * = require ./main
  */

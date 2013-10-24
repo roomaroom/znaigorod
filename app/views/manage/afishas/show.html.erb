@@ -79,10 +79,29 @@
   <span class="value"><%= resource.kind.values.map(&:text).join(', ') %></span>
 </div>
 
+<% if resource.accounts_for_lottery.any? %>
+  <div class='accounts_for_lottery'>
+    <a href='#' class='label toggable down'>Список участников для розыгрыша билетов (<%= t('manage.afisha.accounts_for_lottery', :count => resource.accounts_for_lottery.count) %>)</a>
+    <ol class='value hidden'>
+      <% resource.accounts_for_lottery.each do |account| %>
+        <li>
+          id: <%= account.id %>,
+          <%= account.title %>,
+          <%= link_to account.link_to_social, account.link_to_social %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+<% else %>
+  <div>
+    <span class="label">Список участников для розыгрыша билетов пуст</span>
+  </div>
+<% end %>
+
 <div>
   <span class="label">Описание:</span>
   <% if resource.description? %>
-    <span class="value"><%= resource.html_description %></span>
+    <div class="value"><%= resource.html_description %></div>
   <% else %>
     <span class="blank">Не указано</span>
   <% end %>

@@ -263,6 +263,10 @@ class Afisha < ActiveRecord::Base
     showings.destroy_all
   end
 
+  def accounts_for_lottery
+    @accounts_for_lottery ||= invitations.where('invited_id IS NOT NULL').joins(:invite_messages).where('messages.agreement = ?', 'agree').map(&:account).uniq
+  end
+
   def has_images?
     images.any?
   end
