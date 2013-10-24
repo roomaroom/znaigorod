@@ -4,6 +4,7 @@ class Discount < ActiveRecord::Base
   include CropedPoster
   include DraftPublishedStates
   include MakePageVisit
+  include VkUpload
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :organization_id,

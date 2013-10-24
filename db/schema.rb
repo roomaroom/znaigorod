@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023074126) do
+ActiveRecord::Schema.define(:version => 20131024022837) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -319,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20131023074126) do
     t.datetime "updated_at",                                   :null => false
     t.boolean  "constant"
     t.boolean  "sale",                      :default => false
+    t.text     "poster_vk_id"
   end
 
   add_index "discounts", ["organization_id"], :name => "index_discounts_on_organization_id"

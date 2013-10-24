@@ -16,7 +16,16 @@
     <div class="social_actions">
       <div class="action">
         <% if @discount.free? %>
-          <%= link_to 'Участвовать', discount_members_path(@discount), :class => 'participate', :method => :post, :remote => true %>
+          <%= link_to 'Участвовать',
+              discount_members_path(@discount),
+              :class => 'participate share_to_vk',
+              :method => :post,
+              :remote => true,
+              :onClick => 'share_on_click(this);',
+              'data-owner_id' => current_user.try(:vk_uid),
+              'data-message' => "Участвую в \"#{@discount.title}\"",
+              'data-attachments' => data_attachments(@discount) %>
+
         <% elsif @discount.price.zero? %>
           <%= link_to 'Участвовать', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true %>
         <% else %>

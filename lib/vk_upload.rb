@@ -10,8 +10,10 @@ module VkUpload
   def album_title
     if self.is_a?(Afisha)
       "Афиши #{I18n.l(Time.zone.today, :format => '%B-%Y')}"
+    elsif self.is_a?(Discount)
+      'Скидки'
     elsif self.is_a?(Organization)
-      "Организации"
+      'Организации'
     end
   end
 
@@ -34,7 +36,7 @@ module VkUpload
   end
 
   def image_url
-    if self.is_a?(Afisha)
+    if self.is_a?(Afisha) || self.is_a?(Discount)
       poster_url
     elsif self.is_a?(Organization)
       logotype_url
