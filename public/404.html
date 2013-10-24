@@ -16,26 +16,28 @@
     <div class="header">
       <div class="logo"><a href="/">Афиша Томска, заведения и мероприятия - ЗнайГород</a></div>
       <div class="tomsk"><a href="/">Томск</a></div>
-      <div class="main_menu">
+      <div class='main_menu'>
         <ul>
-          <li id="afisha"><a href="/">Афиша</a></li>
+          <li id="afisha"><a href="/" class="selected">Афиша</a></li>
           <li id="organizations"><a href="/organizations">Заведения</a></li>
           <li id="posts"><a href="/posts">Обзоры</a></li>
-          <li id="accounts"><a href="/accounts">Люди</a></li>
+          <li id="webcams"><a href="/webcams">Веб-камеры</a></li>
+          <li id="accounts"><a href="/accounts">Знакомства</a></li>
           <li id="more">
             <a href="#" class="disabled">Ещё &#9662;</a>
             <ul>
-              <li id="tickets"><a href="/afisha?has_tickets=true&amp;period=all">Распродажа билетов</a></li>
+              <li id="tickets"><a href="/afisha/bilety">Распродажа билетов</a></li>
               <li id="contests"><a href="/contests">Конкурсы</a></li>
-              <li id="webcams"><a href="/webcams">Веб-камеры</a></li>
-              <li id="cooperation"><a href="/cooperation">Услуги и цены ЗнайГород</a></li>
+              <li id="cooperation"><a href="/services">Реклама</a></li>
+              <li id="cooperation"><a href="/feedback">Отзывы и предложения</a></li>
             </ul>
           </li>
         </ul>
-        <div class="search_form">
-          <form accept-charset="UTF-8" action="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
-            <input class="search" id="q" name="q" placeholder="Поиск" type="text">
-            <input class="submit" type="submit" value="">
+        <div class='search_form'>
+          <form accept-charset="UTF-8" action="/search" method="get">
+            <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+            <input class="search" id="q" name="q" placeholder="Поиск" type="text" />
+            <input class="submit" type="submit" value="" />
           </form>
         </div>
       </div>
