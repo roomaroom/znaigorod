@@ -7,7 +7,7 @@
   <% else %>
     <strong>за</strong>
     <span class="price">
-      <%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %>
+      <em><%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
     <% end %>
   </span>
 </div>

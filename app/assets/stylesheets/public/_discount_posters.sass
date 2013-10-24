@@ -104,7 +104,6 @@
             color: #f60
             font-weight: bold
             line-height: 30px
-            margin: 0 0 0 7px
             vertical-align: middle
 
           strong
@@ -115,23 +114,35 @@
 
           .origin_price
             +left-arrow(#ececec, #fff, #000)
+            margin: 0 0 0 10px
 
             &:after
               +rotate(-10deg)
               border-top: 1px solid #000
               content: ""
-              left: 10px
+              left: 18px
               position: absolute
               right: 0
               top: 50%
-              width: 75%
+              width: 70%
+
+            em
+              font-style: normal
+              padding: 8px 0 8px 9px
 
           .price
             +left-arrow(#009bdb, #ececec, #fff)
 
+            em
+              font-style: normal
+              padding: 8px 0 8px 9px
+
           .coupon
             .price
               +left-arrow(#009bdb, #fff, #fff)
+
+          .certificate
+            float: right
 
           .sale
             text-align: center
