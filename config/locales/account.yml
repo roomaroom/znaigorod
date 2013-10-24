@@ -68,6 +68,21 @@ ru:
       male:      "добавил афишу"
       female:    "добавила афишу"
 
+    added_discount:
+      undefined: "добавил скидку"
+      male:      "добавил скидку"
+      female:    "добавила скидку"
+
+    added_coupon:
+      undefined: "добавил купон"
+      male:      "добавил купон"
+      female:    "добавила купон"
+
+    added_certificate:
+      undefined: "добавил сертификат"
+      male:      "добавил сертификат"
+      female:    "добавила сертификат"
+
     added_a_friend:
       undefined: "добавил друга"
       male:      "добавил друга"

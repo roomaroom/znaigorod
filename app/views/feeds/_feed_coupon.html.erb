@@ -1,0 +1,29 @@
+<div class='poster'>
+  <%= link_to feed_coupon.feedable do %>
+    <%= image_tag(resized_image_url(feed_coupon.feedable.poster_url, 100 , 74),
+                  :size => '100x74', :alt => feed_coupon.feedable.title) %>
+  <% end %>
+</div>
+
+<div class="main">
+  <div class='time'><%= time_ago_in_words(feed_coupon.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_coupon.feedable.account.id %>
+    <div class='type'>Добавлена скидка</div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to feed_coupon.feedable.account do %>
+        <%= image_tag(resized_image_url(feed_coupon.feedable.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_coupon.feedable.account.title) %>
+      <% end %>
+    </div>
+    <div class='type'>
+      <%= link_to feed_coupon.feedable.account.title, feed_coupon.feedable.account %>
+      <%= t "account.added_coupon.#{feed_coupon.feedable.account.gender}" %>
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to(feed_coupon.feedable.title, feed_coupon.feedable) %>
+  </div>
+</div>
