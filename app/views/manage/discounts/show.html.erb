@@ -27,9 +27,11 @@
     </div>
 
     <div>
-      <span class="label">Организация:</span>
+      <span class="label">Организация или место:</span>
       <% if resource.organization_id? %>
         <span class="value"><%= link_to resource.organization, manage_organization_path(resource.organization), :target => :blank %></span>
+      <% elsif resource.place? %>
+        <span class="value"><%= resource.place %></span>
       <% else %>
         <span class="blank">Не указано</span>
       <% end %>
