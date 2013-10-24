@@ -81,3 +81,8 @@ ru:
         afisha: Редактор афиш
         post: Редактор публикаций
         organization: Редактор организаций
+
+    discount:
+      type:
+        certificate: Сертификат
+        coupon: Купон
