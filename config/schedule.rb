@@ -21,7 +21,7 @@ every :day, :at => '7:25 am' do
 end
 
 every :day, :at => '5am' do
-  rake "refresh_sitemaps"
+  rake 'refresh_sitemaps'
   rake 'account:get_friends'
 end
 
@@ -32,6 +32,7 @@ end
 
 every 3.hours do
   rake 'update_rating:all'
+  rake 'balance_notify'
 end
 
 every 5.minutes do

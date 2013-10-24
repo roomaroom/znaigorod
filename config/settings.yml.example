@@ -82,3 +82,4 @@ mainsms:
 
 sms_claim:
   price:                1
+  warning:              10
