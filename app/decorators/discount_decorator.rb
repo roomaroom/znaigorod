@@ -33,8 +33,12 @@ class DiscountDecorator < ApplicationDecorator
     return true if price.nil?
   end
 
-  def place
-    PlaceDecorator.new(:organization => organization) if geo_present?
+  def human_place
+    if geo_present?
+      PlaceDecorator.new(:organization => organization).place
+    else
+      place
+    end
   end
 
   def html_description
