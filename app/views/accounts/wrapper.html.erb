@@ -52,7 +52,7 @@
     <h1><%= @account.title %></h1>
 
     <div class="account_info">
-      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => @account.age)}", :class => :row if @account.birthday? %>
+      <%= content_tag :div, "Возраст: #{@account.age}", :class => :row if @account.birthday? %>
       <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
     </div>
 

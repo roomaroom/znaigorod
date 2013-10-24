@@ -51,7 +51,7 @@
     <h1><%= current_user.account.title %></h1>
 
     <div class="account_info">
-      <%= content_tag :div, "Возраст: #{I18n.t('account.age', :count => current_user.account.age)}", :class => :row if current_user.account.birthday? %>
+      <%= content_tag :div, "Возраст: #{current_user.account.age}", :class => :row if current_user.account.birthday? %>
       <%= content_tag :div, "Пол: #{current_user.account.gender.text.mb_chars.downcase}", :class => :row unless current_user.account.gender == 'undefined' %>
     </div>
 

@@ -8,7 +8,6 @@ class Feed < ActiveRecord::Base
   end
 
   def self.feeds_for_state_machine(elem)
-    puts 'asd'
     if %[Discount Coupon Certificate].include?(elem.class.name)
       self.create(
         :feedable => elem,

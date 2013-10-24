@@ -1,12 +1,14 @@
-<div class='time'><%= time_ago_in_words(feed_afisha.created_at) %> назад</div>
-
 <div class='poster'>
   <%= link_to feed_afisha.feedable do %>
     <%= image_tag(resized_image_url(feed_afisha.feedable.poster_url, 100 , 135),
                   :size => '100x135', :alt => feed_afisha.feedable.title) %>
   <% end %>
 </div>
+
 <div class='main'>
+
+  <div class='time'><%= time_ago_in_words(feed_afisha.created_at) %> назад</div>
+
   <% if current_user.account.id == feed_afisha.feedable.user.account.id %>
     <div class='type'>Добавлена афиша</div>
   <% else %>
@@ -25,6 +27,7 @@
   <div class='title'>
     <%= link_to(feed_afisha.feedable.title, feed_afisha.feedable) %>
   </div>
+
   <div class='body'>
     <% decorator = AfishaDecorator.new feed_afisha.feedable %>
     <p><%= decorator.when_with_price %></p>
@@ -37,7 +40,8 @@
       <%= render partial: "feeds/feed_afisha_tickets", locals: {afisha: feed_afisha.feedable } %>
     <% end %>
   </div>
-</div>
-<div class='text'>
-  <%= feed_afisha.feedable.description.truncated.as_html if feed_afisha.feedable.description? %>
+
+  <div class='text'>
+    <%= feed_afisha.feedable.description.truncated.as_html if feed_afisha.feedable.description? %>
+  </div>
 </div>

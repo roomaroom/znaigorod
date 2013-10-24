@@ -107,13 +107,10 @@ class Account < ActiveRecord::Base
     self.friends.where(:friendly => true).count
   end
 
-  def friends_count
-    self.friends.where(:friendly => true).count
-  end
-
   def age
     now = Time.zone.now.to_date
-    now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+    age = now.year - self.birthday.year - ((now.month > self.birthday.month || (now.month == self.birthday.month && now.day >= self.birthday.day)) ? 0 : 1)
+    I18n.t('account.age', :count => age)
   end
 
   def create_page_visit(session, user_agent, user)

@@ -1,40 +1,48 @@
 <div class='poster'>
-  <%= link_to feed_visit_afisha.visitable do %>
-    <%= image_tag( resized_image_url(feed_visit_afisha.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.visitable.title) %>
+  <%= link_to feed_visit_afisha.feedable.visitable do %>
+    <%= image_tag( resized_image_url(feed_visit_afisha.feedable.visitable.poster_url, 100 , 135 ), :size => '100x135', :title => feed_visit_afisha.feedable.visitable.title) %>
   <% end %>
 </div>
-<div class='main'>
 
-  <% if current_user.account.id == feed_visit_afisha.user.account.id %>
+<div class='main'>
+  <div class='time'><%= time_ago_in_words(feed_visit_afisha.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_visit_afisha.feedable.user.account.id %>
+
     <div class='type'>
-      <% if feed_visit_afisha.visitable.actual? %>
-        <%= t "account.i_want_to_visit_present.#{feed_visit_afisha.user.account.gender}" %>
+      <% if feed_visit_afisha.feedable.visitable.actual? %>
+        <%= t "account.i_want_to_visit_present.#{feed_visit_afisha.feedable.user.account.gender}" %>
       <% else %>
-        <%= t "account.visited.#{feed_visit_afisha.user.account.gender}" %>
+        <%= t "account.visited.#{feed_visit_afisha.feedable.user.account.gender}" %>
       <% end %>
     </div>
+
   <% else %>
+
     <div class='avatar'>
-      <%= link_to feed_visit_afisha.user.account do %>
-        <%= image_tag(resized_image_url(feed_visit_afisha.user.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_visit_afisha.user.account.title) %>
+      <%= link_to feed_visit_afisha.feedable.user.account do %>
+        <%= image_tag(resized_image_url(feed_visit_afisha.feedable.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_visit_afisha.feedable.user.account.title) %>
       <% end %>
     </div>
+
     <div class='type'>
-      <%= link_to feed_visit_afisha.user.name, feed_visit_afisha.user.account  %>
-      <% if feed_visit_afisha.visitable.actual? %>
-        <%= t "account.want_to_visit_present.#{feed_visit_afisha.user.account.gender}" %>
+      <%= link_to feed_visit_afisha.feedable.user.name, feed_visit_afisha.feedable.user.account  %>
+      <% if feed_visit_afisha.feedable.visitable.actual? %>
+        <%= t "account.want_to_visit_present.#{feed_visit_afisha.feedable.user.account.gender}" %>
       <% else %>
-        <%= t "account.visited_downcase.#{feed_visit_afisha.user.account.gender}" %>
+        <%= t "account.visited_downcase.#{feed_visit_afisha.feedable.user.account.gender}" %>
       <% end %>
     </div>
+
   <% end %>
 
   <div class='title'>
-    <%= link_to(feed_visit_afisha.visitable.title, feed_visit_afisha.visitable) %>
+    <%= link_to(feed_visit_afisha.feedable.visitable.title, feed_visit_afisha.feedable.visitable) %>
   </div>
+
   <div class='body'>
-    <% decorator = AfishaDecorator.new feed_visit_afisha.visitable %>
+    <% decorator = AfishaDecorator.new feed_visit_afisha.feedable.visitable %>
     <p>
     <%= decorator.when_with_price %>
       <% decorator.places.each do |place| %>
@@ -42,12 +50,14 @@
           <%= place.place %>
         </div>
       <% end %>
-      <% if feed_visit_afisha.visitable.tickets.map(&:copies_for_sale).any? %>
-        <%= render partial: "feeds/feed_afisha_tickets", locals: {afisha: feed_visit_afisha.visitable } %>
+      <% if feed_visit_afisha.feedable.visitable.tickets.map(&:copies_for_sale).any? %>
+        <%= render partial: "feeds/feed_afisha_tickets", locals: {afisha: feed_visit_afisha.feedable.visitable } %>
       <% end %>
     </p>
   </div>
-</div>
-<div class='text'>
-  <%= feed_visit_afisha.visitable.description.truncated.as_html if feed_visit_afisha.visitable.description? %>
+
+  <div class='text'>
+    <%= feed_visit_afisha.feedable.visitable.description.truncated.as_html if feed_visit_afisha.feedable.visitable.description? %>
+  </div>
+
 </div>

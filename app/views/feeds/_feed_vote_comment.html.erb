@@ -1,27 +1,37 @@
 <div class='main'>
-  <% if current_user.account.id == feed_vote_comment.user.account.id %>
+  <div class='time'><%= time_ago_in_words(feed_vote_comment.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_vote_comment.feedable.user.account.id %>
+
     <div class='type'>
       Нравится комментарий
     </div>
+
   <% else %>
+
     <div class='avatar'>
-      <%= link_to feed_vote_comment.user.account do %>
-        <%= image_tag(resized_image_url(feed_vote_comment.user.account.avatar.url, 23, 23), :size => '23x23') %>
+      <%= link_to feed_vote_comment.feedable.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_comment.feedable.user.account.avatar.url, 23, 23), :size => '23x23') %>
       <% end %>
     </div>
+
     <div class='type'>
-      <%= link_to feed_vote_comment.user.name, feed_vote_comment.user.account  %>
-      <%= t "account.rated.#{feed_vote_comment.user.account.gender}" %> комментарий
+      <%= link_to feed_vote_comment.feedable.user.name, feed_vote_comment.feedable.user.account  %>
+      <%= t "account.rated.#{feed_vote_comment.feedable.user.account.gender}" %> комментарий
     </div>
+
   <% end %>
+
   <div class='title'>
-    <% unless feed_vote_comment.voteable.class.name == "Work"  %>
-      <%= link_to(feed_vote_comment.voteable.commentable.title, feed_vote_comment.voteable.commentable) %>
+    <% unless feed_vote_comment.feedable.voteable.class.name == "Work"  %>
+      <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, feed_vote_comment.feedable.voteable.commentable) %>
     <% else %>
-      <%= link_to("Работа " + feed_vote_comment.voteable.commentable.to_feed_title, [feed_vote_comment.voteable.commentable.contest, feed_vote_comment.voteable.commetable])  %>
+      <%= link_to("Работа " + feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commetable])  %>
     <% end %>
   </div>
+
+  <div class='text'>
+    <%= link_to "#{feed_vote_comment.feedable.voteable.user.name}:", feed_vote_comment.feedable.voteable.user.account %>&nbsp;<%= feed_vote_comment.feedable.voteable.body.truncated.as_html if feed_vote_comment.feedable.voteable.body? %>
+  </div>
 </div>
-<div class='text'>
-  <%= link_to "#{feed_vote_comment.voteable.user.name}:", feed_vote_comment.voteable.user.account %>&nbsp;<%= feed_vote_comment.voteable.body.truncated.as_html if feed_vote_comment.voteable.body? %>
-</div>
+

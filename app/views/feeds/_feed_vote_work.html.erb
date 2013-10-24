@@ -1,28 +1,32 @@
 <div class='poster'>
-  <%= link_to [feed_vote_work.voteable.contest, feed_vote_work.voteable] do %>
-    <%= image_tag(resized_image_url(feed_vote_work.voteable.image_url, 100 , 100 ),
+  <%= link_to [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable] do %>
+    <%= image_tag(resized_image_url(feed_vote_work.feedable.voteable.image_url, 100 , 100 ),
                   :size => '100x100')  %>
   <% end %>
 </div>
+
 <div class='main'>
-  <% if current_user.account.id == feed_vote_work.user.account.id %>
+  <div class='time'><%= time_ago_in_words(feed_vote_work.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_vote_work.feedable.user.account.id %>
     <div class='type'>
       Нравится работа
     </div>
   <% else %>
     <div class='avatar'>
-        <%= link_to feed_vote_work.user.account do %>
-          <%= image_tag(resized_image_url(feed_vote_work.user.account.avatar.url, 23, 23),
-                        :size => '23x23', :alt => feed_vote_work.user.account.title) %>
+        <%= link_to feed_vote_work.feedable.user.account do %>
+          <%= image_tag(resized_image_url(feed_vote_work.feedable.user.account.avatar.url, 23, 23),
+                        :size => '23x23', :alt => feed_vote_work.feedable.user.account.title) %>
         <% end %>
     </div>
+
     <div class='type'>
-      <%= link_to feed_vote_work.user.name, feed_vote_work.user.account  %>
-      <%= t "account.rated.#{feed_vote_work.user.account.gender}" %> работу
+      <%= link_to feed_vote_work.feedable.user.name, feed_vote_work.feedable.user.account  %>
+      <%= t "account.rated.#{feed_vote_work.feedable.user.account.gender}" %> работу
     </div>
   <% end %>
 
   <div class='title'>
-    <%= link_to("Работа " + feed_vote_work.voteable.to_feed_title, [feed_vote_work.voteable.contest, feed_vote_work.voteable])  %>
+    <%= link_to("Работа " + feed_vote_work.feedable.voteable.to_feed_title, [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable])  %>
   </div>
 </div>

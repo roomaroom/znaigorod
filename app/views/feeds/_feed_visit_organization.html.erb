@@ -1,41 +1,49 @@
 <div class='poster'>
-  <%= link_to feed_visit_organization.visitable do %>
-    <% if feed_visit_organization.visitable.logotype_url? %>
-      <%= image_tag(resized_image_url(feed_visit_organization.visitable.logotype_url, 100 , 100 ), :size => '100x100', :alt => feed_visit_organization.visitable.title) %>
+  <%= link_to feed_visit_organization.feedable.visitable do %>
+    <% if feed_visit_organization.feedable.visitable.logotype_url? %>
+      <%= image_tag(resized_image_url(feed_visit_organization.feedable.visitable.logotype_url, 100 , 100 ), :size => '100x100', :alt => feed_visit_organization.feedable.visitable.title) %>
     <% else %>
-      <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_visit_organization.visitable.priority_suborganization_kind.first) %>
+      <%= link_to content_tag( :span, "",:class => "stub_poster " + feed_visit_organization.feedable.visitable.priority_suborganization_kind.first) %>
     <% end %>
   <% end %>
 </div>
-<div class='main'>
 
-  <% if current_user.account.id == feed_visit_organization.user.account.id %>
+<div class='main'>
+  <div class='time'><%= time_ago_in_words(feed_visit_organization.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_visit_organization.feedable.user.account.id %>
+
     <div class='type'>
-      <%= t "account.i_want_to_visit.#{feed_visit_organization.user.account.gender}" %>
+      <%= t "account.i_want_to_visit.#{feed_visit_organization.feedable.user.account.gender}" %>
     </div>
+
   <% else %>
+
     <div class='avatar'>
-      <%= link_to feed_visit_organization.user.account do %>
-        <%= image_tag(resized_image_url(feed_visit_organization.user.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_visit_organization.user.account.title) %>
+      <%= link_to feed_visit_organization.feedable.user.account do %>
+        <%= image_tag(resized_image_url(feed_visit_organization.feedable.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_visit_organization.feedable.user.account.title) %>
       <% end %>
     </div>
+
     <div class='type'>
-      <%= link_to feed_visit_organization.user.name, feed_visit_organization.user.account  %>
-      <%= t "account.wants_to_visit_downcase.#{feed_visit_organization.user.account.gender}" %>
+      <%= link_to feed_visit_organization.feedable.user.name, feed_visit_organization.feedable.user.account  %>
+      <%= t "account.wants_to_visit_downcase.#{feed_visit_organization.feedable.user.account.gender}" %>
     </div>
+
   <% end %>
 
   <div class='title'>
-    <%= link_to(feed_visit_organization.visitable.title, feed_visit_organization.visitable) %>
+    <%= link_to(feed_visit_organization.feedable.visitable.title, feed_visit_organization.feedable.visitable) %>
     <div class='address'>
-      <%= OrganizationDecorator.new(feed_visit_organization.visitable).address_link %>
+      <%= OrganizationDecorator.new(feed_visit_organization.feedable.visitable).address_link %>
     </div>
   </div>
+
   <div class='body'>
     <p>
-    <% if feed_visit_organization.visitable.sms_claimable_suborganizations.any? %>
-      <%= render partial: "feeds/feed_organization_order", locals: { organization: feed_visit_organization.visitable } %>
+    <% if feed_visit_organization.feedable.visitable.sms_claimable_suborganizations.any? %>
+      <%= render partial: "feeds/feed_organization_order", locals: { organization: feed_visit_organization.feedable.visitable } %>
     <% end %>
     </p>
   </div>

@@ -1,44 +1,50 @@
-<% decorator = OrganizationDecorator.new feed_vote_organization.voteable %>
-
 <div class='poster'>
-  <% unless feed_vote_organization.voteable.logotype_url == "" %>
-    <%= link_to feed_vote_organization.voteable do %>
-      <%= image_tag(resized_image_url(feed_vote_organization.voteable.logotype_url, 100 , 100 ), :size => '100x100')  %>
+  <% unless feed_vote_organization.feedable.voteable.logotype_url == "" %>
+    <%= link_to feed_vote_organization.feedable.voteable do %>
+      <%= image_tag(resized_image_url(feed_vote_organization.feedable.voteable.logotype_url, 100 , 100 ), :size => '100x100')  %>
     <% end %>
   <% else %>
-    <%= link_to feed_vote_organization.voteable do %>
-      <%= content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.voteable.priority_suborganization_kind.first)  %>
+    <%= link_to feed_vote_organization.feedable.voteable do %>
+      <%= content_tag( :span, "",:class => "stub_poster " + feed_vote_organization.feedable.voteable.priority_suborganization_kind.first)  %>
     <% end %>
   <% end %>
 </div>
+
 <div class='main'>
-  <% if current_user.account.id == feed_vote_organization.user.account.id %>
+  <div class='time'><%= time_ago_in_words(feed_vote_organization.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_vote_organization.feedable.user.account.id %>
+
     <div class='type'>
       Нравится организация
     </div>
   <% else %>
+
     <div class='avatar'>
-      <%= link_to feed_vote_organization.user.account do %>
-        <%= image_tag(resized_image_url(feed_vote_organization.user.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_vote_organization.user.account.title) %>
+      <%= link_to feed_vote_organization.feedable.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_organization.feedable.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_vote_organization.feedable.user.account.title) %>
       <% end %>
     </div>
+
     <div class='type'>
-      <%= link_to feed_vote_organization.user.name, feed_vote_organization.user.account  %>
-      <%= t "account.rated.#{feed_vote_organization.user.account.gender}" %> организацию
+      <%= link_to feed_vote_organization.feedable.user.name, feed_vote_organization.feedable.user.account  %>
+      <%= t "account.rated.#{feed_vote_organization.feedable.user.account.gender}" %> организацию
     </div>
+
   <% end %>
 
   <div class='title'>
-    <%= link_to(feed_vote_organization.voteable.title, feed_vote_organization.voteable) %>
+    <%= link_to(feed_vote_organization.feedable.voteable.title, feed_vote_organization.feedable.voteable) %>
     <div class='address'>
-      <%= decorator.address_link %>
+      <%= OrganizationDecorator.new(feed_vote_organization.feedable.voteable).address_link %>
     </div>
   </div>
+
   <div class='body'>
     <p>
-    <% if feed_vote_organization.voteable.sms_claimable_suborganizations.any? %>
-      <%= render partial: "feeds/feed_organization_order", locals: { organizaton: feed_vote_organization.voteable } %>
+    <% if feed_vote_organization.feedable.voteable.sms_claimable_suborganizations.any? %>
+      <%= render partial: "feeds/feed_organization_order", locals: { organization: feed_vote_organization.feedable.voteable } %>
     <% end %>
     </p>
   </div>
