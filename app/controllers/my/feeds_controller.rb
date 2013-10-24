@@ -7,9 +7,9 @@ class My::FeedsController < ApplicationController
   layout false
   def index
     index! {
-      presenter = FeedsPresenter.new params
+      @feeds_presenter = FeedsPresenter.new params
       @account = current_user.account
-      @feeds = presenter.collection
+      @feeds = @feeds_presenter.collection
       render partial: 'my/feeds/feed', :collection => @feeds and return
     }
   end

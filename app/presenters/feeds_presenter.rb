@@ -23,6 +23,10 @@ class FeedsPresenter
     %w[accounts feeds].include?(@controller_name)
   end
 
+  def is_discount?(class_name)
+    %w[Coupon Discount Certificate].include?(class_name)
+  end
+
   def kinds_links
     @kinds_links ||= [].tap { |array|
       @kind_filter.available_kind_values.each do |kind|
@@ -77,7 +81,6 @@ class FeedsPresenter
   end
 
   def searcher_params
-
     @searcher_params[:feedable_type] = @kind_filter.kind.capitalize if @kind_filter.used?
     @searcher_params[:account_id] = @account_id if @account_id.present? && !@activity_filter.of_friends?
   end
@@ -144,32 +147,3 @@ class FeedsActivityFilter
 
 end
 
-class FeedsActivityFilter
-
-  attr_accessor :kind
-
-  def initialize(kind)
-    @kind = kind
-  end
-
-  def self.available_kind_values
-    %w[my friends]
-  end
-
-  def available_kind_values
-    self.class.available_kind_values
-  end
-
-  def kind
-    available_kind_values.include?(@kind) ? @kind : 'my'
-  end
-
-  def of_friends?
-    @kind == 'friends'
-  end
-
-  def used?
-    kind != 'my'
-  end
-
-end

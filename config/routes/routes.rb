@@ -121,10 +121,6 @@ Znaigorod::Application.routes.draw do
     resources :comments, :only => [:new, :show, :create]
   end
 
-  resources :discounts, :only => [:index, :show] do
-    resources :comments, :only => [:new, :show, :create]
-  end
-
   resources :webcams, :only => [:index, :show]
 
   match '/' => redirect{|p, req| "#{req.url.sub(req.subdomain+'.', '')}organizations/#{Organization.find_by_subdomain(req.subdomain).slug}"}, :constraints => lambda{|r| r.subdomain.present? && Organization.pluck(:subdomain).uniq.delete_if{|s| s.nil? || s.blank?}.include?(r.subdomain) }
