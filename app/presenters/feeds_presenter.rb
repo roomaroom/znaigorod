@@ -93,7 +93,7 @@ class FeedsKindFilter
   end
 
   def self.available_kind_values
-    %w[all comment vote visit afisha invitation friend]
+    %w[all comment vote visit afisha invitation friend discount]
   end
 
   def available_kind_values
