@@ -27,7 +27,7 @@ $ ->
   init_bets_payment() if $('.account_show .bet_actions').length
   init_discount_members() if $('.discount_show').length
   init_discount_into_filter() if $('.filters_wrapper .more_wrapper_toggler').length
-  init_payment() if $('a.payment_link').length
+  init_payment() if $('a.payment_link').length || $('.feeds').length
   init_tabs() if $('.content .tabs').length
   init_poster() if $('.content .left .image a img').length
   init_distribution() if $('.content .distribution').length

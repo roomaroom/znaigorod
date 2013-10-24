@@ -1,0 +1,29 @@
+<ul class='tickets'>
+  <% afisha.tickets.each do |ticket| %>
+    <% if ticket.copies_for_sale.any? %>
+      <li>
+      <% if ticket.original_price == ticket.price %>
+
+          <div class="wrapper">
+            Купить билет за <%= ticket.price.to_i %>р.<%= "+#{ticket.organization_price.to_i}р." if ticket.organization_price %>
+          </div>
+
+          <div class='buy_ticket'>
+            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link %>
+          </div>
+
+        <% else %>
+
+          <div class="wrapper">
+            Купить билет со кидкой <%= ticket.discount %>% за <%= ticket.price.to_i %>р.<%= "+#{ticket.organization_price.to_i}р." if ticket.organization_price %>
+          </div>
+
+          <div class='buy_ticket'>
+            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link %>
+          </div>
+
+        <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>

@@ -33,6 +33,9 @@
         <%= place.place %>
       </div>
     <% end %>
+    <% if feed_afisha.feedable.tickets.map(&:copies_for_sale).any? %>
+      <%= render partial: "feeds/feed_afisha_tickets", locals: {afisha: feed_afisha.feedable } %>
+    <% end %>
   </div>
 </div>
 <div class='text'>
