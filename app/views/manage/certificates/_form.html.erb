@@ -1,7 +1,7 @@
 <%= simple_form_for [:manage, @certificate] do |f| %>
   <%= f.input :title %>
   <%= f.input :place, :input_html => { :class => 'autosuggest' } %>
-  <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+  <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
   <%= link_to 'Удалить организацию', '#', :remote => true, :class => 'clear_autosuggest_link' %>
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :description %>

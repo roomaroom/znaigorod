@@ -3,7 +3,7 @@
 <div class='clearfix'>
   <div class='form_fields'>
     <div class='wrapper'>
-      <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
+      <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
       <%= f.input :latitude, :as => :hidden, :input_html => { :class => 'latitude', :value => @showing.get_latitude } %>
       <%= f.input :longitude, :as => :hidden, :input_html => { :class => 'longitude', :value => @showing.get_longitude } %>
       <%= f.input :place, :input_html => { :class => 'autosuggest' } %>

@@ -25,17 +25,15 @@
       <%= showing.input :ends_at, :as => :datetime_picker %>
       <%= showing.input :price_min %>
       <%= showing.input :price_max %>
-      <%= showing.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
-      <%= showing.input :latitude, :as => :hidden, :input_html => { :class => 'latitude', :value => showing.object.get_latitude } %>
-      <%= showing.input :longitude, :as => :hidden, :input_html => { :class => 'longitude', :value => showing.object.get_longitude } %>
+      <%= showing.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
+      <%= showing.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude', :value => showing.object.get_latitude } %>
+      <%= showing.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude', :value => showing.object.get_longitude } %>
       <%= showing.input :place, :input_html => { :class => 'autosuggest' } %>
-      <% unless showing.object.organization %>
-        <a href='#' class='choose_coordinate <%= "with_coordinates" if showing.object.latitude.present? %>'>Указать координаты</a>
-      <% end %>
+      <a href='#' class='choose_coordinate<%= ' with_coordinates' if showing.object.latitude.present? %>'>Указать координаты</a>
       <%= showing.input :hall %>
       <%= showing.link_to_remove t('remove_showing') %>
     <% end %>
-    <%= f.link_to_add t('add_showing'), :showings, :onclick => 'init_choose_coordinate()' %>
+    <%= f.link_to_add t('add_showing'), :showings, :onclick => 'setTimeout(function() { init_choose_coordinate() }, 100)' %>
   </div>
 <% end %>
 
@@ -50,9 +48,9 @@
         <%= schedule.input :ends_on, :as => :date_picker %>
         <%= schedule.input :starts_at, :as => :string, :input_html => { :value => schedule.object.starts_at ? l(schedule.object.starts_at, :format => '%H:%M') : '' }, :wrapper_html => { :class => 'integer' } %>
         <%= schedule.input :ends_at, :as => :string, :input_html => { :value => schedule.object.ends_at ? l(schedule.object.ends_at, :format => '%H:%M') : '' }, :wrapper_html => { :class => 'integer' } %>
-        <%= schedule.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target', :value => schedule.object.get_organization_id } %>
-        <%= schedule.input :latitude, :as => :hidden, :input_html => { :class => 'latitude', :value => schedule.object.get_latitude } %>
-        <%= schedule.input :longitude, :as => :hidden, :input_html => { :class => 'longitude', :value => schedule.object.get_longitude } %>
+        <%= schedule.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id', :value => schedule.object.get_organization_id } %>
+        <%= schedule.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude', :value => schedule.object.get_latitude } %>
+        <%= schedule.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude', :value => schedule.object.get_longitude } %>
         <%= schedule.input :place, :input_html => { :class => 'autosuggest' } %>
         <% unless schedule.object.organization_id %>
           <a href='#' class='choose_coordinate <%= "with_coordinates" if schedule.object.latitude.present? %>'>Указать координаты</a>

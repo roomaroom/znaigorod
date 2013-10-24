@@ -16,25 +16,33 @@ $.fn.add_autosuggest = () ->
               value: item.term
             }
           ))
-    minLength: 3
+    minLength: 2
     select: ( event, ui ) ->
-      target = $('.autosuggest_target', $(event.target).parent().parent())
-      target.val(ui.item.id)
+      $('.autosuggest_organization_id', $(event.target).parent().parent()).val(ui.item.id).change()
+      $('.autosuggest_organization_latitude', $(event.target).parent().parent()).val(ui.item.latitude).change()
+      $('.autosuggest_organization_longitude', $(event.target).parent().parent()).val(ui.item.longitude).change()
+
+  true
 
 @init_autosuggest_handler = () ->
   init_clear_autosuggest() if $('.clear_autosuggest_link').length
 
-  autosuggest = $('.autosuggest')
-  autosuggest.add_autosuggest() if autosuggest.length
+  $('.autosuggest').add_autosuggest() if $('.autosuggest').length
 
   $('form').on('nested:fieldAdded', (event) ->
     $(event.field).find('.autosuggest').filter(':visible').last().add_autosuggest()
   )
 
+  true
+
 @init_clear_autosuggest = () ->
   $('.clear_autosuggest_link').on 'click', ->
 
     $('.autosuggest').val('')
-    $('.autosuggest_target').val('')
+    $('.autosuggest_organization_id').val('').change()
+    $('.autosuggest_organization_latitude').val('').change()
+    $('.autosuggest_organization_longitude').val('').change()
 
     false
+
+  true

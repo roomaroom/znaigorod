@@ -115,6 +115,7 @@ init_preview_map = ->
       coordinates = event.get('coordPosition')
       latitude = coordinates[0]
       longitude = coordinates[1]
+      $('#showing_organization_id').val('').change()
       $('#showing_latitude').val(latitude)
       $('#showing_longitude').val(longitude)
       map.geoObjects.remove(afisha_placemark) if afisha_placemark?
@@ -138,8 +139,26 @@ init_preview_map = ->
       true
 
     $('#showing_place').on 'autocompletesearch', (event, ui) ->
-      $('#showing_organization_id').val('')
+      map.geoObjects.remove(afisha_placemark) if afisha_placemark?
+      $('#showing_organization_id').val('').change()
       true
+
+    $('#showing_organization_id').change ->
+      label = $('.autosuggest', $(this).parent().parent()).prev('label')
+      label_html = label.html().replace(' [связано с организацией. <a href="#">очистить</a>]', "")
+      field = $(this)
+      if field.val().length
+        label.html("#{label_html} [связано с организацией. <a href='#'>очистить</a>]")
+        $('a', label).unbind('click').click ->
+          map.geoObjects.remove(afisha_placemark) if afisha_placemark?
+          field.val('').change()
+          false
+      else
+        label.html("#{label_html}")
+        true
+      true
+
+    $('#showing_organization_id').change()
 
   true
 
