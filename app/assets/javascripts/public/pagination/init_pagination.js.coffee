@@ -5,6 +5,7 @@
   list_url = window.location.pathname
   list = $(
     '.content_wrapper .afisha_list > ul,' +
+    '.content_wrapper .discounts_list > ul,' +
     '.content_wrapper .organizations_list > ul,' +
     '.content_wrapper .search_results ul.items_list,' +
     '.content_wrapper .tickets_list,' +

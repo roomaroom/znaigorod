@@ -206,7 +206,7 @@
         <% if current_user && current_user.is_admin? %>
           <div class="discounts_list">
             <ul class="posters">
-              <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @discount_presenter.collection } %>
+              <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.collection } %>
             </ul>
           </div>
 
