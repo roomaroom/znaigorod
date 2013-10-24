@@ -19,14 +19,18 @@
 
       .item
         border: 1px solid #ccc
-        height: 215px
+        height: 230px
         margin: 0 auto
         padding: 1px 0 1px 0
         width: 220px
 
         .title
-          margin: 3px 0
+          display: table-cell
+          height: 38px
+          padding: 0 3px
           text-align: center
+          vertical-align: middle
+          width: 220px
 
         .image
           +clearfix
@@ -128,4 +132,10 @@
           .coupon
             .price
               +left-arrow(#009bdb, #fff, #fff)
+
+          .sale
+            text-align: center
+
+            span
+              color: #222
 

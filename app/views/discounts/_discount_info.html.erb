@@ -1,6 +1,10 @@
-<div class="<%= discount.class.name.underscore %>">
-  <strong>Скидка по акции</strong>
-  <% unless discount.sale? %>
+<% if discount.sale? %>
+  <div class="discount sale">
+    <span>Акция</span>
+  </div>
+<% else %>
+  <div class="<%= discount.class.name.underscore %>">
+    <strong>Скидка по акции</strong>
     <span class="profit"><%= discount.discount %>%</span>
-  <% end %>
-</div>
+  </div>
+<% end %>
