@@ -57,11 +57,9 @@
         <%= @discount.when_with_price %>
       </div>
 
-      <% if @discount.geo_present? %>
-        <div class="place">
-          <%= @discount.place.place %>
-        </div>
-      <% end %>
+      <div class="place">
+        <%= @discount.human_place %>
+      </div>
 
       <div class="text">
         <%= @discount.html_description %>
