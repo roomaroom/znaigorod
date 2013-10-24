@@ -342,29 +342,19 @@
           float: right
 
     .tags_and_visits
-      width: 100%
       +clearfix
+      width: 100%
 
-      .tags
-        float: left
-        width: 560px
+      .categories
         +clearfix
+        float: left
         margin: 10px 0 5px
+        width: 560px
 
         li
-          float: left
+          +inline-block
           font-size: 11px
-          color: #999
-          +border-radius(3px)
-          background-color: #e8e8e8
-          margin: 0 5px 5px 0
-          padding: 1px 5px 2px
-
-          &.transparent
-            background-color: transparent
-            color: #000
-            padding-left: 0
-            padding-right: 0
+          margin: 0px 0 0 5px
 
       .details
         float: right

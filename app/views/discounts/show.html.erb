@@ -114,9 +114,10 @@
     </div>
 
     <div class="tags_and_visits">
-      <ul class="tags">
-        <% @discount.kind.map(&:text).each do |tag| %>
-          <li><%= tag %></li>
+      <ul class="categories">
+        Категории:
+        <% @discount.kind.each do |key| %>
+          <li><%= link_to key.text, discounts_path(:kind => key) %></li>
         <%end%>
       </ul>
 
