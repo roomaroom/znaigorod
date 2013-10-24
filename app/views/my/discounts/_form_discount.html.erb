@@ -21,7 +21,7 @@
   </div>
 
   <div class="organization_wrapper">
-    <%= f.input :organization_title, :input_html => { :class => 'autosuggest wide_input', :placeholder => 'Начинайте вводить название' } %>
+    <%= f.input :place, :input_html => { :class => 'autosuggest wide_input', :placeholder => 'Начинайте вводить название' } %>
     <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_target' } %>
     <%= link_to 'Удалить', '#', :remote => true, :class => 'clear_autosuggest_link' %>
   </div>

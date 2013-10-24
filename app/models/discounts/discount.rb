@@ -7,27 +7,25 @@ class Discount < ActiveRecord::Base
   include VkUpload
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
-                  :discount, :organization_title, :organization_id,
+                  :discount, :organization_title, :place, :organization_id,
                   :constant, :sale
-
-  attr_accessor :organization_title
 
   belongs_to :account
   belongs_to :organization
 
   has_many :comments,    :dependent => :destroy, :as => :commentable
+  has_many :copies,      :dependent => :destroy, :as => :copyable
   has_many :members,     :dependent => :destroy, :as => :memberable
   has_many :page_visits, :dependent => :destroy, :as => :page_visitable
   has_many :votes,       :dependent => :destroy, :as => :voteable
 
   has_many :accounts, :through => :members
 
-  # stub
-  has_many :copies, :dependent => :destroy, :as => :copyable
-
   validates_presence_of :title, :description, :kind
+
+  validates_presence_of :discount,            :unless => :sale?
+  validates_presence_of :place,               :unless => :organization_id?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
-  validates_presence_of :discount, :unless => :sale?
 
   after_save :reindex_organization
   after_destroy :reindex_organization
@@ -81,10 +79,6 @@ class Discount < ActiveRecord::Base
     return true if !self.slug? && self.published?
 
     false
-  end
-
-  def place
-    showings.pluck(:place).uniq.join(' ')
   end
 
   def likes_count
