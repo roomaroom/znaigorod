@@ -1,25 +1,25 @@
 <%= simple_form_for [:my, resource] do |f| %>
   <%= f.input :kind, :as => :check_boxes %>
-  <%= f.input :title, :input_html => { :class => 'preview_title wide_input', :placeholder => 'Название' } %>
-  <%= f.input :description, :required => true, :input_html => { :id => :markitup_description, :placeholder => 'Описание' } %>
+  <%= f.input :title, :input_html => { :class => 'preview_title wide_input' } %>
+  <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
   <div class="period">
     <%= f.input :constant, :input_html => { :class => 'switch_box' } %>
     <div class="switch_wrapper">
-      <%= f.input :starts_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата начала' } %>
-      <%= f.input :ends_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата окончания' } %>
+      <%= f.input :starts_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
+      <%= f.input :ends_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
     </div>
   </div>
 
   <div class="discount_type">
     <%= f.input :sale, :input_html => { :class => 'switch_box' } %>
     <div class="switch_wrapper">
-      <%= f.input :discount, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Размер скидки' } %>
+      <%= f.input :discount, :wrapper_html => { :class => 'toggle' } %>
     </div>
   </div>
 
   <div class="organization_wrapper">
-    <%= f.input :place, :input_html => { :class => 'autosuggest wide_input', :placeholder => 'Начинайте вводить название' } %>
+    <%= f.input :place, :input_html => { :class => 'autosuggest wide_input' } %>
     <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
     <%= link_to 'Удалить', '#', :remote => true, :class => 'clear_autosuggest_link' %>
   </div>
