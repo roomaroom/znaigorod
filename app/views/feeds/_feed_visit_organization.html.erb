@@ -32,5 +32,12 @@
       <%= OrganizationDecorator.new(feed_visit_organization.visitable).address_link %>
     </div>
   </div>
+  <div class='body'>
+    <p>
+    <% if feed_visit_organization.visitable.sms_claimable_suborganizations.any? %>
+      <%= render partial: "feeds/feed_organization_order", locals: { organization: feed_visit_organization.visitable } %>
+    <% end %>
+    </p>
+  </div>
 
 </div>

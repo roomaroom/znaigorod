@@ -37,6 +37,9 @@
   </div>
   <div class='body'>
     <p>
+    <% if feed_vote_organization.voteable.sms_claimable_suborganizations.any? %>
+      <%= render partial: "feeds/feed_organization_order", locals: { organizaton: feed_vote_organization.voteable } %>
+    <% end %>
     </p>
   </div>
 </div>

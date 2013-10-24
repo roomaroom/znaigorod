@@ -1,0 +1,8 @@
+<ul class='sms_claims'>
+  <% organization.sms_claimable_suborganizations.each do |suborganization| %>
+    <li>
+    <%= link_to suborganization.reservation_title,
+      send("new_#{suborganization.class.name.underscore}_sms_claim_path", suborganization), :class => :sms_claim_link %>
+    </li>
+  <% end %>
+</ul>
