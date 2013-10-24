@@ -19,26 +19,32 @@
 
     .period, .discount_type
       +clearfix
-      +border-radius(3px)
-      border: 1px solid #909090
       margin: 0 0 15px 0
-      padding: 10px 10px 0 10px
-      width: 530px
 
       .input
         float: left
-        margin: 0 25px 10px 0
 
         input
           width: 160px
 
       .boolean
-        input
-          width: 25px
+        +clearfix
+        float: left
+        padding: 5px 0 0 10px
+        width: 270px
 
-    .switch_wrapper
-      .boolean
-        display: none
+        input
+          outline: none
+          width: 34px
+
+      .switch_wrapper
+        +clearfix
+        float: left
+        padding: 10px 10px 0 10px
+        width: 215px
+
+        &.disabled
+          color: #999
 
     .organization_wrapper
       float: left

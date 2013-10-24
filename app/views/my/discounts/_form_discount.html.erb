@@ -4,19 +4,17 @@
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description, :placeholder => 'Описание' } %>
 
   <div class="period">
-    <%= link_to 'Постоянная скидка', '#', :class => 'switch_link', :remote => true %>
+    <%= f.input :constant, :input_html => { :class => 'switch_box' } %>
     <div class="switch_wrapper">
       <%= f.input :starts_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата начала' } %>
       <%= f.input :ends_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Дата окончания' } %>
-      <%= f.input :constant %>
     </div>
   </div>
 
   <div class="discount_type">
-    <%= link_to 'Распродажа', '#', :class => 'switch_link', :remote => true %>
+    <%= f.input :sale, :input_html => { :class => 'switch_box' } %>
     <div class="switch_wrapper">
       <%= f.input :discount, :wrapper_html => { :class => 'toggle' }, :input_html => { :placeholder => 'Размер скидки' } %>
-      <%= f.input :sale %>
     </div>
   </div>
 
