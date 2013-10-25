@@ -1,5 +1,5 @@
 <div class='poster'>
-  <%= link_to feed_discount.feedable do %>
+  <%= link_to discount_path(feed_discount.feedable) do %>
     <%= image_tag(resized_image_url(feed_discount.feedable.poster_url, 100 , 74),
                   :size => '100x74', :alt => feed_discount.feedable.title) %>
   <% end %>
@@ -8,8 +8,16 @@
 <div class="main">
   <div class='time'><%= time_ago_in_words(feed_discount.created_at) %> назад</div>
 
-  <% if current_user.account.id == feed_discount.feedable.account.id %>
-    <div class='type'>Добавлена скидка</div>
+  <div class='type'>
+    <% if current_user.account.id == feed_discount.feedable.account.id %>
+      <% if feed_discount.feedable.class.name == "Discount" %>
+        Добавлена скидка
+      <% elsif feed_discount.feedable.class.name == "Certificate" %>
+        Добавлен сертификат
+      <% elsif feed_discount.feedable.class.name == "Coupon" %>
+        Добавлен купон
+      <% end %>
+    </div>
   <% else %>
     <div class='avatar'>
       <%= link_to feed_discount.feedable.account do %>
@@ -19,11 +27,28 @@
     </div>
     <div class='type'>
       <%= link_to feed_discount.feedable.account.title, feed_discount.feedable.account %>
-      <%= t "account.added_discount.#{feed_discount.feedable.account.gender}" %>
+
+      <% if feed_discount.feedable.class.name == "Discount" %>
+        <%= t "account.added_discount.#{feed_discount.feedable.account.gender}" %>
+      <% elsif feed_discount.feedable.class.name == "Certificate" %>
+        <%= t "account.added_certificate.#{feed_discount.feedable.account.gender}" %>
+      <% elsif feed_discount.feedable.class.name == "Coupon" %>
+        <%= t "account.added_coupon.#{feed_discount.feedable.account.gender}" %>
+      <% end %>
+
     </div>
   <% end %>
 
   <div class='title'>
-    <%= link_to(feed_discount.feedable.title, feed_discount.feedable) %>
+    <%= link_to(feed_discount.feedable.title, discount_path(feed_discount.feedable)) %>
+  </div>
+<div class="info">
+  <%= render :partial => "discounts/#{feed_discount.feedable.class.name.underscore}_info", :locals => { :discount => feed_discount.feedable } %>
+</div>
+
+  <div class="buy_ticket">
+    <% unless feed_discount.feedable.price.nil? || feed_discount.feedable.price.zero? %>
+      <%= link_to 'Купить', new_discount_copy_payment_path(feed_discount.feedable), :class => 'payment_link participate', :remote => true %>
+    <% end %>
   </div>
 </div>
