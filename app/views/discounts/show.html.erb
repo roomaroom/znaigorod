@@ -65,12 +65,14 @@
               <li>
                 <div class="image">
                   <%= link_to discount_path(discount) do %>
-                    <%= image_tag resized_image_url(discount.poster_url, 65, 65), :size => '65x65', :alt => discount.title.text_gilensize %>
+                    <%= image_tag resized_image_url(discount.poster_url, 80, 60), :size => '80x60', :alt => discount.title.text_gilensize %>
                   <% end %>
                 </div>
                 <div class="clearfix">
-                  <div class="title"><%= link_to discount.title.text_gilensize, discount_path(discount) %></div>
-                  <%= content_tag :div, discount.place.place, :class => "places" if discount.geo_present? %>
+                  <div class="title"><%= link_to truncate(discount.title.text_gilensize, :length => 25), discount_path(discount) %></div>
+                  <% if discount.discount? %>
+                    <div class="profit">Скидка <%= discount.model.discount %>%</div>
+                  <% end %>
                 </div>
               </li>
             <% end %>
