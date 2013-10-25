@@ -82,32 +82,44 @@
           position: absolute
 
         .timer_days, .timer_hours, .timer_mins
-          +border-radius(4px)
+          +border-radius(3px)
+          +single-box-shadow(#6b6b6b, 0, 0, 3px, 0, inset)
           background: #fff
-          border: 2px solid #ccc
-          padding: 3px
+          border: 2px solid #999
+          letter-spacing: 7px
+          padding: 3px 0px 1px 3px
+          width: 31px
+
+          &:after
+            content: ''
+            border-right: 2px solid #999
+            bottom: 0
+            display: block
+            left: 16px
+            position: absolute
+            top: 0
 
         .label_days, .label_hours, .label_mins
-          font-size: 14px
-          top: 4px
+          font-size: 12px
+          top: 8px
 
         .timer_days
-          left: 35px
+          left: 25px
 
         .label_days
-          left: 68px
+          left: 66px
 
         .timer_hours
-          left: 84px
+          left: 85px
 
         .label_hours
-          left: 116px
+          left: 128px
 
         .timer_mins
-          left: 130px
+          left: 145px
 
         .label_mins
-          left: 162px
+          left: 188px
 
     .members
       +background(linear-gradient(top, #fff, #e8e8e8))
