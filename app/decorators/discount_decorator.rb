@@ -53,4 +53,12 @@ class DiscountDecorator < ApplicationDecorator
     count = geo_present? ? 3 : 5
     HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(count).results.map { |d| DiscountDecorator.new d }
   end
+
+  def meta_keywords
+    kind.map(&:text).map(&:mb_chars).map(&:downcase).join(', ')
+  end
+
+  def meta_description
+    description.to_s.truncate(200, separator: ' ')
+  end
 end

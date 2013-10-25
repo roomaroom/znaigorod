@@ -1,3 +1,14 @@
+<% content_for :page_title do %>
+  <% if @discount.title.present? %>
+    <%= @discount.title.text_gilensize %>,
+  <% else %>
+    Нет названия,
+  <% end %>
+  <%= @discount.kind.map(&:text).join(', ') %> в Томске
+<% end %>
+<% content_for :meta_keywords, @discount.meta_keywords %>
+<% content_for :meta_description, @discount.meta_description %>
+
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
 
 <div class="discount_show">
