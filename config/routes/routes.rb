@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Znaigorod::Application.routes.draw do
+  mount Discounts::API => '/'
   mount ElVfsClient::Engine => '/'
   mount Sidekiq::Web, at: "/sidekiq"
 
