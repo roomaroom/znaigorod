@@ -9,7 +9,7 @@
   <div class='time'><%= time_ago_in_words(feed_member.created_at) %> назад</div>
 
   <div class='type'>
-    <% if current_user.account.id == feed_member.feedable.memberable.account.id %>
+    <% if current_user.present? && current_user.account.id == feed_member.feedable.memberable.account.id %>
       <% if feed_member.feedable.memberable.class.name == "Discount" %>
         Учавствую в скидке
       <% elsif feed_member.feedable.memberable.class.name == "Certificate" %>

@@ -8,7 +8,7 @@
 <div class="main">
   <div class='time'><%= time_ago_in_words(feed_vote_discount.created_at) %> назад</div>
 
-  <% if current_user.account.id == feed_vote_discount.feedable.user.account.id %>
+  <% if current_user.present? && current_user.account.id == feed_vote_discount.feedable.user.account.id %>
     <div class='type'>
       <% if feed_vote_discount.feedable.voteable.class.name == "Discount" %>
         Нравится скидка

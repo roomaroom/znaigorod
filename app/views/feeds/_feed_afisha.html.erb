@@ -9,7 +9,7 @@
 
   <div class='time'><%= time_ago_in_words(feed_afisha.created_at) %> назад</div>
 
-  <% if current_user.account.id == feed_afisha.feedable.user.account.id %>
+  <% if current_user.present? && current_user.account.id == feed_afisha.feedable.user.account.id %>
     <div class='type'>Добавлена афиша</div>
   <% else %>
     <div class='avatar'>

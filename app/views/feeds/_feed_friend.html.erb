@@ -1,7 +1,7 @@
 <div class='time'>
   <%= time_ago_in_words(feed_friend.created_at) %> назад
 </div>
-<% if current_user.account.id == feed_friend.feedable.account_id %>
+<% if current_user.present? && current_user.account.id == feed_friend.feedable.account_id %>
   <div class='avatar'>
     <%= link_to feed_friend.feedable.friendable do %>
       <%= image_tag(resized_image_url(feed_friend.feedable.friendable.avatar.url, 100, 100),

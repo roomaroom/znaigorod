@@ -11,7 +11,7 @@
 <div class='main'>
   <div class='time'><%= time_ago_in_words(feed_visit_organization.created_at) %> назад</div>
 
-  <% if current_user.account.id == feed_visit_organization.feedable.user.account.id %>
+  <% if current_user.present? && current_user.account.id == feed_visit_organization.feedable.user.account.id %>
 
     <div class='type'>
       <%= t "account.i_want_to_visit.#{feed_visit_organization.feedable.user.account.gender}" %>
