@@ -8,14 +8,17 @@
 <div class="main">
   <div class='time'><%= time_ago_in_words(feed_discount.created_at) %> назад</div>
 
-  <div class='type'>
-    <% if current_user.account.id == feed_discount.feedable.account.id %>
+  <% if current_user.account.id == feed_discount.feedable.account.id %>
+    <div class='type'>
       <% if feed_discount.feedable.class.name == "Discount" %>
-        Добавлена скидка
+        <%= t "account.added.#{feed_discount.feedable.account.gender}" %>
+        скидку
       <% elsif feed_discount.feedable.class.name == "Certificate" %>
-        Добавлен сертификат
+        <%= t "account.added.#{feed_discount.feedable.account.gender}" %>
+        сертификат
       <% elsif feed_discount.feedable.class.name == "Coupon" %>
-        Добавлен купон
+        <%= t "account.added.#{feed_discount.feedable.account.gender}" %>
+        купон
       <% end %>
     </div>
   <% else %>
@@ -27,15 +30,7 @@
     </div>
     <div class='type'>
       <%= link_to feed_discount.feedable.account.title, feed_discount.feedable.account %>
-
-      <% if feed_discount.feedable.class.name == "Discount" %>
-        <%= t "account.added_discount.#{feed_discount.feedable.account.gender}" %>
-      <% elsif feed_discount.feedable.class.name == "Certificate" %>
-        <%= t "account.added_certificate.#{feed_discount.feedable.account.gender}" %>
-      <% elsif feed_discount.feedable.class.name == "Coupon" %>
-        <%= t "account.added_coupon.#{feed_discount.feedable.account.gender}" %>
-      <% end %>
-
+      <%= t "account.added_#{feed_discount.feedable.class.name.underscore}.#{feed_discount.feedable.account.gender}" %>
     </div>
   <% end %>
 

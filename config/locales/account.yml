@@ -68,6 +68,21 @@ ru:
       male:      "добавил афишу"
       female:    "добавила афишу"
 
+    voted_coupon:
+      undefined: "оценил купон"
+      male:      "оценил купон"
+      female:    "оценила купон"
+
+    voted_certificate:
+      undefined: "оценил сертификат"
+      male:      "оценил сертификат"
+      female:    "оценила сертификат"
+
+    voted_discount:
+      undefined: "оценил скидку"
+      male:      "оценил скидку"
+      female:    "оценила скидку"
+
     added_discount:
       undefined: "добавил скидку"
       male:      "добавил скидку"
@@ -82,6 +97,31 @@ ru:
       undefined: "добавил сертификат"
       male:      "добавил сертификат"
       female:    "добавила сертификат"
+
+    took:
+      undefined: "Получил"
+      male:      "Получил"
+      female:    "Получила"
+
+    added:
+      undefined: "Добавил"
+      male:      "Добавил"
+      female:    "Добавила"
+
+    took_discount:
+      undefined: "получил скидку"
+      male:      "получил скидку"
+      female:    "получила скидку"
+
+    took_coupon:
+      undefined: "получил купон"
+      male:      "получил купон"
+      female:    "получила купон"
+
+    took_certificate:
+      undefined: "получил сертификат"
+      male:      "получил сертификат"
+      female:    "получила сертификат"
 
     added_a_friend:
       undefined: "добавил друга"

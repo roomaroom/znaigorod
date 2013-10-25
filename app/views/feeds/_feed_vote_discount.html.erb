@@ -1,0 +1,46 @@
+<div class='poster'>
+  <%= link_to discount_path(feed_vote_discount.feedable.voteable) do %>
+    <%= image_tag(resized_image_url(feed_vote_discount.feedable.voteable.poster_url, 100 , 74),
+                  :size => '100x74', :alt => feed_vote_discount.feedable.voteable.title) %>
+  <% end %>
+</div>
+
+<div class="main">
+  <div class='time'><%= time_ago_in_words(feed_vote_discount.created_at) %> назад</div>
+
+  <% if current_user.account.id == feed_vote_discount.feedable.user.account.id %>
+    <div class='type'>
+      <% if feed_vote_discount.feedable.voteable.class.name == "Discount" %>
+        Нравится скидка
+      <% elsif feed_vote_discount.feedable.voteable.class.name == "Certificate" %>
+        Нравится сертификат
+      <% elsif feed_vote_discount.feedable.voteable.class.name == "Coupon" %>
+        Нравится купон
+      <% end %>
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to feed_vote_discount.feedable.user.account do %>
+        <%= image_tag(resized_image_url(feed_vote_discount.feedable.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_vote_discount.feedable.user.account.title) %>
+      <% end %>
+    </div>
+    <div class='type'>
+      <%= link_to feed_vote_discount.feedable.user.account.title, feed_vote_discount.feedable.user.account %>
+      <%= t "account.voted_#{feed_vote_discount.feedable.voteable.class.name.underscore}.#{feed_vote_discount.feedable.user.account.gender}" %>
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to(feed_vote_discount.feedable.voteable.title, discount_path(feed_vote_discount.feedable.voteable)) %>
+  </div>
+<div class="info">
+  <%= render :partial => "discounts/#{feed_vote_discount.feedable.voteable.class.name.underscore}_info", :locals => { :discount => feed_vote_discount.feedable.voteable } %>
+</div>
+
+  <div class="buy_ticket">
+    <% unless feed_vote_discount.feedable.voteable.price.nil? || feed_vote_discount.feedable.voteable.price.zero? %>
+      <%= link_to 'Купить', new_discount_copy_payment_path(feed_vote_discount.feedable.voteable), :class => 'payment_link participate', :remote => true %>
+    <% end %>
+  </div>
+</div>
