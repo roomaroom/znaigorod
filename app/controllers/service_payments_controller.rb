@@ -5,7 +5,7 @@ class ServicePaymentsController < ApplicationController
 
   def create
     create! do |success, failure|
-      success.html { redirect_to @copy_payment.service_url and return }
+      success.html { redirect_to @service_payment.service_url and return }
     end
   end
 end
