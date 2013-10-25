@@ -1,3 +1,11 @@
+<% content_for :page_title, @presenter.page_title %>
+<% content_for :meta_keywords, @presenter.meta_keywords %>
+<% content_for :meta_description, @presenter.meta_description %>
+
+<% content_for :extra_meta do %>
+  <link rel='canonical' href='<%= discounts_url %>' />
+<% end %>
+
 <div class="presentation_filters discounts">
   <div class="order_by">
     <p>Сортировать по:</p>

@@ -152,6 +152,18 @@ class DiscountsPresenter
     searcher.results
   end
 
+  def page_title
+    title = I18n.t("meta.discount.title")
+  end
+
+  def meta_description
+    I18n.t("meta.discount.description", default: '')
+  end
+
+  def meta_keywords
+    I18n.t("meta.discount.keywords", default: '')
+  end
+
   private
 
   def normalize_args
