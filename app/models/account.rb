@@ -58,7 +58,7 @@ class Account < ActiveRecord::Base
     string :gender
     float :rating,   :trie => true
     time :created_at, :trie => true
-    integer(:friendable) { friendable.count }
+    integer(:friendable) { page_visits.count + received_invitations.count }
     string :search_kind
     string(:kind, :multiple => true) { indexing_kinds }
     string(:acts_as, :multiple => true) { acts_as }
