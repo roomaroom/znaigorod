@@ -37,6 +37,7 @@ class Manage::DiscountsController < Manage::ApplicationController
 
   def collection
     @collection = Discount.search {
+      keywords params[:q]
       with :state, params[:by_state] if params[:by_state].present?
       with :kind, params[:by_kind].singularize if params[:by_kind].present?
       order_by :created_at, :desc
