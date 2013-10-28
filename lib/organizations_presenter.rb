@@ -88,6 +88,12 @@ module OrganizationsPresenter
     title
   end
 
+  def page_header
+    header = I18n.t("meta.#{selected_category}.page_header", default: '')
+    header = header.blank? ? I18n.t("meta.#{pluralized_kind}.page_header", default: '') : header
+    header
+  end
+
   def kind
     @kind ||= self.class.kind
   end

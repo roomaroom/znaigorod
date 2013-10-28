@@ -13,6 +13,13 @@
       <li><a href='#' class='list'>Список</a></li>
     </ul>
   </div>
+  <div class='filter_header'>
+    <% unless @presenter.categories.empty? %>
+      <h1><%= t("meta.#{@presenter.categories.first.pluralize}.page_header") %></h1>
+    <% else %>
+      <h1><%= t('meta.afisha.page_header') %></h1>
+    <% end %>
+  </div>
   <div class='order_by'>
     <p>Сортировать по:</p>
     <ul>

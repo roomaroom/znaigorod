@@ -12,6 +12,13 @@
       <li><a href='#' class='list'>Список</a></li>
     </ul>
   </div>
+  <div class='filter_header'>
+    <% if @presenter.page_header.blank? %>
+      <%= t('meta.organizations.page_header') %>
+    <% else %>
+      <%= @presenter.page_header %>
+    <% end %>
+  </div>
   <div class='order_by'>
     <p>Сортировать по:</p>
     <ul>
