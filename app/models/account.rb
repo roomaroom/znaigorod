@@ -70,6 +70,12 @@ class Account < ActiveRecord::Base
     text :title, :as => :term_text
   end
 
+  Role.role.values.each do |role|
+    define_method "is_#{role}?" do
+      self.class.where(:id => id).joins(:roles).where('roles.role = ?', role).any?
+    end
+  end
+
   def resolve_default_avatar_url
     return "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png"     if gender.female?
     return "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png"       if gender.male?

@@ -17,4 +17,9 @@ class MyMailer < ActionMailer::Base
     @version = version
     mail(:to => Settings['mail']['to_afisha'], :subject => 'В ЗнайГород изменилась афиша')
   end
+
+  def mail_new_published_discount(discount)
+    @discount = discount
+    mail(:to => Settings['mail']['to_discount'], :subject => 'В ЗнайГород опубликована новая скидка')
+  end
 end

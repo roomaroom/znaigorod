@@ -1,0 +1,13 @@
+На сайте ЗнайГород (<%= Settings['app']['host'] %>)
+<% if @discount.account %>
+  пользователь <%= @discount.account %> опубликовал информацию о скидке:
+<% else %>
+  опубликована информация о скидке:
+<% end %>
+
+Название: <%= @discount.title.present? ? @discount.title : 'Нет названия' %>
+Постер: <%= @discount.poster_url? ? @discount.poster_url : 'Нет постера' %>
+Категории: <%= @discount.kind.map(&:text).join(', ') %>
+Описание: <%= @discount.description.present? ? @discount.description : 'Нет описания' %>
+
+Помотреть эту в manage: <%= polymorphic_url([:manage, @discount], :host => Settings['app']['host']) %>
