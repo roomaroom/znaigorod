@@ -131,6 +131,80 @@
           .more_like_this
             background: transparent
 
+.gulliver_content_wrapper
+  +background(linear-gradient(top, #fff8b2, #ffc69b))
+  background-color: #fff8b2
+
+  .gulliver_logo
+    background: transparent image_url('public/gulliver/logo.png') no-repeat center center
+    height: 110px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      background: #fff9d7
+      +background(linear-gradient(top, #fff9d7, #fee2cd))
+      +box-shadow(none)
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        .left
+          border: 1px solid #ffc59b
+          background: #fff9d7
+          +background(linear-gradient(top, #fff9d7, #ffe2c2))
+
+          .image
+            border: none
+
+          .social_actions
+            border: none
+
+            .user_actions
+              border-bottom: 1px solid #ffc59b
+
+            .list
+              li:first-child
+                border: none
+
+        .center
+          .suborganization_info
+            .title
+              background: #ffd9b5
+
+          .comment_form
+            div.text
+              border: none !important
+              padding: 0
+
+            textarea
+              border: 1px solid #ccc
+              width: 680px
+
+          .comment_item
+            .comment_wrapper
+              &:hover, &.active
+                background: none
+
+        .right
+          .wrapper
+            border: 1px solid #ffc59b
+
+            .virtual_tour, .yandex_map
+              background: #fff9d7
+              +background(linear-gradient(top, #fff9d7, #fee4c3))
+              border-bottom: 1px solid #ffc59b
+
+            .more_like_this
+              background: #fff2d5
+              +background(linear-gradient(top, #fff2d5, #ffddc1))
+
 .lovekafe_content_wrapper
   background-color: #fff
   +background(linear-gradient(top, #fff, #f76663))
