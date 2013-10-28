@@ -17,30 +17,28 @@
   <% end %>
 
   <% if current_user.nil? || invitation.account != current_user.account %>
-    <% if current_user %>
-      <%= simple_form_for :invitation,
-        :url => invitation.inviteable ? [invitation.inviteable, :invitations] : [:invitations],
-        :remote => true,
-        :html => { :class => 'new_invitation' } do |f| %>
+    <%= simple_form_for :invitation,
+      :url => invitation.inviteable ? [invitation.inviteable, :invitations] : [:invitations],
+      :remote => true,
+      :html => { :class => 'new_invitation' } do |f| %>
 
-        <%= hidden_field_tag :render, 'status' %>
-        <%= f.input :category, :as => :hidden, :input_html => { :value => invitation.category } %>
-        <%= f.input :kind, :as => :hidden, :input_html => { :value => invitation.opposite_kind } %>
-        <%= f.input :invited_id, :as => :hidden, :input_html => { :value => invitation.account.id } %>
+      <%= hidden_field_tag :render, 'status' %>
+      <%= f.input :category, :as => :hidden, :input_html => { :value => invitation.category } %>
+      <%= f.input :kind, :as => :hidden, :input_html => { :value => invitation.opposite_kind } %>
+      <%= f.input :invited_id, :as => :hidden, :input_html => { :value => invitation.account.id } %>
 
-        <%= f.submit t("invite.#{invitation.opposite_kind}").mb_chars.capitalize,
-          :class => 'gray_button',
-          :onClick => 'share_on_click(this);',
-          'data-owner_id' => (invitation.account.users.first.try(:vk_uid) if current_user.provider == 'vkontakte'),
-          'data-action' => t("invitation.without_inviteable.#{invitation.opposite_kind}"),
-          'data-category' => (invitation.category unless invitation.inviteable),
-          'data-preposition' => (Preposition.new(invitation.inviteable).value if invitation.inviteable),
-          'data-attachments' => (data_attachments(invitation.inviteable) if invitation.inviteable),
-          'data-inviteable_title' => (invitation.inviteable if invitation.inviteable),
-          'data-link' => account_url(current_user.account),
-          'data-gender' => ''
-        %>
-      <% end %>
+      <%= f.submit t("invite.#{invitation.opposite_kind}").mb_chars.capitalize,
+        :class => 'gray_button',
+        :onClick => 'share_on_click(this);',
+        'data-owner_id' => (invitation.account.users.first.try(:vk_uid) if (current_user && current_user.provider == 'vkontakte')),
+        'data-action' => t("invitation.without_inviteable.#{invitation.opposite_kind}"),
+        'data-category' => (invitation.category unless invitation.inviteable),
+        'data-preposition' => (Preposition.new(invitation.inviteable).value if invitation.inviteable),
+        'data-attachments' => (data_attachments(invitation.inviteable) if invitation.inviteable),
+        'data-inviteable_title' => (invitation.inviteable if invitation.inviteable),
+        'data-link' => (account_url(current_user.account) if current_user),
+        'data-gender' => ''
+      %>
     <% end %>
   <% end %>
 </li>
