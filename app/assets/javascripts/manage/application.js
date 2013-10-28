@@ -14,6 +14,7 @@
  * = require ajax_delete
  * = require jcrop
  * = require crop
+ * = require markitup
  * = require ./info_plugin
  * = require ./choose_file
  * = require ./geocoder

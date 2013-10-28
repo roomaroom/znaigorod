@@ -53,10 +53,6 @@ class DiscountDecorator < ApplicationDecorator
     end
   end
 
-  def html_description
-    @html_description ||= description.to_s.as_html
-  end
-
   def geo_present?
     organization_id? && !organization.latitude.blank? && !organization.longitude.blank?
   end

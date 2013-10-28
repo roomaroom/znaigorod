@@ -14,11 +14,6 @@
 
   <div class="column">
     <div>
-      <span class="label">Описание:</span>
-      <span class="value"><%= resource.description %></span>
-    </div>
-
-    <div>
       <span class="label">Статус:</span>
       <span class="value">
         <%= resource.human_state_name %>
@@ -35,6 +30,11 @@
       <% else %>
         <span class="blank">Не указано</span>
       <% end %>
+    </div>
+
+    <div>
+      <span class="label">Описание:</span>
+      <span class="value"><%= resource.html_description %></span>
     </div>
 
     <div>

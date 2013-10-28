@@ -81,6 +81,10 @@ class Discount < ActiveRecord::Base
     false
   end
 
+  def html_description
+    @html_description ||= description.to_s.as_html
+  end
+
   def likes_count
     self.votes.liked.count
   end

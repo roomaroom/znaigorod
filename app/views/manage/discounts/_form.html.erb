@@ -4,7 +4,8 @@
   <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
   <%= link_to 'Удалить организацию', '#', :remote => true, :class => 'clear_autosuggest_link' %>
   <%= f.input :kind, :as => :check_boxes %>
-  <%= f.input :description %>
+  <%= f.input :description, :required => true, :input_html => { :class => 'markitup' } %>
+
   <%= f.input :discount %>
   <%= f.input :sale %>
   <%= f.input :constant %>
