@@ -66,10 +66,6 @@ class Afisha < ActiveRecord::Base
   before_save :prepare_trailer
   before_save :set_wmode_for_trailer, :if => :published?
 
-  scope :by_state,              ->(state) { where(:state => state) }
-  scope :by_kind,               ->(kind) { where(:kind => kind) }
-  scope :draft,                 -> { with_state(:draft) }
-  scope :published,             -> { with_state(:published) }
   scope :actual,                -> { includes(:showings).where('showings.starts_at >= ? OR (showings.ends_at is not null AND showings.ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
   scope :archive,               -> { joins(:showings).where('showings.starts_at < ? OR (showings.ends_at is not null AND showings.ends_at < ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
 

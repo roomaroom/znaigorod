@@ -2,6 +2,10 @@ class Manage::DiscountsController < Manage::ApplicationController
   actions :all
   custom_actions :resource => :fire_state_event
 
+  has_scope :page, :default => 1
+  has_scope :by_state, :only => :index
+  has_scope :by_kind, :only => :index
+
   def update
     update! do |success, failure|
       success.html {
@@ -32,6 +36,11 @@ class Manage::DiscountsController < Manage::ApplicationController
   private
 
   def collection
-    @collection = Discount.page(params[:page] || 1).per(10)
+    @collection = Discount.search {
+      with :state, params[:by_state] if params[:by_state].present?
+      with :kind, params[:by_kind].singularize if params[:by_kind].present?
+      order_by :created_at, :desc
+      paginate paginate_options.merge(:per_page => per_page)
+    }.results
   end
 end

@@ -30,7 +30,12 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :posts, 'Купоны', manage_discounts_path,
       :highlights_on => ->(){ resource_class == Discount || resource_class == Coupon || resource_class == Certificate },
-      :if => -> { can?(:manage, Discount) }
+      :if => -> { can?(:manage, Discount) } do |discount_item|
+        Discount.kind.values.each do |kind|
+          discount_item.item kind, kind.text, by_kind_manage_discounts_path(kind.pluralize)
+        end
+        discount_item.item 'draft', "Черновики (#{Discount.draft.count})", by_state_manage_discounts_path(:draft)
+      end
 
     primary.item :posts, 'Конкурсы', manage_contests_path,
       :highlights_on => ->(){ resource_class == Contest },
