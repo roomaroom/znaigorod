@@ -100,17 +100,20 @@ class AfishaPresenter
     "afishas/afisha_#{view}"
   end
 
+  def url_parameters(aditional = {})
+    {
+      period: @period_filter.all? ? nil : @period_filter.period,
+      on: @period_filter.date,
+    }.merge(aditional)
+  end
+
   def categories_links
     @categories_links ||= [].tap { |array|
       array << {
         title: I18n.t('enumerize.afisha.kind.all'),
         klass: 'afisha',
         url: has_tickets ? 'afisha_with_tickets_index_path' : 'afisha_index_path',
-        parameters: {
-          period: @period_filter.all? ? nil : @period_filter.period,
-          on: @period_filter.date,
-          order_by: @sorting_filter.order_by,
-        },
+        parameters: url_parameters,
         current: kind == 'afisha',
         count: AfishaCounter.new(presenter: self).count
       }
@@ -119,11 +122,7 @@ class AfishaPresenter
           title: "#{kind.text}",
           klass: kind.pluralize,
           url: has_tickets ? "#{kind.pluralize}_with_tickets_index_path" : "#{kind.pluralize}_index_path",
-          parameters: {
-            period: period_filter.all? ? nil : period_filter.period,
-            on: @period_filter.date,
-            order_by: @sorting_filter.order_by,
-          },
+          parameters: url_parameters,
           current: categories.include?(kind),
           count: AfishaCounter.new(presenter: self, categories: [kind]).count
         }
@@ -138,10 +137,7 @@ class AfishaPresenter
           title: (@period_filter.daily? && period_value == 'daily') ? I18n.l(@period_filter.date, format: '%d %B').gsub(/^0/, '') : I18n.t("afisha_periods.#{period_value}"),
           url: url,
           class: period_value,
-          parameters: {
-            :period => period_value,
-            :order_by => @sorting_filter.order_by,
-          },
+          parameters: url_parameters(period: period_value),
           selected: period_value == @period_filter.period
         }
       end
@@ -149,10 +145,7 @@ class AfishaPresenter
           title: 'Все',
           url: url,
           class: :all,
-          parameters: {
-            :period => nil,
-            :order_by => @sorting_filter.order_by,
-          },
+          parameters: url_parameters(period: nil),
           selected: @period_filter.all?
 
       })
@@ -165,11 +158,7 @@ class AfishaPresenter
         array << {
           title: I18n.t("afisha.sort.#{sorting_value}"),
           url: url,
-          parameters: {
-            :period => @period_filter.period,
-            :on => @period_filter.date,
-            :order_by => sorting_value,
-          },
+          parameters: url_parameters(order_by: sorting_value),
           selected: @sorting_filter.order_by == sorting_value
         }
       end
