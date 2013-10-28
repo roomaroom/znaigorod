@@ -3,8 +3,20 @@
 class DiscountDecorator < ApplicationDecorator
   decorates :discount
 
+  def goes_now?
+    starts_at < Time.zone.now && ends_at > Time.zone.now
+  end
+
+  def will_goes?
+    starts_at > Time.zone.now
+  end
+
   def countdown_time
-    ends_at.to_i * 1000
+    if goes_now?
+      ends_at.to_i * 1000
+    else
+      starts_at.to_i * 1000
+    end
   end
 
   def when_with_price

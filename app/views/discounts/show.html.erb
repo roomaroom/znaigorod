@@ -44,11 +44,18 @@
         <% end %>
       </div>
 
-      <% if @discount.actual? && !@discount.constant? %>
-        <div class="counter">
-          <h2>До завершения осталось</h2>
-          <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
-        </div>
+      <% unless @discount.constant? %>
+        <% if @discount.goes_now? %>
+          <div class="counter">
+            <h2>До завершения осталось</h2>
+            <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+          </div>
+        <% elsif @discount.will_goes? %>
+          <div class="counter">
+            <h2>До начала осталось</h2>
+            <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
+          </div>
+        <% end %>
       <% end %>
 
       <%= render :partial => 'members/members' %>
