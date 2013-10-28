@@ -46,7 +46,7 @@ class Discount < ActiveRecord::Base
   searchable do
     boolean(:actual) { actual? }
 
-    date :created_at
+    time :created_at, :trie => true
 
     float(:rating) { total_rating }
 
