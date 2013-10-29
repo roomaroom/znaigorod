@@ -17,7 +17,7 @@
                   <% if invitation.description? %>
                     <abbr title="<%= invitation.description %>" class="show_tipsy"><%= image_tag 'public/icon_question.png' %></abbr>
                   <% end %>
-                <% elsif visit.visitable.actual? %>
+                <% elsif visit.actual? %>
                   <span><%= t("account_acts_as.#{invitation.kind}") %> <%= t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}").mb_chars.downcase %></span>
 
                   <% if invitation.description? %>
