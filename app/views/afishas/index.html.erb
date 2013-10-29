@@ -3,6 +3,7 @@
 <% content_for :meta_description, @presenter.meta_description %>
 <% content_for :extra_meta do %>
   <link rel='canonical' href='<%= afisha_index_url %>' />
+  <%= vk_meta(@presenter.kind, (send @presenter.direct_url), 'znaigorod_logo.png') %>
 <% end %>
 
 <div class='presentation_filters afisha'>

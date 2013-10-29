@@ -141,6 +141,10 @@ module OrganizationsPresenter
     pluralized_kind == selected_category.pluralize ? "#{pluralized_kind}_path" : "#{pluralized_kind}_#{selected_category.pluralize}_path"
   end
 
+  def collection_direct_url
+    pluralized_kind == selected_category.pluralize ? "#{pluralized_kind}_url" : "#{pluralized_kind}_#{selected_category.pluralize}_url"
+  end
+
   def url_parameters(aditional = {})
     params = {}
     #params[:sms_claimable] = true if sms_claimable

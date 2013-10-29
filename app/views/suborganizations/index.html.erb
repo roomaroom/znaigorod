@@ -3,6 +3,9 @@
 <% content_for :page_title, @presenter.page_title %>
 <% content_for :meta_keywords, t("meta.#{@presenter.pluralized_kind}.keywords") %>
 <% content_for :meta_description, t("meta.#{@presenter.pluralized_kind}.description") %>
+<% content_for :extra_meta do %>
+  <%= vk_meta(@presenter.pluralized_kind, (send @presenter.collection_direct_url), 'znaigorod_logo.png') %>
+<% end %>
 
 <div class='presentation_filters organization'>
   <div class='present_by'>

@@ -55,6 +55,13 @@ class AfishaPresenter
       str << "_index_path"
     end
   end
+  def direct_url
+    "".tap do |str|
+      str << "#{(categories_filter.selected.first.try(:pluralize) || 'afisha')}"
+      str << '_with_tickets' if has_tickets
+      str << "_index_url"
+    end
+  end
 
   def with_advertisement?
     !@organizations_filter.used? && !for_mobile_api
