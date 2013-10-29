@@ -8,12 +8,10 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :place, :organization_id,
-                  :constant, :sale
+                  :constant, :sale, :places_attributes
 
   belongs_to :account
   belongs_to :organization
-
-  has_many :accounts,    :through => :members
 
   has_many :comments,       :dependent => :destroy, :as => :commentable
   has_many :copies,         :dependent => :destroy, :as => :copyable
@@ -21,13 +19,18 @@ class Discount < ActiveRecord::Base
   has_many :members,        :dependent => :destroy, :as => :memberable
   has_many :messages,       :dependent => :destroy, :as => :messageable
   has_many :page_visits,    :dependent => :destroy, :as => :page_visitable
+  has_many :places,         :dependent => :destroy, :as => :placeable
   has_many :votes,          :dependent => :destroy, :as => :voteable
+
+  has_many :accounts, :through => :members
 
   validates_presence_of :title, :description, :kind
 
   validates_presence_of :discount,            :unless => :sale?
   validates_presence_of :place,               :unless => :organization_id?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
+
+  accepts_nested_attributes_for :places, :allow_destroy => true
 
   after_save :reindex_organization
   after_destroy :reindex_organization

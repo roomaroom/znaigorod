@@ -1,8 +1,15 @@
-<%= simple_form_for [:manage, @discount] do |f| %>
+<%= simple_nested_form_for [:manage, @discount] do |f| %>
   <%= f.input :title %>
-  <%= f.input :place, :input_html => { :class => 'autosuggest' } %>
-  <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
-  <%= link_to 'Удалить организацию', '#', :remote => true, :class => 'clear_autosuggest_link' %>
+
+  <%= f.fields_for :places do |pf| %>
+    <%= pf.input :address %>
+    <%= pf.input :organization_id, :as => :hidden %>
+    <%= pf.input :latitude, :as => :hidden %>
+    <%= pf.input :longitude, :as => :hidden %>
+    <%= pf.link_to_remove 'Удалить' %>
+  <% end %>
+  <%= f.link_to_add 'Добавить место проведения', :places %>
+
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :description, :required => true, :input_html => { :class => 'markitup' } %>
 

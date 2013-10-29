@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024024050) do
+ActiveRecord::Schema.define(:version => 20131029021157) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -555,6 +555,20 @@ ActiveRecord::Schema.define(:version => 20131024024050) do
   add_index "payments", ["paymentable_type"], :name => "index_payments_on_paymentable_type"
   add_index "payments", ["type"], :name => "index_payments_on_type"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
+
+  create_table "places", :force => true do |t|
+    t.integer  "placeable_id"
+    t.string   "placeable_type"
+    t.string   "address"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "organization_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "places", ["organization_id"], :name => "index_places_on_organization_id"
+  add_index "places", ["placeable_id"], :name => "index_places_on_placeable_id"
 
   create_table "pool_table_prices", :force => true do |t|
     t.integer  "pool_table_id"
