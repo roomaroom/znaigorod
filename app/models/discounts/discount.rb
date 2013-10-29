@@ -27,7 +27,6 @@ class Discount < ActiveRecord::Base
   validates_presence_of :title, :description, :kind
 
   validates_presence_of :discount,            :unless => :sale?
-  validates_presence_of :place,               :unless => :organization_id?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
   accepts_nested_attributes_for :places, :allow_destroy => true

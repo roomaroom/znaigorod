@@ -1,0 +1,2 @@
+class AffiliatedCoupon < Discount
+end
