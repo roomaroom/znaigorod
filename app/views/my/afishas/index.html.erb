@@ -1,0 +1,29 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3>Мои афиши</h3>
+       <%= link_to 'Добавить', new_my_afisha_path, class: :invitation_link if can? :new, Afisha %>
+    </div>
+    <div id='events_filter'>
+      <ul>
+        <% %w[all draft published].each do |state| %>
+          <li><%= link_to "##{state}" do %>
+            <%= t(state, count: @events.by_state(state).total_count) %>
+          <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class='content'>
+        <% %w[all draft published].each do |state| %>
+          <div id='<%= state %>' class='list'>
+            <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<%= render file: "my/accounts/wrapper" %>

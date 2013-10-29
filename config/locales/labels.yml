@@ -183,6 +183,13 @@ ru:
     other: "Черновики (%{count})"
     zero:  "Черновики"
 
+  all:
+    one:   "Все (%{count})"
+    few:   "Все (%{count})"
+    many:  "Все (%{count})"
+    other: "Все (%{count})"
+    zero:  "Все"
+
   pending:
     one:   "На модерации (%{count})"
     few:   "На модерации (%{count})"

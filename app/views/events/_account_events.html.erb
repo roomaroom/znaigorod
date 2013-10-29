@@ -1,8 +1,14 @@
-<ul>
-  <% collection.each do |event| %>
-    <%= render partial: 'events/account_event', locals: { event: event } %>
+<div class='afisha_list'>
+  <% if collection.any? %>
+    <ul class='posters'>
+      <% collection.each do |afisha| %>
+        <%= render :partial => 'events/account_event', locals: { :afisha => AfishaDecorator.new(afisha) } %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
   <% end %>
-</ul>
+</div>
 
 <% unless collection.first_page? && collection.last_page? %>
   <div class="pagination">

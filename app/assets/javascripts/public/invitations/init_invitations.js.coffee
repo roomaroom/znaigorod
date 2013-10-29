@@ -255,6 +255,6 @@ handle_reply_invitation = (target, response)->
     $('.social_actions').replaceWith(response) if target.hasClass('change_visit')
     handle_new_invitaion_link(target, response) if target.hasClass('invitation_link')
     handle_reply_invitation(target, response) if target.hasClass('new_invitation')
-    target.closest('li').remove() if target.hasClass('change_friendship') && target.closest('.accounts_list').length
+    target.closest('li').remove() if target.hasClass('trash') && target.closest('.accounts_list').length
 
   true

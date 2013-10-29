@@ -9,6 +9,16 @@
   true
 
 @init_account_extend = () ->
+
+  $('.trash').on 'ajax:success', (evt, data) ->
+    $(evt.target).closest('li').remove()
+    $('#events_filter .ui-state-default a').each (index, elem) ->
+      switch elem.href.split('/').last()
+        when '#all' then elem.innerHTML = "Все (#{data.all})"
+        when '#draft' then elem.innerHTML = "Черновики (#{data.draft})"
+        when '#published' then elem.innerHTML = "Опубликованные (#{data.published})"
+      true
+
   target = $('#account_avatar')
   target.on 'change', ->
     $(this).parents('form').submit()
@@ -49,9 +59,6 @@
       init_auth()
 
       return false
-
-    if target.hasClass('change_friendship')
-      target.closest('li').replaceWith(response)
 
     if target.hasClass('add_private_message') || target.hasClass('invite')
       container = $('<div class="message_form_wrapper" />').appendTo('body').hide().html(response)

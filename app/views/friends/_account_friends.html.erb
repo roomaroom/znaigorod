@@ -39,7 +39,7 @@
         <div class="message">
           <%= link_to t('new_message'), new_my_private_message_path(account_id: account.id), class: 'add_private_message', remote: true %>
         </div>
-        <%= link_to "", change_friendship_my_account_path(account_id: account.id), method: :put, remote: true, :confirm => 'Вы уверены?', class: 'change_friendship' %>
+        <%= link_to "", change_friendship_my_account_path(account_id: account.id), method: :put, remote: true, :confirm => 'Вы уверены?', class: 'trash' %>
       <% end %>
     </div>
 

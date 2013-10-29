@@ -57,18 +57,27 @@
         color: white !important
         cursor: pointer
         text-decoration: none
-        .counter
+        #friends_counter
           background: url('user_menu.png') no-repeat -77px -53px !important
         span
           color: white
 
       .feeds_filter
-        .all_feeds,.show_friends,.show_afishas,.show_dialogs
+        .all_feeds,.show_friends,.show_afishas,.show_dialogs,.show_afisha
           +clearfix
           background-color: white
           color: black
           font-size: 12px
           margin: 4px
+
+          #friends_counter
+            background: url('user_menu.png') no-repeat -15px -53px
+
+          #friends_counter,#afisha_counter,#dialogs_counter
+            float: right
+            margin-right: 5px
+            padding-left: 11px
+
           a
             +clearfix
             color: black
@@ -89,19 +98,9 @@
             text-decoration: none
 
         .show_friends
-          .counter
-            background: url('user_menu.png') no-repeat -15px -53px
-            float: right
-            margin-right: 5px
-            padding-left: 11px
+          &:hover > #friends_counter
+            background: url('user_menu.png') no-repeat -47px -53px !important
 
-          &:hover > .counter
-            background: url('user_menu.png') no-repeat -47px -53px
-
-        .show_dialogs
-          .counter
-            float: right
-            margin-right: 5px
 
         .sub_filter
           .my_feeds,.friends_feeds
@@ -571,6 +570,28 @@
         height: 24px
         line-height: 24px
 
+    .afisha_list
+      li
+        width: 178px
+        margin: 5px 20px 5px 0px
+        &:nth-child(5n)
+          margin-right: 0px
+        .item
+          height: 280px
+          .title
+            height: 20px
+
+    .trash
+      background: url('user_menu.png') no-repeat -9px -8px
+      float: right
+      height: 11px
+      margin-right: 4px
+      margin-top: 4px
+      width: 18px
+
+      &:hover
+        background: url('user_menu.png') no-repeat -39px -8px
+
     .accounts_list
       .badges
         .message
@@ -578,16 +599,6 @@
           margin-left: 10px
           margin-top: 2px
 
-        .change_friendship
-          background: url('user_menu.png') no-repeat -9px -8px
-          float: right
-          height: 11px
-          margin-right: 4px
-          margin-top: 4px
-          width: 18px
-
-          &:hover
-            background: url('user_menu.png') no-repeat -39px -8px
 
       .posters
         +clearfix

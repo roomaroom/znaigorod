@@ -7,8 +7,22 @@ class My::AfishasController < My::ApplicationController
 
   before_filter :current_step
 
-  actions :all, :except => [:index]
+  actions :all
   custom_actions :resource => [:destroy_image, :send_to_published, :social_gallery], :collection => [:available_tags, :preview_video]
+
+  def index
+    index! {
+      @account = AccountDecorator.new(current_user.account)
+
+      @events = @account.afisha.page(1).per(15)
+
+      if request.xhr?
+        if params[:page]
+          render partial: @presenter.partial, :locals => { :afishas => nil }, layout: false and return
+        end
+      end
+    }
+  end
 
   def show
     @afisha = AfishaDecorator.new(current_user.afisha.find(params[:id]))
@@ -41,7 +55,16 @@ class My::AfishasController < My::ApplicationController
   end
 
   def destroy
-    destroy! { my_root_path }
+    destroy! {
+      afisha_response = {}
+      afisha_response[:all] = current_user.afisha.by_state('all').count
+      afisha_response[:published] = current_user.afisha.by_state('published').count
+      afisha_response[:draft] = current_user.afisha.by_state('draft').count
+
+      render :json => afisha_response  and return if request.xhr?
+
+      my_root_path
+    }
   end
 
   def available_tags
