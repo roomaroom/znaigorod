@@ -12,7 +12,7 @@ module Discounts
       end
 
       post do
-        p PrikuponJson.new(params[:data]).discount
+        PrikuponJson.new(params[:data]).discount
       end
     end
   end
