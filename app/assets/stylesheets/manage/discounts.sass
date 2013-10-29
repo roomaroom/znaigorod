@@ -1,6 +1,45 @@
 .form_view.discount
   position: relative
 
+  .place_fields
+    +clearfix
+
+    .fields
+      margin: 0 0 0 60px
+      padding: 0 25px 5px
+      position: relative
+      width: 685px
+
+      div.string
+        clear: both
+
+        label
+          display: block
+          float: none
+          margin: 0
+          text-align: left
+
+        input
+          width: 450px
+
+      .autosuggest
+        width: 300px
+
+      .choose_coordinates
+        left: 500px
+        padding: 0 0 0 20px
+        position: absolute
+        top: 25px
+
+      .remove_nested_fields
+        left: 695px
+        position: absolute
+        top: 25px
+
+    .add_nested_fields
+      margin: 0 0 0 82px
+
+
   .input
     .text
       div
@@ -18,11 +57,6 @@
 
   textarea#coupon_origin_url, textarea#certificate_origin_url
     height: 21px
-
-  .clear_autosuggest_link
-    position: absolute
-    right: 240px
-    top: 92px
 
 .show.discount
   .column

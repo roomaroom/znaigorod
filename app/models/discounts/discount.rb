@@ -31,6 +31,8 @@ class Discount < ActiveRecord::Base
 
   accepts_nested_attributes_for :places, :allow_destroy => true
 
+  delegate :build, :empty?, :to => :places, :prefix => true
+  after_initialize :places_build, :if => [:new_record?, :places_empty?]
   after_save :reindex_organization
   after_destroy :reindex_organization
 

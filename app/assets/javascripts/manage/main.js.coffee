@@ -21,3 +21,4 @@ $ ->
 
 $(window).load ->
   init_organization_map() if $('.edit_organization, .new_organization').length
+  init_discount_map() if $('.discount').length

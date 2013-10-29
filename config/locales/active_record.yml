@@ -178,6 +178,11 @@ ru:
         constant: Является бессрочным купоном
         price: Цена купона
 
+      place:
+        address: Организатор или место
+        latitude: Широта
+        longitude: Долгота
+
       post:
         <<: *common_attributes
         status: Опубликовать

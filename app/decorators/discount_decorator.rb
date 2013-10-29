@@ -46,11 +46,16 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def human_place
-    if geo_present?
-      PlaceDecorator.new(:organization => organization).place
-    else
-      place
+    results = ''
+    places.each do |place|
+      if place.organization_id?
+        results += PlaceDecorator.new(:organization => place.organization).place
+      else
+        results += PlaceDecorator.new(:latitude => place.latitude, :longitude => place.longitude, :title => place.address).place
+      end
     end
+
+    h.raw results
   end
 
   def geo_present?
