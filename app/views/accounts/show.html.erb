@@ -53,8 +53,8 @@
 
       <div class="invitations list">
         <ul class="inviter">
-          <% if @account.invitations.inviter.without_invited.any? %>
-            <%= render :collection => @account.invitations.inviter.without_invited, :partial => 'invitations/invitation' %>
+          <% if @account.invitations.inviter.without_invited.select(&:actual?).any? %>
+            <%= render :collection => @account.invitations.inviter.without_invited.select(&:actual?), :partial => 'invitations/invitation' %>
           <% else %>
             <li class="empty">Нет приглашений</li>
           <% end %>
@@ -67,8 +67,8 @@
 
       <div class="invitations list">
         <ul class="invited">
-          <% if @account.invitations.invited.without_invited.any? %>
-            <%= render :collection => @account.invitations.invited.without_invited, :partial => 'invitations/invitation' %>
+          <% if @account.invitations.invited.without_invited.select(&:actual?).any? %>
+            <%= render :collection => @account.invitations.invited.without_invited.select(&:actual?), :partial => 'invitations/invitation' %>
           <% else %>
             <li class="empty">Нет приглашений</li>
           <% end %>
