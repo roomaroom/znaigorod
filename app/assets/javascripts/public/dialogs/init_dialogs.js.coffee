@@ -1,3 +1,64 @@
+# pagination
+page = 1
+busy = false
+list_url = ""
+list = ""
+first_item = ""
+last_item = ""
+last_item_top = ""
+last_item_offset = ""
+
+@init_pagination_dialogs = () ->
+
+  $('body nav.pagination').css
+    'height': '0'
+    'visibility': 'hidden'
+  list_url = window.location.pathname
+  list = $(
+    '#dialogs .dialogs'
+  )
+  first_item = $('li:first', list)
+  return true unless first_item.length
+  if first_item.siblings().length
+    last_item = first_item.siblings().last()
+  else
+    last_item = first_item
+  last_item_top = last_item.position().top
+
+  last_item_offset = 200
+
+
+  true
+
+window_scroll_init = () ->
+  $(window).scroll ->
+    if ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
+      busy = true
+      search_params = ""
+      search_params = window.location.search.replace(/^\?/, "&").replace(/&page=\d+/, "")
+
+      $.ajax
+        url: "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
+        beforeSend: (jqXHR, settings) ->
+          $('<li class="ajax_loading_items_indicator">&nbsp;</li>').appendTo(list)
+          true
+        complete: (jqXHR, textStatus) ->
+          $('li.ajax_loading_items_indicator', list).remove()
+          true
+        success: (data, textStatus, jqXHR) ->
+          return true if data.trim().isBlank()
+          list.append(data)
+          last_item = first_item.siblings().last()
+          last_item_top = last_item.position().top
+          page += 1
+          busy = false unless data.trim().isBlank()
+          dialog_unbind()
+          dialog_click_handler()
+          true
+
+    true
+
+
 # Меняем статус сообщения на прочитанное, каждый раз как видим не прочитанное сообщение ('unread')
 @process_change_message_status = () ->
   timer = setInterval ->
@@ -65,8 +126,55 @@
       true
 
 
+# actions which are happend when somebody click to dialogs
+dialog_click_handler = () ->
+  $('.to_dialog').on 'click', ->
+    block_id = $(this).attr('class').match(/dialog_\d+/)
+    $('#messages_filter').tabs("select", '#'+block_id)
+
+    $(this).closest('li:not(.invite_message_list)').addClass('read').removeClass('unread')
+
+    true
+
+  $('#dialogs ul.dialogs > li').each (index, item) ->
+    $(this).on 'click', (event) ->
+      $('a.to_dialog', $(event.target).closest('li')).click() unless $(event.target).is('a')
+      true
+    true
+
+  $('.to_dialog').on 'ajax:beforeSend', (xhr, settings) ->
+    return false if $(this).hasClass('disabled')
+    $('.'+$(this).attr('class').match(/dialog_\d+/), '#messages_filter').addClass('disabled')
+    true
+
+  true
+
+# unbind all dialog actions
+dialog_unbind = () ->
+  $('.to_dialog').unbind()
+
+  $('#dialogs ul.dialogs > li').each (index, item) ->
+    $(this).unbind()
+    true
+
+  true
+
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
+  # скрол в форме при открытии диалога
+  scroll = (target) ->
+    y_coord = Math.abs(target[0].scrollHeight)
+    target.animate({ scrollTop: y_coord }, 'fast')
+
+  $('#messages_filter').on "tabsselect", (event, ui) ->
+    if ui.panel.id == 'dialogs'
+      window_scroll_init()
+    else
+      $(window).unbind('scroll')
+      # bad way
+      setTimeout () ->
+        scroll($('ul.dialog', '#' + ui.panel.id))
+      , 100
 
   # обработка открытия нового таба для диалога
   add_tab_handler = (response, stored) ->
@@ -87,6 +195,8 @@
 
     # пересчет счетчиков
     init_messages_counters(response)
+
+    scroll($('ul.dialog', "#dialog_#{account_id}"))
 
   # обработка закрытия таба
   close_tab_handler = (stored) ->
@@ -113,10 +223,6 @@
         true
     true
 
-  # скрол в форме при открытии диалога
-  scroll = (target) ->
-    y_coord = Math.abs(target[0].scrollHeight)
-    target.animate({ scrollTop: y_coord }, 'fast')
 
 
   # загрузка открытых табов при перезагрузке страницы
@@ -126,24 +232,7 @@
 
   stored = JSON.parse(window.localStorage.getItem('dialogs')) || []
 
-  $('.to_dialog').on 'click', ->
-    block_id = $(this).attr('class').match(/dialog_\d+/)
-    $('#messages_filter').tabs("select", '#'+block_id)
-
-    $(this).closest('li:not(.invite_message_list)').addClass('read').removeClass('unread')
-
-    true
-
-  $('#dialogs ul.dialogs > li').each (index, item) ->
-    $(this).on 'click', (event) ->
-      $('a.to_dialog', $(event.target).closest('li')).click() unless $(event.target).is('a')
-      true
-    true
-
-  $('.to_dialog').on 'ajax:beforeSend', (xhr, settings) ->
-    return false if $(this).hasClass('disabled')
-    $('.'+$(this).attr('class').match(/dialog_\d+/), '#messages_filter').addClass('disabled')
-    true
+  dialog_click_handler()
 
 
   load_tabs_handler(stored)

@@ -142,3 +142,8 @@ ru:
       undefined: "Хочу посетить/посетил"
       male:      "Хочу посетить/посетил"
       female:    "Хочу посетить/посетила"
+
+    was_online:
+      undefined: "Был"
+      male:      "Был"
+      female:    "Была"

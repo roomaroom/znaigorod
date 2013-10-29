@@ -28,6 +28,14 @@
               <span>Друзья</span>
             </a>
           </div>
+          <div class="show_dialogs <%= "selected" if params[:controller] == "my/dialogs" %>">
+            <a href="<%= my_dialogs_path() %>">
+              <% if current_user.account.private_messages.unread.to(current_user.account).count > 0 %>
+                <span class="counter">+<%= current_user.account.private_messages.unread.to(current_user.account).count %></span>
+              <% end %>
+              <span>Диалоги</span>
+            </a>
+          </div>
         </div>
 
       </div>

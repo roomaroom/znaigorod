@@ -237,7 +237,7 @@ class Account < ActiveRecord::Base
   end
 
   def dialogs
-    dialogs = (PrivateMessage.from(self).order('id DESC').map(&:account) + PrivateMessage.to(self).order('id DESC').map(&:producer)).uniq
+    dialogs = (PrivateMessage.to(self).order('id DESC').map(&:producer) + PrivateMessage.from(self).order('id DESC').map(&:account)).uniq
   end
 
   def invitation_for(account, kind, category, inviteable)

@@ -1,0 +1,23 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3>Диалоги</h3>
+    </div>
+<div id="messages_filter">
+  <ul>
+    <li><%= link_to t('dialogs', count: current_user.account.private_messages.unread.to(current_user.account).count), '#dialogs', class: 'dialogs' %></li>
+  </ul>
+
+  <div id="dialogs" class="list">
+    <ul class="dialogs">
+      <%= render 'my/dialogs/messages' %>
+    </ul>
+    <% unless collection.first_page? && collection.last_page? %>
+      <%= paginate collection %>
+    <% end %>
+  </div>
+  <% end %>
+<%= render file: "my/accounts/wrapper" %>

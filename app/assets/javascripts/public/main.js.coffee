@@ -68,6 +68,7 @@ $ ->
   init_addresses_side_map() if $('.results_with_map').length
   init_votes() if $('.votes_wrapper, .user_actions').length
   init_comments() if $('.comments').length
+  init_pagination_dialogs() if $('#dialogs').length
   apply_unauthorized_action()
 
   true
