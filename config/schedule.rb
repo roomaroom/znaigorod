@@ -23,6 +23,7 @@ end
 every :day, :at => '5am' do
   rake 'refresh_sitemaps'
   rake 'account:get_friends'
+  rake 'invitations:destroy_irrelevant'
 end
 
 every 2.hours do
