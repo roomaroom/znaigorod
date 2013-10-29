@@ -8,6 +8,17 @@ class DiscountObserver < ActiveRecord::Observer
   end
 
   def after_to_published(discount, transition)
-    MyMailer.delay(:queue => 'mailer').mail_new_published_discount(discount) unless discount.account.is_admin?
+    if discount.account.present?
+      MyMailer.delay(:queue => 'mailer').mail_new_published_discount(discount) unless discount.account.is_admin?
+    end
+  end
+
+  def after_to_draft(discount, transition)
+    if discount.account.present?
+      NotificationMessage.delay(:queue => 'critical').create(
+        :account => discount.account,
+        :kind => :discount_returned,
+        :messageable => discount) unless discount.account.is_admin?
+    end
   end
 end

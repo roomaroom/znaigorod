@@ -121,6 +121,7 @@ ru:
         reply_on_comment: ответил на ваш комментарий
         afisha_published: афиша опубликована
         afisha_returned: афиша возвращена на доработку
+        discount_returned: информация о скидке возвращена на доработку
         user_vote_afisha: понравилась афиша
         user_vote_comment: понравился комментарий
         user_visit_afisha: собирается на
