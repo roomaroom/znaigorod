@@ -18,6 +18,18 @@
       </a>
     <% end %>
 
+    <% if account.last_visit_at? %>
+      <a href="<%= account_path(account) %>">
+        <span class='last_visit'>
+          <% if account.last_visit_at > DateTime.now - 5.minute %>
+            сейчас на сайте
+          <% else %>
+            <%= t("account.was_online.#{account.gender}") %> онлайн <%= time_ago_in_words account.last_visit_at %> назад
+          <% end %>
+        </span>
+      </a>
+    <% end %>
+
     <%= render :partial => 'accounts/account_poster_link', :locals => { :kind => :inviter, :invited_id => account.id } %>
     <%= render :partial => 'accounts/account_poster_link', :locals => { :kind => :invited, :invited_id => account.id } %>
     <%= link_to account_path(account), class: :details do %>
