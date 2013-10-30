@@ -15,7 +15,6 @@ class Discount < ActiveRecord::Base
 
   has_many :comments,       :dependent => :destroy, :as => :commentable
   has_many :copies,         :dependent => :destroy, :as => :copyable
-  has_many :gallery_images, :dependent => :destroy, :as => :attachable
   has_many :members,        :dependent => :destroy, :as => :memberable
   has_many :messages,       :dependent => :destroy, :as => :messageable
   has_many :page_visits,    :dependent => :destroy, :as => :page_visitable

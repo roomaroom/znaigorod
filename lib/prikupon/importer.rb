@@ -11,18 +11,20 @@ class Prikupon::Importer
       set_attributes
       save_affiliated_coupon
 
-      destroy_places
-      destroy_gallery_images
+      remove_poster
+      save_poster
 
+      destroy_places
       create_places
-      create_gallery_image
     else
       build_affiliated_coupon
       set_attributes
       save_affiliated_coupon
 
+      remove_poster
+      save_poster
+
       create_places
-      create_gallery_image
     end
 
     affiliated_coupon
@@ -61,10 +63,12 @@ class Prikupon::Importer
     affiliated_coupon.price        = coupon_price
     affiliated_coupon.discount     = discount_percent
     affiliated_coupon.number       = coupons_limit
+
+    affiliated_coupon.state       = :published
   end
 
   def save_affiliated_coupon
-    affiliated_coupon.save!
+    affiliated_coupon.save! :validate => false
   end
 
   def create_places
@@ -75,16 +79,27 @@ class Prikupon::Importer
     end
   end
 
-  def create_gallery_image
+  def remove_poster
+    affiliated_coupon.poster_url       = nil
+    affiliated_coupon.poster_image_url = nil
+
+    affiliated_coupon.poster_image.destroy
+  end
+
+  def save_poster
     image_file = Tempfile.open(['affiliated_coupon', '.png']).tap do |tf|
       tf.binmode
       tf.write open(picture_big).read
     end
 
-    gallery_image = affiliated_coupon.gallery_images.create!(:file => image_file)
+    affiliated_coupon.poster_image = image_file
+    affiliated_coupon.save! :validate => false
     image_file.close!
 
-    gallery_image
+    affiliated_coupon.poster_url = affiliated_coupon.poster_image_url
+    affiliated_coupon.save! :validate => false
+
+    affiliated_coupon
   end
 
   def find_affiliated_coupon
@@ -93,9 +108,5 @@ class Prikupon::Importer
 
   def destroy_places
     affiliated_coupon.places.destroy_all
-  end
-
-  def destroy_gallery_images
-    affiliated_coupon.gallery_images.destroy_all
   end
 end
