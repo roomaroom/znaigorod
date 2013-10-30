@@ -63,7 +63,7 @@
           color: white
 
       .feeds_filter
-        .all_feeds,.show_friends,.show_afishas,.show_dialogs,.show_afisha
+        .all_feeds,.show_friends,.show_afishas,.show_dialogs,.show_afisha,.show_discounts
           +clearfix
           background-color: white
           color: black
@@ -252,7 +252,7 @@
       +clearfix
       margin: 10px 0 0 0
 
-    #messages_filter, #events_filter
+    #messages_filter, #events_filter, #discounts_filter
       padding-top: 10px
       +border-radius(0)
       +box-shadow(none)
@@ -580,6 +580,14 @@
           height: 280px
           .title
             height: 20px
+
+    .discounts_list
+      padding-top: 10px
+      li
+        width: 223px
+        margin: 0px 20px 10px 0px
+        .title
+          height: 20px
 
     .trash
       background: url('user_menu.png') no-repeat -9px -8px

@@ -11,7 +11,7 @@
 @account_afisha_remove = () ->
   $('.trash').on 'ajax:success', (evt, data) ->
     $(evt.target).closest('li').remove()
-    $('#events_filter .ui-state-default a').each (index, elem) ->
+    $('#events_filter .ui-state-default a, #discounts_filter .ui-state-default a').each (index, elem) ->
       switch elem.href.split('/').last()
         when '#all' then elem.innerHTML = "Все (#{data.all})"
         when '#draft' then elem.innerHTML = "Черновики (#{data.draft})"

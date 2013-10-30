@@ -7,6 +7,23 @@ class My::DiscountsController < My::ApplicationController
 
   custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
+  def index
+    index!{
+      @account = AccountDecorator.new(current_user.account)
+      if params[:page].nil?
+        @discounts = @account.discounts.page(1).per(12)
+      else
+        if params[:by_state].present?
+          @discounts = @account.discounts.by_state(params[:by_state]).page(params[:page]).per(12)
+          render partial: "my/discounts/discount_posters", :locals => { collection: @discounts, state: params[:by_state].to_sym }, layout: false and return if request.xhr?
+        else
+          @discounts = current_user.account.discounts.page(params[:page]).per(12)
+          render partial: "my/discounts/discount_posters", :locals => { collection: @discounts, state: :all }, layout: false and return if request.xhr?
+        end
+      end
+    }
+  end
+
   def show
     @discount = DiscountDecorator.new(@discount)
   end
@@ -42,6 +59,20 @@ class My::DiscountsController < My::ApplicationController
 
     redirect_to my_discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» возвращена в черновики."
   end
+
+  def destroy
+    destroy! {
+      discounts_response = {}
+      discounts_response[:all] = current_user.account.discounts.count
+      discounts_response[:published] = current_user.account.discounts.by_state('published').count
+      discounts_response[:draft] = current_user.account.discounts.by_state('draft').count
+
+      render :json => discounts_response  and return if request.xhr?
+
+      my_root_path
+    }
+  end
+
 
   private
     alias_method :old_build_resource, :build_resource

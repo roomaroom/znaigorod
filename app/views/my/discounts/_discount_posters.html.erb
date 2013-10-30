@@ -1,0 +1,13 @@
+<% collection.each do |discount| %>
+  <li><%= render :partial => 'my/discounts/discount_poster', :locals => { :discount => discount } %></li>
+<% end %>
+
+<% unless collection.first_page? && collection.last_page? %>
+  <div class="pagination">
+    <% unless state == :all %>
+      <%= link_to '&darr;'.html_safe, my_discounts_path( by_state: state, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <% else %>
+      <%= link_to '&darr;'.html_safe, my_discounts_path( :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <% end %>
+  </div>
+<% end %>

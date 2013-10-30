@@ -1,0 +1,7 @@
+<div class="<%= discount.class.name.underscore %>">
+  <span class="price">
+    <em><%= discount.price.zero? ? 'бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
+  </span>
+  <span class="origin_price"><em><%= number_to_currency(discount.origin_price, :unit => 'р.', :precision => 0) %></em></span>
+  <span class="profit">&minus;<%= discount.discount %>%</span>
+</div>

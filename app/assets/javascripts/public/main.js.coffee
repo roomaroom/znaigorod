@@ -49,6 +49,7 @@ $ ->
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
   #init_account_pagination() if $('.content .account_show .right').length
+  init_discounts_account_tabs() if $('#discounts_filter').length
   init_account_extend() if $('.account_show').length
   init_account_social_actions() if $('.account_show, .accounts_list').length
   init_account_filter_with_avatar() if $('.filters_wrapper .account #with_avatar').length

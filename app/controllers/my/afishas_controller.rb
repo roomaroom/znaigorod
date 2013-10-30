@@ -15,12 +15,6 @@ class My::AfishasController < My::ApplicationController
       @account = AccountDecorator.new(current_user.account)
 
       @events = @account.afisha.page(1).per(15)
-
-      if request.xhr?
-        if params[:page]
-          render partial: @presenter.partial, :locals => { :afishas => nil }, layout: false and return
-        end
-      end
     }
   end
 

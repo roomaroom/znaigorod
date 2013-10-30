@@ -1,0 +1,45 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3>Скидки</h3>
+       <%= link_to 'Добавить', new_my_discount_path, class: :invitation_link if can? :new, Discount %>
+    </div>
+    <div id='discounts_filter'>
+      <ul>
+        <% %w[all draft published].each do |state| %>
+          <li><%= link_to "##{state}" do %>
+            <% unless state == 'all' %>
+              <%= t(state, count: @discounts.by_state(state).total_count) %>
+            <% else %>
+              <%= t(state, count: current_user.account.discounts.count) %>
+            <% end %>
+          <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class='content'>
+        <% %w[all draft published].each do |state| %>
+          <div id='<%= state %>' class='list'>
+            <div class='discounts_list'>
+              <% if collection.any? %>
+                <ul class='posters'>
+                  <% unless state == 'all' %>
+                    <%= render partial: 'my/discounts/discount_posters', locals: { collection: @discounts.by_state(state), state: state.to_sym } %>
+                  <% else %>
+                    <%= render partial: 'my/discounts/discount_posters', locals: { collection: @discounts, state: state.to_sym } %>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<%= render file: "my/accounts/wrapper" %>

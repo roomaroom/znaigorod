@@ -46,7 +46,7 @@
     <% end %>
   </div>
   <div class="badges">
-    <%= link_to 'Редактировать', my_afisha_show_path(afisha) %>
+    <%= link_to 'Редактировать', edit_my_afisha_path(afisha) %>
 
     <% if afisha.draft? %>
       <%= link_to "", my_afisha_path(afisha), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash' %>
