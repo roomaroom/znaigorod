@@ -17,8 +17,9 @@ Znaigorod::Application.routes.draw do
 
   get 'feedback' => 'feedback#show'
 
+  get '/cooperation'    => redirect('/services')
   get 'accounts_search' => 'accounts_search#show',         :as => :accounts_search
-  get '/cooperation' => redirect('/services')
+  get 'geo_info'        => 'geocoder#geo_info'
   get 'geocoder'        => 'geocoder#get_coordinates'
   get 'search'          => 'search#search',                :as => :search
   get 'webcams'         => 'webcams#index'

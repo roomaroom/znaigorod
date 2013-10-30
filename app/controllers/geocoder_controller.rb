@@ -12,5 +12,9 @@ class GeocoderController < ApplicationController
   def get_yamp_house_photo
     render :json => YampGeocoder.get_house_photo(params[:coords]) and return
   end
+
+  def geo_info
+    render :json => YampGeocoder.new.geo_info_for(params[:address])
+  end
 end
 
