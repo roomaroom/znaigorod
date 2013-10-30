@@ -2,9 +2,9 @@
 <div class='period'>
   <%= simple_form_for :search, :url => manage_invitations_path, :method => :get do |f| %>
     <span class='label'>С:</span>
-    <%= f.input :starts_at, :as => :date_picker, :label => false %>
+    <%= f.input :starts_at, :as => :date_picker, :label => false, :input_html => {:value => @starts_at.strftime('%d.%m.%Y')} %>
     <span class='label'>По:</span>
-    <%= f.input :ends_at, :as => :date_picker, :label => false %>
+    <%= f.input :ends_at, :as => :date_picker, :label => false, :input_html => {:value => @ends_at.strftime('%d.%m.%Y')} %>
     <%= f.submit 'Найти' %>
   <% end %>
 </div>
