@@ -1,16 +1,34 @@
 @init_discount_map = () ->
+  $.fn.get_coordinates_handler = () ->
+    $this = $(this)
+
+    address = $('.autosuggest').val()
+
+    $.ajax "/geo_info?address=#{address}",
+      type: "GET"
+      dataType: "json"
+      async: false
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log 'ERROR'
+      success: (data, textStatus, jqXHR) ->
+        $this.data('latitude', data.latitude)
+        $this.data('longitude', data.longitude)
+
   $.fn.add_click_handler = () ->
     $this = $(this)
     $this.change_organization_id_handler()
-    $this.prepare_affiche_coordenates()
+
     $this.click ->
       if $('.map_wrapper').length
         container = $('.map_wrapper')
       else
         container = $('<div class="map_wrapper" style="width:640px; height: 480px;" />').appendTo('body').hide()
-      latitude = $('.autosuggest_organization_latitude', $(this).parent())
-      longitude = $('.autosuggest_organization_longitude', $(this).parent())
-      coordinates = { 'latitude': latitude.val(), 'longitude': longitude.val() }
+
+      $this.get_coordinates_handler()
+
+      latitude = $this.data('latitude')
+      longitude = $this.data('longitude')
+
       map = null
 
       container.dialog
@@ -22,17 +40,15 @@
         width: 640
         zIndex: 700
         open: ->
-          map = container.draw_affiche_map($this, coordinates)
+          map = container.draw_affiche_map($this, latitude, longitude)
         close: ->
           $('.ymaps-map').remove()
       false
 
     true
 
-  $.fn.draw_affiche_map = (link, coordinates) ->
+  $.fn.draw_affiche_map = (link, latitude, longitude) ->
     $map = $(this)
-    latitude = coordinates.latitude || '56.488611121111'
-    longitude = coordinates.longitude || '84.952222232222'
 
     map = new ymaps.Map $map[0],
       center: [latitude, longitude]
@@ -65,6 +81,10 @@
       $('.autosuggest_organization_id', $(link).parent()).val('').change()
       $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
       $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
+      console.log $(link)
+
+      $(link).data('latitude', coordinates[1])
+      $(link).data('longitude', coordinates[2])
 
       $(link).addClass('with_coordinates')
       map.geoObjects.each (geoObject) ->
@@ -78,6 +98,9 @@
       $('.autosuggest_organization_id', $(link).parent()).val('').change()
       $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
       $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
+      $(link).data('latitude', coordinates[1])
+      $(link).data('longitude', coordinates[2])
+
       $(link).addClass('with_coordinates')
       true
 
@@ -103,22 +126,9 @@
       true
     true
 
-  $.fn.prepare_affiche_coordenates = () ->
-    return true if $('.autosuggest_organization_latitude', $(this).parent()).val().length && $('.autosuggest_organization_longitude', $(this).parent()).val().length
-    prev_fields = $(this).parent().prev('.fields:visible')
-    if prev_fields.length && $('.autosuggest_organization_latitude', prev_fields).val().length && $('.autosuggest_organization_longitude', prev_fields).val().length
-      $('.autosuggest_organization_latitude', $(this).parent()).val $('.autosuggest_organization_latitude', prev_fields).val()
-      $('.autosuggest_organization_longitude', $(this).parent()).val $('.autosuggest_organization_longitude', prev_fields).val()
-      $(this).addClass('with_coordinates')
-
-    true
-
   link = $('.choose_coordinates')
 
   link.each ->
-
     $(this).add_click_handler()
     true
-
   true
-
