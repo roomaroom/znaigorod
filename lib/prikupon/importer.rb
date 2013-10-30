@@ -6,28 +6,7 @@ class Prikupon::Importer
   end
 
   def import
-    if AffiliatedCoupon.find_by_origin_url(origin_url)
-      find_affiliated_coupon
-      set_attributes
-      save_affiliated_coupon
-
-      remove_poster
-      save_poster
-
-      destroy_places
-      create_places
-    else
-      build_affiliated_coupon
-      set_attributes
-      save_affiliated_coupon
-
-      remove_poster
-      save_poster
-
-      create_places
-    end
-
-    affiliated_coupon
+    safe_import
   end
 
   private
@@ -40,7 +19,8 @@ class Prikupon::Importer
   delegate :data, :to => :json, :prefix => true
 
   delegate :title, :description, :date_commences, :date_ends, :addresses,
-    :price_original, :coupon_price, :discount_percent, :coupons_limit, :picture_big,
+    :category_primary, :price_original, :coupon_price, :discount_percent,
+    :coupons_limit, :picture_big,
     :to => :json_data
 
   attr_accessor :affiliated_coupon
@@ -53,7 +33,7 @@ class Prikupon::Importer
   def set_attributes
     affiliated_coupon.title        = title
     affiliated_coupon.description  = description
-    affiliated_coupon.kind         = ['beauty']                # <=== FAKE
+    affiliated_coupon.kind         = [Prikupon::Categories.new(category_primary).kind]
     affiliated_coupon.origin_url   = origin_url
 
     affiliated_coupon.starts_at    = date_commences
@@ -108,5 +88,32 @@ class Prikupon::Importer
 
   def destroy_places
     affiliated_coupon.places.destroy_all
+  end
+
+  def safe_import
+    ActiveRecord::Base.transaction do
+      if AffiliatedCoupon.find_by_origin_url(origin_url)
+        find_affiliated_coupon
+        set_attributes
+        save_affiliated_coupon
+
+        remove_poster
+        save_poster
+
+        destroy_places
+        create_places
+      else
+        build_affiliated_coupon
+        set_attributes
+        save_affiliated_coupon
+
+        remove_poster
+        save_poster
+
+        create_places
+      end
+
+      affiliated_coupon
+    end
   end
 end

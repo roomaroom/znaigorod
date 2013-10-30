@@ -20,8 +20,8 @@ class Prikupon::Parser
         'description'        => 'product description text with html tags',
         'discount_percent'   => 35,
         #'picture_big'        => 'http://www.prikupon.com/images/offers/temp/city17/5/promoted/5231421720d09.5231421720d43.png',
-        'picture_big'        => 'http://www.albnews.al/wp-content/uploads/2013/08/99163-hot-girl_original.jpg',
-        #'picture_big'        => 'http://www.seriouswheels.com/pics-1960-1969/1966-Pontiac-GTO-Red-fa-t-sy.jpg',
+        #'picture_big'        => 'http://www.seriouswheels.com/pics-1960-1969/1966-Pontiac-GTO-Red-fa-t-sy.jpg',                   # <=== cool car
+        'picture_big'        => 'http://www.albnews.al/wp-content/uploads/2013/08/99163-hot-girl_original.jpg',                    # <=== hot girl
         'picture_small'      => 'http://www.prikupon.com/images/offers/temp/city17/5/regular/5231421720d09.5231421720d43.jpg?5t3',
         'price_original'     => '1000.00',
         'terms'              => 'product conditions text with html tags',

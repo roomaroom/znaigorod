@@ -6,6 +6,12 @@ module Discounts
 
     format :json
 
+    rescue_from :all do |e|
+      Airbrake.notify_or_ignore(e)
+
+      Rack::Response.new([e.message], 500, { "Content-type" => "text/error" }).finish
+    end
+
     helpers do
       def affiliated_coupon
         @affiliated_coupon ||= Prikupon::Importer.new(params[:data]).import
