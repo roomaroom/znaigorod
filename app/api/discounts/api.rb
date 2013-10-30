@@ -12,7 +12,7 @@ module Discounts
       end
 
       post do
-        PrikuponJson.new(params[:data]).discount
+        Prikupon::Importer.new(params[:data]).import
       end
     end
   end
