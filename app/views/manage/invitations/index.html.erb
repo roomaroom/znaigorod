@@ -1,0 +1,31 @@
+<h1>Статистика по личным приглашениям</h1>
+<div class='period'>
+  <%= simple_form_for :search, :url => manage_invitations_path, :method => :get do |f| %>
+    <span class='label'>С:</span>
+    <%= f.input :starts_at, :as => :date_picker, :label => false %>
+    <span class='label'>По:</span>
+    <%= f.input :ends_at, :as => :date_picker, :label => false %>
+    <%= f.submit 'Найти' %>
+  <% end %>
+</div>
+
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Согласились</th>
+        <th>Отказались</th>
+        <th>Нет ответа</th>
+        <th>Всего</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @invitations.agreed.count %></td>
+        <td><%= @invitations.disagreed.count %></td>
+        <td><%= @invitations.not_answered.count %></td>
+        <td><%= @invitations.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

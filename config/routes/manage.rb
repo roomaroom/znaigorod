@@ -52,6 +52,8 @@ Znaigorod::Application.routes.draw do
       end
     end
 
+    resources :invitations, :only => :index
+
     get 'organizations/rated' => 'organizations#index', :defaults => { :rated => true }
 
     resources :organizations do

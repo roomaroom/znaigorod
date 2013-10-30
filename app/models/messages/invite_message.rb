@@ -8,6 +8,8 @@ class InviteMessage < Message
   after_update :create_visit, :if => :agree?
 
   scope :not_answered, -> { where('agreement is NULL') }
+  scope :with_positive_answer, -> { where :agreement => :agree }
+  scope :with_negative_answer, -> { where :agreement => :disagree }
 
   has_many :notification_messages, :as => :messageable, :dependent => :destroy
 

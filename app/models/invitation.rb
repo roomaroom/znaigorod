@@ -28,10 +28,16 @@ class Invitation < ActiveRecord::Base
     :validates_presence => true,
     :message => I18n.t('activerecord.errors.messages.at_least_one_value_should_be_checked')
 
-  scope :inviter, -> { with_kind :inviter }
-  scope :invited, -> { with_kind :invited }
-  scope :without_invited, -> { where :invited_id => nil }
-  scope :with_categories, -> { without_invited.where 'category IS NOT NULL' }
+  scope :inviter,           -> { with_kind :inviter }
+  scope :invited,           -> { with_kind :invited }
+  scope :without_invited,   -> { where :invited_id => nil }
+  scope :with_invited,      -> { where 'invited_id IS NOT NULL' }
+  scope :with_categories,   -> { without_invited.where 'category IS NOT NULL' }
+  scope :agreed,            -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :agree) }
+  scope :disagreed,         -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :disagree) }
+  scope :not_answered,      -> { with_invited.joins(:invite_messages).where('messages.agreement IS NULL') }
+  scope :starts_at,              ->(date) { where('invitations.created_at > ?', date) }
+  scope :ends_at,                ->(date) { where('invitations.created_at < ?', date) }
 
   def opposite_kind
     (self.class.kind.values - [kind]).join

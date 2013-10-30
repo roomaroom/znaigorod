@@ -45,6 +45,11 @@ SimpleNavigation::Configuration.run do |navigation|
       :highlights_on => ->(){ resource_class == Post },
       :if => -> { can?(:manage, Post) }
 
+    primary.item :statistics, 'Статистика' do |statistics_item|
+      statistics_item.item :payments, 'Платежи', manage_payments_path
+      statistics_item.item :invitations, 'Приглашения', manage_invitations_path
+    end
+
     primary.item :crm, 'ЦРМ', crm_root_path,
       :highlights_on => ->(){ namespace == 'crm' },
       :if => -> { can?(:manage, :crm) } do |crm_item|
@@ -55,7 +60,6 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :tickets, 'Билеты', manage_tickets_path
-    primary.item :payments, 'Платежи', manage_payments_path
     primary.item :payments, 'Вебкамеры', manage_webcams_path
 
     primary.dom_class = 'navigation'
