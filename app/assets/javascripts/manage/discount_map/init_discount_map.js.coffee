@@ -1,8 +1,15 @@
 @init_discount_map = () ->
+  store_coordinates_handler = (link, coordinates) ->
+    $('.autosuggest_organization_id', $(link).parent()).val('').change()
+    $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
+    $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
+
+    $(link).addClass('with_coordinates')
+
   $.fn.get_coordinates_handler = () ->
     $this = $(this)
 
-    address = $('.autosuggest').val()
+    address = $('.autosuggest', $(this).parent()).val()
 
     $.ajax "/geo_info?address=#{address}",
       type: "GET"
@@ -11,8 +18,8 @@
       error: (jqXHR, textStatus, errorThrown) ->
         console.log 'ERROR'
       success: (data, textStatus, jqXHR) ->
-        $this.data('latitude', data.latitude)
-        $this.data('longitude', data.longitude)
+        coordinates = [data.latitude, data.longitude]
+        store_coordinates_handler($this, coordinates)
 
   $.fn.add_click_handler = () ->
     $this = $(this)
@@ -24,10 +31,11 @@
       else
         container = $('<div class="map_wrapper" style="width:640px; height: 480px;" />').appendTo('body').hide()
 
-      $this.get_coordinates_handler()
+      unless $('.autosuggest_organization_latitude', $this.parent()).val().length
+        $this.get_coordinates_handler()
 
-      latitude = $this.data('latitude')
-      longitude = $this.data('longitude')
+      latitude = $('.autosuggest_organization_latitude', $this.parent()).val()
+      longitude = $('.autosuggest_organization_longitude', $this.parent()).val()
 
       map = null
 
@@ -78,30 +86,19 @@
 
     map.events.add 'click', (event) ->
       coordinates = event.get('coordPosition')
-      $('.autosuggest_organization_id', $(link).parent()).val('').change()
-      $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
-      $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
-      console.log $(link)
+      store_coordinates_handler(link, coordinates)
 
-      $(link).data('latitude', coordinates[1])
-      $(link).data('longitude', coordinates[2])
-
-      $(link).addClass('with_coordinates')
       map.geoObjects.each (geoObject) ->
         if (geoObject.properties.get('id') == 'placemark')
           geoObject.geometry.setCoordinates [coordinates[0], coordinates[1]]
         true
+
       true
 
     placemark.events.add 'dragend', (event) ->
       coordinates = placemark.geometry.getCoordinates()
-      $('.autosuggest_organization_id', $(link).parent()).val('').change()
-      $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
-      $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
-      $(link).data('latitude', coordinates[1])
-      $(link).data('longitude', coordinates[2])
+      store_coordinates_handler(link, coordinates)
 
-      $(link).addClass('with_coordinates')
       true
 
     map
