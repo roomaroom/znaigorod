@@ -11,7 +11,11 @@
       <ul>
         <% %w[all draft published].each do |state| %>
           <li><%= link_to "##{state}" do %>
-            <%= t(state, count: @events.by_state(state).total_count) %>
+            <% unless state == 'all' %>
+              <%= t(state, count: @events.by_state(state).total_count) %>
+            <% else %>
+              <%= t(state, count: current_user.afisha.count) %>
+            <% end %>
           <% end %>
           </li>
         <% end %>
@@ -20,7 +24,19 @@
       <div class='content'>
         <% %w[all draft published].each do |state| %>
           <div id='<%= state %>' class='list'>
-            <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>
+            <div class='afisha_list'>
+              <% if collection.any? %>
+                <ul class='posters'>
+                  <% unless state == 'all' %>
+                    <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>
+                  <% else %>
+                    <%= render partial: 'events/account_events', locals: { collection: @events, state: state.to_sym } %>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>

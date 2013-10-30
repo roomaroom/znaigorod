@@ -57,7 +57,7 @@ class My::AfishasController < My::ApplicationController
   def destroy
     destroy! {
       afisha_response = {}
-      afisha_response[:all] = current_user.afisha.by_state('all').count
+      afisha_response[:all] = current_user.afisha.count
       afisha_response[:published] = current_user.afisha.by_state('published').count
       afisha_response[:draft] = current_user.afisha.by_state('draft').count
 

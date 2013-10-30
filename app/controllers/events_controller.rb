@@ -14,6 +14,11 @@ class EventsController < ApplicationController
   private
 
   def collection
-    @events = super.by_state(params[:by_state]).page(params[:page]).per(3)
+    if params[:by_state].present?
+      @events = super.by_state(params[:by_state]).page(params[:page]).per(15)
+    else
+      @events = current_user.account.afisha.page(params[:page]).per(15)
+    end
+    @events
   end
 end

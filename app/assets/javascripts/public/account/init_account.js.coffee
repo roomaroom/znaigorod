@@ -8,8 +8,7 @@
 
   true
 
-@init_account_extend = () ->
-
+@account_afisha_remove = () ->
   $('.trash').on 'ajax:success', (evt, data) ->
     $(evt.target).closest('li').remove()
     $('#events_filter .ui-state-default a').each (index, elem) ->
@@ -19,6 +18,9 @@
         when '#published' then elem.innerHTML = "Опубликованные (#{data.published})"
       true
 
+@init_account_extend = () ->
+
+  account_afisha_remove()
   target = $('#account_avatar')
   target.on 'change', ->
     $(this).parents('form').submit()

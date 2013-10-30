@@ -1,18 +1,13 @@
-<div class='afisha_list'>
-  <% if collection.any? %>
-    <ul class='posters'>
-      <% collection.each do |afisha| %>
-        <%= render :partial => 'events/account_event', locals: { :afisha => AfishaDecorator.new(afisha) } %>
-      <% end %>
-    </ul>
-  <% else %>
-    <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-  <% end %>
-</div>
+<% collection.each do |afisha| %>
+  <%= render :partial => 'events/account_event', locals: { :afisha => AfishaDecorator.new(afisha) } %>
+<% end %>
 
 <% unless collection.first_page? && collection.last_page? %>
   <div class="pagination">
-    <%= link_to '&uarr;'.html_safe, '#', :class => "toggler #{ 'disabled' if collection.first_page? }" %>
-    <%= link_to '&darr;'.html_safe, account_events_path(@account, by_state: state, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <% unless state == :all %>
+      <%= link_to '&darr;'.html_safe, account_events_path(@account, by_state: state, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <% else %>
+      <%= link_to '&darr;'.html_safe, account_events_path(@account, :page => collection.current_page + 1), :class => "next_page #{ 'disabled' if collection.last_page? }" %>
+    <% end %>
   </div>
 <% end %>
