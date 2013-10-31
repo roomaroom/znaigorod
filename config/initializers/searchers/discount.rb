@@ -3,7 +3,7 @@ HasSearcher.create_searcher :discounts do
 
   property :type
   property :kind
-  property :organization_id
+  property :organization_ids
 
   scope do
     with :actual, true

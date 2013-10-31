@@ -7,11 +7,10 @@ class Discount < ActiveRecord::Base
   include VkUpload
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
-                  :discount, :organization_title, :place, :organization_id,
-                  :constant, :sale, :places_attributes
+                  :discount, :organization_title, :constant, :sale,
+                  :places_attributes
 
   belongs_to :account
-  belongs_to :organization
 
   has_many :comments,       :dependent => :destroy, :as => :commentable
   has_many :copies,         :dependent => :destroy, :as => :copyable
@@ -22,6 +21,7 @@ class Discount < ActiveRecord::Base
   has_many :votes,          :dependent => :destroy, :as => :voteable
 
   has_many :accounts, :through => :members
+  has_many :organizations, :through => :places
 
   validates_presence_of :title, :description, :kind
 
@@ -32,8 +32,8 @@ class Discount < ActiveRecord::Base
 
   delegate :build, :empty?, :to => :places, :prefix => true
   after_initialize :places_build, :if => [:new_record?, :places_empty?]
-  after_save :reindex_organization
-  after_destroy :reindex_organization
+  after_save :reindex_organizations
+  after_destroy :reindex_organizations
 
   scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
 
@@ -55,7 +55,7 @@ class Discount < ActiveRecord::Base
 
     float(:rating) { total_rating }
 
-    integer :organization_id
+    integer :organization_ids, :multiple => true
 
     string(:kind, :multiple => true) { kind.map(&:value) }
     string(:type) { self.class.name.underscore }
@@ -72,9 +72,8 @@ class Discount < ActiveRecord::Base
     time :ends_at, :trie => true
   end
 
-  delegate :address, :title, :to => :organization, :allow_nil => true, :prefix => true
   def address
-    "#{organization_title} #{organization_address}"
+    places.pluck(:address).join(' ')
   end
   alias_method :address_ru, :address
 
@@ -109,17 +108,13 @@ class Discount < ActiveRecord::Base
     constant? ? true : ends_at > Time.zone.now
   end
 
-  def reindex_organization
-    if old_organization = Organization.find_by_id(organization_id_was)
-      old_organization.delay.index
-      old_organization.delay.index_suborganizations
-    end
-
-    if organization
+  def reindex_organizations
+    organizations.each do |organization|
       organization.delay.index
       organization.delay.index_suborganizations
     end
   end
+  alias_method :sunspot_index, :reindex_organizations
 
   def ready_for_publication?
     title.present? && description.present? && poster_image_url? && draft?

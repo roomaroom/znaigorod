@@ -183,9 +183,9 @@ class DiscountsPresenter
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|
-      params[:type]            = type_filter.selected
-      params[:kind]            = kind_filter.selected
-      params[:organization_id] = Parameters.instance.organization_id if Parameters.instance.organization_id?
+      params[:type]             = type_filter.selected
+      params[:kind]             = kind_filter.selected
+      params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
     end
   end
 

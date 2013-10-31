@@ -69,7 +69,8 @@ class Organization < ActiveRecord::Base
   ### Payments ===>
 
   has_many :afisha,       :through => :showings, :uniq => true
-  has_many :discounts,      :dependent => :destroy
+  has_many :discounts,      :dependent => :destroy, :through => :places, :source => :placeable, :source_type => 'Discount'
+  has_many :places
   has_many :halls,          :dependent => :destroy
   has_many :organizations
   has_many :schedules,      :dependent => :destroy
