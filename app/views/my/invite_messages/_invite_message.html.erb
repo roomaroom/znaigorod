@@ -15,7 +15,7 @@
     </div>
     <div class="right_wrapper">
       <%= link_to invite_message.opponent_of(current_user.account), account_path(invite_message.opponent_of(current_user.account)) %>, <span class='date'><%= l invite_message.created_at, :format => '%e %B %Y, %H:%M' %></span>
-      <%= link_to "К диалогу", my_dialog_path(invite_message.opponent_of(current_user.account)), class: "to_dialog dialog_#{invite_message.opponent_of(current_user.account).id}", remote: true %>
+      <%= link_to "К диалогу", my_dialogs_path(:anchor => "dialog_#{invite_message.opponent_of(current_user.account).id}"), class: "to_dialog dialog_#{invite_message.opponent_of(current_user.account).id}" %>
 
       <div>
         <%= t "invite_message.#{invite_message.relation_at(current_user.account)}.#{invite_message.opponent_of(current_user.account).gender}.#{invite_message.messageable.kind}" %>

@@ -3,6 +3,6 @@
     <ul>
       <%= render :partial => 'my/invite_messages/invite_message', :collection => current_user.account.received_invite_messages.not_answered.includes(:messageable) %>
     </ul>
-    <center><%= link_to 'Перейти к списку приглашений', my_root_path(:anchor => :to_invites), :class => :button %></center>
+    <center><%= link_to 'Перейти к списку приглашений', my_invite_messages_path(), :class => :button %></center>
   </div>
 <% end %>

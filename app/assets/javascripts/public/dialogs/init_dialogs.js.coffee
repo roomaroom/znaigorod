@@ -70,7 +70,7 @@ window_scroll_init = () ->
   , 5000
   true
 
-  # меняем статус сообщения кликом на ссылку, обновляем счетчики не прочитанных сообщений
+  # меняем статус сообщения кликом на ссылку
   $('a.change_message_status.unread').on 'ajax:success', (evt, response, status, jqXHR) ->
     target = $(evt.target)
 
@@ -189,8 +189,21 @@ dialog_unbind = () ->
 
   # загрузка открытых табов при перезагрузке страницы
   load_tabs_handler = (stored) ->
+    hash = window.location.hash.replace('#','')
     stored.each (index) ->
       $("ul.dialogs a.dialog_#{index}").click()
+
+    if hash != ''
+      if $("ul.dialogs a.#{hash}").length
+        $("ul.dialogs a.#{hash}").click()
+      else
+        $.ajax
+          url: "my/dialogs/#{hash.replace('dialog_','')}"
+          success: (data, textStatus, jqXHR) ->
+              add_tab_handler data, stored
+              close_tab_handler(stored)
+            true
+    true
 
   stored = JSON.parse(window.localStorage.getItem('dialogs')) || []
 
