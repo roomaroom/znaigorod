@@ -1,8 +1,20 @@
-<%= simple_form_for [:manage, @certificate] do |f| %>
+<%= simple_nested_form_for [:manage, @certificate] do |f| %>
+  <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+
   <%= f.input :title %>
-  <%= f.input :place, :input_html => { :class => 'autosuggest' } %>
-  <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
-  <%= link_to 'Удалить организацию', '#', :remote => true, :class => 'clear_autosuggest_link' %>
+
+  <div class="place_fields">
+    <%= f.simple_fields_for :places do |pf| %>
+      <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
+      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude' } %>
+      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude' } %>
+      <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+      <%= link_to 'Указать координаты', '#', :class => 'choose_coordinates' %>
+      <%= pf.link_to_remove 'Удалить' %>
+    <% end %>
+    <%= f.link_to_add 'Добавить место проведения', :places, :onclick => 'setTimeout(function() { init_discount_map() }, 100)' %>
+  </div>
+
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :description, :required => true, :input_html => { :class => 'markitup' } %>
   <%= f.input :number if @certificate.new_record? %>
