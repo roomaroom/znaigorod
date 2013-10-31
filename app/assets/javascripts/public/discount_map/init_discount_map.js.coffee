@@ -1,4 +1,7 @@
 @init_discount_map = () ->
+  $('.place_fields').on 'nested:fieldAdded', ->
+    init_autosuggest_handler()
+
   store_coordinates_handler = (link, coordinates) ->
     $('.autosuggest_organization_id', $(link).parent()).val('').change()
     $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
