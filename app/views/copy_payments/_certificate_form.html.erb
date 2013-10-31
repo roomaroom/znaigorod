@@ -9,7 +9,7 @@
 
   <div class="ticket_description_and_tickets">
     <div class="ticket_description">
-      <p><%= parent.title %> <%= "в #{parent.organization.title}" if parent.organization.present? %></p>
+      <p><%= parent.title %> <%= "в #{parent.places.first.organization.title}" if parent.places.first.organization.present? %></p>
     </div>
   </div>
 </div>
