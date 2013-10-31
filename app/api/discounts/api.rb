@@ -24,11 +24,11 @@ module Discounts
 
     resource :discounts do
       params do
-        requires :data
+        requires :data, :type => String
       end
 
       post do
-        { :url =>  url }
+        url
       end
     end
   end

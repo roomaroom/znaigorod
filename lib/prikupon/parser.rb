@@ -1,7 +1,7 @@
 class Prikupon::Parser
   attr_reader :json
 
-  def initialize(data = stub_data)
+  def initialize(data)
     @json = Hashie::Mash.new(JSON.parse(data))
   end
 
