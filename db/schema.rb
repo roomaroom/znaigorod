@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029053540) do
+ActiveRecord::Schema.define(:version => 20131031025702) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -313,17 +313,13 @@ ActiveRecord::Schema.define(:version => 20131029053540) do
     t.string   "payment_system"
     t.string   "state"
     t.text     "origin_url"
-    t.integer  "organization_id"
     t.integer  "account_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.boolean  "constant"
     t.boolean  "sale",                      :default => false
     t.text     "poster_vk_id"
-    t.string   "place"
   end
-
-  add_index "discounts", ["organization_id"], :name => "index_discounts_on_organization_id"
 
   create_table "entertainments", :force => true do |t|
     t.text     "category"
