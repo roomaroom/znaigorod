@@ -119,6 +119,14 @@ class Discount < ActiveRecord::Base
   def ready_for_publication?
     title.present? && description.present? && poster_image_url? && draft?
   end
+
+  def has_member_for?(account)
+    members.where(:account_id => account).any?
+  end
+
+  def member_for(account)
+    members.find_by_account_id(account)
+  end
 end
 
 # == Schema Information

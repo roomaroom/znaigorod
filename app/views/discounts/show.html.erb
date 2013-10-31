@@ -9,7 +9,7 @@
 <% content_for :meta_keywords, @discount.meta_keywords %>
 <% content_for :meta_description, @discount.meta_description %>
 
-<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+<%# content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
 
 <div class="discount_show">
   <div class="left">
@@ -24,42 +24,7 @@
       <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
     </div>
 
-    <div class="social_actions">
-      <div class="action">
-        <% if @discount.free? %>
-          <%= link_to 'Участвовать',
-              discount_members_path(@discount),
-              :class => 'participate share_to_vk',
-              :method => :post,
-              :remote => true,
-              :onClick => 'share_on_click(this);',
-              'data-owner_id' => current_user.try(:vk_uid),
-              'data-message' => "Участвую в \"#{@discount.title}\"",
-              'data-attachments' => data_attachments(@discount) %>
-
-        <% elsif @discount.price.zero? %>
-          <%= link_to 'Участвовать', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true %>
-        <% else %>
-          <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'payment_link participate', :remote => true %>
-        <% end %>
-      </div>
-
-      <% unless @discount.constant? %>
-        <% if @discount.goes_now? %>
-          <div class="counter">
-            <h2>До завершения осталось</h2>
-            <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
-          </div>
-        <% elsif @discount.will_goes? %>
-          <div class="counter">
-            <h2>До начала осталось</h2>
-            <div class="countdown" data-countdown_time="<%= @discount.countdown_time %>"></div>
-          </div>
-        <% end %>
-      <% end %>
-
-      <%= render :partial => 'members/members' %>
-    </div>
+    <%= render :partial => 'members/social_block', :locals => { :discount => @discount } %>
   </div>
 
   <div class="right">
@@ -130,7 +95,7 @@
     </div>
 
     <div class="share_and_likes">
-      <%= render :partial => 'commons/share_this', :locals => { :url => discount_path(@discount.model) } %>
+      <%#= render :partial => 'commons/share_this', :locals => { :url => discount_path(@discount.model) } %>
     </div>
 
     <div class="tags_and_visits">

@@ -3,7 +3,7 @@ class MembersController < ApplicationController
 
   load_and_authorize_resource
 
-  actions :index, :create
+  actions :index, :create, :destroy
 
   belongs_to :discount, :optional => true
 
@@ -20,7 +20,14 @@ class MembersController < ApplicationController
   def create
     create! {
       @members = parent.members.page(params[:page]).per(3)
-      render :partial => 'members', :locals => { :members => @members } and return
+      render :partial => 'social_block', :locals => { :discount => DiscountDecorator.new(parent) } and return
+    }
+  end
+
+  def destroy
+    destroy! {
+      @members = parent.members.page(params[:page]).per(3)
+      render :partial => 'social_block', :locals => { :discount => DiscountDecorator.new(parent) } and return
     }
   end
 

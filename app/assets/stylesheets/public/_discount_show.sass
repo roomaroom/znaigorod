@@ -51,17 +51,15 @@
             top: 45%
             width: 90%
 
-    .action
-      text-align: center
-      margin: 10px 0
+    .user_actions
+      font-size: 12px
+      padding: 0 5px 0.1px
 
-      .participate
-        +button-style
-        font-size: 12px
-        padding: 4px 15px 5px
-
-        &:active
-          padding: 5px 15px 4px
+      li
+        +toggable-links(4px, 5px)
+        width: 160px
+        text-align: center
+        margin: 0 auto 5px
 
     .counter
       +background(linear-gradient(top, #fff, #e8e8e8))

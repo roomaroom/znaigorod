@@ -1,0 +1,30 @@
+<% if discount.has_member_for?(current_user.account) %>
+  <% if discount.price.nil? %>
+    <li class="selected">
+      <%= link_to 'Участвовать', [discount, discount.member_for(current_user.account)], :method => :delete, :remote => true, :class => 'participate' %>
+    </li>
+  <% end %>
+<% else %>
+  <% if discount.price.nil? %>
+    <li>
+      <%= link_to 'Участвовать',
+        discount_members_path(discount),
+        :class => 'participate share_to_vk',
+        :method => :post,
+        :remote => true,
+        :onClick => 'share_on_click(this);',
+        'data-owner_id' => current_user.try(:vk_uid),
+        'data-message' => "Участвую в \"#{discount.title}\"",
+        'data-attachments' => data_attachments(discount) %>
+    </li>
+  <% elsif discount.price.zero? %>
+    <li>
+      <%= link_to 'Участвовать', new_discount_copy_payment_path(discount), :class => 'payment_link participate', :remote => true %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'Купить', new_discount_copy_payment_path(discount), :class => 'payment_link participate', :remote => true %>
+    </li>
+  <% end %>
+<% end %>
+

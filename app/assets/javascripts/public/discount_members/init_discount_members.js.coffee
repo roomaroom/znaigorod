@@ -22,4 +22,5 @@
       return false
 
     if target.hasClass('participate')
-      $('.members').replaceWith(response)
+      $('.social_actions').replaceWith(response)
+      init_countdown()
