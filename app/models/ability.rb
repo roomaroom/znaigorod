@@ -32,6 +32,10 @@ class Ability
       user.persisted? && (invite_message.invited == user.account || invite_message.account == user.account)
     end
 
+    can [:create, :destroy], Member do |member|
+      user.persisted? && member.account == user.account
+    end
+
     case namespace
     when 'manage'
       can :manage, Afisha if user.is_afisha_editor?
