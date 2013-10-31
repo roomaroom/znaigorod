@@ -28,7 +28,7 @@ Znaigorod::Application.routes.draw do
   resources :saunas, :only => :index
   get '/saunas/sauny', :to => redirect('/saunas')
 
-  Organization.basic_suborganization_kinds.each do |kind|
+  (Organization.basic_suborganization_kinds << :billiard).each do |kind|
     resources kind.pluralize, :only => [] do
       resources :sms_claims, :only => [:new, :create]
     end
