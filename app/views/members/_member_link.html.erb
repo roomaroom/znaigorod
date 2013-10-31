@@ -1,4 +1,4 @@
-<% if discount.has_member_for?(current_user.account) %>
+<% if current_user && discount.has_member_for?(current_user.account) %>
   <% if discount.price.nil? %>
     <li class="selected">
       <%= link_to 'Участвовать', [discount, discount.member_for(current_user.account)], :method => :delete, :remote => true, :class => 'participate' %>
