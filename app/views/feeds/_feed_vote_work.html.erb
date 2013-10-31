@@ -1,7 +1,9 @@
 <div class='poster'>
-  <%= link_to [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable] do %>
-    <%= image_tag(resized_image_url(feed_vote_work.feedable.voteable.image_url, 100 , 100 ),
-                  :size => '100x100')  %>
+  <% if feed_vote_work.feedable.voteable.image_url.present? %>
+    <%= link_to [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable] do %>
+      <%= image_tag(resized_image_url(feed_vote_work.feedable.voteable.image_url, 100 , 100 ),
+                    :size => '100x100')  %>
+    <% end %>
   <% end %>
 </div>
 

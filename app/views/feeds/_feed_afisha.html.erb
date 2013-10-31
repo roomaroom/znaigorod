@@ -1,7 +1,12 @@
 <div class='poster'>
   <%= link_to feed_afisha.feedable do %>
-    <%= image_tag(resized_image_url(feed_afisha.feedable.poster_url, 100 , 135),
-                  :size => '100x135', :alt => feed_afisha.feedable.title) %>
+    <% if feed_afisha.feedable.poster_url.present? %>
+      <%= image_tag(resized_image_url(feed_afisha.feedable.poster_url, 100 , 135),
+                    :size => '100x135', :alt => feed_afisha.feedable.title) %>
+    <% else %>
+      <%= image_tag(resized_image_url('public/stub_poster.png', 100 , 135),
+                    :size => '100x135', :alt => feed_afisha.feedable.title) %>
+    <% end %>
   <% end %>
 </div>
 
