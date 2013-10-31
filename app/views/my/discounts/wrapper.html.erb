@@ -1,4 +1,6 @@
 <div class="my_wrapper">
+  <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <% if content_for?(:help) %>

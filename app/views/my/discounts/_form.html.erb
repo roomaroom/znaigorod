@@ -5,7 +5,6 @@
   <% end %>
 
   <div class="form_wrapper discount">
-    <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
     <%= render :partial => "my/discounts/form_#{resource.class.name.underscore}" %>
   </div>
   <div class="preview">
