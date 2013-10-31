@@ -8,7 +8,7 @@
 <div class="main">
   <div class='time'><%= time_ago_in_words(feed_member.created_at) %> назад</div>
 
-    <% if current_user.present? && current_user.account.id == feed_member.feedable.memberable.account.id %>
+    <% if current_user.present? && current_user.account.id == feed_member.feedable.account_id %>
       <div class='type'>
       <% if feed_member.feedable.memberable.class.name == "Discount" %>
         Учавствую в скидке
@@ -22,14 +22,14 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to feed_member.feedable.memberable.account do %>
-        <%= image_tag(resized_image_url(feed_member.feedable.memberable.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_member.feedable.memberable.account.title) %>
+      <%= link_to feed_member.feedable.account do %>
+        <%= image_tag(resized_image_url(feed_member.feedable.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_member.feedable.account.title) %>
       <% end %>
     </div>
     <div class='type'>
-      <%= link_to feed_member.feedable.memberable.account.title, feed_member.feedable.memberable.account %>
-      <%= t "account.took_#{feed_member.feedable.memberable.class.name.underscore}.#{feed_member.feedable.memberable.account.gender}" %>
+      <%= link_to feed_member.feedable.account.title, feed_member.feedable.account %>
+      <%= t "account.took_#{feed_member.feedable.memberable.class.name.underscore}.#{feed_member.feedable.account.gender}" %>
     </div>
   <% end %>
 

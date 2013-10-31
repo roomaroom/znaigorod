@@ -91,7 +91,11 @@ class Account < ActiveRecord::Base
     feeds = [nil]
     friends.each do |friend|
       if friend.friendly?
-        feeds = feeds.concat(friend.friendable.feeds.where(search))
+        if search[:feedable_type] == 'Discount'
+          feeds = feeds.concat(friend.friendable.feeds.discount_or_member)
+        else
+          feeds = feeds.concat(friend.friendable.feeds.where(search))
+        end
       end
     end
     feeds.compact!

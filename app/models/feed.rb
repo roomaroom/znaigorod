@@ -3,8 +3,15 @@ class Feed < ActiveRecord::Base
   belongs_to :feedable, :polymorphic => true
   belongs_to :account
 
+  scope :discount_or_member,  -> {where("feedable_type = 'Member' OR feedable_type = 'Discount'")}
+
   def self.feeds_for_presenter(searcher_params)
-    self.where(searcher_params).includes(:feedable).order('created_at DESC')
+    if searcher_params[:feedable_type] == 'Discount'
+      searcher_params.delete(:feedable_type)
+      self.discount_or_member.where(searcher_params).includes(:feedable).order('created_at DESC')
+    else
+      self.where(searcher_params).includes(:feedable).order('created_at DESC')
+    end
   end
 
   def self.feeds_for_state_machine(elem)

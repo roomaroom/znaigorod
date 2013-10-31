@@ -44,11 +44,19 @@ class FeedsPresenter
   end
 
   def collection
+    public_feed()
+    private_feed()
+    @feed
+  end
 
+  def public_feed
     if public_feed?
       @feed ||= Kaminari.paginate_array(Feed.feeds_for_presenter(@searcher_params)).page(@page).per(@per_page)
+      return @feed
     end
+  end
 
+  def private_feed
     if private_feed?
       if @activity_filter.of_friends?
         @feed ||= Kaminari.paginate_array(Account.find(@account_id).friends_feeds(@searcher_params)).page(@page).per(@per_page)
@@ -57,27 +65,30 @@ class FeedsPresenter
         @feed ||= Kaminari.paginate_array(Feed.feeds_for_presenter(@searcher_params)).page(@page).per(@per_page)
 
       else
-        friends_params = {}
-        if @searcher_params[:feedable_type].present?
-          friends_params[:feedable_type] = @searcher_params[:feedable_type]
-        end
-
-        friends_feeds = Account.find(@account_id).friends_feeds(friends_params)
-        my_feeds = Feed.feeds_for_presenter(@searcher_params)
-
-        @feed = friends_feeds.concat my_feeds
-        @feed.compact!
-
-        unless @feed.blank?
-          @feed = @feed.sort_by(&:created_at).reverse
-        end
-
-        @feed = Kaminari.paginate_array(@feed).page(@page).per(@per_page)
+        my_and_friends_feed()
       end
+      return @feed
+    end
+  end
+
+  def my_and_friends_feed
+    friends_params = {}
+
+    if @searcher_params[:feedable_type].present?
+      friends_params[:feedable_type] = @searcher_params[:feedable_type]
     end
 
-    @feed
+    friends_feeds ||= Account.find(@account_id).friends_feeds(friends_params)
+    my_feeds ||= Feed.feeds_for_presenter(@searcher_params)
 
+    @feed ||= friends_feeds.concat my_feeds
+    @feed.compact!
+
+    unless @feed.blank?
+      @feed = @feed.sort_by(&:created_at).reverse
+    end
+
+    @feed = Kaminari.paginate_array(@feed).page(@page).per(@per_page)
   end
 
   def searcher_params

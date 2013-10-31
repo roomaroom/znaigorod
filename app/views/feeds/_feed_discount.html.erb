@@ -8,7 +8,7 @@
 <div class="main">
   <div class='time'><%= time_ago_in_words(feed_discount.created_at) %> назад</div>
 
-  <% if current_user.present? && current_user.account.id == feed_discount.feedable.account.id %>
+  <% if current_user.present? && current_user.account.id == feed_discount.account_id %>
     <div class='type'>
       <% if feed_discount.feedable.class.name == "Discount" %>
         <%= t "account.added.#{feed_discount.feedable.account.gender}" %>
@@ -23,14 +23,14 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to feed_discount.feedable.account do %>
-        <%= image_tag(resized_image_url(feed_discount.feedable.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_discount.feedable.account.title) %>
+      <%= link_to feed_discount.account do %>
+        <%= image_tag(resized_image_url(feed_discount.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_discount.account.title) %>
       <% end %>
     </div>
     <div class='type'>
-      <%= link_to feed_discount.feedable.account.title, feed_discount.feedable.account %>
-      <%= t "account.added_#{feed_discount.feedable.class.name.underscore}.#{feed_discount.feedable.account.gender}" %>
+      <%= link_to feed_discount.account.title, feed_discount.account %>
+      <%= t "account.added_#{feed_discount.feedable.class.name.underscore}.#{feed_discount.account.gender}" %>
     </div>
   <% end %>
 
