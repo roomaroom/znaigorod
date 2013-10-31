@@ -71,6 +71,7 @@ $ ->
   init_comments() if $('.comments').length
   init_pagination_dialogs() if $('#dialogs').length
   apply_unauthorized_action()
+  process_change_message_status() if $('#notifications').length
 
   true
 

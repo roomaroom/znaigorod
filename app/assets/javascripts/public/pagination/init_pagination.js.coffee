@@ -13,7 +13,8 @@
     '.content_wrapper .posts_list ul,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
     '.content_wrapper .contest .works ul,' +
-    '.feeds > ul'
+    '.feeds > ul, ' +
+    '#notifications > ul'
   )
   first_item = $('li:first', list)
   return true unless first_item.length
@@ -67,6 +68,7 @@
           init_sms_claims() if $('.content_wrapper .sms_claims li').length && data.length
           init_payment() if $('.feeds .feed').length
           init_sauna_halls_scroll() if $('.content_wrapper .organizations_list > ul .sauna_halls').length
+          process_change_message_status() if $('#notifications').length
           true
 
     true

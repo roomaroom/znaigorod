@@ -67,7 +67,7 @@ window_scroll_init = () ->
       target.click()
     else
       clearInterval(timer)
-  , 1000
+  , 5000
   true
 
   # меняем статус сообщения кликом на ссылку, обновляем счетчики не прочитанных сообщений

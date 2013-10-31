@@ -6,7 +6,8 @@ class My::NotificationMessagesController < My::ApplicationController
 
   def index
     index! {
-      render partial: 'my/messages/messages', locals: { messages: @notification_messages }, layout: false and return
+      render partial: "my/messages/messages", locals: { messages: @notification_messages }, layout: false and return if request.xhr?
+      render template: 'my/messages/index', locals: { messages: @notification_messages } and return
     }
   end
 
