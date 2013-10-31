@@ -59,7 +59,7 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def geo_present?
-    organization_id? && !organization.latitude.blank? && !organization.longitude.blank?
+    places.any? && !places.first.latitude.blank? && !places.first.longitude.blank?
   end
 
   def similar_discount

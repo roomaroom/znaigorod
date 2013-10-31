@@ -67,10 +67,10 @@
       <% if @discount.geo_present? %>
         <div class="yandex_map">
           <div class="map"
-            data-latitude="<%= @discount.organization.latitude %>"
-            data-longitude="<%= @discount.organization.longitude %>"
-            data-hint="<%= @discount.organization.title.text_gilensize %>"
-            <%= "data-id=#{@discount.organization.id}" %>>
+            data-latitude="<%= @discount.places.first.latitude %>"
+            data-longitude="<%= @discount.places.first.longitude %>"
+            data-hint="<%= @discount.places.first.organization_id? ? @discount.places.first.organization.title : @discount.places.first.address %>"
+            <%= "data-id=#{@discount.places.first.organization_id}" if @discount.places.first.organization %>>
           </div>
         </div>
       <% end %>
