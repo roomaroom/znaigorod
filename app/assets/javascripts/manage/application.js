@@ -15,9 +15,9 @@
  * = require file_upload
  * = require jcrop
  * = require markitup
+ * = require public/discount_map
  * = require ./info_plugin
  * = require ./choose_file
- * = require ./discount_map
  * = require ./geocoder
  * = require ./choose_coordinate
  * = require ./vk_token

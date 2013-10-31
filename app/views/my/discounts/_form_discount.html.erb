@@ -1,4 +1,4 @@
-<%= simple_form_for [:my, resource] do |f| %>
+<%= simple_nested_form_for [:my, resource] do |f| %>
   <%= f.input :kind, :as => :check_boxes %>
   <%= f.input :title, :input_html => { :class => 'preview_title wide_input' } %>
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
@@ -19,9 +19,15 @@
   </div>
 
   <div class="organization_wrapper">
-    <%= f.input :place, :input_html => { :class => 'autosuggest wide_input' } %>
-    <%= f.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
-    <%= link_to 'Удалить', '#', :remote => true, :class => 'clear_autosuggest_link' %>
+    <%= f.simple_fields_for :places do |pf| %>
+      <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
+      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude' } %>
+      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude' } %>
+      <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+      <%= link_to 'Указать координаты', '#', :class => 'choose_coordinates' %>
+      <%= pf.link_to_remove 'Удалить' %>
+    <% end %>
+    <%= f.link_to_add 'Добавить место проведения', :places, :onclick => 'setTimeout(function() { init_discount_map() }, 100)' %>
   </div>
 
   <div class="submit">

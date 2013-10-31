@@ -87,4 +87,6 @@ $(window).load ->
 
   init_countdown() if $('.countdown').length
 
+  init_discount_map() if $('.discount').length
+
   true

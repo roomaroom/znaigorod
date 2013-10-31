@@ -83,6 +83,7 @@
  * = require ./sms_claims
  * = require ./my_afisha
  * = require ./select_tags
+ * = require ./discount_map
  * = require ./features
  * = require ./invitations
  * = require ./invitation_list_popup
