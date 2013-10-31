@@ -63,7 +63,7 @@
           color: white
 
       .feeds_filter
-        .all_feeds,.show_friends,.show_afishas,.show_dialogs,.show_afisha,.show_discounts
+        .all_feeds,.show_friends,.show_afishas,.show_dialogs,.show_afisha,.show_discounts,.show_notifications,.show_invites
           +clearfix
           background-color: white
           color: black
@@ -531,33 +531,32 @@
         padding: 6px 15px 4px
 
 .account_show
-  #messages_filter
-    #invites
-      .account_messages
-        li
-          .item
+  #invites
+    .account_messages
+      li
+        .item
+          +clearfix
+          padding-left: 45px
+
+          &.inbox
+            background: image_url('public/invite_message_type.png') no-repeat left 0
+
+          &.sended
+            background: image_url('public/invite_message_type.png') no-repeat left -100px
+
+          .agreement
+            font-size: 11px
+            +grey-button-style
+            +inline-block
+            margin-right: 5px
+
+          .invite_message_actions
+            margin: 10px 0 0 0
+            span
+              color: #ff6501 !important
+
+          .right_wrapper
             +clearfix
-            padding-left: 45px
-
-            &.inbox
-              background: image_url('public/invite_message_type.png') no-repeat left 0
-
-            &.sended
-              background: image_url('public/invite_message_type.png') no-repeat left -100px
-
-            .agreement
-              font-size: 11px
-              +grey-button-style
-              +inline-block
-              margin-right: 5px
-
-            .invite_message_actions
-              margin: 10px 0 0 0
-              span
-                color: #ff6501
-
-            .right_wrapper
-              +clearfix
 
 .account_show
   .right

@@ -52,12 +52,20 @@
               <span>Скидки</span>
             </a>
           </div>
-          <div class="show_discounts <%= "selected" if params[:controller] == "my/notification_messages" %>">
+          <div class="show_notifications <%= "selected" if params[:controller] == "my/notification_messages" %>">
             <a href="<%= my_notification_messages_path() %>">
               <% if current_user.account.notification_messages.count > 0 %>
                 <span id="afisha_counter"><%= current_user.account.notification_messages.count %></span>
               <% end %>
               <span>Уведомления</span>
+            </a>
+          </div>
+          <div class="show_invites <%= "selected" if params[:controller] == "my/invite_messages" %>">
+            <a href="<%= my_invite_messages_path() %>">
+              <% if current_user.account.invite_messages.count > 0 %>
+                <span id="afisha_counter"><%= current_user.account.received_invite_messages.count + current_user.account.invite_messages.count %></span>
+              <% end %>
+              <span>Приглашения</span>
             </a>
           </div>
         </div>

@@ -3,7 +3,14 @@ class My::InviteMessagesController < My::ApplicationController
 
   actions :update, :show, :index
 
-  layout false
+  #layout false
+
+  def index
+    index!{
+      render partial: "my/invite_messages/invite_messages", layout: false and return if request.xhr?
+      render template: 'my/invite_messages/index' and return
+    }
+  end
 
   def update
     update! do
@@ -18,11 +25,11 @@ class My::InviteMessagesController < My::ApplicationController
   end
 
   def collection
-    @invite_messages = Kaminari.paginate_array([super, begin_of_association_chain.received_invite_messages].flatten.sort_by(&:created_at).reverse!).page(params[:page]).per(5)
+    @invite_messages = Kaminari.paginate_array([super, begin_of_association_chain.received_invite_messages].flatten.sort_by(&:created_at).reverse!).page(params[:page]).per(15)
   end
 
   def begin_of_association_chain
-    #authorize! current_user, InviteMessage.new(producer: current_user.try(:account))
+    #authorize! current_user, invitemessage.new(producer: current_user.try(:account))
     current_user.account
   end
 end

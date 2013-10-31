@@ -75,43 +75,8 @@ window_scroll_init = () ->
     target = $(evt.target)
 
     target.closest('li').replaceWith(response)
-    init_messages_counters(response)
 
   true
-
-# Получеам из респонса дата-атрибуты для обновления счетчиков не прочитанных сообщений
-# для диалогов, приглашений, уведомлений и общего счетчика не прочитанных сообщений
-@init_messages_counters = (response) ->
-  counter = $(response).data('counter')
-  messages = $(response).data('messages')
-  dialog_counter = $(response).data('dialog_counter')
-  invite_counter = $(response).data('invite_counter')
-  notification_counter = $(response).data('notification_counter')
-
-  link = $('.header .messages a')
-
-  if counter == 0
-    link.addClass('empty').removeClass('new').attr('title','Нет новых сообщений').html(messages)
-  else
-    link.addClass('unread').removeClass('empty').attr('title','Есть новые сообщения').html("+#{counter}")
-
-  notification = $('#messages_filter a.notifications')
-  if notification_counter == 0
-    notification.html('Уведомления')
-  else
-    notification.html("Уведомления +#{notification_counter}")
-
-  dialog = $('#messages_filter a.dialogs')
-  if dialog_counter == 0
-    dialog.html('Диалоги')
-  else
-    dialog.html("Диалоги +#{dialog_counter}")
-
-  invite = $('#messages_filter a.invites')
-  if invite_counter == 0
-    invite.html('Приглашения')
-  else
-    invite.html("Приглашения +#{invite_counter}")
 
 # Табы jQuery-UI
 @init_messages_tabs = () ->
@@ -193,9 +158,6 @@ dialog_unbind = () ->
     # меняем статус сообщений на прочитанные в табе #dialogs
     process_change_message_status()
 
-    # пересчет счетчиков
-    init_messages_counters(response)
-
     scroll($('ul.dialog', "#dialog_#{account_id}"))
 
   # обработка закрытия таба
@@ -268,9 +230,6 @@ dialog_unbind = () ->
 
       target.closest('li').replaceWith(response)
 
-      # пересчет счетчиков
-      init_messages_counters(response)
-
   true
 
 
@@ -284,9 +243,6 @@ dialog_unbind = () ->
     klass = $('li', wrapper).attr('class').replace('ajax_message_status', '').replace('unread', '').replace('read', '').compact()
     $("#notifications .#{klass}").removeClass('unread').addClass('read')
     wrapper.remove()
-
-    # пересчет счетчиков
-    init_messages_counters(response)
 
   true
 

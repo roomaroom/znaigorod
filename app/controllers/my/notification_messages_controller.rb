@@ -22,7 +22,7 @@ class My::NotificationMessagesController < My::ApplicationController
   private
 
   def collection
-    @notification_messages = super.page(params[:page]).per(5)
+    @notification_messages = super.page(params[:page]).per(15)
   end
 
   def begin_of_association_chain
