@@ -14,19 +14,13 @@
           <div class="all_feeds <%= "selected" if params[:controller] == "my/accounts" && (params[:activity].nil? || params[:activity] == "all") %>">
             <%= link_to content_tag(:span, 'Активность'), my_account_path() %>
           </div>
-            <div class="sub_filter">
-              <div class="my_feeds <%= "selected" if params[:activity].present? && params[:activity] == "my" %>">
-                <%= link_to content_tag(:span, 'Моя активность'), my_account_path(:activity => "my") %>
-              </div>
-              <div class="friends_feeds <%= "selected" if params[:activity].present? && params[:activity] == "friends" %>">
-                <%= link_to content_tag(:span, 'Активность моих друзей'), my_account_path(:activity => "friends") %>
-              </div>
+          <div class="sub_filter">
+            <div class="my_feeds <%= "selected" if params[:activity].present? && params[:activity] == "my" %>">
+              <%= link_to content_tag(:span, 'Моя активность'), my_account_path(:activity => "my") %>
             </div>
-          <div class="show_friends <%= "selected" if params[:controller] == "my/friends" %>">
-            <a href="<%= my_account_friends_path() %>">
-              <span id="friends_counter"><%= current_user.account.friends_count %></span>
-              <span>Друзья</span>
-            </a>
+            <div class="friends_feeds <%= "selected" if params[:activity].present? && params[:activity] == "friends" %>">
+              <%= link_to content_tag(:span, 'Активность моих друзей'), my_account_path(:activity => "friends") %>
+            </div>
           </div>
           <div class="show_dialogs <%= "selected" if params[:controller] == "my/dialogs" %>">
             <a href="<%= my_dialogs_path() %>">
@@ -34,6 +28,28 @@
                 <span id="dialogs_counter">+<%= current_user.account.private_messages.unread.to(current_user.account).count %></span>
               <% end %>
               <span>Диалоги</span>
+            </a>
+          </div>
+          <div class="show_notifications <%= "selected" if params[:controller] == "my/notification_messages" %>">
+            <a href="<%= my_notification_messages_path() %>">
+              <% if current_user.account.notification_messages.unread.count > 0 %>
+                <span id="afisha_counter">+<%= current_user.account.notification_messages.unread.count %></span>
+              <% end %>
+              <span>Уведомления</span>
+            </a>
+          </div>
+          <div class="show_invites <%= "selected" if params[:controller] == "my/invite_messages" %>">
+            <a href="<%= my_invite_messages_path() %>">
+              <% if current_user.account.received_invite_messages.unread.count > 0 %>
+                <span id="afisha_counter">+<%= current_user.account.received_invite_messages.unread.count %></span>
+              <% end %>
+              <span>Приглашения</span>
+            </a>
+          </div>
+          <div class="show_friends <%= "selected" if params[:controller] == "my/friends" %>">
+            <a href="<%= my_account_friends_path() %>">
+              <span id="friends_counter"><%= current_user.account.friends_count %></span>
+              <span>Друзья</span>
             </a>
           </div>
           <div class="show_afisha <%= "selected" if params[:controller] == "my/afishas" %>">
@@ -50,22 +66,6 @@
                 <span id="afisha_counter"><%= current_user.account.discounts.count %></span>
               <% end %>
               <span>Скидки</span>
-            </a>
-          </div>
-          <div class="show_notifications <%= "selected" if params[:controller] == "my/notification_messages" %>">
-            <a href="<%= my_notification_messages_path() %>">
-              <% if current_user.account.notification_messages.count > 0 %>
-                <span id="afisha_counter"><%= current_user.account.notification_messages.count %></span>
-              <% end %>
-              <span>Уведомления</span>
-            </a>
-          </div>
-          <div class="show_invites <%= "selected" if params[:controller] == "my/invite_messages" %>">
-            <a href="<%= my_invite_messages_path() %>">
-              <% if current_user.account.invite_messages.count > 0 %>
-                <span id="afisha_counter"><%= current_user.account.received_invite_messages.count + current_user.account.invite_messages.count %></span>
-              <% end %>
-              <span>Приглашения</span>
             </a>
           </div>
         </div>
