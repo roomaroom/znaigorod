@@ -29,6 +29,8 @@ class Advertisement
           afisha_adv.afisha ? afisha_adv : nil
         when 'webcam'
           WebcamAdvertisementPlace.new(share_config)
+        when 'post'
+          PostAdvertisementPlace.new(share_config)
         else
           nil
         end
@@ -83,6 +85,16 @@ class Advertisement
 
     def partial
       "advertisements/#{list}_webcam_#{replaced_count}"
+    end
+  end
+
+  class PostAdvertisementPlace < AdvertisementPlace
+    def initialize(args)
+      super(args)
+    end
+
+    def partial
+      "advertisements/#{list}_widget_#{replaced_count}"
     end
   end
 end

@@ -6,6 +6,7 @@ class PostPresenter
     @page = params['page']
     @page ||= 1
     @per_page = 15
+    @advertisement = Advertisement.new(list: 'post', page: @page)
   end
 
   def kinds_links
@@ -42,7 +43,19 @@ class PostPresenter
   end
 
   def collection
-    PostDecorator.decorate searcher.paginate(:page => @page, :per_page => @per_page)
+    @collection ||= PostDecorator.decorate(searcher.paginate(:page => @page, :per_page => @per_page))
+  end
+
+  def decorated_collection
+    @decorated_collection ||= collection.tap do |arr|
+      @advertisement.places_at(@page).each do |adv|
+        arr.insert(adv.position, adv)
+      end if with_advertisement?
+    end
+  end
+
+  def with_advertisement?
+    true
   end
 
   def searcher_params

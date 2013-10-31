@@ -1,3 +1,7 @@
-<% @presenter.collection.each do |post| %>
-  <li><%= render partial: 'posts/post_poster', locals: { post: post } %></li>
+<% @presenter.decorated_collection.each do |post| %>
+  <% if post.is_a?(Advertisement::PostAdvertisementPlace) %>
+    <li><%= render partial: post.partial %></li>
+  <% else %>
+    <li><%= render partial: 'posts/post_poster', locals: { post: post } %></li>
+  <% end %>
 <% end %>

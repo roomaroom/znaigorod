@@ -13,3 +13,12 @@ afisha:
       to: '2014-01-01 00:00'
       content_type: 'webcam'
       replaced_count: 1
+
+post:
+  places:
+
+    '1.0':
+      from: '2013-10-30 00:00'
+      to: '2014-11-11 00:00'
+      content_type: 'post'
+      replaced_count: 4
