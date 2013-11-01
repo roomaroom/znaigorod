@@ -20,6 +20,7 @@ SimpleNavigation::Configuration.run do |navigation|
         afisha_item.item :showings, 'Расписание', edit_my_afisha_showing_path(@afisha, @showing) if @showing && @showing.persisted?
       end if @afisha && @afisha.persisted?
 
+      my_item.item :index, 'Добавление скидки', my_discounts_path
       my_item.item :new_discount, 'Добавление скидки', new_my_discount_path
       my_item.item :discount, @discount.title || 'Нет названия', my_discount_path(@discount) do |discount_item|
         discount_item.item :edit, 'Изменение информации', edit_my_discount_path(@discount)

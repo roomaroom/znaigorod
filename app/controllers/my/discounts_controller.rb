@@ -1,10 +1,9 @@
 # encoding: utf-8
 
 class My::DiscountsController < My::ApplicationController
-
   load_and_authorize_resource
 
-  actions :new, :create, :show, :edit, :update, :destroy
+  actions :index
   custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
   def show
