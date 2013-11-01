@@ -119,14 +119,14 @@
         .label_mins
           left: 188px
 
-    .members
+    .members, .copies
       +background(linear-gradient(top, #fff, #e8e8e8))
 
-    .members, .members_counter
+    .members, .members_counter, .copies, .copies_counter
       font-size: 12px
       position: relative
 
-    .members_counter
+    .members_counter, .copies_counter
       border-top: 1px solid #ccc
 
       h2
@@ -138,6 +138,14 @@
         background-position: 0 4px
         color: #555
         padding-left: 12px
+        position: absolute
+        right: 5px
+        top: 8px
+
+      .copies_count
+        background: transparent url(/assets/public/discount_copies.png) no-repeat
+        color: #555
+        padding-left: 18px
         position: absolute
         right: 5px
         top: 8px

@@ -235,3 +235,9 @@ ru:
     many:  "Диалоги +%{count}"
     other: "Диалоги +%{count}"
     zero:  "Диалоги"
+
+  certificate:
+    copies_title: Осталось сертификатов
+
+  coupon:
+    copies_title: Осталось купонов

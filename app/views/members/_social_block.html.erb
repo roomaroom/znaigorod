@@ -3,19 +3,20 @@
     <%= render :partial => 'members/member_link', :locals => { :discount => discount } %>
   </ul>
 
-    <% unless discount.constant? %>
-      <% if discount.goes_now? %>
-        <div class="counter">
-          <h2>До завершения осталось</h2>
-          <div class="countdown" data-countdown_time="<%= discount.countdown_time %>"></div>
-        </div>
-      <% elsif discount.will_goes? %>
-        <div class="counter">
-          <h2>До начала осталось</h2>
-          <div class="countdown" data-countdown_time="<%= discount.countdown_time %>"></div>
-        </div>
-      <% end %>
+  <% unless discount.constant? %>
+    <% if discount.goes_now? %>
+      <div class="counter">
+        <h2>До завершения осталось</h2>
+        <div class="countdown" data-countdown_time="<%= discount.countdown_time %>"></div>
+      </div>
+    <% elsif discount.will_goes? %>
+      <div class="counter">
+        <h2>До начала осталось</h2>
+        <div class="countdown" data-countdown_time="<%= discount.countdown_time %>"></div>
+      </div>
     <% end %>
+  <% end %>
 
+  <%= render :partial => 'discounts/copies', :locals => { :discount => discount } if discount.copies.for_sale.any? %>
   <%= render :partial => 'members/members' %>
 </div>
