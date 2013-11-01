@@ -15,10 +15,10 @@ class Prikupon::Importer
     parser.json.links['product:view']
   end
 
-  delegate :json, :to => :parser
+  delegate :json, :description, :terms, :supplier, :to => :parser
   delegate :data, :to => :json, :prefix => true
 
-  delegate :title, :description, :date_commences, :date_ends, :addresses,
+  delegate :title, :date_commences, :date_ends, :addresses,
     :category_primary, :price_original, :coupon_price, :discount_percent,
     :coupons_limit, :picture_big,
     :to => :json_data
@@ -43,6 +43,9 @@ class Prikupon::Importer
     affiliated_coupon.price        = coupon_price
     affiliated_coupon.discount     = discount_percent
     affiliated_coupon.number       = coupons_limit
+
+    affiliated_coupon.supplier     = supplier
+    affiliated_coupon.terms        = terms
 
     affiliated_coupon.state       = :published
   end

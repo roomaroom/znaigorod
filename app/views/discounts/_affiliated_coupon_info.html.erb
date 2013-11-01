@@ -1,10 +1,13 @@
-<% if discount.sale? %>
-  <div class="discount sale">
-    <span>Акция</span>
-  </div>
-<% else %>
-  <div class="<%= discount.class.name.underscore %>">
-    <strong>Скидка по акции</strong>
-    <span class="profit"><%= discount.discount %>%</span>
-  </div>
-<% end %>
+<div class="<%= discount.class.name.underscore %>">
+  <strong>Скидка</strong>
+  <span class="profit"><%= discount.discount %>%</span>
+
+  <% if discount.price.zero? %>
+    <span class="price free">бесплатно</span>
+  <% else %>
+    <strong>за</strong>
+    <span class="price">
+      <em><%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
+    <% end %>
+  </span>
+</div>

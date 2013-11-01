@@ -13,6 +13,8 @@ class Prikupon::Parser
     @json_data ||= json.data
   end
 
+  delegate :supplier, :to => :json
+
   delegate :title, :date_commences, :date_ends, :addresses,
     :category_primary, :price_original, :coupon_price, :discount_percent,
     :coupons_limit, :picture_big,
@@ -40,9 +42,9 @@ class Prikupon::Parser
         'date_ends'          => '2013-10-12T00:00:00+02:00',
         'description'        => '<div class="art-work"> <p><em>Антицеллюлитный массаж</em> представляет собой самый эффективный и безопасный способ борьбы с целлюлитом начальных стадий. Благодаря особым массажным техникам и интенсивному воздействию на проблемные зоны фигуры удается значительно усилить кровообращение в жировых тканях и, как результат, разрушить жировые отложения.</p><p><img class="lazy" src="/images/artwork/temp/city28/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" data-original="/images/artwork/temp/city17/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" style="height: 202px; width: 304px; display: inline;"><img class="lazy" src="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" data-original="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" style="height: 202px; width: 263px; display: inline;"></p><p><em>Классический антицеллюлитный массаж </em>является натуральным и эффективным способом моделирования фигуры и избавления от целлюлита. С его помощью Вы можете уменьшить бугристость целлюлитных зон без применения хирургических и аппаратных методик и при этом получить удовольствие!</p>            </div>',
         'discount_percent'   => 35,
-        #'picture_big'        => 'http://www.prikupon.com/images/offers/temp/city17/5/promoted/5231421720d09.5231421720d43.png',
+        'picture_big'        => 'http://www.prikupon.com/images/offers/temp/city17/5/promoted/5231421720d09.5231421720d43.png',
         #'picture_big'        => 'http://www.seriouswheels.com/pics-1960-1969/1966-Pontiac-GTO-Red-fa-t-sy.jpg',                   # <=== cool car
-        'picture_big'        => 'http://www.albnews.al/wp-content/uploads/2013/08/99163-hot-girl_original.jpg',                    # <=== hot girl
+        #'picture_big'        => 'http://www.albnews.al/wp-content/uploads/2013/08/99163-hot-girl_original.jpg',                    # <=== hot girl
         'picture_small'      => 'http://www.prikupon.com/images/offers/temp/city17/5/regular/5231421720d09.5231421720d43.jpg?5t3',
         'price_original'     => '1000.00',
         'terms'              => '<ul><li>Купон дает скидку 50% на курс из 5 процедур на антицеллюлитный массаж&nbsp;(продолжительность процедуры 50 минут)</li><li>Можно использовать несколько купонов</li><li>Обязательна предварительная запись по телефону: 8-909-544-64-55</li><li>Предъявлять VIP-карту или купон в распечатанном виде</li><li>Купоном можно воспользоваться до 30.11.2013</li></ul>',

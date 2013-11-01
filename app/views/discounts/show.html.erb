@@ -81,16 +81,32 @@
     <div class="text">
       <%= @discount.html_description %>
 
-      <% if @discount.account.present? && ![4, 13, 1936, 2303].include?(@discount.account.id) %>
+      <% if @discount.model.is_a?(AffiliatedCoupon) %>
+        <h3>Условия</h3>
+        <% if @discount.terms.any? %>
+          <ul>
+            <% @discount.terms.each do |term| %>
+              <li><%= term %></li>
+            <% end %>
+          <% end %>
+        </ul>
+
         <p class="discount_owner">
-          <span>Автор:</span>
-          <%= link_to(@discount.account.title, @discount.account) %>
+          <%= link_to image_tag(@discount.supplier.logo, :size => '50x50'), @discount.supplier.link, :target => '_blank' %>
+          <%= link_to @discount.supplier.title, @discount.supplier.link, :target => '_blank' %>
         </p>
       <% else %>
-        <p class="discount_owner">
-          <span>Автор:</span>
-          <%= link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') %>
-        </p>
+        <% if @discount.account.present? && ![4, 13, 1936, 2303].include?(@discount.account.id) %>
+          <p class="discount_owner">
+            <span>Автор:</span>
+            <%= link_to(@discount.account.title, @discount.account) %>
+          </p>
+        <% else %>
+          <p class="discount_owner">
+            <span>Автор:</span>
+            <%= link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') %>
+          </p>
+        <% end %>
       <% end %>
     </div>
 
