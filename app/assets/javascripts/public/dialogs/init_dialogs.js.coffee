@@ -203,6 +203,13 @@ dialog_unbind = () ->
               add_tab_handler data, stored
               close_tab_handler(stored)
             true
+
+    #bad way
+    setTimeout () ->
+      if $('.ui-tabs-selected a').attr('href') == "#dialogs"
+        window_scroll_init()
+    , 100
+
     true
 
   stored = JSON.parse(window.localStorage.getItem('dialogs')) || []

@@ -45,7 +45,7 @@ $ ->
   init_post_photos() if $('.post a[rel="colorbox"]').length
   init_schedule_toggle() if $('.organization_show .show_more_schedule').length
   init_photogallery() if $('.photogallery ul li').length
-  init_back_to_top() if $('nav.pagination').length
+  init_back_to_top() if $('nav.pagination').length || $('.account_show .right .feeds').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
   #init_account_pagination() if $('.content .account_show .right').length

@@ -90,7 +90,7 @@ class My::AfishasController < My::ApplicationController
     @afisha = current_user.afisha.available_for_edit.find(params[:id])
     @afisha.to_published!
 
-    redirect_to my_root_path, :notice => "Афиша «#{@afisha.title}» опубликована."
+    redirect_to my_afisha_path, :notice => "Афиша «#{@afisha.title}» опубликована."
   end
 
   def send_to_draft

@@ -29,7 +29,7 @@
           </div>
           <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
             <a href="<%= account_friends_path(@account) %>">
-              <span class="counter"><%= @account.friends_count %></span>
+              <span id="friends_counter"><%= @account.friends_count %></span>
               <span>Друзья</span>
             </a>
           </div>
