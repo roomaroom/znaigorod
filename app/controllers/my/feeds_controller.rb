@@ -8,7 +8,6 @@ class My::FeedsController < ApplicationController
   def index
     index! {
       @feeds_presenter = FeedsPresenter.new params
-      @account = current_user.account
       @feeds = @feeds_presenter.collection
       render partial: 'my/feeds/feed', :collection => @feeds and return
     }
