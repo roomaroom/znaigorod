@@ -10,6 +10,8 @@ class Discount < ActiveRecord::Base
                   :discount, :organization_title, :constant, :sale,
                   :places_attributes
 
+  belongs_to :organization # TODO: remove after merge
+
   belongs_to :account
 
   has_many :comments,       :dependent => :destroy, :as => :commentable
