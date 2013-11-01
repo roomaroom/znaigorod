@@ -134,12 +134,13 @@ dialog_unbind = () ->
   $('#messages_filter').on "tabsselect", (event, ui) ->
     if ui.panel.id == 'dialogs'
       window_scroll_init()
+      init_back_to_top()
     else
       $(window).unbind('scroll')
-      # bad way
+      # TODO bad way
       setTimeout () ->
         scroll($('ul.dialog', '#' + ui.panel.id))
-      , 100
+      , 300
 
   # обработка открытия нового таба для диалога
   add_tab_handler = (response, stored) ->
@@ -195,7 +196,11 @@ dialog_unbind = () ->
 
     if hash != ''
       if $("ul.dialogs a.#{hash}").length
-        $("ul.dialogs a.#{hash}").click()
+        # TODO bad way
+        setTimeout () ->
+          $("ul.dialogs a.#{hash}").click()
+        , 500
+
       else
         $.ajax
           url: "my/dialogs/#{hash.replace('dialog_','')}"
@@ -204,11 +209,7 @@ dialog_unbind = () ->
               close_tab_handler(stored)
             true
 
-    #bad way
-    setTimeout () ->
-      if $('.ui-tabs-selected a').attr('href') == "#dialogs"
-        window_scroll_init()
-    , 100
+    $(document).ready(window_scroll_init())
 
     true
 
