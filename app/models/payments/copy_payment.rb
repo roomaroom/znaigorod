@@ -72,7 +72,7 @@ class CopyPayment < Payment
   end
 
   def message
-    "#{paymentable.description}. " << (copies.many? ? 'Коды: ' : 'Код: ') << copies.join('; ')
+    "#{paymentable.message_for_sms}. " << (copies.many? ? 'Коды: ' : 'Код: ') << copies.join('; ')
   end
 
   def send_emails

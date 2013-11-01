@@ -22,6 +22,8 @@ class Ticket < ActiveRecord::Base
   scope :without_report, -> { where :report_sended => false }
   scope :with_emails, -> { where 'email_addressess IS NOT NULL' }
 
+  alias_attribute :message_for_sms, :description
+
   def organization
     afisha(:include => { :showings => :organizatiob }).showings.first.try(:organization)
   end
