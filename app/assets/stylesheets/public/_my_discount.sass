@@ -86,3 +86,89 @@
 
   .discount_index
 
+    .info_wrapper
+      +background(linear-gradient(top, #fff, #e8e8e8))
+      +border-radius(5px)
+      border: 1px solid #ccc
+      float: left
+      height: 219px
+      margin: 0 10px 0 0
+      padding: 12px 16px
+      width: 359px
+
+      h4
+        font-size: 14px
+        font-weight: bold
+        margin: 0 0 5px 0
+
+      p
+        font-size: 12px
+        line-height: 20px
+
+      .button
+        +button-style
+        display: block
+        font-size: 12px
+        line-height: 20px
+        margin: 0 auto
+        text-align: center
+        width: 160px
+
+      &.discount
+        position: relative
+
+        .help_image
+          background: transparent image_url('public/my_discount_help_discount.png') no-repeat
+          height: 46px
+          margin: 32px auto 30px auto
+          width: 220px
+
+        .label_discount
+          position: absolute
+          right: 108px
+          top: 178px
+
+      &.coupon
+        position: relative
+
+        .help_image
+          background: transparent image_url('public/my_discount_help_coupon.png') no-repeat
+          height: 46px
+          margin: 10px auto 30px auto
+          width: 220px
+
+        .label_discount
+          position: absolute
+          left: 128px
+          top: 178px
+
+        .label_price
+          position: absolute
+          top: 178px
+          right: 92px
+
+      &.certificate
+        margin: 0
+        position: relative
+
+        .help_image
+          background: transparent image_url('public/my_discount_help_certificate.png') no-repeat
+          height: 46px
+          margin: 32px auto 30px auto
+          width: 220px
+
+        .label_discount
+          position: absolute
+          left: 66px
+          top: 178px
+
+        .label_price
+          position: absolute
+          top: 178px
+          right: 152px
+
+        .label_certificate_price
+          position: absolute
+          top: 178px
+          right: 34px
+
