@@ -1,3 +1,7 @@
+<% content_for :advanced_filters do %>
+  <%= render :partial => 'advanced_filters' %>
+<% end %>
+
 <div class="filters_wrapper">
   <div class="filters discount">
     <div class="by_type">
@@ -24,5 +28,16 @@
         <% end %>
       </ul>
     </div>
+
+    <div class="discount_more">
+      <%= render :partial => 'discounts/discount_help' %>
+    </div>
   </div>
+
+  <% if content_for?(:advanced_filters) %>
+    <div class="more_wrapper_toggler">
+      <%= link_to 'Добавить скидку', my_discounts_path, :class => 'button' %>
+      <%= link_to '', '#', :class => 'info_button open' %>
+    </div>
+  <% end %>
 </div>

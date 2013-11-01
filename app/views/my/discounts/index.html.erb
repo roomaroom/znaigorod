@@ -1,47 +1,5 @@
 <% content_for :my_content do %>
-  <div class="discount_index">
-    <div class="info_wrapper discount">
-      <h4>Акции</h4>
-      <p>В этом разделе собраны только лучшие и актуальные предложения, акции и распродажи магазинов и заведений Томска.</p>
-
-      <div class="help_image">
-        <span class="label_discount">Размер скидки</span>
-      </div>
-
-      <%= link_to 'Добавить акцию', new_my_discount_path, :class => 'button' %>
-    </div>
-
-    <div class="info_wrapper coupon">
-      <h4>Купон</h4>
-      <p>
-        Купон &dash; это скидочный талон на покупку любого товара или получение услуг. Купив такой купон, покупатель
-        все равно должен заплатить определенную сумму за товар, но сумма будет в разы мешьшая.
-      </p>
-
-      <div class="help_image">
-        <span class="label_discount">Размер скидки</span>
-        <span class="label_price">Цена купона</span>
-      </div>
-
-      <%= link_to 'Добавить купон', new_my_coupon_path, :class => 'button' %>
-    </div>
-
-    <div class="info_wrapper certificate">
-      <h4>Сертификат</h4>
-      <p>
-        Покупатель, куповший сертификат, за товар не будет платить дополнительно. В стоимость такого вида скидки входит
-        стоимость самой покупки.
-      </p>
-
-      <div class="help_image">
-        <span class="label_discount">Размер скидки</span>
-        <span class="label_price">Цена без скидки</span>
-        <span class="label_certificate_price">Цена сертификата</span>
-      </div>
-
-      <%= link_to 'Добавить сертификат', new_my_certificate_path, :class => 'button' %>
-    </div>
-  </div>
+  <%= render :partial => 'discounts/discount_help' %>
 <% end %>
 
 <%= render :template => 'my/discounts/wrapper' %>

@@ -84,6 +84,7 @@
  * = require ./my_afisha
  * = require ./select_tags
  * = require ./discount_map
+ * = require ./discount_info_filter
  * = require ./features
  * = require ./invitations
  * = require ./invitation_list_popup
