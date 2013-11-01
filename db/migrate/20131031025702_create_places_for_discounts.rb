@@ -2,6 +2,10 @@
 
 require 'progress_bar'
 
+class Discount < ActiveRecord::Base
+  belongs_to :organization
+end
+
 class CreatePlacesForDiscounts < ActiveRecord::Migration
   def up
     discounts = Discount.all
