@@ -59,7 +59,8 @@ Znaigorod::Application.routes.draw do
     resources :certificates, :only => [:new, :create, :edit, :update]
     resources :coupons, :only => [:new, :create, :edit, :update]
 
-    resources :discounts do
+    resources :discounts, :except => :index do
+      get 'help' => 'discounts#help', :on => :collection, :as => :help
       get 'poster' => 'discounts#poster', :on => :member, :as => :poster
       put 'poster' => 'discounts#poster', :on => :member, :as => :poster
 
