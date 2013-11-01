@@ -22,10 +22,10 @@
     <%= render :partial => "my/discounts/#{discount.class.name.underscore}_info", :locals => { :discount => discount } %>
   </div>
   <div class="badges">
-    <%= link_to 'Редактировать', edit_my_discount_path(discount) %>
+    <%= link_to "", edit_my_discount_path(discount), class: 'edit_button show_tipsy', title: "Редактировать" %>
 
     <% if discount.draft? %>
-      <%= link_to "", my_discount_path(discount), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash' %>
+      <%= link_to "", my_discount_path(discount), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash show_tipsy', title: 'Удалить' %>
     <% end %>
   </div>
 </div>

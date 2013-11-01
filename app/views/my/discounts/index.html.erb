@@ -4,8 +4,17 @@
       <div class='clear'>
         <span class="panel"></span>
       </div>
-      <h3>Скидки</h3>
-       <%= link_to 'Добавить', new_my_discount_path, class: :invitation_link if can? :new, Discount %>
+      <h3>
+        <%= link_to "Скидки", new_my_discount_path, class: 'add_link' %>
+      </h3>
+      <%= link_to 'Добавить скидку', new_my_discount_path, class: :invitation_link if can? :new, Discount %>
+      <% #TODO delete after mearge %>
+      <% if false %>
+      <h3>
+        <%= link_to "Скидки", help_my_discount_path, class: 'add_link' %>
+      </h3>
+        <%= link_to 'Добавить скидку', help_my_discount_path, class: :invitation_link if can? :new, Discount %>
+      <% end %>
     </div>
     <div id='discounts_filter'>
       <ul>

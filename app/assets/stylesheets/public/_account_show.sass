@@ -189,12 +189,9 @@
       margin-bottom: 20px
       padding: 1px 10px 2px
 
-      h3
-        width: 160px
-
-        a
-          color: #fff
-          float: left
+      .add_link
+        float: left
+        color: #06c !important
 
     .votes.header
       margin-top: 10px
@@ -273,21 +270,46 @@
 
       .ui-tabs-nav
         height: 30px
+        li
+          +toggable-links
+          float: left
+          margin-right: 5px
+          &:last-child
+            margin-right: 0
 
         a
           position: relative
+          font-size: 11px
 
         .with_close
           margin: 0 15px 0 0
 
         .close
-          margin: 4px 5px 0 0
+          margin: 4px 2px 0 0
           position: absolute
           right: 0
+          background: url("dialog_close.png")  no-repeat -7px -6px
+          cursor: pointer
+          &:hover
+            background-position: -27px -6px
 
         .ui-state-active
           .close
-            background-color: #fff
+            background-position: -47px -6px
+
+          a
+            color: #fff
+            line-height: 16px
+            background-color: #f60
+            border: none
+            +box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 2px inset)
+            padding: 2px 8px 3px
+
+            &:active
+              padding: 2px 8px 3px
+
+            &:hover
+              color: white
 
     #dialogs, #notifications, #invites
       +clearfix
@@ -479,8 +501,10 @@
         padding: 12px 0 12px 10px
 
         .line
-          margin-bottom: 5px
           +clearfix
+          background: none
+          margin-bottom: 5px
+          margin-top: 0px
 
           > span,
           > div
@@ -589,15 +613,25 @@
           height: 20px
 
     .trash
-      background: url('user_menu.png') no-repeat -9px -8px
+      background: url('user_menu.png') no-repeat no-repeat -9px -8px
       float: right
       height: 11px
-      margin-right: 4px
+      margin-right: 8px
       margin-top: 4px
       width: 18px
 
       &:hover
-        background: url('user_menu.png') no-repeat -39px -8px
+        background-position: -39px -8px
+
+    .edit_button
+      background: url('edit_buttons.png') no-repeat -10px -9px
+      float: right
+      height: 11px
+      margin-top: 4px
+      width: 18px
+
+      &:hover
+        background-position: -30px -9px
 
     .accounts_list
       .badges

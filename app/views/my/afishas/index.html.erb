@@ -4,8 +4,10 @@
       <div class='clear'>
         <span class="panel"></span>
       </div>
-      <h3>Мои афиши</h3>
-       <%= link_to 'Добавить', new_my_afisha_path, class: :invitation_link if can? :new, Afisha %>
+      <h3>
+        <%= link_to "Мои афиши", new_my_afisha_path, class: 'add_link' %>
+      </h3>
+       <%= link_to 'Добавить афишу', new_my_afisha_path, class: :invitation_link if can? :new, Afisha %>
     </div>
     <div id='events_filter'>
       <ul>

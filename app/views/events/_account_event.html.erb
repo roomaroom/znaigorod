@@ -46,10 +46,10 @@
     <% end %>
   </div>
   <div class="badges">
-    <%= link_to 'Редактировать', edit_my_afisha_path(afisha) %>
+    <%= link_to "", edit_my_afisha_path(afisha), class: 'edit_button show_tipsy', title: "Редактировать" %>
 
     <% if afisha.draft? %>
-      <%= link_to "", my_afisha_path(afisha), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash' %>
+      <%= link_to "", my_afisha_path(afisha), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash show_tipsy', title: "Удалить" %>
     <% end %>
   </div>
 </div>
