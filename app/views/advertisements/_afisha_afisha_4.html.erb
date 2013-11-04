@@ -26,7 +26,7 @@
       <span class='second_line'>
         <span class='show_tipsy likes' title='Понравилось'><%= afisha.likes_count %></span>
         <span class='show_tipsy visits' title='Просмотры'><%= afisha.page_visits.count %></span>
-        <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возростное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
+        <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возрастное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
       </span>
     <% end %>
   </div>
