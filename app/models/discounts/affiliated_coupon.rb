@@ -7,4 +7,8 @@ class AffiliatedCoupon < Discount
   def actual?
     true
   end
+
+  def label_url
+    URI(origin_url).host
+  end
 end
