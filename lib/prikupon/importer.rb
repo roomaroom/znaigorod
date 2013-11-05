@@ -2,7 +2,7 @@ class Prikupon::Importer
   attr_accessor :parser
 
   def initialize(data)
-    @parser = Prikupon::Parser.new#(data)
+    @parser = Prikupon::Parser.new(data)
   end
 
   def import
