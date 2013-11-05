@@ -3,13 +3,11 @@
 class My::DiscountsController < My::ApplicationController
   load_and_authorize_resource
 
-  actions :index
+  actions :index, :update
   custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
   def show
-    show! {
-      @discount = DiscountDecorator.new(@discount)
-    }
+    @discount = DiscountDecorator.new(@discount)
   end
 
   def update
