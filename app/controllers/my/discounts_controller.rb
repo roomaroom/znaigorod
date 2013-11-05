@@ -3,7 +3,8 @@
 class My::DiscountsController < My::ApplicationController
   load_and_authorize_resource
 
-  actions :index, :update
+  actions :all, :except => :index
+
   custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
   def show
