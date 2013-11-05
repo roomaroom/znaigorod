@@ -1,4 +1,4 @@
-# pagination
+# pagination for dialogs
 page = 1
 busy = false
 list_url = ""
@@ -20,7 +20,7 @@ last_item_offset = ""
   first_item = $('li:first', list)
   return true unless first_item.length
   if first_item.siblings().length
-    last_item = first_item.siblings().last()
+    last_item = $('li:last', list)
   else
     last_item = first_item
   last_item_top = last_item.position().top
@@ -31,30 +31,31 @@ last_item_offset = ""
   true
 
 window_scroll_init = () ->
-  $(window).scroll ->
-    if ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
-      busy = true
-      search_params = ""
-      search_params = window.location.search.replace(/^\?/, "&").replace(/&page=\d+/, "")
+  if $('#dialogs').length
+    $(window).scroll ->
+      if ($(this).scrollTop() + $(this).height()) >= (last_item_top - last_item_offset) && !busy
+        busy = true
+        search_params = ""
+        search_params = window.location.search.replace(/^\?/, "&").replace(/&page=\d+/, "")
 
-      $.ajax
-        url: "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
-        beforeSend: (jqXHR, settings) ->
-          $('<li class="ajax_loading_items_indicator">&nbsp;</li>').appendTo(list)
-          true
-        complete: (jqXHR, textStatus) ->
-          $('li.ajax_loading_items_indicator', list).remove()
-          true
-        success: (data, textStatus, jqXHR) ->
-          return true if data.trim().isBlank()
-          list.append(data)
-          last_item = first_item.siblings().last()
-          last_item_top = last_item.position().top
-          page += 1
-          busy = false unless data.trim().isBlank()
-          dialog_unbind()
-          dialog_click_handler()
-          true
+        $.ajax
+          url: "#{list_url}?page=#{parseInt(page) + 1}#{search_params}"
+          beforeSend: (jqXHR, settings) ->
+            $('<li class="ajax_loading_items_indicator">&nbsp;</li>').appendTo(list)
+            true
+          complete: (jqXHR, textStatus) ->
+            $('li.ajax_loading_items_indicator', list).remove()
+            true
+          success: (data, textStatus, jqXHR) ->
+            return true if data.trim().isBlank()
+            list.append(data)
+            last_item = first_item.siblings().last()
+            last_item_top = $('li:last', list).position().top
+            page += 1
+            busy = false unless data.trim().isBlank()
+            dialog_unbind()
+            dialog_click_handler()
+            true
 
     true
 
@@ -124,6 +125,14 @@ dialog_unbind = () ->
 
   true
 
+add_disabled = () ->
+  tabs = $('.ui-state-default.ui-corner-top a')
+  for tab in tabs
+    href = tab.href.split('/').last()
+    unless href == '#dialogs'
+      $(href.replace('#', '.')).addClass 'disabled'
+  true
+
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
   # скрол в форме при открытии диалога
@@ -133,8 +142,17 @@ dialog_unbind = () ->
 
   $('#messages_filter').on "tabsselect", (event, ui) ->
     if ui.panel.id == 'dialogs'
-      window_scroll_init()
-      init_back_to_top()
+      $.ajax
+        url: "my/dialogs"
+        success: (data, textStatus, jqXHR) ->
+            $('#dialogs').find('.dialogs').html(data)
+            window_scroll_init()
+            init_back_to_top()
+            dialog_unbind()
+            dialog_click_handler()
+            add_disabled()
+            true
+          true
     else
       $(window).unbind('scroll')
       # TODO bad way

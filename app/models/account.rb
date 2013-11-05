@@ -241,7 +241,19 @@ class Account < ActiveRecord::Base
   end
 
   def dialogs
-    dialogs = (PrivateMessage.to(self).order('id DESC').map(&:producer) + PrivateMessage.from(self).order('id DESC').map(&:account)).uniq
+    #dialogs = (PrivateMessage.to(self).order('id DESC').map(&:producer) + PrivateMessage.from(self).order('id DESC').map(&:account)).uniq
+    dialogs = (PrivateMessage.to(self).includes(&:producer) + PrivateMessage.from(self).includes(&:account)).sort_by{|t| - t.created_at.to_i}
+
+    accounts = []
+    dialogs.each do |dialog|
+      if dialog.producer_id == self.id
+        accounts.push dialog.account
+      else
+        accounts.push dialog.producer
+      end
+    end
+
+    accounts.uniq
   end
 
   def invitation_for(account, kind, category, inviteable)
