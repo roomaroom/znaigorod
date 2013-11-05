@@ -18,6 +18,21 @@
 
     <div class="right">
       <div class="wrapper">
+        <% if @discount.copies.any? %>
+          <div class="copies">
+            <h2>Коды</h2>
+            <ul>
+              <% @discount.copies.each do |copy| %>
+                <li>
+                  <%= copy.code %>
+                  <%= copy.copy_payment ? copy.copy_payment.phone : '' %>
+                  <%= copy.state_text %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="public_action">
           <% if @discount.draft? %>
             <h2>Публикация скидки</h2>
