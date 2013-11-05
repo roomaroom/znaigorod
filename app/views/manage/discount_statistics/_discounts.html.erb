@@ -1,0 +1,32 @@
+<% collection.each do |item| %>
+  <li class='discount_info'>
+    <div class='poster'>
+      <% if item.poster_url? %>
+        <%= image_tag(resized_image_url(item.poster_url, 80, 60), size: '80x60') %>
+      <% else %>
+        <%= image_tag 'public/stub_poster.png', size: '80x60' %>
+      <% end %>
+    </div>
+    <div class="details">
+      <div class='title'><%= link_to item.title, manage_discount_path(item) %></div>
+      <div>
+        <span class="label">Цена сертификата (купона):</span>
+        <% if item.price? %>
+          <span class="value"><%= item.price %></span>
+        <% else %>
+          <span class="blank">Не указано</span>
+        <% end %>
+      </div>
+      <table>
+        <% copies = @state ? item.copies.send(@state) : item.copies %>
+        <% copies.each do |copy| %>
+          <tr>
+            <td class='code'><%= copy.code %></td>
+            <td class='phone'><%= copy.copy_payment ? copy.copy_payment.phone : '' %></td>
+            <td class='state'><%= copy.state_text %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </li>
+<% end %>

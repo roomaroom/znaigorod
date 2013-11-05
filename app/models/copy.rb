@@ -15,6 +15,7 @@ class Copy < ActiveRecord::Base
   scope :by_state, ->(state) { where :state => state }
 
   scope :for_tickets, -> { where :copyable_type => 'Ticket' }
+  scope :for_discounts, -> { where :copyable_type => 'Discount' }
 
   scope :for_sale, -> { by_state 'for_sale' }
   scope :reserved, -> { by_state 'reserved' }

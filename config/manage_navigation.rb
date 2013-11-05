@@ -48,6 +48,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :statistics, 'Статистика' do |statistics_item|
       statistics_item.item :payments, 'Платежи', manage_payments_path
       statistics_item.item :invitations, 'Приглашения', manage_invitations_path
+      statistics_item.item :discount_with_prices, 'Купоны', manage_discount_statistics_path
     end
 
     primary.item :crm, 'ЦРМ', crm_root_path,

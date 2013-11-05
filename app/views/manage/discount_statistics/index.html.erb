@@ -1,0 +1,42 @@
+<h2>Платные сертификаты, купоны, скидки</h2>
+
+<%= form_tag manage_discount_statistics_path, :method => :get, :class => 'search_discounts_info' do %>
+  <%= text_field_tag 'q', params[:q] %>
+  <ul>
+    <li>
+    <%= radio_button_tag :state, '', @state == nil, :id => 'state_all' %>
+    <%= label_tag 'state_all', "Все (#{Copy.for_discounts.count})" %>
+    </li>
+    <% Copy.state.options.each do |option| %>
+      <li>
+    <%= radio_button_tag :state, option.last, @state == option.last, :id => "state_#{option.last}" %>
+    <%= label_tag "state_#{option.last}", "#{option.first} (#{Copy.for_discounts.send(option.last).count})"  %>
+    </li>
+  <% end %>
+  </ul>
+  <%= submit_tag 'Найти' %>
+<% end %>
+
+  <% @grouped_discounts.each do |organization, discounts| %>
+    <% if organization %>
+      <div class='discounts with_organization'>
+        <h4><%= organization %></h4>
+        <ul class='list'>
+          <%= render :partial => 'discounts', :locals => {:collection => discounts}  %>
+        </ul>
+      </div>
+    <% else %>
+      <div class='discounts without_organization'>
+        <h4>Без организации</h4>
+        <ul class='list'>
+          <% if discounts.empty? %>
+            <span class='empty'>Нет сертификатов, купонов, скидок</span>
+          <% else %>
+            <%= render :partial => 'discounts', :locals => {:collection => discounts}  %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+<%= paginate @groups %>
