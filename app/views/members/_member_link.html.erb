@@ -25,3 +25,9 @@
     <% end %>
   </li>
 <% end %>
+
+<% if discount.is_a?(AffiliatedCoupon) %>
+  <li>
+    <%= link_to 'Купить', discount.origin_url, :target => '_blank' %>
+  </li>
+<% end %>
