@@ -15,7 +15,6 @@ $ ->
 
   init_show_tipsy() if $('.show_tipsy') && $.fn.tipsy
 
-  init_features()
   init_invitations()
   init_invitation_list_popup()
   init_additional_info()
