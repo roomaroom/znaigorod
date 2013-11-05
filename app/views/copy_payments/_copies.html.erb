@@ -1,0 +1,12 @@
+<div class="copies">
+  <h2>Коды</h2>
+  <ul>
+    <% parent.copies.each do |copy| %>
+      <li>
+        <strong><%= copy.code %></strong>
+        <%= copy.copy_payment ? copy.copy_payment.phone : '' %>
+        <%= copy.state_text %>
+      </li>
+    <% end %>
+  </ul>
+</div>
