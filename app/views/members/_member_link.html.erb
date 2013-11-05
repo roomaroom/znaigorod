@@ -16,7 +16,7 @@
   </li>
 <% end %>
 
-<% if discount.price %>
+<% if discount.copies.for_sale.any? && discount.price %>
   <li>
     <% if discount.price.zero? %>
       <%= link_to 'Получить код', new_discount_copy_payment_path(discount), :class => 'payment_link', :remote => true %>
