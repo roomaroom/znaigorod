@@ -34,7 +34,8 @@ class MembersController < ApplicationController
   protected
 
   def build_resource
-    super.account = current_user.account if current_user
+    super
+    @member.account = current_user.account if current_user
 
     @member
   end
