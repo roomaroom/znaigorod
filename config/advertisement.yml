@@ -1,13 +1,6 @@
 afisha:
   places:
 
-    '1.0':
-      from: '2013-10-11 00:00'
-      to: '2013-11-07 14:00'
-      content_type: 'afisha'
-      afisha_slug: 'operatsiya-zg-vse-na-meeting'
-      replaced_count: 4
-
     '1.4':
       from: '2013-10-10 00:00'
       to: '2014-01-01 00:00'
