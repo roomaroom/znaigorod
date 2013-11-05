@@ -8,3 +8,4 @@
     if target.hasClass('participate')
       $('.social_actions').replaceWith(response)
       init_countdown()
+      init_payment()
