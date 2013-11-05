@@ -16,6 +16,8 @@
       <% else %>
         <%= link_to 'Купить', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
       <% end %>
+    <% else %>
+      <%= link_to 'Купить', discount.origin_url, :target => '_blank', :class => :for_sale %>
     <% end %>
 
     <%= link_to discount_path(discount), :class => :details do %>
