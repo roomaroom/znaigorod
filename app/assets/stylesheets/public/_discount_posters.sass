@@ -99,7 +99,6 @@
 
         .info
           +clearfix
-          font-size: 1.2em
           letter-spacing: 0px
           height: 30px
 
@@ -107,9 +106,14 @@
             color: #f60
             font-weight: bold
             line-height: 30px
+            font-size: 12px
 
           strong
             margin: 0 0 0 10px
+            font-size: 12px
+
+          em
+            font-size: 12px
 
           .origin_price
             +left-arrow(#ececec, #fff, #000)
@@ -127,17 +131,17 @@
 
             em
               font-style: normal
-              padding: 8px 0 8px 8px
+              padding: 8px 0
 
           .profit
-            font-size: 1.1em
+            font-size: 12px
 
           .price
             +left-arrow(#009bdb, #ececec, #fff)
 
             em
               font-style: normal
-              padding: 8px 0 8px 9px
+              padding: 8px 0
 
           .coupon
             .price
@@ -158,19 +162,3 @@
 
             span
               color: #222
-
-@-moz-document url-prefix()
-  .discounts_list
-    .info
-      letter-spacing: -1px
-      font-size: 1em
-
-      .profit
-        font-size: 1em !important
-
-      .price
-        padding: 0 5px 0 0 !important
-
-      .origin_price
-        margin: 0 0 0 5px !important
-        padding: 0 5px 0 0 !important
