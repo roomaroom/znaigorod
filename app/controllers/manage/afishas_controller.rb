@@ -1,4 +1,6 @@
 class Manage::AfishasController < Manage::ApplicationController
+  load_and_authorize_resource
+
   defaults :resource_class => Afisha
 
   custom_actions :resource => [:fire_state_event, :destroy_image]

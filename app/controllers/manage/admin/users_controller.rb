@@ -1,4 +1,6 @@
 class Manage::Admin::UsersController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :index, :edit, :update, :destroy
 
   protected

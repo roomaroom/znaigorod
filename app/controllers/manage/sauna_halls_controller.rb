@@ -1,4 +1,6 @@
 class Manage::SaunaHallsController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :all, :except => :index
 
   belongs_to :organization do

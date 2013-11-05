@@ -1,4 +1,6 @@
 class Manage::InvitationsController < Manage::ApplicationController
+  load_and_authorize_resource
+
   def index
     invitations = Invitation.with_invited
     if params[:search] && params[:search]['starts_at'].present?

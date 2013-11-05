@@ -1,4 +1,6 @@
 class Manage::PoolTablesController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :all, :except => [:index, :show]
 
   belongs_to :organization do

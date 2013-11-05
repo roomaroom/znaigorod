@@ -1,4 +1,6 @@
 class Manage::GallerySocialImagesController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :new, :create, :destroy, :update, :edit
   custom_actions :collection => :destroy_all
 

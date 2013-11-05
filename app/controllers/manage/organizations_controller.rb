@@ -1,4 +1,6 @@
 class Manage::OrganizationsController < Manage::ApplicationController
+  load_and_authorize_resource
+
   belongs_to :organization, :optional => true
 
   has_scope :ordered_by_updated_at, :default => true, :type => :boolean

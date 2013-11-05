@@ -1,4 +1,6 @@
 class Manage::TicketsController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :new, :create, :edit, :update, :destroy
 
   belongs_to :afisha, optional: true

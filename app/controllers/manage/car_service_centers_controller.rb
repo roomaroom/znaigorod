@@ -1,4 +1,6 @@
 class Manage::CarServiceCentersController < Manage::ApplicationController
+  load_and_authorize_resource
+
   defaults :singleton => true
 
   actions :all, :except => :show

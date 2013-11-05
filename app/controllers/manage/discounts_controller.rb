@@ -1,4 +1,6 @@
 class Manage::DiscountsController < Manage::ApplicationController
+  load_and_authorize_resource
+
   actions :all
   custom_actions :resource => :fire_state_event
 

@@ -1,4 +1,6 @@
 class Crm::OrganizationsController < Crm::ApplicationController
+  load_and_authorize_resource
+
   actions :index, :show, :edit, :update
 
   has_scope :page, default: 1
