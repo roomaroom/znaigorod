@@ -82,7 +82,6 @@ class Copy < ActiveRecord::Base
   def inform_purchaser
     smses.create! :phone => copy_payment.phone, :message => 'Время ожидания платежа за билет истекло.'
   end
-
 end
 
 # == Schema Information

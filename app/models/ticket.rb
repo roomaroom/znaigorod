@@ -56,6 +56,10 @@ class Ticket < ActiveRecord::Base
     email_addressess.split(', ').map(&:squish)
   end
 
+  def free?
+    false
+  end
+
   private
 
   def normalize_email_addressess

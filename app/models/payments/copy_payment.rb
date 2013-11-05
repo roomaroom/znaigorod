@@ -14,7 +14,10 @@ class CopyPayment < Payment
 
   attr_accessible :email
   attr_accessor :email
+
   delegate :payment_system_rbkmoney?, :to => :paymentable
+  delegate :free?,                    :to => :paymentable, :prefix => true
+
   validate :email, :if => :payment_system_rbkmoney?
 
   before_validation :check_copies_number
@@ -24,6 +27,7 @@ class CopyPayment < Payment
   after_create :reserve_copies
   after_create :create_member, :if => [:user_id?, :paymentable_is_discount?]
   after_create :create_visit,  :if => [:user_id?, :paymentable_is_ticket?]
+  after_create :approve!, :if => :paymentable_free?
 
   attr_accessor :copy_for_sale_ids, :copies_with_seats
   attr_accessible :copy_for_sale_ids, :copies_with_seats
@@ -95,7 +99,9 @@ class CopyPayment < Payment
 
   def create_member
     member = paymentable.members.new { |member| member.account = user.account }
-    member.save!
+    member.save
+
+    true
   end
 end
 

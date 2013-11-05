@@ -10,7 +10,7 @@ class CopyPaymentsController < ApplicationController
 
   def create
     create! do |success, failure|
-      success.html { redirect_to @copy_payment.service_url and return }
+      success.html { redirect_to redirect_path and return }
     end
   end
 
@@ -21,5 +21,11 @@ class CopyPaymentsController < ApplicationController
     @copy_payment.user = current_user if current_user
 
     @copy_payment
+  end
+
+  def redirect_path
+    return discount_path(parent) if parent.free? && parent.is_a?(Discount)
+
+    @copy_payment.service_url
   end
 end

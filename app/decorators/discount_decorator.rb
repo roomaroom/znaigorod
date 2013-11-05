@@ -41,10 +41,6 @@ class DiscountDecorator < ApplicationDecorator
     end
   end
 
-  def free?
-    return true if price.nil?
-  end
-
   def human_place
     results = ''
     places.each do |place|

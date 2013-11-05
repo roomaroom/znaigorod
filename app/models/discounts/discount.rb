@@ -136,6 +136,10 @@ class Discount < ActiveRecord::Base
   def member_for(account)
     members.find_by_account_id(account)
   end
+
+  def free?
+    price? ? price.zero? : true
+  end
 end
 
 # == Schema Information
