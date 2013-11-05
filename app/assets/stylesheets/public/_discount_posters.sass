@@ -98,14 +98,15 @@
               display: block
 
         .info
+          +clearfix
           font-size: 1.2em
           letter-spacing: 0px
+          height: 30px
 
           span
             color: #f60
             font-weight: bold
             line-height: 30px
-            vertical-align: middle
 
           strong
             margin: 0 0 0 10px
@@ -129,7 +130,7 @@
               padding: 8px 0 8px 8px
 
           .profit
-            font-size: 1.25em
+            font-size: 1.1em
 
           .price
             +left-arrow(#009bdb, #ececec, #fff)
@@ -144,6 +145,13 @@
 
           .certificate
             float: right
+
+            span
+              +inline-block
+
+          .affiliated_coupon
+            .price
+              +left-arrow(#009bdb, #fff, #fff)
 
           .sale
             text-align: center
