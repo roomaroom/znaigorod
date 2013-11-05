@@ -203,15 +203,13 @@
           </div>
         </div>
 
-        <% if current_user && current_user.is_admin? %>
-          <div class="discounts_list">
-            <ul class="posters">
-              <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.collection } %>
-            </ul>
-          </div>
+        <div class="discounts_list">
+          <ul class="posters">
+            <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.collection } %>
+          </ul>
+        </div>
 
-          <%= paginate @discount_presenter.collection %>
-        <% end %>
+        <%= paginate @discount_presenter.collection %>
       </div>
     <% end %>
 
