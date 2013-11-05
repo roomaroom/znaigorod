@@ -53,7 +53,8 @@ class Discount < ActiveRecord::Base
   alias_attribute :description_ru, :description
 
   searchable do
-    boolean(:actual) { actual? }
+    boolean(:actual)          { actual? }
+    boolean(:copies_for_sale) { copies_for_sale? }
 
     time :created_at, :trie => true
 
@@ -110,6 +111,10 @@ class Discount < ActiveRecord::Base
 
   def actual?
     constant? ? true : ends_at > Time.zone.now
+  end
+
+  def copies_for_sale?
+    true
   end
 
   def reindex_organizations

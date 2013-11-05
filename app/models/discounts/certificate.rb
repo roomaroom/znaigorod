@@ -11,6 +11,10 @@ class Certificate < Discount
 
   before_validation :set_discount
 
+  def copies_for_sale?
+    copies.for_sale.any?
+  end
+
   private
 
   def set_discount

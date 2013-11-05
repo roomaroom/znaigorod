@@ -2,8 +2,11 @@
 
 class CopyObserver < ActiveRecord::Observer
   def after_save(copy)
-    if copy.copyable.is_a?(Ticket)
+    case copy.copyable
+    when Ticket
        copy.copyable.afisha.delay.reindex_showings
+    when Discount
+      copy.copyable.delay.index
     end
   end
 end

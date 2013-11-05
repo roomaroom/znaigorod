@@ -6,8 +6,9 @@ HasSearcher.create_searcher :discounts do
   property :organization_ids
 
   scope do
-    with :actual, true
-    with :state, :published
+    with :actual,          true
+    with :copies_for_sale, true
+    with :state,           :published
   end
 
   scope(:order_by_rating)   { order_by(:rating, :desc) }
