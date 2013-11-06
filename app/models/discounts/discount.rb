@@ -77,6 +77,11 @@ class Discount < ActiveRecord::Base
     time :ends_at, :trie => true
   end
 
+  def organizations_titles
+    return if organizations.empty?
+    organizations.map(&:title).join(' ')
+  end
+
   def type_for_solr
     self.class.name.underscore
   end
