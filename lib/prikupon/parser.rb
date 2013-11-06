@@ -3,6 +3,11 @@ class Prikupon::Parser
 
   def initialize(data = stub_data)
     @data = data
+    check_type
+  end
+
+  def check_type
+    raise Prikupon::UnknownTypeError, json_data.type unless json_data.type != 'offer'
   end
 
   def json
