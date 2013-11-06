@@ -2,9 +2,9 @@
   <li class='discount_info'>
     <div class='poster'>
       <% if item.poster_url? %>
-        <%= image_tag(resized_image_url(item.poster_url, 80, 60), size: '80x60') %>
+        <%= link_to image_tag(resized_image_url(item.poster_url, 80, 60), size: '80x60'), manage_discount_path(item) %>
       <% else %>
-        <%= image_tag 'public/stub_poster.png', size: '80x60' %>
+        <%= link_to image_tag('public/stub_poster.png', size: '80x60'), manage_discount_path(item) %>
       <% end %>
     </div>
     <div class="details">
