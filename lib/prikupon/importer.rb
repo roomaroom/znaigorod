@@ -15,10 +15,10 @@ class Prikupon::Importer
     parser.json.links['product:view']
   end
 
-  delegate :json, :description, :terms, :supplier, :to => :parser
+  delegate :json, :description, :terms, :to => :parser
   delegate :data, :to => :json, :prefix => true
 
-  delegate :title, :date_commences, :date_ends, :addresses,
+  delegate :title, :date_commences, :date_ends, :addresses, :supplier,
     :category_primary, :price_original, :coupon_price, :discount_percent,
     :coupons_limit, :picture_big,
     :to => :json_data

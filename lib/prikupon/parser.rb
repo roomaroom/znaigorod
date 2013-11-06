@@ -18,9 +18,7 @@ class Prikupon::Parser
     @json_data ||= json.data
   end
 
-  delegate :supplier, :to => :json
-
-  delegate :title, :date_commences, :date_ends, :addresses,
+  delegate :title, :date_commences, :date_ends, :addresses, :supplier,
     :category_primary, :price_original, :coupon_price, :discount_percent,
     :coupons_limit, :picture_big,
     :to => :json_data
@@ -37,6 +35,7 @@ class Prikupon::Parser
     {
       'identity'             => 1283,
       'dates_format'         => 'ISO8601',
+      'provider'             => 'provider',
 
       'data' => {
         'category_primary'   => 'здоровье',
@@ -60,7 +59,13 @@ class Prikupon::Parser
           'ул. Ив. Черных 83/1',
           'пр. Академический 14',
           'non existing address'
-        ]
+        ],
+
+        'supplier' => {
+          'title' => 'PR & Kupon',
+          'link'  => 'http://www.prikupon.com/offers/1283#view-offer-cover',
+          'logo'  => 'http://www.prikupon.com/images/logo_header.png'
+        }
       },
 
       'links' => {
@@ -73,11 +78,6 @@ class Prikupon::Parser
         'http://www.albnews.al/wp-content/uploads/2013/08/99163-hot-girl_original.jpg'
       ],
 
-      'supplier' => {
-        'title' => 'PR & Kupon',
-        'link'  => 'http://www.prikupon.com/offers/1283#view-offer-cover',
-        'logo'  => 'http://www.prikupon.com/images/logo_header.png'
-      }
     }.to_json
   end
 end
