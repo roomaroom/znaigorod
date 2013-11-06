@@ -147,8 +147,6 @@
       <%= render suborganization if suborganization.viewable? %>
     <% end %>
 
-    <% if false %>
-
     <% if @discount_presenter.collection.any? %>
       <div class="suborganization_info discount_details">
         <div class="title">Скидки</div>
@@ -181,8 +179,6 @@
 
         <%= paginate @discount_presenter.collection %>
       </div>
-    <% end %>
-
     <% end %>
 
     <% if @afisha_presenter.collection.any? %>
