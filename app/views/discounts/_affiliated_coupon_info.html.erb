@@ -4,7 +4,7 @@
 
   <% if discount.price.zero? %>
     <span class="price free">бесплатно</span>
-  <% else %>
+  <% elsif discount.price > 0 %>
     <strong>за</strong>
     <span class="price">
       <em><%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
