@@ -48,7 +48,7 @@ class Payment < ActiveRecord::Base
     integration_module::Helper.new(*send("#{payment_system}_args")).tap do |helper|
       if helper.is_a? ActiveMerchant::Billing::Integrations::Rbkmoney::Helper
         helper.add_fields :customer, :email => email
-        helper.add_field :preference, 'bankcard'
+        #helper.add_field :preference, 'bankcard'
       end
     end
   end
