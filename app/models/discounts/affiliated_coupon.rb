@@ -11,4 +11,8 @@ class AffiliatedCoupon < Discount
   def label_url
     URI(origin_url).host
   end
+
+  def type_for_solr
+    'coupon'
+  end
 end

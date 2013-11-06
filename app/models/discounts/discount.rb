@@ -63,7 +63,7 @@ class Discount < ActiveRecord::Base
     integer :organization_ids, :multiple => true
 
     string(:kind, :multiple => true) { kind.map(&:value) }
-    string(:type) { self.class.name.underscore }
+    string(:type) { type_for_solr }
     string(:search_kind) { :discount }
     string :state
 
@@ -75,6 +75,10 @@ class Discount < ActiveRecord::Base
     text :title_ru,       :boost => 1.0, :more_like_this => true
 
     time :ends_at, :trie => true
+  end
+
+  def type_for_solr
+    self.class.name.underscore
   end
 
   def address
