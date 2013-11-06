@@ -9,15 +9,17 @@
     <%= content_tag(:div, discount.label_url, :class => :origin_url) if discount.origin_url? %>
 
     <% unless discount.is_a?(AffiliatedCoupon) %>
-      <% if discount.price.nil? %>
-        <%= link_to 'Участвовать', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
-      <% elsif discount.price.zero? %>
+      <% if discount.price.nil? || discount.price.zero? %>
         <%= link_to 'Участвовать', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
       <% else %>
         <%= link_to 'Купить', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
       <% end %>
     <% else %>
-      <%= link_to 'Купить', discount.origin_url, :target => '_blank', :class => :for_sale %>
+      <% if discount.price.nil? || discount.price.zero? %>
+        <%= link_to 'Получить', discount.origin_url, :target => '_blank', :class => :for_sale %>
+      <% else %>
+        <%= link_to 'Купить', discount.origin_url, :target => '_blank', :class => :for_sale %>
+      <% end %>
     <% end %>
 
     <%= link_to discount_path(discount), :class => :details do %>
