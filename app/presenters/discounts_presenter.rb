@@ -52,7 +52,21 @@ class DiscountsPresenter
     end
 
     def links
-      available.map do |value, title|
+      [all_link] + type_links
+    end
+
+    private
+
+    def all_link
+      Hashie::Mash.new(
+        :title => 'Все',
+        :klass => ''.tap { |s| s << ' selected' if nil == selected },
+        :path => Parameters.instance.path(type: nil, kind: nil)
+      )
+    end
+
+    def type_links
+      available.except(nil).map do |value, title|
         Hashie::Mash.new(
           :title => title,
           :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
