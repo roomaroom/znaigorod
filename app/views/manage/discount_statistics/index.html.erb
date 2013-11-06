@@ -25,15 +25,11 @@
           <%= render :partial => 'discounts', :locals => {:collection => discounts}  %>
         </ul>
       </div>
-    <% else %>
+    <% elsif !discounts.empty? %>
       <div class='discounts without_organization'>
         <h4>Без организации</h4>
         <ul class='list'>
-          <% if discounts.empty? %>
-            <span class='empty'>Нет сертификатов, купонов, скидок</span>
-          <% else %>
-            <%= render :partial => 'discounts', :locals => {:collection => discounts}  %>
-          <% end %>
+          <%= render :partial => 'discounts', :locals => {:collection => discounts}  %>
         </ul>
       </div>
     <% end %>
