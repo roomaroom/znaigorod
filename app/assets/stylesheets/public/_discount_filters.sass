@@ -117,7 +117,7 @@
         +clearfix
 
         li
-          width: percentage(1/11)
+          width: percentage(1/9)
           float: left
           text-align: center
 
@@ -331,6 +331,26 @@
 
               &:hover
                 background-position: -1055px -70px
+
+          &.more_link
+            a
+              color: #000
+              border: 1px solid #ccc
+              +border-radius
+              background: none
+              background-color: #e8e8e8
+              padding: 2px 10px 3px
+
+              &:hover
+                color: #f60
+
+            &.selected a
+              color: white
+              background: none
+              background-color: #f60
+              border: none
+              +box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 2px inset)
+              padding: 2px 8px 3px
 
   .discount_more
     +clearfix
