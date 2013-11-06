@@ -4,6 +4,7 @@ class DiscountsPresenter
   include ActiveAttr::MassAssignment
 
   class Parameters
+    include Rails.application.routes.url_helpers
     include Singleton
 
     attr_accessor :type, :kind, :organization_id, :order_by
@@ -14,6 +15,14 @@ class DiscountsPresenter
 
     def organization_id?
       organization_id.present?
+    end
+
+    def path(type: type, kind: kind, order_by: order_by)
+      return discounts_path(:order_by => order_by) if type.blank? && kind.blank?
+
+      path = [type, kind].compact.join('_')
+
+      send "discounts_#{path}_path", :order_by => order_by
     end
   end
 
@@ -28,8 +37,6 @@ class DiscountsPresenter
   end
 
   class TypeFilter
-    include Rails.application.routes.url_helpers
-
     attr_accessor :type
 
     def initialize
@@ -49,15 +56,13 @@ class DiscountsPresenter
         Hashie::Mash.new(
           :title => title,
           :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
-          :path => discounts_path(Parameters.instance.params.merge(:type => value))
+          :path => Parameters.instance.path(type: value)
         )
       end
     end
   end
 
   class KindFilter
-    include Rails.application.routes.url_helpers
-
     attr_accessor :kind
 
     def initialize
@@ -85,7 +90,7 @@ class DiscountsPresenter
         :value => nil,
         :title => 'Все скидки',
         :klass => "all".tap { |s| s << ' selected' if kind.blank? },
-        :path => discounts_path(params),
+        :path => Parameters.instance.path(kind: nil),
         :results_count => Counter.new(params).count
       )
     end
@@ -98,7 +103,7 @@ class DiscountsPresenter
           :value => value,
           :title => title,
           :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
-          :path => discounts_path(params),
+          :path => Parameters.instance.path(kind: value),
           :results_count => Counter.new(params).count
         )
       end
@@ -106,8 +111,6 @@ class DiscountsPresenter
   end
 
   class OrderByFilter
-    include Rails.application.routes.url_helpers
-
     attr_accessor :order_by
 
     def initialize
@@ -129,7 +132,7 @@ class DiscountsPresenter
           :title => title,
           :klass => "#{value}".tap { |s| s << " selected" if value == selected },
           :params => Parameters.instance.params.merge(:order_by => value).delete_if { |_, v| v.blank? },
-          :path => discounts_path(Parameters.instance.params.merge(:order_by => value))
+          :path => Parameters.instance.path(order_by: value),
         )
       end
     end

@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Znaigorod::Application.routes.draw do
-  mount Discounts::API => '/'
   mount ElVfsClient::Engine => '/'
   mount Sidekiq::Web, at: "/sidekiq"
 
@@ -108,11 +107,6 @@ Znaigorod::Application.routes.draw do
     resources :friends, :only => :index
     resources :votes, :only => :index
     resources :visits, :only => :index
-  end
-
-  resources :discounts, :only => [:index, :show] do
-    resources :comments, :only => [:new, :show, :create]
-    resources :members, :only => [:index, :create, :destroy]
   end
 
   resources :coupons, :only => [] do
