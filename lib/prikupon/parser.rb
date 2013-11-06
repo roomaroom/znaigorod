@@ -24,7 +24,7 @@ class Prikupon::Parser
     :to => :json_data
 
   def description
-    @description ||= Sanitize.clean(json_data.description).squish
+    @description ||= ActionController::Base.helpers.sanitize(json_data.description, :tags => %w[div p em ul li])
   end
 
   def terms
@@ -44,7 +44,7 @@ class Prikupon::Parser
         'coupons_limit'      => 10,
         'date_commences'     => '2013-09-12T00:00:00+02:00',
         'date_ends'          => '2013-10-12T00:00:00+02:00',
-        'description'        => '<div class="art-work"> <p><em>Антицеллюлитный массаж</em> представляет собой самый эффективный и безопасный способ борьбы с целлюлитом начальных стадий. Благодаря особым массажным техникам и интенсивному воздействию на проблемные зоны фигуры удается значительно усилить кровообращение в жировых тканях и, как результат, разрушить жировые отложения.</p><p><img class="lazy" src="/images/artwork/temp/city28/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" data-original="/images/artwork/temp/city17/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" style="height: 202px; width: 304px; display: inline;"><img class="lazy" src="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" data-original="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" style="height: 202px; width: 263px; display: inline;"></p><p><em>Классический антицеллюлитный массаж </em>является натуральным и эффективным способом моделирования фигуры и избавления от целлюлита. С его помощью Вы можете уменьшить бугристость целлюлитных зон без применения хирургических и аппаратных методик и при этом получить удовольствие!</p>            </div>',
+        'description'        => '<p><em>Антицеллюлитный массаж</em> представляет собой самый эффективный и безопасный способ борьбы с целлюлитом начальных стадий. Благодаря особым массажным техникам и интенсивному воздействию на проблемные зоны фигуры удается значительно усилить кровообращение в жировых тканях и, как результат, разрушить жировые отложения.</p><p><img class="lazy" src="/images/artwork/temp/city28/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" data-original="/images/artwork/temp/city17/5/526f8bc6c719e.526f8bc6c71d7.jpg?8320" style="height: 202px; width: 304px; display: inline;"><img class="lazy" src="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" data-original="/images/artwork/temp/city17/5/526f8bdd7bc76.526f8bdd7bcaf.jpg?8321" style="height: 202px; width: 263px; display: inline;"></p><p><em>Классический антицеллюлитный массаж </em>является натуральным и эффективным способом моделирования фигуры и избавления от целлюлита. С его помощью Вы можете уменьшить бугристость целлюлитных зон без применения хирургических и аппаратных методик и при этом получить удовольствие!</p>',
         'discount_percent'   => 35,
         'picture_big'        => 'http://www.prikupon.com/images/offers/temp/city17/5/promoted/5231421720d09.5231421720d43.png',
         #'picture_big'        => 'http://www.seriouswheels.com/pics-1960-1969/1966-Pontiac-GTO-Red-fa-t-sy.jpg',                   # <=== cool car
