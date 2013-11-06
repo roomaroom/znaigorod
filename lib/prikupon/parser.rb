@@ -7,7 +7,7 @@ class Prikupon::Parser
   end
 
   def check_type
-    raise Prikupon::UnknownTypeError, json_data.type unless json_data.type != 'offer'
+    raise Prikupon::UnknownTypeError, json_data.type if json_data.type != 'offer'
   end
 
   def json
