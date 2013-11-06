@@ -11,7 +11,7 @@
   first_item = $('li:first', item)
   return true unless first_item.length
   if first_item.siblings().length
-    last_item = $('li:last', list)
+    last_item = $('li:last', item)
   else
     last_item = first_item
   last_item_top = last_item.position().top

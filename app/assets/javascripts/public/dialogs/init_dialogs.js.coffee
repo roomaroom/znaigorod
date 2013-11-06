@@ -1,3 +1,58 @@
+init_dialog_pagination = (id) ->
+  busy = false
+  $('#' + id).css
+    overflow: 'auto'
+
+  $('#messages_filter .dialog').each (el) ->
+    if $(this).data('jsp')
+      $(this).data('jsp').destroy()
+
+  tab = $("##{id} .dialog")
+  pagination = $('.pagination', tab)
+  pagination.css
+    display: 'none'
+  next_link = $('.next a', pagination)
+
+  tab.jScrollPane
+    verticalGutter: 0
+    showArrows: true
+    mouseWheelSpeed: 30
+
+  scroll = tab.data('jsp')
+  setTimeout () ->
+    scroll.reinitialise()
+    scroll.scrollToY($('.jspPane', tab).height())
+    if next_link.length
+      tab.bind 'jsp-scroll-y', (event, scrollPositionY, isAtTop, isAtBottom) ->
+        block_offset = $('.jspPane', tab).height() - ($('.jspPane', tab).height() * 0.7)
+        if scrollPositionY < block_offset && !busy && next_link.attr('href') != undefined && scrollPositionY != 0
+          busy = true
+          $.ajax
+            url: next_link.attr('href')
+            success: (response, textStatus, jqXHR) ->
+              return true if (typeof next_link.attr('href')) == undefined
+              pagination.remove()
+              $('.jspPane', event.target).prepend('<div id="dialogs-hidden-block" style="display: none">' + response + '</div>')
+
+              hidden_block = $('#dialogs-hidden-block')
+              hidden_block_height = hidden_block.height()
+              hidden_block.remove()
+              $('.jspPane', event.target).prepend(response)
+
+              $('.pagination', tab).css
+                display: 'none'
+              next_link = $(response).last().find('.next a')
+
+              scroll.reinitialise()
+              scroll.scrollToY(hidden_block_height + scroll.getContentPositionY() - 28)
+              busy = false
+              true
+          true
+      true
+    true
+  , 100
+  true
+
 # pagination for dialogs
 page = 1
 busy = false
@@ -135,10 +190,6 @@ add_disabled = () ->
 
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
-  # скрол в форме при открытии диалога
-  scroll = (target) ->
-    y_coord = Math.abs(target[0].scrollHeight)
-    target.animate({ scrollTop: y_coord }, 'fast')
 
   $('#messages_filter').on "tabsselect", (event, ui) ->
     if ui.panel.id == 'dialogs'
@@ -155,10 +206,7 @@ add_disabled = () ->
           true
     else
       $(window).unbind('scroll')
-      # TODO bad way
-      setTimeout () ->
-        scroll($('ul.dialog', '#' + ui.panel.id))
-      , 300
+      init_dialog_pagination(ui.panel.id)
 
   # обработка открытия нового таба для диалога
   add_tab_handler = (response, stored) ->
@@ -177,7 +225,7 @@ add_disabled = () ->
     # меняем статус сообщений на прочитанные в табе #dialogs
     process_change_message_status()
 
-    scroll($('ul.dialog', "#dialog_#{account_id}"))
+    #scroll($('ul.dialog', "#dialog_#{account_id}"))
 
   # обработка закрытия таба
   close_tab_handler = (stored) ->
@@ -214,10 +262,8 @@ add_disabled = () ->
 
     if hash != ''
       if $("ul.dialogs a.#{hash}").length
-        # TODO bad way
-        setTimeout () ->
-          $("ul.dialogs a.#{hash}").click()
-        , 500
+        #$(window).load () ->
+          #$("ul.dialogs a.#{hash}").click()
 
       else
         $.ajax
@@ -235,9 +281,7 @@ add_disabled = () ->
 
   dialog_click_handler()
 
-
   load_tabs_handler(stored)
-
 
   # таб диалоги
   $('#dialogs').on 'ajax:success', (evt, response, status, jqXHR) ->
@@ -246,13 +290,6 @@ add_disabled = () ->
     if target.hasClass('to_dialog')
       add_tab_handler(response, stored)
       close_tab_handler(stored)
-
-    if target.hasClass('simple_form new_private_message')
-      account_id = $(response).closest('li').data('account_id')
-
-      $('ul.dialog', "#dialog_#{account_id}").append(response)
-      $('.private_message textarea').attr("value", "")
-      scroll($('ul.dialog', "#dialog_#{account_id}"))
 
   true
 
@@ -289,10 +326,11 @@ add_disabled = () ->
   $('#messages_filter').on 'ajax:success', (evt, response) ->
     target = $(evt.target)
 
-    if target.hasClass('simple_form new_private_message')
+    if target.hasClass('simple_form') && target.hasClass('new_private_message')
       account_id = $(response).closest('li').data('account_id')
 
-      $('ul.dialog',  "#dialog_#{account_id}").append(response)
+      $('ul.dialog li:last', "#dialog_#{account_id}").after(response)
+      init_dialog_pagination("dialog_#{account_id}")
       $('.private_message textarea').attr("value", "")
-      scroll($('ul.dialog', "#dialog_#{account_id}"))
+      #scroll($('ul.dialog', "#dialog_#{account_id}"))
   true

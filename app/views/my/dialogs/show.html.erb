@@ -7,31 +7,7 @@
   data-invite_counter="<%= current_user.account.received_invite_messages.unread.count %>"
   data-notification_counter="<%= current_user.account.notification_messages.unread.count %>">
 
-  <% @messages.each do |message| %>
-    <li class="ajax_message_status <%= message.state %> message_<%= message.id %>">
-      <div class="item">
-        <div class="avatar">
-          <%= link_to account_path(message.producer) do %>
-            <%= image_tag(resized_image_url(message.producer.avatar.url, 35, 35), size: '35x35') %>
-          <% end %>
-        </div>
-
-        <div class="info">
-          <%= link_to message.producer, account_path(message.producer) %>
-          <div class="date">
-            <%= time_ago_in_words(message.created_at) %> назад
-          </div>
-        </div>
-
-        <div class="body">
-          <%= message.body_html %>
-        </div>
-      </div>
-      <% if message.producer != current_user.account %>
-        <%= link_to 'read', change_status_my_private_message_path(message), class: "change_message_status #{message.state}", remote: true, method: :put %>
-      <% end %>
-    </li>
-  <% end %>
+  <%= render partial: 'my/dialogs/dialog_messages' %>
 </ul>
 
 <div class="private_message">
