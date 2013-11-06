@@ -262,8 +262,8 @@ add_disabled = () ->
 
     if hash != ''
       if $("ul.dialogs a.#{hash}").length
-        #$(window).load () ->
-          #$("ul.dialogs a.#{hash}").click()
+        $(window).load () ->
+          $("ul.dialogs a.#{hash}").click()
 
       else
         $.ajax
