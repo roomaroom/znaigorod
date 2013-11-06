@@ -54,9 +54,9 @@ ru:
       sauna_oil:                          Ароматические масла
       sauna_stuff:                        Разное
 
-      discount:                           Скидки
-      certificate:                        Сертификаты
-      coupon:                             Купоны
+      discount:                           Все скидки
+      certificate:                        Все сертификаты
+      coupon:                             Все купоны
 
     attributes:
       common_attributes: &common_attributes

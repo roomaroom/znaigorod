@@ -103,7 +103,7 @@ class DiscountsPresenter
       Hashie::Mash.new(
         :value => nil,
         :title => params[:type]? I18n.t("activerecord.models.#{params[:type]}") : 'Все скидки',
-        :klass => "all".tap { |s| s << ' selected' if kind.blank? },
+        :klass => "all #{params[:type]}".tap { |s| s << ' selected' if kind.blank? },
         :path => Parameters.instance.path(kind: nil),
         :results_count => Counter.new(params).count
       )
