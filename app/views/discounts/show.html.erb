@@ -93,10 +93,12 @@
           <% end %>
         </ul>
 
-        <p class="discount_owner">
-          <%= link_to image_tag(@discount.supplier.logo, :size => '50x50'), @discount.supplier.link, :target => '_blank' %>
-          <%= link_to @discount.supplier.title, @discount.supplier.link, :target => '_blank' %>
-        </p>
+        <% if @discount.supplier.logo.present? %>
+          <p class="discount_owner">
+            <%= link_to image_tag(@discount.supplier.logo, :size => '50x50'), @discount.supplier.link, :target => '_blank' %>
+            <%= link_to @discount.supplier.title, @discount.supplier.link, :target => '_blank' %>
+          </p>
+        <% end %>
       <% else %>
         <% if @discount.account.present? && ![4, 13, 1936, 2303].include?(@discount.account.id) %>
           <p class="discount_owner">
