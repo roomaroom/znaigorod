@@ -15,4 +15,8 @@ class AffiliatedCoupon < Discount
   def type_for_solr
     'coupon'
   end
+
+  def should_generate_new_friendly_id?
+    true
+  end
 end

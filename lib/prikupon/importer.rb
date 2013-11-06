@@ -52,6 +52,11 @@ class Prikupon::Importer
 
   def save_affiliated_coupon
     affiliated_coupon.save! :validate => false
+    set_slug
+  end
+
+  def set_slug
+    affiliated_coupon.send(:set_slug)
   end
 
   def create_places
