@@ -78,8 +78,8 @@ class FeedsPresenter
       friends_params[:feedable_type] = @searcher_params[:feedable_type]
     end
 
-    friends_feeds ||= Account.find(@account_id).friends_feeds(friends_params)
-    my_feeds ||= Feed.feeds_for_presenter(@searcher_params)
+    @friends_feeds ||= Account.find(@account_id).friends_feeds(friends_params)
+    @my_feeds ||= Feed.feeds_for_presenter(@searcher_params)
 
     @feed ||= friends_feeds.concat my_feeds
     @feed.compact!
