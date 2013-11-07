@@ -95,6 +95,10 @@ class DiscountsPresenter
       [all_link] + kind_links
     end
 
+    def more?
+      available.index(selected) > 6
+    end
+
     private
 
     def human_titles

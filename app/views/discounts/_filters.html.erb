@@ -23,7 +23,7 @@
           </li>
         <% end %>
         <% if @presenter.kind_filter.links.count > 8 %>
-          <li class="more_link">
+          <li class="more_link <%= 'selected' if @presenter.kind_filter.more? %>">
             <a href='#'>&darr; Ещё скидки</a>
           </li>
         <% end %>
