@@ -181,7 +181,7 @@ class DiscountsPresenter
   end
 
   def page_title
-    title = I18n.t("meta.discount.title")
+    searcher_params[:kind].present? ? I18n.t("meta.discount.#{searcher_params[:kind]}.title") : I18n.t('meta.discount.title')
   end
 
   def meta_description
