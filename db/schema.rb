@@ -324,8 +324,6 @@ ActiveRecord::Schema.define(:version => 20131101034813) do
     t.text     "supplier"
   end
 
-  add_index "discounts", ["organization_id"], :name => "index_discounts_on_organization_id"
-
   create_table "entertainments", :force => true do |t|
     t.text     "category"
     t.text     "feature"
