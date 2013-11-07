@@ -96,6 +96,8 @@ class DiscountsPresenter
     end
 
     def more?
+      return false if selected.blank?
+
       available.index(selected) > 6
     end
 
