@@ -81,14 +81,14 @@ class FeedsPresenter
     @friends_feeds ||= Account.find(@account_id).friends_feeds(friends_params)
     @my_feeds ||= Feed.feeds_for_presenter(@searcher_params)
 
-    @feed ||= @friends_feeds.concat @my_feeds
-    @feed.compact!
+    feed = @friends_feeds.concat @my_feeds
+    feed.compact!
 
-    unless @feed.blank?
-      @feed = @feed.sort_by(&:created_at).reverse
+    unless feed.blank?
+      feed = feed.sort_by(&:created_at).reverse
     end
 
-    @feed = Kaminari.paginate_array(@feed).page(@page).per(@per_page)
+    @feed ||= Kaminari.paginate_array(feed).page(@page).per(@per_page)
   end
 
   def searcher_params
