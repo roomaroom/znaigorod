@@ -1,6 +1,6 @@
 <div class='time'><%= time_ago_in_words(feed_comment.created_at) %> назад</div>
 <div class='main'>
-  <% if current_user.account.id == feed_comment.feedable.user.account.id %>
+  <% if current_user.present? && current_user.account.id == feed_comment.feedable.user.account.id %>
     <div class='type'>
       Комментарий
     </div>
