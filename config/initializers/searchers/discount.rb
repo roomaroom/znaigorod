@@ -6,6 +6,8 @@ HasSearcher.create_searcher :discounts do
   property :organization_ids
 
   scope do
+    facet :kind, :sort => :count, :zero => true
+
     with :actual,          true
     with :copies_for_sale, true
     with :state,           :published

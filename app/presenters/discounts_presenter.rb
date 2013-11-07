@@ -84,7 +84,7 @@ class DiscountsPresenter
     end
 
     def available
-      Hashie::Mash.new(Hash[Discount.kind.options].invert)
+      HasSearcher.searcher(:discounts).facet(:kind).rows.map(&:value)
     end
 
     def selected
@@ -96,6 +96,10 @@ class DiscountsPresenter
     end
 
     private
+
+    def human_titles
+      Hash[Discount.kind.options].invert
+    end
 
     def all_link
       params = Parameters.instance.params.merge(:kind => nil)
@@ -110,14 +114,15 @@ class DiscountsPresenter
     end
 
     def kind_links
-      available.map do |value, title|
-        params = Parameters.instance.params.merge(:kind => value)
+      available.map do |kind|
+        params = Parameters.instance.params.merge(:kind => kind)
+        title = human_titles[kind]
 
         Hashie::Mash.new(
-          :value => value,
+          :value => kind,
           :title => title,
-          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
-          :path => Parameters.instance.path(kind: value),
+          :klass => "#{kind}".tap { |s| s << ' selected' if kind == selected },
+          :path => Parameters.instance.path(kind: kind),
           :results_count => Counter.new(params).count
         )
       end
