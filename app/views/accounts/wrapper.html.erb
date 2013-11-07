@@ -22,15 +22,39 @@
           <%= render :partial => 'invitations/account_link', :locals => { :kind => :invited, :invited_id => @account.id } %>
         </ul>
       <% end %>
+
+      <div class="account_info">
+        <ul>
+          <% if @account.last_visit_at? %>
+            <li class="online">
+              <% if @account.last_visit_at > DateTime.now - 5.minute %>
+                сейчас на сайте
+              <% else %>
+                последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
+              <% end %>
+            </li>
+          <% end %>
+
+          <%= content_tag :li, "Возраст: #{@account.age}" if @account.birthday? %>
+          <%= content_tag :li, "Пол: #{@account.gender.text.mb_chars.downcase}" unless @account.gender == 'undefined' %>
+
+          <% if @account.link_to_social.present? %>
+            <li>
+              <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+
       <div class="user_menu">
         <div class="feeds_filter">
           <div class="all_feeds <%= "selected" if params[:controller] == "accounts"  %>">
-            <%= link_to content_tag(:span, 'Активность'), @account %>
+            <%= link_to content_tag(:span, 'Активность', :class => :menu_text), @account %>
           </div>
           <div class="show_friends <%= "selected" if params[:controller] == "friends" %>">
             <a href="<%= account_friends_path(@account) %>">
               <span id="friends_counter"><%= @account.friends_count %></span>
-              <span>Друзья</span>
+              <span class="menu_text">Друзья</span>
             </a>
           </div>
         </div>
@@ -39,28 +63,8 @@
   </div>
 
   <div class="right">
-    <% if @account.last_visit_at? %>
-      <div class='last_visit'>
-        <% if @account.last_visit_at > DateTime.now - 5.minute %>
-          сейчас на сайте
-        <% else %>
-          последнее посещение было <%= time_ago_in_words @account.last_visit_at %> назад
-        <% end %>
-      </div>
-    <% end %>
 
     <h1><%= @account.title %></h1>
-
-    <div class="account_info">
-      <%= content_tag :div, "Возраст: #{@account.age}", :class => :row if @account.birthday? %>
-      <%= content_tag :div, "Пол: #{@account.gender.text.mb_chars.downcase}", :class => :row unless @account.gender == 'undefined' %>
-    </div>
-
-    <% if @account.link_to_social.present? %>
-      <div class='link_to_social'>
-        <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
-      </div>
-    <% end %>
 
     <div class="invitations_wrapper">
       <div class="invitations header">
