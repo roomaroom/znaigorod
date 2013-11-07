@@ -15,7 +15,9 @@ class My::AccountsController < My::ApplicationController
   end
 
   def show
-    @feeds_presenter = FeedsPresenter.new(params.merge({:account_id => current_user.account.id}))
+    show!{
+      @feeds_presenter = FeedsPresenter.new(params.merge({:account_id => current_user.account.id}))
+    }
   end
 
   protected
