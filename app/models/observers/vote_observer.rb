@@ -18,7 +18,7 @@ class VoteObserver < ActiveRecord::Observer
   end
 
   def after_save(vote)
-    if vote.like
+    if vote.like && vote.user.present?
       Feed.create(
         :feedable => vote,
         :account => vote.user.account,
