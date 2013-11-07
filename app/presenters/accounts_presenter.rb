@@ -169,6 +169,20 @@ class AccountsPresenter
     searcher.results
   end
 
+  def page_title
+    if gender_filter.used?
+      I18n.t("meta.account.#{gender_filter.gender}.title")
+    else
+      I18n.t('meta.account.title')
+    end
+
+    if category_filter.used?
+      I18n.t("meta.account.#{category_filter.category}.title")
+    else
+      I18n.t('meta.account.title')
+    end
+  end
+
   def count(params)
     HasSearcher.searcher(:accounts, searcher_parameters(params)).total
   end
