@@ -10,6 +10,12 @@ class DiscountObserver < ActiveRecord::Observer
   def after_to_published(discount, transition)
     if discount.account.present?
       MyMailer.delay(:queue => 'mailer').mail_new_published_discount(discount) unless discount.account.is_admin?
+      Feed.create(
+        :feedable => discount,
+        :account => discount.account,
+        :created_at => discount.created_at,
+        :updated_at => discount.updated_at
+      )
     end
   end
 

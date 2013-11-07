@@ -3,6 +3,12 @@
 class AfishaObserver < ActiveRecord::Observer
   def after_to_published(afisha, transition)
     MyMailer.delay(:queue => 'mailer').mail_new_published_afisha(afisha) unless afisha.user.is_admin? || afisha.user.email.blank?
+    Feed.create(
+      :feedable => afisha,
+      :account => afisha.user.account,
+      :created_at => afisha.created_at,
+      :updated_at => afisha.updated_at
+    )
   end
 
   def after_to_draft(afisha, transition)

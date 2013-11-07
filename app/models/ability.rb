@@ -89,7 +89,7 @@ class Ability
         showing.afisha.state != 'pending' && showing.afisha.user == user
       end
 
-      can [:help, :new, :create], Discount if user.persisted?
+      can [:help, :new, :create, :index], Discount if user.persisted?
 
       can [:show, :edit, :update, :destroy, :poster], Discount do |discount|
         discount.account == user.account

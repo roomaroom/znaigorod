@@ -5,16 +5,9 @@
         <span class="panel"></span>
       </div>
       <h3>
-        <%= link_to "Скидки", new_my_discount_path, class: 'add_link' %>
+        <%= link_to "Скидки", help_my_discounts_path, class: 'add_link' %>
       </h3>
-      <%= link_to 'Добавить скидку', new_my_discount_path, class: :invitation_link if can? :new, Discount %>
-      <% #TODO delete after mearge %>
-      <% if false %>
-      <h3>
-        <%= link_to "Скидки", help_my_discount_path, class: 'add_link' %>
-      </h3>
-        <%= link_to 'Добавить скидку', help_my_discount_path, class: :invitation_link if can? :new, Discount %>
-      <% end %>
+      <%= link_to 'Добавить скидку', help_my_discounts_path, class: :invitation_link if can? :new, Discount %>
     </div>
     <div id='discounts_filter'>
       <ul>
