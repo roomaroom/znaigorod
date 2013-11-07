@@ -256,16 +256,16 @@ add_disabled = () ->
 
   load_hash_dialog = (stored) ->
     hash = window.location.hash.replace('#','')
-    if hash != ''
+    if hash.length
       if $("ul.dialogs a.#{hash}").length
-          $("ul.dialogs a.#{hash}").click()
-    else
-      $.ajax
-        url: "my/dialogs/#{hash.replace('dialog_','')}"
-        success: (data, textStatus, jqXHR) ->
+        $("ul.dialogs a.#{hash}").click()
+      else
+        $.ajax
+          url: "my/dialogs/#{hash.replace('dialog_','')}"
+          success: (data, textStatus, jqXHR) ->
             add_tab_handler data, stored
             close_tab_handler(stored)
-          true
+            true
     true
 
   # загрузка открытых табов при перезагрузке страницы
