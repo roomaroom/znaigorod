@@ -1,8 +1,9 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
 
-<% content_for :page_title, 'Веб-камеры Томска. ЗнайГород' %>
-<% content_for :meta_keywords, "веб-камеры, томск, карта, интерактив" %>
-<% content_for :meta_description, "Веб-камеры Томска, расположенные на интерактивной карте города" %>
+<% content_for :page_title, t('meta.webcams.title') %>
+<% content_for :meta_keywords, t('meta.webcams.keywords') %>
+<% content_for :meta_description, t('meta.webcams.description') %>
+
 <% content_for :extra_meta do %>
   <meta property='og:site_name' content='Афиша Томска, кафе, рестораны, бары, сауны, театры, клубы, знакомства - ЗнайГород' />
   <meta property='og:title' content='Веб-камеры Томска. ЗнайГород' />
@@ -28,7 +29,7 @@
     </div>
   </div>
 
-  <h1>Веб-камеры Томска</h1>
+  <h1><%= t('meta.webcams.page_header') %></h1>
 
   <div class='webcam_map' data-latitude='56.493246' data-longitude='84.982112'></div>
 
