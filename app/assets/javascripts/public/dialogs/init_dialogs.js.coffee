@@ -19,38 +19,39 @@ init_dialog_pagination = (id) ->
     mouseWheelSpeed: 30
 
   scroll = tab.data('jsp')
-  setTimeout () ->
-    scroll.reinitialise()
-    scroll.scrollToY($('.jspPane', tab).height())
-    if next_link.length
-      tab.bind 'jsp-scroll-y', (event, scrollPositionY, isAtTop, isAtBottom) ->
-        block_offset = $('.jspPane', tab).height() - ($('.jspPane', tab).height() * 0.7)
-        if scrollPositionY < block_offset && !busy && next_link.attr('href') != undefined && scrollPositionY != 0
-          busy = true
-          $.ajax
-            url: next_link.attr('href')
-            success: (response, textStatus, jqXHR) ->
-              return true if (typeof next_link.attr('href')) == undefined
-              pagination.remove()
-              $('.jspPane', event.target).prepend('<div id="dialogs-hidden-block" style="display: none">' + response + '</div>')
+  unless scroll == undefined
+    setTimeout () ->
+      scroll.reinitialise()
+      scroll.scrollToY($('.jspPane', tab).height())
+      if next_link.length
+        tab.bind 'jsp-scroll-y', (event, scrollPositionY, isAtTop, isAtBottom) ->
+          block_offset = $('.jspPane', tab).height() - ($('.jspPane', tab).height() * 0.7)
+          if scrollPositionY < block_offset && !busy && next_link.attr('href') != undefined && scrollPositionY != 0
+            busy = true
+            $.ajax
+              url: next_link.attr('href')
+              success: (response, textStatus, jqXHR) ->
+                return true if (typeof next_link.attr('href')) == undefined
+                pagination.remove()
+                $('.jspPane', event.target).prepend('<div id="dialogs-hidden-block" style="display: none">' + response + '</div>')
 
-              hidden_block = $('#dialogs-hidden-block')
-              hidden_block_height = hidden_block.height()
-              hidden_block.remove()
-              $('.jspPane', event.target).prepend(response)
+                hidden_block = $('#dialogs-hidden-block')
+                hidden_block_height = hidden_block.height()
+                hidden_block.remove()
+                $('.jspPane', event.target).prepend(response)
 
-              $('.pagination', tab).css
-                display: 'none'
-              next_link = $(response).last().find('.next a')
+                $('.pagination', tab).css
+                  display: 'none'
+                next_link = $(response).last().find('.next a')
 
-              scroll.reinitialise()
-              scroll.scrollToY(hidden_block_height + scroll.getContentPositionY() - 28)
-              busy = false
-              true
-          true
+                scroll.reinitialise()
+                scroll.scrollToY(hidden_block_height + scroll.getContentPositionY() - 28)
+                busy = false
+                true
+            true
+        true
       true
-    true
-  , 100
+    , 100
   true
 
 # pagination for dialogs
@@ -253,25 +254,33 @@ add_disabled = () ->
     true
 
 
+  load_hash_dialog = (stored) ->
+    hash = window.location.hash.replace('#','')
+    if hash != ''
+      if $("ul.dialogs a.#{hash}").length
+          $("ul.dialogs a.#{hash}").click()
+    else
+      $.ajax
+        url: "my/dialogs/#{hash.replace('dialog_','')}"
+        success: (data, textStatus, jqXHR) ->
+            add_tab_handler data, stored
+            close_tab_handler(stored)
+          true
+    true
 
   # загрузка открытых табов при перезагрузке страницы
   load_tabs_handler = (stored) ->
     hash = window.location.hash.replace('#','')
+    count = stored.length
+
+    if count == 0
+      load_hash_dialog(stored)
+
     stored.each (index) ->
-      $("ul.dialogs a.dialog_#{index}").click()
-
-    if hash != ''
-      if $("ul.dialogs a.#{hash}").length
-        $(window).load () ->
-          $("ul.dialogs a.#{hash}").click()
-
-      else
-        $.ajax
-          url: "my/dialogs/#{hash.replace('dialog_','')}"
-          success: (data, textStatus, jqXHR) ->
-              add_tab_handler data, stored
-              close_tab_handler(stored)
-            true
+      $("ul.dialogs a.dialog_#{index}").click() unless "#{index}" == hash.replace('dialog_','')
+      count--
+      if count == 0
+        load_hash_dialog(stored)
 
     $(document).ready(window_scroll_init())
 
@@ -328,8 +337,13 @@ add_disabled = () ->
 
     if target.hasClass('simple_form') && target.hasClass('new_private_message')
       account_id = $(response).closest('li').data('account_id')
+      last = $('ul.dialog li:last', "#dialog_#{account_id}")
+      unless $(response).attr('id') == 'new_private_message'
+        if last.length
+          last.after(response)
+        else
+          $('ul.dialog').find('.jspPane').append(response)
 
-      $('ul.dialog li:last', "#dialog_#{account_id}").after(response)
       init_dialog_pagination("dialog_#{account_id}")
       $('.private_message textarea').attr("value", "")
       #scroll($('ul.dialog', "#dialog_#{account_id}"))
