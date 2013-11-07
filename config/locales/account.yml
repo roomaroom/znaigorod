@@ -118,6 +118,11 @@ ru:
       male:      "получил купон"
       female:    "получила купон"
 
+    took_affiliated_coupon:
+      undefined: "получил купон"
+      male:      "получил купон"
+      female:    "получила купон"
+
     took_certificate:
       undefined: "получил сертификат"
       male:      "получил сертификат"
