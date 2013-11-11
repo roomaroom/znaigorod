@@ -1,6 +1,6 @@
 <div class='poster'>
   <%= link_to discount_path(feed_discount.feedable) do %>
-    <%= image_tag(resized_image_url(feed_discount.feedable.poster_url, 100 , 74),
+    <%= image_tag(resized_image_url(feed_discount.feedable.poster_url.nil? ? 'public/stub_poster.png' : feed_discount.feedable.poster_url, 100 , 74),
                   :size => '100x74', :alt => feed_discount.feedable.title) %>
   <% end %>
 </div>

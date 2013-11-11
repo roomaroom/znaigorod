@@ -5,12 +5,16 @@
     </div>
     <h3>Приглашения</h3>
   </div>
-    <div id="invites">
+  <div id="invites">
+    <% if @invite_messages.any? %>
       <ul class="account_messages">
         <%= render partial: 'my/invite_messages/invite_messages' %>
       </ul>
-    </div>
-    <%= paginate @invite_messages %>
+    <% else %>
+      Приглашений не найдено
+    <% end %>
+  </div>
+  <%= paginate @invite_messages %>
 
 <% end %>
 

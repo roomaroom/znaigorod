@@ -27,7 +27,7 @@
         <% %w[all draft published].each do |state| %>
           <div id='<%= state %>' class='list'>
             <div class='afisha_list'>
-              <% if collection.any? %>
+              <% if @events.any? %>
                 <ul class='posters'>
                   <% unless state == 'all' %>
                     <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>

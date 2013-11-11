@@ -6,9 +6,13 @@
     <h3>Уведомления</h3>
   </div>
   <div id="notifications">
-    <ul class="account_messages">
-      <%= render partial: 'my/messages/messages', locals: { collection: messages } %>
-    </ul>
+    <% if messages.any? %>
+      <ul class="account_messages">
+        <%= render partial: 'my/messages/messages', locals: { collection: messages } %>
+      </ul>
+    <% else %>
+      Уведомлений не найдено
+    <% end %>
   </div>
   <%= paginate messages %>
 
