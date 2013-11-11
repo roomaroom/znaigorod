@@ -57,7 +57,7 @@ module OrganizationsPresenter
     self.sms_claimable = self.sms_claimable && collection_sms_claimable?
 
     @page ||= 1
-    @per_page = 18
+    @per_page = @per_page.to_i.zero? ? 18 : @per_page.to_i
   end
 
   def order_by

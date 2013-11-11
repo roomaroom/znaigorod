@@ -62,10 +62,6 @@ class OrganizationsCatalogPresenter
     }
   end
 
-  def per_page
-    return 18
-  end
-
   def meta_description
     desc = ""
 

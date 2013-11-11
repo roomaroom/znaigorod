@@ -206,7 +206,7 @@ class DiscountsPresenter
 
   def normalize_args
     @page     ||= 1
-    @per_page = 15
+    @per_page ||= per_page.to_i.zero? ? 15 : per_page.to_i
   end
 
   def store_parameters

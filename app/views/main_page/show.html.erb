@@ -1,0 +1,51 @@
+<div class="afisha_main_page_list">
+  <h1>Афиша</h1>
+
+  <div class="filters">
+  </div>
+
+  <ul class="posters">
+    <% @afisha.decorated_collection.each do |afisha| %>
+      <li><%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="organizations_main_page_list">
+  <h1>Заведения</h1>
+
+  <div class="filters">
+  </div>
+
+  <ul class="posters">
+    <% @organizations.collection.each do |organization| %>
+      <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization } %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="discounts_main_page_list">
+  <h1>Скидки</h1>
+
+  <div class="filters">
+  </div>
+
+  <ul class="posters">
+    <% @discounts.decorated_collection.each do |discount| %>
+      <li><%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount } %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="accounts_main_page_list">
+  <h1>Знакомства</h1>
+
+  <div class="filters">
+  </div>
+
+  <ul class="posters">
+    <% @accounts.collection.each do |account| %>
+      <li><%= render :partial => 'accounts/account_poster', :locals => { :account => account } %></li>
+    <% end %>
+  </ul>
+</div>

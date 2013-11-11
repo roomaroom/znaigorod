@@ -198,7 +198,7 @@ class AccountsPresenter
 
   def normalize_args
     @page               ||= 1
-    @per_page           = 18
+    @per_page           = per_page.to_i.zero? ? 15 : per_page.to_i
   end
 
   def searcher

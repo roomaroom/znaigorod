@@ -18,7 +18,7 @@ class AfishaPresenter
                 :view,
                 :hide_categories,
                 :has_tickets,
-                :advertisement,
+                :advertisement, :without_advertisement,
                 :for_mobile_api
 
   def initialize(args)
@@ -27,7 +27,7 @@ class AfishaPresenter
     self.for_mobile_api ||= false
 
     @page     ||= 1
-    @per_page   = 18
+    @per_page   = per_page.to_i.zero? ? 18 : per_page.to_i
     @view       = 'posters'
     @advertisement = Advertisement.new(list: 'afisha', page: @page)
 
@@ -64,6 +64,8 @@ class AfishaPresenter
   end
 
   def with_advertisement?
+    return false if without_advertisement
+
     !@organizations_filter.used? && !for_mobile_api
   end
 
