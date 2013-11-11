@@ -7,41 +7,43 @@
       <h3>
         <%= link_to "Мои афиши", new_my_afisha_path, class: 'add_link' %>
       </h3>
-       <%= link_to 'Добавить афишу', new_my_afisha_path, class: :invitation_link if can? :new, Afisha %>
+      <%= link_to 'Добавить афишу', new_my_afisha_path, class: :invitation_link if can? :new, Afisha %>
     </div>
     <div id='events_filter'>
       <ul>
         <% %w[all draft published].each do |state| %>
-          <li><%= link_to "##{state}" do %>
-            <% unless state == 'all' %>
-              <%= t(state, count: @events.by_state(state).total_count) %>
-            <% else %>
-              <%= t(state, count: current_user.afisha.count) %>
+          <li>
+            <%= link_to "##{state}" do %>
+              <% unless state == 'all' %>
+                <%= t(state, count: @events.by_state(state).total_count) %>
+              <% else %>
+                <%= t(state, count: current_user.afisha.count) %>
+              <% end %>
             <% end %>
-          <% end %>
           </li>
         <% end %>
       </ul>
 
-      <div class='content'>
-        <% %w[all draft published].each do |state| %>
-          <div id='<%= state %>' class='list'>
-            <div class='afisha_list'>
-              <% if @events.any? %>
-                <ul class='posters'>
-                  <% unless state == 'all' %>
-                    <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>
-                  <% else %>
-                    <%= render partial: 'events/account_events', locals: { collection: @events, state: state.to_sym } %>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-              <% end %>
-            </div>
+    <div class='content'>
+      <% %w[all draft published].each do |state| %>
+        <div id='<%= state %>' class='list'>
+          <div class='afisha_list'>
+            <% if @events.any? %>
+              <ul class='posters'>
+                <% unless state == 'all' %>
+                  <%= render partial: 'events/account_events', locals: { collection: @events.by_state(state), state: state.to_sym } %>
+                <% else %>
+                  <%= render partial: 'events/account_events', locals: { collection: @events, state: state.to_sym } %>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+            <% end %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    </div>
+  </div>
+<% end %>
 <%= render file: "my/accounts/wrapper" %>
