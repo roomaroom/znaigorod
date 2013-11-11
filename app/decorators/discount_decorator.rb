@@ -61,7 +61,7 @@ class DiscountDecorator < ApplicationDecorator
     place = places.first
 
     if place.organization_id?
-      results += h.link_to h.truncate(place.organization.title, :length => 30), place.organization, :title => place.organization.title
+      results += h.link_to h.truncate(place.organization.title, :length => 30), place.organization, :title => place.address
     else
       results += h.truncate(place.address, :length => 30)
     end
