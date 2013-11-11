@@ -132,6 +132,8 @@ window_scroll_init = () ->
     target = $(evt.target)
 
     target.closest('li').replaceWith(response)
+    init_messages_counters(response)
+
 
   true
 
@@ -189,6 +191,39 @@ add_disabled = () ->
       $(href.replace('#', '.')).addClass 'disabled'
   true
 
+@init_messages_counters = (response) ->
+  counter = $(response).data('counter')
+  messages = $(response).data('messages')
+  dialog_counter = $(response).data('dialog_counter')
+  invite_counter = $(response).data('invite_counter')
+  notification_counter = $(response).data('notification_counter')
+
+  link = $('.header .messages a')
+
+  if counter == 0
+    link.addClass('empty').removeClass('new').attr('title','Нет новых сообщений').html(messages)
+  else
+    link.addClass('unread').removeClass('empty').attr('title','Есть новые сообщения').html("+#{counter}")
+
+  notification = $('#messages_filter a.notifications')
+  if notification_counter == 0
+    notification.html('Уведомления')
+  else
+    notification.html("Уведомления +#{notification_counter}")
+
+  dialog = $('#messages_filter a.dialogs')
+  if dialog_counter == 0
+    dialog.html('Диалоги')
+  else
+    dialog.html("Диалоги +#{dialog_counter}")
+
+  invite = $('#messages_filter a.invites')
+  if invite_counter == 0
+    invite.html('Приглашения')
+  else
+    invite.html("Приглашения +#{invite_counter}")
+
+
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
 
@@ -225,8 +260,6 @@ add_disabled = () ->
 
     # меняем статус сообщений на прочитанные в табе #dialogs
     process_change_message_status()
-
-    #scroll($('ul.dialog', "#dialog_#{account_id}"))
 
   # обработка закрытия таба
   close_tab_handler = (stored) ->
@@ -346,5 +379,4 @@ add_disabled = () ->
 
       init_dialog_pagination("dialog_#{account_id}")
       $('.private_message textarea').attr("value", "")
-      #scroll($('ul.dialog', "#dialog_#{account_id}"))
   true
