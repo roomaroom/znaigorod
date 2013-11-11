@@ -2,10 +2,12 @@
 <div class='item' id="ad_<%= afisha.id %>">
 
   <div class='title'>
-    <% if afisha.title.length > 22 %>
-      <%= link_to(afisha.title.text_gilensize.truncated(22, ''), my_afisha_show_path(afisha), :title => afisha.title)  %>
-    <% else %>
-      <%= link_to(afisha.title.text_gilensize, my_afisha_show_path(afisha)) %>
+    <% if afisha.title.present? %>
+      <% if afisha.title.length > 22 %>
+        <%= link_to(afisha.title.text_gilensize.truncated(22, ''), my_afisha_show_path(afisha), :title => afisha.title)  %>
+      <% else %>
+        <%= link_to(afisha.title.text_gilensize, my_afisha_show_path(afisha)) %>
+      <% end %>
     <% end %>
   </div>
 
