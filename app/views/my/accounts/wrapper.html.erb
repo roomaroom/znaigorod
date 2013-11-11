@@ -23,7 +23,7 @@
         <%= content_tag :li, "Пол: #{current_user.account.gender.text.mb_chars.downcase}" unless current_user.account.gender == 'undefined' %>
         <% if current_user.account.link_to_social.present? %>
           <li>
-          <%= link_to('Профиль в социальной сети', current_user.account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+            <%= link_to('Профиль в социальной сети', current_user.account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
           </li>
         <% end %>
       </ul>
@@ -72,6 +72,14 @@
               <span class="menu_text">Друзья</span>
             </a>
           </div>
+          <% if false %>
+            <div class="show_images <%= "selected" if params[:controller] == "my/gallery_images" %>">
+              <a href="<%= my_gallery_images_path() %>">
+                <span id="images_counter"><%= current_user.account.images_count %></span>
+                <span class="menu_text">Фотографии</span>
+              </a>
+            </div>
+          <% end %>
           <div class="show_button <%= "selected" if params[:controller] == "my/afishas" %>">
             <a href="<%= my_afisha_index_path() %>">
               <% if current_user.account.afisha.count > 0 %>
@@ -96,47 +104,47 @@
   </div>
 
   <div class="right">
-  <% unless params[:controller] == "my/accounts" && params[:action] == "edit" %>
-    <div class="invitations_wrapper">
+    <% unless (params[:controller] == "my/accounts" && params[:action] == "edit") || (params[:controller] == "my/gallery_images" && params[:action] != "index") %>
+      <div class="invitations_wrapper">
 
-    <h1><%= current_user.account.title %></h1>
+        <h1><%= current_user.account.title %></h1>
 
-    <div class="invitations header">
-      <%= link_to 'Добавить приглашение',
-        new_invitation_path('invitation[kind]' => :inviter),
-        :remote => true,
-        :class => 'invitation_link',
-        :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
-        <div class='clear'>
-          <span class="panel"></span>
-        </div>
-        <h3>
-          <%= link_to 'Хочу пригласить',
+        <div class="invitations header">
+          <%= link_to 'Добавить приглашение',
             new_invitation_path('invitation[kind]' => :inviter),
             :remote => true,
-            :class => 'add_link',
+            :class => 'invitation_link',
             :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
+          <div class='clear'>
+            <span class="panel"></span>
+          </div>
+          <h3>
+            <%= link_to 'Хочу пригласить',
+              new_invitation_path('invitation[kind]' => :inviter),
+              :remote => true,
+              :class => 'add_link',
+              :data => { :title => 'Хочу пригласить', :target => '.inviter' } %>
           </h3>
         </div>
 
         <div class="invitations list">
-        <ul class="inviter">
-          <% if current_user.account.invitations.inviter.without_invited.any? %>
-            <% current_user.account.invitations.inviter.without_invited.each do |invitation| %>
-              <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
+          <ul class="inviter">
+            <% if current_user.account.invitations.inviter.without_invited.any? %>
+              <% current_user.account.invitations.inviter.without_invited.each do |invitation| %>
+                <%= render :partial => 'invitations/invitation', :locals => { :invitation => invitation } %>
+              <% end %>
+            <% else %>
+              <li class="empty">Нет приглашений</li>
             <% end %>
-          <% else %>
-            <li class="empty">Нет приглашений</li>
-          <% end %>
-        </ul>
-      </div>
+          </ul>
+        </div>
 
-      <div class="invitations header">
-        <%= link_to 'Добавить приглашение',
-          new_invitation_path('invitation[kind]' => :invited),
-          :remote => true,
-          :class => 'invitation_link',
-          :data => { :title => 'Жду приглашения', :target => '.invited' } %>
+        <div class="invitations header">
+          <%= link_to 'Добавить приглашение',
+            new_invitation_path('invitation[kind]' => :invited),
+            :remote => true,
+            :class => 'invitation_link',
+            :data => { :title => 'Жду приглашения', :target => '.invited' } %>
           <div class='clear'>
             <span class="panel"></span>
           </div>
@@ -146,7 +154,7 @@
               :remote => true,
               :class => 'add_link',
               :data => { :title => 'Жду приглашения', :target => '.invited' } %>
-            </h3>
+          </h3>
         </div>
 
         <div class="invitations list">
@@ -161,9 +169,9 @@
           </ul>
         </div>
       </div>
-      <% end %>
+    <% end %>
 
-      <%= yield(:account_content) %>
+    <%= yield(:account_content) %>
 
-    </div>
   </div>
+</div>

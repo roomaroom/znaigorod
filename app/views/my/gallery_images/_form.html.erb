@@ -1,0 +1,22 @@
+<div class="upload_wrapper">
+  <script id="template-upload" type="text/x-tmpl">
+    <div class="upload">
+      {%=o.name%}
+    <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+  </script>
+</div>
+
+<ul class="gallery_images">
+  <%#<%= render @account.gallery_images %>%>
+</ul>
+<%= link_to 'Удалить все фотографии', destroy_all_my_gallery_images_path(), :method => :delete, :confirm => 'Вы уверены, что хотите удалить все фотографии для этой афиши?' if @account.gallery_images.many? %>
+
+<%= simple_form_for @account.gallery_images.new, :url => my_gallery_images_path(), :html => { :multipart => true, :class => 'file_upload' } do |f| %>
+  <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
+
+<div class='submit'>
+  <%= link_to 'Сохранить', my_gallery_images_path(), class: :button %>
+  <%= link_to 'Отмена', my_gallery_images_path() %>
+</div>

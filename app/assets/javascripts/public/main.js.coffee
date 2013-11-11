@@ -61,7 +61,7 @@ $ ->
   init_trailers() if $('.afisha_show .trailer p').length
   init_webcam_map() if $('.webcams .webcam_map').length
   init_add_webcam() if $('.webcams .add_webcam').length
-  init_my_afisha() if $('.my_wrapper')
+  init_my_afisha() if $('.my_wrapper').length
   init_file_upload() if $('.file_upload').length
   init_ajax_delete() if $('.ajax_delete').length
   init_select_tags() if $('.select_tags').length

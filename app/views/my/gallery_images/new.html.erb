@@ -1,0 +1,14 @@
+<% content_for :account_content do %>
+  <div class='gallery_help_wrapper'>
+    <div class='help'>
+      <p>Фотографии можно загрузить непосредственно с компьютера, выбрав одну или несколько фотографий сразу.:</p>
+    </div>
+  </div>
+  <div class='clearfix'>
+    <div class='gallery_form_wrapper'>
+      <%= render partial: "form" %>
+    </div>
+  </div>
+<% end %>
+
+<%= render :template => 'my/accounts/wrapper' %>

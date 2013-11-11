@@ -77,7 +77,9 @@ class Ability
         afisha.state != 'pending' && afisha.user == user
       end
 
-      can :manage, GalleryImage do |gallery_image|
+      can [:new, :create, :index], GalleryImage if user.persisted?
+
+      can [:destroy, :destroy_all], GalleryImage do |gallery_image|
         gallery_image.attachable.state != 'pending' && gallery_image.attachable.user == user
       end
 

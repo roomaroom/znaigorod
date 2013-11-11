@@ -1,0 +1,20 @@
+<% @images.each do |image| %>
+  <li>
+  <div class="item">
+
+    <div class="image">
+      <%= image_tag(resized_image_url(image.file_url, 178, 178), size: '178x178', title: image, alt: image) %>
+    </div>
+
+    <div class="badges">
+      <% if params["controller"] == "my/friends" %>
+        <div class="message">
+          <%= link_to "К диалогу", my_dialogs_path(:anchor => "dialog_#{image.id}"), class: "add_private_message" %>
+        </div>
+        <%= link_to "", change_friendship_my_image_path(image_id: image.id), method: :put, remote: true, :confirm => 'Вы уверены?', class: 'trash show_tipsy', title: "Удалить" %>
+      <% end %>
+    </div>
+
+  </div>
+  </li>
+<% end %>

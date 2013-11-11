@@ -1,0 +1,28 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3>
+        <%= link_to "Фотографии", new_my_gallery_image_path, class: 'add_link' %>
+      </h3>
+      <%= link_to 'Добавить фотографии', new_my_gallery_image_path, class: :invitation_link if can? :new, GalleryImage %>
+    </div>
+  </div>
+
+  <div class="images_list">
+    <ul class="posters">
+      <% if @images.any? %>
+        <%= render partial: 'account_gallery_images' %>
+      <% else %>
+        Ничего не найдено =(
+      <% end %>
+    </ul>
+  </div>
+
+  <% if @images.any? %>
+    <%#<%= paginate @images %>%>
+  <% end %>
+<% end %>
+<%= render file: "my/accounts/wrapper" %>

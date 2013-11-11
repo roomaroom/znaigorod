@@ -15,6 +15,8 @@ class Account < ActiveRecord::Base
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
 
+  has_many :gallery_images,         :dependent => :destroy, :as => :attachable
+
   has_many :invitations,     dependent: :destroy
   has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
 
@@ -109,6 +111,10 @@ class Account < ActiveRecord::Base
 
   def friends_count
     self.friends.where(:friendly => true).count
+  end
+
+  def images_count
+    self.gallery_images.count
   end
 
   def age
