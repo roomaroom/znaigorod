@@ -91,12 +91,10 @@
 
       return false
 
-    if target.hasClass('new_comment')
-      target.new_comment(jqXHR.responseText)
-    else if target.hasClass('new_answer')
-      target.new_answer(jqXHR.responseText)
-    else
-      target.submit_form(jqXHR.responseText)
+    switch target.attr('class')
+      when 'new_comment' then target.new_comment(jqXHR.responseText)
+      when 'new_answer'  then target.new_answer(jqXHR.responseText)
+      else target.submit_form(jqXHR.responseText)
 
     cancel_handler()
     init_auth()
