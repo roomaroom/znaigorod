@@ -21,6 +21,7 @@
   <div class="info">
     <%= render :partial => "my/discounts/#{discount.class.name.underscore}_info", :locals => { :discount => discount } %>
   </div>
+
   <div class="badges">
     <%= link_to "", edit_my_discount_path(discount), class: 'edit_button show_tipsy', title: "Редактировать" %>
 

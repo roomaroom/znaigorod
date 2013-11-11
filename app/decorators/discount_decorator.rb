@@ -56,6 +56,19 @@ class DiscountDecorator < ApplicationDecorator
     h.raw results
   end
 
+  def place_without_map
+    results = ''
+    place = places.first
+
+    if place.organization_id?
+      results += h.link_to h.truncate(place.organization.title, :length => 30), place.organization, :title => place.organization.title
+    else
+      results += h.truncate(place.address, :length => 30)
+    end
+
+    h.raw results
+  end
+
   def geo_present?
     places.any? && !places.first.latitude.blank? && !places.first.longitude.blank?
   end

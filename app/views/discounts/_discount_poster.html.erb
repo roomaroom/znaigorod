@@ -1,6 +1,6 @@
 <div class="item">
   <div class="title">
-    <%= link_to truncate(discount.title.text_gilensize, :length => 45), discount_path(discount) %>
+    <%= link_to truncate(discount.title.text_gilensize, :length => 45), discount_path(discount), :title => discount.title.text_gilensize %>
   </div>
 
   <div class="image">
@@ -32,7 +32,11 @@
     <% end %>
   </div>
 
+  <div class="place">
+    <%= discount.place_without_map %>
+  </div>
+
   <div class="info">
-    <%= render :partial => "discounts/#{discount.class.name.underscore}_info", :locals => { :discount => discount } %>
+    <%= render :partial => "discounts/#{discount.model.class.name.underscore}_info", :locals => { :discount => discount.model } %>
   </div>
 </div>

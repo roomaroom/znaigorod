@@ -173,7 +173,7 @@
 
         <div class="discounts_list">
           <ul class="posters">
-            <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.collection } %>
+            <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection } %>
           </ul>
         </div>
 

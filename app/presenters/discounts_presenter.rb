@@ -180,6 +180,16 @@ class DiscountsPresenter
     searcher.results
   end
 
+  def decorated_collection
+    @decorated_collection ||= [].tap do |list|
+      collection.each do |item|
+        discount = Discount.find(item)
+
+        list << DiscountDecorator.new(item)
+      end
+    end
+  end
+
   def page_title
     searcher_params[:kind].present? ? I18n.t("meta.discount.#{searcher_params[:kind]}.title") : I18n.t('meta.discount.title')
   end
