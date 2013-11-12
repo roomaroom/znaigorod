@@ -1,5 +1,13 @@
 <div class="afisha_main_page_list">
-  <h1><%= t('meta.afisha.page_header') %></h1>
+  <div class="filter_header">
+    <h1><%= link_to t('meta.afisha.page_header'), afisha_index_path %></h1>
+  </div>
+
+  <div class="by_tickets">
+    <ul>
+      <li><%= link_to 'Распродажа билетов', afisha_with_tickets_index_path %></li>
+    </ul>
+  </div>
 
   <div class="filters_wrapper">
     <div class="filters afisha">
@@ -26,7 +34,9 @@
 </div>
 
 <div class="organizations_main_page_list">
-  <h1><%= t('meta.organizations.page_header') %></h1>
+  <div class="filter_header">
+    <h1><%= link_to t('meta.organizations.page_header'), organizations_path %></h1>
+  </div>
 
   <div class="filters_wrapper">
     <div class="filters organization">
@@ -53,7 +63,9 @@
 </div>
 
 <div class="discounts_main_page_list">
-  <h1><%= t('meta.discount.page_header') %></h1>
+  <div class="filter_header">
+    <h1><%= link_to t('meta.discount.page_header'), discounts_path %></h1>
+  </div>
 
   <div class="filters_wrapper">
     <div class="filters discount">
@@ -80,17 +92,23 @@
 </div>
 
 <div class="accounts_main_page_list">
-  <h1>Знакомства</h1>
+  <div class="filter_header">
+    <h1><%= link_to t('meta.account.page_header'), accounts_path %></h1>
+  </div>
+
+  <div class="by_gender">
+    <ul>
+      <li><%= link_to 'Девушки', accounts_path(:gender => :female) %></li>
+      <li><%= link_to 'Парни', accounts_path(:gender => :male) %></li>
+    </ul>
+  </div>
 
   <div class="filters_wrapper">
     <div class="filters account">
       <div class="by_category">
         <ul>
-          <li class='all'>
-            <%= link_to accounts_path(@accounts.searcher_parameters(category: nil)) do %>
-              <span class='name'>Все</span>
-              <span class='count'><%= @accounts.count(category: nil) %></span>
-            <% end %>
+          <li class="title">
+            <div class="text">Ищут компанию:</div>
           </li>
           <% @accounts.categories_links.take(8).each do |link| %>
             <li class='<%= link[:klass] %>'>

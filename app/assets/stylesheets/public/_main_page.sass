@@ -2,17 +2,36 @@
 .organizations_main_page_list,
 .discounts_main_page_list,
 .accounts_main_page_list
-  margin: 10px 0 0 0
+  +clearfix
+  margin: 10px 0
 
   h1
     font-size: 22px
     line-height: 33px
     margin-left: 10px
 
+  .filter_header
+    float: left
+
+  .by_tickets,
+  .by_gender
+    float: right
+    margin-left: 10px
+
+    ul
+      +clearfix
+      li
+        float: left
+        margin-right: 5px
+        +toggable-links
+        &:last-child
+          margin-right: 0
+
   .filters_wrapper
     +box-shadow(none)
     background: #fff
     margin-bottom: 10px
+    clear: both
 
     .filters.afisha
       .by_kind
