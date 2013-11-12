@@ -3,6 +3,26 @@ $desktop_min_width: 1000px
 $desktop_max_width: 1440px
 $desktop_default_width: 1200px
 
+=gray_button_style
+  font-family: 'Verdana', 'Tahoma', sans-serif
+  font-size: 12px
+  cursor: pointer
+  color: #000
+  +inline-block
+  font-size: 12px
+  margin: 0 10px 0 0
+  border: 1px solid #ccc
+  background-color: #e8e8e8
+  +background(linear-gradient(top, #ffffff, #cfcfcf))
+  padding: 5px 15px
+
+  &:hover
+    +background(linear-gradient(top, #fff, #ddd))
+
+  &:active
+    +background(linear-gradient(top, #ddd, #fff))
+    padding: 6px 15px 4x
+
 =max-width($max_width)
   max-width: $max_width
 

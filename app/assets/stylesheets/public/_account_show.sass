@@ -68,24 +68,29 @@
         text-decoration: none
         #friends_counter
           background: url('user_menu.png') no-repeat -77px -53px !important
+        #images_counter
+          background: url('user_menu.png') no-repeat -75px -32px !important
         span
           color: white
 
       .feeds_filter
-        .all_feeds,.show_friends,.show_afishas,.show_button
+        .all_feeds,.show_friends,.show_images,.show_afishas,.show_button
           +clearfix
           background-color: white
           color: black
           font-size: 12px
           margin: 4px
 
+          #images_counter
+            background: url(user_menu.png) no-repeat -14px -32px
+
           #friends_counter
             background: url('user_menu.png') no-repeat -15px -53px
 
-          #friends_counter,#afisha_counter,#dialogs_counter
+          #friends_counter,#afisha_counter,#dialogs_counter,#images_counter
             float: right
             margin-right: 5px
-            padding-left: 11px
+            padding-left: 13px
 
           a
             +clearfix
@@ -110,6 +115,11 @@
           a
             &:hover > #friends_counter
               background-position: -47px -53px
+
+        .show_images
+          a
+            &:hover > #images_counter
+              background-position: -45px -32px
 
         .sub_filter
           .my_feeds,.friends_feeds
@@ -171,10 +181,56 @@
   .right
     +clearfix
     float: left
-    margin: 0 0 0 9px
+    margin: 0 0 10px 9px
     width: 980px
 
+    .clearfix
+      +clearfix
+      .gallery_form_wrapper
+        width: 580px
+        float: left
+        font-size: 12px
+        margin-right: 20px
 
+        .inline_form
+          margin: 20px 0
+
+          .input
+            +inline-block
+
+        .submit
+          .button
+            +gray_button_style
+
+          a
+            +inline-block
+
+    .file_upload
+      margin: 20px 0
+
+    .gallery_images
+      +clearfix
+
+      li
+        float: left
+        text-align: center
+        margin: 0 10px 15px 0
+
+        .image_wrapper
+          +clearfix
+          height: 108px
+          line-height: 108px
+          width: 130px
+
+          img
+            +inline-block
+
+        a
+          text-transform: lowercase
+          font-size: 11px
+
+    .gallery_help_wrapper
+      position: relative
 
 
     .invitations_wrapper

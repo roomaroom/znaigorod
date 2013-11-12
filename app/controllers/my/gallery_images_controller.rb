@@ -35,9 +35,14 @@ class My::GalleryImagesController < My::ApplicationController
 
   def destroy_all
     destroy_all! {
-      @afisha = current_user.afisha.available_for_edit.find(params[:afisha_id])
-      @afisha.gallery_images.destroy_all
-      redirect_to edit_step_my_afisha_path(@afisha.id, :step => :fourth) and return
+      if params[:afisha_id].present?
+        @afisha = current_user.afisha.available_for_edit.find(params[:afisha_id])
+        @afisha.gallery_images.destroy_all
+        redirect_to edit_step_my_afisha_path(@afisha.id, :step => :fourth) and return
+      else
+        current_user.account.gallery_images.destroy_all
+        redirect_to new_my_gallery_images_path()
+      end
     }
   end
 end

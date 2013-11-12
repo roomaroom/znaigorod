@@ -1,5 +1,9 @@
 <% if @gallery_image.new_record? %>
   alert("Failed to upload gallery_image: <%= j @gallery_image.errors.full_messages.join(', ').html_safe %>");
 <% else %>
-  $(".gallery_images").append("<%= j render(@gallery_image) %>");
+  <% if @gallery_image.attachable_id == current_user.account.id %>
+    $(".gallery_images").append("<%= j render(:partial => 'account_gallery_image', :locals => {:gallery_image => @gallery_image}) %>");
+  <% else %>
+    $(".gallery_images").append("<%= j render(@gallery_image) %>");
+  <% end %>
 <% end %>

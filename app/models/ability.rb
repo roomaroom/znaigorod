@@ -80,7 +80,11 @@ class Ability
       can [:new, :create, :index], GalleryImage if user.persisted?
 
       can [:destroy, :destroy_all], GalleryImage do |gallery_image|
-        gallery_image.attachable.state != 'pending' && gallery_image.attachable.user == user
+        if gallery_image.attachable.class.name == 'Account'
+          gallery_image.attachable.users.first == user
+        else
+          gallery_image.attachable.state != 'pending' && gallery_image.attachable.user == user
+        end
       end
 
       can [:destroy, :destroy_all], GallerySocialImage do |gallery_social_image|
