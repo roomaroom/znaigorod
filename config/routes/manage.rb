@@ -1,5 +1,10 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
+    namespace :statistics do
+      resources :sms_claims, :only => :index
+      resources :reservations, :only => :update
+    end
+
     post 'red_cloth' => 'red_cloth#show'
 
     resources :comments,  :only => [:index, :destroy]

@@ -15,6 +15,10 @@ class Reservation < ActiveRecord::Base
     balance.present? && balance >= Settings['sms_claim.price']
   end
 
+  def add_price_to_balance
+    update_attribute :balance, balance + Settings['sms_claim.price']
+  end
+
   private
 
   def set_default_title_and_placeholder

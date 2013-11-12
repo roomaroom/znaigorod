@@ -17,6 +17,8 @@ class SmsClaim < ActiveRecord::Base
 
   after_create :send_sms_to_organization, :send_sms_to_purchaser, :pay
 
+  scope :ordered, -> { order 'id DESC' }
+
   private
 
   def check_balance
