@@ -36,6 +36,8 @@ class Ability
       user.persisted? && member.account == user.account
     end
 
+    can :read, SmsClaim if user.is_sales_manager?
+
     case namespace
     when 'manage'
       can :manage, Afisha if user.is_afisha_editor?
