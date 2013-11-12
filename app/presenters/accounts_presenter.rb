@@ -32,7 +32,10 @@ class AccountsPresenter
     attr_accessor :acts_as
 
     def initialize(acts_as)
-      @acts_as = available_values.keys.include?(acts_as) ? acts_as : available_values.keys.first
+      @acts_as = available_values.keys & [*acts_as]
+      @acts_as = [available_values.keys.first] if @acts_as.empty?
+
+      @acts_as
     end
 
     def self.available_values
@@ -43,14 +46,8 @@ class AccountsPresenter
       self.class.available_values
     end
 
-    available_values.each do |value, _|
-      define_method "#{value}_selected?" do
-        acts_as == value
-      end
-    end
-
     def used?
-      @acts_as != 'all'
+      @acts_as != ['all']
     end
   end
 
@@ -120,7 +117,7 @@ class AccountsPresenter
           klass: value,
           url: 'accounts_path',
           parameters: searcher_parameters(acts_as: value == 'all' ? nil : value),
-          selected: acts_as_filter.acts_as == value
+          selected: acts_as_filter.acts_as == [value]
         }
       end
     end
