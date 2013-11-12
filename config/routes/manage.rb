@@ -1,8 +1,9 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
     namespace :statistics do
-      resources :sms_claims, :only => :index
+      resources :payments,     :only => :index
       resources :reservations, :only => :update
+      resources :sms_claims,   :only => :index
     end
 
     post 'red_cloth' => 'red_cloth#show'
@@ -110,7 +111,6 @@ Znaigorod::Application.routes.draw do
       get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
     end
 
-    resources :payments, :only => :index
 
     namespace :admin do
       resources :users

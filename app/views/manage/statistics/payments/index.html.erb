@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @payments.each do |payment| %>
-      <%= render :partial => "manage/payments/#{payment.class.name.underscore}", :locals => { :payment => payment } %>
+      <%= render :partial => "manage/statistics/payments/#{payment.class.name.underscore}", :locals => { :payment => payment } %>
     <% end %>
   </tbody>
 </table>

@@ -46,7 +46,7 @@ SimpleNavigation::Configuration.run do |navigation|
       :if => -> { can?(:manage, Post) }
 
     primary.item :statistics, 'Статистика' do |statistics_item|
-      statistics_item.item :payments, 'Платежи', manage_payments_path
+      statistics_item.item :payments, 'Платежи', manage_statistics_payments_path
       statistics_item.item :invitations, 'Приглашения', manage_invitations_path
       statistics_item.item :discount_with_prices, 'Купоны', manage_discount_statistics_path
       statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
