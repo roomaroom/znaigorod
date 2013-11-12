@@ -107,8 +107,6 @@ Znaigorod::Application.routes.draw do
 
     resources :payments, :only => :index
 
-    get 'statistics' => 'statistics#index'
-
     namespace :admin do
       resources :users
       post "users/mass_update" => 'users#mass_update', :as => 'user/mass_update'
