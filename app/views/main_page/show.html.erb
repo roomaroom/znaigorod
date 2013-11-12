@@ -98,8 +98,9 @@
 
   <div class="by_gender">
     <ul>
-      <li><%= link_to 'Девушки', accounts_path(:gender => :female) %></li>
-      <li><%= link_to 'Парни', accounts_path(:gender => :male) %></li>
+      <% @accounts.gender_links.each do |link| %>
+        <li><%= link_to link[:title], accounts_path(link[:parameters]) %></li>
+      <% end %>
     </ul>
   </div>
 
