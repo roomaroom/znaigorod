@@ -13,6 +13,8 @@
     maxPage: $('ul.'+response_class+' + nav.pagination').data('count')
     navSelector: "ul.#{response_class} + nav.pagination"
     nextSelector: "ul.#{response_class} + nav.pagination span.next a"
+    pixelsFromNavToBottom: ($(document).height() - list.scrollTop() - $(window).height()) - list.height()
+    bufferPx: 340
     loading:
       finishedMsg: '<em>Поздравляем, вы достигли конца интернета!</em>'
       msgText: '<em>Загрузка следущей страницы</em>'
