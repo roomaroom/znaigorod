@@ -77,8 +77,14 @@ class User < ActiveRecord::Base
   end
 
   def email
+    # TODO remake this one for compatibility with google
     return '' if auth_raw_info.is_a?(String)
-    auth_raw_info.try(:extra).try(:raw_info).try(:email)
+    # for facebook, mailru
+    result = auth_raw_info.try(:extra).try(:raw_info).try(:email)
+    # for yandex
+    result = auth_raw_info.try(:info).try(:email) if result.nil?
+
+    result
   end
 
   def location
