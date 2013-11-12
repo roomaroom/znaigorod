@@ -3,20 +3,6 @@
 require 'curb'
 
 class YampGeocoder
-  def geo_info_for(address, city = 'Томск')
-    address_line = "#{city} #{address}"
-    params = { :format => :json, :results => 1, :geocode => address_line }
-
-    response = HTTParty.get("http://geocode-maps.yandex.ru/1.x/?#{params.to_query}")
-    json = JSON.parse(response.body)
-    geo_object = json['response']['GeoObjectCollection']['featureMember'].first['GeoObject']
-
-    Hashie::Mash.new({}).tap do |hash|
-      hash.address_line = geo_object["metaDataProperty"]["GeocoderMetaData"]["AddressDetails"]["Country"]['AddressLine']
-      hash.longitude, hash.latitude = geo_object['Point']['pos'].split(' ')
-    end
-  end
-
   def self.get_coordinates(street, house, address_string = nil)
     address = ["город Томск", "Томская область", street, house].join(', ')
     address =  ["город Томск", "Томская область", address_string].join(', ') if address_string.present?
@@ -157,4 +143,17 @@ class YampGeocoder
     get_houses(query)
   end
 
+  def geo_info_for(address, city = 'Томск')
+    address_line = "#{city},#{address}"
+    params = { :format => :json, :results => 1, :geocode => address_line }
+
+    response = HTTParty.get("http://geocode-maps.yandex.ru/1.x/?#{params.to_query}")
+    json = JSON.parse(response.body)
+    geo_object = json['response']['GeoObjectCollection']['featureMember'].first['GeoObject']
+
+    Hashie::Mash.new.tap do |hash|
+      hash.address_line = geo_object['name']
+      hash.longitude, hash.latitude = geo_object['Point']['pos'].split(' ')
+    end
+  end
 end
