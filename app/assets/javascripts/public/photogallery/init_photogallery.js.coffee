@@ -3,7 +3,7 @@
   scroll_count = 4
   visible_count = 5
 
-  if $('.photogallery').closest('.post_show').length
+  if $('.photogallery').closest('.post_show, .gallery_wrapper').length
     scroll_count = 5
     visible_count = 6
 

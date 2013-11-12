@@ -72,14 +72,12 @@
               <span class="menu_text">Друзья</span>
             </a>
           </div>
-          <% if false %>
-            <div class="show_images <%= "selected" if params[:controller] == "my/gallery_images" %>">
-              <a href="<%= my_gallery_images_path() %>">
-                <span id="images_counter"><%= current_user.account.images_count %></span>
-                <span class="menu_text">Фотографии</span>
-              </a>
-            </div>
-          <% end %>
+          <div class="show_images <%= "selected" if params[:controller] == "my/gallery_images" %>">
+            <a href="<%= my_gallery_images_path() %>">
+              <span id="images_counter"><%= current_user.account.images_count %></span>
+              <span class="menu_text">Фотографии</span>
+            </a>
+          </div>
           <div class="show_button <%= "selected" if params[:controller] == "my/afishas" %>">
             <a href="<%= my_afisha_index_path() %>">
               <% if current_user.account.afisha.count > 0 %>
@@ -108,6 +106,24 @@
       <div class="invitations_wrapper">
 
         <h1><%= current_user.account.title %></h1>
+
+        <div class="gallery_wrapper">
+          <% if current_user.account.gallery_images.any? %>
+            <div class="invitations header">
+              <div class='clear'>
+                <span class="panel"></span>
+              </div>
+              <h3>Фотографии</h3>
+            </div>
+            <div class='photogallery'>
+              <ul>
+                <% current_user.account.gallery_images.each do |image| %>
+                  <%= render partial: image.partial_for_render_object, object: image, :locals => { :rel => "my_images_gallery_#{current_user.account.id}" } %>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
 
         <div class="invitations header">
           <%= link_to 'Добавить приглашение',

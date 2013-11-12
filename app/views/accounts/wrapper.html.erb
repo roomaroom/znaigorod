@@ -66,6 +66,24 @@
 
     <h1><%= @account.title %></h1>
 
+    <div class="gallery_wrapper">
+      <% if @account.gallery_images.any? %>
+        <div class="invitations header">
+          <div class='clear'>
+            <span class="panel"></span>
+          </div>
+          <h3>Фотографии</h3>
+        </div>
+        <div class='photogallery'>
+          <ul>
+            <% @account.gallery_images.each do |image| %>
+              <%= render partial: image.partial_for_render_object, object: image, :locals => { :rel => "my_images_gallery_#{@account.id}" } %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
     <div class="invitations_wrapper">
       <div class="invitations header">
         <div class='clear'>
