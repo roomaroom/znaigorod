@@ -131,6 +131,10 @@ class Ability
       can :manage, Contact do |contact|
         user.manager_of?(contact.organization)
       end
+
+      can :manage, Reservation do |reservation|
+        user.manager_of? reservation.reserveable.organization
+      end
     end
   end
 end
