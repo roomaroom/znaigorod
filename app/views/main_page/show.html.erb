@@ -1,7 +1,21 @@
 <div class="afisha_main_page_list">
-  <h1>Афиша</h1>
+  <h1><%= t('meta.afisha.page_header') %></h1>
 
-  <div class="filters">
+  <div class="filters_wrapper">
+    <div class="filters afisha">
+      <div class="by_kind">
+        <ul>
+          <% @afisha_filter.categories_links.each do |category_link| %>
+            <li class='<%= category_link[:klass] %>'>
+              <%= link_to send(category_link[:url]) do %>
+                <%= content_tag :span,  category_link[:title], :class => :name %>
+                <%= content_tag :span, category_link[:count], :class => :count %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <ul class="posters">
@@ -12,9 +26,23 @@
 </div>
 
 <div class="organizations_main_page_list">
-  <h1>Заведения</h1>
+  <h1><%= t('meta.organizations.page_header') %></h1>
 
-  <div class="filters">
+  <div class="filters_wrapper">
+    <div class="filters organization">
+      <div class="by_categories">
+        <ul>
+          <% @organizations.categories_links.each do |category_link| %>
+            <li class='<%= category_link[:klass] %>'>
+              <%= link_to send(category_link[:url], category_link[:parameters]) do %>
+                <%= content_tag :span, category_link[:title], :class => :name %>
+                <%= content_tag :span, category_link[:count], :class => :count %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <ul class="posters">
@@ -25,9 +53,23 @@
 </div>
 
 <div class="discounts_main_page_list">
-  <h1>Скидки</h1>
+  <h1><%= t('meta.discount.page_header') %></h1>
 
-  <div class="filters">
+  <div class="filters_wrapper">
+    <div class="filters discount">
+      <div class="by_kind">
+        <ul>
+          <% @discounts.kind_filter.links.take(9).each do |link| %>
+            <li class="<%= link.klass.gsub('selected', '') %>">
+              <%= link_to link.path do %>
+                <span class="name"><%= link.title %></span>
+                <span class="count"><%= link.results_count %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <ul class="posters">
@@ -40,7 +82,27 @@
 <div class="accounts_main_page_list">
   <h1>Знакомства</h1>
 
-  <div class="filters">
+  <div class="filters_wrapper">
+    <div class="filters account">
+      <div class="by_category">
+        <ul>
+          <li class='all'>
+            <%= link_to accounts_path(@accounts.searcher_parameters(category: nil)) do %>
+              <span class='name'>Все</span>
+              <span class='count'><%= @accounts.count(category: nil) %></span>
+            <% end %>
+          </li>
+          <% @accounts.categories_links.take(8).each do |link| %>
+            <li class='<%= link[:klass] %>'>
+              <%= link_to accounts_path(link[:parameters]) do %>
+                <span class='name'><%= link[:title] %></span>
+                <span class='count'><%= link[:count] %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <ul class="posters">

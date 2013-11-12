@@ -101,8 +101,6 @@ class DiscountsPresenter
       available.index(selected) > 6
     end
 
-    private
-
     def human_titles
       Hash[Discount.kind.options].invert
     end

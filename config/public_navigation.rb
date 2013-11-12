@@ -33,7 +33,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
 
   navigation.items do |primary|
-    primary.item :afisha, 'Афиша', root_path, highlights_on: -> { params[:controller] == 'afishas' }
+    primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { params[:controller] == 'afishas' }
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first }
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' }
