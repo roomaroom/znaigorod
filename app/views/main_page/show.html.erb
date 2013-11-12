@@ -67,6 +67,14 @@
     <h1><%= link_to t('meta.discount.page_header'), discounts_path %></h1>
   </div>
 
+  <div class="by_type">
+    <ul>
+      <% @discount_filter.type_filter.links.each do |link| %>
+        <li><%= link_to link.title, link.path %></li>
+      <% end %>
+    </ul>
+  </div>
+
   <div class="filters_wrapper">
     <div class="filters discount">
       <div class="by_kind">
