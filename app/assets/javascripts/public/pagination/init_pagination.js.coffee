@@ -15,7 +15,8 @@
     '.content_wrapper .contest .works ul,' +
     '.feeds > ul, ' +
     '#notifications > ul, ' +
-    '#invites > ul'
+    '#invites > ul, ' +
+    '.content_wrapper .images_list > ul'
   )
   first_item = $('li:first', list)
   return true unless first_item.length

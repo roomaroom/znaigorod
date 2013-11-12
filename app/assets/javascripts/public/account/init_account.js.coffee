@@ -50,6 +50,10 @@
     false
 
 @init_account_social_actions = () ->
+  $('.images_list').on 'ajax:success', (evt, response, status, jqXHR) ->
+    target = $(evt.target)
+    target.closest('li').remove() if target.hasClass('trash')
+
   $('.account_show .left, .invitations_wrapper, .accounts_list').on 'ajax:success', (evt, response, status, jqXHR) ->
     target = $(evt.target)
 

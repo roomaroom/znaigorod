@@ -7,7 +7,8 @@ class My::GalleryImagesController < My::ApplicationController
 
   def index
     index!{
-      @images = current_user.account.gallery_images
+      @images = Kaminari.paginate_array(current_user.account.gallery_images).page(params[:page]).per(15)
+      render :partial => 'account_gallery_images' and return if request.xhr?
     }
   end
 
