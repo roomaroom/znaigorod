@@ -8,6 +8,16 @@
 
   true
 
+@init_help = ->
+  left = $('.show_help').position().left - 190
+  $('.help').css('left', left).prepend('<a class="close" title="закрыть" href="#">X</a>')
+  $('.show_help').click ->
+    $('.help').toggle()
+    false
+  $('.help .close').click ->
+    $('.help').toggle()
+    false
+
 @account_afisha_remove = () ->
   $('.trash').on 'ajax:success', (evt, data) ->
     id = $(evt.target).closest('.item').attr('id')

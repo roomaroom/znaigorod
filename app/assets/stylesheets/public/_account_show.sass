@@ -186,10 +186,11 @@
 
     .clearfix
       +clearfix
+
       .gallery_form_wrapper
         width: 580px
         float: left
-        font-size: 12px
+        font-size: 14px
         margin-right: 20px
 
         .inline_form
@@ -231,10 +232,91 @@
 
     .gallery_help_wrapper
       position: relative
+      font-size: 14px
 
+    =input_style
+      font-size: 14px
+      font-family: Arial, Verdana, Tahoma, sans-serif
+      border: 1px solid #909090
+      +border-radius(3px)
+      padding: 5px
+      margin: 0
+
+      &:focus
+        background-color: #fffbef
+
+    .simple_form
+      .input
+        margin-bottom: 10px
+
+        label
+          font-size: 14px
+          display: block
+          margin-bottom: 5px
+
+          abbr
+            color: #880000
+            cursor: help
+
+          &.checkbox
+            font-size: 12px
+
+        input
+          +input_style
+
+        &.hidden
+          margin: 0
+
+        .tagit
+          input.ui-autocomplete-input
+            border: none
+            +border-radius(0)
+            padding-left: 0
+            margin-top: 1px
+            margin-bottom: 3px
+
+            &:focus
+              background-color: transparent
+
+        &.field_with_errors
+          input,
+          textarea
+            border-color: #880000
 
     .invitations_wrapper
       +clearfix
+
+    .help_wrapper
+      position: relative
+
+      .help
+        background-color: #fff
+        border: 1px solid #ccc
+        +border-radius(4px)
+        +box-shadow(#555 0 0 3px)
+        display: none
+        font-size: 12px
+        line-height: 1.5
+        padding: 10px 10px 0 10px
+        position: absolute
+        top: -15px
+        width: 600px
+        z-index: 9999
+
+        .close
+          float: right
+          font-size: 15px
+          margin: 0 0 20px 20px
+          position: relative
+          right: 0
+          top: -5px
+
+        h3
+          font-size: 16px
+          margin-bottom: 10px
+
+        p
+          margin-bottom: 10px
 
     .header
       background-color: #e8e8e8
