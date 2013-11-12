@@ -5,36 +5,40 @@
       <%= @current_user.name %>
       <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: 'sign_out' %>
     </div>
-    <div class="search">
-      <% if [Organization, Meal, Entertainment, Culture, Sauna, Sport, Creation, CarWash].include?(resource_class)  %>
-        <%= form_tag manage_organizations_path, :method => :get do %>
-          <div class='wrapper'>
-            <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
-            <%= submit_tag 'Поиск', class: :button %>
-          </div>
+
+    <!-- TODO: dirty hack (до меня делал или bdn или tab) -->
+    <% if respond_to?(:resource_class) %>
+      <div class="search">
+        <% if [Organization, Meal, Entertainment, Culture, Sauna, Sport, Creation, CarWash].include?(resource_class)  %>
+          <%= form_tag manage_organizations_path, :method => :get do %>
+            <div class='wrapper'>
+              <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
+              <%= submit_tag 'Поиск', class: :button %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if resource_class == Afisha || resource_class.try(:superclass) == Afisha %>
-        <%= form_tag manage_afisha_index_path, :method => :get do %>
-          <div class='wrapper'>
-            <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
-            <%= submit_tag 'Поиск', class: :button %>
-          </div>
-          <div class="include_gone">
-            <%= check_box_tag 'include_gone', '1', params[:include_gone] %>
-            <%= label_tag 'include_gone', 'Включая прошедшие' %>
-          </div>
+        <% if resource_class == Afisha || resource_class.try(:superclass) == Afisha %>
+          <%= form_tag manage_afisha_index_path, :method => :get do %>
+            <div class='wrapper'>
+              <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
+              <%= submit_tag 'Поиск', class: :button %>
+            </div>
+            <div class="include_gone">
+              <%= check_box_tag 'include_gone', '1', params[:include_gone] %>
+              <%= label_tag 'include_gone', 'Включая прошедшие' %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if resource_class == Discount %>
-        <%= form_tag manage_discounts_path, :method => :get do %>
-          <div class='wrapper'>
-            <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
-            <%= submit_tag 'Поиск', class: :button %>
-          </div>
+        <% if resource_class == Discount %>
+          <%= form_tag manage_discounts_path, :method => :get do %>
+            <div class='wrapper'>
+              <%= text_field_tag 'q', params[:q], :placeholder => 'Поиск' %>
+              <%= submit_tag 'Поиск', class: :button %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <%= render_navigation context: 'manage', expand_all: true %>
+      </div>
+      <%= render_navigation context: 'manage', expand_all: true %>
+    <% end %>
   <% end %>
 </div>
