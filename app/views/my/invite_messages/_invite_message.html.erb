@@ -6,6 +6,9 @@
   data-dialog_counter="<%= current_user.account.private_messages.unread.count %>"
   data-invite_counter="<%= current_user.account.received_invite_messages.unread.count %>"
   data-timestamp='<%= invite_message.updated_at.to_i %>'>
+  <div class='time'>
+    <%= time_ago_in_words(invite_message.created_at) %> назад
+  </div>
 
   <div class="item <%= invite_message.relation_at(current_user.account) %>">
     <div class="avatar">
@@ -14,7 +17,7 @@
       <% end %>
     </div>
     <div class="right_wrapper">
-      <%= link_to invite_message.opponent_of(current_user.account), account_path(invite_message.opponent_of(current_user.account)) %>, <span class='date'><%= l invite_message.created_at, :format => '%e %B %Y, %H:%M' %></span>
+      <%= link_to invite_message.opponent_of(current_user.account), account_path(invite_message.opponent_of(current_user.account)) %>,
       <%= link_to "К диалогу", my_dialogs_path(:anchor => "dialog_#{invite_message.opponent_of(current_user.account).id}"), class: "to_dialog dialog_#{invite_message.opponent_of(current_user.account).id}" %>
 
       <div>
