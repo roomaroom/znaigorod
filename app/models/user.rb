@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
   scope :ordered,        -> { order('ID ASC') }
 
   after_create :create_account
+  after_save :update_email
+
+  def update_email
+    if self.account.email.blank? && self.email.present?
+      self.account.email = self.email
+      self.account.save!
+    end
+  end
 
   def self.find_or_create_by_oauth(auth_raw_info)
     provider, uid = auth_raw_info.provider, auth_raw_info.uid.to_s
@@ -77,7 +85,6 @@ class User < ActiveRecord::Base
   end
 
   def email
-    # TODO remake this one for compatibility with google
     return '' if auth_raw_info.is_a?(String)
     # for facebook, mailru
     result = auth_raw_info.try(:extra).try(:raw_info).try(:email)
