@@ -11,7 +11,10 @@ class My::AccountsController < My::ApplicationController
   end
 
   def update
-    update!{ redirect_to my_root_path and return }
+    update!{
+      render nothing: true, :status => 200 and return if request.xhr?
+      redirect_to my_root_path and return
+    }
   end
 
   def show
