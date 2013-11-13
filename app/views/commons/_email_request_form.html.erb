@@ -1,0 +1,17 @@
+<% if current_user.present? %>
+  <div id="email_request_form">
+    <%= simple_form_for current_user.account, as: :account, url: my_account_path do |f| %>
+      <div class="properties_place">
+        <div class="line">
+          <p>Хотите знать кто и куда вас пригласил?</p>
+          <p> Укажите свой E-mail и мы сможем оповещать Вас!</p>
+          <p>E-mail:</p>
+          <%= f.input :email, label: false, as: :string %>
+        </div>
+      </div>
+      <div class="button_place">
+        <%= f.submit 'Сохранить', class: :properties_submit %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

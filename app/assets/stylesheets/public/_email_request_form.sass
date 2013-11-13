@@ -1,0 +1,37 @@
+#email_request_form
+  width: 300px
+  height: 205px
+  =input_style
+    font-size: 14px
+    font-family: Arial, Verdana, Tahoma, sans-serif
+    border: 1px solid #909090
+    +border-radius(3px)
+    padding: 5px
+    margin: 0
+    width: 330px
+
+    &:focus
+      background-color: #fffbef
+
+  .simple_form
+    .input
+      margin-bottom: 10px
+
+      label
+        font-size: 14px
+        display: block
+        margin-bottom: 5px
+
+      input
+        +input_style
+
+    .properties_submit
+      +button-style
+
+      &.hidden
+        margin: 0
+
+      &.field_with_errors
+        input,
+        textarea
+          border-color: #880000

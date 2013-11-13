@@ -24,6 +24,7 @@
  * = require crop
  * = require ajax_delete
  * = require popup_window
+ * = require ./email_form
  * = require ./share_to_vk_wall
  * = require ./auth
  * = require ./unauthorized_action
