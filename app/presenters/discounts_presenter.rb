@@ -148,6 +148,10 @@ class DiscountsPresenter
       available.keys.compact.include?(order_by) ? order_by : available.keys.first
     end
 
+    def random?
+      order_by == 'random'
+    end
+
     def links
       available.map do |value, title|
         Hashie::Mash.new(
@@ -227,7 +231,8 @@ class DiscountsPresenter
 
   def searcher
     @searcher ||= HasSearcher.searcher(:discounts, searcher_params).tap { |s|
-      s.send "order_by_#{order_by_filter.selected}"
+      order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
+
       s.paginate(page: page, per_page: per_page)
     }
   end
