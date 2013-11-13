@@ -45,6 +45,8 @@
       remove_highlight()
       show_link()
 
+    $("#email_request_form").dialog('open')
+
   restore_comment = () ->
     unless (typeof(window.localStorage) == 'undefined')
       id = window.localStorage.getItem('comment_id')
