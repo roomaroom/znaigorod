@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <%= render :partial => 'members/social_block', :locals => { :discount => @discount } %>
+    <%= render :partial => 'members/social_block', :locals => { :discount => @discount } unless @discount.is_a?(OfferedDiscount) %>
   </div>
 
   <div class="right">
