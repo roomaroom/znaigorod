@@ -130,6 +130,10 @@ module OrganizationsPresenter
     searcher.results
   end
 
+  def random_collection
+    decorator_class.decorate(searcher.order_by(:random).results)
+  end
+
   def selected_category
     @selected_category ||= "".tap do |str|
       str << (categories_filter[:selected].first || pluralized_kind)
