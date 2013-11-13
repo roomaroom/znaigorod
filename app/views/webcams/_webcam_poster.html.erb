@@ -4,7 +4,7 @@
   </div>
 
   <div class="image">
-    <%= link_to image_tag(resized_image_url(webcam.snapshot_url, 220, 164), :size => '220x164', :title => webcam.title.text_gilensize, :alt => webcam.title.text_gilensize), webcam_path(webcam) %>
+    <%= link_to image_tag(resized_image_url(webcam.snapshot_href, 220, 164), :size => '220x164', :title => webcam.title.text_gilensize, :alt => webcam.title.text_gilensize), webcam_path(webcam) %>
   </div>
 
   <div class="place">
