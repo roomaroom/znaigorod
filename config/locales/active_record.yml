@@ -57,6 +57,7 @@ ru:
       discount:                           Все скидки
       certificate:                        Все сертификаты
       coupon:                             Все купоны
+      offered_discount:                   Все предложения
 
     attributes:
       common_attributes: &common_attributes
@@ -181,6 +182,9 @@ ru:
       coupon:
         constant: Является бессрочным купоном
         price: Цена купона
+
+      offered_discount:
+        placeholder: Подсказка
 
       place:
         address: Организатор или место
