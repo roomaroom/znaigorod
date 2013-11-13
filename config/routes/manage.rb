@@ -43,8 +43,9 @@ Znaigorod::Application.routes.draw do
       resources :works, :except => [:index, :show]
     end
 
-    resources :certificates, :except => [:index, :show, :destroy]
-    resources :coupons, :except => [:index, :show, :destroy]
+    resources :certificates,      :except => [:index, :show, :destroy]
+    resources :coupons,           :except => [:index, :show, :destroy]
+    resources :offered_discounts, :except => [:index, :show, :destroy]
 
     resources :discounts do
       get ':by_state' => 'discounts#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Discount.state_machine.states.map(&:name).join('|')}/ }

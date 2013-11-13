@@ -323,6 +323,7 @@ ActiveRecord::Schema.define(:version => 20131115083614) do
     t.text     "poster_vk_id"
     t.text     "terms"
     t.text     "supplier"
+    t.text     "placeholder"
   end
 
   create_table "entertainments", :force => true do |t|

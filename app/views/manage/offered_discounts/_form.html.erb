@@ -1,0 +1,31 @@
+<%= simple_nested_form_for [:manage, @offered_discount] do |f| %>
+  <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.33/?load=package.full&lang=ru-RU') %>
+
+  <%= f.input :title %>
+
+  <div class="place_fields">
+    <%= f.simple_fields_for :places do |pf| %>
+      <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
+      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude' } %>
+      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude' } %>
+      <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+      <%= link_to 'Указать координаты', '#', :class => 'choose_coordinates' %>
+      <%= pf.link_to_remove 'Удалить' %>
+    <% end %>
+    <%= f.link_to_add 'Добавить место проведения', :places, :onclick => 'setTimeout(function() { init_discount_map() }, 100)' %>
+  </div>
+
+  <%= f.input :kind, :as => :check_boxes %>
+  <%= f.input :description, :required => true, :input_html => { :class => 'markitup' } %>
+  <%= f.input :placeholder, :required => true, :input_html => { :class => 'markitup' } %>
+
+  <%= f.input :constant %>
+  <%= f.input :starts_at, :as => :date_picker %>
+  <%= f.input :ends_at, :as => :date_picker %>
+
+  <div class="actions">
+    <%= link_to "&larr; Назад".html_safe, :back %>
+    <%= f.submit 'Сохранить' %>
+    <%= link_to 'Удалить'.html_safe, manage_discount_path(resource), method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
+  </div>
+<% end %>
