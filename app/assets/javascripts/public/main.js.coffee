@@ -71,6 +71,8 @@ $ ->
   init_comments() if $('.comments').length
   init_pagination_dialogs() if $('#dialogs').length
   init_help() if $('.gallery_help_wrapper').length
+  init_account_edit() if $('.properties_form #edit_account').length
+
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length
 

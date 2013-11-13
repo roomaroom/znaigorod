@@ -46,6 +46,12 @@ class Account < ActiveRecord::Base
   has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
   alias_attribute :file_url, :avatar_url
 
+  validates  :email, :email_format => {
+    :message => I18n.t('activerecord.errors.messages.invalid')
+  },
+  :on => :update
+
+
   extend Enumerize
   enumerize :gender, in: [:undefined, :male, :female], default: :undefined, predicates: true
 

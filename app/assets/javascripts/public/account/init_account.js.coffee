@@ -1,3 +1,13 @@
+@init_account_edit = () ->
+  $('.properties_form #edit_account').submit ->
+    email = $('.properties_form #edit_account #account_email').val()
+    if email.length && !is_email(email)
+      $('.properties_form #edit_account #account_email').closest('.line').after("<div style='color: red'>E-mail указан неверно =(</div>")
+      $('.properties_form #edit_account #account_email').css
+        'border-color': 'red'
+      return false
+  true
+
 @init_account_filter_with_avatar = () ->
   $('.filters_wrapper .account #with_avatar').change ->
     block = $(this).closest('div')
