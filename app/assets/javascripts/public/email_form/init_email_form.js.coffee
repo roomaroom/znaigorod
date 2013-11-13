@@ -1,5 +1,5 @@
 @init_email_form = () ->
-  dialog = $("#email_request_form").dialog
+  @email_request_form = $("#email_request_form").dialog
     autoOpen: false
     draggable: false
     #height: 'auto'
@@ -25,11 +25,11 @@
       return false
   true
 
-  dialog
+  @email_request_form
 
-#@show_email_form = ->
-  #dialog.show() if dialog != undefined
+  show_on_main_page = ->
+    unless window.localStorage.getItem('email_request_form_main_page')
+      @email_request_form.dialog('open')
+      window.localStorage.setItem('email_request_form_main_page',true)
 
-#@hide_email_form = ->
-  #dialog.hide() if dialog != undefined
-
+  show_on_main_page() if window.location.pathname == "/"
