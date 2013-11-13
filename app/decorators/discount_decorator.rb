@@ -58,6 +58,9 @@ class DiscountDecorator < ApplicationDecorator
 
   def place_without_map
     results = ''
+
+    return results if places.empty?
+
     place = places.first
 
     if place.organization_id?
