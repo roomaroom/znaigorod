@@ -44,7 +44,7 @@ class DiscountsPresenter
     end
 
     def available
-      { nil => 'Все', 'discount' => 'Скидки', 'coupon' => 'Купоны', 'certificate' => 'Сертификаты' }
+      { nil => 'Все', 'discount' => 'Скидки', 'coupon' => 'Купоны', 'certificate' => 'Сертификаты', 'offered_discount' => 'Предложения' }
     end
 
     def selected
