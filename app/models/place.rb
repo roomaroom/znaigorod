@@ -10,3 +10,20 @@ class Place < ActiveRecord::Base
   after_save    :placeable_sunspot_index
   after_destroy :placeable_sunspot_index
 end
+
+# == Schema Information
+#
+# Table name: places
+#
+#  id              :integer          not null, primary key
+#  placeable_id    :integer
+#  placeable_type  :string(255)
+#  address         :string(255)
+#  latitude        :string(255)
+#  longitude       :string(255)
+#  organization_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  title           :string(255)
+#
+

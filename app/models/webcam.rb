@@ -12,6 +12,7 @@ class Webcam < ActiveRecord::Base
   scope :ordered, -> { order('title') }
 
   scope :published, -> { where(:state => true) }
+  scope :our,       -> { where(:our_cam => true) }
 
   extend FriendlyId
   friendly_id :title, use: :slugged
@@ -65,5 +66,6 @@ end
 #  snapshot_image_file_size    :integer
 #  snapshot_image_updated_at   :datetime
 #  snapshot_image_url          :text
+#  our_cam                     :boolean          default(FALSE)
 #
 

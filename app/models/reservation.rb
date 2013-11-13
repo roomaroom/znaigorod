@@ -26,3 +26,19 @@ class Reservation < ActiveRecord::Base
     self.placeholder = I18n.t("sms_claim.#{reserveable.class.name.underscore}.placeholder") if placeholder.nil?
   end
 end
+
+# == Schema Information
+#
+# Table name: reservations
+#
+#  id               :integer          not null, primary key
+#  reserveable_id   :integer
+#  reserveable_type :string(255)
+#  placeholder      :text
+#  phone            :string(255)
+#  title            :string(255)
+#  balance          :float
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+

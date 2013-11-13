@@ -90,5 +90,6 @@ end
 #  email_addressess   :text
 #  undertow           :integer
 #  state              :string(255)
+#  payment_system     :string(255)
 #
 

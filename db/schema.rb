@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131101034813) do
+ActiveRecord::Schema.define(:version => 20131113043939) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -1049,14 +1049,15 @@ ActiveRecord::Schema.define(:version => 20131101034813) do
     t.string   "latitude"
     t.string   "longitude"
     t.boolean  "state"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.text     "snapshot_url"
     t.string   "snapshot_image_file_name"
     t.string   "snapshot_image_content_type"
     t.integer  "snapshot_image_file_size"
     t.datetime "snapshot_image_updated_at"
     t.text     "snapshot_image_url"
+    t.boolean  "our_cam",                     :default => false
   end
 
   add_index "webcams", ["slug"], :name => "index_webcams_on_slug"

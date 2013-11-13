@@ -15,6 +15,7 @@
   <%= f.input :latitude, placeholder: '56.488746', :readonly => true %>
   <%= f.input :longitude, placeholder: '84.954833', :readonly => true %>
   <%= f.input :state %>
+  <%= f.input :our_cam %>
   <div class='published actions'>
     <%= f.submit "Сохранить" %>
     <%= link_to 'Удалить'.html_safe, resource_path, method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
