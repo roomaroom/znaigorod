@@ -3,8 +3,8 @@
 class Webcam < ActiveRecord::Base
 
   attr_accessible :kind, :title, :slug, :url, :parameters, :cab, :width, :height,
-                  :address, :latitude, :longitude, :state, :snapshot_url, :snapshot_image
-
+                  :address, :latitude, :longitude, :state, :snapshot_url, :snapshot_image,
+                  :our_cam
 
   validates_presence_of :kind, :title, :url, :width, :height,
                         :address, :latitude, :longitude

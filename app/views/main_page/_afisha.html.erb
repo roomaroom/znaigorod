@@ -1,0 +1,34 @@
+<div class="afisha_main_page_list">
+  <div class="filter_header">
+    <h1><%= link_to t('meta.afisha.page_header'), afisha_index_path %></h1>
+  </div>
+
+  <div class="by_tickets">
+    <ul>
+      <li><%= link_to 'Распродажа билетов', afisha_with_tickets_index_path %></li>
+    </ul>
+  </div>
+
+  <div class="filters_wrapper">
+    <div class="filters afisha">
+      <div class="by_kind">
+        <ul>
+          <% @afisha_filter.categories_links.each do |category_link| %>
+            <li class='<%= category_link[:klass] %>'>
+              <%= link_to send(category_link[:url]) do %>
+                <%= content_tag :span,  category_link[:title], :class => :name %>
+                <%= content_tag :span, category_link[:count], :class => :count %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <ul class="posters">
+    <% @afisha.decorated_collection.each do |afisha| %>
+      <li><%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %></li>
+    <% end %>
+  </ul>
+</div>

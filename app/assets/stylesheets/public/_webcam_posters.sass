@@ -1,0 +1,40 @@
+.webcams_main_page_list
+  margin: 0
+  width: 100%
+
+  .posters
+    +clearfix
+    clear: both
+    padding: 0 10px
+
+    li
+      float: left
+      margin: 0 20px 20px 0
+      width: 220px
+      &:nth-child(5n)
+        margin-right: 0
+
+      .item
+        border: 1px solid #ccc
+        height: 225px
+        margin: 0 auto
+        padding: 1px 0 1px 0
+        width: 220px
+
+        .title
+          display: table-cell
+          height: 38px
+          padding: 0 3px
+          text-align: center
+          vertical-align: middle
+          width: 220px
+
+        .image
+          +clearfix
+          height: 164px
+          position: relative
+          width: 220px
+
+        .place
+          margin: 3px 0 0 0
+          text-align: center

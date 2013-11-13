@@ -1,0 +1,28 @@
+<div class="organizations_main_page_list">
+  <div class="filter_header">
+    <h1><%= link_to t('meta.organizations.page_header'), organizations_path %></h1>
+  </div>
+
+  <div class="filters_wrapper">
+    <div class="filters organization">
+      <div class="by_categories">
+        <ul>
+          <% @organizations.categories_links.each do |category_link| %>
+            <li class='<%= category_link[:klass] %>'>
+              <%= link_to send(category_link[:url], category_link[:parameters]) do %>
+                <%= content_tag :span, category_link[:title], :class => :name %>
+                <%= content_tag :span, category_link[:count], :class => :count %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <ul class="posters">
+    <% @organizations.random_collection.each do |organization| %>
+      <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization } %></li>
+    <% end %>
+  </ul>
+</div>

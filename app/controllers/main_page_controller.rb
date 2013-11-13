@@ -6,5 +6,6 @@ class MainPageController < ApplicationController
     @discounts       = DiscountsPresenter.new(:per_page => 5, :type => 'certificate', :order_by => 'random')
     @discount_filter = DiscountsPresenter.new(params)
     @accounts        = AccountsPresenter.new(:per_page => 6, :acts_as => ['inviter', 'invited'], :with_avatar => true)
+    @webcams         = Webcam.our.published.shuffle.take(5)
   end
 end
