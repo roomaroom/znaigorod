@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Znaigorod::Application.routes.draw do
   namespace :crm do
     resources :slave_organizations, only: [:new, :update, :destroy]

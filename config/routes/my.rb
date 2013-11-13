@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Znaigorod::Application.routes.draw do
   namespace :my do
     resources :sessions,  :only => [:new, :destroy]

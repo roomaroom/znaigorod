@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'sidekiq/web'
 
 Znaigorod::Application.routes.draw do

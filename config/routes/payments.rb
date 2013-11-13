@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Znaigorod::Application.routes.draw do
   resources :tickets, :only => [] do
     resources :copy_payments, :only => [:new, :create]
