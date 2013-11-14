@@ -12,4 +12,13 @@ class OffersController < ApplicationController
       success.html { render @offer }
     end
   end
+
+  protected
+
+  def build_resource
+    super
+    @offer.account = current_user.account if current_user
+
+    @offer
+  end
 end
