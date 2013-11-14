@@ -1,0 +1,9 @@
+На сайте ЗнайГород (<%= Settings['app']['host'] %>)
+
+пользователь <%= @offer.name %> (<%= @offer.phone %>) добавил новое предложение цены.
+
+<%= @offer.details %>
+
+Готов заплатить: <%= number_to_currency(@offer.amount, :precision => 0) %>
+
+Помотреть это предложение в manage: <%= polymorphic_url([:manage, :offers], :host => Settings['app']['host']) %>

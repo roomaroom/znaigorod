@@ -43,6 +43,7 @@ module Znaigorod
                                       :discount_observer,
                                       :friend_observer,
                                       :organization_observer,
+                                      :offer_observer,
                                       :reservation_observer,
                                       :showing_observer,
                                       :suborganization_observer,
