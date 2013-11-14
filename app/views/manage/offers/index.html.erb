@@ -19,6 +19,10 @@
 
       <span class="details"><%= offer.details %></span>
       <span class="amount">Цена: <%= number_to_currency(offer.amount, :precision => 0) %></span>
+      <span class="status_title">
+        Статус: <%= offer.human_state_name %>
+        <%= render :partial => 'state_actions', :locals => { :resource => offer } %>
+      </span>
     </li>
   <% end %>
 </ul>

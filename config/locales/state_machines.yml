@@ -20,3 +20,13 @@ ru:
           events:
             approve: Принять
             cancel:  Отклонить
+
+      offer:
+        state:
+          states:
+            fresh:    На рассмотрении
+            approved: Принято
+            canceled: Отклонено
+          events:
+            approve: Принять
+            cancel:  Отклонить

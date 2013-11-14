@@ -6,4 +6,8 @@
   <% if resource.is_a? Discount  %>
     <%= link_to t("activerecord.state_machines.state.events.#{state_event}"), fire_state_event_manage_discount_path(resource, state_event), :method => :put %>
   <% end %>
+
+  <% if resource.is_a? Offer %>
+    <%= link_to t("activerecord.state_machines.offer.state.events.#{state_event}"), fire_state_event_manage_offer_path(resource, state_event), :method => :put %>
+  <% end %>
 <% end %>
