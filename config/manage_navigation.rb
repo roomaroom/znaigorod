@@ -28,7 +28,7 @@ SimpleNavigation::Configuration.run do |navigation|
         afisha_item.item 'draft', "Черновики (#{Afisha.draft.count})", by_state_manage_afisha_index_path(:draft)
     end
 
-    primary.item :posts, 'Купоны', manage_discounts_path,
+    primary.item :posts, 'Скидки', manage_discounts_path,
       :highlights_on => ->(){ resource_class == Discount || resource_class == Coupon || resource_class == Certificate },
       :if => -> { can?(:manage, Discount) } do |discount_item|
         Discount.kind.values.each do |kind|
@@ -44,13 +44,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :posts, 'Посты', manage_posts_path,
       :highlights_on => ->(){ resource_class == Post },
       :if => -> { can?(:manage, Post) }
-
-    primary.item :statistics, 'Статистика' do |statistics_item|
-      statistics_item.item :payments, 'Платежи', manage_statistics_payments_path
-      statistics_item.item :invitations, 'Приглашения', manage_invitations_path
-      statistics_item.item :discount_with_prices, 'Купоны', manage_discount_statistics_path
-      statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
-    end
+    primary.item :payments, 'Вебкамеры', manage_webcams_path
 
     primary.item :crm, 'ЦРМ', crm_root_path,
       :highlights_on => ->(){ namespace == 'crm' },
@@ -61,9 +55,14 @@ SimpleNavigation::Configuration.run do |navigation|
         crm_item.item 'meetings', 'План встреч', [:meetings, :crm, :activities]
     end
 
-    primary.item :tickets, 'Билеты', manage_tickets_path
-    primary.item :payments, 'Вебкамеры', manage_webcams_path
-    # primary.item :offers, 'Предложения цены', manage_offers_path
+    primary.item :statistics, 'Статистика' do |statistics_item|
+      statistics_item.item :payments, 'Платежи', manage_statistics_payments_path
+      statistics_item.item :invitations, 'Приглашения', manage_invitations_path
+      statistics_item.item :discount_with_prices, 'Скидки', manage_discount_statistics_path
+      statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
+      statistics_item.item :tickets, 'Билеты', manage_tickets_path
+      statistics_item.item :offers, 'Предложения цены', manage_offers_path
+    end
 
     primary.dom_class = 'navigation'
   end
