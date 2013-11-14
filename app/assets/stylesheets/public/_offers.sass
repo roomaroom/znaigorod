@@ -1,0 +1,58 @@
+.new_lined_inputs
+  margin: 10px 20px
+
+  abbr
+    color: #880000
+
+  label
+    display: block
+
+  textarea
+    resize: none
+
+  input, select, textarea
+    appearance: none
+    border: 1px solid #bfbfbf
+    outline: none
+    padding: 2px 3px
+
+    &:focus
+      background-color: #fffbef
+
+  .error
+    color: #880000
+    display: block
+    font-size: 11px
+    position: absolute
+    left: 190px
+    top: 0
+
+    &:before
+      content: '\2190'
+      margin: 0 5px 0 0
+
+  .input
+    margin: 0 0 10px 0
+    position: relative
+
+  .field_with_errors
+    input, select, textarea
+      border: 1px solid #880000
+
+  .submit
+    input
+      +button_style
+      cursor: pointer
+      padding: 4px 10px 5px
+      margin: 0
+
+      &:active
+        padding: 5px 10px 4px
+
+#new_offer
+  #offer_details
+    height: 100px
+    width: 570px
+
+
+

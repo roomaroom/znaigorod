@@ -39,7 +39,7 @@ handle_dialog = (dialog, target) ->
 
     dialog = init_dialog
       class:  target.attr('class')
-      height: 480
+      height: 390
       title:  target.data('title')
       width:  640
 

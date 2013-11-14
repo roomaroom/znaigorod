@@ -1,8 +1,10 @@
-<%= simple_form_for [parent, @offer], :remote => true do |f| %>
-  <%= f.input :name %>
-  <%= f.input :phone %>
-  <%= f.input :details %>
+<%= simple_form_for [parent, @offer], :remote => true, :html => { :class => 'new_lined_inputs', :validate => true } do |f| %>
+  <%= f.input :name, :input_html => { :placeholder => 'Укажите имя', :autofocus => true } %>
+  <%= f.input :phone, :input_html => { :placeholder => 'Укажите номер телефона' } %>
+  <%= f.input :details, :input_html => { :placeholder => parent.placeholder } %>
   <%= f.input :amount %>
 
-  <%= f.submit 'Предложить' %>
+  <div class="submit">
+    <%= f.submit 'Предложить' %>
+  </div>
 <% end %>
