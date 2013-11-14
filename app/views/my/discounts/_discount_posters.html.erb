@@ -1,5 +1,5 @@
 <% collection.each do |discount| %>
-  <li><%= render :partial => 'my/discounts/discount_poster', :locals => { :discount => discount } %></li>
+  <li><%= render :partial => 'my/discounts/discount_poster', :locals => { :discount => discount, :@width => '220', :@height => '164' } %></li>
 <% end %>
 
 <% unless collection.first_page? && collection.last_page? %>

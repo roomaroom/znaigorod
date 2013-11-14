@@ -31,9 +31,9 @@
             <% if collection.any? %>
               <ul class='posters'>
                 <% unless state == 'all' %>
-                  <%= render partial: 'my/discounts/discount_posters', locals: { collection: @discounts.by_state(state), state: state.to_sym } %>
+                  <%= render :partial => 'my/discounts/discount_posters', :locals => { :collection => @discounts.by_state(state), :state => state.to_sym, :@width => '220', :@height => '164' } %>
                 <% else %>
-                  <%= render partial: 'my/discounts/discount_posters', locals: { collection: @discounts, state: state.to_sym } %>
+                  <%= render :partial => 'my/discounts/discount_posters', :locals => { :collection => @discounts, :state => state.to_sym, :@width => '220', :@height => '164' } %>
                 <% end %>
               </ul>
             <% else %>
