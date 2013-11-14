@@ -39,6 +39,7 @@ class Discount < ActiveRecord::Base
   scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
 
   alias_attribute :message_for_sms, :title
+  alias_attribute :to_s, :title
 
   extend Enumerize
   serialize :kind, Array

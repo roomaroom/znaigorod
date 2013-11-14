@@ -23,17 +23,31 @@ class Organization < ActiveRecord::Base
   belongs_to :organization
   belongs_to :primary_organization, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
 
-  has_many :activities, :dependent => :destroy
-  has_many :contacts,   :dependent => :destroy
-  has_many :comments, :dependent => :destroy, :as => :commentable
+  has_many :activities,          :dependent => :destroy
+  has_many :comments,            :dependent => :destroy, :as => :commentable
+  has_many :contacts,            :dependent => :destroy
+  has_many :gallery_files,       :dependent => :destroy, :as => :attachable
+  has_many :gallery_images,      :dependent => :destroy, :as => :attachable
+  has_many :halls,               :dependent => :destroy
+  has_many :invitations,         :dependent => :destroy, :as => :inviteable
+  has_many :organizations
+  has_many :page_visits,         :dependent => :destroy, :as => :page_visitable
+  has_many :places
+  has_many :schedules,           :dependent => :destroy
+  has_many :showings,            :dependent => :destroy
   has_many :slave_organizations, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
+  has_many :social_links,        :dependent => :destroy
+  has_many :visits,              :dependent => :destroy, :as => :visitable
+  has_many :visits,              :dependent => :destroy, :as => :visitable
+  has_many :votes,               :dependent => :destroy, :as => :voteable
 
-  has_many :gallery_images, :as => :attachable, :dependent => :destroy
-  has_many :gallery_files,  :as => :attachable, :dependent => :destroy
+  has_many :afisha,            :through => :showings, :uniq => true
+  has_many :discounts,         :through => :places, :source => :placeable, :source_type => 'Discount'
+  has_many :offered_discounts, :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'OfferedDiscount' }
+  has_many :sauna_halls,       :through => :sauna
 
-  has_many :page_visits, :as => :page_visitable, :dependent => :destroy
-  has_many :invitations, :as => :inviteable, :dependent => :destroy
-  has_many :visits, :dependent => :destroy, :as => :visitable
+  has_one :address,             :dependent => :destroy
+  has_one :organization_stand,  :dependent => :destroy
 
   extend Enumerize
   enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
@@ -47,8 +61,6 @@ class Organization < ActiveRecord::Base
   ### CRM ===>
 
   ### <=== Payments
-
-  has_many :coupons
 
   def claimable_suborganizations
     @claimable_suborganizations ||= I18n.t('sms_claim').keys.map { |kind| send(kind) }.compact
@@ -68,21 +80,6 @@ class Organization < ActiveRecord::Base
 
   ### Payments ===>
 
-  has_many :afisha,       :through => :showings, :uniq => true
-  has_many :discounts,      :dependent => :destroy, :through => :places, :source => :placeable, :source_type => 'Discount'
-  has_many :places
-  has_many :halls,          :dependent => :destroy
-  has_many :organizations
-  has_many :schedules,      :dependent => :destroy
-  has_many :sauna_halls,    :through => :sauna
-  has_many :showings,       :dependent => :destroy
-  has_many :social_links,   :dependent => :destroy
-
-  has_many :visits,         :as => :visitable, :dependent => :destroy
-  has_many :votes,          :as => :voteable, :dependent => :destroy
-
-  has_one :address,             :dependent => :destroy
-  has_one :organization_stand,  :dependent => :destroy
 
   def self.available_suborganization_kinds
     Dir[Rails.root.join('app/models/suborganizations/*.rb')].map { |f| f.split('/').last.gsub '.rb', '' }

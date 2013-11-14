@@ -35,7 +35,7 @@ handle_dialog = (dialog, target) ->
 @init_offer_price = ->
   $('.offer_price').on 'ajax:success', (evt, response) ->
     target = $(evt.target)
-    list = $('.offers_list', '.offers_wrapper')
+    list = target.next('.offers_list')
 
     dialog = init_dialog
       class:  target.attr('class')
