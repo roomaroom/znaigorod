@@ -4,7 +4,7 @@
   </div>
 
   <div class="image">
-    <%= link_to image_tag(resized_image_url(discount.poster_url, 220, 164), :size => '220x164', :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize), discount_path(discount) %>
+    <%= link_to image_tag(resized_image_url(discount.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize), discount_path(discount) %>
 
     <%= content_tag(:div, discount.label_url, :class => :origin_url) if discount.origin_url? %>
 
