@@ -86,6 +86,13 @@ class Account < ActiveRecord::Base
     !avatar.url.match(/files\/[44241|44240|44242]/)
   end
 
+  def self.send_deiscount_statistics
+    accounts = Account.all
+    accounts.each do |account|
+      Discount.send_statistics account
+    end
+  end
+
   def resolve_default_avatar_url
     return "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png"     if gender.female?
     return "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png"       if gender.male?
