@@ -223,7 +223,7 @@ class AfishaPresenter
     @searcher ||= HasSearcher.searcher(:showings, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page)
       s.groups
-      s.send("order_by_#{sorting_filter.order_by}")
+      sorting_filter.order_by_random? ? s.order_by(:random) : s.send("order_by_#{sorting_filter.order_by}")
 
       unless period_filter.date?
         case period_filter.period

@@ -115,6 +115,10 @@ class SortingFilter
     end
   end
 
+  def order_by_random?
+    @order_by == 'random'
+  end
+
   def order_by
     @order_by = available_sortings_values.include?(@order_by) ? @order_by : 'creation'
     #@order_by = (available_sortings_values & [@order_by]).any? ? @order_by : 'creation' if !@geo_filter.used?
