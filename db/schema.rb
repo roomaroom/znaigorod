@@ -477,6 +477,21 @@ ActiveRecord::Schema.define(:version => 20131115083614) do
   add_index "messages", ["account_id"], :name => "index_messages_on_account_id"
   add_index "messages", ["messageable_id"], :name => "index_messages_on_messageable_id"
 
+  create_table "offers", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "offerable_id"
+    t.string   "offerable_type"
+    t.string   "phone"
+    t.text     "details"
+    t.integer  "amount"
+    t.string   "name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "offers", ["account_id"], :name => "index_offers_on_account_id"
+  add_index "offers", ["offerable_id"], :name => "index_offers_on_offerable_id"
+
   create_table "organization_stands", :force => true do |t|
     t.integer  "organization_id"
     t.integer  "places"
