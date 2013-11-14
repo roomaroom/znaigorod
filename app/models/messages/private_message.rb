@@ -10,6 +10,12 @@ class PrivateMessage < Message
 
   validates_presence_of :body
 
+  after_create :send_mail
+
+  def send_mail
+    NoticeMailer.private_message(self).deliver! unless self.account.email.blank?
+  end
+
   auto_html_for :body do
     html_escape
     simple_format
