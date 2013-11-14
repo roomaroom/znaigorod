@@ -12,7 +12,9 @@
 
       <span class="offer_for">
         Предложение цены для
-        <%= link_to offer.offerable.title, discount_path(offer.offerable) %>
+        <% if offer.offerable.is_a?(Discount) %>
+          <%= link_to offer.offerable.title, discount_path(offer.offerable) %>
+        <% end %>
       </span>
 
       <span class="details"><%= offer.details %></span>
