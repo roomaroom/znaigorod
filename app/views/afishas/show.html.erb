@@ -42,6 +42,8 @@
           <ul class='bets'>
             <%= render :collection => @afisha.bets.reload, :partial => 'my/bets/bet' %>
           </ul>
+        <% else %>
+          <ul class="bets"></ul>
         <% end %>
       </div>
     <% end %>
