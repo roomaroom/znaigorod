@@ -44,6 +44,10 @@
       </div>
     </div>
 
+    <div>
+      <%= link_to 'предложить свою цену', [:new, @discount, :offer], :remote => true, :class => 'offer_price' %>
+    </div>
+
     <%= render :partial => 'members/social_block', :locals => { :discount => @discount } unless @discount.is_a?(OfferedDiscount) %>
   </div>
 

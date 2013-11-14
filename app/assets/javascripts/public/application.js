@@ -92,5 +92,6 @@
  * = require ./infinite_scroll
  * = require ./additional_info
  * = require ./countdown
+ * = require ./offer_price
  * = require ./main
  */
