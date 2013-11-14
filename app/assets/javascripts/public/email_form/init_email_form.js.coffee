@@ -30,6 +30,7 @@
       data: {account: { email: $('#email_request_form #account_email').val() } }
       success: (response, textStatus, jqXHR) ->
         $("#email_request_form").dialog('close')
+        $("#email_request_form").remove()
         return false
 
     return false
