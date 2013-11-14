@@ -56,7 +56,7 @@ class Account < ActiveRecord::Base
   enumerize :gender, in: [:undefined, :male, :female], default: :undefined, predicates: true
 
   searchable do
-    boolean(:with_avatar) { avatar_url? }
+    boolean(:with_avatar) { with_avatar? }
 
     text :first_name
     text :last_name
@@ -84,6 +84,10 @@ class Account < ActiveRecord::Base
     define_method "is_#{role}?" do
       self.class.where(:id => id).joins(:roles).where('roles.role = ?', role).any?
     end
+  end
+
+  def with_avatar?
+    !avatar.url.match(/files\/[44241|44240|44242]/)
   end
 
   def resolve_default_avatar_url
