@@ -8,6 +8,8 @@ class OffersController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    create! do |success, failure|
+      success.html { render @offer }
+    end
   end
 end

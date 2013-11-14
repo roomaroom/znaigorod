@@ -44,8 +44,14 @@
       </div>
     </div>
 
-    <div>
-      <%= link_to 'предложить свою цену', [:new, @discount, :offer], :remote => true, :class => 'offer_price' %>
+    <div class="offers_wrapper">
+      <%= link_to 'предложить свою цену',
+        [:new, @discount, :offer],
+        :remote => true,
+        :class => 'offer_price',
+        :data => { :title => 'Предложить свою цену' } %>
+
+      <%= render :partial => 'offers/list', :locals => { :offerable => @discount } %>
     </div>
 
     <%= render :partial => 'members/social_block', :locals => { :discount => @discount } unless @discount.is_a?(OfferedDiscount) %>

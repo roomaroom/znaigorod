@@ -87,6 +87,12 @@ ru:
         gender:        'Пол:'
         kind:          Тип
 
+      offer:
+        name: Как к вам обращаться
+        phone: Номер вашего телефона
+        details: Ваше предложение
+        amount: Вы готовы заплатить
+
       activity:
         activity_at: Когда
         contact: Контактное лицо организации

@@ -1,6 +1,8 @@
-<%= simple_form_for [parent, @offer] do |f| %>
+<%= simple_form_for [parent, @offer], :remote => true do |f| %>
   <%= f.input :name %>
   <%= f.input :phone %>
   <%= f.input :details %>
   <%= f.input :amount %>
+
+  <%= f.submit 'Предложить' %>
 <% end %>
