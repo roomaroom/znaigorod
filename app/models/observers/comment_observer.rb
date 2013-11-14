@@ -10,6 +10,7 @@ class CommentObserver < ActiveRecord::Observer
     )
     # уведомление об ответе на комментарий
     if comment.parent.present? && comment.user != comment.parent.user
+      NoticeMailer.comment_reply(comment).deliver! unless comment.parent.user.account.email.blank?
       NotificationMessage.delay(:queue => 'critical').create(
         account: comment.parent.user.account,
         producer: comment.user.account,
@@ -19,6 +20,7 @@ class CommentObserver < ActiveRecord::Observer
     end
     # уведомление автору афиши о комментариях
     if comment.commentable.is_a?(Afisha) && comment.commentable.user && comment.commentable.user != comment.user
+      NoticeMailer.comment_to_afisha(comment).deliver! unless comment.commentable.user.account.email.blank?
       NotificationMessage.delay(:queue => 'critical').create(
         account: comment.commentable.user.account,
         producer: comment.user.account,

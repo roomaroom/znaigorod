@@ -13,15 +13,17 @@ class NoticeMailer < ActionMailer::Base
 
   def comment_to_afisha comment
     @comment = comment
-    mail(:to => comment.account.email, :subject => 'invite hello')
+    mail(:to => comment.commentable.user.account.email, :subject => 'invite hello')
   end
 
-  def comment_reply
+  def comment_reply comment
     @comment = comment
     mail(:to => comment.parent.user.account.email, :subject => 'invite hello')
   end
 
-  def comment_like
+  def comment_like vote
+    @vote = vote
+    mail(:to => vote.voteable.user.account.email, :subject => 'invite hello')
 
   end
 
