@@ -42,8 +42,9 @@ add_point_on_side_map = (item, map) ->
       maxWidth: '90%'
       next: 'следующая'
       opacity: '0.5'
-      photo: 'true'
+      photo: true
       previous: 'предыдущая'
+      returnFocus: false
 
     true
 

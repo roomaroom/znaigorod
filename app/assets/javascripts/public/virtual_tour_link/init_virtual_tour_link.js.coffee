@@ -18,6 +18,7 @@
       html: data
       opacity: 0.6
       width: box_width
+      returnFocus: false
       onComplete: () ->
         init_swfkrpano()
         true
