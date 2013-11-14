@@ -107,26 +107,6 @@ class Account < ActiveRecord::Base
     end
   end
 
-  def self.send_discount_statistics
-    accounts = Account.where("email is not null")
-    managers = Role.all.map(&:user).map(&:account).uniq
-    (accounts - managers).each do |account|
-      Discount.send_statistics account
-    end
-  end
-
-  def self.send_afisha_statistics
-    accounts = Account.where("email is not null")
-    managers = Role.all.map(&:user).map(&:account).uniq
-    (accounts - managers).each do |account|
-      begin
-        Afisha.send_statistics account
-      rescue
-        next
-      end
-    end
-  end
-
   def with_avatar?
     ![
       "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png",
