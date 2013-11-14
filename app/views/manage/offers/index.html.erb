@@ -1,0 +1,22 @@
+<div class="clearfix"></div>
+
+<ul class="collection offers">
+  <% @offers.each do |offer| %>
+    <li>
+      <span class="author">
+        <%= offer.account.present? ? offer.account : offer.name %>
+        (<%= offer.phone %>)
+        <%= l offer.created_at, :format => :long %>
+      </span>
+      <%= link_to "удалить", manage_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
+
+      <span class="offer_for">
+        Предложение цены для
+        <%= link_to offer.offerable.title, discount_path(offer.offerable) %>
+      </span>
+
+      <span class="details"><%= offer.details %></span>
+      <span class="amount">Цена: <%= number_to_currency(offer.amount, :precision => 0) %></span>
+    </li>
+  <% end %>
+</ul>

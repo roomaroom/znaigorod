@@ -114,6 +114,7 @@ Znaigorod::Application.routes.draw do
       get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
     end
 
+    resources :offers, :only => [:index, :destroy]
 
     namespace :admin do
       resources :users
