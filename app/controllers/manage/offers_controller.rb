@@ -4,6 +4,9 @@ class Manage::OffersController < Manage::ApplicationController
   actions :index, :edit, :update, :destroy
   custom_actions :resource => :fire_state_event
 
+  has_scope :page, :default => 1
+  has_scope :by_state, :only => :index
+
   def edit
     edit!{
       render :partial => 'form', :layout => false and return
@@ -22,5 +25,15 @@ class Manage::OffersController < Manage::ApplicationController
 
       redirect_to request.referer and return
     }
+  end
+
+  private
+
+  def collection
+    @collection = Offer.search {
+      with :state, params[:by_state] if params[:by_state].present?
+      order_by :created_at, :desc
+      paginate paginate_options.merge(:per_page => per_page)
+    }.results
   end
 end

@@ -115,6 +115,7 @@ Znaigorod::Application.routes.draw do
     end
 
     resources :offers, :only => [:index, :edit, :update, :destroy] do
+      get ':by_state' => 'offers#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Offer.state_machine.states.map(&:name).join('|')}/ }
       put 'fire_event_state/:event' => 'offers#fire_state_event', :on => :member, :as => :fire_state_event
     end
 

@@ -1,7 +1,14 @@
+<ul class="kind_links">
+  <li><%= link_to 'Все', manage_offers_path %></li>
+  <% Offer.state_machine.states.each do |state| %>
+    <li><%= link_to t("activerecord.state_machines.offer.state.states.#{state.name}"), by_state_manage_offers_path(state.value) %></li>
+  <% end %>
+</ul>
+
 <div class="clearfix"></div>
 
 <ul class="collection offers">
-  <% @offers.each do |offer| %>
+  <% collection.each do |offer| %>
     <li>
       <span class="author">
         <%= offer.account.present? ? offer.account : offer.name %>
@@ -29,3 +36,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= paginate collection %>
