@@ -80,14 +80,21 @@
       &:hover
         background: #e8e8e8
 
-      .fresh
+      .fresh, .approved, .canceled
         +inline-block
-        background-position: 0 -28px
         background: image_url('public/bets_state_sprite.png') no-repeat center center
         cursor: help
         height: 16px
-        width: 12px
+        width: 13px
 
+      .fresh
+        background-position: 0 -28px
+
+      .approved
+        background-position: 0 -11px
+
+      .canceled
+        background-position: 0 3px
 
 .discount_show
   .offers_wrapper
