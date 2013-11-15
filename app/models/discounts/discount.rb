@@ -81,9 +81,9 @@ class Discount < ActiveRecord::Base
     discounts = Discount.includes(:votes, :account, :members, :comments, :page_visits)
       .where("discounts.account_id" => account.id)
       .where('discounts.state' => "published")
-      .where("discounts.ends_at < '#{Time.now}'")
+      .where("discounts.ends_at > '#{Time.now}'")
     if discounts.any?
-        NoticeMailer.discount_statistics(discounts, account.email).deliver! unless account.email.blank?
+        NoticeMailer.discount_statistics(discounts, account).deliver! unless account.email.blank?
     end
   end
 

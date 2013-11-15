@@ -1,5 +1,6 @@
 <% #TODO: add localisations! %>
 Статистика по вашим скидкам
+<%= @account.inspect %>
 <% @discounts.each do |discount| %>
   <%= discount.inspect %>
   Участники <%= discount.members.size %>

@@ -31,9 +31,10 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => afisha.user.account.email, :subject => 'afisha stat hello')
   end
 
-  def discount_statistics discounts, email
+  def discount_statistics discounts, account
     @discounts = discounts
-    mail(:to => email, :subject => 'discount stat hello')
+    @account = account
+    mail(:to => account.email, :subject => 'discount stat hello')
   end
 
 end

@@ -83,6 +83,27 @@ class Afisha < ActiveRecord::Base
   attr_accessor :step, :social_gallery_url
   attr_accessible :step, :social_gallery_url
 
+  def self.send_statistics account
+    discounts = Discount.includes(:votes, :account, :members, :comments, :page_visits)
+      .where("discounts.account_id" => account.id)
+      .where('discounts.state' => "published")
+      .where("discounts.ends_at < '#{Time.zone.now}'")
+    if discounts.any?
+        NoticeMailer.discount_statistics(discounts, account).deliver! unless account.email.blank?
+    end
+
+    afishas =  Afisha
+      .includes([{:user => :account}, :visits, :invitations, :comments, :visits, :showings])
+      .where("user_id = '#{account.users.first.id}'")
+      .where(:state => "published")
+      .where('showings.starts_at >= ? OR (showings.ends_at is not null AND showings.ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now)
+      .uniq
+
+    if afishas.any?
+      NoticeMailer.afisha_statistics(afishas).deliver! unless account.email.blank?
+    end
+  end
+
   def self.available_tags(query)
     pluck(:tag).compact.flat_map { |str| str.split(',') }.compact.map(&:squish).uniq.delete_if(&:blank?).select { |str| str =~ /^#{query}/ }.sort
   end
