@@ -86,10 +86,17 @@ class Account < ActiveRecord::Base
     !avatar.url.match(/files\/[44241|44240|44242]/)
   end
 
-  def self.send_deiscount_statistics
+  def self.send_discount_statistics
     accounts = Account.all
     accounts.each do |account|
       Discount.send_statistics account
+    end
+  end
+
+  def self.send_afisha_statistics
+    accounts = Account.all
+    accounts.each do |account|
+      Afisha.send_statistics account
     end
   end
 
