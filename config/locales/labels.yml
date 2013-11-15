@@ -243,8 +243,14 @@ ru:
     other: "Диалоги +%{count}"
     zero:  "Диалоги"
 
-  certificate:
-    copies_title: Осталось сертификатов
+  coupon_count:
+    one: "Остался %{count} купон"
+    few: "Осталось %{count} купона"
+    many: "Осталось %{count} купонов"
+    other: "Осталось %{count} купонов"
 
-  coupon:
-    copies_title: Осталось купонов
+  certificate_count:
+    one: "Остался %{count} сертификат"
+    few: "Осталось %{count} сертификата"
+    many: "Осталось %{count} сертификатов"
+    other: "Осталось %{count} сертификатов"

@@ -20,8 +20,24 @@
         <%= image_tag('public/stub_poster.png', :size => '200x149', :alt => :poster) %>
       <% end %>
     </div>
-    <div class="info">
-      <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
+
+    <div class="payment">
+      <div class="wrapper">
+        <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
+
+        <% if @discount.copies.for_sale.any? && @discount.price %>
+          <span class="copies_count"><%= t("#{@discount.model.class.name.underscore}_count", :count => @discount.copies.for_sale.count) %></span>
+          <% if @discount.price.zero? %>
+            <%= link_to 'Получить код', new_discount_copy_payment_path(@discount), :class => 'payment_link', :remote => true %>
+          <% else %>
+            <%= link_to 'Купить', new_discount_copy_payment_path(@discount), :class => 'payment_link', :remote => true %>
+          <% end %>
+        <% end %>
+
+        <% if @discount.is_a?(AffiliatedCoupon) %>
+          <%= link_to 'Купить', @discount.origin_url, :target => '_blank' %>
+        <% end %>
+      </div>
     </div>
 
     <%= render :partial => 'members/social_block', :locals => { :discount => @discount } %>
@@ -68,7 +84,9 @@
   </div>
 
   <div class="center">
-    <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount %>
+    <% unless @discount.is_a?(AffiliatedCoupon) %>
+      <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount %>
+    <% end %>
 
     <h1><%= @discount.title.text_gilensize %></h1>
 

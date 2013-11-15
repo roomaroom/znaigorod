@@ -5,14 +5,14 @@
   .left
     float: left
     width: 208px
-    border: 1px solid #ccc
 
     .image
+      border: 1px solid #ccc
       position: relative
       text-align: center
       font-size: 12px
       width: 200px
-      margin: 4px 4px 0 4px
+      padding: 4px
 
     .info
       background: #009bdb
@@ -20,19 +20,31 @@
       line-height: 30px
       text-align: center
       font-size: 14px
-      margin: 0 4px 4px 4px
 
-      .discount, .coupon, .certificate
+
+  .payment
+    border: 1px solid #f60
+    margin: 10px 0
+    text-align: center
+
+    .wrapper
+      border-bottom: none
+      border-left: 1px dashed #F60
+      border-right: 1px dashed #F60
+      border-top: none
+      font-size: 12px
+      margin: 0 10px
+
+      .discount, .coupon, .certificate, .affiliated_coupon
+        padding: 5px 0
+
         strong
           font-weight: normal
 
         em
           font-style: normal
 
-        .profit, .price
-          font-weight: bold
-
-        .free
+        .profit, .price, .free
           font-weight: normal
 
       .certificate
@@ -44,12 +56,31 @@
 
           &:after
             +rotate(-10deg)
-            border-top: 1px solid #fff
+            border-top: 1px solid #000
             content: ""
             left: 0
             position: absolute
             top: 45%
             width: 90%
+
+      .copies_count
+        display: block
+        font-size: 11px
+        margin: 0 0 5px 0
+
+    .payment_link,
+    a
+      +inline-block
+      +button-style
+      padding: 3px 15px 4px
+      &:active
+        padding: 4px 15px 3px
+
+
+
+  .social_actions
+    border: 1px solid #ccc
+    padding: 5px 0 0 0
 
     .user_actions
       font-size: 12px
