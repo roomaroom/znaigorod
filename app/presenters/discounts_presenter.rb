@@ -183,13 +183,7 @@ class DiscountsPresenter
   end
 
   def decorated_collection
-    @decorated_collection ||= [].tap do |list|
-      collection.each do |item|
-        discount = Discount.find(item)
-
-        list << DiscountDecorator.new(item)
-      end
-    end
+    @decorated_collection ||= DiscountDecorator.decorate (collection)
   end
 
   def page_title
