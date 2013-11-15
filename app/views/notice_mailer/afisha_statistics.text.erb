@@ -1,7 +1,10 @@
 Статистика по вашей афише
-<%= @afisha.inspect %>
-Участники <%= @afisha.visits.count %>
-Приглашения <%= @afisha.invitations.inviter.without_invited.count %>
-Комментарии <%= @afisha.comments.count %>
-Голоса <%= @afisha.likes_count %>
-Просмотры <%= @afisha.page_visits.count %>
+<%= @account.inspect %>
+<% @afishas.each do |afisha| %>
+  <%= afisha.inspect %>
+  Участники <%= afisha.visits.size %>
+  Приглашения <%= afisha.invitations.inviter.without_invited.size %>
+  Комментарии <%= afisha.comments.size %>
+  <%#Голоса <%= afisha.likes_count %>%>
+  Просмотры <%= afisha.page_visits.count %>
+<% end %>

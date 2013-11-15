@@ -26,9 +26,10 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => vote.voteable.user.account.email, :subject => 'comment like hello')
   end
 
-  def afisha_statistics afisha
-    @afisha = afisha
-    mail(:to => afisha.user.account.email, :subject => 'afisha stat hello')
+  def afisha_statistics afishas, account
+    @account = account
+    @afishas = afishas
+    mail(:to => account.email, :subject => 'afisha stat hello')
   end
 
   def discount_statistics discounts, account

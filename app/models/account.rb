@@ -88,15 +88,21 @@ class Account < ActiveRecord::Base
 
   def self.send_discount_statistics
     accounts = Account.where("email is not null")
-    accounts.each do |account|
+    managers = Role.all.map(&:user).map(&:account).uniq
+    (accounts - managers).each do |account|
       Discount.send_statistics account
     end
   end
 
   def self.send_afisha_statistics
-    accounts = Account.all
-    accounts.each do |account|
-      Afisha.send_statistics account
+    accounts = Account.where("email is not null")
+    managers = Role.all.map(&:user).map(&:account).uniq
+    (accounts - managers).each do |account|
+      begin
+        Afisha.send_statistics account
+      rescue
+        next
+      end
     end
   end
 
