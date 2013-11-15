@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113043939) do
+ActiveRecord::Schema.define(:version => 20131115083614) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20131113043939) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.text     "file_url"
+    t.string   "file_image_url"
   end
 
   create_table "bets", :force => true do |t|

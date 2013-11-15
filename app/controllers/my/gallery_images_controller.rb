@@ -1,6 +1,6 @@
 class My::GalleryImagesController < My::ApplicationController
   load_and_authorize_resource
-  actions :create, :destroy, :index, :new
+  actions :create, :destroy, :index, :new, :edit
   custom_actions :collection => :destroy_all
 
   belongs_to :afisha, :polymorphic => true, :optional => true
@@ -15,6 +15,12 @@ class My::GalleryImagesController < My::ApplicationController
   def new
     new!{
       @account = current_user.account
+    }
+  end
+
+  def edit
+    edit!{
+      @gallery_image = GalleryImage.find(params[:id])
     }
 
   end

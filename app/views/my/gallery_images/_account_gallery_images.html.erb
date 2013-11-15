@@ -7,6 +7,7 @@
     </div>
 
     <div class="badges">
+      <%= link_to "Сделать аватаркой", edit_my_gallery_image_path(image)  %>
       <%= link_to "", my_gallery_image_path(image), method: :delete, remote: true, :confirm => 'Вы уверены?', class: 'trash show_tipsy', title: "Удалить" %>
     </div>
 

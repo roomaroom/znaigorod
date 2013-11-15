@@ -79,7 +79,7 @@ class Ability
         afisha.state != 'pending' && afisha.user == user
       end
 
-      can [:new, :create, :index], GalleryImage if user.persisted?
+      can [:new, :create, :index, :edit], GalleryImage if user.persisted?
 
       can [:destroy, :destroy_all], GalleryImage do |gallery_image|
         if gallery_image.attachable.class.name == 'Account'

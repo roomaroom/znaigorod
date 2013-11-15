@@ -24,7 +24,7 @@ Znaigorod::Application.routes.draw do
       resources :feeds, :only => :index
     end
 
-    resources :gallery_images, :only => [:create, :destroy, :index, :new] do
+    resources :gallery_images, :only => [:create, :destroy, :index, :new, :edit] do
       delete 'destroy_all', :on => :collection, :as => :destroy_all
     end
 
