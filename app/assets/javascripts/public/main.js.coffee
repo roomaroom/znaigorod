@@ -18,6 +18,7 @@ $ ->
   init_invitations()
   init_invitation_list_popup()
   init_additional_info()
+  init_login()
   init_afisha_extend() if $('.afisha_show .photogallery')
   init_afisha_extend() if $('.afisha_show .trailer')
   init_afisha_filter() if $('.filters .by_date .daily').length
