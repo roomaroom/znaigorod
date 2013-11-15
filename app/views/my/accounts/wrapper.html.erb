@@ -110,6 +110,10 @@
         <div class="gallery_wrapper">
           <% if current_user.account.gallery_images.any? %>
             <div class="invitations header">
+              <%= link_to 'Добавить фотографию',
+                new_my_gallery_image_path(),
+                :class => 'invitation_link',
+                :data => { :title => 'Добавить фотографию', :target => '.inviter' } %>
               <div class='clear'>
                 <span class="panel"></span>
               </div>
