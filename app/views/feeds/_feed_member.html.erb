@@ -19,10 +19,10 @@
       <% if feed_member.feedable.memberable.class.name == "Discount" %>
         Учавствую в скидке
       <% elsif feed_member.feedable.memberable.class.name == "Certificate" %>
-      <%= t "account.took.#{feed_member.feedable.memberable.account.gender}" %>
+      <%= t "account.took.#{feed_member.feedable.account.gender}" %>
           сертификат
       <% elsif feed_member.feedable.memberable.class.name == "Coupon" %>
-      <%= t "account.took.#{feed_member.feedable.memberable.account.gender}" %>
+      <%= t "account.took.#{feed_member.feedable.account.gender}" %>
          купон
       <% end %>
     </div>
