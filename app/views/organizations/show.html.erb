@@ -29,7 +29,8 @@
       </ul>
     <% end %>
 
-    <%= render :partial => 'organizations/certificates' if @certificate_presenter.collection.any? %>
+    <%= render :partial => 'organizations/discounts', :locals => { :collection => @certificate_presenter.decorated_collection } if @certificate_presenter.collection.any? %>
+    <%= render :partial => 'organizations/discounts', :locals => { :collection => @coupon_presenter.decorated_collection } if @coupon_presenter.collection.any? %>
 
     <%= render :partial => 'commons/social_block', :locals => { :inviteable => @organization.model } %>
   </div>
