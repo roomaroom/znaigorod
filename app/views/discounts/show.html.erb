@@ -68,7 +68,7 @@
   </div>
 
   <div class="center">
-    <%= link_to 'изменить', edit_manage_discount_path(@discount), :class => 'icon_edit' if can? :edit, @discount %>
+    <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount %>
 
     <h1><%= @discount.title.text_gilensize %></h1>
 
