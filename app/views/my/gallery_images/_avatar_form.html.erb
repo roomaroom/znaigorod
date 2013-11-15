@@ -5,10 +5,6 @@
   <div class='input'>
     <p><strong>Выбирете часть изображения которая будет вашей аватаркой</strong></p>
   </div>
-  <% if false %>
-    <%= f.input :poster_image, label: 'Выберите изображение', required: true, class: :button %>
-    <%= f.error :poster_image_content_type %>
-  <% end %>
   <div>
     <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
     <%= f.input :crop_x, :as => :hidden, :input_html => { :value => crop_x } %>

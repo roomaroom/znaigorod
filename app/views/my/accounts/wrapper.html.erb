@@ -3,7 +3,7 @@
   <div class="left">
     <div class="image">
       <%= image_tag(resized_image_url(current_user.account.avatar.url, 200, 200), size: '200x200', alt: current_user.account.title) %>
-      <%= render 'my/accounts/avatar_form' %>
+      <%= link_to "Изменить фото", my_gallery_images_path() %>
     </div>
     <div class="properties">
       <%= link_to t("edit_profile"), edit_my_account_path %>

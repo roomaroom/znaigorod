@@ -45,6 +45,9 @@ class My::GalleryImagesController < My::ApplicationController
       @gallery_image = @afisha.gallery_images.create(:file => params[:gallery_images][:file])
     else
       @gallery_image = current_user.account.gallery_images.create(:file => params[:gallery_images][:file])
+      img = current_user.account.gallery_images.last
+      img.file_image_url = img.file_url
+      img.save!
     end
   end
 
