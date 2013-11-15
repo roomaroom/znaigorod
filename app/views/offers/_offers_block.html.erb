@@ -1,0 +1,9 @@
+<div class="offer_price_wrapper">
+  <%= link_to 'Предложить свою цену',
+    [:new, discount, :offer],
+    :remote => true,
+    :class => 'offer_price button',
+    :data => { :title => 'Предложить свою цену' } %>
+</div>
+
+<%= render :partial => 'offers/list', :locals => { :offerable => discount } %>

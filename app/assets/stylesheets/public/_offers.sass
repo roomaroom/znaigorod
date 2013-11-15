@@ -65,3 +65,31 @@
       font-size: 13px
       margin: 0 0 7px 0
 
+  .offer_price_wrapper
+    margin: 5px 0
+    text-align: center
+
+    .offer_price
+      +button-style
+      font-size: 13px
+
+  .offers_list
+    li
+      padding: 3px
+
+      &:hover
+        background: #e8e8e8
+
+      .fresh
+        +inline-block
+        background-position: 0 -28px
+        background: image_url('public/bets_state_sprite.png') no-repeat center center
+        cursor: help
+        height: 16px
+        width: 12px
+
+
+.discount_show
+  .offers_wrapper
+    border: none
+
