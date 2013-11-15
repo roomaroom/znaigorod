@@ -1,5 +1,10 @@
 <li>
   <span class="<%= offer.state %>" title="<%= t "activerecord.state_machines.offer.state.states.#{offer.state}" %>"></span>
   <span class="amount"><%= number_to_currency offer.amount %></span> &mdash;
-  <span class="details"><%= offer.details %></span>
+
+  <% if offer.details.length > 75 %>
+    <span title="<%= offer.details %>"><%= truncate offer.details, :length => 75 %></span>
+  <% else %>
+    <span><%= offer.details %></span>
+  <% end %>
 </li>
