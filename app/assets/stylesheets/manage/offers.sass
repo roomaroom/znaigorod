@@ -7,12 +7,30 @@
 
       .delete
         float: right
+        margin: 0 0 0 10px
 
       .author
         display: block
         color: #555
         font-size: 13px
 
-      .details, .amount, .status_title
+      .details, .amount, .status_title, .block
         display: block
 
+      .warning
+        color: red
+
+      form
+        +clearfix
+
+        label
+          +inline-block
+          width: 160px
+
+        input.integer
+          background: #fff
+          border: 1px solid #a2a2a2
+          line-height: 20px
+          margin: 5px 0
+          outline: none
+          padding: 2px 5px

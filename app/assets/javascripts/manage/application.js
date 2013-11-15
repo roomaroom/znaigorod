@@ -29,5 +29,6 @@
  * = require ./curtail
  * = require ./webcam
  * = require ./accounts_for_lottery
+ * = require ./offers
  * = require ./main
  */

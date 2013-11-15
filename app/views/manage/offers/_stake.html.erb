@@ -1,0 +1,12 @@
+<div class="amount">
+  Цена: <%= number_to_currency(offer.amount, :precision => 0) %>
+
+  <% if offer.our_stake.blank? || offer.organization_stake.blank? %>
+    <span class="warning">Не указана наша часть или часть организатора</span>
+    <%= link_to 'указать', edit_manage_offer_path(offer), :class => 'edit', :remote => true %>
+  <% else %>
+    <span class="our_stake block">Наша часть: <%= number_to_currency(offer.our_stake, :precision => 0) %></span>
+    <span class="organization_stake block">Часть ораганизатора: <%= number_to_currency(offer.organization_stake, :precision => 0) %></span>
+    <%= link_to 'изменить', edit_manage_offer_path(offer), :class => 'edit', :remote => true %>
+  <% end %>
+</div>

@@ -114,7 +114,7 @@ Znaigorod::Application.routes.draw do
       get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
     end
 
-    resources :offers, :only => [:index, :destroy] do
+    resources :offers, :only => [:index, :edit, :update, :destroy] do
       put 'fire_event_state/:event' => 'offers#fire_state_event', :on => :member, :as => :fire_state_event
     end
 

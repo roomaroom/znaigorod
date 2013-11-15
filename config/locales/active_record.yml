@@ -92,6 +92,8 @@ ru:
         phone: Номер вашего телефона
         details: Ваше предложение
         amount: Вы готовы заплатить (руб.)
+        our_stake: Наша часть
+        organization_stake: Часть организатора
 
       activity:
         activity_at: Когда

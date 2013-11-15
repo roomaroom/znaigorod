@@ -1,0 +1,6 @@
+<%= simple_form_for [:manage, resource], :remote => true do |f| %>
+  <%= f.input :our_stake %>
+  <%= f.input :organization_stake %>
+  <%= f.submit 'Сохранить' %>
+  <%= link_to "отмена", '#', :class => 'cancel' %>
+<% end %>

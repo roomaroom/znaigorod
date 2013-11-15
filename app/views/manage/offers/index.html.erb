@@ -8,7 +8,13 @@
         (<%= offer.phone %>)
         <%= l offer.created_at, :format => :long %>
       </span>
-      <%= link_to "удалить", manage_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
+
+      <span class="status_title">
+        Статус: <%= offer.human_state_name %>
+        <%= render :partial => 'state_actions', :locals => { :resource => offer } %>
+      </span>
+
+      <%= link_to 'удалить', manage_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
 
       <span class="offer_for">
         Предложение цены для
@@ -18,11 +24,8 @@
       </span>
 
       <span class="details"><%= offer.details %></span>
-      <span class="amount">Цена: <%= number_to_currency(offer.amount, :precision => 0) %></span>
-      <span class="status_title">
-        Статус: <%= offer.human_state_name %>
-        <%= render :partial => 'state_actions', :locals => { :resource => offer } %>
-      </span>
+
+      <%= render :partial => 'stake', :locals => { :offer => offer } %>
     </li>
   <% end %>
 </ul>

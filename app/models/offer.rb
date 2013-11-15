@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  attr_accessible :details, :phone, :name, :amount, :state
+  attr_accessible :details, :phone, :name, :amount, :state, :our_stake, :organization_stake
 
   belongs_to :account
   belongs_to :offerable, :polymorphic => true

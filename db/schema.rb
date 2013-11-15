@@ -485,9 +485,11 @@ ActiveRecord::Schema.define(:version => 20131115083614) do
     t.text     "details"
     t.integer  "amount"
     t.string   "name"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "state"
+    t.integer  "our_stake"
+    t.integer  "organization_stake"
   end
 
   add_index "offers", ["account_id"], :name => "index_offers_on_account_id"
