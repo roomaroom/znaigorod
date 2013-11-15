@@ -1,26 +1,27 @@
-  <% crop_opt = @gallery_image.poster_url ? @gallery_image.poster_url.match(/(?<=\/region\/)\w+\/\w+\/\w+\/\w+/).to_s.split('/').map{|o| (o.to_i/@gallery_image.resize_factor).round} : [] %>
-  <% crop_width, crop_height, crop_x, crop_y = crop_opt.any? ? crop_opt : [@gallery_image.poster_image_resized_dimensions[:width] / @gallery_image.resize_factor, @gallery_image.poster_image_resized_dimensions[:height] , 0, 0] %>
+<% crop_opt = @gallery_image.poster_url ? @gallery_image.poster_url.match(/(?<=\/region\/)\w+\/\w+\/\w+\/\w+/).to_s.split('/').map{|o| (o.to_i/@gallery_image.resize_factor).round} : [] %>
+<% crop_width, crop_height, crop_x, crop_y = crop_opt.any? ? crop_opt : [@gallery_image.poster_image_resized_dimensions[:width] / @gallery_image.resize_factor, @gallery_image.poster_image_resized_dimensions[:height] , 0, 0] %>
 
-  <%= simple_form_for @gallery_image, as: :afisha, :url => my_afisha_show_path(@gallery_image.id) do |f| %>
-    <%= hidden_field_tag :step, @step %>
-    <div class='input'>
-      <p><strong>Для изменения постера &ndash; просто загрузите новый или измените область</strong></p>
-    </div>
-    <%#<%= f.input :poster_image, label: 'Выберите изображение', required: true, class: :button %>%>
-    <%#<%= f.error :poster_image_content_type %>%>
-    <div>
-      <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
-      <%= f.input :crop_x, :as => :hidden, :input_html => { :value => crop_x } %>
-      <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
-      <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
-      <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
-      <%= hidden_field_tag :aspect_ratio, 290.0 / 390.0 %>
-      <%= image_tag resized_image_url(@gallery_image.poster_image_url,
-                                      @gallery_image.poster_image_resized_dimensions[:width],
-                                      @gallery_image.poster_image_resized_dimensions[:height]), :class => 'jcrop' %>
-    </div>
-    <div class='submit'>
-      <%= f.button :submit, 'Сохранить', class: :button %>
-      <%= link_to 'Отмена', my_afisha_show_path(@gallery_image) %>
-    </div>
+<%= simple_form_for @gallery_image, as: :gallery_image, :url => my_gallery_image_path(@gallery_image) do |f| %>
+  <div class='input'>
+    <p><strong>Выбирете часть изображения которая будет вашей аватаркой</strong></p>
+  </div>
+  <% if false %>
+    <%= f.input :poster_image, label: 'Выберите изображение', required: true, class: :button %>
+    <%= f.error :poster_image_content_type %>
   <% end %>
+  <div>
+    <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
+    <%= f.input :crop_x, :as => :hidden, :input_html => { :value => crop_x } %>
+    <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
+    <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
+    <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
+    <%= hidden_field_tag :aspect_ratio, 200.0 / 200.0 %>
+    <%= image_tag resized_image_url(@gallery_image.poster_image_url,
+                                    @gallery_image.poster_image_resized_dimensions[:width],
+                                    @gallery_image.poster_image_resized_dimensions[:height]), :class => 'jcrop' %>
+  </div>
+  <div class='submit update'>
+    <%= f.button :submit, 'Сохранить', class: :button %>
+    <%= link_to 'Отмена', my_gallery_images_path() %>
+  </div>
+<% end %>

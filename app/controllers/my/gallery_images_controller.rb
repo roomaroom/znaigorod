@@ -1,6 +1,6 @@
 class My::GalleryImagesController < My::ApplicationController
   load_and_authorize_resource
-  actions :create, :destroy, :index, :new, :edit
+  actions :create, :destroy, :index, :new, :edit, :update
   custom_actions :collection => :destroy_all
 
   belongs_to :afisha, :polymorphic => true, :optional => true
@@ -23,6 +23,20 @@ class My::GalleryImagesController < My::ApplicationController
       @gallery_image = GalleryImage.find(params[:id])
     }
 
+  end
+
+  def update
+    @gallery_image = GalleryImage.find(params[:id])
+    @gallery_image.attributes = params[:gallery_image]
+
+    account = current_user.account
+    account.avatar_url = @gallery_image.file_image_url
+
+    if @gallery_image.save && account.save
+      redirect_to my_gallery_images_path()
+    else
+      render :edit
+    end
   end
 
   def create
