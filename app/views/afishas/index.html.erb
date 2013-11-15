@@ -2,7 +2,9 @@
 <% content_for :meta_keywords, @presenter.meta_keywords %>
 <% content_for :meta_description, @presenter.meta_description %>
 <% content_for :extra_meta do %>
-  <link rel='canonical' href='<%= afisha_index_url %>' />
+  <% if request.query_parameters.any? %>
+    <link rel='canonical' href='<%= request.url.split('?').first %>' />
+  <% end %>
   <%= vk_meta(@presenter.kind, (send @presenter.direct_url), 'znaigorod_logo.png') %>
 <% end %>
 
