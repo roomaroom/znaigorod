@@ -31,6 +31,11 @@
 
     <% @organization.offered_discounts.each do |discount| %>
       <div class="offers_wrapper">
+        <div class="info">
+          <h3><%= discount %></h3>
+          <%= image_tag(resized_image_url(discount.poster_url, 200, 149), :size => '200x149', :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize) %>
+        </div>
+
         <%= link_to 'предложить свою цену',
           [:new, discount, :offer],
           :remote => true,
