@@ -3,7 +3,7 @@
   <div class="item">
 
     <div class="image">
-      <%= image_tag(resized_image_url(image.file_url, 178, 178), size: '178x178', title: image.description, alt: image.description) %>
+      <%= link_to image_tag(resized_image_url(image.file_url, 178, 178), size: '178x178', title: image.description, alt: image.description), edit_my_gallery_image_path(image) %>
     </div>
 
     <div class="badges">

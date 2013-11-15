@@ -52,6 +52,13 @@ class My::GalleryImagesController < My::ApplicationController
   end
 
   def destroy
+    img = GalleryImage.find(params[:id])
+    account = current_user.account
+    if account.avatar_url == img.file_image_url
+      account.avatar_url = account.resolve_default_avatar_url
+      account.save!
+    end
+
     destroy! {
       render :nothing => true and return
     }
@@ -64,7 +71,9 @@ class My::GalleryImagesController < My::ApplicationController
         @afisha.gallery_images.destroy_all
         redirect_to edit_step_my_afisha_path(@afisha.id, :step => :fourth) and return
       else
-        current_user.account.gallery_images.destroy_all
+        account = current_user.account
+        account.gallery_images.destroy_all
+        account.avatar_url = account.resolve_default_avatar_url
         redirect_to new_my_gallery_images_path()
       end
     }
