@@ -87,7 +87,7 @@ class Account < ActiveRecord::Base
   end
 
   def self.send_discount_statistics
-    accounts = Account.all
+    accounts = Account.where("email is not null")
     accounts.each do |account|
       Discount.send_statistics account
     end
