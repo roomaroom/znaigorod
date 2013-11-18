@@ -16,6 +16,7 @@ class Discount < ActiveRecord::Base
   has_many :copies,         :dependent => :destroy, :as => :copyable
   has_many :members,        :dependent => :destroy, :as => :memberable
   has_many :messages,       :dependent => :destroy, :as => :messageable
+  has_many :offers,         :dependent => :destroy, :as => :offerable
   has_many :page_visits,    :dependent => :destroy, :as => :page_visitable
   has_many :places,         :dependent => :destroy, :as => :placeable
   has_many :votes,          :dependent => :destroy, :as => :voteable

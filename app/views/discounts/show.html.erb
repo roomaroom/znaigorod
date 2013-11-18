@@ -44,11 +44,14 @@
       </div>
     </div>
 
-    <div class="offers_wrapper">
-      <%= render :partial => 'offers/offers_block', :locals => { :discount => @discount } %>
-    </div>
+    <% if @discount.is_a?(OfferedDiscount) %>
+      <div class="offers_wrapper">
+        <%= render :partial => 'offers/offers_block', :locals => { :discount => @discount } %>
+      </div>
+    <% else %>
+      <%= render :partial => 'members/social_block', :locals => { :discount => @discount } %>
+    <% end %>
 
-    <%= render :partial => 'members/social_block', :locals => { :discount => @discount } unless @discount.is_a?(OfferedDiscount) %>
   </div>
 
   <div class="right">

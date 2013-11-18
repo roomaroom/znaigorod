@@ -43,8 +43,12 @@ handle_help = ->
 
     dialog.html(content.clone())
 
+handle_anchor_offer_price = ->
+  $('.offer_price').click() if window.location.hash == '#offer_price'
+
 @init_offer_price = ->
   handle_help()
+  handle_anchor_offer_price()
 
   $('.offer_price').on 'ajax:success', (evt, response) ->
     target = $(evt.target)
