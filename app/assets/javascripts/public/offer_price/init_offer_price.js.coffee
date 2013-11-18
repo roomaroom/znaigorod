@@ -37,7 +37,7 @@ handle_help = ->
 
     dialog = init_dialog
       class:  'description'
-      height: 390
+      height: 'auto'
       title:  $(this).attr('title')
       width:  640
 
