@@ -6,6 +6,7 @@ class Offer < ActiveRecord::Base
 
   validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
   validates_presence_of :details, :name, :amount
+  validates_presence_of :our_stake, :organization_stake, :if => :approved?
 
   scope :by_state, ->(state) { where(:state => state) }
 
