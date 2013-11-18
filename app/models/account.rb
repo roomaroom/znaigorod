@@ -41,6 +41,8 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
+  validates_email_format_of :email, :allow_nil => true
+
   scope :ordered, -> { order('ID ASC') }
 
   has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
