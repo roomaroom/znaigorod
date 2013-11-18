@@ -23,5 +23,6 @@ class Offer < ActiveRecord::Base
   state_machine :state, :initial => :fresh do
     event(:approve) { transition :fresh => :approved }
     event(:cancel)  { transition :fresh => :canceled }
+    event(:pay)     { transition :approved => :paid }
   end
 end
