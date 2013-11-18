@@ -15,6 +15,8 @@ class Offer < ActiveRecord::Base
   searchable do
     string :state
     text :details
+    text :title do offerable.title end
+
     time :created_at, :trie => true
   end
 
