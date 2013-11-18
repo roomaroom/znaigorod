@@ -29,7 +29,7 @@
       </ul>
     <% end %>
 
-    <% @organization.offered_discounts.each do |discount| %>
+    <% @organization.offered_discounts.published.each do |discount| %>
       <div class="offers_wrapper">
         <div class="info">
           <h3><%= link_to discount, discount_path(discount) %></h3>
