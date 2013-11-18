@@ -4,7 +4,18 @@
     :remote => true,
     :class => 'offer_price button',
     :data => { :title => 'Предложить свою цену' } %>
-  <span class="help" title='Что это такое?'></span>
+
+  <span class="help" title='Подробнее'></span>
+
+  <div class="description">
+    <div class="discount_show">
+      <div class="center">
+        <div class="text">
+          <%= discount.html_description %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= render :partial => 'offers/list', :locals => { :offerable => discount } %>

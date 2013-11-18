@@ -1,7 +1,6 @@
 init_dialog = (options) ->
   dialog = $("<div class='#{options.class}_dialog' />").dialog
     draggable: false
-    height:    'auto'
     height:    options.height
     modal:     true
     position:  ['center', 50]
@@ -32,7 +31,21 @@ handle_dialog = (dialog, target) ->
      dialog.dialog('close')
      $(response).prependTo(target).show('slide')
 
+handle_help = ->
+  $('.help', '.offers_wrapper').on 'click', ->
+    content = $('.description', $(this).closest('.offers_wrapper'))
+
+    dialog = init_dialog
+      class:  'description'
+      height: 390
+      title:  $(this).attr('title')
+      width:  640
+
+    dialog.html(content.clone())
+
 @init_offer_price = ->
+  handle_help()
+
   $('.offer_price').on 'ajax:success', (evt, response) ->
     target = $(evt.target)
     list = $('.offers_list', target.closest('.offers_wrapper'))
