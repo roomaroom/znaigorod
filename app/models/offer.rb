@@ -6,6 +6,9 @@ class Offer < ActiveRecord::Base
 
   has_many :messages, :dependent => :destroy, :as => :messageable
 
+  has_one :sms, :dependent => :destroy, :as => :smsable
+  has_one :offer_payment, :dependent => :destroy, :as => :paymentable
+
   validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
   validates_presence_of :details, :name, :amount
   validates_presence_of :our_stake, :organization_stake, :if => :approved?
@@ -24,5 +27,9 @@ class Offer < ActiveRecord::Base
     event(:approve) { transition :fresh => :approved }
     event(:cancel)  { transition :fresh => :canceled }
     event(:pay)     { transition :approved => :paid }
+  end
+
+  def payment_system
+    :robokassa
   end
 end
