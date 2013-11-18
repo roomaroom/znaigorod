@@ -22,8 +22,7 @@
       target.closest('li').append(response)
 
     if target.hasClass('simple_form edit_offer')
-      target.closest('.amount').remove()
-      target.replaceWith(response)
+      target.closest('li').replaceWith(response)
 
     cancel_handler()
 

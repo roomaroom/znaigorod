@@ -9,31 +9,7 @@
 
 <ul class="collection offers">
   <% collection.each do |offer| %>
-    <li>
-      <span class="author">
-        <%= offer.account.present? ? offer.account : offer.name %>
-        (<%= offer.phone %>)
-        <%= l offer.created_at, :format => :long %>
-      </span>
-
-      <span class="status_title">
-        Статус: <%= offer.human_state_name %>
-        <%= render :partial => 'state_actions', :locals => { :resource => offer } %>
-      </span>
-
-      <%= link_to 'удалить', manage_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
-
-      <span class="offer_for">
-        Предложение цены для
-        <% if offer.offerable.is_a?(Discount) %>
-          <%= link_to offer.offerable.title, discount_path(offer.offerable) %>
-        <% end %>
-      </span>
-
-      <span class="details"><%= offer.details %></span>
-
-      <%= render :partial => 'stake', :locals => { :offer => offer } %>
-    </li>
+    <%= render offer %>
   <% end %>
 </ul>
 

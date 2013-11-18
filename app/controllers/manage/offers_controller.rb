@@ -15,7 +15,7 @@ class Manage::OffersController < Manage::ApplicationController
 
   def update
     update!{
-      render :partial => 'stake', :locals => { :offer => @offer }, :layout => false and return
+      render :partial => 'offer', :locals => { :offer => @offer }, :layout => false and return
     }
   end
 
