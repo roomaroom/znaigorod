@@ -54,7 +54,7 @@ $ ->
   init_account_extend() if $('.account_show').length
   init_account_social_actions() if $('.account_show, .accounts_list').length
   init_account_filter_with_avatar() if $('.filters_wrapper .account #with_avatar').length
-  init_messages() if $('#messages_filter').length || $('#notifications') || $('#invites')
+  init_messages() if $('#messages_filter').length || $('#notifications').length || $('#invites').length
   init_messages_tabs() if $('#messages_filter').length
   init_list_settings() if $('.content_wrapper .presentation_filters').length
   init_sms_claims() if $('a.sms_claim_link').length || $('.feeds').length
