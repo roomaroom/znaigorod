@@ -22,7 +22,10 @@
       target.closest('li').append(response)
 
     if target.hasClass('simple_form edit_offer')
-      target.closest('li').replaceWith(response)
+      if $(response).is('form')
+        target.closest('form').replaceWith(response)
+      else
+        target.closest('li').replaceWith(response)
 
     cancel_handler()
 

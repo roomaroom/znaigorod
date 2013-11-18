@@ -1,6 +1,5 @@
-<%= simple_form_for [:manage, resource], :remote => true do |f| %>
-  <%= f.input :state, :input_html => { :value => :approved }, :as => :hidden %>
-  <span class="user_offer">Цена: <%= number_to_currency(resource.amount, :precision => 0) %></span>
+<%= simple_form_for [:manage, resource], :remote => true, :html => { :validate => true } do |f| %>
+  <%= f.input :state_event, :input_html => { :value => :approve }, :as => :hidden %>
   <%= f.input :our_stake %>
   <%= f.input :organization_stake %>
   <%= f.submit 'Сохранить' %>

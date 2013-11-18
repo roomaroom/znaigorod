@@ -14,9 +14,10 @@ class Manage::OffersController < Manage::ApplicationController
   end
 
   def update
-    update!{
-      render :partial => 'offer', :locals => { :offer => @offer }, :layout => false and return
-    }
+    update! do |success, failure|
+      success.html { render :partial => 'offer', :locals => { :offer => @offer }, :layout => false and return }
+      failure.html { render :partial => 'form', :layout => false and return }
+    end
   end
 
   def fire_state_event

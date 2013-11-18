@@ -143,6 +143,8 @@ ru:
         auction_bet_pay: оплатил
         agreed_invite: принял приглашение посетить
         disagreed_invite: отказался от приглашения посетить
+        offer_approved: предложение цены принято
+        offer_canceled: предложение цены отклонено
 
       state:
         unread: Новое
