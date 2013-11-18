@@ -36,4 +36,16 @@ namespace :account do
     Sunspot.commit
   end
 
+  desc 'Fix of users avatars 18.11.13'
+  task :get_social_avatars => :environment do
+    puts 'Get social avatars'
+    accounts = Account.includes(:users).where('users.provider = :k1 or users.provider = :k2 or users.provider = :k3', :k1 =>'vkontakte', :k2 => 'twitter', :k3 => 'facebook').where('accounts.avatar_file_name is null')
+    bar = ProgressBar.new(accounts.count)
+    accounts.each do |account|
+      account.get_social_avatar
+      bar.increment!
+    end
+
+  end
+
 end

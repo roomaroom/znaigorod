@@ -30,9 +30,13 @@ class My::GalleryImagesController < My::ApplicationController
     @gallery_image.attributes = params[:gallery_image]
 
     account = current_user.account
-    account.avatar_url = @gallery_image.file_image_url
+    @gallery_image.save!
+    account.avatar = URI.parse @gallery_image.file.url
 
-    if @gallery_image.save && account.save
+    if account.save
+      @gallery_image = GalleryImage.find(params[:id])
+      @gallery_image.file_url = @gallery_image.file_image_url
+      @gallery_image.save!
       redirect_to my_gallery_images_path()
     else
       render :edit
