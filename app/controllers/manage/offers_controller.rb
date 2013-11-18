@@ -31,6 +31,7 @@ class Manage::OffersController < Manage::ApplicationController
 
   def collection
     @collection = Offer.search {
+      keywords params[:q]
       with :state, params[:by_state] if params[:by_state].present?
       order_by :created_at, :desc
       paginate paginate_options.merge(:per_page => per_page)

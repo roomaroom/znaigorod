@@ -11,6 +11,7 @@ class Offer < ActiveRecord::Base
 
   searchable do
     string :state
+    text :details
     time :created_at, :trie => true
   end
 
