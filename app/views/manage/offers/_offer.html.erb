@@ -1,8 +1,6 @@
-<li>
+<li id="offer_<%= offer.id %>">
   <span class="author">
-    <%= offer.account.present? ? offer.account : offer.name %>
-    (<%= offer.phone %>)
-    <%= l offer.created_at, :format => :long %>
+    <%= offer.name %> (<%= offer.phone %>) <%= l offer.created_at, :format => :long %>
   </span>
 
   <span class="status_title">

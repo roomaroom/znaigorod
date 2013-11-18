@@ -6,4 +6,4 @@
 
 Готов заплатить: <%= number_to_currency(@offer.amount, :precision => 0) %>
 
-Помотреть это предложение в manage: <%= polymorphic_url([:manage, :offers], :host => Settings['app']['host']) %>
+Помотреть это предложение в manage: <%= polymorphic_url([:manage, :offers], :host => Settings['app']['host'], :anchor => "offer_#{@offer.id}") %>
