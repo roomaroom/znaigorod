@@ -13,6 +13,12 @@
   show_block = () ->
     $('.amount:hidden').show()
 
+  animate_handler = () ->
+    if window.location.hash
+      anchor = window.location.hash
+      $(anchor).animate
+        backgroundColor: "#f5febb"
+      , 1000
 
   $('.offers').on 'ajax:success', (evt, response, status, jqXHR) ->
     target = $(evt.target)
@@ -28,4 +34,6 @@
         target.closest('li').replaceWith(response)
 
     cancel_handler()
+
+  animate_handler()
 
