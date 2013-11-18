@@ -17,6 +17,9 @@ class AddFileImageUrlToAttachment < ActiveRecord::Migration
       end
       bar.increment!
     end
+
+    Rake::Task['account:get_social_avatars'].invoke
+
   end
 
   def down
