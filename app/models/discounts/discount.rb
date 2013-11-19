@@ -83,16 +83,6 @@ class Discount < ActiveRecord::Base
     descendants.unshift self
   end
 
-  def self.send_statistics account
-    discounts = Discount.includes(:votes, :account, :members, :comments, :page_visits)
-      .where("discounts.account_id" => account.id)
-      .where('discounts.state' => "published")
-      .where("discounts.ends_at < '#{Time.now}'")
-    if discounts.any?
-        NoticeMailer.discount_statistics(discounts, account.email).deliver! unless account.email.blank?
-    end
-  end
-
   def organizations_titles
     return if organizations.empty?
     organizations.map(&:title).join(' ')

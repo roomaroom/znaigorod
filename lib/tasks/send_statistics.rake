@@ -8,11 +8,11 @@ task :send_statistics => :environment do
 
   puts "Sending afisha statistics. Please wait..."
 
-  Account.send_afisha_statistics
+  SendEmailStatistics.send_afisha_statistics
 
   puts "Sending discount statistics. Please wait..."
 
-  Account.send_discount_statistics
+  SendEmailStatistics.send_discount_statistics
 
   puts "="*10
 
