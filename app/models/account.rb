@@ -82,10 +82,6 @@ class Account < ActiveRecord::Base
     end
   end
 
-  def with_avatar?
-    !avatar.url.match(/files\/[44241|44240|44242]/)
-  end
-
   def self.send_discount_statistics
     accounts = Account.where("email is not null")
     managers = Role.all.map(&:user).map(&:account).uniq
@@ -104,6 +100,15 @@ class Account < ActiveRecord::Base
         next
       end
     end
+  end
+
+  def with_avatar?
+    ![
+      "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png",
+      "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png",
+      "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png",
+      "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
+    ].include?(avatar.url)
   end
 
   def resolve_default_avatar_url
