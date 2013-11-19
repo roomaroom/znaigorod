@@ -18,7 +18,11 @@
   <% end %>
   <div class='title'>
     <% unless feed_comment.feedable.commentable.class.name == "Work"  %>
-      <%= link_to(feed_comment.feedable.commentable.title, feed_comment.feedable.commentable) %>
+      <% unless  @feeds_presenter.is_discount?(feed_comment.feedable.commentable.class.name) %>
+        <%= link_to(feed_comment.feedable.commentable.title, feed_comment.feedable.commentable) %>
+      <% else %>
+        <%= link_to(feed_comment.feedable.commentable.title, discount_path(feed_comment.feedable.commentable))  %>
+      <% end %>
     <% else %>
       <%= link_to("Работа " + feed_comment.feedable.commentable.to_feed_title, [feed_comment.feedable.commentable.contest, feed_comment.feedable.commentable])  %>
     <% end %>
