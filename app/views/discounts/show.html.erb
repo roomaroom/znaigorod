@@ -46,7 +46,7 @@
 
     <% if @discount.is_a?(OfferedDiscount) %>
       <div class="offers_wrapper">
-        <%= render :partial => 'offers/offers_block', :locals => { :discount => @discount } %>
+        <%= render :partial => 'offers/offers_block', :locals => { :discount => @discount, :show_help => false } %>
       </div>
     <% else %>
       <%= render :partial => 'members/social_block', :locals => { :discount => @discount } %>

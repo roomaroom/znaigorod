@@ -5,17 +5,19 @@
     :class => 'offer_price button',
     :data => { :title => 'Предложить свою цену' } %>
 
-  <span class="help" title='Подробнее'></span>
+  <% if show_help %>
+    <span class="help" title='Подробнее'></span>
 
-  <div class="description">
-    <div class="discount_show">
-      <div class="center">
-        <div class="text">
-          <%= discount.html_description %>
+    <div class="description">
+      <div class="discount_show">
+        <div class="center">
+          <div class="text">
+            <%= discount.html_description %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <%= render :partial => 'offers/list', :locals => { :offerable => discount } %>

@@ -27,6 +27,7 @@ ru:
             fresh:    На рассмотрении
             approved: Принято
             canceled: Отклонено
+            paid:     Оплачено
           events:
             approve: Принять
             cancel:  Отклонить

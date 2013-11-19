@@ -91,7 +91,7 @@
       &:hover
         background: #e8e8e8
 
-      .fresh, .approved, .canceled
+      .fresh, .approved, .canceled, .paid
         +inline-block
         background: image_url('public/bets_state_sprite.png') no-repeat center center
         cursor: help
@@ -106,6 +106,9 @@
 
       .canceled
         background-position: 0 3px
+
+      .paid
+        background-position: 0 -60px
 
 .discount_show
   .offers_wrapper
