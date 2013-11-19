@@ -99,6 +99,8 @@ class Ability
 
       can [:help, :new, :create, :index], Discount if user.persisted?
 
+      can :create, Offer if user.persisted?
+
       can [:show, :edit, :update, :destroy, :poster], Discount do |discount|
         discount.account == user.account
       end

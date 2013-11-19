@@ -46,19 +46,24 @@ handle_help = ->
 handle_anchor_offer_price = ->
   $('.offer_price').click() if window.location.hash == '#offer_price'
 
+handle_offer_price_click = ->
+  $('.offer_price').on 'ajax:success', (evt, response) ->
+    target = $(evt.target)
+
+    unless $('.social_signin_links', $(response)).length
+      list = $('.offers_list', target.closest('.offers_wrapper'))
+
+      dialog = init_dialog
+        class:  target.attr('class')
+        height: 390
+        title:  target.data('title')
+        width:  640
+
+      dialog.html(response)
+      handle_dialog(dialog, list)
+
 @init_offer_price = ->
   handle_help()
   handle_anchor_offer_price()
+  handle_offer_price_click()
 
-  $('.offer_price').on 'ajax:success', (evt, response) ->
-    target = $(evt.target)
-    list = $('.offers_list', target.closest('.offers_wrapper'))
-
-    dialog = init_dialog
-      class:  target.attr('class')
-      height: 390
-      title:  target.data('title')
-      width:  640
-
-    dialog.html(response)
-    handle_dialog(dialog, list)
