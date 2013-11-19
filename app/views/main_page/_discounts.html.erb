@@ -15,7 +15,7 @@
     <div class="filters discount">
       <div class="by_kind">
         <ul>
-          <% @discounts.kind_filter.links.take(9).each do |link| %>
+          <% @discount_filter.kind_filter.links.take(9).each do |link| %>
             <li class="<%= link.klass.gsub('selected', '') %>">
               <%= link_to link.path do %>
                 <span class="name"><%= link.title %></span>
@@ -29,7 +29,7 @@
   </div>
 
   <ul class="posters">
-    <% @discounts.decorated_collection.each do |discount| %>
+    <% @discounts.each do |discount| %>
       <li><%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220' ,:@height => '164' } %></li>
     <% end %>
   </ul>

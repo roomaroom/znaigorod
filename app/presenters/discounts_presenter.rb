@@ -183,7 +183,7 @@ class DiscountsPresenter
   end
 
   def decorated_collection
-    @decorated_collection ||= DiscountDecorator.decorate (collection)
+    @decorated_collection ||= DiscountDecorator.decorate(collection)
   end
 
   def page_title
