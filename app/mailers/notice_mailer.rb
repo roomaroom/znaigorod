@@ -16,6 +16,11 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => comment.commentable.user.account.email, :subject => 'afisha comment hello')
   end
 
+  def comment_to_discount comment
+    @comment = comment
+    mail(:to => comment.commentable.account.email, :subject => 'discount comment hello')
+  end
+
   def comment_reply comment
     @comment = comment
     mail(:to => comment.parent.user.account.email, :subject => 'comment reply hello')
