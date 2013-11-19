@@ -38,4 +38,5 @@ end
 
 every 5.minutes do
   rake 'refresh_copies'
+  rake 'kill_offers'
 end

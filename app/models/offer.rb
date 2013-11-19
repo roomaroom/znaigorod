@@ -27,6 +27,7 @@ class Offer < ActiveRecord::Base
     event(:approve) { transition :fresh => :approved }
     event(:cancel)  { transition :fresh => :canceled }
     event(:pay)     { transition :approved => :paid }
+    event(:die)     { transition :approved => :dead }
   end
 
   def payment_system
