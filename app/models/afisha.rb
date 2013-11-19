@@ -85,18 +85,6 @@ class Afisha < ActiveRecord::Base
   attr_accessor :step, :social_gallery_url
   attr_accessible :step, :social_gallery_url
 
-  def self.send_statistics account
-    afishas =  Afisha
-      .actual
-      .includes(:invitations, :comments, :visits, :showings)
-      .where("afisha.user_id = '#{account.users.first.id}'")
-      .where(:state => "published")
-
-    if afishas.any?
-      NoticeMailer.afisha_statistics(afishas, account).deliver! unless account.email.blank?
-    end
-  end
-
   def self.available_tags(query)
     pluck(:tag).compact.flat_map { |str| str.split(',') }.compact.map(&:squish).uniq.delete_if(&:blank?).select { |str| str =~ /^#{query}/ }.sort
   end
