@@ -15,6 +15,11 @@ class OfferObserver < ActiveRecord::Observer
     create_sms(offer)
   end
 
+  def after_pay(offer, transition)
+    generate_code(offer)
+    OfferMailer.delay(:queue => 'mailer').mail_offer_paid(offer)
+  end
+
   private
 
   def create_payment(offer)
@@ -34,5 +39,10 @@ class OfferObserver < ActiveRecord::Observer
 
   def create_sms(offer)
     offer.create_sms!(:phone => offer.phone, :message => I18n.t("offer.#{offer.state}", :our_stake => offer.our_stake, :organization_stake => offer.organization_stake))
+  end
+
+  def generate_code(offer)
+    offer.code = 4.times.map { Random.rand(10) }.join
+    offer.save!
   end
 end

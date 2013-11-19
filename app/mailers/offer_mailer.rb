@@ -7,4 +7,9 @@ class OfferMailer < ActionMailer::Base
     @offer = offer
     mail(:to => Settings['mail']['to_afisha'], :subject => 'Добавлено новое предложение цены')
   end
+
+  def mail_offer_paid(offer)
+    @offer = offer
+    mail(:to => Settings['mail']['to_afisha'], :subject => 'Оплата за предложение цены')
+  end
 end

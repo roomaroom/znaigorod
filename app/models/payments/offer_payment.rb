@@ -12,7 +12,7 @@ class OfferPayment < Payment
   def approve!
     super
     paymentable.pay!
-    #create_sms! :phone => phone, :message => message
+    create_sms! :phone => phone, :message => message
   end
 end
 

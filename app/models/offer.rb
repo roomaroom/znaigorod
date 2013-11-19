@@ -32,4 +32,8 @@ class Offer < ActiveRecord::Base
   def payment_system
     :robokassa
   end
+
+  def message
+    I18n.t 'offer.paid', :code => code
+  end
 end
