@@ -19,6 +19,18 @@ class DiscountDecorator < ApplicationDecorator
     end
   end
 
+  def tags_for_vk
+    res = ""
+    res << "<meta property='og:description' content='#{discount.description}'/>\n"
+    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
+    res << "<meta property='og:title' content='#{discount.title}' />\n"
+    res << "<meta property='og:url' content='#{h.discount_url(discount)}' />\n"
+    res << "<meta property='og:image' content='#{discount.poster_url}' />\n"
+    res << "<meta name='image' content='#{discount.poster_url}' />\n"
+    res << "<link rel='image_src' href='#{discount.poster_url}' />\n"
+    res.html_safe
+  end
+
   def when_with_price
     h.content_tag :p, h.content_tag(:span, human_when, :class => :when)
   end
