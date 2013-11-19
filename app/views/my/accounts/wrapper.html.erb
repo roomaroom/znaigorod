@@ -108,7 +108,7 @@
         <h1><%= current_user.account.title %></h1>
 
         <div class="gallery_wrapper">
-          <% if current_user.account.gallery_images.any? %>
+          <% if current_user.account.gallery_images.any? && (params['controller'] != 'my/gallery_images') %>
             <div class="invitations header">
               <%= link_to 'Добавить фотографии',
                 new_my_gallery_image_path(),
