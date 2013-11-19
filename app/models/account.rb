@@ -37,7 +37,9 @@ class Account < ActiveRecord::Base
 
   has_many :feeds,           :dependent => :destroy
 
-  after_create :get_social_avatar
+  has_one :account_settings, :dependent => :destroy
+
+  after_create :get_social_avatar, :create_account_settings
 
   before_destroy :remove_private_messages, :remove_friendable, :remove_comments
 
@@ -105,6 +107,11 @@ class Account < ActiveRecord::Base
     Friend.where(:friendable_id => self.id).each do |f|
       f.destroy
     end
+  end
+
+  def create_account_settings
+    self.account_settings = AccountSettings.new
+    self.save!
   end
 
   def with_avatar?
