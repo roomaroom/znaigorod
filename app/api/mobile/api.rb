@@ -88,7 +88,7 @@ module Mobile
               :url => "#{base_path}/#{affisha.slug}",
               :name => affisha.title,
               :when => affisha.human_when.replace_special_html_chars,
-              :price => affisha.human_price.replace_special_html_chars,
+              :price => (affisha.human_price || '').replace_special_html_chars,
               :place => affisha.places.map(&:title).join("; "),
               :image => affisha.poster_url.gsub(/(\/files\/\d+\/)\d+-\d+\//){"#{$1}74-100!n/"}.gsub(/(\/files\/\d+\/region\/(\d+|\/){8})/){"#{$1}74-100/"},
               :expires => affisha.distribution_ends_on? ? affisha.distribution_ends_on : affisha.showings.map(&:starts_at).max,
