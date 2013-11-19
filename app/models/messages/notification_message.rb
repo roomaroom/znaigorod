@@ -8,7 +8,7 @@ class NotificationMessage < Message
          :discount_returned, :user_vote_afisha, :user_vote_comment,
          :user_visit_afisha, :user_add_friend,
          :auction_bet, :auction_bet_cancel, :auction_bet_approve, :auction_bet_pay, :agreed_invite, :disagreed_invite,
-         :offer_approved, :offer_canceled],
+         :offer_approved],
     predicates: true
 
   scope :unread, -> { where(state: :unread) }

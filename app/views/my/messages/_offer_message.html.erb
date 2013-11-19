@@ -4,10 +4,18 @@
   </div>
 
   <div class="body">
-    <span><%= message.kind_text %></span>
     <%= link_to message.messageable.offerable.title, polymorphic_path([message.messageable.offerable]) %>
-    <p><%= message.messageable.details %></p>
-    <%= link_to 'Оплатить', message.messageable.offer_payment.service_url, :target => :_blank, :class => 'offer_payment' %>
+    <% unless message.messageable.dead? %>
+      <span>
+        <%= I18n.t("enumerize.notification_message.kind.#{message.kind}", :details => message.messageable.details) %>
+      </span>
+
+      <span>Вам необходимо оплатить <%= number_to_currency(message.messageable.our_stake, :precision => 0) %></span>
+      <%= link_to 'Оплатить', message.messageable.offer_payment.service_url, :target => :_blank, :class => 'offer_payment' %>
+    <% else %>
+      <span>предложение цены «<%= message.messageable.details %>» время ожидания платежа истекло.</span>
+    <% end %>
+
 
     <div class="date">
       <%= time_ago_in_words(message.created_at) %> назад
