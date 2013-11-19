@@ -329,6 +329,72 @@
 
   +unique_content_style
 
+
+.univer_content_wrapper
+  background-color: #bfa083
+  +background(linear-gradient(top, #bfa083, #fefefe))
+
+  .univer_logo
+    background: transparent image_url('public/univer/logo.png') no-repeat center 2px
+    height: 110px
+    margin: 0 auto
+    width: 1280px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      background: #ddcdbd
+      +background(linear-gradient(top, #ddcdbd, #fff))
+      +box-shadow(none)
+      +border-top-left-radius
+      +border-top-right-radius
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        .left
+          .image, .social_actions
+            border: 1px solid #bfa284
+
+            .user_actions
+              border-bottom: 1px solid #bfa284
+
+            .list
+              li:first-child
+                border: none
+
+        .center
+          .suborganization_info
+            .title
+              background: #e4d8cc
+
+          .share_and_likes
+            border-bottom: 1px solid #bfa284
+
+          .sauna_hall_header
+            background: #e4d8cc
+            .title
+              background: #c0a184
+              &:after
+                border-left-color: #c0a184
+
+        .right
+          .wrapper
+            border: 1px solid #bfa284
+
+            .virtual_tour, .yandex_map
+              background: #ddcdbd
+              +background(linear-gradient(top, #ddcdbd, #e5d7ca))
+              border-bottom: 1px solid #bfa284
+
+            .more_like_this
+              background: #f3eee8
+              +background(linear-gradient(top, #f3eee8, #f2ebe5))
+
 .zastolie_content_wrapper
   background-color: #f4e0bd
 
