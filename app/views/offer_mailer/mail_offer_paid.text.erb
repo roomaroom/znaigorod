@@ -1,5 +1,5 @@
 На сайте ЗнайГород (<%= Settings['app']['host'] %>)
 пользователь <%= @offer.name %> (<%= @offer.phone %>) оплатил свое предложение цены.
 
-Оплата: <%= number_to_currency(@offer.amount, :precision => 0) %>
+Оплата: <%= number_to_currency(@offer.our_stake, :precision => 0) %>
 Код: <%= @offer.code %>

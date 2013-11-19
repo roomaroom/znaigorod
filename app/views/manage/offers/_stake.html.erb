@@ -4,6 +4,7 @@
   <% if offer.our_stake.blank? || offer.organization_stake.blank? %>
     <span class="warning">Не указана наша часть или часть организатора</span>
   <% else %>
+    <span class="block">Код: <%= offer.code %></span>
     <span class="our_stake block">Наша часть: <%= number_to_currency(offer.our_stake, :precision => 0) %></span>
     <span class="organization_stake block">Часть ораганизатора: <%= number_to_currency(offer.organization_stake, :precision => 0) %></span>
   <% end %>
