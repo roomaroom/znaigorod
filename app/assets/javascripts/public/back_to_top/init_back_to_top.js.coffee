@@ -9,7 +9,7 @@
     doc = document.documentElement
     body = document.body
     top = (doc && doc.scrollTop  || body && body.scrollTop  || 0)
-    if top > 300
+    if top > (window.innerHeight * 2)
       block.fadeIn()
     else
       block.fadeOut()
