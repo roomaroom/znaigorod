@@ -6,7 +6,9 @@ class SendEmailStatistics
     accounts = Account.where("email is not null")
     managers = Role.all.map(&:user).map(&:account).uniq
     (accounts - managers).each do |account|
-      send_discounts account
+      if account.account_settings.discounts_statistics
+        send_discounts account
+      end
     end
   end
 
@@ -26,7 +28,9 @@ class SendEmailStatistics
     managers = Role.all.map(&:user).map(&:account).uniq
     (accounts - managers).each do |account|
       begin
-        send_afishas account
+        if account.account_settings.afishas_statistics
+          send_afishas account
+        end
       rescue
         next
       end

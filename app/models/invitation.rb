@@ -44,7 +44,9 @@ class Invitation < ActiveRecord::Base
   scope :ends_at,                ->(date) { where('invitations.created_at < ?', date) }
 
   def send_email
-    NoticeMailer.personal_invitation(self).deliver! unless self.invited.email.blank?
+    if self.invited.account_settings.personal_invites && self.invited.email.present?
+      NoticeMailer.personal_invitation(self).deliver!
+    end
   end
 
   def opposite_kind

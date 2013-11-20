@@ -25,15 +25,24 @@ class CommentObserver < ActiveRecord::Observer
   private
 
   def email_comment_to_afisha comment
-      NoticeMailer.comment_to_afisha(comment).deliver! unless comment.commentable.user.account.email.blank?
+    account = comment.commentable.user.account
+    if account.account_settings.comments_to_afishas && account.email.present?
+      NoticeMailer.comment_to_afisha(comment).deliver!
+    end
   end
 
   def email_comment_to_discount comment
-      NoticeMailer.comment_to_discount(comment).deliver! unless comment.commentable.account.email.blank?
+    account = comment.commentable.user.account
+    if account.account_settings.comments_to_discounts && account.email.present?
+      NoticeMailer.comment_to_discount(comment).deliver!
+    end
   end
 
   def email_comment_reply comment
-      NoticeMailer.comment_reply(comment).deliver! unless comment.parent.user.account.email.blank?
+    account = comment.parent.user.account
+    if account.account_settings.comments_answers && account.email.present?
+      NoticeMailer.comment_reply(comment).deliver!
+    end
   end
 
   def create_feed comment

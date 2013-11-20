@@ -3,7 +3,7 @@ class NoticeMailer < ActionMailer::Base
 
   def personal_invitation invite
     @invite = invite
-    #mail(:to => invite.invited.email, :subject => 'invite hello')
+    mail(:to => invite.invited.email, :subject => 'invite hello')
   end
 
   def private_message message

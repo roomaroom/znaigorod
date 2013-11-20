@@ -13,7 +13,9 @@ class PrivateMessage < Message
   after_create :send_mail
 
   def send_mail
-    NoticeMailer.private_message(self).deliver! unless self.account.email.blank?
+    if self.account.account_settings.personal_messages && self.account.email.present?
+      NoticeMailer.private_message(self).deliver!
+    end
   end
 
   auto_html_for :body do
