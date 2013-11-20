@@ -17,15 +17,27 @@
     </div>
   <% end %>
   <div class='title'>
-    <% unless feed_comment.feedable.commentable.class.name == "Work"  %>
-      <% unless  @feeds_presenter.is_discount?(feed_comment.feedable.commentable.class.name) %>
-        <%= link_to(feed_comment.feedable.commentable.title, feed_comment.feedable.commentable) %>
-      <% else %>
-        <%= link_to(feed_comment.feedable.commentable.title, discount_path(feed_comment.feedable.commentable))  %>
-      <% end %>
-    <% else %>
+
+    <% if  @feeds_presenter.is_discount?(feed_comment.feedable.commentable.class.name) %>
+      <%= link_to(feed_comment.feedable.commentable.title, discount_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}"))  %>
+    <% end %>
+
+    <% if feed_comment.feedable.commentable.is_a?(Work) %>
       <%= link_to("Работа " + feed_comment.feedable.commentable.to_feed_title, [feed_comment.feedable.commentable.contest, feed_comment.feedable.commentable])  %>
     <% end %>
+
+    <% if feed_comment.feedable.commentable.is_a?(Afisha) %>
+      <%= link_to(feed_comment.feedable.commentable.title, afisha_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
+    <% end %>
+
+    <% if feed_comment.feedable.commentable.is_a?(Organization) %>
+      <%= link_to(feed_comment.feedable.commentable.title, organization_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
+    <% end %>
+
+    <% if feed_comment.feedable.commentable.is_a?(Post) %>
+      <%= link_to(feed_comment.feedable.commentable.title, post_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
+    <% end %>
+
   </div>
   <div class='body'>
     <%= feed_comment.feedable.body.truncated.as_html if feed_comment.feedable.body? %>
