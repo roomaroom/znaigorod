@@ -10,9 +10,19 @@
     </div>
     <div class="line">
       <span>E-mail</span>
-      <%= f.input :email, label: false, as: :string %>
+      <%= f.input :email, label: false, as: :string, :input_html => {:size => 30} %>
     </div>
   </div>
+  <%= f.simple_fields_for :account_settings do |s| %>
+    <% [:personal_invites, :personal_messages, :comments_to_afishas,
+        :comments_to_discounts,
+        :comments_answers,
+        :comments_likes,
+        :afishas_statistics,
+        :discounts_statistics].each do |item| %>
+      <%= s.input item, :wrapper => :checkbox %>
+    <% end %>
+  <% end %>
   <div class="button_place">
     <%= f.submit 'Сохранить', class: :properties_submit %>
   </div>

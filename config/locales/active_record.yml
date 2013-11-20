@@ -80,6 +80,16 @@ ru:
         gender: Пол
         birthday: Дата рождения
 
+      account_settings:
+        personal_invites: Персональные приглашения
+        personal_messages: Личные сообщения
+        comments_to_afishas: Комментарии к моим афишам
+        comments_to_discounts: Комментарии к моим скидкам
+        comments_answers: Ответы на мои комментарии
+        comments_likes: Пользователю понравился мой комментарий
+        afishas_statistics: Статистика по моим афишам
+        discounts_statistics: Статистика по моим скидкам
+
       invitation:
         category:      'Куда:'
         category_list: Категория

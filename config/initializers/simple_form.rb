@@ -40,10 +40,17 @@ SimpleForm.setup do |config|
     b.optional :readonly
 
     ## Inputs
+    #b.use :label_input
     b.use :label
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
     b.use :input
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
+  end
+
+  config.wrappers :checkbox, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+    b.use :tag => 'div', :class => 'controls' do |ba|
+      ba.use :label_input
+    end
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -53,7 +60,7 @@ SimpleForm.setup do |config|
   # Defaults to :nested for bootstrap config.
   #   :inline => input + label
   #   :nested => label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
   config.button_class = 'btn'

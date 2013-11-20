@@ -1,7 +1,13 @@
 <% content_for :account_content do %>
-  <div class="properties header">
-    Редактирование профиля
+  <h1><%= current_user.account.title %></h1>
+
+  <div class="invitations header properties ">
+    <div class='clear'>
+      <span class="panel"></span>
+    </div>
+    <h3>Редактирование профиля</h3>
   </div>
+
   <div class="properties_form">
     <%= render 'form' %>
   </div>
