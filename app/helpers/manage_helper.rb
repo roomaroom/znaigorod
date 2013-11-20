@@ -10,6 +10,8 @@ module ManageHelper
     elsif parent.class == Afisha
       if (resource_class == GalleryImage || resource_class == GallerySocialImage || resource_class == GalleryFile) && resource.persisted?
         send("manage_#{parent.class.model_name.underscore}_#{resource_class.model_name.underscore}_path", parent, resource)
+      elsif resource_class == Ticket
+        send("manage_statistics_#{parent.class.model_name.underscore}_#{resource_class.model_name.underscore.pluralize}_path", parent)
       else
         send("manage_#{parent.class.model_name.underscore}_#{resource_class.model_name.underscore.pluralize}_path", parent)
       end

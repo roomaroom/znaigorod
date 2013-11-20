@@ -1,7 +1,7 @@
 <div class="form_view">
   <h1>Редактирование билета</h1>
 
-  <%= simple_nested_form_for [:manage, @ticket] do |f| %>
+  <%= simple_nested_form_for [:manage, :statistics, @ticket] do |f| %>
     <%= f.input :original_price %>
     <%= f.input :price %>
     <%= f.input :organization_price %>

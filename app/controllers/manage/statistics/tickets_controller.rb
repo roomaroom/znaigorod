@@ -1,7 +1,7 @@
 class Manage::Statistics::TicketsController < Manage::ApplicationController
   load_and_authorize_resource
 
-  actions :index
+  actions :new, :create, :edit, :update, :destroy
 
   belongs_to :afisha, optional: true
 
@@ -20,5 +20,9 @@ class Manage::Statistics::TicketsController < Manage::ApplicationController
 
     @groups = search.group(:copyable_id_str).groups
     @tickets = Ticket.where(:id => @groups.map(&:value)).order('id DESC')
+  end
+
+  def create
+    create! { send("manage_#{parent.class.model_name.underscore}_path", parent) }
   end
 end

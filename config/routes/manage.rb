@@ -3,10 +3,16 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
     namespace :statistics do
-      resources :invitations, :only => :index
-      resources :payments,     :only => :index
-      resources :reservations, :only => :update
-      resources :sms_claims,   :only => :index
+      resources :invitations,   :only => :index
+      resources :payments,      :only => :index
+      resources :reservations,  :only => :update
+      resources :sms_claims,    :only => :index
+      resources :tickets, only: [:index, :edit, :update, :destroy] do
+        get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
+      end
+      resources :afisha,        :only => [] do
+        resources :tickets
+      end
 
       get 'discounts' => 'discounts#index'
     end
@@ -36,7 +42,6 @@ Znaigorod::Application.routes.draw do
       resources :gallery_social_images, :except => [:index, :show] do
         delete 'destroy_all', :on => :collection, :as => :destroy_all
       end
-      resources :tickets
     end
 
     get "/afisha" => "afishas#index", :as => :afisha_index, :controller => 'afishas'
@@ -107,10 +112,6 @@ Znaigorod::Application.routes.draw do
       resources kind.pluralize, :only => :index do
         resources :gallery_images, :only => [:new, :create, :destroy, :edit, :update]
       end
-    end
-
-    resources :tickets, only: [:index, :edit, :update, :destroy] do
-      get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
     end
 
     resources :offers, :only => [:index, :edit, :update, :destroy] do
