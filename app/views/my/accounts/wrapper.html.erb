@@ -105,6 +105,8 @@
     <% unless (params[:controller] == "my/accounts" && params[:action] == "edit") || (params[:controller] == "my/gallery_images" && params[:action] != "index") %>
       <div class="invitations_wrapper">
 
+        <div class="sprite_gender <%= current_user.account.gender %>"></div>
+
         <h1><%= current_user.account.title %></h1>
 
         <div class="gallery_wrapper">

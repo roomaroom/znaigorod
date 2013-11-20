@@ -1,4 +1,7 @@
 <% content_for :account_content do %>
+
+  <div class="sprite_gender <%= current_user.account.gender %>"></div>
+
   <h1><%= current_user.account.title %></h1>
 
   <div class="invitations header">
