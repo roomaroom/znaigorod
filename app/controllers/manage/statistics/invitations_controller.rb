@@ -1,4 +1,4 @@
-class Manage::InvitationsController < Manage::ApplicationController
+class Manage::Statistics::InvitationsController < Manage::ApplicationController
   load_and_authorize_resource
 
   def index

@@ -3,9 +3,11 @@
 Znaigorod::Application.routes.draw do
   namespace :manage do
     namespace :statistics do
+      resources :invitations, :only => :index
       resources :payments,     :only => :index
       resources :reservations, :only => :update
       resources :sms_claims,   :only => :index
+
       get 'discounts' => 'discounts#index'
     end
 
@@ -62,8 +64,6 @@ Znaigorod::Application.routes.draw do
         delete 'destroy_file', :on => :member, :as => :destroy_file
       end
     end
-
-    resources :invitations, :only => :index
 
     get 'organizations/rated' => 'organizations#index', :defaults => { :rated => true }
 
