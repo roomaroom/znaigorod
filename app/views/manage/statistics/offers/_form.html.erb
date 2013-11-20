@@ -1,4 +1,4 @@
-<%= simple_form_for [:manage, resource], :remote => true, :html => { :validate => true } do |f| %>
+<%= simple_form_for [:manage, :statistics, resource], :remote => true, :html => { :validate => true } do |f| %>
   <%= f.input :state_event, :input_html => { :value => :approve }, :as => :hidden %>
   <%= f.input :our_stake %>
   <%= f.input :organization_stake %>

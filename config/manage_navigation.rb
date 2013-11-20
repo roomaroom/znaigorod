@@ -61,7 +61,7 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :discount_with_prices, 'Купоны', manage_statistics_discounts_path
       statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
       statistics_item.item :tickets, 'Билеты', manage_statistics_tickets_path
-      statistics_item.item :offers, 'Предложения цены', manage_offers_path
+      statistics_item.item :offers, 'Предложения цены', manage_statistics_offers_path
     end
 
     primary.dom_class = 'navigation'

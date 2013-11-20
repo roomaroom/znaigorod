@@ -6,12 +6,12 @@
   <span class="status_title">
     Статус: <%= offer.human_state_name %>
     <% if offer.fresh? %>
-      <%= link_to 'Принять', edit_manage_offer_path(offer), :class => 'edit', :remote => true %>
-      <%= link_to 'Отклонить', fire_state_event_manage_offer_path(offer, :cancel), :method => :put %>
+      <%= link_to 'Принять', edit_manage_statistics_offer_path(offer), :class => 'edit', :remote => true %>
+      <%= link_to 'Отклонить', fire_state_event_manage_statistics_offer_path(offer, :cancel), :method => :put %>
     <% end %>
   </span>
 
-  <%= link_to 'удалить', manage_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
+  <%= link_to 'удалить', manage_statistics_offer_path(offer), :method => :delete, :confirm => 'Вы уверены?', :class => 'delete' %>
 
   <span class="offer_for">
     Предложение цены для

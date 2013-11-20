@@ -7,12 +7,20 @@ Znaigorod::Application.routes.draw do
       resources :payments,      :only => :index
       resources :reservations,  :only => :update
       resources :sms_claims,    :only => :index
+
       resources :tickets, only: [:index, :edit, :update, :destroy] do
         get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
       end
+
       resources :afisha,        :only => [] do
         resources :tickets
       end
+
+      resources :offers, :only => [:index, :edit, :update, :destroy] do
+        get ':by_state' => 'offers#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Offer.state_machine.states.map(&:name).join('|')}/ }
+        put 'fire_event_state/:event' => 'offers#fire_state_event', :on => :member, :as => :fire_state_event
+      end
+
 
       get 'discounts' => 'discounts#index'
     end
@@ -112,11 +120,6 @@ Znaigorod::Application.routes.draw do
       resources kind.pluralize, :only => :index do
         resources :gallery_images, :only => [:new, :create, :destroy, :edit, :update]
       end
-    end
-
-    resources :offers, :only => [:index, :edit, :update, :destroy] do
-      get ':by_state' => 'offers#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Offer.state_machine.states.map(&:name).join('|')}/ }
-      put 'fire_event_state/:event' => 'offers#fire_state_event', :on => :member, :as => :fire_state_event
     end
 
     namespace :admin do

@@ -1,4 +1,4 @@
-class Manage::OffersController < Manage::ApplicationController
+class Manage::Statistics::OffersController < Manage::ApplicationController
   load_and_authorize_resource
 
   actions :index, :edit, :update, :destroy
