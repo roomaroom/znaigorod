@@ -1,4 +1,4 @@
-<% if current_user.present? and current_user.account.email.blank? %>
+<% if current_user.present? and current_user.account.present? and current_user.account.email.blank? %>
   <div id="email_request_form">
     <%= simple_form_for current_user.account, as: :account, url: my_account_path do |f| %>
       <div class="properties_place">
