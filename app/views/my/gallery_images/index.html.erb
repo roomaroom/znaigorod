@@ -16,7 +16,9 @@
       <% if @images.any? %>
         <%= render partial: 'account_gallery_images' %>
       <% else %>
-        Ничего не найдено =(
+        <div class="not_found">
+          Фотографий не найдено. Если Вы хотите уставновить новую аватарку, либо показать фотографии в профиле сначала их необходимо <%= link_to 'загрузить', new_my_gallery_image_path, class: :invitation_link if can? :new, GalleryImage %>.
+        </div>
       <% end %>
     </ul>
   </div>
