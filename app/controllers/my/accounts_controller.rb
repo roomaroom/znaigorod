@@ -7,6 +7,7 @@ class My::AccountsController < My::ApplicationController
   def edit
     edit!{
       @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(1).per(5)
+      @account = current_user.account
     }
   end
 

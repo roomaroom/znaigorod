@@ -2,7 +2,10 @@
 
 class Account < ActiveRecord::Base
 
-  attr_accessible :avatar, :birthday, :email, :first_name, :gender, :last_name, :patronymic, :rating, :nickname, :location, :created_at
+  attr_accessible :avatar, :birthday, :email,
+                  :first_name, :gender, :last_name, :patronymic,
+                  :rating, :nickname, :location,
+                  :account_settings_attributes
 
   has_many :users,           order: 'id ASC', dependent: :destroy
   has_many :afisha,          through: :users
@@ -38,6 +41,7 @@ class Account < ActiveRecord::Base
   has_many :feeds,           :dependent => :destroy
 
   has_one :account_settings, :dependent => :destroy
+  accepts_nested_attributes_for :account_settings
 
   after_create :get_social_avatar, :create_account_settings
 

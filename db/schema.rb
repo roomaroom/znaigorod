@@ -14,9 +14,6 @@
 ActiveRecord::Schema.define(:version => 20131127042211) do
 
   create_table "account_settings", :force => true do |t|
-    t.integer  "account_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
     t.boolean  "personal_invites",      :default => true
     t.boolean  "personal_messages",     :default => true
     t.boolean  "comments_to_afishas",   :default => true
@@ -25,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20131127042211) do
     t.boolean  "comments_likes",        :default => true
     t.boolean  "afishas_statistics",    :default => true
     t.boolean  "discounts_statistics",  :default => true
+    t.integer  "account_id"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   add_index "account_settings", ["account_id"], :name => "index_account_settings_on_account_id"
