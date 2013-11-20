@@ -6,6 +6,7 @@ Znaigorod::Application.routes.draw do
       resources :payments,     :only => :index
       resources :reservations, :only => :update
       resources :sms_claims,   :only => :index
+      get 'discounts' => 'discounts#index'
     end
 
     post 'red_cloth' => 'red_cloth#show'
@@ -55,8 +56,6 @@ Znaigorod::Application.routes.draw do
 
       put 'fire_event_state/:event' => 'discounts#fire_state_event', :on => :member, :as => :fire_state_event
     end
-
-    get 'discount_statistics' => 'discount_statistics#index'
 
     resources :posts do
       resources :gallery_images, :except => [:index, :show] do

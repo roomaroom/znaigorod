@@ -58,7 +58,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :statistics, 'Статистика' do |statistics_item|
       statistics_item.item :payments, 'Платежи', manage_statistics_payments_path
       statistics_item.item :invitations, 'Приглашения', manage_invitations_path
-      statistics_item.item :discount_with_prices, 'Скидки', manage_discount_statistics_path
+      statistics_item.item :discount_with_prices, 'Купоны', manage_statistics_discounts_path
       statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
       statistics_item.item :tickets, 'Билеты', manage_tickets_path
       statistics_item.item :offers, 'Предложения цены', manage_offers_path

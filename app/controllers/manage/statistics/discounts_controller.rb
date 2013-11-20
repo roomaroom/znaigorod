@@ -1,4 +1,4 @@
-class Manage::DiscountStatisticsController < Manage::ApplicationController
+class Manage::Statistics::DiscountsController < Manage::ApplicationController
   authorize_resource :discount
 
   def index
