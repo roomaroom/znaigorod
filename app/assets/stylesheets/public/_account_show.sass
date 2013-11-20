@@ -241,17 +241,6 @@
       position: relative
       font-size: 14px
 
-    =input_style
-      font-size: 14px
-      font-family: Arial, Verdana, Tahoma, sans-serif
-      border: 1px solid #909090
-      +border-radius(3px)
-      padding: 5px
-      margin: 0
-
-      &:focus
-        background-color: #fffbef
-
     .simple_form
       .input
         margin-bottom: 10px
@@ -267,9 +256,6 @@
 
           &.checkbox
             font-size: 12px
-
-        input
-          +input_style
 
         &.hidden
           margin: 0
@@ -662,11 +648,49 @@
             padding: 6px 15px 4px
 
     .properties_form
-      border: 1px solid #ccc
+      margin-top: 15px
+
+      .select
+        background-color: white
+        outline: none
+        border-color: #abaeb5
+
+      input
+        +clearfix
+        outline: none
+        padding: 0px
+        font-size: 14px
+        font-family: Arial, Verdana, Tahoma, sans-serif
+        border: 1px solid #abaeb5
+        margin: 0
+
+
+      .email_notifications
+        margin-top: 10px
+
+        .email_notifications_form
+
+          ul
+            list-style-type:none
+
+            li
+              float: left
+              width: 285px
+              &:nth-child(odd)
+                clear: left
+
+        h3
+          font-weight: bold
+          font-size: 12px
+          padding-bottom: 15px
+        label
+          font-size: 12px
+
+      .properties_place
+        border-bottom: 1px solid #ccc
+
 
       .properties_place, .button_place
-        padding: 12px 0 12px 10px
-
         .line
           +clearfix
           background: none
@@ -678,21 +702,16 @@
             +inline-block
 
           span
+            font-weight: bold
             font-size: 12px
-
-          input
-            margin-left: 20px
-
-          select
-            margin-left: 91px
+            width: 145px
 
           &:last-child
             margin-bottom: 0
 
       .button_place
-        border-top: 1px solid #ccc
-        background-color: #e6e6e6
-
+        padding-top: 15px
+        clear: left
         .properties_submit
           +button-style
 
