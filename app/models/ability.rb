@@ -16,6 +16,8 @@ class Ability
       invitation.account == user.account
     end
 
+    can [:new, :create], Offer if user.persisted?
+
     can :manage, Visit do |visit|
       user.persisted? && visit.user == user
     end
@@ -98,8 +100,6 @@ class Ability
       end
 
       can [:help, :new, :create, :index], Discount if user.persisted?
-
-      can :create, Offer if user.persisted?
 
       can [:show, :edit, :update, :destroy, :poster], Discount do |discount|
         discount.account == user.account
