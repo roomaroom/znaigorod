@@ -44,8 +44,8 @@ SimpleNavigation::Configuration.run do |navigation|
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { params[:controller] == nil }
       more.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? params[:controller] }
-      more.item :cooperation, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
-      more.item :cooperation, 'Отзывы и предложения', feedback_path, highlights_on: -> { params[:controller] == 'feedback' }
+      more.item :services, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
+      more.item :feedback, 'Отзывы и предложения', feedback_path, highlights_on: -> { params[:controller] == 'feedback' }
     end
 
     # Add an item to the primary navigation. The following params apply:
