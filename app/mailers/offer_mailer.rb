@@ -5,11 +5,11 @@ class OfferMailer < ActionMailer::Base
 
   def mail_new_offer(offer)
     @offer = offer
-    mail(:to => Settings['mail']['to_afisha'], :subject => 'Добавлено новое предложение цены')
+    mail(:to => Settings['mail']['to_office'], :subject => 'Добавлено новое предложение цены')
   end
 
   def mail_offer_paid(offer)
     @offer = offer
-    mail(:to => Settings['mail']['to_afisha'], :subject => 'Оплата за предложение цены')
+    mail(:to => Settings['mail']['to_office'], :subject => 'Оплата за предложение цены')
   end
 end
