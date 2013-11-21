@@ -4,7 +4,7 @@ class Account < ActiveRecord::Base
 
   attr_accessible :avatar, :birthday, :email, :first_name, :gender, :last_name, :patronymic, :rating, :nickname, :location, :created_at
 
-  has_many :users,           order: 'id ASC'
+  has_many :users,           order: 'id ASC', dependent: :destroy
   has_many :afisha,          through: :users
   has_many :discounts
   has_many :showings,        through: :users
@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
 
-  has_many :gallery_images,         :dependent => :destroy, :as => :attachable
+  has_many :gallery_images,  dependent: :destroy, :as => :attachable
 
   has_many :invitations,     dependent: :destroy
   has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
@@ -23,7 +23,7 @@ class Account < ActiveRecord::Base
   has_many :received_invitations, :class_name => 'Invitation', :foreign_key => :invited_id
   has_many :received_invite_messages, :source => :invite_messages, order: 'messages.created_at DESC', :through => :received_invitations
 
-  has_many :friends
+  has_many :friends,         dependent: :destroy
   has_many :friendable,      as: :friendable, class_name: 'Friend'
 
   has_many :events,          through: :users, order: 'afisha.created_at DESC'
@@ -38,6 +38,8 @@ class Account < ActiveRecord::Base
   has_many :feeds,           :dependent => :destroy
 
   after_create :get_social_avatar
+
+  before_destroy :remove_private_messages, :remove_friendable
 
   alias_attribute :to_s, :title
 
@@ -79,6 +81,18 @@ class Account < ActiveRecord::Base
   Role.role.values.each do |role|
     define_method "is_#{role}?" do
       self.class.where(:id => id).joins(:roles).where('roles.role = ?', role).any?
+    end
+  end
+
+  def remove_private_messages
+    PrivateMessage.where(:producer_id => self.id).each do |m|
+      m.destroy
+    end
+  end
+
+  def remove_friendable
+    Friend.where(:friendable_id => self.id).each do |f|
+      f.destroy
     end
   end
 
@@ -278,7 +292,6 @@ class Account < ActiveRecord::Base
   end
 
   def dialogs
-    #dialogs = (PrivateMessage.to(self).order('id DESC').map(&:producer) + PrivateMessage.from(self).order('id DESC').map(&:account)).uniq
     dialogs = (PrivateMessage.to(self).includes(&:producer) + PrivateMessage.from(self).includes(&:account)).sort_by{|t| - t.created_at.to_i}
 
     accounts = []
