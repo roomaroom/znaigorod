@@ -39,7 +39,7 @@ class Account < ActiveRecord::Base
 
   after_create :get_social_avatar
 
-  before_destroy :remove_private_messages, :remove_friendable
+  before_destroy :remove_private_messages, :remove_friendable, :remove_comments
 
   alias_attribute :to_s, :title
 
@@ -81,6 +81,17 @@ class Account < ActiveRecord::Base
   Role.role.values.each do |role|
     define_method "is_#{role}?" do
       self.class.where(:id => id).joins(:roles).where('roles.role = ?', role).any?
+    end
+  end
+
+  def remove_comments
+    self.comments.each do |c|
+      unless c.child.present?
+        c.destroy
+      else
+        c.user_id = nil
+        c.save!
+      end
     end
   end
 

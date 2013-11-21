@@ -14,6 +14,10 @@ class Comment < ActiveRecord::Base
 
   scope :rendereable,      -> { where(:commentable_type => ['Afisha', 'Organization']) }
 
+  def child
+    Comment.where(:ancestry => self.id.to_s)
+  end
+
   normalize_attribute :body, :ancestry
   validates_presence_of :body
   validate :authenticated_user
