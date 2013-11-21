@@ -3,7 +3,7 @@
 class PostDecorator < ApplicationDecorator
   decorates :post
 
-  delegate :title, :html_content, to: :post
+  delegate :title, :html_content, :kind, to: :post
 
   def truncated_title_link(length, options = { separator: ' ', anchor: nil })
     if title.length > length
@@ -27,7 +27,7 @@ class PostDecorator < ApplicationDecorator
 
   def annotation_image(width, height)
     h.link_to h.post_path(post) do
-      h.content_tag :div, h.image_tag(h.resized_image_url(gallery_images.first.file_url, width, height, { crop: '!', orientation: 'n' }), size: "#{width}x#{height}", alt: post.title.gilensize, title: post.title.gilensize), class: :image
+      h.content_tag :div, h.image_tag(h.resized_image_url(gallery_images.first.file_url, width, height), size: "#{width}x#{height}", alt: post.title.gilensize), class: :image
     end
   end
 

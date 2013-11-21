@@ -1,20 +1,35 @@
 <% content_for :page_title, "#{@post.title}. #{t('meta.default.title')}" %>
 
-<div class="post_show">
-  <div class="title">
+<div class='post_show'>
+  <div class='title'>
     <h1><%= @post.title %></h1>
     <%= @post.date %>
   </div>
 
-  <div class="left">
-    <div class="wrapper">
+  <div class='left'>
+    <div class='wrapper'>
 
-      <div class="post_content">
-        <%= @post.annotation_image(300, 224) if @post.annotation_image? %>
+      <div class='post_content'>
+        <% if @post.images.any? %>
+          <%= link_to @post.images.first.file_url, :class => :colorbox, :rel => "post_images_gallery_#{@post.id}" do %>
+            <%= image_tag resized_image_url(@post.images.first.file_url, 300, 224), :size => '300x224' %>
+          <% end %>
+        <% end %>
         <%= @post.html_content %>
       </div>
 
-      <div class="share_and_likes">
+      <% if @post.images.many? %>
+        <div class='photogallery_header'>Фотографии</div>
+        <div class='photogallery'>
+          <ul>
+            <% @post.images.drop(1).each do |image| %>
+              <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "post_images_gallery_#{@post.id}" } %>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class='share_and_likes'>
         <%= render :partial => 'share_this' %>
       </div>
 
@@ -35,30 +50,19 @@
       </div>
     </div>
 
-    <% if @post.images.many? %>
-      <div class='photogallery_header'>Фотографии</div>
-      <div class='photogallery'>
-        <ul>
-          <% @post.images.each do |image| %>
-            <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "post_images_gallery_#{@post.id}" } %>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @post } %>
   </div>
 
-  <div class="right">
+  <div class='right'>
     <% if @post.similar_post.present? %>
-      <div class="more_like_this">
-        <p class="title">Другие обзоры</p>
+      <div class='more_like_this'>
+        <p class='title'>Другие обзоры</p>
         <ul>
           <% @post.similar_post.each do |item| %>
             <% post = PostDecorator.new(item) %>
             <li>
               <%= post.annotation_image(87, 65) if post.annotation_image? %>
-              <div class="title"><%= link_to truncate(post.title.text_gilensize, length: 30), post %></div>
+              <div class='title'><%= link_to truncate(post.title.text_gilensize, length: 30), post %></div>
               <%= post.date %>
             </li>
           <% end %>
