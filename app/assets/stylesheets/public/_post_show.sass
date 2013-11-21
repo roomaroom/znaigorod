@@ -32,6 +32,8 @@
           margin: 0 0 15px 0
 
         img
+          border: 1px solid #ccc
+
           &.float_left
             float: left
             margin: 0 15px 15px 0
@@ -131,6 +133,20 @@
 
       .jcarousel-container-horizontal, .jcarousel-clip-horizontal
         width: 900px
+
+    .photos
+      +clearfix
+
+      li
+        float: left
+        margin: 0 15px 15px 0
+
+        &:nth-child(6n)
+          margin-right: 0
+
+        img
+          display: block
+          border: 1px solid #ccc
 
   .right
     margin: 0 0 0 970px
