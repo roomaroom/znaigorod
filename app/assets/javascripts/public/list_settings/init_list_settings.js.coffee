@@ -25,6 +25,9 @@
   if presentation_block.hasClass('accounts')
     cookie_name = '_znaigorod_accounts_list_settings'
 
+  if presentation_block.hasClass('post')
+    cookie_name = '_znaigorod_post_list_settings'
+
   cookie_value.present_by = $('.present_by li.selected a', presentation_block).attr('class')
   cookie_value.order_by = $('.order_by li.selected a', presentation_block).attr('class')
   $.cookie(cookie_name, $.param(cookie_value))

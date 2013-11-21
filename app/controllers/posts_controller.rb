@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   has_scope :page, :default => 1
 
   def index
-    @presenter = PostPresenter.new(params)
+    cookie = cookies['_znaigorod_post_list_settings'].to_s
+    settings_from_cookie = {}
+    settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
+
+    @presenter = PostPresenter.new(settings_from_cookie.merge(params))
     render partial: 'posts/post_posters', layout: false and return if request.xhr?
   end
 
