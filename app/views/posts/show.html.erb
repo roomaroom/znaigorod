@@ -13,16 +13,11 @@
         <%= @post.html_content %>
       </div>
 
-      <% if @post.images.any? %>
-        <ul class='photos'>
-          <% @post.images.each do |image| %>
-            <li>
-              <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
-                <%= image_tag resized_image_url(image.file_url, 143, 109), :size => '143x109', :alt => image.description %>
-              <% end %>
-            </li>
-          <% end %>
+      <% if @post_images.any? %>
+        <ul class='post_images'>
+          <%= render :partial => 'post_images' %>
         </ul>
+        <%= paginate @post_images %>
       <% end %>
 
       <div class='share_and_likes'>

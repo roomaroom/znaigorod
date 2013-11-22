@@ -11,6 +11,7 @@
     '.content_wrapper .tickets_list,' +
     '.content_wrapper .accounts_list ul,' +
     '.content_wrapper .posts_list ul,' +
+    '.content_wrapper .post_images,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
     '.content_wrapper .contest .works ul,' +
     '.feeds > ul, ' +
