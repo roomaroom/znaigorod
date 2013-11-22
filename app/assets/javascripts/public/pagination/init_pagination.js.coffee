@@ -71,6 +71,7 @@
           init_sms_claims() if $('.content_wrapper .sms_claims li').length && data.length
           init_payment() if $('.feeds .feed').length
           init_sauna_halls_scroll() if $('.content_wrapper .organizations_list > ul .sauna_halls').length
+          init_post_photos() if $('.post_show a[rel="colorbox"], .post_show a.colorbox').length
           process_change_message_status() if $('#notifications').length
           true
 
