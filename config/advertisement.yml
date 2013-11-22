@@ -22,3 +22,10 @@ post:
       to: '2014-11-11 00:00'
       content_type: 'post'
       replaced_count: 4
+
+main_page:
+  afisha:
+    '0':
+      from: '2013-11-19 00:00'
+      to: '2013-11-20 19:00'
+      afisha_slug: 'coda'

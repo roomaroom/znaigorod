@@ -1,6 +1,9 @@
 class MainPageController < ApplicationController
   def show
-    @afisha          = AfishaPresenter.new(:per_page => 6, :without_advertisement => true, :has_tickets => true, :order_by => 'random')
+    @afisha_list          = AfishaPresenter.new(:per_page => 6, :without_advertisement => true, :has_tickets => true, :order_by => 'random').decorated_collection
+    MainPageAdvertisement.new.afishas.each do |index, afisha|
+      @afisha_list[index] = afisha
+    end
     @afisha_filter   = AfishaPresenter.new(:has_tickets => false)
     @organizations   = OrganizationsCatalogPresenter.new(:per_page => 6, :sms_claimable => true, :only_clients => true)
 

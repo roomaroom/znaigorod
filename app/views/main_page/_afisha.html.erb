@@ -27,7 +27,7 @@
   </div>
 
   <ul class="posters">
-    <% @afisha.decorated_collection.each do |afisha| %>
+    <% @afisha_list.each do |afisha| %>
       <li><%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %></li>
     <% end %>
   </ul>
