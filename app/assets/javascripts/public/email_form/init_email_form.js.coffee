@@ -1,5 +1,4 @@
 @init_email_form = () ->
-  urls = ["/my/afisha/new", "/my/discounts/new", "/my/coupons/new", "/my/certificates/new"]
   forms = $("#new_discount, #new_coupon, #new_certificate, #new_afisha")
 
   email_request_form = $("#email_request_form").dialog
@@ -14,10 +13,9 @@
       $('body').css('overflow', 'hidden')
     close: (event, ui) ->
       $('body').css('overflow', 'auto')
-      unless urls.find(window.location.pathname) == undefined
-        forms.submit()
+      forms.unbind('submit').submit()
 
-  $('#email_request_form .properties_submit').click ->
+  $('#email_request_form').submit ->
     email = $('#email_request_form #account_email').val()
     if email.length && !is_email(email)
       $('#email_request_form #account_email').closest('.line').after("<div style='color: red'>E-mail указан неверно =(</div>")
@@ -35,12 +33,9 @@
 
     return false
 
-  email_request_form
-
-  unless (urls.find(window.location.pathname) == undefined)
-    forms.find('.submit input').click ->
-      $("#email_request_form").dialog('open')
-      false
+  forms.submit ->
+    $("#email_request_form").dialog('open')
+    false
 
 
 @show_email_request_form = ->
