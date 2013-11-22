@@ -10,37 +10,19 @@
     <div class='wrapper'>
 
       <div class='post_content'>
-        <% if @post.images.any? && !@post.kind.include?('photoreport') %>
-          <p>
-            <%= link_to @post.images.first.file_url, :class => :colorbox, :rel => 'gallery' do %>
-              <%= image_tag resized_image_url(@post.images.first.file_url, 300, 224), :size => '300x224' %>
-            <% end %>
-          </p>
-        <% end %>
         <%= @post.html_content %>
       </div>
 
-      <% if @post.images.many? %>
-        <% if @post.kind.include?('photoreport') %>
-          <ul class='photos'>
-            <% @post.images.each do |image| %>
-              <li>
-                <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
-                  <%= image_tag resized_image_url(image.file_url, 143, 109), :size => '143x109', :alt => image.description %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <div class='photogallery_header'>Фотографии</div>
-          <div class='photogallery'>
-            <ul>
-              <% @post.images.drop(1).each do |image| %>
-                <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "post_images_gallery_#{@post.id}" } %>
+      <% if @post.images.any? %>
+        <ul class='photos'>
+          <% @post.images.each do |image| %>
+            <li>
+              <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
+                <%= image_tag resized_image_url(image.file_url, 143, 109), :size => '143x109', :alt => image.description %>
               <% end %>
-            </ul>
-          </div>
-        <% end %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
 
       <div class='share_and_likes'>
