@@ -9,7 +9,6 @@ class Manage::ApplicationController < InheritedResources::Base
     redirect_to new_manage_session_path, :notice => "У вас не хватает прав для выполнения этого действия"
   end
 
-  #load_and_authorize_resource
   check_authorization
 
   def per_page

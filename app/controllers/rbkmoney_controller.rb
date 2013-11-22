@@ -4,7 +4,6 @@ class RbkmoneyController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def success
-    #notification = Rbkmoney::Notification.new(request.raw_post, :secret => 'SECRET')
     notification = Rbkmoney::Notification.new(request.raw_post)
 
     if notification.acknowledge

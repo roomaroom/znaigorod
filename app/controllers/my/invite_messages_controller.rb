@@ -3,8 +3,6 @@ class My::InviteMessagesController < My::ApplicationController
 
   actions :update, :show, :index
 
-  #layout false
-
   def index
     index!{
       render partial: "my/invite_messages/invite_messages", layout: false and return if request.xhr?
@@ -29,7 +27,6 @@ class My::InviteMessagesController < My::ApplicationController
   end
 
   def begin_of_association_chain
-    #authorize! current_user, invitemessage.new(producer: current_user.try(:account))
     current_user.account
   end
 end
