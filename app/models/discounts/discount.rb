@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Discount < ActiveRecord::Base
+  include AutoHtml
   include CropedPoster
   include DraftPublishedStates
   include MakePageVisit
@@ -117,6 +118,12 @@ class Discount < ActiveRecord::Base
 
   def html_description
     @html_description ||= description.to_s.as_html
+  end
+
+  auto_html_for :description do
+    youtube(:width => 580, :height => 350)
+    vimeo(:width => 580, :height => 350)
+    redcloth :target => '_blank', :rel => 'nofollow'
   end
 
   def likes_count
