@@ -10,4 +10,4 @@
 Категории: <%= @discount.kind.map(&:text).join(', ') %>
 Описание: <%= @discount.description.present? ? @discount.description : 'Нет описания' %>
 
-Помотреть эту в manage: <%= link_to @discount, discount_path(@discount), :host => Settings['app']['host']) %>
+Помотреть эту в manage: <%= link_to @discount, discount_path(@discount), :host => Settings['app']['host'] %>
