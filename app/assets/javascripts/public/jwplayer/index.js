@@ -1,4 +1,3 @@
 /*
- * = require ./jwplayer.js
- * = require ./jwplayer.html5.js
+ * = require_tree .
  */

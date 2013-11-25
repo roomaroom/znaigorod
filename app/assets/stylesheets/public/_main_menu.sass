@@ -38,43 +38,43 @@ $main_menu_margin_top: 50px
           color: #fff
           background-color: #f60
 
-        &:last-child
-          width: 8%
-          position: relative
+      #main_menu_more
+        width: 8%
+        position: relative
 
-          > a
-            background-color: #fff
-            margin-right: 2px
-            padding: 3px
+        > a
+          background-color: #fff
+          margin-right: 2px
+          padding: 3px
 
-          ul
-            display: none
-            position: absolute
-            right: 0
-            font-size: 12px
-            +box-shadow(#555 0 0 3px)
-            +border-radius
-            background-color: #fff
-            padding: 10px
-            z-index: 10
+        ul
+          display: none
+          position: absolute
+          right: 0
+          font-size: 12px
+          +box-shadow(#555 0 0 3px)
+          +border-radius
+          background-color: #fff
+          padding: 10px
+          z-index: 10
 
-            a
-              color: #000
-              white-space: nowrap
+          a
+            color: #000
+            white-space: nowrap
 
-              &:hover
-                color: #f60
-                text-decoration: none
-
-            .selected a
+            &:hover
               color: #f60
+              text-decoration: none
 
-          &:hover ul
-            display: block
-
-          &.selected > a
+          .selected a
             color: #f60
-            background-color: #fff
+
+        &:hover ul
+          display: block
+
+        &.selected > a
+          color: #f60
+          background-color: #fff
 
     .search_form
       float: left
