@@ -6,6 +6,8 @@
       width: 50%
       margin: 20px auto
       ul
+        width: 100%
+        display: table
         +clearfix
         li:first-child:nth-last-child(1)
           width: 100%
@@ -15,7 +17,7 @@
           li:first-child:nth-last-child(#{$i}) ~ li
             width: percentage(1/$i)
         li
-          float: left
+          display: table-cell
           text-align: center
           a
             +inline-block
