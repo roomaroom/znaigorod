@@ -43,7 +43,7 @@
 
   <div class="buy_ticket">
     <% unless feed_discount.feedable.price.nil? || feed_discount.feedable.price.zero? %>
-      <%= link_to 'Купить', new_discount_copy_payment_path(feed_discount.feedable), :class => 'payment_link participate', :remote => true %>
+      <%= link_to 'Купить', new_discount_copy_payment_path(feed_discount.feedable), :class => 'payment_link participate', :remote => true, :rel => :nofollow %>
     <% end %>
   </div>
 </div>

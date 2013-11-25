@@ -9,7 +9,7 @@
           </div>
 
           <div class='buy_ticket'>
-            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link %>
+            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link, :rel => :nofollow %>
           </div>
 
         <% else %>
@@ -19,7 +19,7 @@
           </div>
 
           <div class='buy_ticket'>
-            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link %>
+            <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link, :rel => :nofollow %>
           </div>
 
         <% end %>
