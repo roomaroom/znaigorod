@@ -56,7 +56,12 @@
               <div class='wrapper'>
                 <% if ticket.original_price == ticket.price %>
                   <div class='has_items_for_sale without_discount'>
-                    Купить билет
+                    <% if ticket.copies_for_sale.any? %>
+                      <%= ticket.description.text_gilensize %>
+                    <% else %>
+                      Купить билет
+                    <% end %>
+                  </div>
                   <div class='ticket_price'>
                     <div class='price'><%= ticket.price.to_i %>р.<%= "+#{ticket.organization_price.to_i}р." if ticket.organization_price %></div>
                   </div>
@@ -67,7 +72,8 @@
                 <% else %>
                   <div class='has_items_for_sale'>
                     Скидка на билет
-                    <span class='discount'><%= ticket.discount %></span><span class='percentage'>%</span></div>
+                    <span class='discount'><%= ticket.discount %></span><span class='percentage'>%</span>
+                  </div>
                   <div class='ticket_prices'>
                     <div class='original_price'><%= ticket.original_price.to_i %>р.</div>
                     <div class='price'><%= ticket.price.to_i %>р.<%= "+#{ticket.organization_price.to_i}р." if ticket.organization_price %></div>
