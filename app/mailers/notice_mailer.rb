@@ -1,6 +1,7 @@
 class NoticeMailer < ActionMailer::Base
   default :from => Settings['mail']['from']
   layout "notice_layout"
+  add_template_helper(ImageHelper)
 
   def personal_invitation invite
     @invite = invite
