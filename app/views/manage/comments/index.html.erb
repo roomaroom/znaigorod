@@ -13,6 +13,8 @@
             <%= link_to item.commentable, afisha_show_path(item.commentable) %>
           <% elsif item.commentable.is_a?(Work) %>
             <%= link_to item.commentable.title, [item.commentable.contest, item.commentable] %>
+          <% elsif item.commentable.is_a?(Discount) %>
+            <%= link_to item.commentable.title, discount_path(item.commentable) %>
           <% else %>
             <%= link_to item.commentable.title, item.commentable %>
           <% end %>
