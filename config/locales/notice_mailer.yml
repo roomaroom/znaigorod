@@ -1,0 +1,17 @@
+ru:
+  notice_mailer:
+    you_can_unsubscribe_in: "Отписаться от рассылки можно в "
+    private_settings: "Личном кабинете"
+    on_the_site: "на сайте"
+    personal_invitation: "Приглашение"
+    comment_to_afisha: "Комментарий на афишу"
+    comment_to_discount: "Комментарий на скидку"
+    comment_like: "Понравился ваш комментарий"
+    comment_reply: "Ответ на комментарий"
+    afisha_statistics: "Статистика по афишам"
+    discount_statistics: "Статистика по скидкам"
+    private_message: "Личное сообщение"
+    is_invite_you_at: "приглашает Вас на"
+
+
+
