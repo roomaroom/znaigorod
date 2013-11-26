@@ -32,7 +32,7 @@ class CommentObserver < ActiveRecord::Observer
   end
 
   def email_comment_to_discount comment
-    account = comment.commentable.user.account
+    account = comment.commentable.account
     if account.account_settings.comments_to_discounts && account.email.present?
       NoticeMailer.comment_to_discount(comment).deliver!
     end
