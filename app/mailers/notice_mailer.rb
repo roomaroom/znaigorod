@@ -12,7 +12,7 @@ class NoticeMailer < ActionMailer::Base
   def private_message message
     @message = message
     @type = "private_message"
-    mail(:to => message.account.email, :subject => 'messagehello')
+    mail(:to => message.account.email, :subject => 'messagehello').deliver!
   end
 
   def comment_to_afisha comment
