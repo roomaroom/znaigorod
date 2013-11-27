@@ -6,8 +6,8 @@ class Ticket < ActiveRecord::Base
   include Copies
   include PaymentSystems
 
-  attr_accessible :number, :original_price, :price, :description,
-    :stale_at, :organization_price, :email_addressess, :undertow, :state
+  attr_accessible :number, :original_price, :price, :description, :short_description,
+    :stale_at, :organization_price, :email_addressess, :undertow
 
   belongs_to :afisha
 
@@ -41,6 +41,8 @@ class Ticket < ActiveRecord::Base
     text :organization_title
   end
 
+  default_value_for :short_description, 'Купить билет'
+
   def stale!
     update_attributes :state => 'stale'
     copies.map(&:stale!)
@@ -58,6 +60,10 @@ class Ticket < ActiveRecord::Base
 
   def free?
     false
+  end
+
+  def title_for_list
+    short_description? ? short_description : description
   end
 
   private
