@@ -1,4 +1,4 @@
-<%= @vote.user.name %> Понравился ваш комментарий
+<%= @vote.user.name %> <%= t("notice_mailer.comment_like") %>
 <%= l(@vote.created_at, format: "%d %B %Y, %k:%M") %>
 
 =========================

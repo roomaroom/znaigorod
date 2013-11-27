@@ -1,2 +1,4 @@
-<%= @invite.account.users.first.name %> приглашает вас <%= @invite.category.blank? ? @invite.inviteable.title : "на #{@invite.category}" %>
+<%= t("notice_mailer.personal_invitation") %>
+
+<%= @invite.account.users.first.name %> <%= t("notice_mailer.is_invite_you_at") %> <%= @invite.category.blank? ? @invite.inviteable.title : "на #{@invite.category}" %>
 <%= l(@invite.created_at, format: "%d %B %Y, %k:%M") %>
