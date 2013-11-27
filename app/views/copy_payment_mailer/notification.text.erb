@@ -1,4 +1,9 @@
 Продан(ы) <%= I18n.t('bet.tickets', :count => @copy_payment.copies.count) %> по цене <%= number_to_currency @copy_payment.paymentable.price %>
+
+<% if @copy_payment.paymentable.respond_to? :description %>
+  Описание: <%= @copy_payment.paymentable.description %>
+<% end %>
+
 Мероприятие: "<%= @copy_payment.paymentable.afisha.title %>" (<%= afisha_show_url(@copy_payment.paymentable.afisha) %>)
 Место проведения: <%= @copy_payment.paymentable.afisha.place %>
 
