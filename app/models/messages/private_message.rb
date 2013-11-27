@@ -14,7 +14,7 @@ class PrivateMessage < Message
 
   def send_mail
     if self.account.account_settings.personal_messages && self.account.email.present?
-      NoticeMailer.private_message(self).deliver!
+      NoticeMailer.delay(:queue => 'mailer').private_message(self)
     end
   end
 

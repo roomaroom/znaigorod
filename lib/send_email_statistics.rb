@@ -19,7 +19,7 @@ class SendEmailStatistics
       .where("discounts.ends_at >= '#{Time.now}' or discounts.ends_at is null")
 
     if discounts.any?
-        NoticeMailer.discount_statistics(discounts, account).deliver! unless account.email.blank?
+        NoticeMailer.discount_statistics(discounts, account) unless account.email.blank?
     end
   end
 
@@ -45,7 +45,7 @@ class SendEmailStatistics
       .where(:state => "published")
 
     if afishas.any?
-      NoticeMailer.afisha_statistics(afishas, account).deliver! unless account.email.blank?
+      NoticeMailer.afisha_statistics(afishas, account) unless account.email.blank?
     end
   end
 

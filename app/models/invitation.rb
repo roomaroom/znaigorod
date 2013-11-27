@@ -45,7 +45,7 @@ class Invitation < ActiveRecord::Base
 
   def send_email
     if self.invited.account_settings.personal_invites && self.invited.email.present?
-      NoticeMailer.personal_invitation(self).deliver!
+      NoticeMailer.delay(:queue => 'mailer').personal_invitation(self)
     end
   end
 
