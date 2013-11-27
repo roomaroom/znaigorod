@@ -9,7 +9,16 @@
       <table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; padding: 0 0 0px;" align="left" valign="top">
             <a href="<%= account_path @invite.account, :only_path => false  %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;"><%= @invite.account.title %></a> <span style="font-size: 12px !important;"><%= t "notice_mailer.is_invite_you_at" %></span>
             <% if @invite.category.blank? %>
-              <a href="<%= @invite.inviteable %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;"><%= @invite.inviteable.title  %></a>
+              <% if @invite.inviteable.is_a?(Afisha) %>
+
+                <%= link_to @invite.inviteable.title, afisha_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
+              <% end %>
+
+              <% if @invite.inviteable.is_a?(Organization) %>
+
+                <%= link_to @invite.inviteable.title, organization_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
+              <% end %>
+
             <% else %>
               <span><%= @invite.category %></span>
             <% end %>
