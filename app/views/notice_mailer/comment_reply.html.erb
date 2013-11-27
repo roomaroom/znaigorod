@@ -36,7 +36,7 @@
         </tr>
         <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
           <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-            <span style="font-size: 12px !important;"><%= @comment.body %></span>
+            <span style="font-size: 12px !important;"><%= @comment.body.truncated.as_html if @comment.body? %></span>
           </td>
         </tr>
       </table>
