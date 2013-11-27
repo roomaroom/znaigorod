@@ -53,11 +53,4 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => account.email, :subject => t("notice_mailer.discount_statistics")).deliver!
   end
 
-  def send_message
-    #mail(:to => 'aisling.nimdis@yandex.ru', :subject => 'yes').deliver!
-    #mail(:to => 'aisling.nimdis@gmail.com', :subject => 'yes').deliver!
-    mail(:to => 'tsaazi@gmail.com', :subject => 'yes').deliver!
-    #mail(:to => 'nimdis@bk.ru', :subject => 'yes').deliver!
-  end
-
 end
