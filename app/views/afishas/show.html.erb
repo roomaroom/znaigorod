@@ -57,7 +57,7 @@
                 <% if ticket.original_price == ticket.price %>
                   <div class='has_items_for_sale without_discount'>
                     <% if ticket.copies_for_sale.any? %>
-                      <%= ticket.description.text_gilensize %>
+                      <%= ticket.title_for_list.text_gilensize %>
                     <% else %>
                       Купить билет
                     <% end %>
