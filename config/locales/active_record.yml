@@ -444,6 +444,7 @@ ru:
         price:              Цена со скидкой
         stale_at:           Актуально до
         undertow:           Откат заведению
+        short_description:  Короткое описание
 
       copy:
         row:           Ряд
