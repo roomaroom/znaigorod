@@ -3,7 +3,7 @@
 class AfishaObserver < ActiveRecord::Observer
   def after_to_published(afisha, transition)
     if afisha.user.present?
-      unless afisha.user.is_admin? && afisha.user.email.blank?
+      if !afisha.user.is_admin? && afisha.user.email.present?
         MyMailer.delay(:queue => 'mailer').mail_new_published_afisha(afisha)
       end
       Feed.create(
