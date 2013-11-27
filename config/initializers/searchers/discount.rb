@@ -8,9 +8,9 @@ HasSearcher.create_searcher :discounts do
   scope do
     facet :kind, :sort => :count, :zero => true
 
-    with :actual,          true
-    with :copies_for_sale, true
-    with :state,           :published
+    with :copies_for_sale,      true
+    with :state,                :published
+    with(:ends_at).greater_than HasSearcher.cacheable_now
   end
 
   scope(:order_by_rating)   { order_by(:rating, :desc) }
