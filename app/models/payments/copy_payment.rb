@@ -3,22 +3,18 @@
 require 'payments/payment'
 
 class CopyPayment < Payment
-  attr_accessible :number, :phone
+  attr_accessible :number, :phone, :email
 
   has_one :sms, :as => :smsable
 
   has_many :copies, after_add: :reserve_copy
 
+  validates :email,  :presence => true, :if => :payment_system_rbkmoney?
   validates :number, :presence => true, :numericality => { :greater_than => 0 }, :unless => :copies_with_seats?
-  validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
-
-  attr_accessible :email
-  attr_accessor :email
+  validates :phone,  :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
 
   delegate :payment_system_rbkmoney?, :to => :paymentable
   delegate :free?,                    :to => :paymentable, :prefix => true
-
-  validate :email, :if => :payment_system_rbkmoney?
 
   before_validation :check_copies_number
 
@@ -89,12 +85,12 @@ class CopyPayment < Payment
     paymentable.is_a? Ticket
   end
 
-  def create_visit
-    paymentable.afisha.visits.create! :user_id => user_id
-  end
-
   def paymentable_is_discount?
     paymentable.is_a? Discount
+  end
+
+  def create_visit
+    paymentable.afisha.visits.create! :user_id => user_id
   end
 
   def create_member
