@@ -1,2 +1,13 @@
-<%= @comment.user.account.inspect%>
-Прокомментировал ваш комментарий
+<%= @comment.user.name %> Прокомментировал ваш комментарий
+
+=========================
+
+<%= @comment.commentable.title %>
+
+<%= @comment.parent.user.name %>
+<%= l(@comment.parent.created_at, format: "%d %B %Y, %k:%M") %>
+<%= @comment.parent.body.truncated if @comment.parent.body? %>
+
+  <%= @comment.user.name %>
+  <%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %>
+  <%= @comment.body.truncated if @comment.body? %>

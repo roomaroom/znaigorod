@@ -20,7 +20,7 @@
               <% end %>
 
             <% else %>
-              <span><%= @invite.category %></span>
+              <span>на <%= @invite.category %></span>
             <% end %>
           </td>
           </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td id="time" class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; color: #9a9a9a; padding: 0 0 0px;" align="left" valign="top"><span style="font-size: 12px !important;"><%= l(@invite.created_at, format: "%d %B %Y, %k:%M") %><span style="font-size: 12px !important;"></span></span></td>

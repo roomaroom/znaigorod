@@ -1,2 +1,6 @@
-<%= @vote.user.account.inspect %>
-Понравился ваш комментарий
+<%= @vote.user.name %> Понравился ваш комментарий
+<%= l(@vote.created_at, format: "%d %B %Y, %k:%M") %>
+
+=========================
+
+<%= @vote.voteable.body.truncated if @vote.voteable.body? %>

@@ -1,11 +1,14 @@
-Доброго времени суток <%= @account.title %>!
+Статистика по вашим афише
 
-Статистика по вашей афише
+=========================
+
 <% @afishas.each do |afisha| %>
-  <%= afisha.inspect %>
+  <%= afisha.title %>
   Участники <%= afisha.visits.size %>
   Приглашения <%= afisha.invitations.inviter.without_invited.size %>
   Комментарии <%= afisha.comments.size %>
   Голоса <%= afisha.likes_count %>
   Просмотры <%= afisha.page_visits.count %>
+
+=========================
 <% end %>

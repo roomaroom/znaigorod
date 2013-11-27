@@ -1,9 +1,13 @@
-<% #TODO: add localisations! %>
 Статистика по вашим скидкам
+
+=========================
+
 <% @discounts.each do |discount| %>
-  <%= discount.inspect %>
+  <%= discount.title %>
   Участники <%= discount.members.size %>
   Комментарии <%= discount.comments.size %>
   Голоса <%= discount.votes.liked.size %>
   Просмотры <%= discount.page_visits.size %>
+
+=========================
 <% end %>

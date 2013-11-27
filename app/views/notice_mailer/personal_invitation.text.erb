@@ -1,4 +1,2 @@
-<%= @invite.account.inspect %>
-Пригласил вас
-<%= @invite.category %>
-<%= @invite.inviteable.inspect %>
+<%= @invite.account.users.first.name %> приглашает вас <%= @invite.category.blank? ? @invite.inviteable.title : "на #{@invite.category}" %>
+<%= l(@invite.created_at, format: "%d %B %Y, %k:%M") %>
