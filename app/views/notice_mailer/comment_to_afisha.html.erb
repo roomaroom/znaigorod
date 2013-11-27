@@ -2,7 +2,7 @@
   <tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
       <table class="one columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 30px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
             <a href="<%= account_path @comment.user.account, :only_path => false  %>" style="color: #0081d5; text-decoration: none;">
-              <img src="<%= @comment.user.account.avatar.url %>" style="outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border: 0;" align="left" /></a>
+              <img src="<%= resized_image_url(@comment.user.account.avatar.url, 30, 30) %>" style="outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border: 0;" align="left" /></a>
           </td>
     </tr></table></td>
     <td id="right_content" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; font-size: 12px !important; padding: 0 0 10px 10px;" align="left" valign="top">
