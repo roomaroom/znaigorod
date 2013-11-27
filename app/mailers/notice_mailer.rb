@@ -44,14 +44,14 @@ class NoticeMailer < ActionMailer::Base
     @account = account
     @afishas = afishas
     @type = "afisha_statistics"
-    mail(:to => account.email, :subject => 'afisha stat hello')
+    mail(:to => account.email, :subject => 'afisha stat hello').deliver!
   end
 
   def discount_statistics discounts, email
     @discounts = discounts
     @account = account
     @type = "discount_statistics"
-    mail(:to => account.email, :subject => 'discount stat hello')
+    mail(:to => account.email, :subject => 'discount stat hello').deliver!
   end
 
   def send_message
