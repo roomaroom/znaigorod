@@ -43,19 +43,19 @@
             <table id="orange-button" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; display: block; padding: 0 0 10px;" align="left" valign="top">
 
                   <% if @comment.commentable.is_a?(Work) %>
-                    <%= link_to '', work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('https://raw.github.com/Nimdis/ink_design2/master/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"}  %>
+                    <%= link_to '', work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('http://znaigorod.ru/assets/public/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"}  %>
                   <% end %>
                   <% if @comment.commentable.is_a?(Afisha) %>
-                    <%= link_to '', afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('https://raw.github.com/Nimdis/ink_design2/master/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
+                    <%= link_to '', afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('http://znaigorod.ru/assets/public/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
                   <% end %>
                   <% if @comment.commentable.is_a?(Discount) %>
-                    <%= link_to '', discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('https://raw.github.com/Nimdis/ink_design2/master/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"}  %>
+                    <%= link_to '', discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('http://znaigorod.ru/assets/public/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"}  %>
                   <% end %>
                   <% if @comment.commentable.is_a?(Organization) %>
-                    <%= link_to '', organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('https://raw.github.com/Nimdis/ink_design2/master/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
+                    <%= link_to '', organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('http://znaigorod.ru/assets/public/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
                   <% end %>
                   <% if @comment.commentable.is_a?(Post) %>
-                    <%= link_to '', post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('https://raw.github.com/Nimdis/ink_design2/master/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
+                    <%= link_to '', post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('http://znaigorod.ru/assets/public/mailer_buttons.png') no-repeat -28px -51px; padding: 0px 100px 10px 0px;"} %>
                   <% end %>
 
 
