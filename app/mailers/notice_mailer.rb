@@ -6,7 +6,6 @@ class NoticeMailer < ActionMailer::Base
   def personal_invitation invite
     @invite = invite
     @type = "personal_invitation"
-    #mail(:to => invite.invited.email, :subject => 'invite hello')
     mail(:to => 'tsaazi@gmail.com', :subject => '', :layout => "layout").deliver!
   end
 
