@@ -33,6 +33,7 @@ end
 every 2.hours do
   rake 'afisha:event_users'
   rake 'social_likes'
+  rake 'actualize_discounts'
 end
 
 every 3.hours do
