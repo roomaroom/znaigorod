@@ -6,7 +6,7 @@ class NoticeMailer < ActionMailer::Base
   def personal_invitation(invite)
     @invite = invite
     @type = "personal_invitation"
-    mail(:to => invite.account.email, :subject => t("notice_mailer.new_invitation"), :layout => "layout")
+    mail(:to => invite.invited.email, :subject => t("notice_mailer.new_invitation"), :layout => "layout")
   end
 
   def private_message(message)
