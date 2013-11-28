@@ -23,19 +23,12 @@
             <span>
 
               <% if @comment.commentable.is_a?(Work) %>
-                <%= link_to (@comment.commentable.title.present? ? @comment.commentable.title : @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false) %>
+                <%= link_to (@comment.commentable.title || @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false) %>
               <% end %>
-              <% if @comment.commentable.is_a?(Afisha) %>
-                <%= link_to @comment.commentable.title, afisha_path(@comment.commentable, :only_path => false) %>
-              <% end %>
-              <% if @comment.commentable.is_a?(Discount) %>
-                <%= link_to @comment.commentable.title, discount_path(@comment.commentable, :only_path => false) %>
-              <% end %>
-              <% if @comment.commentable.is_a?(Organization) %>
-                <%= link_to @comment.commentable.title, organization_path(@comment.commentable, :only_path => false) %>
-              <% end %>
-              <% if @comment.commentable.is_a?(Post) %>
-                <%= link_to @comment.commentable.title, post_path(@comment.commentable, :only_path => false) %>
+              <% %w[afisha discount organization post].each do |item| %>
+                <% if @comment.commentable.is_a?(item.camelize.constantize) %>
+                  <%= link_to @comment.commentable.title, send("#{item}_path", @comment.commentable, :only_path => false) %>
+                <% end %>
               <% end %>
 
             </span>
@@ -86,19 +79,11 @@
                               <% if @comment.commentable.is_a?(Work) %>
                                 <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
                               <% end %>
-                              <% if @comment.commentable.is_a?(Afisha) %>
-                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% %w[afisha discount organization post].each do |item| %>
+                                <% if @comment.commentable.is_a?(item.camelize.constantize) %>
+                                  <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), send("#{item}_path", @comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                                <% end %>
                               <% end %>
-                              <% if @comment.commentable.is_a?(Discount) %>
-                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
-                              <% end %>
-                              <% if @comment.commentable.is_a?(Organization) %>
-                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
-                              <% end %>
-                              <% if @comment.commentable.is_a?(Post) %>
-                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
-                              <% end %>
-
 
                             </td>
                           </tr>
