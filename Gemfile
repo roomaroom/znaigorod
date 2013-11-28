@@ -74,7 +74,7 @@ group :development do
   gem 'annotate',                   :require => false
   gem 'brakeman'
   gem 'capistrano-db-tasks',        :git => 'git://github.com/sgruhier/capistrano-db-tasks'
-  gem 'capistrano-unicorn'
+  gem 'capistrano-unicorn',         '~> 0.1.10'
   gem 'hirb'
   gem 'letter_opener'
   gem 'openteam-capistrano'
