@@ -15,7 +15,22 @@
       <table class="nine columns">
         <tr align="left">
           <td class="line_height" align="left" valign="top">
-            <a href="<%= account_path @vote.user.account, :only_path => false %>"><%= @vote.user.account.title %></a> <span><%= t "notice_mailer.liked_your_comment" %></span>
+            <a href="<%= account_path @vote.user.account, :only_path => false %>"><%= @vote.user.account.title %></a> <span><%= t "notice_mailer.liked_your_comment.#{@vote.user.account.gender}" %> </span>
+              <% if @vote.voteable.commentable.is_a?(Work) %>
+                <%= link_to (@vote.voteable.commentable.title.present? ? @vote.voteable.commentable.title : @vote.voteable.commentable.slug), work_path([@vote.voteable.commentable.contest, @vote.voteable.commentable], :only_path => false) %>
+              <% end %>
+              <% if @vote.voteable.commentable.is_a?(Afisha) %>
+                <%= link_to @vote.voteable.commentable.title, afisha_path(@vote.voteable.commentable, :only_path => false) %>
+              <% end %>
+              <% if @vote.voteable.commentable.is_a?(Discount) %>
+                <%= link_to @vote.voteable.commentable.title, discount_path(@vote.voteable.commentable, :only_path => false) %>
+              <% end %>
+              <% if @vote.voteable.commentable.is_a?(Organization) %>
+                <%= link_to @vote.voteable.commentable.title, organization_path(@vote.voteable.commentable, :only_path => false) %>
+              <% end %>
+              <% if @vote.voteable.commentable.is_a?(Post) %>
+                <%= link_to @vote.voteable.commentable.title, post_path(@vote.voteable.commentable, :only_path => false) %>
+              <% end %>
           </td>
         </tr>
         <tr align="left">

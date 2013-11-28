@@ -1,43 +1,56 @@
 <% content_for :content do %>
-  <tr align="left"><td align="left" valign="top">
-      <table class="one columns"><tr align="left"><td align="left" valign="top">
+  <tr align="left">
+    <td align="left" valign="top">
+      <table class="one columns">
+        <tr align="left">
+          <td align="left" valign="top">
             <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>">
               <img src="<%= resized_image_url(@comment.parent.user.account.avatar.url, 30, 30) %>" align="left" /></a>
           </td>
-    </tr></table></td>
+        </tr>
+      </table>
+    </td>
     <td id="right_content" align="left" valign="top">
-      <table class="nine columns">
-        <tr align="left"><td class="line_height" align="left" valign="top">
-            <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>"><%= @comment.parent.user.account.title %></a>, <span id="time"><%= l(@comment.parent.created_at, format: "%d %B %Y, %k:%M") %><span>
-          </span></span></td>
+      <table class="another_custom_column columns">
+        <tr align="left">
+          <td class="line_height" align="left" valign="top">
+            <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>"><%= @comment.parent.user.account.title %></a>, <span id="time"><%= l(@comment.parent.created_at, format: "%d %B %Y, %k:%M") %></span>
+          </td>
         </tr>
 
-        <tr align="left"><td id="time" class="line_height" align="left" valign="top"><span>
+        <tr align="left">
+          <td id="time" class="line_height" align="left" valign="top">
+            <span>
 
               <% if @comment.commentable.is_a?(Work) %>
-                <%= link_to (@comment.commentable.title.present? ? @comment.commentable.title : @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                <%= link_to (@comment.commentable.title.present? ? @comment.commentable.title : @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false) %>
               <% end %>
               <% if @comment.commentable.is_a?(Afisha) %>
-                <%= link_to @comment.commentable.title, afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                <%= link_to @comment.commentable.title, afisha_path(@comment.commentable, :only_path => false) %>
               <% end %>
               <% if @comment.commentable.is_a?(Discount) %>
-                <%= link_to @comment.commentable.title, discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                <%= link_to @comment.commentable.title, discount_path(@comment.commentable, :only_path => false) %>
               <% end %>
               <% if @comment.commentable.is_a?(Organization) %>
-                <%= link_to @comment.commentable.title, organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                <%= link_to @comment.commentable.title, organization_path(@comment.commentable, :only_path => false) %>
               <% end %>
               <% if @comment.commentable.is_a?(Post) %>
-                <%= link_to @comment.commentable.title, post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                <%= link_to @comment.commentable.title, post_path(@comment.commentable, :only_path => false) %>
               <% end %>
 
-              <span></span></span></td>
+            </span>
+          </td>
         </tr>
 
         <tr align="left"><td align="left" valign="top">
             <span><%= @comment.parent.body %></span>
           </td>
-            </tr></table><table class="nine columns"><tr align="left"><td align="left" valign="top">
-            <table class="nine columns">
+        </tr>
+      </table>
+      <table class="another_custom_column columns">
+        <tr align="left">
+          <td align="left" valign="top">
+            <table class="another_custom_column columns">
               <tr align="left">
                 <td align="left" valign="top">
                   <table class="one columns">
@@ -51,10 +64,10 @@
                   </table>
                 </td>
                 <td align="left" valign="top">
-                  <table class="eight columns">
+                  <table class="eight_half columns">
                     <tr align="left">
                       <td class="line_height" align="left" valign="top">
-                        <a href="<%= account_path @comment.user.account, :only_path => false  %>"><%= @comment.user.account.title %></a>, <span id="time"><%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %><span></span></span>
+                        <a href="<%= account_path @comment.user.account, :only_path => false  %>"><%= @comment.user.account.title %></a>, <span id="time"><%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %></span>
                       </td>
                     </tr>
                     <tr align="left">
@@ -62,8 +75,13 @@
                         <span><%= @comment.body.truncated.as_html if @comment.body? %></span>
                       </td>
                     </tr>
-                        </table><table class="nine columns"><tr align="left"><td align="left" valign="top">
-                        <table id="orange-button"><tr align="left"><td align="left" valign="top">
+                  </table>
+                  <table class="nine columns">
+                    <tr align="left">
+                      <td align="left" valign="top">
+                        <table id="orange-button">
+                          <tr align="left">
+                            <td id="answer_button_reply" align="left" valign="top">
 
                               <% if @comment.commentable.is_a?(Work) %>
                                 <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
@@ -83,13 +101,20 @@
 
 
                             </td>
-                      </tr></table></td>
-                  </tr></table>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
               </tr>
             </table>
           </td>
-    </tr></table></td>
-    </tr><tr align="left"><td id="whitespace" align="left" valign="top"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="left">
+    <td id="whitespace" align="left" valign="top"></td>
   </tr>
 <% end %>

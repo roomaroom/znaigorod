@@ -30,8 +30,8 @@
                                 </a>
                               </td>
                               <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
-                                <span>Отписаться от рассылки можно в </span><br />
-                                <span><a href="<%= edit_my_account_path(:only_path => false) %>">Личном кабинете</a> на сайте <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a></span>
+                                <span><%= t "notice_mailer.you_can_unsubscribe_in" %></span><br />
+                                <span><a href="<%= edit_my_account_path(:only_path => false) %>"><%= t "notice_mailer.private_settings" %></a> <%= t "notice_mailer.on_the_site" %> <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a></span>
                               </td>
                               <td class="expander"></td>
                             </tr>
@@ -67,8 +67,8 @@
                                           <tr>
                                             <td>
                                               <h3>
-                                                <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a> / Приглашение
-                                              </h3>
+                                                <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a> / <%= t "notice_mailer.#{@type}" %>
+                                            </h3>
                                             </td>
                                             <td class="expander"></td>
                                           </tr>
