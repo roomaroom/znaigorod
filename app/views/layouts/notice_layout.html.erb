@@ -25,11 +25,13 @@
                           <table class="custom_column_width columns">
                             <tr>
                               <td class="five sub-columns">
-                                <img src="https://raw.github.com/Nimdis/ink_design2/master/logo.png" width="109px" height="56px" />
+                                <a href="<%= Settings['app']['url'] %>">
+                                  <img src="<%= Settings['app']['url'] %>/assets/public/logo.png" width="109px" height="56px" />
+                                </a>
                               </td>
                               <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                                 <span>Отписаться от рассылки можно в </span><br />
-                                <span><a href="http://znaigorod.ru/my/account/edit">Личном кабинете</a> на сайте <a href="http://znaigorod.ru/">znaigorod.ru</a></span>
+                                <span><a href="<%= edit_my_account_path(:only_path => false) %>">Личном кабинете</a> на сайте <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a></span>
                               </td>
                               <td class="expander"></td>
                             </tr>
@@ -65,7 +67,7 @@
                                           <tr>
                                             <td>
                                               <h3>
-                                                <a href="http://znaigorod.ru/">znaigorod.ru</a> / Приглашение
+                                                <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a> / Приглашение
                                               </h3>
                                             </td>
                                             <td class="expander"></td>
