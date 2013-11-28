@@ -27,7 +27,11 @@
       <% if feed_vote_comment.feedable.voteable.commentable.is_a?(Work) %>
         <%= link_to(feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commentable])  %>
       <% else %>
-        <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, feed_vote_comment.feedable.voteable.commentable) %>
+        <% if @feeds_presenter.is_discount?(feed_vote_comment.feedable.voteable.commentable.class.name) %>
+          <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, discount_path(feed_vote_comment.feedable.voteable.commentable)) %>
+        <% else %>
+          <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, feed_vote_comment.feedable.voteable.commentable) %>
+        <% end %>
       <% end %>
     <% else %>
       <%= link_to("Работа " + feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commentable])  %>
