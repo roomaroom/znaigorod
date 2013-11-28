@@ -54,6 +54,7 @@ group :default do
   gem 'pg'
   gem 'progress_bar'
   gem 'rails'
+  gem 'roadie'
   gem 'russian'
   gem 'sanitize'
   gem 'sass-rails'

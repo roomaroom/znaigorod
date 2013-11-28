@@ -111,6 +111,8 @@ GEM
       highline (>= 1.5.2)
       multi_json (>= 1.1)
     connection_pool (1.1.0)
+    css_parser (1.3.5)
+      addressable
     curb (0.8.3)
     daemons (1.1.9)
     default_value_for (2.0.3)
@@ -350,6 +352,11 @@ GEM
     responders (1.0.0)
       railties (>= 3.2, < 5)
     rinku (1.5.1)
+    roadie (2.4.2)
+      actionmailer (> 3.0.0, < 5.0.0)
+      css_parser (~> 1.3.4)
+      nokogiri (> 1.5.0)
+      sprockets
     rsolr (1.0.9)
       builder (>= 2.1.2)
     rspec-core (2.12.0)
@@ -520,6 +527,7 @@ DEPENDENCIES
   quiet_assets
   rails
   rails-erd
+  roadie
   rspec-rails
   russian
   sanitize
