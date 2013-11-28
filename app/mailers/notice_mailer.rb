@@ -46,7 +46,7 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => account.email, :subject => t("notice_mailer.afisha_statistics")).deliver!
   end
 
-  def discount_statistics(discounts, email)
+  def discount_statistics(discounts, account)
     @discounts = discounts
     @account = account
     @type = "discount_statistics"

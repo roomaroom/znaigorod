@@ -1,9 +1,12 @@
 <%= t("notice_mailer.comment_to_discount") %>
 
-<%= @comment.commentable.title %>
+<%= @comment.commentable.title %> (<%= discount_path(@comment.commentable, :only_path => false ) %>)
 
 =========================
 
-<%= @comment.user.name %>
+<%= @comment.user.name %> (<%= polymorphic_url(@comment.user.account, :host => Settings['app']['host'] ) %>)
 <%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %>
 <%= @comment.body.truncated if @comment.body? %>
+
+  <%= t("notice_mailer.answer") %>
+  <%= discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>

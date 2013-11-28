@@ -6,3 +6,5 @@
 <%= l(@message.created_at, format: "%d %B %Y, %k:%M") %>
 
 <%= @message.body.truncated if @message.body? %>
+
+<%= t("notice_mailer.to_dialog") %> (<%= my_dialogs_path(:only_path => false, :anchor => "comment_#{@message.id}") %>)

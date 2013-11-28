@@ -1,4 +1,4 @@
-<%= @comment.user.name %> <%= t("notice_mailer.comment_reply") %>
+<%= @comment.user.name %>  (<%= polymorphic_url(@comment.user.account, :host => Settings['app']['host'] ) %>) <%= t("notice_mailer.comment_reply") %>
 
 =========================
 
@@ -11,3 +11,20 @@
   <%= @comment.user.name %>
   <%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %>
   <%= @comment.body.truncated if @comment.body? %>
+
+  <%= t("notice_mailer.answer") %>
+  <% if @comment.commentable.is_a?(Work) %>
+    <%= work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <% end %>
+  <% if @comment.commentable.is_a?(Afisha) %>
+    <%= afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <% end %>
+  <% if @comment.commentable.is_a?(Discount) %>
+    <%= discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <% end %>
+  <% if @comment.commentable.is_a?(Organization) %>
+    <%= organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <% end %>
+  <% if @comment.commentable.is_a?(Post) %>
+    <%= post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <% end %>
