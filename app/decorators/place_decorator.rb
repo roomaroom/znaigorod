@@ -24,7 +24,7 @@ class PlaceDecorator
   end
 
   def link_title(gsub = nil)
-    organization? ? link_to_organization(gsub) : title.text_gilensize
+    organization? ? link_to_organization(gsub) : title.to_s.text_gilensize
   end
 
   def link_short_title
