@@ -37,12 +37,5 @@
     $("#email_request_form").dialog('open')
     false
 
-
-  unless (urls.find(window.location.pathname) == undefined)
-    forms.find('.submit input').click ->
-      $("#email_request_form").dialog('open')
-      false
-
-
 @show_email_request_form = ->
   $("#email_request_form").dialog('open')
