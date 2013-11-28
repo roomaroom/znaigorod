@@ -13,34 +13,34 @@
       <table class="nine columns"  style="/*width: 430px;*/" >
         <tr align="left">
           <td class="line_height" style=" /*height: 19px !important; padding: 0 0 0px;*/" align="left" valign="top">
-            <a href="<%= account_path @message.producer, :only_path => false  %>"><%= @message.producer.title %></a>, <span id="time"><%= l(@message.created_at, format: "%d %B %Y, %k:%M") %></span
-              ></td>
-          </tr>
-          <tr align="left">
-            <td align="left" valign="top">
-              <span><%= @message.body %></span>
-            </td>
-          </tr>
-        </table>
-        <table class="nine columns" style="/* width: 430px; */">
-          <tr align="left">
-            <td align="left" valign="top">
-              <table id="orange-button">
-                <tr align="left">
-                  <td align="left" valign="top">
-                    <a href="<%= my_dialogs_path(:only_path => false, :anchor => @message.producer.id) %>">
-                      <img src="<%= "#{Settings['app']['url']}/assets/public/mailer_buttons_to_dialogs.png" %>" />
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr align="left">
-      <td id="whitespace" align="left" valign="top">
-      </td>
-    </tr>
-  <% end %>
+            <a href="<%= account_path @message.producer, :only_path => false  %>"><%= @message.producer.title %></a>, <span id="time"><%= l(@message.created_at, format: "%d %B %Y, %k:%M") %></span>
+          </td>
+        </tr>
+        <tr align="left">
+          <td align="left" valign="top">
+            <span><%= @message.body %></span>
+          </td>
+        </tr>
+      </table>
+      <table class="nine columns" style="/* width: 430px; */">
+        <tr align="left">
+          <td align="left" valign="top">
+            <table id="orange-button">
+              <tr align="left">
+                <td align="left" valign="top">
+                  <a href="<%= my_dialogs_path(:only_path => false, :anchor => @message.producer.id) %>">
+                    <img src="<%= "#{Settings['app']['url']}/assets/public/mailer_buttons_to_dialogs.png" %>" />
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr align="left">
+    <td id="whitespace" align="left" valign="top">
+    </td>
+  </tr>
+<% end %>
