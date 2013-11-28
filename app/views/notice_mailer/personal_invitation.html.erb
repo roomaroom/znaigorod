@@ -11,22 +11,24 @@
             <% if @invite.category.blank? %>
               <% if @invite.inviteable.is_a?(Afisha) %>
 
-                <%= link_to @invite.inviteable.title, afisha_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
+                на <%= link_to @invite.inviteable.title, afisha_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
               <% end %>
 
               <% if @invite.inviteable.is_a?(Organization) %>
 
-                <%= link_to @invite.inviteable.title, organization_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
+               на <%= link_to @invite.inviteable.title, organization_path(@invite.inviteable, :only_path => false), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"} %>
               <% end %>
 
             <% else %>
-              <span>на <%= @invite.category %></span>
+              <span> <%= @invite.category %></span>
             <% end %>
           </td>
           </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td id="time" class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; color: #9a9a9a; padding: 0 0 0px;" align="left" valign="top"><span style="font-size: 12px !important;"><%= l(@invite.created_at, format: "%d %B %Y, %k:%M") %><span style="font-size: 12px !important;"></span></span></td>
             </tr></table><table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
             <table id="orange-button" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; display: block; padding: 0 0 10px;" align="left" valign="top">
-                  <a href="<%= my_invite_messages_path(:only_path => false) %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important; background: url('#{Settings['app']['url']}/assets/public/button.png') no-repeat -7px -12px; padding: 0px 125px 10px 0px;"></a>
+                  <a href="<%= my_invite_messages_path(:only_path => false) %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;  padding: 0px 125px 10px 0px;">
+                    <img src="<%= "#{Settings['app']['url']}/assets/public/button.png" %>" />
+                  </a>
                 </td>
           </tr></table></td>
     </tr></table></td>
