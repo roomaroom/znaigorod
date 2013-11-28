@@ -36,7 +36,10 @@
 <div class='organizations_list'>
   <% if @presenter.saunas.any? %>
     <ul class='sauna_posters'>
-      <%= render :partial => 'sauna_posters' %>
+      <%= render :partial => 'sweets' %>
+      <% cache('sauna_posters') do %>
+        <%= render :partial => 'sauna_posters' %>
+      <% end %>
     </ul>
   <% else %>
     <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>
