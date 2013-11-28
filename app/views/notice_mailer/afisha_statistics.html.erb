@@ -1,9 +1,12 @@
 <% content_for :content do %>
 
   <% @afishas.each do |afisha| %>
-    <tr class="dashed_border" style="vertical-align: top; text-align: left; border-bottom-style: dashed; border-bottom-width: 1px; border-bottom-color: #ccc; margin-bottom: 10px; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 10px 0 0;" align="left" valign="top">
-        <table class="custom_column columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100px !important; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-              <a href="<%= afisha_path afisha, :only_path => false %>" style="color: #0081d5; text-decoration: none;">
+    <tr class="dashed_border" align="left">
+      <td align="left" valign="top">
+        <table class="custom_column columns" >
+          <tr align="left">
+            <td align="left" valign="top">
+              <a href="<%= afisha_path afisha, :only_path => false %>">
 
                 <% if afisha.poster_url.present? %>
                   <%= image_tag(resized_image_url(afisha.poster_url, 100 , 135),
@@ -11,42 +14,52 @@
                             <% else %>
                               <%= image_tag(resized_image_url('public/stub_poster.png', 100 , 135),
                                             :size => '100x135', :alt => afisha.title) %>
-                                        <% end %>
-                                      </a>
+                <% end %>
+              </a>
             </td>
-      </tr></table></td>
-      <td id="right_content" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; font-size: 12px !important; padding: 10px 0 10px 10px;" align="left" valign="top">
-        <table class="eight columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 380px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; padding: 0 0 0px;" align="left" valign="top">
-              <a href="<%= afisha_path afisha, :only_path => false %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;"><%= afisha.title %></a>
+          </tr>
+        </table>
+      </td>
+      <td id="right_content" align="left" valign="top">
+        <table class="eight columns">
+          <tr align="left">
+            <td class="line_height" align="left" valign="top">
+              <a href="<%= afisha_path afisha, :only_path => false %>"><%= afisha.title %></a>
             </td>
-              </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-              <table class="eight columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 380px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="category" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100px; padding: 0 0 10px;" align="left" valign="top">
-                    <span style="font-size: 12px !important;">Участники: </span>
-                    <span class="category_value" style="font-size: 12px !important; color: #f93;"><%= afisha.visits.size %></span>
+          </tr>
+          <tr align="left">
+            <td align="left" valign="top">
+              <table class="eight columns">
+                <tr align="left">
+                  <td class="category" align="left" valign="top">
+                    <span>Участники: </span>
+                    <span class="category_value"><%= afisha.visits.size %></span>
                   </td>
-                  <td class="category" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100px; padding: 0 0 10px;" align="left" valign="top">
-                    <span style="font-size: 12px !important;">Приглашения: </span>
-                    <span class="category_value" style="font-size: 12px !important; color: #f93;"><%= afisha.invitations.inviter.without_invited.size %></span>
+                  <td class="category" align="left" valign="top">
+                    <span>Приглашения: </span>
+                    <span class="category_value"><%= afisha.invitations.inviter.without_invited.size %></span>
                   </td>
-                    </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="category" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100px; padding: 0 0 10px;" align="left" valign="top">
-                    <span style="font-size: 12px !important;">Комментарии: </span>
-                    <span class="category_value" style="font-size: 12px !important; color: #f93;"><%= afisha.comments.size %></span>
+                </tr>
+                <tr align="left">
+                  <td class="category" align="left" valign="top">
+                    <span>Комментарии: </span>
+                    <span class="category_value"><%= afisha.comments.size %></span>
                   </td>
-                  <td class="category" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100px; padding: 0 0 10px;" align="left" valign="top">
-                    <span style="font-size: 12px !important;">Понравилось: </span>
-                    <span class="category_value" style="font-size: 12px !important; color: #f93;"><%= afisha.likes_count %></span>
+                  <td class="category" align="left" valign="top">
+                    <span>Понравилось: </span>
+                    <span class="category_value"><%= afisha.likes_count %></span>
                   </td>
-                    </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="category" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 100px; padding: 0 0 10px;" align="left" valign="top">
-                    <span style="font-size: 12px !important;">Просмотры: </span>
-                    <span class="category_value" style="font-size: 12px !important; color: #f93;"><%= afisha.page_visits.count %></span>
+                </tr>
+                <tr align="left"><td class="category" align="left" valign="top">
+                    <span>Просмотры: </span>
+                    <span class="category_value"><%= afisha.page_visits.count %></span>
                   </td>
-            </tr></table></td>
-      </tr></table></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>
-
-
   <% end %>
-
-
-
 <% end %>
