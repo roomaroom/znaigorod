@@ -1,95 +1,95 @@
 <% content_for :content do %>
-  <tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-      <table class="one columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 30px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-            <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>" style="color: #0081d5; text-decoration: none;">
-              <img src="<%= resized_image_url(@comment.parent.user.account.avatar.url, 30, 30) %>" style="outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border: 0;" align="left" /></a>
+  <tr align="left"><td align="left" valign="top">
+      <table class="one columns"><tr align="left"><td align="left" valign="top">
+            <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>">
+              <img src="<%= resized_image_url(@comment.parent.user.account.avatar.url, 30, 30) %>" align="left" /></a>
           </td>
     </tr></table></td>
-                                                                                                                                                                                                                                                                              <td id="right_content" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; font-size: 12px !important; padding: 0 0 10px 10px;" align="left" valign="top">
-                                                                                                                                                                                                                                                                                                                        <table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;">
-  <tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; padding: 0 0 0px;" align="left" valign="top">
-      <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;"><%= @comment.parent.user.account.title %></a>, <span id="time" style="color: #9a9a9a; font-size: 12px !important;"><%= l(@comment.parent.created_at, format: "%d %B %Y, %k:%M") %><span style="font-size: 12px !important;">
-    </span></span></td>
-    </tr>
-
-    <tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td id="time" class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; padding: 0 0 0px;" align="left" valign="top"><span style="font-size: 12px !important;">
-
-                  <% if @comment.commentable.is_a?(Work) %>
-                    <%= link_to (@comment.commentable.title.present? ? @comment.commentable.title : @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important;"}  %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Afisha) %>
-                    <%= link_to @comment.commentable.title, afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Discount) %>
-                    <%= link_to @comment.commentable.title, discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"}  %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Organization) %>
-                    <%= link_to @comment.commentable.title, organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Post) %>
-                    <%= link_to @comment.commentable.title, post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-
-  <span style="font-size: 12px !important;"></span></span></td>
+    <td id="right_content" align="left" valign="top">
+      <table class="nine columns">
+        <tr align="left"><td class="line_height" align="left" valign="top">
+            <a href="<%= account_path @comment.parent.user.account, :only_path => false  %>"><%= @comment.parent.user.account.title %></a>, <span id="time"><%= l(@comment.parent.created_at, format: "%d %B %Y, %k:%M") %><span>
+          </span></span></td>
         </tr>
 
-        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-      <span style="font-size: 12px !important;"><%= @comment.parent.body %></span>
-    </td>
-      </tr></table><table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-<table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;">
-  <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-    <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-      <table class="one columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 30px; margin: 0 auto; padding: 0;">
-        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-          <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-            <a href="<%= account_path @comment.user.account, :only_path => false %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;">
-              <img src="<%= resized_image_url(@comment.user.account.avatar.url, 30, 30) %>" style="outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border: 0;" align="left" />
-            </a>
+        <tr align="left"><td id="time" class="line_height" align="left" valign="top"><span>
+
+              <% if @comment.commentable.is_a?(Work) %>
+                <%= link_to (@comment.commentable.title.present? ? @comment.commentable.title : @comment.commentable.slug), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
+              <% end %>
+              <% if @comment.commentable.is_a?(Afisha) %>
+                <%= link_to @comment.commentable.title, afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+              <% end %>
+              <% if @comment.commentable.is_a?(Discount) %>
+                <%= link_to @comment.commentable.title, discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+              <% end %>
+              <% if @comment.commentable.is_a?(Organization) %>
+                <%= link_to @comment.commentable.title, organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+              <% end %>
+              <% if @comment.commentable.is_a?(Post) %>
+                <%= link_to @comment.commentable.title, post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+              <% end %>
+
+              <span></span></span></td>
+        </tr>
+
+        <tr align="left"><td align="left" valign="top">
+            <span><%= @comment.parent.body %></span>
           </td>
-        </tr>
-      </table>
-    </td>
-    <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-      <table class="eight columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 380px; margin: 0 auto; padding: 0;">
-        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-          <td class="line_height" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 19px !important; padding: 0 0 0px;" align="left" valign="top">
-            <a href="<%= account_path @comment.user.account, :only_path => false  %>" style="color: #0081d5; text-decoration: none; font-size: 12px !important;"><%= @comment.user.account.title %></a>, <span id="time" style="color: #9a9a9a; font-size: 12px !important;"><%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %><span style="font-size: 12px !important;"></span></span>
-          </td>
-        </tr>
-        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-          <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-            <span style="font-size: 12px !important;"><%= @comment.body.truncated.as_html if @comment.body? %></span>
-          </td>
-        </tr>
-      </table><table class="nine columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 430px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0 0 10px;" align="left" valign="top">
-            <table id="orange-button" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; display: block; padding: 0 0 10px;" align="left" valign="top">
-
-                  <% if @comment.commentable.is_a?(Work) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"}  %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Afisha) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Discount) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"}  %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Organization) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-                  <% if @comment.commentable.is_a?(Post) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}"), {:style => "color: #0081d5; text-decoration: none; font-size: 12px !important; padding: 0px 100px 10px 0px;"} %>
-                  <% end %>
-
-
+            </tr></table><table class="nine columns"><tr align="left"><td align="left" valign="top">
+            <table class="nine columns">
+              <tr align="left">
+                <td align="left" valign="top">
+                  <table class="one columns">
+                    <tr align="left">
+                      <td align="left" valign="top">
+                        <a href="<%= account_path @comment.user.account, :only_path => false %>">
+                          <img src="<%= resized_image_url(@comment.user.account.avatar.url, 30, 30) %>" align="left" />
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
-          </tr></table></td>
-    </tr></table>
-    </td>
+                <td align="left" valign="top">
+                  <table class="eight columns">
+                    <tr align="left">
+                      <td class="line_height" align="left" valign="top">
+                        <a href="<%= account_path @comment.user.account, :only_path => false  %>"><%= @comment.user.account.title %></a>, <span id="time"><%= l(@comment.created_at, format: "%d %B %Y, %k:%M") %><span></span></span>
+                      </td>
+                    </tr>
+                    <tr align="left">
+                      <td align="left" valign="top">
+                        <span><%= @comment.body.truncated.as_html if @comment.body? %></span>
+                      </td>
+                    </tr>
+                        </table><table class="nine columns"><tr align="left"><td align="left" valign="top">
+                        <table id="orange-button"><tr align="left"><td align="left" valign="top">
+
+                              <% if @comment.commentable.is_a?(Work) %>
+                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), work_path([@comment.commentable.contest, @comment.commentable], :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% end %>
+                              <% if @comment.commentable.is_a?(Afisha) %>
+                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), afisha_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% end %>
+                              <% if @comment.commentable.is_a?(Discount) %>
+                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% end %>
+                              <% if @comment.commentable.is_a?(Organization) %>
+                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), organization_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% end %>
+                              <% if @comment.commentable.is_a?(Post) %>
+                                <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), post_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                              <% end %>
+
+
+                            </td>
+                      </tr></table></td>
+                  </tr></table>
+                </td>
+              </tr>
+            </table>
+          </td>
+    </tr></table></td>
+    </tr><tr align="left"><td id="whitespace" align="left" valign="top"></td>
   </tr>
-</table>
-      </td>
-                                          </tr></table></td>
-                                          </tr><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td id="whitespace" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; height: 100px; padding: 0 0 10px;" align="left" valign="top"></td>
-                                        </tr>
-                                      <% end %>
+<% end %>
