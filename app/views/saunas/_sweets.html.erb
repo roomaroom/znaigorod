@@ -1,2 +1,18 @@
 <li class='sauna_item sweets'>
+  <ul>
+    <li>
+      <% discount = Discount.find('sauna-zolotaya-rybka-po-vashey-tsene') %>
+      <div class='image'>
+        <%= link_to discount_path(discount) do %>
+          <%= image_tag resized_image_url(discount.poster_url, 378, 282), :size => '378x282', :alt => discount.title.to_s.text_gilensize %>
+        <% end %>
+      </div>
+      <div class='title'>
+        <%= link_to discount.title.to_s.text_gilensize, discount_path(discount) %>
+      </div>
+      <div class='organization'>
+        <%= link_to discount.organization.title.to_s.text_gilensize, organization_path(discount.organization) %>
+      </div>
+    </li>
+  </ul>
 </li>
