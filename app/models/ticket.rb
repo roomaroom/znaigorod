@@ -44,7 +44,7 @@ class Ticket < ActiveRecord::Base
   default_value_for :short_description, 'Купить билет'
 
   def stale!
-    update_attributes :state => 'stale'
+    update_attribute :state, 'stale'
     copies.map(&:stale!)
   end
 
