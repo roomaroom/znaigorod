@@ -160,7 +160,92 @@
             color: #f60
 
       &.sweets
-        width: 378px
-        height: 510px
         border: 1px solid #ccc
+        height: 510px
         margin: 0 10px 20px 10px
+        width: 378px
+
+        .organization
+          border-bottom: 1px solid #ccc
+          height: 115px
+          padding: 10px 15px 10px 15px
+          width: 348px
+
+          h3
+            font-size: 18px
+
+          .title
+            padding-top: 10px
+          .body
+            padding-top: 3px
+
+        .discounts_count
+          background-color: #e8e8e8
+          height: 30px
+          width: 378px
+
+          .counter
+            display: table-cell
+            height: 30px
+            vertical-align: middle
+
+            .circle
+              +border-radius(50%)
+              background-color: #ccc
+              float: left
+              height: 13px
+              margin: 0px 2px 0px 2px
+              padding: 0px
+              position: relative
+              width: 13px
+
+            .selected
+              background-color: #f60
+
+        .image
+          height: 282px
+
+          #Previous
+            +opacity(0.3)
+            background: #f60 image_url('public/colorbox_controls.png') no-repeat 5px 18px
+            height: 65px
+            margin-top: -32px
+            position: absolute
+            text-indent: -9999px
+            width: 28px
+
+            &:hover
+              +opacity(0.8)
+
+          #Next
+            +opacity(0.3)
+            background: #f60 image_url('public/colorbox_controls.png') no-repeat -168px 18px
+            height: 65px
+            left: 437px
+            margin-top: -32px
+            position: absolute
+            text-indent: -9999px
+            width: 28px
+
+            &:hover
+              +opacity(0.8)
+
+          #Previous, #Next
+            border: 0
+            cursor: pointer
+            outline: none
+            overflow: visible
+            top: 450px
+
+          #Previous:active, #Next:active
+            outline: 0
+
+        .footer
+          display: table-cell
+          height: 62px
+          vertical-align: middle
+
+          .my_price
+            +button-style
+            font-size: 16px
+            padding: 10px

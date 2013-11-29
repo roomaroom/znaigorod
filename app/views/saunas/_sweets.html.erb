@@ -1,18 +1,46 @@
 <li class='sauna_item sweets'>
   <ul>
     <li>
+
       <% discount = Discount.find('sauna-zolotaya-rybka-po-vashey-tsene') %>
+
       <div class='image'>
+        <button id="Previous">Предыдущая</button>
+
         <%= link_to discount_path(discount) do %>
           <%= image_tag resized_image_url(discount.poster_url, 378, 282), :size => '378x282', :alt => discount.title.to_s.text_gilensize %>
         <% end %>
+
+        <button id="Next">Следующая</button>
       </div>
-      <div class='title'>
-        <%= link_to discount.title.to_s.text_gilensize, discount_path(discount) %>
+
+      <div class="discounts_count">
+        <center>
+          <div class="counter">
+            <div class="circle"></div>
+            <div class="circle selected"></div>
+          </div>
+        </center>
       </div>
+
       <div class='organization'>
-        <%= link_to discount.organization.title.to_s.text_gilensize, organization_path(discount.organization) %>
+        <h3>
+          <%= link_to discount.title.to_s.text_gilensize, discount_path(discount) %>
+        </h3>
+        <p class="title">
+          <%= link_to discount.organizations.first.title.to_s.text_gilensize, organization_path(discount.organizations.first) %>
+        </p>
+        <p class="body">
+          <%= discount.placeholder %>
+        </p>
       </div>
+
+      <center>
+        <div class="footer">
+          <a href="#" class="my_price"><%= t("afisha.discounts.my_price") %></a>
+        </div>
+      </center>
+
     </li>
   </ul>
 </li>
