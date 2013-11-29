@@ -22,5 +22,13 @@ module Affiches
         present HasSearcher.searcher(:showings).order_by_rating.actual.results.map(&:afisha).uniq.first(6), :with => Entities::Afisha
       end
     end
+
+    resources :afishas do
+      get do
+        Afisha.search { keywords params[:term]; order_by :created_at, :desc }.results.map do |afisha|
+          { :value => afisha.id, :label => "#{afisha.title}, #{afisha.place}" }
+        end
+      end
+    end
   end
 end

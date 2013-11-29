@@ -5,11 +5,13 @@ class Manage::OfferedDiscountsController < Manage::ApplicationController
 
   def create
     create! do |success, failure|
-      success.html { redirect_to(manage_discount_path(resource)) and return }
+      success.html { redirect_to manage_discount_path(resource) and return }
     end
   end
 
   def update
-    manage_discount_path resource
+    update! do |success, failure|
+      success.html { redirect_to manage_discount_path(resource) and return }
+    end
   end
 end

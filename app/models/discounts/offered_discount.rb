@@ -8,28 +8,30 @@ class OfferedDiscount < Discount
     true
   end
 
-  before_validation :handle_before_validation
+  delegate :clear, :to => :places, :prefix => true
+  before_validation :places_clear, :if => :afisha_id?
 
-  after_create :create_places, :if => :afisha_id?
+  after_save :create_places, :if => :afisha_id?
 
   private
 
-  def handle_before_validation
-    places.clear if new_record? && afisha_id?
-  end
-
   def create_places_from_organizations_addresses
-    afisha.organizations.each { |organization| places.create! :organization_id => organization.id }
+    afisha.organizations.each do |organization|
+      places.create! :organization_id => organization.id, :address => organization.title,
+        :latitude => organization.latitude, :longitude => organization.longitude
+    end
   end
 
   def create_places_from_showings
-    afisha.showings.pluck(:place).each do |place|
+    afisha.showings.pluck(:place).uniq.each do |place|
       geo_info = YampGeocoder.new.geo_info_for(place)
       places.create! :address => place, :longitude => geo_info.longitude, :latitude => geo_info.latitude
     end
   end
 
   def create_places
+    places_clear
+
     afisha.organizations.any? ? create_places_from_organizations_addresses
       : create_places_from_showings
   end

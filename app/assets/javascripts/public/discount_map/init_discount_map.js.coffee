@@ -1,4 +1,25 @@
+handle_afisha_select = ->
+  $('#afisha_title').autocomplete
+    source: '/api/afishas'
+    minLength: 2
+
+    focus: (event, ui) ->
+      $(this).val(ui.item.label)
+      false
+
+    select: (event, ui) ->
+      $(this).val(ui.item.label)
+      $('#offered_discount_afisha_id').val(ui.item.value)
+      false
+
+  $('.reset_afisha_id').click ->
+    $('#afisha_title').val('')
+    $('#offered_discount_afisha_id').val('')
+    false
+
 @init_discount_map = () ->
+  handle_afisha_select()
+
   $('.place_fields').on 'nested:fieldAdded', ->
     init_autosuggest_handler()
 

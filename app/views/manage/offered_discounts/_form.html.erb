@@ -3,7 +3,14 @@
 
   <%= f.input :title %>
 
-  <%= f.input :afisha_id %>
+  <div class="input string">
+    <%= label_tag :afisha_title, 'Мероприятие' %>
+    <%= text_field_tag :afisha_title, params[:afisha_title] || "#{[@offered_discount.afisha.try(:title), @offered_discount.afisha.try(:address)].compact.join(', ')}" %>
+    <%= link_to 'Очистить', '#', :class => 'reset_afisha_id' %>
+
+  </div>
+  <%= f.input :afisha_id, :as => :hidden %>
+
 
   <div class="place_fields">
     <%= f.simple_fields_for :places do |pf| %>
