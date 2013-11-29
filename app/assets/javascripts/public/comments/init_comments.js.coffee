@@ -1,5 +1,14 @@
 @init_comments = () ->
 
+  hash_answer = () ->
+    $(window).load ->
+      if window.location.hash.match(/#answer_/)
+        if $("#comment_#{window.location.hash.match(/[0-9]+/)}").length
+          $('a.new_answer', "#comment_#{window.location.hash.match(/[0-9]+/)}").click()
+          $(document.body).scrollTo($("#comment_#{window.location.hash.match(/[0-9]+/)}"))
+
+  hash_answer()
+
   cancel_handler = () ->
     $('.cancel', '.comments').on 'click', ->
       remove_comment_form()

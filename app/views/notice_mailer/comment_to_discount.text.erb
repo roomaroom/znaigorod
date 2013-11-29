@@ -9,4 +9,4 @@
 <%= @comment.body.truncated if @comment.body? %>
 
   <%= t("notice_mailer.answer") %>
-  <%= discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+  <%= discount_path(@comment.commentable, :only_path => false, :anchor => "answer_#{@comment.id}") %>

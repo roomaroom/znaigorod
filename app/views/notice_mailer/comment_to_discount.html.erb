@@ -36,7 +36,7 @@
                 <td align="left" valign="top">
 
                   <% if @comment.commentable.is_a?(Discount) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "comment_#{@comment.id}") %>
+                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "answer_#{@comment.id}") %>
                   <% end %>
 
                 </td>

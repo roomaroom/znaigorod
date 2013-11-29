@@ -3,5 +3,5 @@
 
 =========================
 
-<%= t("notice_mailer.your_comment") %> <%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'], :anchor => "comment_#{@vote.voteable.id}" ) %>
+<%= t("notice_mailer.your_comment") %> <%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'], :anchor => "answer_#{@vote.voteable.id}" ) %>
 <%= @vote.voteable.body.truncated if @vote.voteable.body? %>

@@ -7,4 +7,4 @@
 
 <%= @message.body.truncated if @message.body? %>
 
-<%= t("notice_mailer.to_dialog") %> (<%= my_dialogs_path(:only_path => false, :anchor => "comment_#{@message.id}") %>)
+<%= t("notice_mailer.to_dialog") %> (<%= my_dialogs_path(:only_path => false) %>)
