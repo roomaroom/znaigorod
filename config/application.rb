@@ -88,7 +88,7 @@ module Znaigorod
       end
     end
 
-    config.action_mailer.default_url_options = { :host => Settings['app.host'] }
+    config.action_mailer.default_url_options = { :host => Settings['app.host'], :port => Settings['app.port']}
 
     config.assets.paths << Rails.root.join("app", "assets", "docs")
     config.assets.paths << Rails.root.join("app", "assets", "flash")

@@ -1,6 +1,7 @@
 app:
   secret:               secret
   host:                 host.name
+  port:                 8080
   url:                  http://host.name
 
 solr:
