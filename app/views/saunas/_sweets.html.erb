@@ -1,27 +1,28 @@
 <li class='sauna_item sweets'>
-  <ul>
+  <ul id="sweets_carousel">
+    <% for i in 0..1 do %>
     <li>
 
       <% discount = Discount.find('sauna-zolotaya-rybka-po-vashey-tsene') %>
 
       <div class='image'>
-        <button id="Previous">Предыдущая</button>
+        <%#<button id="Previous">Предыдущая</button>%>
 
         <%= link_to discount_path(discount) do %>
           <%= image_tag resized_image_url(discount.poster_url, 378, 282), :size => '378x282', :alt => discount.title.to_s.text_gilensize %>
         <% end %>
 
-        <button id="Next">Следующая</button>
+        <%#<button id="Next">Следующая</button>%>
       </div>
 
-      <div class="discounts_count">
-        <center>
-          <div class="counter">
-            <div class="circle"></div>
-            <div class="circle selected"></div>
-          </div>
-        </center>
-      </div>
+      <%#<div class="discounts_count">%>
+        <%#<center>%>
+          <%#<div class="counter">%>
+            <%#<div class="circle"></div>%>
+            <%#<div class="circle selected"></div>%>
+          <%#</div>%>
+        <%#</center>%>
+      <%#</div>%>
 
       <div class='organization'>
         <h3>
@@ -35,12 +36,15 @@
         </p>
       </div>
 
-      <center>
-        <div class="footer">
-          <a href="#" class="my_price"><%= t("afisha.discounts.my_price") %></a>
-        </div>
-      </center>
+      <div class="footer_button">
+        <center>
+          <div class="footer">
+            <a href="#" class="my_price"><%= t("afisha.discounts.my_price") %></a>
+          </div>
+        </center>
+      </div>
 
     </li>
+    <% end %>
   </ul>
 </li>

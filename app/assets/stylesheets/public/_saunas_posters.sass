@@ -160,10 +160,35 @@
             color: #f60
 
       &.sweets
+        +clearfix
         border: 1px solid #ccc
         height: 510px
         margin: 0 10px 20px 10px
         width: 378px
+
+        li
+          +clearfix
+          a
+            width: auto
+            height: auto
+            margin: 0px
+          .footer_button
+            height: 62px
+            width: 378px
+
+        .jcarousel-container-horizontal
+          width: auto
+          height: auto
+          padding: 0px
+
+          .jcarousel-clip-horizontal
+            height: auto
+
+          .jcarousel-list-horizontal
+            height: auto
+
+          .jcarousel-item
+            height: auto
 
         .organization
           border-bottom: 1px solid #ccc
@@ -204,6 +229,14 @@
 
         .image
           height: 282px
+          padding-bottom: 30px
+
+          a
+            width: 378px
+            height: 286px
+            margin: 0px
+            img
+              +opacity(1)
 
           #Previous
             +opacity(0.3)

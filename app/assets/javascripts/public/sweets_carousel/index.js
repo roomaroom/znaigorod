@@ -1,0 +1,3 @@
+/*
+ * = require ./sweets_carousel
+ */

@@ -74,6 +74,7 @@ $ ->
   init_email_form() if $('#email_request_form').length
   init_account_edit() if $('.properties_form #edit_account').length
   init_offer_price() if $('.offer_price').length
+  init_sweets_carousel() if $('#sweets_carousel').length
 
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length
