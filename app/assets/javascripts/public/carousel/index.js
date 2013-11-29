@@ -1,3 +1,3 @@
 /*
- * = require_tree .
+ * = require ./jquery.jcarousel.min.js
  */

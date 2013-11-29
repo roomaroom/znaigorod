@@ -167,28 +167,15 @@
         width: 378px
 
         li
-          +clearfix
+          +inline-block
           a
             width: auto
             height: auto
             margin: 0px
+
           .footer_button
             height: 62px
             width: 378px
-
-        .jcarousel-container-horizontal
-          width: auto
-          height: auto
-          padding: 0px
-
-          .jcarousel-clip-horizontal
-            height: auto
-
-          .jcarousel-list-horizontal
-            height: auto
-
-          .jcarousel-item
-            height: auto
 
         .organization
           border-bottom: 1px solid #ccc
@@ -207,7 +194,10 @@
         .discounts_count
           background-color: #e8e8e8
           height: 30px
+          position: absolute
+          top: 591px
           width: 378px
+          z-index: 1
 
           .counter
             display: table-cell
