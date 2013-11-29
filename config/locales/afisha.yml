@@ -1,5 +1,8 @@
 ru:
   afisha:
+    discounts:
+      my_price: "Предложить свою цену"
+
     empty:
       movies: кино
       concerts: концертов
