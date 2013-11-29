@@ -3,6 +3,8 @@
 
   <%= f.input :title %>
 
+  <%= f.input :afisha_id %>
+
   <div class="place_fields">
     <%= f.simple_fields_for :places do |pf| %>
       <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>

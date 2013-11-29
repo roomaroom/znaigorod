@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127042211) do
+ActiveRecord::Schema.define(:version => 20131128084545) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -340,7 +340,10 @@ ActiveRecord::Schema.define(:version => 20131127042211) do
     t.text     "terms"
     t.text     "supplier"
     t.text     "placeholder"
+    t.integer  "afisha_id"
   end
+
+  add_index "discounts", ["afisha_id"], :name => "index_discounts_on_afisha_id"
 
   create_table "entertainments", :force => true do |t|
     t.text     "category"

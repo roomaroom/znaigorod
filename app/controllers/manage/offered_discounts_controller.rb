@@ -4,10 +4,12 @@ class Manage::OfferedDiscountsController < Manage::ApplicationController
   actions :all, :except => [:index, :show, :destroy]
 
   def create
-    create! { manage_discount_path resource }
+    create! do |success, failure|
+      success.html { redirect_to(manage_discount_path(resource)) and return }
+    end
   end
 
   def update
-    update! { manage_discount_path resource }
+    manage_discount_path resource
   end
 end
