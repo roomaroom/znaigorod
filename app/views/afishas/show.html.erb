@@ -35,6 +35,18 @@
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
     </div>
 
+    <% @afisha.discounts.published.each do |discount| %>
+      <div class="offers_wrapper">
+        <div class="info">
+          <h3><%= link_to truncate(discount.title, :length => 35), discount_path(discount), :title => discount.title %></h3>
+          <%= link_to image_tag(resized_image_url(discount.poster_url, 200, 149), :size => '200x149', :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize),
+             discount_path(discount) %>
+        </div>
+
+        <%= render :partial => 'offers/offers_block', :locals => { :discount => discount, :show_help => true } %>
+      </div>
+    <% end %>
+
     <% if @afisha.allow_auction? %>
       <div class='auction'>
         <%= render :partial => 'my/bets/form' %>

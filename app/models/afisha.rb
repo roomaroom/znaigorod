@@ -24,6 +24,7 @@ class Afisha < ActiveRecord::Base
   belongs_to :user
 
   has_many :comments,               :dependent => :destroy, :as => :commentable
+  has_many :discounts,              :dependent => :destroy
   has_many :gallery_files,          :dependent => :destroy, :as => :attachable
   has_many :gallery_images,         :dependent => :destroy, :as => :attachable
   has_many :gallery_social_images,  :dependent => :destroy, :as => :attachable

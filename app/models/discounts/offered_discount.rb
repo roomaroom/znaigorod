@@ -1,8 +1,6 @@
 class OfferedDiscount < Discount
   attr_accessible :placeholder, :afisha_id
 
-  belongs_to :afisha
-
   # disable validation
   def sale?
     true

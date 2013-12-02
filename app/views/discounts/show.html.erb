@@ -106,8 +106,14 @@
     </div>
 
     <div class="place">
-      <%= @discount.human_place %>
+      Место проведения: <%= @discount.human_place %>
     </div>
+
+    <% if @discount.afisha %>
+      <div class="afisha">
+        Ссылка на мероприятие: <%= link_to @discount.afisha.title, @discount.afisha %>
+      </div>
+    <% end %>
 
     <div class="text">
       <%= @discount.description_html %>

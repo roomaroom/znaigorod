@@ -31,6 +31,15 @@
     </div>
 
     <div>
+      <span class="label">Мероприятие:</span>
+      <% if resource.afisha %>
+        <span class="value"><%= link_to resource.afisha.title, manage_afisha_path(resource.afisha) %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
+    <div>
       <span class="label">Описание:</span>
       <span class="value"><%= resource.html_description %></span>
     </div>

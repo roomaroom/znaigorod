@@ -12,6 +12,7 @@ class Discount < ActiveRecord::Base
                   :places_attributes
 
   belongs_to :account
+  belongs_to :afisha
 
   has_many :comments,       :dependent => :destroy, :as => :commentable
   has_many :copies,         :dependent => :destroy, :as => :copyable
