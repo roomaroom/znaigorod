@@ -1,5 +1,10 @@
 <li>
-  <span class="<%= offer.state %>" title="<%= t "activerecord.state_machines.offer.state.states.#{offer.state}" %>"></span>
+  <% if offer.paid? %>
+    <span class="approved" title="<%= t "activerecord.state_machines.offer.state.states.approved" %>"></span>
+  <% else %>
+    <span class="<%= offer.state %>" title="<%= t "activerecord.state_machines.offer.state.states.#{offer.state}" %>"></span>
+  <% end %>
+
   <span class="amount"><%= number_to_currency offer.amount %></span> &mdash;
 
   <% if offer.details.length > 75 %>
