@@ -5,6 +5,8 @@ ru:
       my_price: "Предложить свою цену"
       take_a_part: "Участвовать"
       discount: "Скидка по акции"
+      free: "бесплатно"
+      of: "за"
 
       certificate_count:
         one: "Остался %{count} сертификат"

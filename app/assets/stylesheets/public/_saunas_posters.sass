@@ -234,6 +234,10 @@
         #Previous:active, #Next:active
           outline: 0
 
+        .profit
+          color: #f60
+          font-weight: bold
+
         .discounts_count
           background-color: #e8e8e8
           height: 30px
@@ -283,7 +287,20 @@
 
           .certificate_count, .certificate_price
             text-align: left
-            width: 120px
+            width: 115px
+
+
+            .price
+              color: #f60
+              font-weight: bold
+
+            .new_price
+              font-size: 14px
+              color: #f60
+              font-weight: bold
+
+            .origin_price
+              text-decoration: line-through
 
         .footer
           display: table-cell
@@ -294,3 +311,14 @@
             +button-style
             font-size: 16px
             padding: 10px
+
+          .my_price:active
+            padding: 10px
+
+          .buy
+            +button-style
+            font-size: 16px
+            padding: 10px 20px 10px 20px
+
+          .buy:active
+            padding: 10px 20px 10px 20px

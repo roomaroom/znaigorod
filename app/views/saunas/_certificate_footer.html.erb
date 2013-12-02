@@ -3,7 +3,11 @@
   <div class="columns">
     <center>
       <div class="certificate_price footer">
-        100 p
+        <span class="origin_price"><em><%= number_to_currency(discount.origin_price, :unit => 'р.', :precision => 0) %></em></span>
+        <br />
+        <span class="new_price">
+          <em><%= discount.price.nil? ||discount.price.zero? ? 'бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
+        </span>
       </div>
     </center>
   </div>
@@ -19,7 +23,7 @@
   <div class="left_border columns">
     <center>
       <div class="footer">
-        <a href="#" class="my_price"><%= t("afisha.discounts.buy") %></a>
+        <a href="#" class="buy"><%= t("afisha.discounts.buy") %></a>
       </div>
     </center>
   </div>

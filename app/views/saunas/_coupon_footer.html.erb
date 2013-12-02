@@ -3,7 +3,17 @@
   <div class="columns">
     <center>
       <div class="certificate_price footer">
-        100 p
+        <strong><%= t("afisha.discounts.discount") %></strong>
+        <span class="profit"><%= discount.discount %>%</span>
+
+        <% if discount.price.nil? || discount.price.zero? %>
+          <span class="price"><%= t("afisha.discounts.free") %></span>
+        <% else %>
+          <strong><%= t("afisha.discounts.of") %></strong>
+          <span class="price">
+            <em><%= number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
+          </span>
+        <% end %>
       </div>
     </center>
   </div>
