@@ -23,7 +23,11 @@
   <div class="left_border columns">
     <center>
       <div class="footer">
-        <a href="#" class="buy"><%= t("afisha.discounts.buy") %></a>
+        <div class="buy_ticket">
+          <% unless discount.price.nil? || discount.price.zero? %>
+            <%= link_to t("afisha.discounts.buy"), new_discount_copy_payment_path(discount), :class => 'payment_link buy', :remote => true %>
+          <% end %>
+        </div>
       </div>
     </center>
   </div>

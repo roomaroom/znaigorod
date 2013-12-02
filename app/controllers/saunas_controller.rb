@@ -4,6 +4,7 @@ class SaunasController < ApplicationController
     settings_from_cookie = {}
     settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
     @presenter = SaunaHallsPresenter.new(settings_from_cookie.merge(params))
+    @discount_collection = SaunasDiscountsPresenter.new({}).collection
     render partial: 'sauna_posters', layout: false and return if request.xhr?
   end
 end

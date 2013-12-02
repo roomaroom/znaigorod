@@ -1,9 +1,7 @@
 <li class='sauna_item sweets'>
   <ul id="sweets_carousel">
-    <% for i in 1..10 do %>
+    <% @discount_collection.each do |discount| %>
     <li>
-
-      <% discount = Discount.find('sauna-zolotaya-rybka-po-vashey-tsene') %>
 
       <div class='image'>
 
@@ -15,7 +13,6 @@
 
       <div class='organization'>
         <h3>
-          <%= i %>
           <%= link_to discount.title.to_s.text_gilensize, discount_path(discount) %>
         </h3>
         <p class="title">
@@ -25,23 +22,30 @@
           <%= discount.placeholder %>
         </p>
       </div>
+
       <% if false %>
-        <%= render partial: 'saunas/bet_footer', locals: { discount: discount } %>
         <%= render partial: 'saunas/discount_footer', locals: { discount: discount } %>
         <%= render partial: 'saunas/coupon_footer', locals: { discount: discount } %>
       <% end %>
 
+      <% if discount.is_a?(Certificate) %>
         <%= render partial: 'saunas/certificate_footer', locals: { discount: discount } %>
+      <% elsif discount.is_a?(OfferedDiscount) %>
+        <%= render partial: 'saunas/bet_footer', locals: { discount: discount } %>
+      <% end %>
+
     </li>
     <% end %>
   </ul>
-  <button id="Next">Следующая</button>
-  <button id="Previous">Предыдущая</button>
+  <% if @discount_collection.many? %>
+    <button id="Next">Следующая</button>
+    <button id="Previous">Предыдущая</button>
 
-  <div class="discounts_count">
-    <center>
-      <div class="counter">
-      </div>
-    </center>
-  </div>
+    <div class="discounts_count">
+      <center>
+        <div class="counter">
+        </div>
+      </center>
+    </div>
+  <% end %>
 </li>
