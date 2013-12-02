@@ -1,7 +1,21 @@
 ru:
   afisha:
     discounts:
+      buy: "Купить"
       my_price: "Предложить свою цену"
+      take_a_part: "Участвовать"
+      discount: "Скидка по акции"
+
+      certificate_count:
+        one: "Остался %{count} сертификат"
+        few: "Осталось %{count} сертификата"
+        many: "Осталось %{count} сертификатов"
+
+      coupon_count:
+        one: "Остался %{count} купон"
+        few: "Осталось %{count} купона"
+        many: "Осталось %{count} купонов"
+
 
     empty:
       movies: кино

@@ -25,14 +25,12 @@
           <%= discount.placeholder %>
         </p>
       </div>
-
-      <div class="footer_button">
-        <center>
-          <div class="footer">
-            <a href="#" class="my_price"><%= t("afisha.discounts.my_price") %></a>
-          </div>
-        </center>
-      </div>
+      <% if false %>
+        <%= render partial: 'saunas/coupon_footer', locals: { discount: discount } %>
+        <%= render partial: 'saunas/bet_footer', locals: { discount: discount } %>
+        <%= render partial: 'saunas/discount_footer', locals: { discount: discount } %>
+      <% end %>
+        <%= render partial: 'saunas/certificate_footer', locals: { discount: discount } %>
 
     </li>
     <% end %>
