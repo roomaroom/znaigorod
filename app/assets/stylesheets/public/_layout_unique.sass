@@ -205,6 +205,80 @@
               background: #fff2d5
               +background(linear-gradient(top, #fff2d5, #ffddc1))
 
+.vasya_lozhkin_content_wrapper
+  background: #cce9f7 image_url('public/vasya_lozhkin/bg.png') no-repeat center top
+
+  .vasya_lozhkin_logo
+    height: 110px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      background: transparent image_url('public/vasya_lozhkin/content_bg.png')
+      +box-shadow(none)
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        .left
+          border: 1px solid #42acd8
+          background-color: #d4eef9
+          +background(linear-gradient(top, #eff8fd, #bae4f6))
+
+          .image
+            border: none
+
+          .social_actions
+            border: none
+
+            .user_actions
+              border-bottom: 1px solid #42acd8
+
+            .list
+              li:first-child
+                border: none
+
+        .center
+          .suborganization_info
+            .title
+              background: #b6e1f4
+
+            .afisha_list .posters li .item
+              border-color: #42acd8
+
+          .comment_form
+            div.text
+              border: none !important
+              padding: 0
+
+            textarea
+              border: 1px solid #ccc
+              width: 680px
+
+          .comment_item
+            .comment_wrapper
+              &:hover, &.active
+                background: none
+
+        .right
+          .wrapper
+            border: 1px solid #42acd8
+
+            .virtual_tour, .yandex_map
+              background-color: #d4eef9
+              +background(linear-gradient(top, #eff8fd, #bae4f6))
+              border-bottom: 1px solid #42acd8
+
+            .more_like_this
+              background-color: #d4eef9
+              +background(linear-gradient(top, #eff8fd, #bae4f6))
+
 .lovekafe_content_wrapper
   background-color: #fff
   +background(linear-gradient(top, #fff, #f76663))
