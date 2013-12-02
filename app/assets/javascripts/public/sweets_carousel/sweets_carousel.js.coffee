@@ -1,22 +1,36 @@
 @init_sweets_carousel = ->
-  # I have no idea where I have got 4px oO
   carousel = $('#sweets_carousel')
   width = carousel.width()
   count = $('li', carousel).length
   current = 1
   paginator_item = $('.discounts_count .counter')
   classname = 'circle'
+  next_arrow = $("#Next")
+  previous_arrow = $("#Previous")
+  busy = false
 
-  carousel.width( (width + 4) * count )
+  carousel.width((width) * count)
+
+  get_paginator_item = (num) ->
+    $("#sweet_#{num}", paginator_item)
 
   move_carousel = (new_current) ->
     nc = new_current.attr('id').match(/[0-9]+/).first()
-    carousel.offset({left: (carousel.position().left + ((current - nc) * width) - 4)})
-    current = nc
+    offset = (carousel.css('margin-left').toNumber() + ((current - nc) * width))
+    carousel.animate(
+      {marginLeft: offset},
+      400,
+      () ->
+        change_current(new_current)
+        current = nc*1
+        busy = false
+    )
+
 
   change_current = (new_current) ->
     $(".selected", paginator_item).removeClass 'selected'
     $(new_current).addClass 'selected'
+    true
 
   paginator = (paginator_item, classname) ->
     count = $('li', carousel).length
@@ -26,15 +40,29 @@
     change_current '#sweet_1'
 
     $('a', paginator_item).each (i, val) ->
-      $(val).on 'click', () ->
+      $(val).on 'click', (e) ->
+        unless busy
+          busy = true
+          e.preventDefault()
+          move_carousel $(this)
 
-        change_current $(this)
-        move_carousel $(this)
-        false
+  next_arrow.on 'click', (e) ->
+    e.preventDefault()
+    unless busy
+      busy = true
+      if current == count
+        move_carousel get_paginator_item(1)
+      else
+        move_carousel get_paginator_item(current + 1)
+
+
+  previous_arrow.on 'click', (e) ->
+    e.preventDefault()
+    unless busy
+      busy = true
+      if current == 1
+        move_carousel get_paginator_item(count)
+      else
+        move_carousel get_paginator_item(current - 1)
 
   paginator paginator_item, classname
-
-
-
-
-
