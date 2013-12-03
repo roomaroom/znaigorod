@@ -8,6 +8,7 @@
   next_arrow = $("#Next")
   previous_arrow = $("#Previous")
   busy = false
+  can_scroll_through = false
 
   carousel.width((width) * count)
 
@@ -17,6 +18,12 @@
   move_carousel = (new_current) ->
     nc = new_current.attr('id').match(/[0-9]+/).first()
     offset = (carousel.css('margin-left').toNumber() + ((current - nc) * width))
+
+    unless can_scroll_through
+      activate_all()
+      change_activity($(next_arrow)) if nc*1 == count
+      change_activity($(previous_arrow)) if nc*1 == 1
+
     carousel.animate(
       {marginLeft: offset},
       400,
@@ -26,11 +33,22 @@
         busy = false
     )
 
-
   change_current = (new_current) ->
     $(".selected", paginator_item).removeClass 'selected'
     $(new_current).addClass 'selected'
     true
+
+  change_activity = (arrow) ->
+    arrow.removeClass 'active'
+    arrow.addClass 'inactive'
+    true
+
+  activate_all = () ->
+    $(next_arrow).addClass 'active'
+    $(next_arrow).removeClass 'inactive'
+    $(previous_arrow).addClass 'active'
+    $(previous_arrow).removeClass 'inactive'
+
 
   paginator = (paginator_item, classname) ->
     count = $('li', carousel).length
@@ -48,21 +66,23 @@
 
   next_arrow.on 'click', (e) ->
     e.preventDefault()
-    unless busy
+    unless busy || next_arrow.hasClass('inactive')
       busy = true
       if current == count
         move_carousel get_paginator_item(1)
       else
         move_carousel get_paginator_item(current + 1)
 
-
   previous_arrow.on 'click', (e) ->
     e.preventDefault()
-    unless busy
+    unless busy || previous_arrow.hasClass('inactive')
       busy = true
       if current == 1
         move_carousel get_paginator_item(count)
       else
         move_carousel get_paginator_item(current - 1)
+
+  if previous_arrow.length && !can_scroll_through
+    change_activity($(previous_arrow))
 
   paginator paginator_item, classname

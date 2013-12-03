@@ -200,20 +200,16 @@
             padding-top: 3px
 
         #Previous
-          +opacity(0.3)
-          background: #f60 image_url('public/colorbox_controls.png') no-repeat 5px 18px
+          background: image_url('public/colorbox_controls.png') no-repeat 5px 18px
           height: 65px
           margin-top: -32px
           position: absolute
           text-indent: -9999px
           width: 28px
 
-          &:hover
-            +opacity(0.8)
 
         #Next
-          +opacity(0.3)
-          background: #f60 image_url('public/colorbox_controls.png') no-repeat -168px 18px
+          background: image_url('public/colorbox_controls.png') no-repeat -168px 18px
           height: 65px
           left: 437px
           margin-top: -32px
@@ -221,18 +217,30 @@
           text-indent: -9999px
           width: 28px
 
-          &:hover
-            +opacity(0.8)
-
         #Previous, #Next
           border: 0
-          cursor: pointer
           outline: none
           overflow: visible
           top: 450px
 
         #Previous:active, #Next:active
           outline: 0
+
+        .inactive
+          +opacity(0.3)
+          background-color: #e8e8e8 !important
+          cursor: default
+          &:hover
+            +opacity(0.3)
+
+        .active
+          +opacity(0.3)
+          background-color: #f60 !important
+          cursor: pointer
+          &:hover
+            +opacity(0.8)
+
+
 
         .profit
           color: #f60
