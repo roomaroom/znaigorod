@@ -10,6 +10,8 @@
   busy = false
   can_scroll_through = true
   timer = 5000
+  animation_type = 'fadeToggle'
+  animation_speed = 400
 
   carousel.width((width) * count)
 
@@ -32,14 +34,28 @@
       change_activity($(next_arrow)) if nc*1 == count
       change_activity($(previous_arrow)) if nc*1 == 1
 
-    carousel.animate(
-      {marginLeft: offset},
-      400,
-      () ->
-        change_current(new_current)
-        current = nc*1
-        busy = false
-    )
+    if animation_type == 'fadeToggle'
+      carousel.fadeOut((animation_speed / 2),
+                        () ->
+                          $(this).css('margin-left', offset)
+                      )
+              .fadeIn(
+                (animation_speed / 2),
+                () ->
+                  change_current(new_current)
+                  current = nc*1
+                  busy = false
+              )
+
+    else
+      carousel.animate(
+        {marginLeft: offset},
+        animation_speed,
+        () ->
+          change_current(new_current)
+          current = nc*1
+          busy = false
+      )
 
   change_current = (new_current) ->
     $(".selected", paginator_item).removeClass 'selected'
