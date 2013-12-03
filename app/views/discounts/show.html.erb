@@ -39,7 +39,7 @@
         <% end %>
 
         <% if @discount.is_a?(AffiliatedCoupon) %>
-          <%= link_to 'Купить', @discount.origin_url, :target => '_blank' %>
+          <%= link_to 'Купить', @discount.supplier.try(:link), :target => '_blank' %>
         <% end %>
       </div>
     </div>
