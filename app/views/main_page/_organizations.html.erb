@@ -3,6 +3,12 @@
     <h1><%= link_to t('meta.organizations.page_header'), organizations_path %></h1>
   </div>
 
+  <div class="by_tickets">
+    <ul>
+      <li><%= link_to 'Бесплатный заказ', organizations_path(:sms_claimable => true) %></li>
+    </ul>
+  </div>
+
   <div class="filters_wrapper">
     <div class="filters organization">
       <div class="by_categories">
