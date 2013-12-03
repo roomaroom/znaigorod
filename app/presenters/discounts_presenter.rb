@@ -166,7 +166,7 @@ class DiscountsPresenter
   end
 
   attr_accessor :type, :kind, :organization_id,
-                :order_by, :page, :per_page
+                :order_by, :page, :per_page, :q
 
   attr_reader :type_filter, :kind_filter, :order_by_filter
 
@@ -220,6 +220,7 @@ class DiscountsPresenter
       params[:type]             = type_filter.selected
       params[:kind]             = kind_filter.selected
       params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
+      params[:q] =              q if q.present?
     end
   end
 
@@ -227,7 +228,7 @@ class DiscountsPresenter
     @searcher ||= HasSearcher.searcher(:discounts, searcher_params).tap { |s|
       order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
 
-      s.paginate(page: page, per_page: per_page)
+      s.paginate page: page, per_page: per_page
     }
   end
 end

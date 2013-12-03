@@ -10,8 +10,8 @@ class SaunasDiscountsPresenter
   end
 
   def collection
-    discount_coupons = DiscountsPresenter.new({:organization_id => ids, :type => ["sauna"], :order_by => "random", :type => 'certificate'}).collection
-    discount_offered = DiscountsPresenter.new({:organization_id => ids, :type => ["sauna"], :order_by => "random", :type => 'offered_discount'}).collection
+    discount_coupons = DiscountsPresenter.new({:organization_id => ids, :q => "сауны", :order_by => "random", :type => 'certificate'}).collection
+    discount_offered = DiscountsPresenter.new({:organization_id => ids, :q => "сауны", :order_by => "random", :type => 'offered_discount'}).collection
     @discount_collection = discount_offered.zip(discount_coupons)
                                            .flatten.compact.first(@count)
   end

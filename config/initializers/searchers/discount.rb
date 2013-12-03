@@ -1,6 +1,8 @@
 HasSearcher.create_searcher :discounts do
   models :discount
 
+  keywords :q
+
   property :type
   property :kind
   property :organization_ids
