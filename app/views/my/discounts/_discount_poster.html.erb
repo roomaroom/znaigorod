@@ -6,8 +6,6 @@
   <div class="image">
     <%= link_to image_tag(resized_image_url((discount.poster_url.nil? ? 'public/stub_poster.png' : discount.poster_url), 220, 164), :size => '220x164', :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize), my_discount_path(discount) %>
 
-    <%= content_tag(:div, discount.origin_url, :class => :origin_url) if discount.origin_url?  %>
-
     <%= link_to my_discount_path(discount), :class => :details do %>
       <span class="first_line">
         <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>

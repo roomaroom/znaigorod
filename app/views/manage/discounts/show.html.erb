@@ -118,15 +118,6 @@
     </div>
 
     <div>
-      <span class="label">Ссылка на источник:</span>
-      <% if resource.respond_to?(:origin_url) && resource.origin_url.present? %>
-        <span class="value"><%= link_to resource.origin_url, resource.origin_url, :target => :blank %></span>
-      <% else %>
-        <span class="blank">Не указано</span>
-      <% end %>
-    </div>
-
-    <div>
       <span class="label">Коды:</span>
       <table class='tickets'>
         <% resource.copies.each do |copy| %>
