@@ -18,11 +18,9 @@
   <%= paginate @search_presenter.paginated_collection %>
   </div>
 <% else %>
-  <ul class="items_list">
-    <% @search_presenter.hits.each do |item| %>
-      <li>
-        <%= render item %>
-      </li>
-    <% end %>
-  </ul>
+  <% @search_presenter.hits.each do |item| %>
+    <li>
+      <%= render item %>
+    </li>
+  <% end %>
 <% end %>
