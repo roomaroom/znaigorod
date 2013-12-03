@@ -39,5 +39,6 @@ Znaigorod::Application.configure do
   config.assets.debug = true
 
   # letter_opener gem
-  config.action_mailer.delivery_method = :letter_opener
+  #config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
 end

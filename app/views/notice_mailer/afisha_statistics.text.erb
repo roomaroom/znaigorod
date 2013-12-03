@@ -3,7 +3,7 @@
 =========================
 
 <% @afishas.each do |afisha| %>
-  <%= afisha.title %> (<%= polymorphic_url(afisha, :host => Settings['app']['host'] ) %>)
+  <%= afisha.title %> (<%= polymorphic_url(afisha, :host => Settings['app']['host'], :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" ) %>)
   Участники <%= afisha.visits.size %>
   Приглашения <%= afisha.invitations.inviter.without_invited.size %>
   Комментарии <%= afisha.comments.size %>

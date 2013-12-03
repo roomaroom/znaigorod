@@ -25,13 +25,13 @@
                           <table class="custom_column_width columns">
                             <tr>
                               <td class="five sub-columns">
-                                <a href="<%= Settings['app']['url'] %>">
+                                <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">
                                   <img src="<%= Settings['app']['url'] %>/assets/public/logo.png" width="109px" height="56px" />
                                 </a>
                               </td>
                               <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
                                 <span><%= t "notice_mailer.you_can_unsubscribe_in" %></span><br />
-                                <span><a href="<%= edit_my_account_path(:only_path => false) %>"><%= t "notice_mailer.private_settings" %></a> <%= t "notice_mailer.on_the_site" %> <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a></span>
+                                <span><a href="<%= edit_my_account_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>"><%= t "notice_mailer.private_settings" %></a> <%= t "notice_mailer.on_the_site" %> <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">znaigorod.ru</a></span>
                               </td>
                               <td class="expander"></td>
                             </tr>
@@ -67,7 +67,7 @@
                                           <tr>
                                             <td>
                                               <h3>
-                                                <a href="<%= Settings['app']['url'] %>">znaigorod.ru</a> / <%= t "notice_mailer.#{@type}" %>
+                                                <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">znaigorod.ru</a> / <%= t "notice_mailer.#{@type}" %>
                                             </h3>
                                             </td>
                                             <td class="expander"></td>

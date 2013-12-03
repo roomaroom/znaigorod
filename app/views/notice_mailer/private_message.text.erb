@@ -7,4 +7,4 @@
 
 <%= @message.body.truncated if @message.body? %>
 
-<%= t("notice_mailer.to_dialog") %> (<%= my_dialogs_path(:only_path => false) %>)
+<%= t("notice_mailer.to_dialog") %> (<%= my_dialogs_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>)

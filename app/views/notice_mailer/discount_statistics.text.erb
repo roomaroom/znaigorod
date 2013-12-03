@@ -3,7 +3,7 @@
 =========================
 
 <% @discounts.each do |discount| %>
-  <%= discount.title %> (<%= discount_path(discount, :only_path => false ) %>)
+  <%= discount.title %> (<%= discount_path(discount, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" ) %>)
   Участники <%= discount.members.size %>
   Комментарии <%= discount.comments.size %>
   Голоса <%= discount.votes.liked.size %>

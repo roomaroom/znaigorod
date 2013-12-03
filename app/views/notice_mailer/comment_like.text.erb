@@ -1,7 +1,7 @@
-<%= @vote.user.name %> (<%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'] ) %>) <%= t("notice_mailer.comment_like") %>
+<%= @vote.user.name %> (<%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'], :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" ) %>) <%= t("notice_mailer.comment_like") %>
 <%= l(@vote.created_at, format: "%d %B %Y, %k:%M") %>
 
 =========================
 
-<%= t("notice_mailer.your_comment") %> <%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'], :anchor => "answer_#{@vote.voteable.id}" ) %>
+<%= t("notice_mailer.your_comment") %> <%= polymorphic_url(@vote.user.account, :host => Settings['app']['host'], :anchor => "answer_#{@vote.voteable.id}", :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" ) %>
 <%= @vote.voteable.body.truncated if @vote.voteable.body? %>
