@@ -8,9 +8,17 @@
   next_arrow = $("#Next")
   previous_arrow = $("#Previous")
   busy = false
-  can_scroll_through = false
+  can_scroll_through = true
+  timer = 5000
 
   carousel.width((width) * count)
+
+  timer_start = () ->
+    unless timer == 0
+      setInterval(move_by_timer, timer)
+
+  move_by_timer = () ->
+    next_arrow.click()
 
   get_paginator_item = (num) ->
     $("#sweet_#{num}", paginator_item)
@@ -86,3 +94,5 @@
     change_activity($(previous_arrow))
 
   paginator paginator_item, classname
+
+  timer_start()
