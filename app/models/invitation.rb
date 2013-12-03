@@ -40,8 +40,6 @@ class Invitation < ActiveRecord::Base
   scope :agreed,            -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :agree) }
   scope :disagreed,         -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :disagree) }
   scope :not_answered,      -> { with_invited.joins(:invite_messages).where('messages.agreement IS NULL') }
-  scope :starts_at,              ->(date) { where('invitations.created_at > ?', date) }
-  scope :ends_at,                ->(date) { where('invitations.created_at < ?', date) }
 
   def send_email
     if self.invited.account_settings.personal_invites && self.invited.email.present?

@@ -1,4 +1,4 @@
-<h1>Статистика по личным приглашениям</h1>
+<h1>Сводка статистики активностей</h1>
 <div class='period'>
   <%= simple_form_for :search, :url => manage_statistics_invitations_path, :method => :get do |f| %>
     <span class='label'>С:</span>
@@ -9,22 +9,219 @@
   <% end %>
 </div>
 
+<h2>Афиша</h2>
 <div class='invitations_table'>
   <table>
     <thead>
       <tr>
-        <th>Согласились</th>
-        <th>Отказались</th>
-        <th>Нет ответа</th>
-        <th>Всего</th>
+        <th>Добавлено афиш</th>
+        <th>В том числе пользователями</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td><%= @afishas.count %></td>
+        <td><%= @afishas_person.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Мероприятий с билетами</th>
+        <th>Всего билетов</th>
+        <th>На сумму</th>
+        <th>Наша часть</th>
+        <th>Продано</th>
+        <th>На сумму</th>
+        <th>Наша часть</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @tickets.map(&:afisha).uniq.count %></td>
+        <td><%= @tickets.flat_map(&:copies).count %></td>
+        <td><%= @tickets.map {|t| t.price*t.copies.count}.sum %></td>
+        <td><%= @tickets.map {|t| t.price*t.copies.count - t.undertow.to_f*t.copies.count}.sum %></td>
+        <td><%= @sold_tickets.map {|cp| cp.copies.count }.sum %></td>
+        <td><%= @sold_tickets.map {|cp| cp.paymentable.price*cp.copies.count}.sum %></td>
+        <td><%= @sold_tickets.map {|cp| cp.paymentable.price*cp.copies.count-cp.paymentable.undertow.to_f*cp.copies.count}.sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Заведения</h2>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Подключено клиентов на СМС-бронирование</th>
+        <th>Получено СМС-заявок</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @reservcations.count %></td>
+        <td><%= @sms_claims.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Скидки</h2>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество добавленных скидок</th>
+        <th>в том числе пользователями</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @discounts.count %></td>
+        <td><%= @discounts_person.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Добавлено аукционов</th>
+        <th>Предложений цены</th>
+        <th>Отказано</th>
+        <th>Принято</th>
+        <th>Оплачено</th>
+        <th>Получено денег</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @offered_discounts.count %></td>
+        <td><%= @offers.count %></td>
+        <td><%= @offers.by_state(:canceled).count %></td>
+        <td><%= @offers.by_state(:approved).count + @offers.by_state(:paid).count %></td>
+        <td><%= @offers.by_state(:paid).count %></td>
+        <td><%= @offers.by_state(:paid).map(&:our_stake).sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество добавленных сертификатов</th>
+        <th>На сумму</th>
+        <th>Наша часть</th>
+        <th>Количество проданных сертификатов</th>
+        <th>На сумму</th>
+        <th>Наша часть</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @certificaces.count %></td>
+        <td><%= @certificaces.map {|c| c.number*c.price}.sum %></td>
+        <td><%= @certificaces.map {|c| c.number*c.price}.sum %></td>
+        <td><%= @certificates_payments.map {|c| c.number}.sum %></td>
+        <td><%= @certificates_payments.map {|c| c.number*c.amount}.sum %></td>
+        <td><%= @certificates_payments.map {|c| c.number*c.amount}.sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество добавленных купонов</th>
+        <th>На сумму</th>
+        <th>Количество проданных сертификатов</th>
+        <th>На сумму</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @coupons.count %></td>
+        <td><%= @coupons.map {|c| c.number*c.price}.sum %></td>
+        <td><%= @coupons_payments.map {|c| c.number}.sum %></td>
+        <td><%= @coupons_payments.map {|c| c.number*c.amount}.sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<h2>Пользователи</h2>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество новых пользователей</th>
+        <th>Количество новых статусов знакомств</th>
+        <th>Количество участников</th>
+        <th>Количество лайков</th>
+        <th>Количество друзей</th>
+        <th>Количество комментариев</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @accounts.count %></td>
+        <td><%= @invitations.count %></td>
+        <td><%= @visits.count %></td>
+        <td><%= @votes.count %></td>
+        <td><%= @friends.count %></td>
+        <td><%= @comments.count %></td>
+      </tr>
+    </tbody>
+  </table>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество личных приглашений</th>
+        <th>Согласились</th>
+        <th>Отказались</th>
+        <th>Нет ответа</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @invitations.count %></td>
         <td><%= @invitations.agreed.count %></td>
         <td><%= @invitations.disagreed.count %></td>
         <td><%= @invitations.not_answered.count %></td>
-        <td><%= @invitations.count %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество личных сообщений</th>
+        <th>Прочитанных</th>
+        <th>НЕпрочитанных</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @private_messages.count %></td>
+        <td><%= @private_messages.with_state(:read).count %></td>
+        <td><%= @private_messages.with_state(:unread).count %></td>
       </tr>
     </tbody>
   </table>
