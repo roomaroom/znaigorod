@@ -205,6 +205,84 @@
               background: #fff2d5
               +background(linear-gradient(top, #fff2d5, #ffddc1))
 
+.polnaya_chasha_content_wrapper
+  background-color: #f9eab1
+  +background(linear-gradient(top, #f9eab1, #e4686a))
+  border-top: 1px solid #f2e3aa
+
+  .polnaya_chasha_logo
+    background: transparent image_url('public/polnaya_chasha/logo.png') no-repeat center top
+    height: 103px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      background: rgba(#fff, 0.5)
+      +box-shadow(none)
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+      border: 4px solid #c4252a
+
+      .organization_show
+        margin: 0
+
+        .left
+          border: 1px solid #e3686b
+          background: transparent
+          +background(linear-gradient(top, rgba(#e3686b, 0), rgba(#e3686b, 0.2)))
+
+          .image
+            border: none
+
+          .social_actions
+            border: none
+
+            .user_actions
+              border-bottom: 1px solid #e3686b
+
+            .list
+              li:first-child
+                border: none
+
+        .center
+          .suborganization_info
+            .title
+              background: #efaba2
+
+          .share_and_likes
+            border-color: #e3686b
+
+          .comment_form
+            div.text
+              border: none !important
+              padding: 0
+
+            textarea
+              border: 1px solid #e3686b
+              width: 680px
+
+          .comment_item
+            .comment_wrapper
+              &:hover, &.active
+                background: none
+
+        .right
+          .wrapper
+            border: 1px solid #e3686b
+
+            .virtual_tour, .yandex_map
+              background: transparent
+              +background(linear-gradient(top, rgba(#e3686b, 0), rgba(#e3686b, 0.2)))
+              border-bottom: 1px solid #e3686b
+
+            .more_like_this
+              background: transparent
+              +background(linear-gradient(top, rgba(#e3686b, 0), rgba(#e3686b, 0.3)))
+
 .vasya_lozhkin_content_wrapper
   background: #cce9f7 image_url('public/vasya_lozhkin/bg.png') no-repeat center top
 
