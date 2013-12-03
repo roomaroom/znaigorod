@@ -119,7 +119,7 @@
 
     <div>
       <span class="label">Ссылка на источник:</span>
-      <% if resource.origin_url? %>
+      <% if resource.respond_to?(:origin_url) && resource.origin_url.present? %>
         <span class="value"><%= link_to resource.origin_url, resource.origin_url, :target => :blank %></span>
       <% else %>
         <span class="blank">Не указано</span>
