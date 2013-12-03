@@ -23,5 +23,6 @@ end
 #  file_file_size    :integer
 #  file_updated_at   :datetime
 #  file_url          :text
+#  file_image_url    :string(255)
 #
 

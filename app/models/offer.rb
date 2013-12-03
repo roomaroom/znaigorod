@@ -38,3 +38,24 @@ class Offer < ActiveRecord::Base
     I18n.t 'offer.paid', :code => code
   end
 end
+
+# == Schema Information
+#
+# Table name: offers
+#
+#  id                 :integer          not null, primary key
+#  account_id         :integer
+#  offerable_id       :integer
+#  offerable_type     :string(255)
+#  phone              :string(255)
+#  details            :text
+#  amount             :integer
+#  name               :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  state              :string(255)
+#  our_stake          :integer
+#  organization_stake :integer
+#  code               :string(255)
+#
+

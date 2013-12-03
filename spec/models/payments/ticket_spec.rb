@@ -28,5 +28,6 @@ end
 #  undertow           :integer
 #  state              :string(255)
 #  payment_system     :string(255)
+#  short_description  :string(255)
 #
 

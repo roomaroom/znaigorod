@@ -41,5 +41,6 @@ end
 #  amount           :float
 #  details          :text
 #  state            :string(255)
+#  email            :string(255)
 #
 
