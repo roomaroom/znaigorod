@@ -11,8 +11,8 @@ class Prikupon::Importer
 
   private
 
-  def origin_url
-    parser.json.links['product:view']
+  def external_id
+    parser.json.identity.to_s
   end
 
   delegate :json, :description, :terms, :to => :parser
@@ -34,7 +34,7 @@ class Prikupon::Importer
     affiliated_coupon.title        = title
     affiliated_coupon.description  = description
     affiliated_coupon.kind         = [Prikupon::Categories.new(category_primary).kind]
-    affiliated_coupon.origin_url   = origin_url
+    affiliated_coupon.external_id  = external_id
 
     affiliated_coupon.starts_at    = date_commences
     affiliated_coupon.ends_at      = date_ends
@@ -91,7 +91,7 @@ class Prikupon::Importer
   end
 
   def find_affiliated_coupon
-    @affiliated_coupon = AffiliatedCoupon.find_by_origin_url!(origin_url)
+    @affiliated_coupon = AffiliatedCoupon.find_by_external_id!(external_id)
   end
 
   def destroy_places
@@ -100,7 +100,7 @@ class Prikupon::Importer
 
   def safe_import
     ActiveRecord::Base.transaction do
-      if AffiliatedCoupon.find_by_origin_url(origin_url)
+      if AffiliatedCoupon.find_by_external_id(external_id)
         find_affiliated_coupon
         set_attributes
         save_affiliated_coupon

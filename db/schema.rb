@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131128084545) do
+ActiveRecord::Schema.define(:version => 20131203015308) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -330,7 +330,6 @@ ActiveRecord::Schema.define(:version => 20131128084545) do
     t.integer  "discount"
     t.string   "payment_system"
     t.string   "state"
-    t.text     "origin_url"
     t.integer  "account_id"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
@@ -341,6 +340,7 @@ ActiveRecord::Schema.define(:version => 20131128084545) do
     t.text     "supplier"
     t.text     "placeholder"
     t.integer  "afisha_id"
+    t.string   "external_id"
   end
 
   add_index "discounts", ["afisha_id"], :name => "index_discounts_on_afisha_id"
