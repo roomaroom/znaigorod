@@ -279,6 +279,83 @@
               background-color: #d4eef9
               +background(linear-gradient(top, #eff8fd, #bae4f6))
 
+.mulen_ruzh_content_wrapper
+  background: #000 image_url('public/mulen_ruzh/bg.png') no-repeat center top
+
+  .mulen_ruzh_logo
+    height: 110px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      color: #fff
+      background: transparent image_url('public/mulen_ruzh/content_bg.png')
+      +background(image_url('public/mulen_ruzh/content_bg.png'), radial-gradient(500px 500px, rgba(#fff, 0.6), rgba(#fff, 0)))
+      +box-shadow(none)
+      +border-top-left-radius
+      +border-top-right-radius
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        .left
+          border: 1px solid #b12c25
+          background-color: transparent
+          +background(linear-gradient(top, rgba(#b12c25, 0), rgba(#b12c25, 0.3)))
+
+          .image
+            border: none
+
+          .social_actions
+            border: none
+
+            .user_actions
+              border-bottom: 1px solid #b12c25
+
+            .list
+              li:first-child
+                border: none
+
+        .center
+          .more_schedule
+            color: #000
+
+          .share_and_likes
+            border-color: #b12c25
+
+          .comment_form
+            div.text
+              border: none !important
+              padding: 0
+
+            textarea
+              border: 1px solid #b12c25
+              width: 680px
+
+          .comment_item
+            .comment_wrapper
+              &:hover, &.active
+                background: none
+
+        .right
+          .wrapper
+            border: 1px solid #b12c25
+
+            .virtual_tour, .yandex_map
+              background-color: transparent
+              +background(linear-gradient(top, rgba(#b12c25, 0), rgba(#b12c25, 0.3)))
+              border-bottom: 1px solid #b12c25
+
+            .more_like_this
+              background-color: transparent
+              +background(linear-gradient(top, rgba(#b12c25, 0), rgba(#b12c25, 0.3)))
+
 .lovekafe_content_wrapper
   background-color: #fff
   +background(linear-gradient(top, #fff, #f76663))
