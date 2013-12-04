@@ -95,6 +95,7 @@
       <tr>
         <th>Добавлено аукционов</th>
         <th>Предложений цены</th>
+        <th>Новых</th>
         <th>Отказано</th>
         <th>Принято</th>
         <th>Оплачено</th>
@@ -105,6 +106,7 @@
       <tr>
         <td><%= @offered_discounts.count %></td>
         <td><%= @offers.count %></td>
+        <td><%= @offers.by_state(:fresh).count %></td>
         <td><%= @offers.by_state(:canceled).count %></td>
         <td><%= @offers.by_state(:approved).count + @offers.by_state(:paid).count %></td>
         <td><%= @offers.by_state(:paid).count %></td>
