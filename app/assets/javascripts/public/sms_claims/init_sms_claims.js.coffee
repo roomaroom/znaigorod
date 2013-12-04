@@ -49,3 +49,9 @@
         true
     false
   true
+
+@init_sms_claims_by_hash = ->
+  [name, id] = window.location.hash.replace(/^#new_sms_claim_/, '').split('_')
+  $("a[href=\"/#{name}/#{id}/sms_claims/new\"]").click()
+
+  true

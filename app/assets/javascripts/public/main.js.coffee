@@ -57,6 +57,7 @@ $ ->
   init_messages_tabs() if $('#messages_filter').length
   init_list_settings() if $('.content_wrapper .presentation_filters').length
   init_sms_claims() if $('a.sms_claim_link').length || $('.feeds').length
+  init_sms_claims_by_hash() if window.location.hash.match(/^#new_sms_claim/)
   init_swfkrpano() if $('#krpano').length
   init_trailers() if $('.afisha_show .trailer p').length
   init_webcam_map() if $('.webcams .webcam_map').length
