@@ -4,7 +4,7 @@ class SalonCenterDecorator < SuborganizationDecorator
   decorates :salon_center
 
   def viewable?
-    features.any? || offers.any?
+    features.any? || offers.any? || services.filled.any?
   end
 
   def title
