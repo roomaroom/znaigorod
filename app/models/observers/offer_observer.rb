@@ -20,13 +20,18 @@ class OfferObserver < ActiveRecord::Observer
     OfferMailer.delay(:queue => 'mailer').mail_offer_paid(offer)
   end
 
+  def after_die(offer, transition)
+    create_sms(offer)
+  end
+
   private
 
   def create_payment(offer)
-    payment = offer.build_offer_payment
+    payment         = offer.build_offer_payment
     payment.amount  = offer.our_stake
     payment.phone   = offer.phone
     payment.details = offer.details
+
     payment.save!
   end
 

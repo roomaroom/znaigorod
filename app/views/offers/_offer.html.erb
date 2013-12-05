@@ -1,5 +1,5 @@
 <li>
-  <% if offer.paid? %>
+  <% if offer.paid? || offer.dead? %>
     <span class="approved" title="<%= t "activerecord.state_machines.offer.state.states.approved" %>"></span>
   <% else %>
     <span class="<%= offer.state %>" title="<%= t "activerecord.state_machines.offer.state.states.#{offer.state}" %>"></span>

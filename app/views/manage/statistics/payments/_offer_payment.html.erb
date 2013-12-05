@@ -2,7 +2,8 @@
   <td><%= payment.id %></td>
   <td><%= payment.amount %></td>
   <td><%= payment.phone %></td>
-  <td><%= payment.paymentable.message %></td>
+  <td></td>
+  <td><%= t "offer.#{payment.paymentable.state}" %></td>
   <td><%= payment.state_text %></td>
   <td><%= l payment.created_at %></td>
 </tr>
