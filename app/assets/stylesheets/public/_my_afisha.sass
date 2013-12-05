@@ -81,6 +81,79 @@
     font-size: 18px
     margin-bottom: 10px
 
+  .right .phones
+    border: solid 1px #009bdb
+    position: relative
+    float: left
+
+    .icon
+      background: url('sprites_phone_letter.png') no-repeat -2px -1px
+      width: 48px
+      height: 48px
+      position: relative
+      float: left
+
+    .body
+      margin: 5px 0px 0px 5px
+
+  .right .emails
+    border: solid 1px #f60
+    position: relative
+    float: left
+
+    .icon
+      background: url('sprites_phone_letter.png') no-repeat -54px -1px
+      width: 48px
+      height: 48px
+      position: relative
+      float: left
+
+    .body
+      margin: 13px 0px 0px 5px
+
+  .right .phones, .right .emails
+    margin-bottom: 10px
+
+    .body
+      width: 153px
+      position: relative
+      float: left
+
+  .right .advertisement
+    border: #f60 solid 1px
+    width: 206px
+    height: 100%
+    font-size: 12px
+
+    .cell
+      width: 186px
+      padding: 10px
+
+    .dashed_border
+      border-bottom: #f60 dashed 1px
+
+    .orange
+      background-color: #f60
+      color: #fff
+
+    .arrow_box
+      position: relative
+      background: #ffffff
+
+    .arrow_box:after
+      bottom: 100%
+      left: 100%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+      border-color: rgba(255, 255, 255, 0)
+      border-bottom-color: #ffffff
+      border-width: 15px 15px 10px 15px
+      margin-left: -30px
+
   .right .public_action
     +background(linear-gradient(top, #ffffff, #e8e8e8))
     padding: 10px
