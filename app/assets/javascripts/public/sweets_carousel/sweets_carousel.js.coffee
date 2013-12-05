@@ -9,15 +9,12 @@
   previous_arrow = $("#Previous")
   busy = false
   can_scroll_through = true
-  timer = 5000
+  interval = 15000
+  timer = setInterval(move_by_timer, interval)
   animation_type = 'fadeToggle'
   animation_speed = 400
 
   carousel.width((width) * count)
-
-  timer_start = () ->
-    unless timer == 0
-      setInterval(move_by_timer, timer)
 
   move_by_timer = () ->
     next_arrow.click()
@@ -83,15 +80,19 @@
 
     $('a', paginator_item).each (i, val) ->
       $(val).on 'click', (e) ->
+        e.preventDefault()
         unless busy
+          clearInterval(timer)
+          timer = setInterval(move_by_timer, interval)
           busy = true
-          e.preventDefault()
           move_carousel $(this)
 
   next_arrow.on 'click', (e) ->
     e.preventDefault()
     unless busy || next_arrow.hasClass('inactive')
       busy = true
+      clearInterval(timer)
+      timer = setInterval(move_by_timer, interval)
       if current == count
         move_carousel get_paginator_item(1)
       else
@@ -101,6 +102,8 @@
     e.preventDefault()
     unless busy || previous_arrow.hasClass('inactive')
       busy = true
+      clearInterval(timer)
+      timer = setInterval(move_by_timer, interval)
       if current == 1
         move_carousel get_paginator_item(count)
       else
@@ -111,4 +114,4 @@
 
   paginator paginator_item, classname
 
-  timer_start()
+  true
