@@ -1,7 +1,10 @@
 <ul class="kind_links">
-  <li><%= link_to 'Все', manage_statistics_offers_path %></li>
+  <li <%= "class=selected" if params[:by_state].blank? %>><%= link_to 'Все', manage_statistics_offers_path %></li>
+
   <% Offer.state_machine.states.each do |state| %>
-    <li><%= link_to t("activerecord.state_machines.offer.state.states.#{state.name}"), by_state_manage_statistics_offers_path(state.value) %></li>
+    <li <%= "class=selected" if params[:by_state] == state.value %>>
+      <%= link_to t("activerecord.state_machines.offer.state.states.#{state.name}"), by_state_manage_statistics_offers_path(state.value) %>
+    </li>
   <% end %>
 </ul>
 

@@ -28,6 +28,7 @@ ru:
             approved: Принято
             canceled: Отклонено
             paid:     Оплачено
+            dead:     Истекло
           events:
             approve: Принять
             cancel:  Отклонить
