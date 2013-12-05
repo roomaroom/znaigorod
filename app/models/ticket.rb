@@ -18,6 +18,7 @@ class Ticket < ActiveRecord::Base
   before_validation :normalize_email_addressess
 
   scope :for_stale, -> { where "stale_at <= ? AND (state = 'for_sale' OR state IS NULL)", Time.zone.now }
+  scope :for_sale, -> { where("stale_at >= ? AND (state = 'for_sale' OR state IS NULL)", Time.zone.now) }
   scope :stale, -> { by_state 'stale' }
   scope :without_report, -> { where :report_sended => false }
   scope :with_emails, -> { where 'email_addressess IS NOT NULL' }

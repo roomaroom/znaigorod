@@ -60,9 +60,9 @@
       </div>
     <% end %>
 
-    <% if @afisha.tickets.map(&:copies_for_sale).any? %>
+    <% if @afisha.tickets.for_sale.map(&:copies_for_sale).any? %>
       <ul class='tickets'>
-        <% @afisha.tickets.each do |ticket| %>
+        <% @afisha.tickets.for_sale.order(:id).each do |ticket| %>
           <% if ticket.copies_for_sale.any? %>
             <li>
               <div class='wrapper'>
