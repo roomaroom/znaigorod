@@ -45,7 +45,7 @@ class Manage::Statistics::InvitationsController < Manage::ApplicationController
     @votes = Vote.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at).liked
     @friends = Friend.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
     @comments = Comment.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
-    @invitations = Invitation.without_invited.where('invitations.created_at >= ? and invitations.created_at <= ?', @starts_at, @ends_at)
+    @invitation_states = Invitation.without_invited.where('invitations.created_at >= ? and invitations.created_at <= ?', @starts_at, @ends_at)
   end
 end
 
