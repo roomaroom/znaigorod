@@ -10,7 +10,7 @@ class VoteObserver < ActiveRecord::Observer
         messageable: vote)
     elsif vote.voteable.is_a?(Comment) && vote.voteable.user != vote.user
       if vote.voteable.user.account.email.present? && vote.voteable.user.account.account_settings.comments_likes
-        NoticeMailer.delay(:queue => 'mailer').comment_like(vote)
+        NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_like(vote)
       end
       NotificationMessage.delay(:queue => 'critical').create(
         account: vote.voteable.user.account,

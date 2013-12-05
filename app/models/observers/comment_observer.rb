@@ -27,21 +27,21 @@ class CommentObserver < ActiveRecord::Observer
   def email_comment_to_afisha comment
     account = comment.commentable.user.account
     if account.account_settings.comments_to_afishas && account.email.present?
-      NoticeMailer.delay(:queue => 'mailer').comment_to_afisha(comment)
+      NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_to_afisha(comment)
     end
   end
 
   def email_comment_to_discount comment
     account = comment.commentable.account
     if account.account_settings.comments_to_discounts && account.email.present?
-      NoticeMailer.delay(:queue => 'mailer').comment_to_discount(comment)
+      NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_to_discount(comment)
     end
   end
 
   def email_comment_reply comment
     account = comment.parent.user.account
     if account.account_settings.comments_answers && account.email.present?
-      NoticeMailer.delay(:queue => 'mailer').comment_reply(comment)
+      NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_reply(comment)
     end
   end
 
