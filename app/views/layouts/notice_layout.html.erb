@@ -30,8 +30,7 @@
                                 </a>
                               </td>
                               <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
-                                <span><%= t "notice_mailer.you_can_unsubscribe_in" %></span><br />
-                                <span><a href="<%= edit_my_account_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>"><%= t "notice_mailer.private_settings" %></a> <%= t "notice_mailer.on_the_site" %> <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">znaigorod.ru</a></span>
+                                <h3><%= t "notice_mailer.#{@type}" %></h3>
                               </td>
                               <td class="expander"></td>
                             </tr>
@@ -53,46 +52,13 @@
 
                     <table id="main" class="middle ten columns container">
                       <tr>
-                        <td>
+                        <td class="without-padding">
                           <table class="custom_column_width columns" id="middle">
                             <tr>
                               <td class="center" align="center">
                                 <center>
 
-                                  <table id="title" class="row content_row">
-                                    <tr>
-                                      <td class="wrapper last">
-
-                                        <table class="columns">
-                                          <tr>
-                                            <td>
-                                              <h3>
-                                                <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">znaigorod.ru</a> / <%= t "notice_mailer.#{@type}" %>
-                                            </h3>
-                                            </td>
-                                            <td class="expander"></td>
-                                          </tr>
-                                        </table>
-
-                                      </td>
-                                    </tr>
-                                  </table>
-
-                                  <table id="orange_border_row" class="row">
-                                    <tr>
-                                      <td style="width: 520px;" class="center" align="center">
-                                        <center>
-                                          <table id="orange-border">
-                                            <tr>
-                                              <td class="orange-border"></td>
-                                            </tr>
-                                          </table>
-                                        </center>
-                                      </td>
-                                    </tr>
-                                  </table>
-
-                                  <table class="row content_row">
+                                  <table id="content_row" class="row content_row">
 
                                     <%= yield :content %>
 
@@ -101,10 +67,26 @@
                               </td>
                             </tr>
                           </table>
-                        </center>
-                      </td>
-                    </tr>
-                  </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="center" align="center">
+                          <center>
+                            <table class="ten columns container">
+                            	<tr>
+                                <td class="center without-padding" align="center">
+                                  <center>
+                                    <span><%= t "notice_mailer.you_can_unsubscribe_in" %><a href="<%= edit_my_account_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>"><%= t "notice_mailer.private_settings" %></a></span><br />
+                                    <span> <%= t "notice_mailer.on_the_site" %> <a href="<%= Settings['app']['url'] %>?utm_source=email&utm_medium=email&utm_campaign=znaigorod">znaigorod.ru</a></span>
+                                  </center>
+                                </td>
+                            	</tr>
+                            </table>
+                          </center>
+                        </td>
+                      </tr>
+                    </table>
+                  </center>
                 </td>
               </tr>
             </table>
