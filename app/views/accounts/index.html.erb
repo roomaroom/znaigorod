@@ -62,3 +62,9 @@
 </div>
 
 <%= paginate @presenter.collection %>
+
+<% unless t("meta.account.introduction", default: '').blank? %>
+  <div class='introduction'>
+    <%= t("meta.account.introduction").as_html %>
+  </div>
+<% end %>
