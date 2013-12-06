@@ -2,10 +2,10 @@ afisha:
   places:
 
     '1.0':
-      from: '2013-12-03 00:00'
-      to: '2013-12-04 23:00'
+      from: '2013-12-06 00:00'
+      to: '2013-12-13 23:00'
       content_type: 'afisha'
-      afisha_slug: 'konkurs-uzhin-na-dvoih-ot-funtland'
+      afisha_slug: 'den-otkrytyh-dverey-v-folksvagen-tsentre-evraziya'
       replaced_count: 4
 
     '1.4':
@@ -26,6 +26,6 @@ post:
 main_page:
   afisha:
     '0':
-      from: '2013-11-19 00:00'
-      to: '2013-11-23 19:00'
-      afisha_slug: 'escobar-grand-opening-atapy-romania'
+      from: '2013-12-06 00:00'
+      to: '2013-12-13 23:00'
+      afisha_slug: 'den-otkrytyh-dverey-v-folksvagen-tsentre-evraziya'
