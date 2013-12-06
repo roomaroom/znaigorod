@@ -261,6 +261,14 @@ add_disabled = () ->
     # меняем статус сообщений на прочитанные в табе #dialogs
     process_change_message_status()
 
+    $("#dialog_#{account_id} .private_message textarea").keypress (e) ->
+      if e.keyCode == 10 && e.ctrlKey
+        area = $("#dialog_#{account_id} #new_private_message textarea")
+        area.val( area.val() + "\n" )
+      else
+        if e.keyCode == 13
+          $("#dialog_#{account_id} #new_private_message").submit()
+
   # обработка закрытия таба
   close_tab_handler = (stored) ->
     close_buttons = $('#messages_filter span.ui-icon-close:not(.charged)')
@@ -349,7 +357,6 @@ add_disabled = () ->
       target.closest('li').replaceWith(response)
 
   true
-
 
   # таб уведомления
   $('#notifications').on 'ajax:success', (evt, response) ->
