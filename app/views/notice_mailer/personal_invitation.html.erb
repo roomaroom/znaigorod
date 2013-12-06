@@ -19,12 +19,12 @@
             <% if @invite.category.blank? %>
               <% if @invite.inviteable.is_a?(Afisha) %>
 
-                  на <%= link_to @invite.inviteable.title, afisha_path(@invite.inviteable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                <span>на</span> <%= link_to @invite.inviteable.title, afisha_path(@invite.inviteable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
               <% end %>
 
               <% if @invite.inviteable.is_a?(Organization) %>
 
-                на <%= link_to @invite.inviteable.title, organization_path(@invite.inviteable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                <span>на</span> <%= link_to @invite.inviteable.title, organization_path(@invite.inviteable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
               <% end %>
 
             <% else %>
