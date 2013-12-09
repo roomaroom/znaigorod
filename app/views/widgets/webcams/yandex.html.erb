@@ -12,5 +12,7 @@
 <% end %>
 
 <div class='webcam_show'>
-  <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 320, :height => 240 } %>
+  <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 260, :height => 195 } %>
 </div>
+
+<%= link_to @webcam.title, @webcam, :style => 'font-family: Arial, Helvetica, sans-serif; font-size: 13px;' %>
