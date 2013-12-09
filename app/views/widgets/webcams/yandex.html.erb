@@ -9,9 +9,23 @@
   a.link:hover {
     color: red;
   }
+  .webcam_show {
+    position: relative;
+  }
+  a.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 260;
+    height: 150;
+    text-indent: -4444em;
+    z-index: 999999;
+  }
 </style>
 
 <div class='webcam_show'>
+  <%= link_to @webcam.title, @webcam, :class => 'layer', :target => '_blank' %>
   <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 260, :height => 150 } %>
 </div>
 <div><%= link_to @webcam.title, @webcam, :class => 'link', :target => '_blank' %></div>
