@@ -1,6 +1,6 @@
 <div class='<%= webcam_uppod.kind %>'
-     data-width='<%= webcam_uppod.width %>'
-     data-height='<%= webcam_uppod.height %>'
+     data-width='<%= respond_to?(:width) ? width : webcam_uppod.width %>'
+     data-height='<%= respond_to?(:height) ? height : webcam_uppod.height %>'
      data-file='<%= webcam_uppod.url %>'
      style='height: <%= webcam_uppod.height %>px'>
 </div>

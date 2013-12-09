@@ -1,0 +1,16 @@
+<%= javascript_include_tag "jquery" %>
+<%= javascript_include_tag "flash_detect" %>
+<%= javascript_include_tag "sugar" %>
+<%= javascript_include_tag "public/swfobject" %>
+<%= javascript_include_tag "public/jwplayer" %>
+<%= javascript_include_tag "webcams/webcams/init_#{@webcam.kind}" %>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    init_<%= @webcam.kind %>();
+  });
+<% end %>
+
+<div class='webcam_show'>
+  <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 320, :height => 240 } %>
+</div>

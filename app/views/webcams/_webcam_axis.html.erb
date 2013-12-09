@@ -1,6 +1,6 @@
 <div class='<%= webcam_axis.kind %>'
-     data-width='<%= webcam_axis.width %>'
-     data-height='<%= webcam_axis.height %>'
+     data-width='<%= respond_to?(:width) ? width : webcam_axis.width %>'
+     data-height='<%= respond_to?(:height) ? height : webcam_axis.height %>'
      data-cgi='<%= webcam_axis.url %>'
      data-params='<%= webcam_axis.parameters %>'
      data-cab='<%= webcam_axis.cab %>'

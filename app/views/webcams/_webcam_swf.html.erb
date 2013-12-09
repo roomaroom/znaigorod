@@ -1,6 +1,6 @@
 <div class='<%= webcam_swf.kind %>'
-     data-width='<%= webcam_swf.width %>'
-     data-height='<%= webcam_swf.height %>'
+     data-width='<%= respond_to?(:width) ? width : webcam_swf.width %>'
+     data-height='<%= respond_to?(:height) ? height : webcam_swf.height %>'
      data-file='<%= webcam_swf.url %>'
      style='height: <%= webcam_swf.height %>px'>
 </div>

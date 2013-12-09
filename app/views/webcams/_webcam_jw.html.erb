@@ -1,6 +1,6 @@
 <div class='<%= webcam_jw.kind %>'
-     data-width='<%= webcam_jw.width %>'
-     data-height='<%= webcam_jw.height %>'
+     data-width='<%= respond_to?(:width) ? width : webcam_jw.width %>'
+     data-height='<%= respond_to?(:height) ? height : webcam_jw.height %>'
      data-file='<%= webcam_jw.url %>'
      style='height: <%= webcam_jw.height %>px'>
 </div>
