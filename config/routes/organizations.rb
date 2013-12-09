@@ -49,9 +49,17 @@ Znaigorod::Application.routes.draw do
       begin
         HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.map do |row|
           next if kind == 'sauna'
-          get "/#{kind.pluralize}/#{row.value.from_russian_to_param}" => 'suborganizations#index',
-          :as => "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}".to_sym,
-          :defaults => {:kind => kind, :categories => [row.value]}
+          if kind == 'meal' || kind == 'sport'
+            get "/#{kind.pluralize}/#{row.value.from_russian_to_param}",
+            :to => redirect("/#{row.value.from_russian_to_param}")
+            get "/#{row.value.from_russian_to_param}" => 'suborganizations#index',
+            :as => "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}".to_sym,
+            :defaults => {:kind => kind, :categories => [row.value]}
+          else
+            get "/#{kind.pluralize}/#{row.value.from_russian_to_param}" => 'suborganizations#index',
+            :as => "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}".to_sym,
+            :defaults => {:kind => kind, :categories => [row.value]}
+          end
         end
       rescue Exception => e
       end
