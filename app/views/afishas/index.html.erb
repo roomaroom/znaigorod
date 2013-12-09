@@ -5,7 +5,7 @@
   <% if request.query_parameters.any? %>
     <link rel='canonical' href='<%= request.url.split('?').first %>' />
   <% end %>
-  <%= vk_meta(@presenter.kind, (send @presenter.direct_url), 'znaigorod_logo.png') %>
+  <%= vk_meta((@presenter.has_tickets ? 'tickets' : @presenter.kind), (send @presenter.direct_url), 'znaigorod_logo.png') %>
 <% end %>
 
 <div class='presentation_filters afisha'>
@@ -50,8 +50,8 @@
 
 <%= paginate @presenter.paginated_collection %>
 
-<% unless t("meta.#{@presenter.kind}.introduction", default: '').blank? %>
+<% if !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
   <div class='introduction'>
-    <%= t("meta.#{@presenter.kind}.introduction").as_html %>
+    <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
   </div>
 <% end %>

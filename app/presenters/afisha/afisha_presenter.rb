@@ -181,7 +181,9 @@ class AfishaPresenter
   end
 
   def page_title
-    title = I18n.t("meta.#{kind}.title")
+    title = ''
+    title += "#{I18n.t('meta.tickets.title')} " if has_tickets
+    title += I18n.t("meta.#{kind}.title")
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
     title += " на выходных" if period_filter.period == 'weekend'
@@ -190,11 +192,17 @@ class AfishaPresenter
   end
 
   def meta_description
-    I18n.t("meta.#{kind}.description", default: '')
+    "".tap do |str|
+      str << I18n.t('meta.tickets.description') if has_tickets
+      str << I18n.t("meta.#{kind}.description", default: '')
+    end
   end
 
   def meta_keywords
-    I18n.t("meta.#{kind}.keywords", default: '')
+    "".tap do |str|
+      str << I18n.t('meta.tickets.keywords') if has_tickets
+      str << I18n.t("meta.#{kind}.keywords", default: '')
+    end
   end
 
   def searcher_params(categories = [])
