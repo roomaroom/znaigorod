@@ -66,14 +66,14 @@
           <% if ticket.copies_for_sale.any? %>
             <li>
               <div class='wrapper'>
+                <div class='has_items_for_sale without_discount'>
+                  <% if ticket.copies_for_sale.any? %>
+                    <%= ticket.title_for_list.text_gilensize %>
+                  <% else %>
+                    Купить билет
+                  <% end %>
+                </div>
                 <% if ticket.original_price == ticket.price %>
-                  <div class='has_items_for_sale without_discount'>
-                    <% if ticket.copies_for_sale.any? %>
-                      <%= ticket.title_for_list.text_gilensize %>
-                    <% else %>
-                      Купить билет
-                    <% end %>
-                  </div>
                   <div class='ticket_price'>
                     <div class='price'><%= ticket.price.to_i %>р.<%= "+#{ticket.organization_price.to_i}р." if ticket.organization_price %></div>
                   </div>
