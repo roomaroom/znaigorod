@@ -3,8 +3,6 @@
 COLOR="\033[1;32m"
 ENDCOLOR="\033[0m"
 
-echo -e "$COLOR-> rake sunspot:solr:stop $ENDCOLOR"
-bin/rake sunspot:solr:stop
 echo -e "$COLOR-> rake db:drop & db:create $ENDCOLOR"
 bin/rake db:drop db:create
 
@@ -13,9 +11,5 @@ yes | bin/cap db:pull
 echo -e "$COLOR-> rake db:migrate $ENDCOLOR"
 bin/rake db:migrate
 
-echo -e "$COLOR-> rake sunspot:solr:start $ENDCOLOR"
-bin/rake sunspot:solr:start
-echo -e "$COLOR-> sleep... $ENDCOLOR"
-sleep 5
 echo -e "$COLOR-> cap sunspot:pull $ENDCOLOR"
 bin/cap sunspot:pull
