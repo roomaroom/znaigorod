@@ -11,11 +11,6 @@
   }
 </style>
 
-<%= javascript_tag do %>
-  $(document).ready(function() {
-    init_<%= @webcam.kind %>();
-  });
-<% end %>
 <div class='webcam_show'>
   <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 260, :height => 150 } %>
 </div>
