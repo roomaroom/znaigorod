@@ -4,15 +4,25 @@
 <%= javascript_include_tag "public/swfobject" %>
 <%= javascript_include_tag "public/jwplayer" %>
 <%= javascript_include_tag "webcams/webcams/init_#{@webcam.kind}" %>
+<style>
+  body { margin: 0 }
+  a.link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #0D44A0;
+  }
+  a.link:hover {
+    color: red;
+  }
+</style>
 
 <%= javascript_tag do %>
   $(document).ready(function() {
     init_<%= @webcam.kind %>();
   });
 <% end %>
-
 <div class='webcam_show'>
-  <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 260, :height => 195 } %>
+  <%= render :partial => "webcams/#{@webcam.kind}", :object => @webcam, :locals => { :width => 260, :height => 150 } %>
 </div>
-
-<%= link_to @webcam.title, @webcam, :style => 'font-family: Arial, Helvetica, sans-serif; font-size: 13px;' %>
+<div><%= link_to @webcam.title, @webcam, :class => 'link', :target => '_blank' %></div>
+<div><%= link_to 'Другая камера', yandex_widgets_webcams_path, :class => 'link' %></div>
