@@ -1,0 +1,8 @@
+<%= simple_form_for :widget, :url => widgets_webcams_path do |f| %>
+  <%= f.input :webcam_slug, :as => :select, :collection => Webcam.our.published, :prompt => 'Случайная камера' %>
+  <%= f.input :width, :as => :integer %>
+  <div class='submit'>
+    <%= f.button :submit, 'Сгенерировать', class: :button %>
+    <%= link_to 'Отмена', widgets_path %>
+  </div>
+<% end %>

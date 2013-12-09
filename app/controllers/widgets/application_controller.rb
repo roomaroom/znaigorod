@@ -1,3 +1,5 @@
 class Widgets::ApplicationController < ActionController::Base
-  layout false
+  layout 'public'
+  def list
+  end
 end
