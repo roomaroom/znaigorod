@@ -17,8 +17,8 @@
     top: 0;
     left: 0;
     overflow: hidden;
-    width: 260;
-    height: 150;
+    width: 100%;
+    height: <%= @widget.height %>px;
     text-indent: -4444em;
     z-index: 999999;
   }
@@ -35,7 +35,7 @@
 <%= link_to @widget.webcam.title, @widget.webcam, :class => 'link', :target => '_blank' %>
 <div class='webcam_show'>
   <%= link_to @widget.webcam.title, @widget.webcam, :class => 'layer', :target => '_blank' %>
-  <%= render :partial => "webcams/#{@widget.webcam.kind}", :object => @widget.webcam, :locals => { :width => @widget.width, :height => @widget.height } %>
+  <%= render :partial => "webcams/#{@widget.webcam.kind}", :object => @widget.webcam, :locals => { :width => '100%', :height => @widget.height } %>
 </div>
 <%= link_to 'Другая камера', widgets_webcams_url(:width => @widget.width), :class => 'link other' if @widget.random? %>
 
