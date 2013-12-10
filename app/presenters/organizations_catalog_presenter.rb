@@ -61,17 +61,4 @@ class OrganizationsCatalogPresenter
       end
     }
   end
-
-  def meta_description
-    desc = ""
-
-    self.class.suborganization_models.map(&:name).map(&:downcase).each do |kind|
-      desc << self.send("#{kind}_categories").map(&:value).join(', ').mb_chars.capitalize
-      desc << ', '
-      desc << I18n.t("organization.list_title.#{kind}").mb_chars.downcase
-      desc << " в Томске. "
-    end
-
-    "<meta name='description' content='#{desc.squish}' />".html_safe
-  end
 end

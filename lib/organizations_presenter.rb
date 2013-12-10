@@ -82,6 +82,18 @@ module OrganizationsPresenter
     Settings['app']['url'] + '/' + self.kind.pluralize
   end
 
+  def meta_description
+    description = I18n.t("meta.#{selected_category}.description", default: '')
+    description = description.blank? ? I18n.t("meta.#{pluralized_kind}.description", default: '') : description
+    description
+  end
+
+  def meta_keywords
+    m_keywords = I18n.t("meta.#{selected_category}.keywords", default: '')
+    m_keywords = m_keywords.blank? ? I18n.t("meta.#{pluralized_kind}.keywords", default: '') : m_keywords
+    m_keywords
+  end
+
   def page_title
     title = I18n.t("meta.#{selected_category}.title", default: '')
     title = title.blank? ? I18n.t("meta.#{pluralized_kind}.title", default: '') : title
