@@ -35,6 +35,8 @@
 
   <h1><%= resource.title %></h1>
 
+  <%= link_to "Добавь веб-камеру к себе на сайт", new_widgets_webcam_path(:widget => {:webcam_id => resource.id}) if resource.our_cam? %>
+
   <div class='clearfix'>
     <div class='left'>
       <% if @tickets.present? %>
