@@ -1,0 +1,7 @@
+<h2><%= link_to "Веб-камеры Томска", webcams_url %></h2>
+<iframe
+  style="border: none; width: <%= @widget.full_width %>px; height: <%= @widget.full_height %>px; margin: 0px; padding: 0px;"
+  allowtransparency="true"
+  frameborder="0"
+  src="<%= widgets_webcams_url(:id => @widget.webcam_id, :width => @widget.width) %>">
+</iframe>

@@ -1,0 +1,41 @@
+<%= javascript_include_tag "webcams/application" %>
+<style>
+  body { margin: 0 }
+  a.link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #0D44A0;
+  }
+  a.link:hover {
+    color: red;
+  }
+  .webcam_show {
+    position: relative;
+  }
+  a.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 260;
+    height: 150;
+    text-indent: -4444em;
+    z-index: 999999;
+  }
+</style>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    one_minute = 60000;
+    setInterval(function() { $('.link.other')[0].click() }, one_minute)
+  })
+<% end if @widget.random? %>
+
+
+<%= link_to @widget.webcam.title, @widget.webcam, :class => 'link', :target => '_blank' %>
+<div class='webcam_show'>
+  <%= link_to @widget.webcam.title, @widget.webcam, :class => 'layer', :target => '_blank' %>
+  <%= render :partial => "webcams/#{@widget.webcam.kind}", :object => @widget.webcam, :locals => { :width => @widget.width, :height => @widget.height } %>
+</div>
+<%= link_to 'Другая камера', widgets_webcams_url(:width => @widget.width), :class => 'link other' if @widget.random? %>
+

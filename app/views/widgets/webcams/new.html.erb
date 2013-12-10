@@ -1,8 +1,16 @@
-<%= simple_form_for :widget, :url => widgets_webcams_path do |f| %>
-  <%= f.input :webcam_slug, :as => :select, :collection => Webcam.our.published, :prompt => 'Случайная камера' %>
-  <%= f.input :width, :as => :integer %>
+<%= simple_form_for :widget, :url => new_widgets_webcam_path, :method => :get do |f| %>
+  <%= f.input :webcam_id,
+    :as => :select,
+    :collection => Webcam.our.published.to_a.insert(0, Webcam.new(:title => 'Случайная камера')),
+    :include_blank => false,
+    :label => 'Камера' %>
+  <%= f.input :width, :as => :integer, :label => 'Ширина' %>
+  <%= render :partial => 'embded_code', :locals => {:widget => @widget} %>
   <div class='submit'>
     <%= f.button :submit, 'Сгенерировать', class: :button %>
     <%= link_to 'Отмена', widgets_path %>
   </div>
 <% end %>
+
+<%= label_tag 'code', 'Код для вставки' %>
+<%= text_area_tag 'code', @widget.embded_code %>
