@@ -1,7 +1,7 @@
 class Widgets::WebcamsController < Widgets::ApplicationController
   def yandex
-    @webcam = Webcam.our.published.shuffle.first
-    render :layout => false
+    @widget = Widgets::Webcam.new(:width => 260)
+    render :partial => 'widgets/webcams/webcam', :layout => false
   end
 
   def new
