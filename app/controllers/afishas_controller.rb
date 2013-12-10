@@ -13,6 +13,14 @@ class AfishasController < ApplicationController
         render partial: @presenter.partial, :locals => { :afishas => nil }, layout: false and return
       end
     end
+
+    respond_to do |format|
+      format.html
+      format.rss {
+        @presenter = AfishaPresenter.new(:without_advertisement => true)
+        render :layout => false
+      }
+    end
   end
 
   def show
