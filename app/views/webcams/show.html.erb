@@ -27,15 +27,19 @@
   <%= javascript_include_tag 'webcams/application' %>
 <% end %>
 
-<div class='webcams' style='width: <%= resource.width + 312 %>px'>
+<div class='webcams show' style='width: <%= resource.width + 312 %>px'>
 
-  <% if @layout_name == 'public' %>
-    <p class='to_webcams_list'><%= link_to 'Карта веб-камер Томска', webcams_path %></p>
-  <% end %>
+  <div class='clearfix'>
+    <% if @layout_name == 'public' %>
+      <p class='to_webcams_list'><%= link_to 'Карта веб-камер Томска', webcams_path %></p>
+    <% end %>
 
-  <h1><%= resource.title %></h1>
+    <h1><%= resource.title %></h1>
 
-  <%= link_to "Добавь веб-камеру к себе на сайт", new_widgets_webcam_path(:widget => {:webcam_id => resource.id}) if resource.our_cam? %>
+    <div class='add_webcam_to_your_site'>
+      <%= link_to "Добавь веб-камеру к себе на сайт", new_widgets_webcam_path(:widget => {:webcam_id => resource.id}), :class => :redirect_to if resource.our_cam? %>
+    </div>
+  </div>
 
   <div class='clearfix'>
     <div class='left'>
@@ -54,7 +58,7 @@
                 <% end %>
               </div>
               <div class='buy_ticket'>
-                <%= link_to 'Купить', afisha_show_path(ticket.afisha, anchor: :buy_ticket), :class => 'redirect_to_afisha button' %>
+                <%= link_to 'Купить', afisha_show_path(ticket.afisha, anchor: :buy_ticket), :class => 'redirect_to button' %>
               </div>
           </li>
           <% end %>

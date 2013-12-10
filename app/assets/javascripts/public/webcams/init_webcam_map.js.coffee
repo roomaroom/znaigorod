@@ -37,7 +37,7 @@
         windowURL: link.attr('href')
         centerBrowser: 1
         width: $(item).attr('data-width').toNumber() + 350
-        height: $(item).attr('data-height').toNumber() + 130
+        height: $(item).attr('data-height').toNumber() + 160
         location: 1
 
       img_width = 200

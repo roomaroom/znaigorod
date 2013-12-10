@@ -8,7 +8,7 @@ class WebcamsController < ApplicationController
 
   def show
     show! {
-      @tickets = Ticket.available.sort {|a, b| rand <=> rand }[0..4]
+      @tickets = Ticket.available.sort {|a, b| rand <=> rand }[0..3]
       is_ie = cookies['_show_webcam_in_ie'].to_s
       cookies.delete '_show_webcam_in_ie'
       if (is_ie == 'true') ||
