@@ -16,6 +16,7 @@ class AfishasController < ApplicationController
 
     respond_to do |format|
       format.html
+
       format.rss {
         @presenter = AfishaPresenter.new(:without_advertisement => true)
         render :layout => false

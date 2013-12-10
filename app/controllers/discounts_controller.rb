@@ -8,6 +8,16 @@ class DiscountsController < ApplicationController
     @discounts = @presenter.decorated_collection
 
     render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
+
+    respond_to do |format|
+      format.html
+
+      format.rss {
+        @presenter = DiscountsPresenter.new(params)
+
+        render :layout => false
+      }
+    end
   end
 
   def show
