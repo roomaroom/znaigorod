@@ -6,6 +6,9 @@
   data-dialog_counter="<%= current_user.account.private_messages.unread.count %>"
   data-invite_counter="<%= current_user.account.received_invite_messages.unread.count %>"
   data-timestamp='<%= invite_message.updated_at.to_i %>'>
+
+  <!-- debug info: <%= invite_message.id %> -->
+
   <div class='time'>
     <%= time_ago_in_words(invite_message.created_at) %> назад
   </div>

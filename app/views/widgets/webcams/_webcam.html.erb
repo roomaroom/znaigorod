@@ -32,7 +32,7 @@
 <% end if @widget.random? %>
 
 
-<%= link_to @widget.webcam.title, @widget.webcam, :class => 'link', :target => '_blank' %>
+<center><%= link_to @widget.webcam.title, @widget.webcam, :class => 'link', :target => '_blank' %></center>
 <div class='webcam_show'>
   <%= link_to @widget.webcam.title, @widget.webcam, :class => 'layer', :target => '_blank' %>
   <%= render :partial => "webcams/#{@widget.webcam.kind}", :object => @widget.webcam, :locals => { :width => '100%', :height => @widget.height } %>
