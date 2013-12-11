@@ -1,18 +1,32 @@
 @init_sweets_carousel = ->
+
+  # config
+
+  # the carousel container
   carousel = $('#sweets_carousel')
+  # the paginator config
+  paginator_parent = $('.discounts_count') # this is the paginator container
+  paginator_item = $('.discounts_count .counter') # this is the paginator items container
+  classname = 'circle' # this is a class name of paginator item
+  # the arrows config
+  next_arrow = $("#Next")
+  previous_arrow = $("#Previous")
+  # the animation config
+  animation_type = 'fadeToggle'
+  animation_speed = 400
+  can_scroll_through = true
+  # the timer of paginator config
+  interval = 1000
+  enabletimer = true
+  mouse_over_stop = true
+
+  # end of config
+
+  timer = 0
+  busy = false
   width = carousel.width()
   count = $('li', carousel).length
   current = 1
-  paginator_item = $('.discounts_count .counter')
-  classname = 'circle'
-  next_arrow = $("#Next")
-  previous_arrow = $("#Previous")
-  busy = false
-  can_scroll_through = true
-  interval = 15000
-  timer = setInterval(move_by_timer, interval)
-  animation_type = 'fadeToggle'
-  animation_speed = 400
 
   carousel.width((width) * count)
 
@@ -82,8 +96,8 @@
       $(val).on 'click', (e) ->
         e.preventDefault()
         unless busy
-          clearInterval(timer)
-          timer = setInterval(move_by_timer, interval)
+          timerStop()
+          timerStart()
           busy = true
           move_carousel $(this)
 
@@ -91,8 +105,8 @@
     e.preventDefault()
     unless busy || next_arrow.hasClass('inactive')
       busy = true
-      clearInterval(timer)
-      timer = setInterval(move_by_timer, interval)
+      timerStop()
+      timerStart()
       if current == count
         move_carousel get_paginator_item(1)
       else
@@ -102,8 +116,8 @@
     e.preventDefault()
     unless busy || previous_arrow.hasClass('inactive')
       busy = true
-      clearInterval(timer)
-      timer = setInterval(move_by_timer, interval)
+      timerStop()
+      timerStart()
       if current == 1
         move_carousel get_paginator_item(count)
       else
@@ -111,6 +125,27 @@
 
   if previous_arrow.length && !can_scroll_through
     change_activity($(previous_arrow))
+
+
+  timerStart = () ->
+    if enabletimer
+      timer = setInterval(move_by_timer, interval)
+
+  timerStop = () ->
+    if enabletimer
+      clearInterval(timer)
+
+  carousel.add(previous_arrow).add(next_arrow).add(paginator_parent).mouseout () ->
+    if mouse_over_stop
+      timerStart()
+      true
+
+  carousel.add(previous_arrow).add(next_arrow).add(paginator_parent).mouseover () ->
+    if mouse_over_stop
+      timerStop()
+      true
+
+  timerStart()
 
   paginator paginator_item, classname
 
