@@ -7,7 +7,7 @@
     position: ['center', 'center']
     resizable: false
     title: 'Пожалуйста укажите E-mail'
-    width: '350px'
+    width: '450px'
     open: (evt, ui) ->
       $('body').css('overflow', 'hidden')
     close: (event, ui) ->
