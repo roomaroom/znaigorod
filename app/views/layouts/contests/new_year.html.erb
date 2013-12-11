@@ -16,12 +16,20 @@
 <% end %>
 
 <%= content_for :content do %>
-  <%= render :partial => 'commons/email_request_form' %>
-  <%= render :partial => 'commons/public_header' %>
-  <%= render :partial => 'commons/public_content' %>
+  <%= render :partial => 'commons/new_feature' %>
+  <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
+  <div class='new_year'>
+    <div class='new_year_header'>
+    </div>
+    <div class='new_year_cotent'>
+      <%= render :partial => 'commons/public_header' %>
+      <%= render :partial => 'commons/public_content' %>
+    </div>
+  </div>
   <%= render :partial => 'commons/public_footer' %>
   <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
   <%= yield :yandex_map_scripts %>
+  <%= yield :two_gis_map_scripts %>
   <%= render :partial => 'commons/public_reformal' %>
 <% end %>
 
