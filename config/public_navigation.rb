@@ -45,7 +45,7 @@ SimpleNavigation::Configuration.run do |navigation|
       more.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? params[:controller] }
       more.item :services, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
-      more.item :widgets, 'Виджеты', widgets_root_path, highlights_on: -> { params[:controller] == 'wigdets' }
+      more.item :widgets, 'Виджеты', widgets_root_path, highlights_on: -> { params[:controller].match /widgets/i }
       more.item :feedback, 'Отзывы и предложения', feedback_path, highlights_on: -> { params[:controller] == 'feedback' }
     end
 
