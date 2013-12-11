@@ -1,5 +1,4 @@
 @init_email_form = () ->
-  forms = $("#new_discount, #new_coupon, #new_certificate, #new_afisha")
 
   email_request_form = $("#email_request_form").dialog
     autoOpen: false
@@ -13,7 +12,6 @@
       $('body').css('overflow', 'hidden')
     close: (event, ui) ->
       $('body').css('overflow', 'auto')
-      forms.unbind('submit').submit()
 
   $('#email_request_form').submit ->
     email = $('#email_request_form #account_email').val()
@@ -33,9 +31,16 @@
 
     return false
 
-  forms.submit ->
-    $("#email_request_form").dialog('open')
-    false
+  dateToStorage = () ->
+    current = new Date()
+    set = new Date(window.localStorage.getItem('last_dialog_show'))
+    unless set == null
+      if current > set.addDays(1)
+        window.localStorage.setItem('last_dialog_show', current)
+        $('#email_request_form').dialog('open')
+    else
+      window.localStorage.setItem('last_dialog_show', current)
+      $('#email_request_form').dialog('open')
 
-@show_email_request_form = ->
-  $("#email_request_form").dialog('open')
+
+  dateToStorage()

@@ -32,7 +32,6 @@
     close: (event, ui) ->
       $('body').css('overflow', 'auto')
       $(this).dialog('destroy').remove()
-      show_email_request_form()
 
   dialog
 
