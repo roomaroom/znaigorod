@@ -1,0 +1,81 @@
+.new_year
+  +clearfix
+  background: #000 image_url('public/new_year/bg.jpg') no-repeat center top
+
+  .new_year_header
+    width: 1270px
+    position: relative
+    margin: 0 auto
+
+    .new_year_logo_left,
+    .new_year_logo_center,
+    .new_year_logo_right
+      position: absolute
+      top: 0
+      background: transparent image_url('public/new_year/logo.png') no-repeat top left
+      z-index: 1
+
+      a
+        +clearfix
+        display: block
+        text-indent: -9999em
+
+    .new_year_logo_left
+      left: 0
+      width: 360px
+      height: 173px
+      background-image: image_url('public/new_year/logo_left.png')
+
+      a
+        width: 360px
+        height: 173px
+
+    .new_year_logo_center
+      left: 360px
+      width: 550px
+      height: 220px
+      background-image: image_url('public/new_year/logo_center.png')
+
+      a
+        width: 550px
+        height: 220px
+
+    .new_year_logo_right
+      left: 910px
+      width: 360px
+      height: 173px
+      background-image: image_url('public/new_year/logo_right.png')
+
+      a
+        width: 360px
+        height: 173px
+
+  .new_year_cotent
+    margin-top: 150px
+
+    .header_wrapper
+      border-bottom: none
+      margin-top: 0
+      margin-bottom: 0
+
+      .header
+        border-bottom: 2px solid #f60
+        background-color: #fff
+        padding-top: 30px
+
+        .logo
+          top: 30px
+
+        .tomsk
+          top: 30px
+
+        .dashboard
+          top: 30px
+
+    .content_wrapper
+      margin-bottom: 0
+
+      .content
+        background-color: #fff
+        padding-top: 10px
+        padding-bottom: 10px

@@ -16,10 +16,14 @@
 <% end %>
 
 <%= content_for :content do %>
-  <%= render :partial => 'commons/new_feature' %>
   <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
   <div class='new_year'>
     <div class='new_year_header'>
+      <% %w[left center right].each do |part| %>
+        <%= content_tag :div, :class => "new_year_logo_#{part}" do %>
+          <%= link_to 'Выиграй новогоднюю ночь с Детьми лейтенанта Шмидта в TopGear Bar', '#' %>
+        <% end %>
+      <% end %>
     </div>
     <div class='new_year_cotent'>
       <%= render :partial => 'commons/public_header' %>
