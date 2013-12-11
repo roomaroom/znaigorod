@@ -16,7 +16,7 @@
   animation_speed = 400
   can_scroll_through = true
   # the timer of paginator config
-  interval = 1000
+  interval = 15000
   enabletimer = true
   mouse_over_stop = true
 
