@@ -1,0 +1,34 @@
+<div class="widgets_list">
+  <h1>Доступные виджеты</h1>
+
+  <ul>
+    <li>
+      <%= link_to 'Веб-камеры', new_widgets_webcam_path, :class => 'image webcams', :title => 'Получить код виджета' %>
+
+      <div class="text">
+        <%= link_to 'Веб-камеры', new_widgets_webcam_path, :class => 'link' %>
+        <p>Позволяет показывать на сайте веб-камеры ЗнайГород</p>
+      </div>
+    </li>
+
+    <% if false %>
+      <li>
+        <%= link_to 'Заведения', '#', :class => 'image organizations', :title => 'Получить код виджета' %>
+
+        <div class="text">
+          <%= link_to 'Заведения', '#', :class => 'link' %>
+          <p>Позволяет показывать на сайте заведения ЗнайГород</p>
+        </div>
+      </li>
+
+      <li>
+        <%= link_to 'Скидки', '#', :class => 'image discounts', :title => 'Получить код виджета' %>
+
+        <div class="text">
+          <%= link_to 'Скидки', '#', :class => 'link' %>
+          <p>Позволяет показывать на сайте скидки ЗнайГород</p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
