@@ -43,6 +43,7 @@
  * = require ./yandex_stat
  * = require ./yandex_map
  * = require ./common
+ * = require ./contests
  * = require ./preload_images
  * = require ./show_tipsy
  * = require ./more_main_menu
