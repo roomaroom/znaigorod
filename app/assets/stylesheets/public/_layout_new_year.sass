@@ -72,6 +72,11 @@
         .dashboard
           top: 30px
 
+    .filters_wrapper
+      width: 1200px
+      padding-top: 10px
+      margin: 0 auto
+
     .content_wrapper
       margin-bottom: 0
 
@@ -117,3 +122,35 @@
           .right
             float: left
             width: 700px
+
+            h1
+              +clearfix
+              text-indent: -9999em
+              line-height: 60px
+              background: transparent image_url('public/new_year/contest_headline.png') no-repeat left center
+              margin-top: 10px
+
+            p, ul
+              margin-bottom: 15px
+
+            ul li
+              margin-bottom: 3px
+
+              &:before
+                content: "\2013"
+                padding-right: 5px
+
+            span.important
+              color: #fff
+              background-color: #019cde
+              padding: 1px 5px 2px
+
+            .awards li
+              margin-bottom: 5px
+              &:before
+                float: left
+                content: ''
+                width: 13px
+                height: 13px
+                background: transparent image_url('public/new_year/snowflake.png') no-repeat center center
+                margin: 3px 5px 0 0
