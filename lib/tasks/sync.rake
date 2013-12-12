@@ -103,9 +103,7 @@ class MovieSyncer
 
     def find_similar_cinematheatre_by(cinema_title)
       similar_cinematheatre = Organization.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:category)}}.results
-      if similar_cinematheatre.one?
-        puts "Найден похожий кинотеатр '#{cinema_title}' -> '#{similar_cinematheatre.first.title}'"
-      else
+      unless similar_cinematheatre.one?
         puts "Кинотеатр '#{cinema_title}' не найден"
 
         message = I18n.localize(Time.now, :format => :short) + " Не могу найти кинотеатр '#{cinema_title}'"
@@ -138,7 +136,7 @@ namespace :sync do
       bar.increment!
     end
 
-    MovieSyncer.new(:place => "Fакел", :movies => movies).sync
+    MovieSyncer.new(:place => '"Fакел", развлекательный комплекс', :movies => movies).sync
   end
 
   desc "Sync movie seances from http://kinomax.tomsk.ru"
@@ -181,7 +179,7 @@ namespace :sync do
       bar.increment!
     end
 
-    MovieSyncer.new(:place => "Киномакс", :movies => movies).sync
+    MovieSyncer.new(:place => 'Киномакс, кинотеатр', :movies => movies).sync
   end
 
   desc "Sync movie seances from http://kinomir.tom.ru"
@@ -227,12 +225,12 @@ namespace :sync do
       bar.increment!
     end
 
-    MovieSyncer.new(:place => "Киномир", :movies => movies).sync
+    MovieSyncer.new(:place => 'Киномир, кинотеатр', :movies => movies).sync
   end
 end
 
 task :sync => ['sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
-  organiation_ids = Organization.where(:title => ['Киномир, кинотеатр', 'Киномакс, кинотеатр', 'Центр досуга и спорта "Факел", развлекательный комплекс']).map(&:id)
+  organiation_ids = Organization.where(:title => ['"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
   bad_showings = Showing.where(:afisha_id => MovieSyncer.finded_movies.map(&:id).uniq).where(:organization_id => organiation_ids).where('starts_at > ?', MovieSyncer.now).where('updated_at <> ?', MovieSyncer.now)
   bad_showings.destroy_all
 end
