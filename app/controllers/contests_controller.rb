@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
 
   def index
-    @contests = Contest.ordered_by_starts_on
+    @contests = Contest.available
   end
 
   def show

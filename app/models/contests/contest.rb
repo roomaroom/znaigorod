@@ -3,13 +3,13 @@
 class Contest < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :title, :description, :ends_on, :starts_on, :vfs_path
+  attr_accessible :title, :description, :ends_at, :starts_at, :vfs_path
 
   has_many :works, :dependent => :destroy
 
   validates_presence_of :title
 
-  scope :ordered_by_starts_on, order('starts_on desc')
+  scope :available, -> { where('starts_at <= ?', Time.zone.now).order('starts_at desc') }
 
   default_scope order('id DESC')
 
@@ -27,8 +27,8 @@ end
 #  id          :integer          not null, primary key
 #  title       :string(255)
 #  description :text
-#  starts_on   :date
-#  ends_on     :date
+#  starts_at   :datetime
+#  ends_at     :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  vfs_path    :string(255)

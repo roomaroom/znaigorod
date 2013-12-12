@@ -14,18 +14,18 @@
   </div>
 
   <div>
-    <span class="label">Дата начала:</span>
-    <% if resource.starts_on? %>
-      <span class="value"><%= l resource.starts_on %></span>
+    <span class="label">Дата и время начала:</span>
+    <% if resource.starts_at? %>
+      <span class="value"><%= l resource.starts_at %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
   </div>
 
   <div>
-    <span class="label">Дата окончания:</span>
-    <% if resource.ends_on? %>
-      <span class="value"><%= l resource.ends_on %></span>
+    <span class="label">Дата и время окончания:</span>
+    <% if resource.ends_at? %>
+      <span class="value"><%= l resource.ends_at %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>

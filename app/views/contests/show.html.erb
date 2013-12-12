@@ -1,6 +1,6 @@
 <% content_for :page_title, @contest.title.excerpt %>
 
-<div class='contest'>
+<div class='contest <%= @contest.slug %>'>
   <h1><%= @contest.title.excerpt %></h1>
   <div class='description'>
     <%= @contest.description.as_html %>

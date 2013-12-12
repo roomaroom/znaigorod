@@ -16,12 +16,18 @@
        contest_description += '. ' + work.description.squish if work.description.present?
        contest_description = truncate(contest_description, :length => 140)
     %>
-    <% if @contest.ends_on >= Date.today %>
-      <div class='contest_work_like'>
-        <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
-      </div>
+    <% if @contest.starts_at <= Time.zone.now %>
+      <% if @contest.ends_at >= Time.zone.now %>
+        <div class='contest_work_like'>
+          <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
+        </div>
+      <% else %>
+        <div class='contest_work_vk_like_on_list'><%= t 'contest.votes', :count => work.contest_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %></div>
+      <% end %>
     <% else %>
-      <div class='contest_work_vk_like_on_list'><%= t 'contest.votes', :count => work.contest_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %></div>
+      <div class='contest_work_vk_like_on_list'>
+        Голосование начнётся <%= l @contest.starts_at %>
+      </div>
     <% end %>
   </li>
 <% end %>

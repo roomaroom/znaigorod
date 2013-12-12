@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131203015308) do
+ActiveRecord::Schema.define(:version => 20131212044823) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -242,8 +242,8 @@ ActiveRecord::Schema.define(:version => 20131203015308) do
   create_table "contests", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.date     "starts_on"
-    t.date     "ends_on"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "vfs_path"

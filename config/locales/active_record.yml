@@ -138,9 +138,9 @@ ru:
 
       contest:
         <<: *common_attributes
-        ends_on: Дата окончания
+        ends_at: Окончание
         published: Опубликован
-        starts_on: Дата начала
+        starts_at: Начало
 
       work:
         <<: *common_attributes
