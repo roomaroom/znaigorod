@@ -29,3 +29,7 @@ main_page:
       from: '2013-12-06 00:00'
       to: '2013-12-13 23:00'
       afisha_slug: 'den-otkrytyh-dverey-v-folksvagen-tsentre-evraziya'
+    '1':
+      from: '2013-12-12 19:00'
+      to: '2013-12-13 19:00'
+      afisha_slug: 'kulinarnyy-master-klass-merry-christmas'
