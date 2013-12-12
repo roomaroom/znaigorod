@@ -13,7 +13,7 @@
   <meta property='og:image' content='<%= @work.image_url.gsub(/\/\d+-\d+\//, '/100-63!n/') %>' />
 <% end %>
 
-<div class='contest'>
+<div class='contest <%= @work.contest.slug %>'>
   <h1><%= @work.contest.title.excerpt %></h1>
 
   <div class='description'>
