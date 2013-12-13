@@ -6,11 +6,20 @@
      content = truncate(full_content, :length => 140)
   %>
   <meta='description' content='<%= full_content %>' />
-  <meta property='og:description' content='<%= content %>'/>
-  <meta property='og:site_name' content='Знай­Город - конкурс' />
-  <meta property='og:title' content='<%= @work.contest.title.excerpt %>. <%= @work.title %>' />
-  <meta property='og:url' content='<%= "#{request.protocol}#{request.host_with_port}#{contest_work_path(@work.contest, @work)}" %>' />
-  <meta property='og:image' content='<%= @work.image_url.gsub(/\/\d+-\d+\//, '/100-63!n/') %>' />
+
+  <meta property='og:site_name' content='ЗнайГород - конкурс' />
+
+  <meta property='og:title' content='Поддержи участника конкурса ЗнайГорода «<%= @work.contest.title %>' />
+  <% if content.present? %>
+    <meta property='og:description' content='<%= content %>'/>
+  <% end %>
+  <meta property='og:url' content='<%= contest_work_url(@work.contest, @work) %>' />
+  <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
+
+  <meta name='twitter:site' content='@znaigorod' />
+  <meta name='twitter:title' content='Поддержи участника конкурса ЗнайГорода «<%= @work.contest.title %>' />
+  <meta name='twitter:url' content='<%= contest_work_url(@work.contest, @work) %>' />
+  <meta name='twitter:image:src' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
 <% end %>
 
 <div class='contest <%= @work.contest.slug %>'>
@@ -21,10 +30,14 @@
   </div>
   <div class='work ajaxed_voteable'>
     <%= link_to 'Все участники конкурса', contest_path(@work.contest), :class => :link_to_contest %>
-    <%= content_tag :h2, @work.title if @work.title.present? %>
+    <h2>
+      <%= @work.title if @work.title.present? %>
+      <%= '&nbsp;'.html_safe unless @work.title.present? %>
+    </h2>
     <div class='image'>
       <%= work_image_tag @work %>
     </div>
+    <%= render :partial => 'commons/share_this' %>
     <% if @contest.starts_at <= Time.zone.now %>
       <% if @contest.ends_at >= Time.zone.now %>
         <div class='contest_work_like'>

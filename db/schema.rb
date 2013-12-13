@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213021826) do
+ActiveRecord::Schema.define(:version => 20131213035659) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -245,10 +245,16 @@ ActiveRecord::Schema.define(:version => 20131213021826) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "vfs_path"
     t.string   "slug"
+    t.text     "og_description"
+    t.string   "og_image_file_name"
+    t.string   "og_image_content_type"
+    t.integer  "og_image_file_size"
+    t.datetime "og_image_updated_at"
+    t.text     "og_image_url"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true

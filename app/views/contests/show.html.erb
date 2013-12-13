@@ -1,9 +1,27 @@
 <% content_for :page_title, @contest.title.excerpt %>
 
+<% content_for :extra_meta do %>
+  <meta property='og:site_name' content='ЗнайГород - конкурс' />
+  <meta property='og:title' content='Конкурс ЗнайГорода «<%= @contest.title %>' />
+  <meta property='og:url' content='<%= contest_url(@contest) %>' />
+  <meta property='og:image' content='<%= resized_image_url(@contest.og_image_url, 130, 63) %>' />
+  <% if @contest.og_description? %>
+    <meta property='og:description' content='<%= @contest.og_description %>' />
+  <% end %>
+
+  <meta name='twitter:site' content='@znaigorod' />
+  <meta name='twitter:title' content='Конкурс ЗнайГорода «<%= @contest.title %>' />
+  <meta name='twitter:url' content='<%= contest_url(@contest) %>' />
+  <meta name='twitter:image:src' content='<%= resized_image_url(@contest.og_image_url, 130, 63) %>' />
+<% end %>
+
 <div class='contest <%= @contest.slug %>'>
   <h1><%= @contest.title.excerpt %></h1>
   <div class='description'>
     <%= @contest.description.as_html %>
+  </div>
+  <div class='share_and_likes'>
+    <%= render :partial => 'commons/share_and_like_this', :locals => { :url => contest_url(@contest) } %>
   </div>
   <% if @works.any? %>
     <div class='works ajaxed_voteable'>

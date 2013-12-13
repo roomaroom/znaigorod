@@ -28,6 +28,7 @@
  * = require ./address
  * = require ./curtail
  * = require ./webcam
+ * = require ./contest
  * = require ./accounts_for_lottery
  * = require ./offers
  * = require ./main

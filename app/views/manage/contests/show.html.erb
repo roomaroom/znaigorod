@@ -31,6 +31,24 @@
     <% end %>
   </div>
 
+  <div>
+    <span class="label">OG description:</span>
+    <% if resource.og_description? %>
+      <span class="value"><%= resource.og_description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div class='snapshot'>
+    <span class="label">OG image:</span>
+    <%= content_tag(:p, image_tag(resized_image_url(resource.og_image_url, 200, 97), size: '200x97')) if resource.og_image.present? %>
+    <%= simple_form_for resource, as: :contest, url: manage_contest_path(resource.id) do |f| %>
+      <%= f.input :og_image, label: 'Выберите изображение', required: true, class: :button %>
+      <%= f.error :og_image_content_type %>
+    <% end %>
+  </div>
+
   <div class="works">
     <h3>Работы <%= link_to "Добавить работу", new_manage_contest_work_path(resource), :class => 'edit_link' %></h3>
     <ul>

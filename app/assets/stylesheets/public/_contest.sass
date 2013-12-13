@@ -104,6 +104,35 @@
     font-size: 12px
     margin: 0 10px
 
+    .share_and_likes
+      min-height: 30px
+
+      .share
+        float: left
+        width: 45%
+
+        .title
+          +inline-block
+
+        .yashare-auto-init
+          +inline-block
+
+      .likes
+        float: right
+        width: 45%
+        margin-top: 4px
+
+        .vk_like
+          float: right
+          clear: none !important
+
+        .fb_like
+          float: right
+          margin-right: 20px
+
+        .ok_like
+          float: right
+
     .contests_list
       font-size: 14px
 
@@ -221,21 +250,38 @@
 
     .work
       margin: 20px 0
+
       .link_to_contest
         float: right
         display: block
         font-size: 14px
         margin: 1px 10px 0 0
+
       h2
         margin-bottom: 15px
+
       .image
         text-align: center
         clear: both
         margin-bottom: 10px
+
         img
           border: 1px solid #ccc
           display: block
           margin: 0 auto
+
+      .share
+        float: left
+
+        .title
+          +inline-block
+
+        .yashare-auto-init
+          +inline-block
+          .b-share__handle
+            padding-top: 0 !important
+            padding-bottom: 0 !important
+
       .contest_work_like
         +contest_work_like
         margin: 0 auto 10px

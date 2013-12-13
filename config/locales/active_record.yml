@@ -142,6 +142,8 @@ ru:
         ends_at: Окончание
         published: Опубликован
         starts_at: Начало
+        og_description: OG description
+        og_image: OG image
 
       work:
         <<: *common_attributes
