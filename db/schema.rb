@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212044823) do
+ActiveRecord::Schema.define(:version => 20131213021826) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20131212044823) do
     t.integer  "account_id"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.boolean  "dating",                :default => true
   end
 
   add_index "account_settings", ["account_id"], :name => "index_account_settings_on_account_id"
