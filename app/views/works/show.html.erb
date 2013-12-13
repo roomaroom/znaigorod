@@ -1,4 +1,5 @@
-<% content_for :page_title, @work.title.present? ? "#{@work.title}, #{@work.contest.title}" : @work.contest.title %>
+<% work_title = [@work.title, "Поддержи участника конкурса ЗнайГорода «#{@work.contest.title}"].compact.reject(&:empty?).join('. ') %>
+<% content_for :page_title, work_title %>
 
 <% content_for :extra_meta do %>
   <% full_content = @work.author_info
@@ -9,7 +10,7 @@
 
   <meta property='og:site_name' content='ЗнайГород - конкурс' />
 
-  <meta property='og:title' content='Поддержи участника конкурса ЗнайГорода «<%= @work.contest.title %>' />
+  <meta property='og:title' content='<%= work_title %>' />
   <% if content.present? %>
     <meta property='og:description' content='<%= content %>'/>
   <% end %>
@@ -17,7 +18,7 @@
   <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
 
   <meta name='twitter:site' content='@znaigorod' />
-  <meta name='twitter:title' content='Поддержи участника конкурса ЗнайГорода «<%= @work.contest.title %>' />
+  <meta name='twitter:title' content='<%= work_title %>' />
   <meta name='twitter:url' content='<%= contest_work_url(@work.contest, @work) %>' />
   <meta name='twitter:image:src' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
 <% end %>
