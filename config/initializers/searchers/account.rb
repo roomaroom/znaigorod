@@ -15,6 +15,10 @@ HasSearcher.create_searcher :accounts do
     search.with(:acts_as, search_object.acts_as) if search_object.acts_as.try(:present?)
   end
 
+  scope do
+    with :dating, true
+  end
+
   property :category do |search|
     search.any_of do |search|
       search.with(:inviter_categories, search_object.category)

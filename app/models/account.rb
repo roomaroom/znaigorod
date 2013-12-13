@@ -49,7 +49,9 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  validates_email_format_of :email, :allow_nil => true
+  validates_email_format_of :email, :allow_blank => true
+
+  scope :dating, -> { account_settings.dating? }
 
   scope :ordered, -> { order('ID ASC') }
 
@@ -61,6 +63,7 @@ class Account < ActiveRecord::Base
 
   searchable do
     boolean(:with_avatar) { with_avatar? }
+    boolean(:dating) { account_settings.dating? }
 
     text :first_name
     text :last_name
