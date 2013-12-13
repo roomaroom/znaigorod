@@ -6,7 +6,7 @@
   <meta property='og:url' content='<%= contest_url(@contest) %>' />
   <meta property='og:image' content='<%= resized_image_url(@contest.og_image_url, 130, 63) %>' />
   <% if @contest.og_description? %>
-    <meta property='og:description' content='<%= @contest.og_description %>' />
+    <meta property='og:description' content='<%= @contest.og_description.squish %>' />
   <% end %>
 
   <meta name='twitter:site' content='@znaigorod' />

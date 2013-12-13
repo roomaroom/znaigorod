@@ -12,7 +12,7 @@
 
   <meta property='og:title' content='<%= work_title %>' />
   <% if @work.contest.og_description? %>
-    <meta property='og:description' content='<%= @work.contest.og_description %>' />
+    <meta property='og:description' content='<%= @work.contest.og_description.squish %>' />
   <% end %>
   <meta property='og:url' content='<%= contest_work_url(@work.contest, @work) %>' />
   <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
