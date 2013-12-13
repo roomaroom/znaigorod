@@ -5,7 +5,7 @@
         <tr align="left">
           <td align="left" valign="top">
             <a href="<%= account_path @vote.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>">
-              <img src="<%= resized_image_url(@vote.user.account.avatar.url, 30, 30) %>" align="left" />
+              <img src="<%= resized_image_url(@vote.user.account.avatar.url, 30, 30) %>" align="left" title="<%= @vote.user.account.title %>" alt="<%= @vote.user.account.title %>" />
             </a>
           </td>
         </tr>

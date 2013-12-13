@@ -5,7 +5,7 @@
         <tr align="left">
           <td align="left" valign="top">
             <a href="<%= account_path @comment.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>">
-              <img src="<%= resized_image_url(@comment.user.account.avatar.url, 30, 30) %>" align="left" />
+              <img src="<%= resized_image_url(@comment.user.account.avatar.url, 30, 30) %>" align="left" title="<%= @comment.user.account.title %>" alt="<%= @comment.user.account.title %>" />
             </a>
           </td>
         </tr>
@@ -36,7 +36,7 @@
                 <td align="left" valign="top">
 
                   <% if @comment.commentable.is_a?(Discount) %>
-                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png"), discount_path(@comment.commentable, :only_path => false, :anchor => "answer_#{@comment.id}", :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                    <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png", :title => t("notice_mailer.answer"), :alt => t("notice_mailer.answer")), discount_path(@comment.commentable, :only_path => false, :anchor => "answer_#{@comment.id}", :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
                   <% end %>
 
                 </td>

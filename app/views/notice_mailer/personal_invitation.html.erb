@@ -5,7 +5,7 @@
         <tr align="left">
           <td align="left" valign="top">
             <a href="<%= account_path @invite.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>">
-              <img src="<%= resized_image_url(@invite.account.avatar.url, 30, 30) %>" align="left" />
+              <img src="<%= resized_image_url(@invite.account.avatar.url, 30, 30) %>" align="left" title="<%= @invite.account.title %>" alt="<%= @invite.account.title %>" />
             </a>
           </td>
         </tr>
@@ -43,7 +43,7 @@
               <tr align="left">
                 <td align="left" valign="top">
                   <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>">
-                    <img src="<%= "#{Settings['app']['url']}/assets/public/button.png" %>" />
+                    <img src="<%= "#{Settings['app']['url']}/assets/public/button.png" %>" alt="<%= t("notice_mailer.to_invitations") %>" title="<%= t("notice_mailer.to_invitations") %>" />
                   </a>
                 </td>
               </tr>
