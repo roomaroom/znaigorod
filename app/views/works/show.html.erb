@@ -11,8 +11,8 @@
   <meta property='og:site_name' content='ЗнайГород - конкурс' />
 
   <meta property='og:title' content='<%= work_title %>' />
-  <% if content.present? %>
-    <meta property='og:description' content='<%= content %>'/>
+  <% if @work.contest.og_description? %>
+    <meta property='og:description' content='<%= @work.contest.og_description %>' />
   <% end %>
   <meta property='og:url' content='<%= contest_work_url(@work.contest, @work) %>' />
   <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
