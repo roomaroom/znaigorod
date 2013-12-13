@@ -8,7 +8,14 @@ class AccountSettings < ActiveRecord::Base
                   :comments_answers,
                   :comments_likes,
                   :afishas_statistics,
-                  :discounts_statistics
+                  :discounts_statistics,
+                  :dating
+
+  after_save :account_reindex
+
+  def account_reindex
+    self.account.index
+  end
 
 end
 

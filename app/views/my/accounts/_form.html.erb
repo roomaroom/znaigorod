@@ -12,6 +12,12 @@
       <span>E-mail</span>
       <%= f.input :email, label: false, as: :string, :input_html => {:size => 30} %>
     </div>
+    <div class="line">
+      <%= f.simple_fields_for :account_settings do |s| %>
+        <span>Показывать меня в знакомствах</span>
+          <%= s.input :dating, :wrapper => :checkbox, :label => false, inline_label: '' %>
+      <% end %>
+    </div>
   </div>
   <div class="email_notifications">
     <h3>Присылать уведомления на E-mail</h3>

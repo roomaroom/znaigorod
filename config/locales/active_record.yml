@@ -89,6 +89,7 @@ ru:
         comments_likes: Пользователю понравился мой комментарий
         afishas_statistics: Статистика по моим афишам
         discounts_statistics: Статистика по моим скидкам
+        dating: Показывать меня в знакомствах
 
       invitation:
         category:      'Куда:'
