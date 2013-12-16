@@ -156,8 +156,8 @@ class SaunaHallsPresenter
   def sauna_without_halls_ids
     Sauna.search_ids {
       with(:with_sauna_halls, false)
-
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
+      paginate(:page => 1, :per_page => 100)
     }
   end
 
