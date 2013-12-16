@@ -21,7 +21,7 @@ module OrganizationsPresenter
     attr_accessor :kind, :filters
 
     def suborganization_kinds
-      OrganizationsCatalogPresenter.suborganization_models
+      Organization.suborganization_models
     end
 
     def acts_as_organizations_presenter(*args)

@@ -34,47 +34,78 @@ $main_menu_margin_top: 50px
           &:active
             padding: 4px 10px 2px
 
-        &.selected > a
+        > a.selected
           color: #fff
           background-color: #f60
+
+        > ul
+          display: none
+          position: absolute
+          font-size: 12px
+          +box-shadow(#999 5px 0 5px -5px, #999 0 5px 5px -5px, #999 -5px 0 5px -5px)
+          +border-bottom-left-radius(5px)
+          +border-bottom-right-radius(5px)
+          background-color: #fff
+          padding: 10px 0
+          z-index: 5
+
+          > li
+            position: relative
+            padding: 0 10px
+
+            a
+              display: block
+              color: #000
+              white-space: nowrap
+              padding: 3px
+
+              &:hover
+                color: #f60
+                text-decoration: none
+
+              &.selected
+                color: #f60
+
+            > ul
+              display: none
+              position: absolute
+              left: 0
+              top: -10px
+              +box-shadow(#999 5px 0 5px -5px, #999 0 5px 5px -5px, #999 0 -5px 5px -5px)
+              +border-top-right-radius(5px)
+              +border-bottom-left-radius(5px)
+              +border-bottom-right-radius(5px)
+              background-color: #fff
+              padding: 10px
+              z-index: 5
+
+            &:hover
+              > ul
+                display: block
+
+
+        &:hover
+          > ul
+            display: block
+
+      #main_menu_organizations > ul > li > ul
+        left: 167px
 
       #main_menu_more
         width: 8%
         position: relative
 
         > a
+          color: #000
           background-color: #fff
           margin-right: 2px
           padding: 3px
 
-        ul
-          display: none
-          position: absolute
-          right: 0
-          font-size: 12px
-          +box-shadow(#555 0 0 3px)
-          +border-radius
-          background-color: #fff
-          padding: 10px
-          z-index: 10
-
-          a
-            color: #000
-            white-space: nowrap
-
-            &:hover
-              color: #f60
-              text-decoration: none
-
-          .selected a
+          &.selected
             color: #f60
 
-        &:hover ul
-          display: block
-
-        &.selected > a
-          color: #f60
-          background-color: #fff
+        ul
+          right: 0
 
     .search_form
       float: left

@@ -12,11 +12,6 @@ class OrganizationsCatalogPresenter
 
   acts_as_organizations_presenter kind: :organization, filters: [:categories]
 
-
-  def self.suborganization_models
-    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter]
-  end
-
   def categories_filter
     Hashie::Mash.new :selected => [], :available => []
   end

@@ -80,6 +80,9 @@ class Organization < ActiveRecord::Base
 
   ### Payments ===>
 
+  def self.suborganization_models
+    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter]
+  end
 
   def self.available_suborganization_kinds
     Dir[Rails.root.join('app/models/suborganizations/*.rb')].map { |f| f.split('/').last.gsub '.rb', '' }
