@@ -9,14 +9,23 @@
     font-size: 22px
     margin-bottom: 10px
 
+  .upload_gallery_images
+    display: none
+
   .simple_form
     textarea
       font-size: 14px
+      outline: none
       resize: none
-      width: 800px
+      width: 540px
+
+      &:active, &:focus
+        background: #fffbef
 
     #post_title
       height: 34px
 
-    #post_content_preview
-      height: 500px
+  .markItUpEditor
+    border-top-left-radius: 0 !important
+    border-top-right-radius: 0 !important
+    border-top: none

@@ -1,3 +1,12 @@
+clone = (obj) ->
+  return obj  if obj is null or typeof (obj) isnt "object"
+
+  temp = new obj.constructor()
+  for key of obj
+    temp[key] = clone(obj[key])
+
+  temp
+
 beforeImageInsert = (h) ->
   textarea = $(h.textarea)
 
@@ -17,14 +26,14 @@ beforeImageInsert = (h) ->
       message = data.jqXHR.responseText
       $('.message_wrapper').text(message).show().delay(5000).slideUp('slow')
 
-  file_input.click()
-
 markItUpSettings = ->
   settings = clone(mySettings)
+  settings.beforeInsert = ''
 
   imageButton = {
     name:'Изображение'
-    className: 'image_button',
+    className: 'image_button'
+    openWith: ''
     beforeInsert: (h) ->
       beforeImageInsert(h)
   }
@@ -33,8 +42,8 @@ markItUpSettings = ->
 
   settings
 
-init_markitup = ->
+@init_my_posts = ->
   $('.markitup').markItUp(markItUpSettings())
 
-@init_my_posts = ->
-  init_markitup()
+  $('.image_button').click ->
+    $('#gallery_image_file').focus().trigger('click')
