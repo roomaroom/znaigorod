@@ -11,8 +11,10 @@
           <%= link_to account.title, account_path(account) %>
         </div>
 
+
+
         <% if current_user.account.invitation_for(account, kind, category, parent) %>
-          <%= render :partial => 'invitations/status', :locals => { :kind => kind } %>
+          <%= render :partial => 'invitations/status', :locals => { :kind => kind, :limit_is_reached => current_user.account.limit_is_reached? } %>
         <% else %>
           <%= simple_form_for :invitation, :url => parent ? [parent, :invitations] : [current_user.account.invitations.build], :remote => true do |f| %>
             <%= hidden_field_tag :render, 'status' %>
@@ -20,13 +22,19 @@
             <%= f.input :kind, :as => :hidden, :input_html => { :value => kind } %>
             <%= f.input :invited_id, :as => :hidden, :input_html => { :value => account.id } %>
 
-            <%= f.submit t("invite.#{kind}"),
-                  :onClick => 'share_on_click(this);',
-                  'data-owner_id' => (account.users.first.try(:vk_uid) if current_user.provider == 'vkontakte'),
-                  'data-message' => parent ? "#{I18n.t("invitation.#{kind}.#{parent.class.name.underscore}")} \"#{parent}\"" : "#{I18n.t("invitation.without_inviteable.#{kind}")} #{category}",
-                  'data-attachments' => parent ? data_attachments(parent) : account_url(current_user.account) %>
+            <% if current_user.account.limit_is_reached? %>
+              <%= f.submit t("invite.#{kind}"),
+              :disabled => true
+            %>
+            <% else %>
+              <%= f.submit t("invite.#{kind}"),
+              :onClick => 'share_on_click(this);',
+              'data-owner_id' => (account.users.first.try(:vk_uid) if current_user.provider == 'vkontakte'),
+              'data-message' => parent ? "#{I18n.t("invitation.#{kind}.#{parent.class.name.underscore}")} \"#{parent}\"" : "#{I18n.t("invitation.without_inviteable.#{kind}")} #{category}",
+              'data-attachments' => parent ? data_attachments(parent) : account_url(current_user.account) %>
           <% end %>
         <% end %>
+      <% end %>
       </div>
     </li>
   <% end %>

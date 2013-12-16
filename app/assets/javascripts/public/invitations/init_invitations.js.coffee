@@ -129,28 +129,43 @@ handle_new_invitaion_link = (trgt, response) ->
       $('.invitation_form_dialog').dialog('close')
 
     if $(response).hasClass('invitation_status')
-      $(evt.target).replaceWith(response)
+      if $(response).last().val() == "true"
+        $(evt.target).replaceWith(response)
 
-    if $(response).hasClass('limit_is_reached')
-      limit_dialog = $(response).dialog
-        draggable: false
-        height: 'auto'
-        modal: true
-        position: ['center', 'center']
-        resizable: false
-        height: 100
-        width: 255
-        open: (evt, ui) ->
-          $('body').css('overflow', 'hidden')
-        close: (event, ui) ->
-          $('body').css('overflow', 'auto')
-          $(this).dialog('destroy').remove()
+        $('.simple_form.invitation').each(
+          (i,item) ->
+            $(item).find('input').last().replaceWith('<input disabled="disabled" name="commit" type="submit" value="Пригласить">')
+            true
+        )
 
-      limit_dialog
+        limit_dialog = $(
+          '<div class="limit_is_reached">Дневной лимит приглашений исчерпан.<div>
+            <div class="close_dialog">
+              <a href="#">Ок</a>
+            </div>').dialog
+          draggable: false
+          height: 'auto'
+          modal: true
+          position: ['center', 'center']
+          resizable: false
+          height: 100
+          width: 255
+          open: (evt, ui) ->
+            $('body').css('overflow', 'hidden')
+          close: (event, ui) ->
+            $('body').css('overflow', 'auto')
+            $(this).dialog('destroy').remove()
 
-      $(".limit_is_reached .close_dialog").on 'click', () ->
-        limit_dialog.dialog('destroy').remove()
-        false
+        limit_dialog
+
+        $(".limit_is_reached .close_dialog").on 'click', () ->
+          limit_dialog.dialog('destroy').remove()
+          false
+
+      else
+        $(evt.target).replaceWith(response)
+
+
 
 # КУДА: скрыть
 handle_inviteables_search_close = ->

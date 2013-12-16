@@ -94,7 +94,7 @@ class Account < ActiveRecord::Base
   end
 
   def limit_is_reached?
-    if Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count <=10
+    if Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count < 10
       false
     else
       true
