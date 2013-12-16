@@ -24,6 +24,10 @@ every :day, :at => '7:25 am' do
   rake 'sync:kinomir'
 end
 
+every :day, :at => '11am' do
+  rake 'sitemap:refresh refresh_sitemaps'
+end
+
 every :day, :at => '5am' do
   rake 'refresh_sitemaps'
   rake 'account:get_friends'
