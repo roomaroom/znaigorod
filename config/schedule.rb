@@ -24,7 +24,7 @@ every :day, :at => '7:25 am' do
   rake 'sync:kinomir'
 end
 
-every :day, :at => '11am' do
+every 6.hours do
   rake 'sitemap:refresh refresh_sitemaps'
 end
 
@@ -43,6 +43,10 @@ end
 every 3.hours do
   rake 'update_rating:all'
   rake 'balance_notify'
+end
+
+every 6.hours do
+  rake 'sitemap:refresh refresh_sitemaps'
 end
 
 every 5.minutes do
