@@ -134,7 +134,11 @@ handle_new_invitaion_link = (trgt, response) ->
 
         $('.simple_form.invitation').each(
           (i,item) ->
-            $(item).find('input').last().replaceWith('<input disabled="disabled" name="commit" type="submit" value="Пригласить">')
+            $(item).find('input').last().replaceWith(
+              "<input disabled='disabled'" +
+              " title='Дневной лимит приглашений исчерпан.' " +
+              "name='commit' type='submit' value='Пригласить'>"
+            )
             true
         )
 

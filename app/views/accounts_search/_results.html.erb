@@ -24,7 +24,8 @@
 
             <% if current_user.account.limit_is_reached? %>
               <%= f.submit t("invite.#{kind}"),
-              :disabled => true
+              :disabled => true,
+              :title => "Дневной лимит приглашений исчерпан."
             %>
             <% else %>
               <%= f.submit t("invite.#{kind}"),
