@@ -13,6 +13,21 @@
     display: none
 
   .simple_form
+    #post_title
+      height: 34px
+
+    .error
+      clear: both
+      display: block
+
+    .post_categories
+      +clearfix
+
+      .checkbox
+        float: left
+        font-size: 12px
+        width: 150px
+
     textarea
       font-size: 14px
       outline: none
@@ -21,9 +36,6 @@
 
       &:active, &:focus
         background: #fffbef
-
-    #post_title
-      height: 34px
 
   .markItUpEditor
     border-top-left-radius: 0 !important

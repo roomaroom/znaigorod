@@ -213,6 +213,7 @@ ru:
         status: Опубликовать
         kind: Тип обзора
         tag: Теги через запятую
+        categories: Категории
 
       image:
         <<: *common_attributes

@@ -677,6 +677,7 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.float    "rating"
     t.text     "kind"
     t.text     "tag"
+    t.text     "categories"
   end
 
   create_table "prices", :force => true do |t|

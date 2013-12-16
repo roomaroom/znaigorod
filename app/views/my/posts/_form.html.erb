@@ -1,13 +1,11 @@
 <%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
-  <%= hidden_field_tag :only_url, true %>
-
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
 <%= simple_form_for [:my, @post] do |f| %>
+  <%= f.input :categories, :as => :check_boxes %>
   <%= f.input :title %>
-
-  <%= f.input :content, :as => :text, :required => true, :input_html => { :id => 'html', :class => 'markitup', :value => AutoHtmlRenderer.new(@post.content).render }  %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup', :value => AutoHtmlRenderer.new(@post.content).render }  %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>

@@ -129,6 +129,11 @@ ru:
         review: Обзор
         photoreport: Фоторепортаж
 
+      categories:
+        avto: Авто
+        beaty: Красота
+        other: Другое
+
     notification_message:
       kind:
         new_comment: оставил новый комментарий

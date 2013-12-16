@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   include MakePageVisit
   extend FriendlyId
 
-  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind
+  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :gallery_images, :as => :attachable, :dependent => :destroy
@@ -13,13 +13,17 @@ class Post < ActiveRecord::Base
 
   alias_attribute :description, :content
 
-  validates_presence_of :content, :title, :kind, :tag
+  validates_presence_of :content, :title, :kind, :tag, :categories
 
   friendly_id :title, use: :slugged
 
   extend Enumerize
   serialize :kind, Array
   enumerize :kind, in: [:review, :photoreport], multiple: true, predicates: true
+
+  serialize :categories, Array
+  enumerize :categories, in: [:avto, :beaty, :other], multiple: true, predicates: true
+  normalize_attribute :categories, :with => :blank_array
 
   normalize_attribute :kind, with: :blank_array
   normalize_attribute :annotation, :content, :with => [:sanitize, :gilensize_as_html, :strip, :blank]
