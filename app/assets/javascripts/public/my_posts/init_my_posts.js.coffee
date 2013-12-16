@@ -1,33 +1,23 @@
-clone = (obj) ->
-  return obj  if obj is null or typeof (obj) isnt "object"
-
-  temp = new obj.constructor()
-  for key of obj
-    temp[key] = clone(obj[key])
-
-  temp
-
 beforeImageInsert = (h) ->
-  console.log 'beforeInsert'
-  console.log $('.upload_gallery_images #gallery_image_file')
+  textarea = $(h.textarea)
 
-  $('.upload_gallery_images #gallery_image_file').click()
+  before = textarea.val()[0...h.caretPosition]
+  after = textarea.val()[(h.caretPosition + h.selection.length)...textarea.val().length]
 
-  #upload_form = $('.upload_gallery_images')
-  ##file_input = $('#gallery_image_file', upload_form)
+  file_input = $('.upload_gallery_images #gallery_image_file')
 
-  ##file_input.fileupload
-    ##autoUpload: true
+  file_input.fileupload
+    dataType: 'json'
 
-    ##dataType: 'script'
+    done: (e, data) ->
+      url = data.result.files[0].url
+      textarea.val("#{before}#{url}#{after}")
 
-  #dialog = init_modal_dialog
-    #class: 'upload_gallery_images'
-    #height: 390
-    #title: upload_form.data('title')
-    #width:  640
+    fail: (e, data) ->
+      message = data.jqXHR.responseText
+      $('.message_wrapper').text(message).show().delay(5000).slideUp('slow')
 
-  #dialog.html(upload_form)
+  file_input.click()
 
 markItUpSettings = ->
   settings = clone(mySettings)

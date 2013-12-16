@@ -44,6 +44,18 @@ class My::GalleryImagesController < My::ApplicationController
   end
 
   def create
+    if request.xhr?
+      gallery_image = current_user.account.gallery_images.new(:file => params[:gallery_images][:file])
+
+      if gallery_image.save
+        render :json => { :files => [ { :url => gallery_image.file_url } ] }.to_json
+      else
+        render :text => gallery_image.errors.messages.values.join('. ')
+      end
+
+      return
+    end
+
     if params[:afisha_id].present?
       @afisha = current_user.afisha.available_for_edit.find(params[:afisha_id])
       @gallery_image = @afisha.gallery_images.create(:file => params[:gallery_images][:file])
@@ -53,8 +65,6 @@ class My::GalleryImagesController < My::ApplicationController
       img.file_image_url = img.file_url
       img.save!
     end
-
-    render :text => @gallery_image.file_url if params[:only_url]
   end
 
   def destroy

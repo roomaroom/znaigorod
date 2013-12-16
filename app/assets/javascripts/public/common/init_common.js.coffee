@@ -1,5 +1,4 @@
 @init_common = () ->
-
   $('a.disabled, .disabled > a').live 'click', (event) ->
     event.preventDefault()
     false

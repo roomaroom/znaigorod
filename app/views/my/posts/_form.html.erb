@@ -13,7 +13,6 @@
   <%= f.input :title %>
 
   <%= f.input :content, :as => :text, :required => true, :input_html => { :id => 'html', :class => 'markitup', :value => AutoHtmlRenderer.new(@post.content).render }  %>
-  <%= f.input :content, :as => :hidden %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>
