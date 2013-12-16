@@ -73,6 +73,7 @@ class Ability
 
       can :send_to_published, Afisha if user.is_afisha_trusted_editor?
 
+
       can :manage, GalleryFile do |gallery_file|
         gallery_file.attachable.state != 'pending' && gallery_file.attachable.user == user
       end
@@ -112,6 +113,8 @@ class Ability
       can :send_to_draft, Discount do |discount|
         discount.published? && discount.account == user.account
       end
+
+      can [:new, :create, :index], Post if user.persisted?
 
       can [:new, :create], Invitation if user.persisted?
       can :destroy, Invitation do |invitation|

@@ -95,5 +95,6 @@
  * = require ./countdown
  * = require ./offer_price
  * = require ./sweets_carousel
+ * = require ./my_posts
  * = require ./main
  */

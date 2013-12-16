@@ -7,6 +7,7 @@ Znaigorod::Application.routes.draw do
     get '/afisha/available_tags' => 'afishas#available_tags', :as => :available_tags, :controller => 'afishas'
 
     put 'read_all_notifications' => 'notification_messages#read_all_notifications'
+    post '/auto_html/to_html' => 'auto_html#to_html'
 
     resources :notification_messages, :only => :index do
       put 'change_message_status' => 'notification_messages#change_message_status', :on => :member, :as => :change_status
@@ -31,6 +32,8 @@ Znaigorod::Application.routes.draw do
     resources :gallery_images, :only => [:create, :destroy, :index, :new, :edit, :update] do
       delete 'destroy_all', :on => :collection, :as => :destroy_all
     end
+
+    resources :posts
 
     resources :afisha, :except => [:show], :controller => 'afishas' do
       get 'edit/step/:step' => 'afishas#edit', :defaults => { :step => 'first' }, :on => :member, :as => :edit_step

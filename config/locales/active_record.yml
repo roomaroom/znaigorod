@@ -209,6 +209,7 @@ ru:
 
       post:
         <<: *common_attributes
+        content: Содержание
         status: Опубликовать
         kind: Тип обзора
         tag: Теги через запятую

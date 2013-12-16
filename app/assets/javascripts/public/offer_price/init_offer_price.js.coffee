@@ -1,4 +1,4 @@
-init_dialog = (options) ->
+@init_modal_dialog = (options) ->
   dialog = $("<div class='#{options.class}_dialog' />").dialog
     draggable: false
     height:    options.height
@@ -35,7 +35,7 @@ handle_help = ->
   $('.help', '.offers_wrapper').on 'click', ->
     content = $('.description', $(this).closest('.offers_wrapper'))
 
-    dialog = init_dialog
+    dialog = init_modal_dialog
       class:  'description'
       height: 'auto'
       title:  $(this).attr('title')
@@ -53,7 +53,7 @@ handle_offer_price_click = ->
     unless $('.social_signin_links', $(response)).length
       list = $('.offers_list', target.closest('.offers_wrapper'))
 
-      dialog = init_dialog
+      dialog = init_modal_dialog
         class:  target.attr('class')
         height: 565
         title:  target.data('title')

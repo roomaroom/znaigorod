@@ -53,6 +53,8 @@ class My::GalleryImagesController < My::ApplicationController
       img.file_image_url = img.file_url
       img.save!
     end
+
+    render :text => @gallery_image.file_url if params[:only_url]
   end
 
   def destroy
