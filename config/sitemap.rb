@@ -29,6 +29,18 @@ SitemapGenerator::Sitemap.create do
   # Творчество и развитие
   add creations_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Creation.unscoped.last.updated_at
 
+  # Вебкамеры
+  add webcams_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Webcam.unscoped.last.updated_at
+
+  # Конкурсы
+  add contests_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Contest.unscoped.last.updated_at
+
+  # Скидки, сертификаты и купоны, акции и распродажи
+  add discounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Discount.unscoped.last.updated_at
+
+  # Знакомства
+  add accounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Account.unscoped.last.updated_at
+
   # Публикации
   add posts_path, :changefreq => 'weekly', :priority => 0.7, :lastmod => Post.unscoped.last.updated_at
 
