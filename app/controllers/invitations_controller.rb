@@ -11,6 +11,9 @@ class InvitationsController < ApplicationController
   layout false
 
   def create
+    if params["invitation"]["invited_id"].present? && current_user.account.limit_is_reached?
+      render :partial => 'limit_is_reached' and return
+    end
     create! do
       case params[:render]
       when 'status'

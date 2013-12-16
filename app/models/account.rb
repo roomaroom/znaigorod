@@ -93,6 +93,14 @@ class Account < ActiveRecord::Base
     end
   end
 
+  def limit_is_reached?
+    if Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count <=10
+      false
+    else
+      true
+    end
+  end
+
   def remove_comments
     self.comments.each do |c|
       unless c.child.present?

@@ -131,6 +131,27 @@ handle_new_invitaion_link = (trgt, response) ->
     if $(response).hasClass('invitation_status')
       $(evt.target).replaceWith(response)
 
+    if $(response).hasClass('limit_is_reached')
+      limit_dialog = $(response).dialog
+        draggable: false
+        height: 'auto'
+        modal: true
+        position: ['center', 'center']
+        resizable: false
+        height: 100
+        width: 255
+        open: (evt, ui) ->
+          $('body').css('overflow', 'hidden')
+        close: (event, ui) ->
+          $('body').css('overflow', 'auto')
+          $(this).dialog('destroy').remove()
+
+      limit_dialog
+
+      $(".limit_is_reached .close_dialog").on 'click', () ->
+        limit_dialog.dialog('destroy').remove()
+        false
+
 # КУДА: скрыть
 handle_inviteables_search_close = ->
   $('.inviteables_search_close').on 'click', ->
