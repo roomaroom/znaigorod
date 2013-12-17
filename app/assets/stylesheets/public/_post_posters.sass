@@ -1,94 +1,66 @@
 .posts_list
   .posters
     +clearfix
+    padding: 10px
 
     li
       float: left
-      margin: 0 10px 20px 10px
+      height: 380px
+      margin: 0 0 50px 0
+      width: 33%
 
       .item
-        border: 1px solid #ccc
-        margin: 0 auto
-        min-height: 236px
-        position: relative
-        width: 218px
-
-        .title
-          font-size: 12px
-          height: 30px
-          line-height: 16px
-          padding: 5px
-          text-align: center
-
-        .image
-          +clearfix
-          height: 166px
-          position: relative
-          width: 218px
-
-        .text, .text_with_image
-          text-align: center
-          font-size: 12px
-          line-height: 1.4
-          padding: 5px 10px
-          min-height: 164px
-          position: absolute
-          top: 42px
-          width: 195px
-
-          a
-            color: #000
-
-            &:hover
-              text-decoration: none
-
-          .details
-            color: #000
-
-            .first_line
-              width: 100%
-              position: absolute
-              left: 28px
-              top: 140px
-
-              span
-                cursor: help
-                display: block
-                float: left
-                width: 34px
-                padding-left: 25px
-                background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
-
-                &.comments
-                  background-position: 5px -36px
-                &.likes
-                  background-position: 12px -57px
-                &.visits
-                  background-position: 6px -77px
-
-        .text_with_image
-          display: none
-
-        .text
-          .details
-            display: none
-
-        .date
-          bottom: 5px
-          left: 71px
-          line-height: 20px
-          position: absolute
+        +clearfix
+        padding: 0 20px
 
         &:hover
-          img
-            +opacity(0.10)
+          background: #f9f9f9
 
-          .text_with_image
+        .title
+          font-size: 22px
+          line-height: 26px
+          height: 78px
+          margin: 0 0 10px
+
+        .details
+          +clearfix
+          color: #777
+          font-size: 10px
+          line-height: 12px
+          float: right
+
+          .first_line
             display: block
 
-          .text
-            .details
-              display: block
+            span
+              +inline-block
+              cursor: help
+              padding-left: 25px
+              background: transparent image_url('public/details_sprite.png') no-repeat 10px 5px
+
+              &.comments
+                background-position: 5px -38px
+                margin: 0
+              &.likes
+                background-position: 12px -59px
+              &.visits
+                background-position: 6px -79px
+
+        .date
+          color: #777
+          font-size: 10px
+          line-height: 12px
+
+        .annotation
+          font-size: 14px
+          line-height: 22px
+          margin: 10px 0
+
+        .image
+          margin: 10px 0 0 0
+          display: block
+
       .post4
-        width: 458px
-        height: 494px
+        height: 390px
+        padding: 0 0 0 20px
+        width: 370px

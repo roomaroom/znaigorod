@@ -67,9 +67,6 @@ class PostPresenter
   def searcher
     @searcher ||= HasSearcher.searcher(:posts, searcher_params).send("order_by_#{@sorting_filter.order_by}")
   end
-
-
-
 end
 
 class PostKindFilter
@@ -123,7 +120,7 @@ class PostSortingFilter
   end
 
   def order_by
-    @order_by ||= available_sortings_values.include?(@order_by) ? @order_by : 'rating'
+    @order_by ||= available_sortings_values.include?(@order_by) ? @order_by : 'creation'
   end
 end
 
