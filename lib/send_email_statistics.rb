@@ -143,4 +143,22 @@ class SendEmailStatistics
     comments
   end
 
+  def self.actual_events(period)
+    Afisha.actual.where("afisha.created_at > '#{DateTime.now - period}'").sort_by{|a| -a[:total_rating]}
+  end
+
+  def self.new_discounts(period)
+    @coupons = DiscountsPresenter.new(:type => 'coupon', :order_by => 'creation').collection
+    @certificates = DiscountsPresenter.new(:type => 'certificate', :order_by => 'creation').collection
+    [@coupons, @certificates].flatten.sort_by{ |e| e.created_at }.select{|x| x.created_at > (DateTime.now - period)}
+  end
+
+  def self.dating(gender, period)
+    if %w[female male].include?(gender)
+      Account.where("gender = '#{gender}' and created_at > '#{DateTime.now - period}'")
+    else
+      nil
+    end
+  end
+
 end
