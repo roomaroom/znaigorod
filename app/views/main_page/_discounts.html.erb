@@ -11,22 +11,24 @@
     </ul>
   </div>
 
-  <div class="filters_wrapper">
-    <div class="filters discount">
-      <div class="by_kind">
-        <ul>
-          <% @discount_filter.kind_filter.links.take(9).each do |link| %>
-            <li class="<%= link.klass.gsub('selected', '') %>">
-              <%= link_to link.path do %>
-                <span class="name"><%= link.title %></span>
-                <span class="count"><%= link.results_count %></span>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
+  <% cache('main_page_discounts_filters', :expires_in => 10.minutes) do %>
+    <div class="filters_wrapper">
+      <div class="filters discount">
+        <div class="by_kind">
+          <ul>
+            <% @discount_filter.kind_filter.links.take(9).each do |link| %>
+              <li class="<%= link.klass.gsub('selected', '') %>">
+                <%= link_to link.path do %>
+                  <span class="name"><%= link.title %></span>
+                  <span class="count"><%= link.results_count %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <ul class="posters">
     <% @discounts.each do |discount| %>

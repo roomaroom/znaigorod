@@ -9,22 +9,24 @@
     </ul>
   </div>
 
-  <div class="filters_wrapper">
-    <div class="filters afisha">
-      <div class="by_kind">
-        <ul>
-          <% @afisha_filter.categories_links.each do |category_link| %>
-            <li class='<%= category_link[:klass] %>'>
-              <%= link_to send(category_link[:url]) do %>
-                <%= content_tag :span,  category_link[:title], :class => :name %>
-                <%= content_tag :span, category_link[:count], :class => :count %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
+  <% cache('main_page_afishas_filters', :expires_in => 10.minutes) do %>
+    <div class="filters_wrapper">
+      <div class="filters afisha">
+        <div class="by_kind">
+          <ul>
+            <% @afisha_filter.categories_links.each do |category_link| %>
+              <li class='<%= category_link[:klass] %>'>
+                <%= link_to send(category_link[:url]) do %>
+                  <%= content_tag :span,  category_link[:title], :class => :name %>
+                  <%= content_tag :span, category_link[:count], :class => :count %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <ul class="posters">
     <% @afisha_list.each do |afisha| %>

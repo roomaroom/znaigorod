@@ -11,25 +11,27 @@
     </ul>
   </div>
 
-  <div class="filters_wrapper">
-    <div class="filters account">
-      <div class="by_category">
-        <ul>
-          <li class="title">
-            <div class="text">Ищут компанию:</div>
-          </li>
-          <% @accounts.categories_links.take(8).each do |link| %>
-            <li class='<%= link[:klass] %>'>
-              <%= link_to accounts_path(link[:parameters]) do %>
-                <span class='name'><%= link[:title] %></span>
-                <span class='count'><%= link[:count] %></span>
-              <% end %>
+  <% cache('main_page_accounts_filters', :expires_in => 10.minutes) do %>
+    <div class="filters_wrapper">
+      <div class="filters account">
+        <div class="by_category">
+          <ul>
+            <li class="title">
+              <div class="text">Ищут компанию:</div>
             </li>
-          <% end %>
-        </ul>
+            <% @accounts.categories_links.take(8).each do |link| %>
+              <li class='<%= link[:klass] %>'>
+                <%= link_to accounts_path(link[:parameters]) do %>
+                  <span class='name'><%= link[:title] %></span>
+                  <span class='count'><%= link[:count] %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <ul class="posters">
     <% @accounts.collection.each do |account| %>
