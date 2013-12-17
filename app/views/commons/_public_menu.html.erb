@@ -1,5 +1,5 @@
 <div class='main_menu'>
-  <% cache('main_menu', :expires_in => 1.hour) do %>
+  <% cache('main_menu', :expires_in => 6.hour) do %>
     <%= render_navigation :context => :public, :expand_all => true %>
   <% end %>
   <div class='search_form<%= ' selected' if params[:controller] == 'search' %>'>

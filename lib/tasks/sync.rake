@@ -159,7 +159,7 @@ namespace :sync do
         hall_html.next_element.css('div.hallContainer').each do |film|
           title = film.css('h3 a').text.squish
           three_d = title.match(/\(?3D\)?/)
-          title = title.gsub(/\s\(?3D\)?\b|\(?2D\)?|\(?\d+\+\)?/,'').squish
+          title.gsub!(/\(?3D\)?\b|\(?2D\)?|\(?IMAX\)?|\(?\d+\+\)?/, '').squish!
           movies[title] ||= []
           film.css('a.timeLineItem').each do |seans|
             next if seans['class'].match(/session-already-past|session-disabled/)
