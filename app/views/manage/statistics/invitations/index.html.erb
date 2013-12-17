@@ -9,6 +9,24 @@
   <% end %>
 </div>
 
+<h2>Оплата услуг</h2>
+<div class='invitations_table'>
+  <table>
+    <thead>
+      <tr>
+        <th>Количество платежей</th>
+        <th>На сумму</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @service_payments.count %></td>
+        <td><%= @service_payments.map(&:amount).sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <h2>Афиша</h2>
 <div class='invitations_table'>
   <table>
