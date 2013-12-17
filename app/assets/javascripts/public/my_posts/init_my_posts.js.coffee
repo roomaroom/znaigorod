@@ -42,8 +42,32 @@ markItUpSettings = ->
 
   settings
 
-@init_my_posts = ->
+tagitFor = (element) ->
+  options = {
+    allowSpaces:              true
+    caseSensitive:            false
+    closeAutocompleteOnEnter: true
+    singleFieldDelimiter:     ', '
+
+    autocomplete:
+      delay:     0
+      minLength: 1
+      source:    element.data('autocomplete-source')
+  }
+
+  element.tagit options
+
+initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
 
+handleImageButtonClick = ->
   $('.image_button').click ->
     $('#gallery_image_file').focus().trigger('click')
+
+initTagit = ->
+  tagitFor $('#post_tag')
+
+@initMyPosts = ->
+  initMarkitup()
+  handleImageButtonClick()
+  initTagit()

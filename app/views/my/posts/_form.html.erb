@@ -5,7 +5,8 @@
 <%= simple_form_for [:my, @post] do |f| %>
   <%= f.input :categories, :as => :check_boxes %>
   <%= f.input :title %>
-  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup', :value => AutoHtmlRenderer.new(@post.content).render }  %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
+  <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>

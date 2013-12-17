@@ -33,7 +33,9 @@ Znaigorod::Application.routes.draw do
       delete 'destroy_all', :on => :collection, :as => :destroy_all
     end
 
-    resources :posts
+    resources :posts do
+      get :available_tags, :on => :collection
+    end
 
     resources :afisha, :except => [:show], :controller => 'afishas' do
       get 'edit/step/:step' => 'afishas#edit', :defaults => { :step => 'first' }, :on => :member, :as => :edit_step
