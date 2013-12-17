@@ -17,6 +17,7 @@ class CommentObserver < ActiveRecord::Observer
 
     if comment.commentable.is_a?(Discount) && comment.commentable.account && comment.commentable.account != comment.account
       email_comment_to_discount(comment)
+      notification_comment_to_discount(comment)
     end
 
   end
@@ -24,28 +25,28 @@ class CommentObserver < ActiveRecord::Observer
 
   private
 
-  def email_comment_to_afisha comment
+  def email_comment_to_afisha(comment)
     account = comment.commentable.user.account
     if account.account_settings.comments_to_afishas && account.email.present?
       NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_to_afisha(comment)
     end
   end
 
-  def email_comment_to_discount comment
+  def email_comment_to_discount(comment)
     account = comment.commentable.account
     if account.account_settings.comments_to_discounts && account.email.present?
       NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_to_discount(comment)
     end
   end
 
-  def email_comment_reply comment
+  def email_comment_reply(comment)
     account = comment.parent.user.account
     if account.account_settings.comments_answers && account.email.present?
       NoticeMailer.delay(:queue => 'mailer', :retry => false).comment_reply(comment)
     end
   end
 
-  def create_feed comment
+  def create_feed(comment)
     Feed.create(
       :feedable => comment,
       :account => comment.user.account,
@@ -54,23 +55,33 @@ class CommentObserver < ActiveRecord::Observer
     )
   end
 
-  def notification_comment_reply comment
-      NotificationMessage.delay(:queue => 'critical').create(
-        account: comment.parent.user.account,
-        producer: comment.user.account,
-        body: comment.body,
-        kind: :reply_on_comment,
-        messageable: comment)
+  def notification_comment_reply(comment)
+    NotificationMessage.delay(:queue => 'critical').create(
+      account: comment.parent.user.account,
+      producer: comment.user.account,
+      body: comment.body,
+      kind: :reply_on_comment,
+      messageable: comment)
   end
 
-  def notification_comment_to_afisha comment
-      NotificationMessage.delay(:queue => 'critical').create(
-        account: comment.commentable.user.account,
-        producer: comment.user.account,
-        body: comment.body,
-        kind: :new_comment,
-        messageable: comment
-      )
+  def notification_comment_to_afisha(comment)
+    NotificationMessage.delay(:queue => 'critical').create(
+      account: comment.commentable.user.account,
+      producer: comment.user.account,
+      body: comment.body,
+      kind: :new_comment,
+      messageable: comment
+    )
+  end
+
+  def notification_comment_to_discount(comment)
+    NotificationMessage.delay(:queue => 'critical').create(
+      account: comment.commentable.account,
+      producer: comment.user.account,
+      body: comment.body,
+      kind: :new_comment,
+      messageable: comment
+    )
   end
 
 end
