@@ -44,6 +44,8 @@ class NoticeMailer < ActionMailer::Base
     mail(:to => vote.voteable.user.account.email, :subject => t("notice_mailer.new_comment_like"))
   end
 
+  #=====================================================================================================
+
   def afisha_statistics(afishas, account)
     @account = account
     @afishas = afishas
@@ -56,6 +58,13 @@ class NoticeMailer < ActionMailer::Base
     @account = account
     @type = "discount_statistics"
     mail(:to => account.email, :subject => t("notice_mailer.discount_statistics")).deliver!
+  end
+
+  def digest(digest, account)
+    @digest = digest
+    @account = account
+    @type = "digest"
+    mail(:to => account.email, :subject => t("notice_mailer.digest")).deliver!
   end
 
 end

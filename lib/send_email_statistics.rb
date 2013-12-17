@@ -49,4 +49,11 @@ class SendEmailStatistics
     end
   end
 
+  def self.send_digests
+    Account.where("last_visit_at < '#{DateTime.now - 1.week}' and email is not null").each do |account|
+      digest = account.notification_messages.where(:state => "unread")
+      NoticeMailer.digest(digest, account) unless account.email.blank?
+    end
+  end
+
 end
