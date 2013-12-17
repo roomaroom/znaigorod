@@ -64,7 +64,9 @@ class NoticeMailer < ActionMailer::Base
     @digest = digest
     @account = account
     @type = "digest"
-    mail(:to => account.email, :subject => t("notice_mailer.digest")).deliver!
+    if digest.any?
+      mail(:to => account.email, :subject => t("notice_mailer.digest")).deliver!
+    end
   end
 
 end
