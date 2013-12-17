@@ -14,6 +14,8 @@
         <%= link_to(message.messageable.commentable.title, polymorphic_path([message.messageable.commentable, :show], anchor: "comment_#{message.messageable.id}")) %>
       <% elsif message.messageable.commentable.is_a?(Work) %>
         <%= link_to message.messageable.commentable.title, polymorphic_path([message.messageable.commentable.contest, message.messageable.commentable], anchor: "comment_#{message.messageable.id}") %>
+      <% elsif message.messageable.commentable.is_a?(Discount) or message.messageable.commentable.is_a?(Certificate) or message.messageable.commentable.is_a?(Coupon) %>
+        <%= link_to(message.messageable.commentable.title, discount_path(message.messageable.commentable, anchor: "comment_#{message.messageable.id}")) %>
       <% else %>
         <%= link_to(message.messageable.commentable.title, polymorphic_path(message.messageable.commentable, anchor: "comment_#{message.messageable.id}")) %>
       <% end %>
