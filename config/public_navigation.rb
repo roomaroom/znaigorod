@@ -35,41 +35,33 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { params[:controller] == 'afishas' } do |afisha|
-      cache('public_navigation_afishas', :expires_in => 10.minutes) do
-        Afisha.kind.values.each do |item|
-          afisha.item item, I18n.t("enumerize.afisha.kind.#{item}") ,send("#{item.pluralize}_path")
-        end
+      Afisha.kind.values.each do |item|
+        afisha.item item, I18n.t("enumerize.afisha.kind.#{item}") ,send("#{item.pluralize}_path")
       end
     end
 
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first } do |organization|
-      cache('public_navigation_organizations', :expires_in => 10.minutes) do
-        Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind|
-          organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path") do |category|
-            "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.each do |link|
-              category.item link[:klass], link[:title], send(link[:url])
-            end
-          end
+      Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind|
+        organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path") do |category|
+          "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.each do |link|
+          category.item link[:klass], link[:title], send(link[:url])
+        end
         end
       end
     end
 
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' } do |discount|
-      cache('public_navigation_discounts', :expires_in => 10.minutes) do
-        Discount.kind.values.each do |item|
-          discount.item item, I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
-        end
+      Discount.kind.values.each do |item|
+        discount.item item, I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
       end
     end
 
     primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
 
     primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
-      cache('public_navigation_invitables', :expires_in => 10.minutes) do
-        Inviteables.instance.categories.keys.each do |item|
-          account.item Russian::translit(item).gsub(/\s|\//, '_'), item, accounts_path(:category => item)
-        end
+      Inviteables.instance.categories.keys.each do |item|
+        account.item Russian::translit(item).gsub(/\s|\//, '_'), item, accounts_path(:category => item)
       end
     end
 
