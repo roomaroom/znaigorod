@@ -1,3 +1,2 @@
-class Widgets::ApplicationController < ActionController::Base
-  layout 'public'
+class Widgets::ApplicationController < ApplicationController
 end
