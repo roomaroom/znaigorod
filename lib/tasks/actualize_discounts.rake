@@ -4,7 +4,7 @@ task :actualize_discounts => :environment do
   pb = ProgressBar.new(discounts.count)
 
   discounts.each do |discount|
-    discount.copies.for_sale.map(&:stale!)
+    discount.copies.for_sale.map(&:stale!) unless discount.actual?
     discount.index
     pb.increment!
   end
