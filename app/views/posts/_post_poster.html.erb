@@ -14,7 +14,7 @@
   </div>
   <% if post.annotation_image? %>
     <div class="image">
-      <%= image_tag(resized_image_url(post.gallery_images.first.file_url, 378, 166)) %>
+      <%= image_tag(resized_image_url(post.gallery_images.first.file_url, 378, 166, :crop => '!')) %>
     </div>
   <% end %>
   <div class="annotation">
