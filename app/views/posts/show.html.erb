@@ -1,8 +1,17 @@
 <% content_for :page_title, "#{@post.title}. #{t('meta.default.title')}" %>
 
 <div class='post_show'>
-  <div class='title'>
+  <div class='post_title'>
     <h1><%= @post.title %></h1>
+  </div>
+  <div class="details">
+    <span class="first_line">
+      <span class="show_tipsy comments" title="Комментарии"><%= @post.comments.count %></span>
+      <span class="show_tipsy likes" title="Понравилось"><%= @post.likes_count %></span>
+      <span class="show_tipsy visits" title="Просмотры"><%= @post.page_visits.count %></span>
+    </span>
+  </div>
+  <div class="date">
     <%= @post.date %>
   </div>
 
@@ -10,7 +19,7 @@
     <div class='wrapper'>
 
       <div class='post_content'>
-        <%= @post.html_content %>
+        <%= @post.content_html %>
       </div>
 
       <% if @post_images.any? %>
@@ -32,12 +41,6 @@
             <%end%>
           </ul>
         <%end%>
-
-        <span class='details'>
-          <span class='show_tipsy comments' title='Комментарии'><%= @post.comments.count %></span>
-          <span class='show_tipsy likes' title='Понравилось'><%= @post.likes_count %></span>
-          <span class='show_tipsy visits' title='Просмотры'><%= @post.page_visits.count %></span>
-        </span>
       </div>
     </div>
 

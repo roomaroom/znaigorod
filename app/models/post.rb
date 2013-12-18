@@ -48,6 +48,10 @@ class Post < ActiveRecord::Base
     string(:kind, :multiple => true) { kind.map(&:value) }
   end
 
+  auto_html_for :content do
+    znaigorod_link
+  end
+
   def search_kind
     self.class.name.underscore
   end
