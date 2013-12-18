@@ -11,34 +11,10 @@
     </div>
   </div>
 
-  <% cache('discounts_filters', :expires_in => 10.minutes) do %>
-    <div class="filters discount">
-      <div class="by_kind">
-        <ul>
-          <% @presenter.kind_filter.links.take(8).each do |link| %>
-            <li class="<%= link.klass %>">
-              <%= link_to link.path do %>
-                <span class="name"><%= link.title %></span>
-                <span class="count"><%= link.results_count %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if @presenter.kind_filter.links.count > 8 %>
-            <li class="more_link <%= 'selected' if @presenter.kind_filter.more? %>">
-              <a href='#'>&darr; Ещё скидки</a>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div class="discount_more">
-        <%= render :partial => 'discounts/discount_help' %>
-      </div>
-    </div>
-
-    <% if @presenter.kind_filter.links.count > 8 %>
-      <ul class="more">
-        <% @presenter.kind_filter.links[8..@presenter.kind_filter.links.count].each do |link| %>
+  <div class="filters discount">
+    <div class="by_kind">
+      <ul>
+        <% @presenter.kind_filter.links.take(8).each do |link| %>
           <li class="<%= link.klass %>">
             <%= link_to link.path do %>
               <span class="name"><%= link.title %></span>
@@ -46,8 +22,30 @@
             <% end %>
           </li>
         <% end %>
+        <% if @presenter.kind_filter.links.count > 8 %>
+          <li class="more_link <%= 'selected' if @presenter.kind_filter.more? %>">
+            <a href='#'>&darr; Ещё скидки</a>
+          </li>
+        <% end %>
       </ul>
-    <% end %>
+    </div>
+
+    <div class="discount_more">
+      <%= render :partial => 'discounts/discount_help' %>
+    </div>
+  </div>
+
+  <% if @presenter.kind_filter.links.count > 8 %>
+    <ul class="more">
+      <% @presenter.kind_filter.links[8..@presenter.kind_filter.links.count].each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.path do %>
+            <span class="name"><%= link.title %></span>
+            <span class="count"><%= link.results_count %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
   <div class="more_wrapper_toggler">

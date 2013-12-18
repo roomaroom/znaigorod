@@ -24,49 +24,26 @@
 
   </div>
 
-  <% cache('accounts_filters', :expires_in => 10.minutes) do %>
-    <div class='filters account'>
-      <div class='by_category'>
-        <ul>
-          <li class='all<%= ' selected' unless @presenter.category_filter.used? %>'>
-            <%= link_to accounts_path(@presenter.searcher_parameters(category: nil)) do %>
-              <span class='name'>Все</span>
-              <span class='count'><%= @presenter.count(category: nil) %></span>
-            <% end %>
-          </li>
-          <li class='title'>
-            <div class='text'>Ищут компанию:</div>
-            <div class='with_avatar'>
-              <%= hidden_field_tag 'with_avatar_link', accounts_path(@presenter.searcher_parameters(:with_avatar => @presenter.with_avatar ? nil : true)) %>
-              <%= check_box_tag 'with_avatar', 'with_avatar', params[:with_avatar] %>
-              <%= label_tag 'with_avatar', 'Только с фото' %>
-            </div>
-          </li>
-          <% more_is_selected = true %>
-          <% @presenter.categories_links.take(6).each do |link| %>
-            <% more_is_selected = false if link[:selected] %>
-            <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
-              <%= link_to accounts_path(link[:parameters]) do %>
-                <span class='name'><%= link[:title] %></span>
-                <span class='count'><%= link[:count] %></span>
-              <% end %>
-            </li>
+  <div class='filters account'>
+    <div class='by_category'>
+      <ul>
+        <li class='all<%= ' selected' unless @presenter.category_filter.used? %>'>
+          <%= link_to accounts_path(@presenter.searcher_parameters(category: nil)) do %>
+            <span class='name'>Все</span>
+            <span class='count'><%= @presenter.count(category: nil) %></span>
           <% end %>
-
-          <% if @presenter.categories_links.count > 6 %>
-            <li class='more_link<%= ' selected' if more_is_selected && @presenter.category_filter.used? %>'>
-              <a href='#'>&darr; Ещё категории</a>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-
-      <%= yield :advanced_filters %>
-    </div>
-
-    <% if @presenter.categories_links.count > 6 %>
-      <ul class='more'>
-        <% @presenter.categories_links.from(6).each do |link| %>
+        </li>
+        <li class='title'>
+          <div class='text'>Ищут компанию:</div>
+          <div class='with_avatar'>
+            <%= hidden_field_tag 'with_avatar_link', accounts_path(@presenter.searcher_parameters(:with_avatar => @presenter.with_avatar ? nil : true)) %>
+            <%= check_box_tag 'with_avatar', 'with_avatar', params[:with_avatar] %>
+            <%= label_tag 'with_avatar', 'Только с фото' %>
+          </div>
+        </li>
+        <% more_is_selected = true %>
+        <% @presenter.categories_links.take(6).each do |link| %>
+          <% more_is_selected = false if link[:selected] %>
           <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
             <%= link_to accounts_path(link[:parameters]) do %>
               <span class='name'><%= link[:title] %></span>
@@ -74,8 +51,29 @@
             <% end %>
           </li>
         <% end %>
+
+        <% if @presenter.categories_links.count > 6 %>
+          <li class='more_link<%= ' selected' if more_is_selected && @presenter.category_filter.used? %>'>
+            <a href='#'>&darr; Ещё категории</a>
+          </li>
+        <% end %>
       </ul>
-    <% end %>
+    </div>
+
+    <%= yield :advanced_filters %>
+  </div>
+
+  <% if @presenter.categories_links.count > 6 %>
+    <ul class='more'>
+      <% @presenter.categories_links.from(6).each do |link| %>
+        <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
+          <%= link_to accounts_path(link[:parameters]) do %>
+            <span class='name'><%= link[:title] %></span>
+            <span class='count'><%= link[:count] %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
   <% if content_for?(:advanced_filters) %>

@@ -20,20 +20,18 @@
     </div>
   </div>
 
-  <% cache('afishas_filters', :expires_in => 10.minutes) do %>
-    <div class='filters afisha'>
-      <div class='by_kind'>
-        <ul>
-          <% @presenter.categories_links.each do |category_link| %>
-            <li class='<%= category_link[:klass] %><%= ' selected' if category_link[:current] %>'>
-              <%= link_to send(category_link[:url], category_link[:parameters]) do %>
-                <%= content_tag :span,  category_link[:title], class: :name %>
-                <%= content_tag :span, category_link[:count], class: :count  %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+  <div class='filters afisha'>
+    <div class='by_kind'>
+      <ul>
+        <% @presenter.categories_links.each do |category_link| %>
+          <li class='<%= category_link[:klass] %><%= ' selected' if category_link[:current] %>'>
+            <%= link_to send(category_link[:url], category_link[:parameters]) do %>
+              <%= content_tag :span,  category_link[:title], class: :name %>
+              <%= content_tag :span, category_link[:count], class: :count  %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-  <% end %>
+  </div>
 </div>
