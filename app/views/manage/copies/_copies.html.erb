@@ -14,6 +14,11 @@
           <li>
             <p>
               <%= link_to item.afisha.title, polymorphic_url([:manage, item.afisha]) %>
+            </p>
+            <p>
+              <%= item.description %>
+            </p>
+            <p>
               <%= link_to 'Редактировать', edit_manage_statistics_ticket_path(item) %>
             </p>
 
