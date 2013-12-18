@@ -24,12 +24,34 @@
     <% end %>
   </div>
 
-  <div class='filters organization'>
-    <div class='by_categories'>
-      <ul>
-        <% more_is_selected = true %>
-        <% @presenter.categories_links.take(8).each do |category_link| %>
-          <% more_is_selected = false if category_link[:selected] %>
+  <% cache('organizations_filters', :expires_in => 10.minutes) do %>
+    <div class='filters organization'>
+      <div class='by_categories'>
+        <ul>
+          <% more_is_selected = true %>
+          <% @presenter.categories_links.take(8).each do |category_link| %>
+            <% more_is_selected = false if category_link[:selected] %>
+            <li class='<%= category_link[:klass] %><%= ' selected' if category_link[:selected] %>'>
+              <%= link_to send(category_link[:url], category_link[:parameters]) do %>
+                <%= content_tag :span, category_link[:title], class: :name %>
+                <%= content_tag :span, category_link[:count], class: :count  %>
+              <% end %>
+            </li>
+          <% end %>
+          <% if @presenter.categories_links.count > 8 %>
+            <li class='more_link<%= ' selected' if more_is_selected %>'>
+              <a href='#'>&darr; Ещё заведения</a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <%= yield :advanced_filters %>
+    </div>
+
+    <% if @presenter.categories_links.count > 8 %>
+      <ul class='more'>
+        <% @presenter.categories_links[8..@presenter.categories_links.count].each do |category_link| %>
           <li class='<%= category_link[:klass] %><%= ' selected' if category_link[:selected] %>'>
             <%= link_to send(category_link[:url], category_link[:parameters]) do %>
               <%= content_tag :span, category_link[:title], class: :name %>
@@ -37,28 +59,8 @@
             <% end %>
           </li>
         <% end %>
-        <% if @presenter.categories_links.count > 8 %>
-          <li class='more_link<%= ' selected' if more_is_selected %>'>
-            <a href='#'>&darr; Ещё заведения</a>
-          </li>
-        <% end %>
       </ul>
-    </div>
-
-    <%= yield :advanced_filters %>
-  </div>
-
-  <% if @presenter.categories_links.count > 8 %>
-    <ul class='more'>
-      <% @presenter.categories_links[8..@presenter.categories_links.count].each do |category_link| %>
-        <li class='<%= category_link[:klass] %><%= ' selected' if category_link[:selected] %>'>
-          <%= link_to send(category_link[:url], category_link[:parameters]) do %>
-            <%= content_tag :span, category_link[:title], class: :name %>
-            <%= content_tag :span, category_link[:count], class: :count  %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <% end %>
   <% end %>
 
   <% if content_for?(:advanced_filters) %>

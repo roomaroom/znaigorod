@@ -33,11 +33,13 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
 
   navigation.items do |primary|
+
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { params[:controller] == 'afishas' } do |afisha|
       Afisha.kind.values.each do |item|
         afisha.item item, I18n.t("enumerize.afisha.kind.#{item}") ,send("#{item.pluralize}_path")
       end
     end
+
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first } do |organization|
       Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind|
@@ -48,12 +50,15 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
+
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' } do |discount|
       Discount.kind.values.each do |item|
         discount.item item, I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
       end
     end
+
     primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
+
     primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
       Inviteables.instance.categories.keys.each do |item|
         account.item Russian::translit(item).gsub(/\s|\//, '_'), item, accounts_path(:category => item)
