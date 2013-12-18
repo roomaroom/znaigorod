@@ -1,8 +1,8 @@
 @import 'simple_form'
 
 .my_posts_wrapper
-  font-size: 14px
   margin-top: 20px
+  overflow: hidden
   padding: 0 20px
 
   h1
@@ -31,16 +31,16 @@
         border-top: 1px solid #909090 !important
         width: 540px
 
-    .checkbox
-      font-size: 12px
+    .input
+      margin-bottom: 10px
 
-      input
-        margin-right: 5px
+      .checkbox
+        input
+          margin-right: 5px
 
     .field_with_errors
       .markItUpHeader
         border-color: #880000
-
 
     .post_categories
       +clearfix
@@ -52,3 +52,9 @@
   .preview_wrapper
     float: left
     width: 560px
+
+    h3
+      font-size: 14px
+
+    img
+      max-width: 560px

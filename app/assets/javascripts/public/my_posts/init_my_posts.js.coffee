@@ -85,8 +85,10 @@ handleEditorPreview = ->
         target.html(data)
 
 setPreviewTop = ->
-  top = $('.post_content').position().top
-  $('.preview_wrapper').offset top: top
+  previewWrapperTop = $('.preview_wrapper').position().top
+  postContentTop = $('.post_content').position().top
+
+  $('.preview_wrapper').css('margin-top', postContentTop - previewWrapperTop)
 
 @initMyPosts = ->
   initMarkitup()

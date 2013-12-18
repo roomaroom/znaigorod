@@ -1,5 +1,9 @@
-<div class="my_posts_wrapper">
-  <h1>Добавление поста</h1>
+<div class="my_wrapper">
+  <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
-  <%= render 'form' %>
+  <div class="my_posts_wrapper">
+    <h1>Добавление поста</h1>
+
+    <%= render 'form' %>
+  </div>
 </div>
