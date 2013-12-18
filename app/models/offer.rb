@@ -9,7 +9,7 @@ class Offer < ActiveRecord::Base
   has_one :sms, :dependent => :destroy, :as => :smsable
   has_one :offer_payment, :dependent => :destroy, :as => :paymentable
 
-  validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+  validates :phone, :presence => true, :format => { :with => /\A\+7-\(\d{3}\)-\d{3}-\d{4}\z/ }
   validates_presence_of :details, :name, :amount
   validates_presence_of :our_stake, :organization_stake, :if => :approved?
 

@@ -6,7 +6,7 @@ class SmsClaim < ActiveRecord::Base
   belongs_to :claimed, polymorphic: true
 
   validates_presence_of :name
-  validates :phone, presence: true, format: { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+  validates :phone, presence: true, format: { :with => /\A\+7-\(\d{3}\)-\d{3}-\d{4}\z/ }
   validates :details, presence: true, length: { maximum: 220 }
 
   has_many :smses, as: :smsable

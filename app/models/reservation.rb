@@ -3,7 +3,7 @@ class Reservation < ActiveRecord::Base
 
   belongs_to :reserveable, :polymorphic => true
 
-  validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+  validates :phone, :presence => true, :format => { :with => /\A\+7-\(\d{3}\)-\d{3}-\d{4}\z/ }
 
   validates_presence_of :placeholder, :title
 

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Friend < ActiveRecord::Base
-  attr_accessible :friendly, :friendable, :account_id
+  attr_accessible :friendly, :friendable, :account
 
   belongs_to :account
   belongs_to :friendable, :polymorphic => true

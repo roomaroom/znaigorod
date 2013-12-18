@@ -7,7 +7,7 @@ class BetPayment < Payment
 
   has_one :sms, :as => :smsable
 
-  validates :phone, :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+  validates :phone, :presence => true, :format => { :with => /\A\+7-\(\d{3}\)-\d{3}-\d{4}\z/ }
 
   after_validation :set_amount
 

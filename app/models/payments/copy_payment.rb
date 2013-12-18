@@ -11,7 +11,7 @@ class CopyPayment < Payment
 
   validates :email,  :presence => true, :if => :payment_system_rbkmoney?
   validates :number, :presence => true, :numericality => { :greater_than => 0 }, :unless => :copies_with_seats?
-  validates :phone,  :presence => true, :format => { :with => /\+7-\(\d{3}\)-\d{3}-\d{4}/ }
+  validates :phone,  :presence => true, :format => { :with => /\A\+7-\(\d{3}\)-\d{3}-\d{4}\z/ }
 
   delegate :payment_system_rbkmoney?, :to => :paymentable
   delegate :free?,                    :to => :paymentable, :prefix => true
