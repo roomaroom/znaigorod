@@ -7,7 +7,7 @@ class MainPageController < ApplicationController
     @afisha_filter   = AfishaPresenter.new(:has_tickets => false)
     @organizations   = OrganizationsCatalogPresenter.new(:per_page => 6, :sms_claimable => true, :only_clients => true)
 
-    @certificates    = DiscountsPresenter.new(:type => 'coupon', :per_page => 3, :order_by => 'random').decorated_collection
+    @certificates    = DiscountsPresenter.new(:type => 'certificate', :per_page => 3, :order_by => 'random').decorated_collection
     @offered_discount = DiscountsPresenter.new(:type => 'offered_discount', :per_page => 2, :order_by => 'random').decorated_collection
     @discounts       = [@certificates, @offered_discount].flatten.shuffle
 
