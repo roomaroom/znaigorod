@@ -1,5 +1,8 @@
+body
+  width: 100%
+  +min-width(1270px)
+
 .new_year
-  +clearfix
   background: #000 image_url('public/new_year/bg.jpg') no-repeat center top
 
   .new_year_header
@@ -51,7 +54,9 @@
         height: 173px
 
   .new_year_cotent
-    margin-top: 150px
+    width: 1200px
+    margin: 0 auto
+    padding-top: 150px
 
     .header_wrapper
       border-bottom: none

@@ -6,7 +6,7 @@
      full_content += '. ' + @work.description.squish if @work.description.present?
      content = truncate(full_content, :length => 140)
   %>
-  <meta='description' content='<%= full_content %>' />
+  <meta name='description' content='<%= full_content %>' />
 
   <meta property='og:site_name' content='ЗнайГород - конкурс' />
 
