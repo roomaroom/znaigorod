@@ -17,7 +17,7 @@ afisha:
 post:
   places:
 
-    '1.0':
+    '1.3':
       from: '2013-10-30 00:00'
       to: '2014-11-11 00:00'
       content_type: 'post'
