@@ -48,9 +48,17 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
     end
-    primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' }
+    primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' } do |discount|
+      Discount.kind.values.each do |item|
+        discount.item item, I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
+      end
+    end
     primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
-    primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' }
+    primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
+      Inviteables.instance.categories.keys.each do |item|
+        account.item Russian::translit(item).gsub(/\s|\//, '_'), item, accounts_path(:category => item)
+      end
+    end
 
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests posts works cooperation].include?(params[:controller]) } do |more|
