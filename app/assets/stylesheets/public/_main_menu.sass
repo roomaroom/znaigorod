@@ -12,6 +12,7 @@ $main_menu_margin_top: 50px
       width: 80%
 
       > li
+        position: relative
         background-color: #fff
         float: left
         width: 18%
@@ -41,11 +42,13 @@ $main_menu_margin_top: 50px
         > ul
           display: none
           position: absolute
+          top: 27px
+          left: -2px
+          width: 180px
           font-size: 12px
-          +box-shadow(#999 5px 0 5px -5px, #999 0 5px 5px -5px, #999 -5px 0 5px -5px)
-          +border-bottom-left-radius(5px)
-          +border-bottom-right-radius(5px)
-          background-color: #fff
+          background-color: #e8e8e8
+          border: 2px solid #fff
+          border-top: none
           padding: 10px 0
           z-index: 5
 
@@ -71,11 +74,9 @@ $main_menu_margin_top: 50px
               position: absolute
               left: 0
               top: -10px
-              +box-shadow(#999 5px 0 5px -5px, #999 0 5px 5px -5px, #999 0 -5px 5px -5px)
-              +border-top-right-radius(5px)
-              +border-bottom-left-radius(5px)
-              +border-bottom-right-radius(5px)
-              background-color: #fff
+              background-color: #e8e8e8
+              border: 2px solid #fff
+              border-top: none
               padding: 10px
               z-index: 5
 
@@ -83,28 +84,46 @@ $main_menu_margin_top: 50px
               > ul
                 display: block
 
-
         &:hover
           > ul
             display: block
 
-      #main_menu_organizations > ul > li > ul
-        left: 167px
+      #main_menu_organizations > ul
+
+        > li
+          position: static
+
+          &:hover
+
+            > a
+              position: relative
+
+              &:before
+                content: ''
+                position: absolute
+                top: 0
+                right: -12px
+                display: block
+                float: right
+                width: 7px
+                height: 24px
+                background: #e8e8e8 image_url('public/expand_menu_arrow.png') no-repeat left center
+                z-index: 10
+
+          > ul
+            top: 2px
+            left: 176px
 
       #main_menu_more
         width: 8%
         position: relative
 
         > a
-          color: #000
-          background-color: #fff
           margin-right: 2px
           padding: 3px
 
-          &.selected
-            color: #f60
-
         ul
+          left: auto
           right: 0
 
     .search_form
