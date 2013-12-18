@@ -9,8 +9,9 @@ class AutoHtmlRenderer
 
   def render
     auto_html(text) do
-      redcloth
       youtube
+      redcloth
+      simple_format
     end
   end
 end

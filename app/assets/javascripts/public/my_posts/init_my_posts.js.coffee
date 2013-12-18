@@ -20,7 +20,8 @@ beforeImageInsert = (h) ->
 
     done: (e, data) ->
       url = data.result.files[0].url
-      textarea.val("#{before}#{url}#{after}")
+      textarea.val("#{before}!#{url}!#{after}")
+      textarea.trigger('preview')
 
     fail: (e, data) ->
       message = data.jqXHR.responseText
@@ -28,7 +29,9 @@ beforeImageInsert = (h) ->
 
 markItUpSettings = ->
   settings = clone(mySettings)
-  settings.beforeInsert = ''
+
+  settings.afterInsert = (h) ->
+    $('textarea[name="post[content]"]').trigger('preview')
 
   imageButton = {
     name:'Изображение'
@@ -67,7 +70,27 @@ handleImageButtonClick = ->
 initTagit = ->
   tagitFor $('#post_tag')
 
+handleEditorPreview = ->
+  textarea = $('textarea[name="post[content]"]')
+
+  textarea.on 'keyup', ->
+    textarea.trigger('preview')
+
+  textarea.on 'preview', ->
+    text = $(this).val()
+    target = $('.preview')
+
+    $.post('/my/posts/preview', { text: text })
+      .done (data) ->
+        target.html(data)
+
+setPreviewTop = ->
+  top = $('.post_content').position().top
+  $('.preview_wrapper').offset top: top
+
 @initMyPosts = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
+  handleEditorPreview()
+  setPreviewTop()

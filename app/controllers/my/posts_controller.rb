@@ -4,4 +4,8 @@ class My::PostsController < My::ApplicationController
   def available_tags
     render :json => %w[foo bar foobar].to_json
   end
+
+  def preview
+    render :text => AutoHtmlRenderer.new(params[:text]).render
+  end
 end

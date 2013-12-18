@@ -35,6 +35,8 @@ Znaigorod::Application.routes.draw do
 
     resources :posts do
       get :available_tags, :on => :collection
+
+      post :preview, :on => :collection
     end
 
     resources :afisha, :except => [:show], :controller => 'afishas' do

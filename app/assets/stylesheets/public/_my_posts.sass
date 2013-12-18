@@ -13,28 +13,42 @@
     display: none
 
   .simple_form
+    float: left
+    width: 600px
+
+    input, textarea
+      font-size: 14px
+      outline: none
+      resize: none
+
+      &#post_title
+        height: 34px
+        width: 540px
+
+      &.markItUpEditor
+        border-top-left-radius: 0 !important
+        border-top-right-radius: 0 !important
+        border-top: 1px solid #909090 !important
+        width: 540px
+
+    .checkbox
+      font-size: 12px
+
+      input
+        margin-right: 5px
+
     .field_with_errors
       .markItUpHeader
         border-color: #880000
+
 
     .post_categories
       +clearfix
 
       .checkbox
         float: left
-        font-size: 12px
         width: 150px
 
-    input, textarea
-      font-size: 14px
-      outline: none
-      resize: none
-      width: 540px
-
-      &#post_title
-        height: 34px
-
-  .markItUpEditor
-    border-top-left-radius: 0 !important
-    border-top-right-radius: 0 !important
-    border-top: 1px solid #909090 !important
+  .preview_wrapper
+    float: left
+    width: 560px
