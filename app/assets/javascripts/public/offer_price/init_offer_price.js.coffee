@@ -39,7 +39,7 @@ handle_help = ->
       class:  'description'
       height: 'auto'
       title:  $(this).attr('title')
-      width:  640
+      width: 797
 
     dialog.html(content.clone())
 
@@ -55,9 +55,9 @@ handle_offer_price_click = ->
 
       dialog = init_dialog
         class:  target.attr('class')
-        height: 390
+        height: 565
         title:  target.data('title')
-        width:  640
+        width:  797
 
       dialog.html(response)
       handle_dialog(dialog, list)

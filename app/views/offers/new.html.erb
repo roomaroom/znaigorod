@@ -1,3 +1,10 @@
+<ol class="offers_payment_instruction">
+  <li>Предложи свою цену на товар или услугу</li>
+  <li>Если организатора устроит цена, тебе пришлют уведомление об оплате</li>
+  <li>Оплати часть суммы на ЗнайГороде и получи СМС с кодом</li>
+  <li>Покажи это СМС на входе и оплати оставшуюся часть суммы</li>
+</ol>
+<div class="blue_squer">Предлагай <strong>справедливую цену</strong>, тогда шанс получить услугу или товар будет намного выше!</div>
 <%= simple_form_for [parent, @offer], :remote => true, :html => { :class => 'new_lined_inputs', :validate => true } do |f| %>
   <%= f.input :name, :input_html => { :placeholder => 'Укажите имя', :autofocus => true } %>
   <%= f.input :phone, :input_html => { :placeholder => 'Укажите номер телефона' } %>
