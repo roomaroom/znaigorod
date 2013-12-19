@@ -62,7 +62,7 @@ class SocialLikes
 
   def fb_likes(item)
     if item.slug?
-      data = open("http://graph.facebook.com/?ids=#{url(item)}").read
+      data = Curl.get("http://graph.facebook.com/?ids=#{url(item)}").body_str
       data = JSON.parse(data)
       like_count = data[url(item)]['shares'] || 0
       item_like_count = item.votes.source(:fb).count
@@ -73,7 +73,7 @@ class SocialLikes
   def odn_likes(item)
     if item.slug?
       begin
-        data = open("http://www.odnoklassniki.ru/dk?st.cmd=shareData&cb=mailru.share.ok.init&ref=#{url(item)}").read
+        data = Curl.get("http://www.odnoklassniki.ru/dk?st.cmd=shareData&cb=mailru.share.ok.init&ref=#{url(item)}").body_str
         like_count = JSON.parse(data.match('\{.+\}').to_s)['count'].to_i
         item_like_count = item.votes.source(:odn).count
         change_votes(item, like_count, item_like_count, :odn)

@@ -77,7 +77,7 @@ class Prikupon::Importer
   def save_poster
     image_file = Tempfile.open(['affiliated_coupon', '.png']).tap do |tf|
       tf.binmode
-      tf.write open(picture_big).read
+      tf.write Curl.get(picture_big).body_str
     end
 
     affiliated_coupon.poster_image = image_file

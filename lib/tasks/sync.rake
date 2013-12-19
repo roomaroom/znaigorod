@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'open-uri'
 require 'nokogiri'
 require 'timecop'
 
@@ -116,7 +115,7 @@ end
 namespace :sync do
   desc "Sync movie seances from http://fakel.tomsknet.ru"
   task :fakel => :environment do
-    page = Nokogiri::HTML(open('http://fakel.tomsknet.ru/film_timetable.html'))
+    page = Nokogiri::HTML(Curl.get('http://fakel.tomsknet.ru/film_timetable.html').body_str)
     puts 'Факел: парсинг'
     movies = {}
     day_nodes = page.css('table tr:nth-child(2) td:nth-child(3) table table')
@@ -145,7 +144,7 @@ namespace :sync do
     url = "#{host}/schedule/"
     movies = {}
 
-    timetable = Nokogiri::HTML(open(url).read).css('.tableTabContainer a')
+    timetable = Nokogiri::HTML(Curl.get(url).body_str).css('.tableTabContainer a')
     bar = ProgressBar.new(timetable.count)
     puts 'Киномакс: парсинг'
 
@@ -188,14 +187,14 @@ namespace :sync do
     url = "#{host}/schedule/"
     movies = {}
 
-    timetable = Nokogiri::HTML(open(url).read).css('.schedule a')
+    timetable = Nokogiri::HTML(Curl.get(url).body_str).css('.schedule a')
     bar = ProgressBar.new(timetable.count)
     puts 'Киномир: парсинг'
 
     timetable.each do |day_tile|
       day_schedule_path = day_tile.attribute('href').value
       date = day_schedule_path.match(/\d{2}.\d{2}.\d{4}/)
-      day_schedule_page = Nokogiri::HTML(open(host+day_schedule_path).read)
+      day_schedule_page = Nokogiri::HTML(Curl.get(host+day_schedule_path).body_str)
       day_schedule_page.css('.raspisanie-table').each do |table|
         hall = table.css('thead tr td:first h1').text
         table.css('tbody tr td div .container .content').each do |seance|
