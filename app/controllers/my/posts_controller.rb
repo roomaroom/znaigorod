@@ -8,4 +8,8 @@ class My::PostsController < My::ApplicationController
   def preview
     render :text => AutoHtmlRenderer.new(params[:text]).render
   end
+
+  def link_with
+    render :json => LinkWithAutocomplete.new(params[:term]).json
+  end
 end

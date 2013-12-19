@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
   include MakePageVisit
   extend FriendlyId
 
-  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories
+  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :link_with
+  attr_accessor :link_with
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :gallery_images, :as => :attachable, :dependent => :destroy
@@ -26,7 +27,8 @@ class Post < ActiveRecord::Base
   normalize_attribute :categories, :with => :blank_array
 
   normalize_attribute :kind, with: :blank_array
-  normalize_attribute :annotation, :content, :with => [:sanitize, :gilensize_as_html, :strip, :blank]
+  #normalize_attribute :content, :with => [:sanitize, :gilensize_as_html, :strip, :blank]
+  normalize_attribute :content, :with => [:strip, :blank]
 
   default_scope order('id DESC')
 

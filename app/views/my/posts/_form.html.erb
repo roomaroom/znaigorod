@@ -9,6 +9,8 @@
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
   <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
 
+  <%= f.input :link_with, :input_html => { :data => { 'autocomplete-source' => link_with_my_posts_path } } %>
+
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>
     <%= link_to 'Отмена', :back %>
@@ -17,6 +19,8 @@
 
 <div class="preview_wrapper">
   <h3>Предварительный просмотр</h3>
-  <div class="preview"></div>
+  <div class="preview">
+    <%= AutoHtmlRenderer.new(@post.content).render %>
+  </div>
 </div>
 

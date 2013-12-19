@@ -214,6 +214,7 @@ ru:
         kind: Тип обзора
         tag: Теги через запятую
         categories: Категории
+        link_with: Этот пост связан с
 
       image:
         <<: *common_attributes

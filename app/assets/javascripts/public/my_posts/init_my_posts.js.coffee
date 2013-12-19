@@ -90,9 +90,17 @@ setPreviewTop = ->
 
   $('.preview_wrapper').css('margin-top', postContentTop - previewWrapperTop)
 
+handleLinkWithAutocomplete = ->
+  input = $('#post_link_with')
+
+  input.autocomplete
+    source: input.data('autocomplete-source')
+    minLength: 2
+
 @initMyPosts = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
   handleEditorPreview()
   setPreviewTop()
+  handleLinkWithAutocomplete()
