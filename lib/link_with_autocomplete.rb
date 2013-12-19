@@ -19,6 +19,7 @@ class LinkWithAutocomplete
     items.map do |item|
       {
         :value => "#{item.class.name.underscore}_#{item.id}",
+
         :label => item.title
       }
     end
