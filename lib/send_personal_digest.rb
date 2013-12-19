@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SendPersonalDigest
 
   def self.send_notifications_digests(period)
