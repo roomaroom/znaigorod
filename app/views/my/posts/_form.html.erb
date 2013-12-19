@@ -9,7 +9,31 @@
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
   <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
 
-  <%= f.input :link_with, :input_html => { :data => { 'autocomplete-source' => link_with_my_posts_path } } %>
+  <%= f.input :link_with_value, :as => :hidden %>
+  <%= f.input :link_with_reset, :as => :hidden %>
+
+  <%= f.input :link_with_title,
+    :wrapper_html => { :class => @post.linked? ? :linked : :not_linked },
+    :input_html => {
+      :data => { 'autocomplete-source' => link_with_my_posts_path, :target => '#post_link_with_value', :reset => '#post_link_with_reset' },
+      :placeholder => 'Введите название заведения или мероприятия' }
+  %>
+
+  <% if @post.linked? %>
+    <div class="input link_with_wrapper">
+      <%= label_tag 'Это пост связан с' %>
+      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+
+      <div class="link_with_content">
+        <% if @post.afisha_id? %>
+          <%= link_to @post.afisha.title, afisha_show_path(@post.afisha) %>
+        <% else %>
+          <%= link_to @post.organization.title, @post.organization %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>

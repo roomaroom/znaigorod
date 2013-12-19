@@ -671,13 +671,15 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.text     "poster_url"
     t.string   "vfs_path"
     t.string   "slug"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "status",     :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "status",          :default => false
     t.float    "rating"
     t.text     "kind"
     t.text     "tag"
     t.text     "categories"
+    t.integer  "afisha_id"
+    t.integer  "organization_id"
   end
 
   create_table "prices", :force => true do |t|

@@ -90,12 +90,35 @@ setPreviewTop = ->
 
   $('.preview_wrapper').css('margin-top', postContentTop - previewWrapperTop)
 
-handleLinkWithAutocomplete = ->
-  input = $('#post_link_with')
+linkWithAutocomplete = ->
+  input = $('#post_link_with_title')
+  target = $(input.data('target'))
+  reset = $(input.data('reset'))
 
   input.autocomplete
     source: input.data('autocomplete-source')
     minLength: 2
+
+    focus: (event, ui) ->
+      $(this).val(ui.item.label)
+      false
+
+    select: (event, ui) ->
+      $(this).val(ui.item.label)
+      target.val(ui.item.value)
+      reset.val('')
+      false
+
+linkWithChange = ->
+  $('.link_with_change').click ->
+    $('.link_with_content').closest('.link_with_wrapper').hide()
+    $('.post_link_with_title').removeClass('linked').addClass('not_linked')
+    $('#post_link_with_reset').val('true')
+    false
+
+handleLinkWith = ->
+  linkWithAutocomplete()
+  linkWithChange()
 
 @initMyPosts = ->
   initMarkitup()
@@ -103,4 +126,4 @@ handleLinkWithAutocomplete = ->
   initTagit()
   handleEditorPreview()
   setPreviewTop()
-  handleLinkWithAutocomplete()
+  handleLinkWith()

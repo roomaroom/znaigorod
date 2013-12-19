@@ -209,12 +209,12 @@ ru:
 
       post:
         <<: *common_attributes
-        content: Содержание
-        status: Опубликовать
-        kind: Тип обзора
-        tag: Теги через запятую
-        categories: Категории
-        link_with: Этот пост связан с
+        categories:      Категории
+        content:         Содержание
+        kind:            Тип обзора
+        link_with_title: Этот пост связан с
+        status:          Опубликовать
+        tag:             Теги через запятую
 
       image:
         <<: *common_attributes

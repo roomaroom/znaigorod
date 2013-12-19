@@ -4,8 +4,13 @@ class Post < ActiveRecord::Base
   include MakePageVisit
   extend FriendlyId
 
-  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :link_with
-  attr_accessor :link_with
+  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
+
+  attr_accessible :link_with_title, :link_with_value, :link_with_reset
+  attr_accessor :link_with_title, :link_with_value, :link_with_reset
+
+  belongs_to :afisha
+  belongs_to :organization
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :gallery_images, :as => :attachable, :dependent => :destroy
@@ -15,6 +20,8 @@ class Post < ActiveRecord::Base
   alias_attribute :description, :content
 
   validates_presence_of :content, :title, :kind, :tag, :categories
+
+  before_save :handle_link_with_value
 
   friendly_id :title, use: :slugged
 
@@ -84,6 +91,35 @@ class Post < ActiveRecord::Base
 
   def update_rating
     update_attribute :rating, (0.5*comments.count + 0.1*votes.liked.count + 0.01*page_visits.count)
+  end
+
+  def linked?
+    !!(afisha_id || organization_id)
+  end
+
+  private
+
+  def handle_link_with_value
+    if link_with_reset == 'true'
+      self.afisha_id = self.organization_id = nil
+      return true
+    end
+
+    return true if link_with_value.blank?
+
+    class_name, id = link_with_value.split('_')
+
+    return false unless %w[afisha organization].include?(class_name)
+
+    object = class_name.classify.constantize.find(id)
+
+    if object.is_a?(Afisha)
+      self.afisha = object
+      self.organization = object.organizations.first
+    else
+      self.afisha = nil
+      self.organization = object
+    end
   end
 end
 
