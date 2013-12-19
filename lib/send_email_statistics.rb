@@ -160,17 +160,16 @@ class SendEmailStatistics
   end
 
   def self.new_discounts(period)
-    @berloga = DiscountsPresenter.new(:type => 'coupon', :organization_id => 183, :order_by => 'rating').collection
     @certificates = DiscountsPresenter.new(:type => 'certificate', :order_by => 'rating').collection
     @offered_discount = DiscountsPresenter.new(:type => 'offered_discount', :order_by => 'rating').collection
-    discounts = [@berloga, @certificates, @offered_discount].flatten
-                                                .compact
-                                                .sort_by{ |e| e.created_at }
-                                                .select{|x| x.created_at > (DateTime.now - period)}
+    discounts = [@certificates, @offered_discount].flatten
+                                                  .compact
+                                                  .sort_by{ |e| e.created_at }
+                                                  .select{|x| x.created_at > (DateTime.now - period)}
     if discounts.select{|x| x.created_at > (DateTime.now - period)}.count < @count
-      sorted_discounts = [@berloga, @certificates, @offered_discount].flatten
-                                                .compact
-                                                .sort_by{ |e| -e[:total_rating] }
+      sorted_discounts = [@certificates, @offered_discount].flatten
+                                                                     .compact
+                                                                     .sort_by{ |e| -e[:total_rating] }
 
       (0..(@count - discounts.count - 1)).each do |i|
         discounts.push sorted_discounts[i]
@@ -178,7 +177,7 @@ class SendEmailStatistics
     else
       discounts = discounts.select{|x| x.created_at > (DateTime.now - period)}
     end
-    discounts
+    discounts.first(@count)
   end
 
   def self.dating(gender, period)
@@ -191,7 +190,12 @@ class SendEmailStatistics
           accounts.push a
         end
       end
-      accounts.any? ? accounts : nil
+
+      (0..(@count - accounts.count - 1)).each do |i|
+        accounts.push prepared_accounts[i]
+      end
+
+      accounts.any? ? accounts.first(@count) : nil
     else
       nil
     end
@@ -202,12 +206,14 @@ class SendEmailStatistics
                                                  .collection
                                                  .sort_by { |e| e[:created_at] }
                                                  .select{|x| x.created_at > (DateTime.now - 1.week)}
-    unless organizations.any?
-      organizations.reverse.first(4)
-    else
-      organizations.sort_by {|e| e[:total_rating]}.first(4)
+    prepared_organizations = OrganizationsCatalogPresenter.new(:per_page => 1000, :sms_claimable => true, :only_clients => true)
+                                                          .collection.sort_by {|e| e[:total_rating]}
+
+    (0..(@count - organizations.count - 1)).each do |i|
+      organizations.push prepared_organizations[i]
     end
 
+    organizations.reverse.first(@count)
   end
 
 end
