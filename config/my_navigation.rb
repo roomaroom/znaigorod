@@ -22,7 +22,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
       my_item.item :posts, 'Мои посты', my_posts_path do |posts|
         posts.item :new, 'Добавление поста', new_my_post_path
-      end
+        posts.item :post, @post.title, my_post_path(@post)
+      end if @post
 
       my_item.item :index, 'Добавление скидки', my_discounts_path
       my_item.item :new_discount, 'Добавление скидки', new_my_discount_path
