@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PrivateMessage < Message
-  attr_accessible :account, :body, :state, :producer
+  attr_accessible :account, :body, :state, :producer, :account_id
 
   scope :from, ->(account) { where(producer_id: account) }
   scope :to, ->(account) { where(account_id: account) }
