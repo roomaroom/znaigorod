@@ -12,7 +12,7 @@ class My::PostsController < My::ApplicationController
   end
 
   def preview
-    render :text => AutoHtmlRenderer.new(params[:text]).render_show
+    render :text => AutoHtmlRenderer.new(params[:text]).render_show(:youtube => { :width => 560 })
   end
 
   def link_with

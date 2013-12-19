@@ -7,20 +7,19 @@ class AutoHtmlRenderer
     @text = text
   end
 
-  def apply_auto_html(str)
+  def apply_auto_html(str, options = {})
     auto_html(str) do
-      youtube
+      youtube options[:youtube] || { :width => 700 }
       redcloth
-      link
     end
   end
 
   def apply_sanitize(str)
     Sanitize.clean(
       str,
-      :elements => ['a', 'img', 'p', 'div', 'h2', 'h3', 'strong', 'em', 'ul', 'ol', 'li'],
+      :elements => ['a', 'img', 'p', 'div', 'h2', 'h3', 'strong', 'em', 'ul', 'ol', 'li', 'iframe'],
       :attributes => {
-        :all => ['src', 'alt', 'title', 'href']
+        :all => ['src', 'alt', 'title', 'href', 'width', 'height', 'frameborder', 'allowfullscreen']
       }
     )
   end
@@ -29,8 +28,8 @@ class AutoHtmlRenderer
     Sanitize.clean(str, :elements => [])
   end
 
-  def render_show
-    apply_sanitize(apply_auto_html(text)).html_safe
+  def render_show(options = {})
+    apply_sanitize(apply_auto_html(text, options)).html_safe
   end
 
   def render_index

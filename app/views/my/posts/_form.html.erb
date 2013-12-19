@@ -44,7 +44,7 @@
 <div class="preview_wrapper">
   <h3>Предварительный просмотр</h3>
   <div class="preview">
-    <%= AutoHtmlRenderer.new(@post.content).render %>
+    <%= AutoHtmlRenderer.new(@post.content).render_show(:youtube => { :width => 560 }) %>
   </div>
 </div>
 
