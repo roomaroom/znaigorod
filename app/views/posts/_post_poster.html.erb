@@ -21,6 +21,7 @@
     <% if post.annotation_image? %>
       <%= post.content_for_index(180) %>
     <% else %>
+      <div class="stub_poster"></div>
       <%= post.content_for_index %>
     <% end %>
   </div>
