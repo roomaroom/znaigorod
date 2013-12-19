@@ -17,11 +17,10 @@ class LinkWithAutocomplete
 
   def items_hash
     items.map do |item|
-      hash = { :value => "#{item.class.name.underscore}_#{item.id}" }
-
-      hash[:label] = 'label'
-
-      hash
+      {
+        :value => "#{item.class.name.underscore}_#{item.id}",
+        :label => item.title
+      }
     end
   end
 
