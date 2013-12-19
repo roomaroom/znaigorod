@@ -375,7 +375,7 @@ class Afisha < ActiveRecord::Base
       up_serv = client.photos.get_upload_server(aid: album_id, group_id: 58652180)
       file = Tempfile.new(['afisha-poster','.jpg'])
       file.binmode
-      file.write open(poster_url).read
+      file.write Curl.get(poster_url).body_str
       upload = VkontakteApi.upload(url: up_serv.upload_url, photo: [file.path, 'image/jpeg'])
       photo = client.photos.save(upload)
       file.close!
