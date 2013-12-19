@@ -273,8 +273,9 @@ class Account < ActiveRecord::Base
     link = ''
     auth = users.first.auth_raw_info
     return link if auth.blank? || auth.is_a?(String)
-    ["Facebook", "Mailru", "Odnoklassniki", "Twitter", "Vkontakte"].each do |provider|
+    ["Facebook", "Mailru", "Odnoklassniki", "Twitter", "Vkontakte", "GoogleOauth2"].each do |provider|
       link = auth.info.urls.send(provider) if auth.info.urls.respond_to?(provider)
+      link = auth.try(:extra).try(:raw_info).try(:link) if provider == "GoogleOauth2"
     end
     link = "#{link}id#{auth.uid}" if link == 'http://vk.com/'
 
