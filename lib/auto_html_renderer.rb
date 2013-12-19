@@ -32,7 +32,7 @@ class AutoHtmlRenderer
     apply_sanitize(apply_auto_html(text, options)).html_safe
   end
 
-  def render_index
-    remove_tags(apply_auto_html(text)).to_s.truncate(180, :separator => ' ')
+  def render_index(length=360)
+    remove_tags(apply_auto_html(text)).to_s.truncate(length, :separator => ' ')
   end
 end
