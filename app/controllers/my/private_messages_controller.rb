@@ -8,7 +8,8 @@ class My::PrivateMessagesController < My::ApplicationController
 
   def new
     new! {
-      @dialog_with = Account.find(params[:account_id])
+      @private_message.account_id = params[:account_id]
+      @dialog_with = Account.find(@private_message.account_id)
       render partial: 'my/private_messages/form' and return
     }
   end
