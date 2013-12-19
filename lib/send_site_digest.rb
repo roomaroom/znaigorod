@@ -6,8 +6,6 @@ class SendSiteDigest
 
   def self.actual_events(period)
     afisha = Afisha.actual.where("afisha.created_at > '#{DateTime.now - period}'").sort_by{|a| -a[:total_rating]}
-    puts afisha.count
-    puts @count.inspect
     if afisha.count < @count
       sorted_afisha = Afisha.actual.sort_by{|a| -a[:total_rating]}
       (0..(@count - afisha.count - 1)).each do |i|
