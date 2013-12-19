@@ -50,8 +50,12 @@ class Post < ActiveRecord::Base
     string(:kind, :multiple => true) { kind.map(&:value) }
   end
 
-  auto_html_for :content do
-    znaigorod_link
+  def content_for_show
+    @content_for_show = AutoHtmlRenderer.new(content).render_show
+  end
+
+  def content_for_index
+    @content_for_index = AutoHtmlRenderer.new(content).render_index
   end
 
   def search_kind

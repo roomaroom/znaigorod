@@ -1,4 +1,4 @@
-<div class="item">
+<div class="post_item">
   <div class="title">
     <%= post.truncated_title_link(50) %>
   </div>
@@ -19,9 +19,9 @@
   <% end %>
   <div class="annotation">
     <% if post.annotation_image? %>
-      <%= post.truncated_description(180) %>
+      <%= post.content_for_index %>
     <% else %>
-      <%= post.truncated_description(480) %>
+      <%= post.content_for_index %>
     <% end %>
   </div>
 </div>

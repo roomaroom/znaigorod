@@ -2,6 +2,14 @@
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <div class="my_posts_wrapper">
-    <h1><%= @post.title %></h1>
+    <div class="index_preview">
+      <h2>Так пост будет выглядеть на списке &darr;</h2>
+      <%= render :partial => 'posts/post_poster', :locals => { :post => @post } %>
+    </div>
+
+    <div class="show_preview">
+      <h2>Так пост будет выглядеть для просмотра &darr;</h2>
+      <%= render :partial => 'posts/post_show', :locals => { :for_preview => true } %>
+    </div>
   </div>
 </div>

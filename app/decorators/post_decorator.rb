@@ -13,10 +13,6 @@ class PostDecorator < ApplicationDecorator
     end
   end
 
-  def truncated_description(length)
-    auto_html(h.truncate(Sanitize.clean(content.gsub('&nbsp;', ' '), :separator => ' ').squish, :length => length)){znaigorod_link}
-  end
-
   def show_url
     @show_url ||= h.post_url(post)
   end
