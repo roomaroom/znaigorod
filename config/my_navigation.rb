@@ -25,6 +25,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
         posts.item :post, @post.title, my_post_path(@post) do |post|
           post.item :edit, 'Редактирование поста', edit_my_post_path(@post)
+          post.item :poster, 'Постер', poster_my_post_path(@post)
         end if @post.persisted?
       end
 

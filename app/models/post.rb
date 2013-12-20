@@ -1,10 +1,11 @@
 # encoding: utf-8
 
 class Post < ActiveRecord::Base
+  include CropedPoster
   include MakePageVisit
   extend FriendlyId
 
-  attr_accessible :content, :poster_url, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
+  attr_accessible :content, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
 
   attr_accessible :link_with_title, :link_with_value, :link_with_reset
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
@@ -42,10 +43,6 @@ class Post < ActiveRecord::Base
   scope :published, -> { where(:status => true) }
   scope :draft,     -> { where(:status => false) }
 
-  def self.generate_vfs_path
-    "/znaigorod/posts/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
-  end
-
   searchable do
     text :content,              :more_like_this => true
     text :title,                :more_like_this => true,  :stored => true
@@ -71,10 +68,6 @@ class Post < ActiveRecord::Base
 
   def similar_post
     HasSearcher.searcher(:similar_posts).more_like_this(self).limit(6).results
-  end
-
-  def poster_url
-    gallery_images.any? ? gallery_images.first.file_url : 'public/stub_poster.png'
   end
 
   def tags

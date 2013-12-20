@@ -36,6 +36,7 @@ Znaigorod::Application.routes.draw do
     resources :posts do
       get :available_tags, :on => :collection
       get :link_with,      :on => :collection
+      get :poster,         :on => :member, :as => :poster
 
       post :preview, :on => :collection
     end

@@ -30,6 +30,13 @@
 
   true
 
+  $('#post_poster_image').on 'change', ->
+    $(this).parents('form').append('<input id="crop" name="crop" type="hidden" value="true">').submit()
+    $(this).parents('form').submit()
+    true
+
+  true
+
 update_crop = (coords) ->
   rx = 200/coords.w
   ry = 269/coords.h
