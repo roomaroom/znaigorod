@@ -39,6 +39,8 @@ Znaigorod::Application.routes.draw do
       get :poster,         :on => :member, :as => :poster
 
       post :preview, :on => :collection
+
+      resources :post_gallery_images
     end
 
     resources :afisha, :except => [:show], :controller => 'afishas' do
