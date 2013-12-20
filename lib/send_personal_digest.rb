@@ -2,7 +2,19 @@
 
 class SendPersonalDigest
 
-  def self.send_notifications_digests(period)
+  def self.made_digest(account, period)
+    {
+      notifications: notifications(account, period),
+      invitations: invitations(account, period),
+      private_messages: private_messages(account, period),
+      comment_likes: comment_likes(account, period),
+      comment_answers: comment_answers(account, period),
+      afisha_comments: afisha_comments(account, period),
+      discount_comments: discount_comments(account, period)
+    }
+  end
+
+  def self.notifications(period)
     Account.where("last_visit_at < '#{DateTime.now - period}' and email is not null").each do |account|
       digest = {
         invitations: account.notification_messages.where(:state => "unread"),
