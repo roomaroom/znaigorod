@@ -1,10 +1,13 @@
 .widgets_list
+  margin: 10px
+
   h1
     font-size: 22px
-    margin: 20px 0
+    line-height: 24px
+    margin: 0 0 15px 0
 
   ul
-    overflow: hidden
+    +clearfix
 
     li
       border: 1px solid #CCCCCC
@@ -18,15 +21,18 @@
         height: 150px
         text-indent: -9999px
         width: 150px
+        background-color: transparent
+        background-repeat: no-repeat
+        background-position: center center
 
         &.webcams
-          background: image-url('public/widgets/webcams.png')
+          background-image: image_url('public/widgets/webcams.png')
 
         &.organizations
-          background: image-url('public/widgets/organizations.png')
+          background-image: image_url('public/widgets/organizations.png')
 
         &.discounts
-          background: image-url('public/widgets/discounts.png')
+          background-image: image_url('public/widgets/discounts.png')
 
       .text
         float: left
@@ -36,5 +42,3 @@
 
         p
           margin-top: 10px
-
-
