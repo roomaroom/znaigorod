@@ -1,6 +1,7 @@
 .content_wrapper .webcams
 
   .add_webcam
+    display: none
     float: right
     position: relative
     margin: 5px 10px 0 0
@@ -25,7 +26,7 @@
       +border-radius(5px)
       background-color: #fff
       padding: 10px
-      z-index: 10
+      z-index: 99999
 
   h1
     float: left
@@ -36,8 +37,9 @@
     float: none
 
   .add_webcam_to_your_site
+    width: 350px
     text-align: center
-    margin-top: 7px
+    margin: 7px auto 0
 
     a
       font-size: 18px
