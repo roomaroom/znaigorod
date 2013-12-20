@@ -70,6 +70,13 @@ handleImageButtonClick = ->
 initTagit = ->
   tagitFor $('#post_tag')
 
+delay = (->
+  timer = 0
+  (callback, ms) ->
+    clearTimeout timer
+    timer = setTimeout(callback, ms)
+)()
+
 handlePreview = ->
   form = $('.my_post_form')
 
@@ -77,14 +84,18 @@ handlePreview = ->
   textInputs = $('#post_title, .markItUpEditor')
   tagsInput = $('#post_tag')
 
-  checkboxes.on 'change', ->
-    form.trigger('preview')
+  #checkboxes.on 'change', ->
+    #form.trigger('preview')
 
   textInputs.on 'keyup', ->
-    form.trigger('preview')
+    delay (->
+      form.trigger('preview')
+    ), 1000
 
   tagsInput.on 'change', ->
-    form.trigger('preview')
+    delay (->
+      form.trigger('preview')
+    ), 1000
 
   form.on 'preview', ->
     serialized = $('input[name!=_method], textarea', form)

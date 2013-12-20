@@ -12,7 +12,12 @@ class PostsTags
   private
 
   def all_tags
-    @all_tags ||= Post.pluck(:tag).map { |tag| tag || '' }.flat_map { |tag| tag.split(',').map(&:squish) }.uniq.delete_if(&:blank?)
+    @all_tags ||= Post.pluck(:tag)
+      .map { |tag| tag || '' }
+      .flat_map { |tag| tag.split(',').map(&:squish) }
+      .uniq
+      .delete_if(&:blank?)
+      .sort_by(&:length)
   end
 
   def tags_with_term

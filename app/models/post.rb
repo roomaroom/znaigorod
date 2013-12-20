@@ -1,9 +1,12 @@
 # encoding: utf-8
 
 class Post < ActiveRecord::Base
-  include CropedPoster
-  include MakePageVisit
+  extend Enumerize
   extend FriendlyId
+
+  include CropedPoster
+  include DraftPublishedStates
+  include MakePageVisit
 
   attr_accessible :content, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
 
@@ -26,7 +29,12 @@ class Post < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
-  extend Enumerize
+  def should_generate_new_friendly_id?
+    return true if !self.slug? && self.published?
+
+    false
+  end
+
   serialize :kind, Array
   enumerize :kind, in: [:review, :photoreport], multiple: true, predicates: true
 
