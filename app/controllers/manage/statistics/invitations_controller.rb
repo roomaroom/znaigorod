@@ -23,7 +23,7 @@ class Manage::Statistics::InvitationsController < Manage::ApplicationController
     @afishas_person = @afishas.where('user_id not in (?)', Role.all.map(&:user_id))
 
     @tickets = Ticket.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
-    @sold_tickets = CopyPayment.approved.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
+    @sold_tickets = CopyPayment.approved.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at).where(:paymentable_type => 'Ticket')
 
     @reservcations = Reservation.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
     @sms_claims = SmsClaim.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
