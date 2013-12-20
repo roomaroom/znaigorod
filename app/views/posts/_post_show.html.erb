@@ -22,7 +22,7 @@
       </div>
 
       <% unless local_assigns.has_key? :for_preview %>
-        <% if post_images.any? %>
+        <% if false && post_images.any? %>
           <ul class='post_images'>
             <%= render :partial => 'post_images' %>
           </ul>

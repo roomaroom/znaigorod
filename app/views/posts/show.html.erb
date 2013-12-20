@@ -1,3 +1,3 @@
 <% content_for :page_title, "#{@post.title}. #{t('meta.default.title')}" %>
 
-<%= render 'post_show' %>
+ <%= render :partial => 'post_show', :locals => { :post => @post } %>

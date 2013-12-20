@@ -13,15 +13,11 @@
     <%= post.date %>
   </div>
   <div class="annotation">
-    <% if post.annotation_image? %>
-      <%= post.content_for_index(180) %>
+    <% if post.poster_url? %>
+      <%= link_to image_tag(resized_image_url(post.poster_url, 353, 199), :size => '353x199', :title => post.title, :alt => post.title), post_path(post) %>
     <% else %>
-      <% if post.poster_url? %>
-        <%= link_to image_tag(resized_image_url(post.poster_url, 353, 199), :size => '353x199', :title => post.title, :alt => post.title), post.poster_url %>
-      <% else %>
-        <div class="stub_poster"></div>
-      <% end %>
-      <%= post.content_for_index %>
+      <div class="stub_poster"></div>
     <% end %>
+    <%= post.content_for_index %>
   </div>
 </div>
