@@ -4,6 +4,15 @@ class SendSiteDigest
 
   @count = 4
 
+  def self.made_digest(period)
+    {
+      events:        actual_events(period),
+      discounts:     new_discounts(period),
+      dating:        dating(period),
+      organizations: new_organizations(period)
+    }
+  end
+
   def self.actual_events(period)
     afisha = Afisha.actual.where("afisha.created_at > '#{DateTime.now - period}'").sort_by{|a| -a[:total_rating]}
     if afisha.count < @count
