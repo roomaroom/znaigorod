@@ -27,7 +27,7 @@ SimpleNavigation::Configuration.run do |navigation|
           post.item :edit, 'Редактирование поста', edit_my_post_path(@post)
           post.item :poster, 'Постер', poster_my_post_path(@post)
         end if @post.persisted?
-      end
+      end if @post
 
       my_item.item :index, 'Добавление скидки', my_discounts_path
       my_item.item :new_discount, 'Добавление скидки', new_my_discount_path
