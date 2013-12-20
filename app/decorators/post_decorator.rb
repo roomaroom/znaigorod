@@ -28,7 +28,9 @@ class PostDecorator < ApplicationDecorator
   end
 
   def date
-    h.content_tag :div, I18n.l(post.created_at, format: "%d %B %Y"), class: :date
+    date = post.created_at || Time.zone.now
+
+    h.content_tag :div, I18n.l(date, format: "%d %B %Y"), class: :date
   end
 
   def html_content

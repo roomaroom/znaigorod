@@ -31,7 +31,9 @@ class My::PostsController < My::ApplicationController
   end
 
   def preview
-    render :text => AutoHtmlRenderer.new(params[:text]).render_show(:youtube => { :width => 560 })
+    post = Post.new(params[:post])
+
+    render :partial => 'posts/post_show', :locals => { :post => PostDecorator.new(post), :for_preview => true }
   end
 
   def link_with

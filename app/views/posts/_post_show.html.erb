@@ -1,31 +1,32 @@
 <div class='post_show'>
   <div class='post_title'>
-    <h1><%= @post.title %> <%= " (#{link_to('редактировать', edit_my_post_path(@post))})".html_safe if local_assigns.has_key?(:for_preview) %></h1>
+    <h1><%= post.title %></h1>
   </div>
 
   <div class='left'>
-    <div class='details'>
-      <span class='first_line'>
-        <span class='show_tipsy comments' title='Комментарии'><%= @post.comments.count %></span>
-        <span class='show_tipsy likes' title='Понравилось'><%= @post.likes_count %></span>
-        <span class='show_tipsy visits' title='Просмотры'><%= @post.page_visits.count %></span>
+    <div class="details">
+      <span class="first_line">
+        <span class="show_tipsy comments" title="Комментарии"><%= post.comments.count %></span>
+        <span class="show_tipsy likes" title="Понравилось"><%= post.likes_count %></span>
+        <span class="show_tipsy visits" title="Просмотры"><%= post.page_visits.count %></span>
       </span>
+
     </div>
-    <div class='date'>
-      <%= @post.date %>
+    <div class="date">
+      <%= post.date %>
     </div>
 
     <div class='wrapper'>
       <div class='post_content'>
-        <%= @post.content_for_show %>
+        <%= post.content_for_show %>
       </div>
 
       <% unless local_assigns.has_key? :for_preview %>
-        <% if @post_images.any? %>
+        <% if post_images.any? %>
           <ul class='post_images'>
             <%= render :partial => 'post_images' %>
           </ul>
-          <%= paginate @post_images %>
+          <%= paginate post_images %>
         <% end %>
 
         <div class='share_and_likes'>
@@ -34,9 +35,9 @@
       <% end %>
 
       <div class='tags_and_visits'>
-        <% if @post.tags.any? %>
+        <% if post.tags.any? %>
           <ul class='tags'>
-            <% @post.tags.each do |tag| %>
+            <% post.tags.each do |tag| %>
               <li><%= tag %></li>
             <%end%>
           </ul>
@@ -44,16 +45,16 @@
       </div>
     </div>
 
-    <%= render :partial => 'comments/block', :locals => { :parent_obj => @post } unless local_assigns.has_key? :for_preview%>
+    <%= render :partial => 'comments/block', :locals => { :parent_obj => post } unless local_assigns.has_key? :for_preview %>
   </div>
 
   <% unless local_assigns.has_key? :for_preview %>
     <div class='right'>
-      <% if @post.similar_post.present? %>
+      <% if post.similar_post.present? %>
         <div class='more_like_this'>
           <p class='title'>Другие обзоры</p>
           <ul>
-            <% @post.similar_post.each do |item| %>
+            <% post.similar_post.each do |item| %>
               <% post = PostDecorator.new(item) %>
               <li>
                 <%= post.annotation_image(87, 65) if post.annotation_image? %>

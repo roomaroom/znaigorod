@@ -2,9 +2,9 @@
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
-<%= simple_form_for [:my, @post], :html => { :class => 'default_simple_form' } do |f| %>
-  <%= f.input :categories, :as => :check_boxes %>
-  <%= f.input :kind, :as => :check_boxes %>
+<%= simple_form_for [:my, @post], :html => { :class => 'my_post_form default_simple_form' } do |f| %>
+  <%= f.input :categories, :as => :check_boxes, :input_html => { :class => 'post_categories_input' } %>
+  <%= f.input :kind, :as => :check_boxes, :input_html => { :class => 'post_kind_input' } %>
   <%= f.input :title, :input_html => { :maxlength => 140 } %>
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
   <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
@@ -52,9 +52,9 @@
 <% end %>
 
 <div class="preview_wrapper">
-  <h3>Предварительный просмотр</h3>
-  <div class="preview">
-    <%= AutoHtmlRenderer.new(@post.content).render_show(:youtube => { :width => 560 }) %>
+  <h1>Предварительный просмотр</h1>
+  <div class="show_preview">
+    <%= render :partial => 'posts/post_show', :locals => { :post => PostDecorator.new(@post), :for_preview => true } %>
   </div>
 </div>
 

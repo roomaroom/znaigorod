@@ -70,25 +70,27 @@ handleImageButtonClick = ->
 initTagit = ->
   tagitFor $('#post_tag')
 
-handleEditorPreview = ->
-  textarea = $('textarea[name="post[content]"]')
+handlePreview = ->
+  form = $('.my_post_form')
 
-  textarea.on 'keyup', ->
-    textarea.trigger('preview')
+  checkboxes = $('.post_categories_input, .post_kind_input', form)
+  textInputs = $('#post_title, .markItUpEditor')
+  tagsInput = $('#post_tag')
 
-  textarea.on 'preview', ->
-    text = $(this).val()
-    target = $('.preview')
+  checkboxes.on 'change', ->
+    form.trigger('preview')
 
-    $.post('/my/posts/preview', { text: text })
+  textInputs.on 'keyup', ->
+    form.trigger('preview')
+
+  tagsInput.on 'change', ->
+    form.trigger('preview')
+
+  form.on 'preview', ->
+    serialized = $('input[name!=_method], textarea', form)
+    $.post('/my/posts/preview', serialized)
       .done (data) ->
-        target.html(data)
-
-setPreviewTop = ->
-  previewWrapperTop = $('.preview_wrapper').position().top
-  postContentTop = $('.post_content').position().top
-
-  $('.preview_wrapper').css('margin-top', postContentTop - previewWrapperTop)
+        $('.show_preview').html(data)
 
 linkWithAutocomplete = ->
   input = $('#post_link_with_title')
@@ -124,6 +126,5 @@ handleLinkWith = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
-  handleEditorPreview()
-  setPreviewTop()
+  handlePreview()
   handleLinkWith()
