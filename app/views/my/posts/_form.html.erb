@@ -5,7 +5,7 @@
 <%= simple_form_for [:my, @post], :html => { :class => 'default_simple_form' } do |f| %>
   <%= f.input :categories, :as => :check_boxes %>
   <%= f.input :kind, :as => :check_boxes %>
-  <%= f.input :title %>
+  <%= f.input :title, :input_html => { :maxlength => 140 } %>
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
   <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
 
@@ -26,9 +26,19 @@
 
       <div class="link_with_content">
         <% if @post.afisha_id? %>
-          <%= link_to @post.afisha.title, afisha_show_path(@post.afisha) %>
+          <div class="afisha_list pagination_none">
+            <ul class='posters'>
+              <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(@post.afisha)] } %>
+            </ul>
+          </div>
         <% else %>
-          <%= link_to @post.organization.title, @post.organization %>
+          <div class='organizations_list pagination_none'>
+            <ul class='posters'>
+              <li>
+                <%= render partial: 'organizations/suborganization', locals: { suborganization: OrganizationDecorator.new(@post.organization) } %>
+              </li>
+            </ul>
+          </div>
         <% end %>
       </div>
     </div>
