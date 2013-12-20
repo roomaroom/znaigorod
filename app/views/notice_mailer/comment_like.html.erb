@@ -18,7 +18,11 @@
             <a href="<%= account_path @vote.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>"><%= @vote.user.account.title %></a> <span><%= t "notice_mailer.liked_your_comment.#{@vote.user.account.gender}" %> </span>
 
               <% if @vote.voteable.commentable.is_a?(Work) %>
-                <%= link_to (@vote.voteable.commentable.title.present? ? @vote.voteable.commentable.title : @vote.voteable.commentable.slug), work_path([@vote.voteable.commentable.contest, @vote.voteable.commentable], :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                <% if @vote.voteable.commentable.title.present? %>
+                  <%= link_to @vote.voteable.commentable.title, contest_work_path(@vote.voteable.commentable.contest, @vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                <% else %>
+                  <%= link_to @vote.voteable.commentable.slug, contest_work_path(@vote.voteable.commentable.contest, @vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                <% end %>
               <% end %>
               <% %w[afisha discount organization post].each do |item| %>
                 <% if @vote.voteable.commentable.is_a?(item.camelize.constantize) %>

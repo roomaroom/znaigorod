@@ -50,14 +50,10 @@
            var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
            if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
            })(document, window);
-        //]]>
-        </script>
-        <noscript>
-          <div style="position:absolute;left:-10000px;">
-            <img src="//top-fwz1.mail.ru/counter?id=2440744;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
-          </div>
-        </noscript>
-        <!-- //Rating@Mail.ru counter -->
+//]]></script><noscript><div style="position:absolute;left:-10000px;">
+  <img src="//top-fwz1.mail.ru/counter?id=2440744;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+                    </div></noscript>
+                    <!-- //Rating@Mail.ru counter -->
 
         <!-- TBE informer -->
         <span class='inline_block' id='tbec'><script type='text/javascript'>setTimeout('var tbex=document.createElement("SCRIPT");tbex.type="text/javascript";tbex.src="http://c.tbex.ru/z/a!8831!znaigorod.ru!c.js?rev=2"+String.fromCharCode(38)+"rnd="+(new Date().getTime());(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(tbex)',1)</script></span><noscript><a href="http://tbe.tom.ru/site/znaigorod.ru/" rel='nofollow'><img src='http://c.tbex.ru/z/a!8831!znaigorod.ru!c.gif' alt='TBE' /></a></noscript>
