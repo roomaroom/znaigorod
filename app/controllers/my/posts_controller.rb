@@ -27,7 +27,7 @@ class My::PostsController < My::ApplicationController
   end
 
   def available_tags
-    render :json => %w[foo bar foobar].to_json
+    render :json => PostsTags.new(params[:term]).tags.to_json
   end
 
   def preview

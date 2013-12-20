@@ -35,7 +35,6 @@ class Post < ActiveRecord::Base
   normalize_attribute :categories, :with => :blank_array
 
   normalize_attribute :kind, with: :blank_array
-  #normalize_attribute :content, :with => [:sanitize, :gilensize_as_html, :strip, :blank]
   normalize_attribute :content, :with => [:strip, :blank]
 
   default_scope order('id DESC')
