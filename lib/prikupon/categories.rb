@@ -21,6 +21,7 @@ class Prikupon::Categories
     {
       'Без категории'       => :other,
       'благотворительность' => :other,
+      'для авто'            => :auto,
       'для влюбленных'      => :other,
       'для детей'           => :children,
       'для животных'        => :other,
