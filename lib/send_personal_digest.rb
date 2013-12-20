@@ -2,108 +2,112 @@
 
 class SendPersonalDigest
 
-  def self.made_digest(account, period)
-    {
-      notifications: notifications(account, period),
-      invitations: invitations(account, period),
-      private_messages: private_messages(account, period),
-      comment_likes: comment_likes(account, period),
-      comment_answers: comment_answers(account, period),
-      afisha_comments: afisha_comments(account, period),
-      discount_comments: discount_comments(account, period)
-    }
-  end
+  class Digest
+    attr_accessor :invitations, :private_messages, :comment_likes, :comment_answers, :afisha_comments, :discount_comments
 
-  def self.notifications(period)
-    Account.where("last_visit_at < '#{DateTime.now - period}' and email is not null").each do |account|
-      digest = {
-        invitations: account.notification_messages.where(:state => "unread"),
-        private_messages: private_messages(account, period),
-        comment_likes: a,
-        comment_answers: a,
-        afisha_comments: a,
-        discount_comments: a
-      }
-
-      NoticeMailer.digest(digest, account) unless account.email.blank?
+    def initialize(account, period)
+      @account = account
+      @period = period
+      @invitations = get_invitations
+      @private_messages = get_private_messages
+      @comment_likes = get_comment_likes
+      @comment_answers = get_comment_answers
+      @afisha_comments = get_afisha_comments
+      @discount_comments = get_discount_comments
     end
-  end
 
-  def self.invitations(account, period)
-    invitations = []
-    invite = Invitation.where("invited_id = #{account.id} and invitations.created_at > '#{DateTime.now - period}'")
-    invite.each do  |i|
-       if i.invite_messages.where(:state => 'unread').any?
-         invitations.push i
-       end
-    end
-    invitations
-  end
-
-  def self.private_messages(account, period)
-    account.private_messages.where("state = 'unread' and created_at > '#{DateTime.now - period}'")
-  end
-
-  def self.comment_likes(account, period)
-    likes = []
-    notifications = NotificationMessage.where("state = 'unread' and " +
-                              "messageable_type = 'Vote' and " +
-                              "account_id = #{account.id} and " +
-                              "created_at > '#{DateTime.now - period}'")
-    notifications.each do |n|
-      if n.messageable.voteable_type == "Comment"
-        likes.push n.messageable
+    def is_blank?
+      if @private_messages.blank? && @comment_likes.blank? &&
+        @comment_answers.blank? && @afisha_comments.blank? && @discount_comments.blank?
+        return true
+      else
+        return false
       end
     end
-    likes
+
+    def get_invitations
+      invitations = []
+      invite = Invitation.where("invited_id = #{@account.id} and invitations.created_at > '#{@account.last_visit_at.to_datetime}'")
+      invite.each do  |i|
+        if i.invite_messages.where(:state => 'unread').any?
+          invitations.push i
+        end
+      end
+      invitations
+    end
+
+    def get_private_messages
+      @account.private_messages.where("state = 'unread' and created_at > '#{@account.last_visit_at}'")
+    end
+
+    def get_comment_likes
+      likes = []
+      notifications = NotificationMessage.where("state = 'unread' and " +
+                                                "messageable_type = 'Vote' and " +
+                                                "account_id = #{@account.id} and " +
+      "created_at > '#{@account.last_visit_at}'")
+      notifications.each do |n|
+        if n.messageable.voteable_type == "Comment"
+          likes.push n.messageable
+        end
+      end
+      likes
+    end
+
+    def get_comment_answers
+      comments = []
+      notifications = NotificationMessage.where("state = 'unread' and " +
+                                                "messageable_type = 'Comment' and " +
+                                                "account_id = #{@account.id} and " +
+      "created_at > '#{@account.last_visit_at}' and " +
+      "kind = 'reply_on_comment'")
+      notifications.each do |n|
+        if n.messageable.parent.present?
+          comments.push n.messageable
+        end
+      end
+      comments
+    end
+
+    def get_afisha_comments
+      comments = []
+      notifications = NotificationMessage.where("state = 'unread' and " +
+                                                "messageable_type = 'Comment' and " +
+                                                "account_id = #{@account.id} and " +
+      "created_at > '#{@account.last_visit_at}' and " +
+      "kind = 'new_comment'")
+      notifications.each do |n|
+        if n.messageable.commentable_type == "Afisha"
+          comments.push n.messageable
+        end
+      end
+      comments
+    end
+
+    def get_discount_comments
+      comments = []
+      notifications = NotificationMessage.where("state = 'unread' and " +
+                                                "messageable_type = 'Comment' and " +
+                                                "account_id = #{@account.id} and " +
+      "created_at > '#{@account.last_visit_at}' and " +
+      "kind = 'new_comment'")
+      notifications.each do |n|
+        if n.messageable.commentable_type == "Discount"
+          comments.push n.messageable
+        end
+      end
+      comments
+    end
+
   end
 
-  def self.comment_answers(account, period)
-    comments = []
-    notifications = NotificationMessage.where("state = 'unread' and " +
-                              "messageable_type = 'Comment' and " +
-                              "account_id = #{account.id} and " +
-                              "created_at > '#{DateTime.now - period}' and " +
-                              "kind = 'reply_on_comment'")
-    notifications.each do |n|
-      puts n.inspect
-      puts n.messageable.parent.inspect
-      if n.messageable.parent.present?
-        comments.push n.messageable
-      end
-    end
-    comments
-  end
 
-  def self.afisha_comments(account, period)
-    comments = []
-    notifications = NotificationMessage.where("state = 'unread' and " +
-                              "messageable_type = 'Comment' and " +
-                              "account_id = #{account.id} and " +
-                              "created_at > '#{DateTime.now - period}' and " +
-                              "kind = 'new_comment'")
-    notifications.each do |n|
-      if n.messageable.commentable_type == "Afisha"
-        comments.push n.messageable
-      end
+  def self.send
+    period = 1.day
+    Account.where("email is not null and last_visit_at <= '#{DateTime.now - period}'").each do |account|
+      digest = Digest.new(account, period)
+      PersonalDigestMailer.send_digest(account, digest) unless digest.is_blank?
     end
-    comments
-  end
-
-  def self.discount_comments(account, period)
-    comments = []
-    notifications = NotificationMessage.where("state = 'unread' and " +
-                              "messageable_type = 'Comment' and " +
-                              "account_id = #{account.id} and " +
-                              "created_at > '#{DateTime.now - period}' and " +
-                              "kind = 'new_comment'")
-    notifications.each do |n|
-      puts n.messageable.commentable_type
-      if n.messageable.commentable_type == "Discount"
-        comments.push n.messageable
-      end
-    end
-    comments
   end
 
 end

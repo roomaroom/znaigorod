@@ -1,0 +1,56 @@
+<% private_messages.each do |message| %>
+  <% if message != private_messages.last %>
+    <tr class="dashed_border">
+  <% else %>
+    <tr class="solid_border">
+  <% end %>
+    <td class="center" align="center">
+      <center>
+
+        <table id="content_row" class="row content_row">
+          <tr align="left">
+            <td align="left" valign="top">
+              <table class="one columns"><tr align="left"><td align="left" valign="top">
+                    <a href="<%= account_path message.producer, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>">
+                      <img src="<%= resized_image_url(message.producer.avatar.url, 30, 30) %>" align="left" alt="<%= message.producer.title %>" title="<%= message.producer.title %>" />
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td id="right_content" align="left" valign="top">
+              <table class="nine columns">
+                <tr align="left">
+                  <td class="line_height" align="left" valign="top">
+                    <a href="<%= account_path message.producer, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>"><%= message.producer.title %></a>, <span id="time"><%= l(message.created_at, format: "%d %B %Y, %k:%M") %></span>
+                  </td>
+                </tr>
+                <tr align="left">
+                  <td align="left" valign="top">
+                    <span><%= message.body %></span>
+                  </td>
+                </tr>
+              </table>
+              <table class="nine columns">
+                <tr align="left">
+                  <td align="left" valign="top">
+                    <table id="orange-button">
+                      <tr align="left">
+                        <td align="left" valign="top">
+                          <a href="<%= my_dialogs_path(:only_path => false, :anchor => message.producer.id, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>">
+                            <img src="<%= "#{Settings['app']['url']}/assets/public/mailer_buttons_to_dialogs.png" %>" alt="<%= t("notice_mailer.to_dialog") %>" title="<%= t("notice_mailer.to_dialog") %>" />
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+
+    </td>
+  </tr>
+<% end %>
