@@ -7,7 +7,6 @@ class PersonalDigestMailer < ActionMailer::Base
     @digest = digest
     @type = "new_notifications"
     mail(:to => account.email, :subject => t("notice_mailer.site_digest")).deliver!
-    raise 'yes'
   end
 
 end

@@ -20,7 +20,7 @@
                 </tr>
               </table>
             </td>
-            <td id="right_content" align="left" valign="top">
+            <td class="without-padding" id="right_content" align="left" valign="top">
               <table class="nine columns">
                 <tr align="left">
                   <td class="line_height" align="left" valign="top">
@@ -43,11 +43,11 @@
                 </tr>
                 <tr align="left">
                   <td id="time" class="line_height" align="left" valign="top">
-                    <span><%= l(vote.created_at, format: "%d %B %Y, %k:%M") %></span>
+                    <span id="time"><%= l(vote.created_at, format: "%d %B %Y, %k:%M") %></span>
                   </td>
                 </tr>
                 <tr align="left">
-                  <td align="left" valign="top">
+                  <td class="without-padding" align="left" valign="top">
                     <span><%= vote.voteable.body.truncated.as_html if vote.voteable.body? %></span>
                   </td>
                 </tr>

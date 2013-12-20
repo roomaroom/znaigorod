@@ -18,7 +18,7 @@
                 </tr>
               </table>
             </td>
-            <td id="right_content" align="left" valign="top">
+            <td class="without-padding" id="right_content" align="left" valign="top">
               <table class="nine columns">
                 <tr align="left">
                   <td class="line_height" align="left" valign="top">
@@ -33,10 +33,10 @@
               </table>
               <table class="nine columns">
                 <tr align="left">
-                  <td align="left" valign="top">
+                  <td class="without-padding" align="left" valign="top">
                     <table id="orange-button">
                       <tr align="left">
-                        <td align="left" valign="top">
+                        <td class="without-padding" align="left" valign="top">
                           <a href="<%= my_dialogs_path(:only_path => false, :anchor => message.producer.id, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>">
                             <img src="<%= "#{Settings['app']['url']}/assets/public/mailer_buttons_to_dialogs.png" %>" alt="<%= t("notice_mailer.to_dialog") %>" title="<%= t("notice_mailer.to_dialog") %>" />
                           </a>
