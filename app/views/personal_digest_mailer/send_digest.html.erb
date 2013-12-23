@@ -1,7 +1,18 @@
 <% content_for :content do %>
+  <tr class="solid_border">
+  	<td>
+      <table class="custom_column_width columns">
+
+
+
   <% @digest.each do |materials| %>
-    <% puts materials.inspect %>
-    <% puts materials.count %>
     <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
   <% end %>
+
+
+
+
+      </table>
+  	</td>
+  </tr>
 <% end %>
