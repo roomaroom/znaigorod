@@ -226,6 +226,19 @@ add_disabled = () ->
 
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
+  console.log '213'
+
+  $('.invitations .read_all_notifications a').on 'click', () ->
+    sure = confirm("Вы действительно хотите сделать все уведомления прочитанными?")
+    if sure == true
+      $.ajax
+        url: "/my/read_all_notifications"
+        type: "PUT"
+        success: (data, textStatus, jqXHR) ->
+          $('.account_messages li.unread').each () ->
+            $(this).removeClass('unread').addClass('read')
+
+    false
 
   $('#messages_filter').on "tabsselect", (event, ui) ->
     if ui.panel.id == 'dialogs'
