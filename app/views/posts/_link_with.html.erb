@@ -1,0 +1,17 @@
+<div class="link_with_content">
+  <% if @post.afisha_id? %>
+    <div class="afisha_list pagination_none">
+      <ul class='posters'>
+        <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(@post.afisha)] } %>
+      </ul>
+    </div>
+  <% else %>
+    <div class='organizations_list pagination_none'>
+      <ul class='posters'>
+        <li>
+          <%= render partial: 'organizations/suborganization', locals: { suborganization: OrganizationDecorator.new(@post.organization) } %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</div>

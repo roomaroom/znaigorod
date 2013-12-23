@@ -16,34 +16,14 @@
     :wrapper_html => { :class => @post.linked? ? :linked : :not_linked },
     :input_html => {
       :data => { 'autocomplete-source' => link_with_my_posts_path, :target => '#post_link_with_value', :reset => '#post_link_with_reset' },
-      :placeholder => 'Введите название заведения или мероприятия' }
-  %>
+      :placeholder => 'Введите название заведения или мероприятия' } %>
 
-  <% if @post.linked? %>
-    <div class="input link_with_wrapper">
-      <%= label_tag 'Это пост связан с' %>
-      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+  <div class="input link_with_wrapper">
+    <%= label_tag 'Это пост связан с' %>
+    <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
 
-      <div class="link_with_content">
-        <% if @post.afisha_id? %>
-          <div class="afisha_list pagination_none">
-            <ul class='posters'>
-              <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(@post.afisha)] } %>
-            </ul>
-          </div>
-        <% else %>
-          <div class='organizations_list pagination_none'>
-            <ul class='posters'>
-              <li>
-                <%= render partial: 'organizations/suborganization', locals: { suborganization: OrganizationDecorator.new(@post.organization) } %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
+    <%= render :partial => 'posts/link_with' if @post.linked? %>
+  </div>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>

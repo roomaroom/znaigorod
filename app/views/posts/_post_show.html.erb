@@ -50,6 +50,10 @@
 
   <% unless local_assigns.has_key? :for_preview %>
     <div class='right'>
+
+    <h2>Этот обзор связан с:</h2>
+    <%= render :partial => 'posts/link_with' if @post.linked? %>
+
       <% if post.similar_post.present? %>
         <div class='more_like_this'>
           <p class='title'>Другие обзоры</p>
