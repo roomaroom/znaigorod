@@ -40,6 +40,9 @@ Znaigorod::Application.routes.draw do
 
       post :preview,       :on => :collection
 
+      put 'publish'  => 'posts#send_to_published', :on => :member, :as => :publish
+      put 'draft' => 'posts#send_to_draft', :on => :member, :as => :draft
+
       resources :post_gallery_images
     end
 

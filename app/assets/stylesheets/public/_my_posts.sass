@@ -90,3 +90,122 @@
       display: inline-block
 
 
+.my_posts_wrapper
+  .left
+    float: left
+
+    .index_preview, .show_preview
+      +clearfix
+      width: 785px
+
+      h2
+        background: #fafafa
+        border-bottom: 3px solid #e8e8e8
+        border-top: 3px solid #e8e8e8
+        color: #444
+        font-size: 20px
+        line-height: 26px
+        padding: 5px 0
+        text-align: center
+
+        &:hover
+          cursor: pointer
+
+      .post_item
+        +clearfix
+        float: left
+
+      .post_show
+        .left
+          width: 100%
+
+      .stub_poster
+        background: image_url('public/post_poster_stub.jpg') no-repeat
+        height: 199px
+        margin: 0 0 10px 0
+        width: 353px
+
+      .post_help
+        +clearfix
+
+        div
+          background: #e8e8e8
+          font-size: 12px
+          line-height: 20px
+          padding: 5px 10px
+          width: 350px
+
+        .index_title
+          margin: 15px 0 0 0
+
+        .index_poster
+          margin: 60px 0 0 0
+
+        .index_content
+          margin: 150px 0 0 0
+
+  .right
+    float: left
+
+    .post_notes
+      +background(linear-gradient(top, #fff, #e8e8e8))
+      border: 1px solid #ccc
+      float: left
+      font-size: 14px
+      line-height: 20px
+      margin: 0 0 0 20px
+      padding: 10px
+      width: 333px
+
+      h2
+        font-size: 18px
+        margin-bottom: 10px
+        text-align: center
+
+      p
+        margin: 0 0 10px 0
+
+      .requirements
+        margin-bottom: 10px
+
+        li
+          padding: 0 0 0 20px
+          margin-bottom: 5px
+
+          &.enabled
+            background: image_url('public/afisha_step_filled.png') no-repeat left center
+            font-weight: bold
+
+          &.disabled
+            background: image_url('public/afisha_step_unfilled.png') no-repeat 3px center
+
+      a.enabled,
+      a.disabled
+        font-size: 12px
+        +inline-block
+        +button_style
+        padding: 3px 15px 4px
+
+        &:active
+          padding: 4px 15px 3px
+
+      a.disabled
+        +background(linear-gradient(top, #ccc, #999))
+        border-color: #999
+        cursor: default
+
+        &:hover
+          +background(linear-gradient(top, #ccc, #999))
+          +text-shadow(none)
+
+        &:active
+          +background(linear-gradient(top, #ccc, #999))
+          +text-shadow(none)
+          padding: 3px 15px 4px
+
+      a.destroy
+        +inline-block
+        margin-left: 5px
+
+.show_preview > div
+  display: none

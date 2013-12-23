@@ -94,6 +94,10 @@ class Post < ActiveRecord::Base
     !!(afisha_id || organization_id)
   end
 
+  def ready_for_publication?
+    title.present? && content.present? && poster_image_url? && draft?
+  end
+
   private
 
   def handle_link_with_value

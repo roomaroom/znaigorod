@@ -9,12 +9,12 @@ module DraftPublishedStates
     scope :published,             -> { with_state(:published) }
 
     state_machine :initial => :draft do
-      after_transition any => :published do |afisha, transition|
-        afisha.send(:set_slug)
+      after_transition any => :published do |object, transition|
+        object.send(:set_slug)
       end
 
-      after_transition :from => :published do |afisha, transition|
-        afisha.feed.destroy if afisha.feed
+      after_transition :from => :published do |object, transition|
+        object.feed.destroy if object.is_a?(Afisha) && object.feed
       end
 
       event :to_published do

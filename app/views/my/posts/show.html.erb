@@ -1,30 +1,61 @@
 <div class='my_wrapper'>
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
-  <div class='post_notes'>
-    Здесь вы можете посмотреть как пост будет выглядеть на списке и при полном просмотре. Также сможете <%= link_to "отредактировать", edit_my_post_path(@post) %> ваш пост, <%= link_to "загрузить", '#' %> постер, <%= link_to "добавить", '#' %> галерею и <%= link_to "опубликовать", '#' %> пост.
-  </div>
-
   <div class='my_posts_wrapper'>
-    <div class='index_preview'>
-      <h2>Так пост будет выглядеть на списке &darr;</h2>
-      <%= render :partial => 'posts/post_poster', :locals => { :post => @post } %>
-      <div class='post_help'>
-        <div class='index_title'>
-          Для изменения заголовка перейдите на страницу <%= link_to 'редактирования', edit_my_post_path(@post) %>
+    <div class="left">
+      <div class='index_preview'>
+        <h2>Так пост будет выглядеть на списке &darr;</h2>
+        <%= render :partial => 'posts/post_poster', :locals => { :post => @post } %>
+        <div class='post_help'>
+          <div class='index_title'>
+            Для изменения заголовка перейдите на страницу <%= link_to 'редактирования', edit_my_post_path(@post) %>
+          </div>
+          <div class='index_poster'>
+            Для поста необходимо <%= link_to 'загрузить', poster_my_post_path(@post) %> постер. Так же вы можете <%= link_to 'добавить', '#' %> галерею
+          </div>
+          <div class='index_content'>
+            Для аннотации берутся первые 180 символов текста. Изменить текст можно на <%= link_to 'редактировании', edit_my_post_path(@post) %>
+          </div>
         </div>
-        <div class='index_poster'>
-          Для поста необходимо <%= link_to 'загрузить', poster_my_post_path(@post) %> постер. Так же вы можете <%= link_to 'добавить', '#' %> галерею
-        </div>
-        <div class='index_content'>
-          Для аннотации берутся первые 180 символов текста. Изменить текст можно на <%= link_to 'редактировании', edit_my_post_path(@post) %>
-        </div>
+      </div>
+
+      <div class='show_preview'>
+        <h2>Так пост будет выглядеть для просмотра &darr;</h2>
+        <%= render :partial => 'posts/post_show', :locals => { :post => @post, :for_preview => true } %>
       </div>
     </div>
 
-    <div class='show_preview'>
-      <h2>Так пост будет выглядеть для просмотра &darr;</h2>
-      <%= render :partial => 'posts/post_show', :locals => { :post => @post, :for_preview => true } %>
+    <div class="right">
+      <div class='post_notes'>
+        <% if @post.draft? %>
+          <h2>Публикация обзора</h2>
+          <p>На этой странице вы можете посмотреть как пост будет выглядеть на списке и на просмотре.</p>
+          <p>Для того, чтобы опубликовать обзор, необходимо заполнить следующие поля:</p>
+          <ul class='requirements'>
+            <li class='<%= @post.title? ? 'enabled' : 'disabled' %>'>Название</li>
+            <li class='<%= @post.description? ? 'enabled' : 'disabled' %>'>Описание</li>
+            <li class='<%= @post.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
+          </ul>
+
+          <% if can? :send_to_published, @post %>
+            <% if @post.ready_for_publication? %>
+              <%= link_to t('my.send_to_public'), publish_my_post_path(@post), :method => :put, :class => 'enabled',
+                :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
+            <% else %>
+              <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
+            <% end %>
+            <%= link_to t('my.destroy'), my_post_path(@post), :method => :delete, :class => :destroy,
+              :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' %>
+          <% end %>
+
+        <% else %>
+          <h2><%= t("activerecord.state_machines.state.states.#{@post.state}") %></h2>
+          <%= content_tag :p, link_to('Посмотреть в публичном виде', post_path(@post), target: '_blank') %>
+          <%= link_to t('my.send_to_draft'), draft_my_post_path(@post), :method => :put,
+            :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>

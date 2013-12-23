@@ -1,6 +1,6 @@
 class My::PostsController < My::ApplicationController
   load_and_authorize_resource
-  custom_actions :resource => :poster
+  custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
   def show
     show!{
@@ -24,6 +24,20 @@ class My::PostsController < My::ApplicationController
         render :edit
       }
     end
+  end
+
+  def send_to_published
+    @post = current_user.account.posts.available_for_edit.find(params[:id])
+    @post.to_published!
+
+    redirect_to post_path(@post), :notice => "Обзор «#{@post.title}» опубликован."
+  end
+
+  def send_to_draft
+    @post = current_user.account.posts.available_for_edit.find(params[:id])
+    @post.to_draft!
+
+    redirect_to my_post_path(@post), :notice => "Обзор «#{@post.title}» возвращен в черновики."
   end
 
   def available_tags
