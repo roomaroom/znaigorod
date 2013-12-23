@@ -114,7 +114,18 @@ class Ability
         discount.published? && discount.account == user.account
       end
 
-      can [:new, :create, :index], Post if user.persisted?
+      can [:new, :create, :index, :available_tags, :preview, :link_with], Post if user.persisted?
+      can [:show, :edit, :update, :destroy, :poster], Post do |post|
+        post.account == user.account
+      end
+
+      can :send_to_published, Post do |post|
+        post.draft? && post.account == user.account
+      end
+
+      can :send_to_draft, Post do |post|
+        post.published? && post.account == user.account
+      end
 
       can [:new, :create], Invitation if user.persisted?
       can :destroy, Invitation do |invitation|
