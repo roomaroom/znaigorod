@@ -30,10 +30,14 @@ class PostDecorator < ApplicationDecorator
   def date
     date = post.created_at || Time.zone.now
 
-    h.content_tag :div, I18n.l(date, format: "%d %B %Y"), class: :date
+    h.content_tag :div, I18n.l(date, :format => "%d %B %Y"), :class => :date
   end
 
   def html_content
     @html_content ||= content.to_s.as_html
+  end
+
+  def similar_posts
+    HasSearcher.searcher(:similar_posts).more_like_this(model).limit(3).results
   end
 end

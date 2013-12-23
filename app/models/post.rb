@@ -74,10 +74,6 @@ class Post < ActiveRecord::Base
     self.class.name.underscore
   end
 
-  def similar_post
-    HasSearcher.searcher(:similar_posts).more_like_this(self).limit(6).results
-  end
-
   def tags
     tag.to_s.split(/,\s+/).map(&:mb_chars).map(&:downcase).map(&:squish)
   end

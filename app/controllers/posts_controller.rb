@@ -16,6 +16,8 @@ class PostsController < ApplicationController
     else
       @presenter = PostPresenter.new(params)
       @post = PostDecorator.new(post_object)
+
+      @similar_posts = PostDecorator.decorate(@post.similar_posts)
       @post.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     end
   end
