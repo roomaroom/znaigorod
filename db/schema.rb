@@ -240,10 +240,16 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "vfs_path"
     t.string   "slug"
+    t.text     "og_description"
+    t.string   "og_image_file_name"
+    t.string   "og_image_content_type"
+    t.integer  "og_image_file_size"
+    t.datetime "og_image_updated_at"
+    t.text     "og_image_url"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
@@ -680,7 +686,10 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.integer  "poster_image_file_size"
     t.datetime "poster_image_updated_at"
     t.string   "state"
+    t.integer  "account_id"
   end
+
+  add_index "posts", ["account_id"], :name => "index_posts_on_account_id"
 
   create_table "prices", :force => true do |t|
     t.string   "kind"

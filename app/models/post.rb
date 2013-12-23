@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
   attr_accessible :link_with_title, :link_with_value, :link_with_reset
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
 
+  belongs_to :account
   belongs_to :afisha
   belongs_to :organization
 

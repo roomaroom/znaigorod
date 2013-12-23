@@ -38,7 +38,7 @@ Znaigorod::Application.routes.draw do
       get :link_with,      :on => :collection
       get :poster,         :on => :member, :as => :poster
 
-      post :preview, :on => :collection
+      post :preview,       :on => :collection
 
       resources :post_gallery_images
     end

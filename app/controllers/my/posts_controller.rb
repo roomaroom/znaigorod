@@ -39,4 +39,13 @@ class My::PostsController < My::ApplicationController
   def link_with
     render :json => LinkWithAutocomplete.new(params[:term]).json
   end
+
+  private
+    alias_method :old_build_resource, :build_resource
+
+    def build_resource
+      old_build_resource.tap do |object|
+        object.account = current_user.account
+      end
+    end
 end
