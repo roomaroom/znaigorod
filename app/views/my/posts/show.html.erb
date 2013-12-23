@@ -5,7 +5,7 @@
     <div class="left">
       <div class='index_preview'>
         <h2>Так пост будет выглядеть на списке &darr;</h2>
-        <%= render :partial => 'posts/post_poster', :locals => { :post => @post } %>
+        <%= render :partial => 'posts/post_poster', :locals => { :post => @post, :@width => '353', :@height => '199' } %>
         <div class='post_help'>
           <div class='index_title'>
             Для изменения заголовка перейдите на страницу <%= link_to 'редактирования', edit_my_post_path(@post) %>

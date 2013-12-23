@@ -57,7 +57,7 @@
 
       <ul class="similar_posts">
         <% @similar_posts.each do |item| %>
-          <li><%= render :partial => 'posts/post_poster', :locals => { :post => item } %></li>
+          <li><%= render :partial => 'posts/post_poster', :locals => { :post => item, :@width => '230', :@height => '144' } %></li>
         <% end %>
       </ul>
     </div>
