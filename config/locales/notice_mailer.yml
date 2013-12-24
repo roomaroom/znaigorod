@@ -13,9 +13,9 @@ ru:
     private_message: "Личное сообщение"
     is_invite_you_at: "приглашает Вас"
     liked_your_comment:
-      undefined: "оценил ваш комментарий на"
-      male: "оценил ваш комментарий на"
-      female: "оценила ваш комментраий на"
+      undefined: "оценил комментарий"
+      male: "оценил комментарий"
+      female: "оценила комментраий"
     commented_your_afisha: "Комментарий на афишу"
     new_invitation: "Новое приглашение на сайте znaigorod.ru!"
     new_private_message: "Новое личное сообщение на сайте znaigorod.ru!"
@@ -34,3 +34,5 @@ ru:
     you_have_new_notifications: "Хотим напомнить, что для Вас есть важные уведомления на сайте ЗнайГород"
     invite_you: "Вас приглашают:"
     have_written_to_you: "Вам написали:"
+    liked_your_comments: "Понравились ваши комментарии:"
+    at: "на"
