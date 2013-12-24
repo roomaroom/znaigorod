@@ -8,7 +8,9 @@
               <%= t "notice_mailer.invite_you" %>
             </h2>
           <% elsif materials.first.is_a?(PrivateMessage) %>
-            this is private message
+            <h2>
+              <%= t "notice_mailer.have_written_to_you" %>
+            </h2>
           <% elsif materials.first.is_a?(Vote) %>
             this is vote
           <% elsif materials.first.is_a?(Comment) %>
