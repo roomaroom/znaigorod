@@ -46,9 +46,32 @@
                   <table id="orange-button">
                     <tr align="left">
                       <td class="without-padding" align="left" valign="top">
-                        <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>">
-                          <img src="<%= "#{Settings['app']['url']}/assets/public/button.png" %>" alt="<%= t("notice_mailer.to_invitations") %>" title="<%= t("notice_mailer.to_invitations") %>" />
-                        </a>
+                        <table class="columns">
+                        	<tr>
+                            <td>
+                              <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                                                                   :utm_medium => "email", :utm_source => "email",
+                                                                   :anchor => 'accept_invite') %>">
+                                 <img src="<%= Settings['app']['url'] %>/assets/public/emails/accept_invite.png"
+                                 alt="<%= t("notice_mailer.accept_invite") %>" title="<%= t("notice_mailer.accept_invite") %>" />
+                              </a>
+                            </td>
+                            <td>
+                              <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                                                                   :utm_medium => "email", :utm_source => "email",
+                                                                   :anchor => 'abandon_invite') %>">
+                                 <img src="<%= Settings['app']['url'] %>/assets/public/emails/abandon_invite.png"
+                                 alt="<%= t("notice_mailer.abandon_invite") %>" title="<%= t("notice_mailer.abandon_invite") %>" />
+                              </a>
+                            </td>
+                            <td class="padding_center">
+                              <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                                                                   :utm_medium => "email", :utm_source => "email") %>">
+                                <%= t "notice_mailer.to_invitations" %>
+                              </a>
+                            </td>
+                        	</tr>
+                        </table>
                       </td>
                     </tr>
                   </table>

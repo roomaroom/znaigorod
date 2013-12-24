@@ -3,6 +3,17 @@
   	<td>
       <table class="custom_column_width columns">
         <% @digest.each do |materials| %>
+          <% if materials.first.is_a?(Invitation) %>
+            <h2>
+              <%= t "notice_mailer.invite_you" %>
+            </h2>
+          <% elsif materials.first.is_a?(PrivateMessage) %>
+            this is private message
+          <% elsif materials.first.is_a?(Vote) %>
+            this is vote
+          <% elsif materials.first.is_a?(Comment) %>
+            this is comment
+          <% end %>
           <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
         <% end %>
       </table>
