@@ -2,7 +2,7 @@ AttributeNormalizer.configure do |config|
 
   SANITIZE_CONFIG  = Sanitize::Config::RELAXED
   SANITIZE_CONFIG[:elements] += %w[object param embed]
-  SANITIZE_CONFIG[:attributes]['a'] << 'target'
+  SANITIZE_CONFIG[:attributes]['a'] << %w[target rel]
   SANITIZE_CONFIG[:attributes]['object'] = %w[width height]
   SANITIZE_CONFIG[:attributes]['param'] = %w[name value]
   SANITIZE_CONFIG[:attributes]['embed'] = %w[src type width height allowscriptaccess allowfullscreen]
