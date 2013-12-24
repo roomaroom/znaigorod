@@ -13,7 +13,7 @@
     <%= post.date %>
   </div>
   <div class="annotation">
-    <%= link_to image_tag(resized_image_url(post.poster_url, 353, 199), :size => '353x199', :title => post.title, :alt => post.title), post_path(post) %>
+    <%= link_to image_tag(resized_image_url(post.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
 
     <%= post.content_for_index %>
   </div>
