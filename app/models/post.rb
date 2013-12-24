@@ -24,11 +24,14 @@ class Post < ActiveRecord::Base
 
   alias_attribute :description, :content
 
-  validates_presence_of :content, :title, :kind, :tag, :categories
+  validates_presence_of :content, :title, :tag, :categories
 
   before_save :handle_link_with_value
 
   friendly_id :title, use: :slugged
+
+  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
+  alias_attribute :file_url, :poster_image_url
 
   def should_generate_new_friendly_id?
     return true if !self.slug? && self.published?
