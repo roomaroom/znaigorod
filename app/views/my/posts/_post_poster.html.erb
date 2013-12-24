@@ -12,14 +12,17 @@
   <div class="post_date">
     <%= post.date %>
   </div>
+
   <div class="annotation">
     <% if post.poster_url? %>
-      <%= link_to image_tag(resized_image_url(post.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
+      <%= link_to_if post.published?, image_tag(resized_image_url(post.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
     <% else %>
-      <div class="stub_poster"></div>
+      <%= link_to_if post.published?, image_tag(post.poster_image.url, :size => "#{@width}x#{@height}"), post_path(post) %>
     <% end %>
+
     <%= post.content_for_index %>
   </div>
+
   <div class="badges">
     <%= link_to '', edit_my_post_path(post), :class => 'edit_button show_tipsy', :title => 'Редактировать' %>
 
