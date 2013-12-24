@@ -11,8 +11,8 @@ class SendPersonalDigest
         #invitations,
         #private_messages,
         #comment_likes,
-        comment_answers,
-        #material_comments,
+        #comment_answers,
+        material_comments,
       ].compact
     end
 

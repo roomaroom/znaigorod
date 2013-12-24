@@ -3,23 +3,17 @@
   	<td>
       <table class="custom_column_width columns">
         <% @digest.each do |materials| %>
-          <% if materials.first.is_a?(Invitation) %>
-            <h2>
-              <%= t "notice_mailer.invite_you" %>
-            </h2>
-          <% elsif materials.first.is_a?(PrivateMessage) %>
-            <h2>
-              <%= t "notice_mailer.have_written_to_you" %>
-            </h2>
-          <% elsif materials.first.is_a?(Vote) %>
-            <h2>
-              <%= t "notice_mailer.liked_your_comments" %>
-            </h2>
-          <% elsif materials.first.is_a?(Comment) %>
-            <h2>
-              <%= t "notice_mailer.answered_on_you_comment" %>
-            </h2>
-          <% end %>
+          <h2>
+            <% if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name) %>
+              <%= t "notice_mailer.#{materials.first.class.name.underscore}_title" %>
+            <% elsif materials.first.is_a?(Comment) %>
+              <% if materials.first.parent.present? %>
+                <%= t "notice_mailer.answered_on_you_comment" %>
+              <% elsif materials.first.commentable.is_a?(Afisha) || materials.first.commentable.is_a?(Discount) %>
+                <%= t "notice_mailer.materials_comment" %>
+              <% end %>
+            <% end %>
+          </h2>
           <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
         <% end %>
       </table>

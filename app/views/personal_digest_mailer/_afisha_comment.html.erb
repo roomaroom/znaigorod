@@ -19,7 +19,7 @@
             <table class="nine columns">
               <tr align="left">
                 <td class="line_height" align="left" valign="top">
-                  <a href="<%= account_path comment.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %><span>
+                  <a href="<%= account_path comment.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %><span> <span class="gray_text"><%= t "notice_mailer.at" %></span>
                 </td>
               </tr>
               <tr align="left">
