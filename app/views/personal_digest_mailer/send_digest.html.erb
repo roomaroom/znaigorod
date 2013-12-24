@@ -2,16 +2,9 @@
   <tr class="solid_border">
   	<td>
       <table class="custom_column_width columns">
-
-
-
-  <% @digest.each do |materials| %>
-    <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
-  <% end %>
-
-
-
-
+        <% @digest.each do |materials| %>
+          <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
+        <% end %>
       </table>
   	</td>
   </tr>

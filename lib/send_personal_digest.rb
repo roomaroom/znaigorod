@@ -8,11 +8,11 @@ class SendPersonalDigest
       @account = account
       @period = period
       [
-        #invitations,
+        invitations,
         #private_messages,
         #comment_likes,
         #comment_answers,
-        material_comments,
+        #material_comments,
       ].compact
     end
 
@@ -21,6 +21,7 @@ class SendPersonalDigest
       invite = Invitation.where(['invited_id = ? and created_at > ?', @account.id, Time.zone.now - @period])
       invite.each do  |i|
         if i.invite_messages.where(:state => 'unread').any?
+          puts i.inspect
           invitations.push i
         end
       end
@@ -82,11 +83,10 @@ class SendPersonalDigest
   end
 
   def self.send
-    visit_period = 1.day
-#.where('last_visit_at <= ?', Time.zone.now - 1.day)
+    visit_period = 1.week
+  #.where('last_visit_at <= ?', Time.zone.now - 1.day)
     Account.with_email.each do |account|
       digest = Digest.collection_for_email(account, visit_period)
-      puts digest.inspect
       PersonalDigestMailer.send_digest(account, digest) unless digest.flatten.blank?
     end
   end
