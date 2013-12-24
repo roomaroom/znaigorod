@@ -2,8 +2,17 @@
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <div class='my_posts_wrapper'>
-    <p>Выберете картинку для постера. Файл загрузится автоматически.</p>
-    <p>После этого можно будет выделить необходимый фрагмент картинки для отображения в виде постера.</p>
+    <h1>
+      Загрузка постера.
+      <%= link_to 'помощь', '#', :class => 'show_help' %>
+    </h1>
+
+    <div class='help_wrapper'>
+      <div class='help'>
+        <p>Выберете картинку для постера. Файл загрузится автоматически.</p>
+        <p>После этого можно будет выделить необходимый фрагмент картинки для отображения в виде постера.</p>
+      </div>
+    </div>
 
     <% if resource.poster_image_url? %>
       <% crop_opt = resource.poster_url ? resource.poster_url.match(/(?<=\/region\/)\w+\/\w+\/\w+\/\w+/).to_s.split('/').map{|o| (o.to_i/resource.resize_factor).round} : [] %>
