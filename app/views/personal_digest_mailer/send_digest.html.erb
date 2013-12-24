@@ -16,7 +16,9 @@
               <%= t "notice_mailer.liked_your_comments" %>
             </h2>
           <% elsif materials.first.is_a?(Comment) %>
-            this is comment
+            <h2>
+              <%= t "notice_mailer.answered_on_you_comment" %>
+            </h2>
           <% end %>
           <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore  }", collection: materials) unless materials.blank? %>
         <% end %>

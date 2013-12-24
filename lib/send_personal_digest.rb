@@ -10,8 +10,8 @@ class SendPersonalDigest
       [
         #invitations,
         #private_messages,
-        comment_likes,
-        #comment_answers,
+        #comment_likes,
+        comment_answers,
         #material_comments,
       ].compact
     end

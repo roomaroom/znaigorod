@@ -36,3 +36,6 @@ ru:
     have_written_to_you: "Вам написали:"
     liked_your_comments: "Понравились ваши комментарии:"
     at: "на"
+    on_your_comment: "на ваш комментарий:"
+    answered_on_you_comment: "Ответили на ваши комментарии:"
+    answered: "ответил"
