@@ -45,6 +45,9 @@
           <% if @account.link_to_social.present? %>
             <li>
               <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
+              <%= link_to @account.link_to_social, :rel => 'nofollow', :target => '_blank' do %>
+                <span class="social_icons <%= @account.provider %>"></span>
+              <% end %>
             </li>
           <% end %>
       </ul>

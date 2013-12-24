@@ -282,6 +282,10 @@ class Account < ActiveRecord::Base
     link
   end
 
+  def provider
+    users.first.provider
+  end
+
   def update_rating
     update_attribute(:rating,
                      0.5 * payments.approved.where(:type=>'CopyPayment').map(&:copies).flatten.count +
