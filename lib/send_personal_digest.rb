@@ -8,11 +8,11 @@ class SendPersonalDigest
       @account = account
       @period = period
       [
-        #invitations,
+        invitations,
         #private_messages,
         #comment_likes,
         #comment_answers,
-        material_comments,
+        #material_comments,
       ].compact
     end
 

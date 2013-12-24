@@ -310,7 +310,7 @@ add_disabled = () ->
 
   load_hash_dialog = (stored) ->
     hash = window.location.hash.replace('#','')
-    if hash.length
+    if hash.length && hash.match(/dialog_/) != null
       if $("ul.dialogs a.#{hash}").length
         $("ul.dialogs a.#{hash}").click()
       else
@@ -370,6 +370,29 @@ add_disabled = () ->
       target.closest('li').replaceWith(response)
 
   true
+
+  setTimeout () ->
+
+    if $('.account_messages').length
+      if window.location.hash.length
+        hash = window.location.hash
+        if hash.match(/accept_invite_/) || hash.match(/abandon_invite_/)
+          $('.invite_message_actions a').each () ->
+            href = $(this).attr('href')
+            if href.match(hash.split('_')[2])
+              if ( hash.match(/accept/) != null && href.match(/\=agree/) != null )
+                $('html,body').animate
+                  scrollTop: $(this).closest('.item').offset().top,
+                  'fast'
+
+                $(this).click()
+              if ( hash.match(/abandon/) != null && href.match(/\=disagree/) != null )
+                $('html,body').animate
+                  scrollTop: $(this).closest('.item').offset().top,
+                  'fast'
+
+                $(this).click()
+  , 1000
 
   # таб уведомления
   $('#notifications').on 'ajax:success', (evt, response) ->

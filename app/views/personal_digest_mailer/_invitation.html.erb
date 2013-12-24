@@ -51,7 +51,7 @@
                             <td>
                               <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
                                                                    :utm_medium => "email", :utm_source => "email",
-                                                                   :anchor => 'accept_invite') %>">
+                                                                   :anchor => "accept_invite_#{invitation.invite_messages.first.id}") %>">
                                  <img src="<%= Settings['app']['url'] %>/assets/public/emails/accept_invite.png"
                                  alt="<%= t("notice_mailer.accept_invite") %>" title="<%= t("notice_mailer.accept_invite") %>" />
                               </a>
@@ -59,7 +59,7 @@
                             <td>
                               <a href="<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
                                                                    :utm_medium => "email", :utm_source => "email",
-                                                                   :anchor => 'abandon_invite') %>">
+                                                                   :anchor => "abandon_invite_#{invitation.invite_messages.first.id}") %>">
                                  <img src="<%= Settings['app']['url'] %>/assets/public/emails/abandon_invite.png"
                                  alt="<%= t("notice_mailer.abandon_invite") %>" title="<%= t("notice_mailer.abandon_invite") %>" />
                               </a>
