@@ -1,0 +1,30 @@
+<div class="post_item">
+  <div class="title">
+    <%= post.truncated_title_link(50) %>
+  </div>
+  <div class="details">
+    <span class="first_line">
+      <span class="show_tipsy comments" title="Комментарии"><%= post.comments.count %></span>
+      <span class="show_tipsy likes" title="Понравилось"><%= post.likes_count %></span>
+      <span class="show_tipsy visits" title="Просмотры"><%= post.page_visits.count %></span>
+    </span>
+  </div>
+  <div class="post_date">
+    <%= post.date %>
+  </div>
+  <div class="annotation">
+    <% if post.poster_url? %>
+      <%= link_to image_tag(resized_image_url(post.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
+    <% else %>
+      <div class="stub_poster"></div>
+    <% end %>
+    <%= post.content_for_index %>
+  </div>
+  <div class="badges">
+    <%= link_to '', edit_my_post_path(post), :class => 'edit_button show_tipsy', :title => 'Редактировать' %>
+
+    <% if post.draft? %>
+      <%= link_to '', my_post_path(post), :method => :delete, :class => :destroy, :remote => true, :confirm => 'Вы уверены? Обзор будет удален без возможности восстановления', :class => 'trash show_tipsy', :title => 'Удалить' %>
+    <% end %>
+  </div>
+</div>

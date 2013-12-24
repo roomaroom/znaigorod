@@ -88,6 +88,15 @@
               <span class="menu_text">Скидки</span>
             </a>
           </div>
+
+          <div class="show_button <%= "selected" if params[:controller] == "my/posts" %>">
+            <%= link_to my_posts_path do %>
+              <% if current_user.account.posts %>
+                <span class="counter"><%= current_user.account.posts.count %></span>
+              <% end %>
+              <span class="menu_text">Мои обзоры</span>
+            <% end %>
+          </div>
         </div>
 
       </div>

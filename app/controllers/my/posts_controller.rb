@@ -2,6 +2,11 @@ class My::PostsController < My::ApplicationController
   load_and_authorize_resource
   custom_actions :resource => [:poster, :send_to_published, :send_to_draft]
 
+  def index
+    @posts = PostDecorator.decorate(current_user.account.posts)
+    render :partial => 'posts/post_posters', :layout => false and return if request.xhr?
+  end
+
   def show
     show!{
       @post = PostDecorator.new(@post)

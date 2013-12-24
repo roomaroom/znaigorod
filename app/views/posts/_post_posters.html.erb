@@ -1,4 +1,4 @@
-<% @presenter.decorated_collection.each do |post| %>
+<% @posts.each do |post| %>
   <% if post.is_a?(Advertisement::PostAdvertisementPlace) %>
     <li><%= render :partial => post.partial %></li>
   <% else %>

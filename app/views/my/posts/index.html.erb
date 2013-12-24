@@ -1,0 +1,47 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3>Обзоры</h3>
+      <%= link_to 'Добавить обзор', new_my_post_path, :class => :invitation_link if can? :new, Post %>
+    </div>
+    <div id='discounts_filter'>
+      <ul>
+        <% %w[all draft published].each do |state| %>
+          <li>
+            <%= link_to "##{state}" do %>
+              <% unless state == 'all' %>
+                <%= t(state, :count => @posts.by_state(state).count) %>
+              <% else %>
+                <%= t(state, :count => current_user.account.posts.count) %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+    <div class='content'>
+      <% %w[all draft published].each do |state| %>
+        <div id='<%= state %>' class='list'>
+          <div class='posts_list'>
+            <% if collection.any? %>
+              <ul class='posters'>
+                <% unless state == 'all' %>
+                  <%= render :partial => 'my/posts/post_posters', :locals => { :collection => PostDecorator.decorate(@posts.by_state(state)), :state => state.to_sym } %>
+                <% else %>
+                  <%= render :partial => 'my/posts/post_posters', :locals => { :collection => @posts, :state => state.to_sym } %>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+<% end %>
+<%= render file: "my/accounts/wrapper" %>

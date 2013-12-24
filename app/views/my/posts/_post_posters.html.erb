@@ -1,0 +1,3 @@
+<% collection.each do |post| %>
+  <li><%= render :partial => 'my/posts/post_poster', :locals => { :post => post, :@width => '305', :@height => '172' } %></li>
+<% end %>

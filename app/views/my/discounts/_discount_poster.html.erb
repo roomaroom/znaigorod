@@ -24,7 +24,7 @@
     <%= link_to "", edit_my_discount_path(discount), class: 'edit_button show_tipsy', title: "Редактировать" %>
 
     <% if discount.draft? %>
-      <%= link_to "", my_discount_path(discount), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash show_tipsy', title: 'Удалить' %>
+      <%= link_to "", my_discount_path(discount), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Информация о скидке будет удалена без возможности восстановления', class: 'trash show_tipsy', title: 'Удалить' %>
     <% end %>
   </div>
 </div>
