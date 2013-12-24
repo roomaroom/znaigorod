@@ -1,28 +1,25 @@
-<% content_for :page_title, "#{t('meta.posts.title')}. #{t('meta.default.title')}" %>
-<% content_for :meta_keywords, t('meta.posts.keywords') %>
-<% content_for :meta_description, t('meta.posts.description') %>
-<% content_for :extra_meta do %>
-  <%= vk_meta('posts', posts_url, 'znaigorod_logo.png') %>
+<% if false %>
+  <% content_for :page_title, @presenter.page_title %>
+  <% content_for :meta_keywords, @presenter.meta_keywords %>
+  <% content_for :meta_description, @presenter.meta_description %>
+
+  <% content_for :extra_meta do %>
+    <link rel='canonical' href='<%= discounts_url %>' />
+    <%= vk_meta('discount', discounts_url, 'public/vk_logotype.png') %>
+  <% end %>
 <% end %>
 
-<div class='presentation_filters post'>
-  <div class='present_by'>
-    <p>Вид:</p>
-    <ul>
-      <li class='selected'><a href='#' class='poster'>Постеры</a></li>
-      <li><a href='#' class='list'>Список</a></li>
-    </ul>
-  </div>
-  <div class='filter_header'>
+<div class="presentation_filters posts">
+  <div class="filter_header">
     <h1><%= t('meta.posts.page_header') %></h1>
   </div>
-  <div class='order_by'>
+
+  <div class="order_by">
     <p>Сортировать по:</p>
     <ul>
-      <% @presenter.sortings_links.each do |sortings_link| %>
-        <li<%= " class=selected" if sortings_link[:selected] %>>
-          <%= link_to sortings_link[:title],
-            send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
+      <% @presenter.order_by_filter.links.each do |link| %>
+        <li class="<%= link.klass %>">
+        <%= link_to link.title, link.path %>
         </li>
       <% end %>
     </ul>
@@ -31,8 +28,14 @@
 
 <div class="posts_list">
   <ul class="posters">
-    <%= render :partial => 'posts/post_posters', :locals => { :collection => collection } %>
+    <%= render :partial => 'posts/post_posters', :locals => { :collection => @presenter.collection } %>
   </ul>
 </div>
 
 <%= paginate @presenter.collection %>
+
+<% if false %>
+  <div class='introduction'>
+    <%= t("meta.discount.introduction").as_html %>
+  </div>
+<% end %>

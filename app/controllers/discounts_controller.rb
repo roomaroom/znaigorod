@@ -12,11 +12,7 @@ class DiscountsController < ApplicationController
     respond_to do |format|
       format.html
 
-      format.rss {
-        @presenter = DiscountsPresenter.new(params)
-
-        render :layout => false
-      }
+      format.rss { render :layout => false }
     end
   end
 
