@@ -10,14 +10,6 @@ class PrivateMessage < Message
 
   validates_presence_of :body
 
-  after_create :send_mail
-
-  def send_mail
-    if self.account.account_settings.personal_messages && self.account.email.present?
-      NoticeMailer.delay(:queue => 'mailer', :retry => false).private_message(self)
-    end
-  end
-
   auto_html_for :body do
     html_escape
     simple_format

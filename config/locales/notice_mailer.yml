@@ -30,6 +30,7 @@ ru:
     accept_invite: "Согласиться"
     to_dialog: "К диалогу"
     site_digest: "Еженедельный дайджест обновлений"
+    personal_digest: "Новые уведомления"
     new_notifications: "Новые уведомления"
     you_have_new_notifications: "Хотим напомнить, что для Вас есть важные уведомления на сайте ЗнайГород"
     invitation_title: "Вас приглашают:"

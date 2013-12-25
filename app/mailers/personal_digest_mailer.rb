@@ -6,7 +6,7 @@ class PersonalDigestMailer < ActionMailer::Base
   def send_digest(account, digest)
     @digest = digest
     @type = "new_notifications"
-    mail(:to => account.email, :subject => t("notice_mailer.site_digest")).deliver!
+    mail(:to => account.email, :subject => t("notice_mailer.personal_digest")).deliver!
   end
 
 end

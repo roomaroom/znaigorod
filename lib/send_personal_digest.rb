@@ -9,10 +9,10 @@ class SendPersonalDigest
       @period = period
       [
         invitations,
-        #private_messages,
-        #comment_likes,
-        #comment_answers,
-        #material_comments,
+        private_messages,
+        comment_likes,
+        comment_answers,
+        material_comments,
       ].compact
     end
 
@@ -21,7 +21,6 @@ class SendPersonalDigest
       invite = Invitation.where(['invited_id = ? and created_at > ?', @account.id, Time.zone.now - @period])
       invite.each do  |i|
         if i.invite_messages.where(:state => 'unread').any?
-          puts i.inspect
           invitations.push i
         end
       end
@@ -70,8 +69,8 @@ class SendPersonalDigest
                                                 "messageable_type = 'Comment' and " +
                                                 "account_id = ? and " +
                                                 "created_at > ? and " +
-                                                "kind = 'new_comment'", @account.id, Time.zone.now - @period)
-      puts notifications.inspect
+                                                "kind = 'new_comment'",
+                                                @account.id, Time.zone.now - @period)
       notifications.each do |n|
         if %w[Afisha Discount].include?(n.messageable.commentable_type)
           comments.push n.messageable
@@ -83,9 +82,9 @@ class SendPersonalDigest
   end
 
   def self.send
-    visit_period = 1.week
-  #.where('last_visit_at <= ?', Time.zone.now - 1.day)
-    Account.with_email.each do |account|
+    visit_period = 1.day
+
+    Account.with_email.where('last_visit_at <= ?', Time.zone.now - 1.day).each do |account|
       digest = Digest.collection_for_email(account, visit_period)
       PersonalDigestMailer.send_digest(account, digest) unless digest.flatten.blank?
     end
