@@ -157,8 +157,7 @@ class DiscountsPresenter
         Hashie::Mash.new(
           :value => value,
           :title => title,
-          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
-          :params => Parameters.instance.params.merge(:order_by => value).delete_if { |_, v| v.blank? },
+          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
           :path => Parameters.instance.path(order_by: value),
         )
       end

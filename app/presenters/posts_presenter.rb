@@ -7,19 +7,14 @@ class PostsPresenter
     include Rails.application.routes.url_helpers
     include Singleton
 
-    attr_accessor :type, :kind, :organization_id, :order_by
+    attr_accessor :kind, :category, :order_by
 
     def params
-      { :type => type, :kind => kind, :order_by => order_by }
+      { :kind => kind, :category => category, :order_by => order_by }
     end
 
-    def organization_id?
-      organization_id.present?
-    end
-
-    # TODO
-    def path(type: type, kind: kind, order_by: order_by)
-      posts_path
+    def path(kind: kind, category: category, order_by: order_by)
+      posts_path(:kind => kind, :category => category, :order_by => order_by)
     end
   end
 
@@ -30,48 +25,7 @@ class PostsPresenter
 
     # TODO
     def count
-      HasSearcher.searcher(:discounts, @args).total_count
-    end
-  end
-
-  class TypeFilter
-    attr_accessor :type
-
-    def initialize
-      @type = Parameters.instance.type
-    end
-
-    # TODO
-    def available
-      { nil => 'Все', 'discount' => 'Обзоры', 'coupon' => 'С галереей', 'certificate' => 'С видео' }
-    end
-
-    def selected
-      available.keys.compact.include?(type) ? type : available.keys.first
-    end
-
-    def links
-      [all_link] + type_links
-    end
-
-    private
-
-    def all_link
-      Hashie::Mash.new(
-        :title => 'Все',
-        :klass => ''.tap { |s| s << ' selected' if nil == selected },
-        :path => Parameters.instance.path(type: nil, kind: nil)
-      )
-    end
-
-    def type_links
-      available.except(nil).map do |value, title|
-        Hashie::Mash.new(
-          :title => title,
-          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
-          :path => Parameters.instance.path(type: value)
-        )
-      end
+      HasSearcher.searcher(:posts_new, @args).total_count
     end
   end
 
@@ -83,50 +37,33 @@ class PostsPresenter
     end
 
     def available
-      Post.categories.values
+      { nil => 'Все', 'with_gallery' => 'С галереей', 'with_video' => 'С видео' }
     end
 
     def selected
-      kind
+      available.keys.compact.include?(kind) ? kind : available.keys.first
     end
 
     def links
       [all_link] + kind_links
     end
 
-    def more?
-      return false if selected.blank?
-
-      available.index(selected) > 6
-    end
-
-    def human_titles
-      Hash[Post.categories.options].invert
-    end
+    private
 
     def all_link
-      params = Parameters.instance.params.merge(:kind => nil)
-
       Hashie::Mash.new(
-        :value => nil,
-        :title => 'Все обзоры',
-        :klass => "all #{params[:type]}".tap { |s| s << ' selected' if kind.blank? },
-        :path => Parameters.instance.path(kind: nil),
-        :results_count => Counter.new(params).count
+        :title => 'Все',
+        :klass => ''.tap { |s| s << ' selected' if nil == selected },
+        :path => Parameters.instance.path(kind: nil)
       )
     end
 
     def kind_links
-      available.map do |kind|
-        params = Parameters.instance.params.merge(:kind => kind)
-        title = human_titles[kind]
-
+      available.except(nil).map do |value, title|
         Hashie::Mash.new(
-          :value => kind,
           :title => title,
-          :klass => "#{kind}".tap { |s| s << ' selected' if kind == selected },
-          :path => Parameters.instance.path(kind: kind),
-          :results_count => Counter.new(params).count
+          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
+          :path => Parameters.instance.path(kind: value)
         )
       end
     end
@@ -147,18 +84,13 @@ class PostsPresenter
       available.keys.compact.include?(order_by) ? order_by : available.keys.first
     end
 
-    def random?
-      order_by == 'random'
-    end
-
     def links
       available.map do |value, title|
         Hashie::Mash.new(
           :value => value,
           :title => title,
-          :klass => "#{value}".tap { |s| s << " selected" if value == selected },
-          :params => Parameters.instance.params.merge(:order_by => value).delete_if { |_, v| v.blank? },
-          :path => Parameters.instance.path(order_by: value),
+          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
+          :path => Parameters.instance.path(order_by: value)
         )
       end
     end
@@ -177,23 +109,25 @@ class PostsPresenter
     initialize_filters
   end
 
-  # TODO
   def collection
-    Post.scoped.page(1)
+    searcher.results
   end
 
   def decorated_collection
     @decorated_collection ||= PostDecorator.decorate(collection)
   end
 
+  # TODO
   def page_title
     searcher_params[:kind].present? ? I18n.t("meta.discount.#{searcher_params[:kind]}.title") : I18n.t('meta.discount.title')
   end
 
+  # TODO
   def meta_description
     I18n.t("meta.discount.description", default: '')
   end
 
+  # TODO
   def meta_keywords
     I18n.t("meta.discount.keywords", default: '')
   end
@@ -206,27 +140,23 @@ class PostsPresenter
   end
 
   def store_parameters
-    %w(type kind organization_id order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
+    %w(kind order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
   end
 
   def initialize_filters
-    @type_filter     = TypeFilter.new
     @kind_filter     = KindFilter.new
     @order_by_filter = OrderByFilter.new
   end
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|
-      params[:type]             = type_filter.selected
-      params[:kind]             = kind_filter.selected
-      params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
-      params[:q] =              q if q.present?
+      params[:kind] = kind_filter.selected
     end
   end
 
   def searcher
-    @searcher ||= HasSearcher.searcher(:discounts, searcher_params).tap { |s|
-      order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
+    @searcher ||= HasSearcher.searcher(:posts_new, searcher_params).tap { |s|
+      s.send("order_by_#{order_by_filter.selected}")
 
       s.paginate page: page, per_page: per_page
     }

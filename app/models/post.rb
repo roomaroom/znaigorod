@@ -8,64 +8,64 @@ class Post < ActiveRecord::Base
   include DraftPublishedStates
   include MakePageVisit
 
-  attr_accessible :content, :status, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
+  attr_accessible :content, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
 
   attr_accessible :link_with_title, :link_with_value, :link_with_reset
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
+  before_save :handle_link_with_value
 
   belongs_to :account
   belongs_to :afisha
   belongs_to :organization
 
-  has_many :comments,       :as => :commentable, :dependent => :destroy
-  has_many :gallery_images, :as => :attachable, :dependent => :destroy
-  has_many :messages,       :as => :messageable, :dependent => :destroy
+  has_many :comments,       :as => :commentable,    :dependent => :destroy
+  has_many :gallery_images, :as => :attachable,     :dependent => :destroy
+  has_many :messages,       :as => :messageable,    :dependent => :destroy
   has_many :page_visits,    :as => :page_visitable, :dependent => :destroy
-  has_many :votes,          :as => :voteable, :dependent => :destroy
+  has_many :votes,          :as => :voteable,       :dependent => :destroy
 
-  has_one :feed,            :as => :feedable, :dependent => :destroy
+  has_one :feed, :as => :feedable, :dependent => :destroy
 
   alias_attribute :description, :content
 
   validates_presence_of :content, :title, :tag, :categories
 
-  before_save :handle_link_with_value
-
   friendly_id :title, use: :slugged
-
-  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
-  alias_attribute :file_url, :poster_image_url
-
   def should_generate_new_friendly_id?
     return true if !self.slug? && self.published?
 
     false
   end
 
+  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
+  alias_attribute :file_url, :poster_image_url
+
   serialize :kind, Array
-  enumerize :kind, in: [:review, :photoreport], multiple: true, predicates: true
+  enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
+  before_save :set_kinds
 
   serialize :categories, Array
   enumerize :categories, in: [:avto, :beaty, :other], multiple: true, predicates: true
   normalize_attribute :categories, :with => :blank_array
 
-  normalize_attribute :kind, with: :blank_array
   normalize_attribute :content, :with => [:strip, :blank]
 
   default_scope order('id DESC')
 
-  scope :published, -> { where(:status => true) }
-  scope :draft,     -> { where(:status => false) }
+  scope :draft,     -> { where :state => :draft }
+  scope :published, -> { where :state => :published }
 
   searchable do
-    text :content,              :more_like_this => true
-    text :title,                :more_like_this => true,  :stored => true
-    text :tag,                  :more_like_this => true,  :stored => true
-    date :created_at
-    float :rating,              :trie => true
-    string :search_kind
-    string(:status) { status? ? 'published' : 'draft' }
+    float :rating
+
+    string :state
+    string(:category, :multiple => true) { categories.map(&:value) }
     string(:kind, :multiple => true) { kind.map(&:value) }
+
+    text :content, :more_like_this => true
+    text :title,   :more_like_this => true,  :stored => true
+
+    time :created_at, :trie => true
   end
 
   def content_for_show
@@ -76,12 +76,8 @@ class Post < ActiveRecord::Base
     @content_for_index = AutoHtmlRenderer.new(content).render_index
   end
 
-  def search_kind
-    self.class.name.underscore
-  end
-
   def tags
-    tag.to_s.split(/,\s+/).map(&:mb_chars).map(&:downcase).map(&:squish)
+    tag.to_s.split(/,\s+/).map(&:mb_chars).map(&:downcase).map(&:squish).map(&:to_s)
   end
 
   def images
@@ -93,7 +89,7 @@ class Post < ActiveRecord::Base
   end
 
   def update_rating
-    update_attribute :rating, (0.5*comments.count + 0.1*votes.liked.count + 0.01*page_visits.count)
+    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
 
   def linked?
@@ -127,6 +123,10 @@ class Post < ActiveRecord::Base
       self.afisha = nil
       self.organization = object
     end
+  end
+
+  def set_kinds
+    self.kind = [:with_gallery, :with_video]
   end
 end
 
