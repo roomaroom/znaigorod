@@ -8,7 +8,7 @@
               <% if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name) %>
                 <%= t "notice_mailer.#{materials.first.class.name.underscore}_title" %>
               <% elsif materials.first.is_a?(Comment) %>
-                <% if materials.first.parent.present? %>
+                <% if materials.map(&:parent).all? { |i| i.present? } %>
                   <%= t "notice_mailer.answered_on_you_comment" %>
                 <% elsif materials.first.commentable.is_a?(Afisha) || materials.first.commentable.is_a?(Discount) %>
                   <%= t "notice_mailer.materials_comment" %>
