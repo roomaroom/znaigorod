@@ -6,18 +6,15 @@
     </div>
   <% else %>
     <div class='avatar'>
-      <%= link_to feed_comment.feedable.user.account do %>
-        <%= image_tag(resized_image_url(feed_comment.feedable.user.account.avatar.url, 23, 23),
-                      :size => '23x23', :alt => feed_comment.feedable.user.account.title) %>
-      <% end %>
+      <%= link_to image_tag(resized_image_url(feed_comment.feedable.user.account.avatar.url, 23, 23), :size => '23x23', :alt => feed_comment.feedable.user.account.title), feed_comment.feedable.user.account %>
     </div>
     <div class='type'>
       <%= link_to feed_comment.feedable.user.name, feed_comment.feedable.user.account  %>
       <%= t "account.writed_a_comment.#{feed_comment.feedable.user.account.gender}" %>
     </div>
   <% end %>
-  <div class='title'>
 
+  <div class='title'>
     <% if  @feeds_presenter.is_discount?(feed_comment.feedable.commentable.class.name) %>
       <%= link_to(feed_comment.feedable.commentable.title, discount_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}"))  %>
     <% end %>
@@ -37,8 +34,8 @@
     <% if feed_comment.feedable.commentable.is_a?(Post) %>
       <%= link_to(feed_comment.feedable.commentable.title, post_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
     <% end %>
-
   </div>
+
   <div class='body'>
     <%= feed_comment.feedable.body.truncated.as_html if feed_comment.feedable.body? %>
   </div>

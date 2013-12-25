@@ -17,10 +17,13 @@ class Post < ActiveRecord::Base
   belongs_to :afisha
   belongs_to :organization
 
-  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :comments,       :as => :commentable, :dependent => :destroy
   has_many :gallery_images, :as => :attachable, :dependent => :destroy
-  has_many :votes, :as => :voteable, :dependent => :destroy
-  has_many :page_visits, :as => :page_visitable, :dependent => :destroy
+  has_many :messages,       :as => :messageable, :dependent => :destroy
+  has_many :page_visits,    :as => :page_visitable, :dependent => :destroy
+  has_many :votes,          :as => :voteable, :dependent => :destroy
+
+  has_one :feed,            :as => :feedable, :dependent => :destroy
 
   alias_attribute :description, :content
 

@@ -95,11 +95,12 @@
       other: "%{count} лет"
 
   feed_kinds:
-    all: "Все"
-    comment: "Комментарии"
-    vote: "Нравится"
-    visit: "Посещения"
-    afisha: "Афиши"
-    invitation: "Приглашения"
-    friend: "Друзья"
-    discount: "Скидки"
+    all:        Все
+    afisha:     Афиши
+    comment:    Комментарии
+    discount:   Скидки
+    friend:     Друзья
+    invitation: Приглашения
+    post:       Обзоры
+    visit:      Посещения
+    vote:       Нравится

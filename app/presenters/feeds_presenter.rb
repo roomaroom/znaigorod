@@ -1,5 +1,4 @@
 class FeedsPresenter
-
   attr_accessor :kind_filter, :activity_filter, :account_id
 
   def initialize(params)
@@ -95,11 +94,9 @@ class FeedsPresenter
     @searcher_params[:feedable_type] = @kind_filter.kind.capitalize if @kind_filter.used?
     @searcher_params[:account_id] = @account_id if @account_id.present? && !@activity_filter.of_friends?
   end
-
 end
 
 class FeedsKindFilter
-
   attr_accessor :kind
 
   def initialize(kind)
@@ -107,7 +104,7 @@ class FeedsKindFilter
   end
 
   def self.available_kind_values
-    %w[all comment vote visit afisha invitation friend discount]
+    %w[all comment vote visit afisha invitation friend discount post]
   end
 
   def available_kind_values
@@ -121,11 +118,9 @@ class FeedsKindFilter
   def used?
     kind != 'all'
   end
-
 end
 
 class FeedsActivityFilter
-
   attr_accessor :kind
 
   def initialize(kind)
@@ -155,6 +150,4 @@ class FeedsActivityFilter
   def used?
     kind != 'all'
   end
-
 end
-

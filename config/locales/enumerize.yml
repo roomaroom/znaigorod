@@ -152,6 +152,7 @@ ru:
         agreed_invite: принял приглашение посетить
         disagreed_invite: отказался от приглашения посетить
         offer_approved: "предложение цены «%{details}» принято."
+        post_returned: обзор возвращен на доработку
 
       state:
         unread: Новое

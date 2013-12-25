@@ -98,6 +98,11 @@ ru:
       male:      "добавил сертификат"
       female:    "добавила сертификат"
 
+    added_post:
+      undefined: 'добавил обзор'
+      male:      'добавил обзор'
+      female:    'добавила обзор'
+
     took:
       undefined: "Получил"
       male:      "Получил"
