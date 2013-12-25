@@ -5,6 +5,7 @@ class SiteDigestMailer < ActionMailer::Base
 
   def send_digest(account, digest)
     @digest = digest
+    @account = account
     @type = "site_digest"
     mail(:to => account.email, :subject => t("notice_mailer.site_digest")).deliver!
   end

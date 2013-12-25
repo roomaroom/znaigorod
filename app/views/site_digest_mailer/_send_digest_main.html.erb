@@ -1,0 +1,16 @@
+<tr class="solid_border">
+  <td>
+    <table class="custom_column_width columns">
+      <h2>
+        <%= t "notice_mailer.afisha_title" if materials.first.is_a?(Afisha) %>
+        <%= t "notice_mailer.organization_title" if materials.first.is_a?(Organization) %>
+        <%= t "notice_mailer.discount_title" if materials.first.is_a?(Discount) %>
+      </h2>
+
+      <%= render(partial: "site_digest_mailer/afisha", collection: materials) if materials.first.is_a?(Afisha) %>
+      <%= render(partial: "site_digest_mailer/discount", collection: materials) if materials.first.is_a?(Discount) %>
+      <%= render(partial: "site_digest_mailer/organization", collection: materials) if materials.first.is_a?(Organization) %>
+
+    </table>
+  </td>
+</tr>

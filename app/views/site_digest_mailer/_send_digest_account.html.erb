@@ -1,0 +1,18 @@
+<tr class="solid_border">
+  <td>
+    <table class="custom_column_width columns">
+      <h2>
+        <% if materials.first.first.is_a?(Account) %>
+          <%= t "notice_mailer.account_title"  %>
+        <% end %>
+      </h2>
+
+      <% if materials.first.first.is_a?(Account) %>
+        <%= render(partial: "site_digest_mailer/account", collection: materials.first) if @account.gender == 'male' %>
+        <%= render(partial: "site_digest_mailer/account", collection: materials.second) if @account.gender == 'female' %>
+      <% end %>
+
+    </table>
+  </td>
+</tr>
+
