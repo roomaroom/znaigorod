@@ -44,6 +44,7 @@ module Znaigorod
                                       :friend_observer,
                                       :organization_observer,
                                       :offer_observer,
+                                      :post_observer,
                                       :reservation_observer,
                                       :showing_observer,
                                       :suborganization_observer,

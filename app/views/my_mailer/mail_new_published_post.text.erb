@@ -1,0 +1,13 @@
+На сайте ЗнайГород (<%= Settings['app']['host'] %>)
+<% if @post.account %>
+  пользователь <%= @post.account %> опубликовал информацию о скидке:
+<% else %>
+  опубликован обзор:
+<% end %>
+
+Название: <%= @post.title.present? ? @post.title : 'Нет названия' %>
+Постер: <%= @post.poster_url? ? @post.poster_url : 'Нет постера' %>
+Категории: <%= @post.categories.map(&:text).join(', ') %>
+Описание: <%= @post.content.present? ? @post.content : 'Нет описания' %>
+
+Помотреть обзор: <%= link_to @post.title, post_path(@post), :host => Settings['app']['host'] %>

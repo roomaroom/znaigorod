@@ -22,4 +22,9 @@ class MyMailer < ActionMailer::Base
     @discount = discount
     mail(:to => Settings['mail']['to_discount'], :subject => 'В ЗнайГород опубликована новая скидка')
   end
+
+  def mail_new_published_post(post)
+    @post = post
+    mail(:to => Settings['mail']['to_afisha'], :subject => 'В ЗнайГород опубликован новый обзор')
+  end
 end
