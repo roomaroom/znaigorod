@@ -6,6 +6,8 @@ task :send_site_digest => :environment do
 
   puts "Sending of site digest. Please wait..."
 
+  SendSiteDigest.send
+
   puts "="*10
 
 end

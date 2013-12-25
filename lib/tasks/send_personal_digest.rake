@@ -9,4 +9,5 @@ task :send_personal_digest => :environment do
   SendPersonalDigest.send
 
   puts "="*10
+
 end
