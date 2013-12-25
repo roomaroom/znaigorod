@@ -2,6 +2,7 @@ HasSearcher.create_searcher :posts_new do
   models :post
 
   property :kind
+  property :category
 
   scope do
     with :state, :published

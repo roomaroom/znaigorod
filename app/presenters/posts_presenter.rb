@@ -53,7 +53,7 @@ class PostsPresenter
     def all_link
       Hashie::Mash.new(
         :title => 'Все',
-        :klass => ''.tap { |s| s << ' selected' if nil == selected },
+        :klass => nil == selected ? ' selected' : '',
         :path => Parameters.instance.path(kind: nil)
       )
     end
@@ -62,8 +62,63 @@ class PostsPresenter
       available.except(nil).map do |value, title|
         Hashie::Mash.new(
           :title => title,
-          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
+          :klass => value.dup.tap { |s| s << ' selected' if value == selected },
           :path => Parameters.instance.path(kind: value)
+        )
+      end
+    end
+  end
+
+  class CategoryFilter
+    attr_accessor :category
+
+    alias :selected :category
+
+    def initialize
+      @category = Parameters.instance.category
+    end
+
+    def available
+      Post.categories.values
+    end
+
+    def links
+      [all_link] + category_links
+    end
+
+    def more?
+      return false if selected.blank?
+
+      available.index(selected) > 6
+    end
+
+    def human_titles
+      Hash[Post.categories.options].invert
+    end
+
+    def all_link
+      params = Parameters.instance.params.merge(:category => nil)
+
+      Hashie::Mash.new(
+        :value => nil,
+        :title => 'Все обзоры',
+        :klass => category.blank? ? 'all selected' : 'all',
+        :path => Parameters.instance.path(category: nil),
+        :results_count => Counter.new(params).count
+      )
+    end
+
+    def category_links
+      available.map do |category|
+        params = Parameters.instance.params.merge(:category => category)
+        title = human_titles[category]
+
+        Hashie::Mash.new(
+          :value => category,
+          :title => title,
+          :klass => category.dup.tap { |s| s << ' selected' if category == selected },
+          :path => Parameters.instance.path(category: category),
+          :results_count => Counter.new(params).count
         )
       end
     end
@@ -96,10 +151,10 @@ class PostsPresenter
     end
   end
 
-  attr_accessor :type, :kind, :organization_id,
+  attr_accessor :kind, :category,
                 :order_by, :page, :per_page, :q
 
-  attr_reader :type_filter, :kind_filter, :order_by_filter
+  attr_reader :kind_filter, :category_filter, :order_by_filter
 
   def initialize(args)
     super(args)
@@ -140,17 +195,19 @@ class PostsPresenter
   end
 
   def store_parameters
-    %w(kind order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
+    %w(kind category order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
   end
 
   def initialize_filters
     @kind_filter     = KindFilter.new
+    @category_filter = CategoryFilter.new
     @order_by_filter = OrderByFilter.new
   end
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|
-      params[:kind] = kind_filter.selected
+      params[:kind]     = kind_filter.selected
+      params[:category] = category_filter.selected
     end
   end
 

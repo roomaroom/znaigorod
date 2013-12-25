@@ -69,7 +69,7 @@ class DiscountsPresenter
       available.except(nil).map do |value, title|
         Hashie::Mash.new(
           :title => title,
-          :klass => "#{value}".tap { |s| s << ' selected' if value == selected },
+          :klass => value.dup.tap { |s| s << ' selected' if value == selected },
           :path => Parameters.instance.path(type: value)
         )
       end
@@ -79,16 +79,14 @@ class DiscountsPresenter
   class KindFilter
     attr_accessor :kind
 
+    alias :selected :kind
+
     def initialize
       @kind = Parameters.instance.kind
     end
 
     def available
       HasSearcher.searcher(:discounts).facet(:kind).rows.map(&:value)
-    end
-
-    def selected
-      kind
     end
 
     def links
@@ -125,7 +123,7 @@ class DiscountsPresenter
         Hashie::Mash.new(
           :value => kind,
           :title => title,
-          :klass => "#{kind}".tap { |s| s << ' selected' if kind == selected },
+          :klass => kind.dup.tap { |s| s << ' selected' if kind == selected },
           :path => Parameters.instance.path(kind: kind),
           :results_count => Counter.new(params).count
         )
