@@ -3,11 +3,6 @@
 class GalleryImage < Attachment
   has_attached_file :file, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
-  include CropedPoster
-
-  alias_attribute :poster_image_url, :file_image_url
-  alias_attribute :poster_url, :file_url
-
   validates_attachment :file, :presence => true, :content_type => {
     :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
     :message => 'Изображение должно быть в формате jpeg, jpg или png' }

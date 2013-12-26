@@ -1,16 +1,14 @@
-<% @images.each do |image| %>
+<% current_user.account.gallery_images.each do |image| %>
   <li>
-  <div class="item">
+    <div class="item">
+      <div class="image">
+        <%= image_tag(resized_image_url(image.file_url, 178, 178), size: '178x178', title: image.description, alt: image.description) %>
+      </div>
 
-    <div class="image">
-      <%= link_to image_tag(resized_image_url(image.file_url, 178, 178), size: '178x178', title: image.description, alt: image.description), edit_my_gallery_image_path(image) %>
+      <div class="badges">
+        <%= link_to "Сделать аватаркой", set_avatar_my_account_path(image) %>
+        <%= link_to "", my_gallery_image_path(image), method: :delete, remote: true, :confirm => 'Вы уверены?', class: 'trash show_tipsy', title: "Удалить" %>
+      </div>
     </div>
-
-    <div class="badges">
-      <%= link_to "Сделать аватаркой", edit_my_gallery_image_path(image)  %>
-      <%= link_to "", my_gallery_image_path(image), method: :delete, remote: true, :confirm => 'Вы уверены?', class: 'trash show_tipsy', title: "Удалить" %>
-    </div>
-
-  </div>
   </li>
 <% end %>

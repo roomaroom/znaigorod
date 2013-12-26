@@ -9,15 +9,8 @@
 
 <ul class="gallery_images">
 </ul>
-<% if false %>
-  <%= link_to 'Удалить все фотографии', destroy_all_my_gallery_images_path(), :method => :delete, :confirm => 'Вы уверены, что хотите удалить все фотографии для этой афиши?' if @account.gallery_images.many? %>
 
+<%= simple_form_for current_user.account.gallery_images.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'file_upload' } do |f| %>
+  <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_files') %>
+  <%= hidden_field_tag :account_id, current_user.account_id  %>
 <% end %>
-<%= simple_form_for @account.gallery_images.new, :url => my_gallery_images_path(), :html => { :multipart => true, :class => 'file_upload' } do |f| %>
-  <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
-<% end %>
-
-<div class='submit'>
-  <%= link_to 'Сохранить', my_gallery_images_path(), class: :button %>
-  <%= link_to 'Отмена', my_gallery_images_path() %>
-</div>

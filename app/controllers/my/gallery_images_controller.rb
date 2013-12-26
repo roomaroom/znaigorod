@@ -1,97 +1,39 @@
 class My::GalleryImagesController < My::ApplicationController
   load_and_authorize_resource
-  actions :create, :destroy, :index, :new, :edit, :update
+
+  actions :index, :new, :create, :destroy
   custom_actions :collection => :destroy_all
 
-  belongs_to :afisha, :polymorphic => true, :optional => true
+  belongs_to :account, :optional => true
+  belongs_to :afisha,  :optional => true
+  belongs_to :post,    :optional => true
 
-  def index
-    index!{
-      @images = Kaminari.paginate_array(current_user.account.gallery_images).page(params[:page]).per(15)
-      render :partial => 'account_gallery_images' and return if request.xhr?
-    }
-  end
-
-  def new
-    new!{
-      @account = current_user.account
-    }
-  end
-
-  def edit
-    edit!{
-      @gallery_image = GalleryImage.find(params[:id])
-    }
-
-  end
-
-  def update
-    @gallery_image = GalleryImage.find(params[:id])
-    @gallery_image.attributes = params[:gallery_image]
-
-    account = current_user.account
-    @gallery_image.save!
-    account.avatar = URI.parse @gallery_image.file.url
-
-    if account.save
-      @gallery_image = GalleryImage.find(params[:id])
-      @gallery_image.file_url = @gallery_image.file_image_url
-      @gallery_image.save!
-      redirect_to my_gallery_images_path()
-    else
-      render :edit
-    end
-  end
-
-  def create
-    if request.xhr?
-      gallery_image = current_user.account.gallery_images.new(:file => params[:gallery_images][:file])
-
-      if gallery_image.save
-        render :json => { :files => [ { :url => gallery_image.file_url } ] }.to_json
-      else
-        render :text => gallery_image.errors.messages.values.join('. ')
-      end
-
-      return
-    end
-
-    if params[:afisha_id].present?
-      @afisha = current_user.afisha.available_for_edit.find(params[:afisha_id])
-      @gallery_image = @afisha.gallery_images.create(:file => params[:gallery_images][:file])
-    else
-      @gallery_image = current_user.account.gallery_images.create(:file => params[:gallery_images][:file])
-      img = current_user.account.gallery_images.last
-      img.file_image_url = img.file_url
-      img.save!
-    end
-  end
+  respond_to :html, :js
 
   def destroy
-    img = GalleryImage.find(params[:id])
-    account = current_user.account
-    if account.avatar_url == img.file_image_url
-      account.avatar_url = account.resolve_default_avatar_url
-      account.save!
-    end
-
-    destroy! {
-      render :nothing => true and return
-    }
+    destroy! { render :nothing => true and return }
   end
 
   def destroy_all
-    destroy_all! {
-      if params[:afisha_id].present?
-        @afisha = current_user.afisha.available_for_edit.find(params[:afisha_id])
-        @afisha.gallery_images.destroy_all
-        redirect_to edit_step_my_afisha_path(@afisha.id, :step => :fourth) and return
-      else
-        account = current_user.account
-        account.gallery_images.destroy_all
-        account.avatar_url = account.resolve_default_avatar_url
-        redirect_to new_my_gallery_images_path()
-      end
-    }
+    destroy_all! do
+      parent.gallery_images.destroy_all
+
+      redirect_to parent_path and return
+    end
+  end
+
+  protected
+
+  # защита от подмены accound_id на форме
+  def association_chain
+    super
+
+    @association_chain = [current_user.account] if params[:account_id]
+
+    @association_chain
+  end
+
+  def build_resource_params
+    [:file => params.try(:[], :gallery_images).try(:[], :file)]
   end
 end

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Account < ActiveRecord::Base
+  include CropedPoster
 
   attr_accessible :avatar, :birthday, :email,
                   :first_name, :gender, :last_name, :patronymic,
@@ -51,10 +52,10 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  validates_email_format_of :email, :allow_blank => true
+  validates_email_format_of :email, :allow_nil => true
+  normalize_attribute :email, :with => [:strip, :blank]
 
-  scope :dating, -> { account_settings.dating? }
-
+  scope :dating,  -> { account_settings.dating? }
   scope :ordered, -> { order('ID ASC') }
 
   scope :with_email, where("email is not null and email != ''")
@@ -353,6 +354,18 @@ class Account < ActiveRecord::Base
     relation = relation.where(:category => invitation.category).where(:inviteable_type => nil) if invitation.category.present?
 
     relation.any?
+  end
+
+  # avatar stuff
+  def poster_image_url?
+    true
+  end
+
+  attr_accessor :poster_image_url
+  attr_accessible :poster_image_url
+
+  def poster_url=(poster_url)
+    self.avatar_url = poster_url
   end
 end
 

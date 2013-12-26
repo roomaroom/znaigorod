@@ -1,0 +1,42 @@
+<% content_for :account_content do %>
+  <div class='gallery_help_wrapper'>
+    <h1>Установить как аватарку</h1>
+  </div>
+  <div class='clearfix'>
+    <div class='gallery_form_wrapper'>
+      <% @account.poster_image_url = @gallery_image.file_url %>
+
+      <%= resource.poster_image_resized_dimensions %>
+      <% crop_width, crop_height, crop_x, crop_y = [resource.poster_image_resized_dimensions[:width] / resource.resize_factor, resource.poster_image_resized_dimensions[:height] , 0, 0] %>
+      <%= resource.resize_factor %><br>
+      <%= crop_width %><br>
+      <%= crop_height %>
+
+      <%= simple_form_for @account, :url => my_account_path(@account) do |f| %>
+        <div class='input'>
+          <p><strong>Выбирете часть изображения которая будет вашей аватаркой</strong></p>
+        </div>
+
+        <div>
+          <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
+          <%= f.input :crop_x, :as => :hidden, :input_html => { :value => crop_x } %>
+          <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
+          <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
+          <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
+
+          <%= f.input :poster_image_url, :as => :hidden %>
+
+          <%= hidden_field_tag :aspect_ratio, 1.0 %>
+
+          <%= image_tag resized_image_url(@gallery_image.file_url, resource.poster_image_resized_dimensions[:width], resource.poster_image_resized_dimensions[:height]), :class => 'jcrop' %>
+        </div>
+        <div class='submit update'>
+          <%= f.button :submit, 'Сохранить', class: :button %>
+          <%= link_to 'Отмена', my_gallery_images_path %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render :template => 'my/accounts/wrapper' %>

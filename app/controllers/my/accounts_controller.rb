@@ -2,7 +2,7 @@
 
 class My::AccountsController < My::ApplicationController
   skip_authorization_check
-  custom_actions :resource => [:destroy_image]
+  custom_actions :resource => [:destroy_image, :set_avatar]
 
   def edit
     edit!{
@@ -21,6 +21,12 @@ class My::AccountsController < My::ApplicationController
   def show
     show!{
       @feeds_presenter = FeedsPresenter.new(params.merge({:account_id => current_user.account.id}))
+    }
+  end
+
+  def set_avatar
+    set_avatar!{
+      @gallery_image = GalleryImage.find(params[:gallery_image_id])
     }
   end
 

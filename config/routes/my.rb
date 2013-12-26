@@ -25,11 +25,14 @@ Znaigorod::Application.routes.draw do
 
     resource :account, :only => [:show, :edit, :update] do
       resources :friends, :only => :index
-      put 'change_friendship' => 'friends#change_friendship', :as => :change_friendship
       resources :feeds, :only => :index
+
+      put 'change_friendship' => 'friends#change_friendship', :as => :change_friendship
+
+      get 'gallery_image/:gallery_image_id/as_avatar' => 'accounts#set_avatar', :as => :set_avatar
     end
 
-    resources :gallery_images, :only => [:create, :destroy, :index, :new, :edit, :update] do
+    resources :gallery_images, :except => [:show, :edit, :update] do
       delete 'destroy_all', :on => :collection, :as => :destroy_all
     end
 

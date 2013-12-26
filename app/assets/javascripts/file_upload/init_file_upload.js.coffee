@@ -13,18 +13,6 @@
         true
       init_ajax_delete()
       true
-    fail: (e, data) ->
-      wrapped = $("<div>" + data.jqXHR.responseText + "</div>")
-      wrapped.find('title').remove()
-      wrapped.find('style').remove()
-      wrapped.find('head').remove()
-      console.error wrapped.html().stripTags().unescapeHTML().trim() if console && console.error
-      $(data.context).slideUp ->
-        $(this).remove()
-        true
-      init_ajax_delete()
-      alert('Oops! Internal Server Error. See console.error for details...')
-      true
     start: (e) ->
       $('.upload_wrapper').slideDown()
       true

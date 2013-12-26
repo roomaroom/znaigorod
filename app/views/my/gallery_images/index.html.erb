@@ -13,7 +13,7 @@
 
   <div class="images_list">
     <ul class="posters">
-      <% if @images.any? %>
+      <% if current_user.account.gallery_images.any? %>
         <%= render partial: 'account_gallery_images' %>
       <% else %>
         <div class="not_found">
@@ -23,8 +23,6 @@
     </ul>
   </div>
 
-  <% if @images.any? %>
-    <%= paginate @images %>
-  <% end %>
+  <%#= paginate current_user.account.gallery_images %>
 <% end %>
 <%= render file: "my/accounts/wrapper" %>

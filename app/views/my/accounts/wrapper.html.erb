@@ -105,7 +105,7 @@
   </div>
 
   <div class="right">
-    <% unless (params[:controller] == "my/accounts" && params[:action] == "edit") || (params[:controller] == "my/gallery_images" && params[:action] != "index") %>
+    <% unless (params[:controller] == "my/accounts" && params[:action] == "edit") || (params[:controller] == "my/gallery_images" && params[:action] != "index") || (params[:controller] == 'my/accounts' && params[:action] == 'avatar') %>
       <div class="invitations_wrapper">
 
         <div class="sprite_gender <%= current_user.account.gender %>"></div>
