@@ -23,6 +23,26 @@
         <h2>Так пост будет выглядеть для просмотра &darr;</h2>
         <%= render :partial => 'posts/post_show', :locals => { :post => @post, :for_preview => true } %>
       </div>
+
+      <div class='gallery_preview'>
+        <h2>Добавьте галерею для обзора</h2>
+        <div class="upload_wrapper">
+          <script id="template-upload" type="text/x-tmpl">
+            <div class="upload">
+              {%=o.name%}
+              <div class="progress"><div class="bar" style="width: 0%"></div></div>
+            </div>
+          </script>
+        </div>
+
+        <ul class="gallery_images">
+          <%= render @post.gallery_images %>
+        </ul>
+
+        <%= simple_form_for @post.gallery_images.new, :url => my_post_gallery_images_path(@post.id), :html => { :multipart => true, :class => 'file_upload' } do |f| %>
+          <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+        <% end %>
+      </div>
     </div>
 
     <div class="right">

@@ -46,7 +46,7 @@ Znaigorod::Application.routes.draw do
       put 'publish'  => 'posts#send_to_published', :on => :member, :as => :publish
       put 'draft' => 'posts#send_to_draft', :on => :member, :as => :draft
 
-      resources :post_gallery_images
+      resources :gallery_images, :except => [:show, :edit, :update]
     end
 
     resources :afisha, :except => [:show], :controller => 'afishas' do

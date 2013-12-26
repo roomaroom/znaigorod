@@ -73,7 +73,6 @@ class Ability
 
       can :send_to_published, Afisha if user.is_afisha_trusted_editor?
 
-
       can :manage, GalleryFile do |gallery_file|
         gallery_file.attachable.state != 'pending' && gallery_file.attachable.user == user
       end
