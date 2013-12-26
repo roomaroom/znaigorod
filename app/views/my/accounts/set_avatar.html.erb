@@ -5,12 +5,7 @@
   <div class='clearfix'>
     <div class='gallery_form_wrapper'>
       <% @account.poster_image_url = @gallery_image.file_url %>
-
-      <%= resource.poster_image_resized_dimensions %>
       <% crop_width, crop_height, crop_x, crop_y = [resource.poster_image_resized_dimensions[:width] / resource.resize_factor, resource.poster_image_resized_dimensions[:height] , 0, 0] %>
-      <%= resource.resize_factor %><br>
-      <%= crop_width %><br>
-      <%= crop_height %>
 
       <%= simple_form_for @account, :url => my_account_path(@account) do |f| %>
         <div class='input'>

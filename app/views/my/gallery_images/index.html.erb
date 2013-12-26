@@ -4,16 +4,14 @@
       <div class='clear'>
         <span class="panel"></span>
       </div>
-      <h3>
-        <%= link_to "Фотографии", new_my_gallery_image_path, class: 'add_link' %>
-      </h3>
+      <h3><%= link_to 'Фотографии', new_my_gallery_image_path, class: 'add_link' %></h3>
       <%= link_to 'Добавить фотографии', new_my_gallery_image_path, class: :invitation_link if can? :new, GalleryImage %>
     </div>
   </div>
 
   <div class="images_list">
     <ul class="posters">
-      <% if current_user.account.gallery_images.any? %>
+      <% if @gallery_images.any? %>
         <%= render partial: 'account_gallery_images' %>
       <% else %>
         <div class="not_found">
@@ -21,8 +19,8 @@
         </div>
       <% end %>
     </ul>
-  </div>
 
-  <%#= paginate current_user.account.gallery_images %>
+    <%#= paginate @gallery_images %>
+  </div>
 <% end %>
 <%= render file: "my/accounts/wrapper" %>
