@@ -81,18 +81,11 @@ class MovieSyncer
     end
 
     def find_similar_movie_by(title)
-      title.gsub!('Перси Джексон и Море чудовищ', 'Перси Джексон: Море чудовищ')
-      title.gsub!('Элизиум: Рай не на Земле', 'Элизиум')
-      title.gsub!('Мальчишник: часть 3', 'Мальчишник: часть III')
-      title.gsub!('Гагарин.Первый в космосе', 'Гагарин. Первый в космосе')
-      title.gsub!(/Университет монстро$/, 'Университет монстров')
-      title.gsub!('Околофутбола', 'Около футбола')
-      title.gsub!('Облачно 2: Месть ГМО', 'Облачно, возможны осадки: Месть ГМО')
       similar_movies = Afisha.search{fulltext(title){fields(:title)}}.results
       if similar_movies.one?
         puts "Найден похожий фильм '#{title}' -> '#{similar_movies.first.title}'"
       else
-        puts "Не могу найти фильм '#{title}'"
+        puts "Не могу найти фильм '#{title}': [#{place}]"
 
         message = I18n.localize(Time.now, :format => :short) + " Не могу найти фильм '#{title}'"
         Airbrake.notify(Exception.new(message))
