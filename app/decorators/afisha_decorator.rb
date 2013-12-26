@@ -31,7 +31,7 @@ class AfishaDecorator < ApplicationDecorator
     end
   end
 
-  def afisha_place(length = 45, separator = ' ')
+  def afisha_place(length = 45, separator = ' ', only_path = true)
     max_lenght = length
     place_output = ""
     places.each_with_index do |place, index|
@@ -41,7 +41,7 @@ class AfishaDecorator < ApplicationDecorator
       place_title = place_title.truncate(max_lenght, :separator => separator)
       max_lenght -= place_title.size
       if place.organization
-        place_output += h.link_to place_title.text_gilensize, place.organization, :title => place_link_title.text_gilensize
+        place_output += h.link_to place_title.text_gilensize, h.organization_path(place.organization, :only_path => only_path), :title => place_link_title.text_gilensize
       else
         place_output += place_link_title.blank? ? place_title.text_gilensize : h.content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
       end

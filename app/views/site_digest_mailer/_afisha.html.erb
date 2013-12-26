@@ -1,1 +1,34 @@
-<%= afisha.inspect %>
+<% if (afisha_counter + 1).odd? %>
+
+  <tr>
+    <td class="center" align="center">
+      <center>
+        <table id="content_row" class="row content_row">
+          <tr align="left">
+            <td align="left" valign="top">
+              <table class="small_column columns">
+              	<tr align="left">
+                  <%= render partial: "site_digest_mailer/afisha_item", :locals => { :afisha => afisha } %>
+
+<% else %>
+
+                  <td>
+                    <table class="separator">
+                    	<tr>
+                        <td>
+                          &nbsp;
+                        </td>
+                    	</tr>
+                    </table>
+                  </td>
+                  <%= render partial: "site_digest_mailer/afisha_item", :locals => { :afisha => afisha } %>
+              	</tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+
+<% end %>

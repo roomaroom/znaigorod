@@ -4,6 +4,7 @@
       <tr class="solid_border">
         <td>
           <table class="custom_column_width columns">
+
             <h2>
               <% if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name) %>
                 <%= t "notice_mailer.#{materials.first.class.name.underscore}_title" %>
@@ -15,7 +16,9 @@
                 <% end %>
               <% end %>
             </h2>
+
             <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore }", collection: materials) %>
+
           </table>
         </td>
       </tr>

@@ -4,8 +4,8 @@
     <% unless materials.blank? %>
       <% unless materials.first.is_a?(Array) %>
         <%= render(partial: "site_digest_mailer/send_digest_main", :locals => { :materials => materials }) %>
-        <% else %>
-          <%= render(partial: "site_digest_mailer/send_digest_account", :locals => { :materials => materials }) unless @account.gender == 'undefined' %>
+      <% else %>
+        <%= render(partial: "site_digest_mailer/send_digest_account", :locals => { :materials => materials }) unless @account.gender == 'undefined' %>
       <% end %>
     <% end %>
 
