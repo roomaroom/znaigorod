@@ -24,9 +24,6 @@ end
 # Table name: account_settings
 #
 #  id                    :integer          not null, primary key
-#  account_id            :integer
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
 #  personal_invites      :boolean          default(TRUE)
 #  personal_messages     :boolean          default(TRUE)
 #  comments_to_afishas   :boolean          default(TRUE)
@@ -35,5 +32,9 @@ end
 #  comments_likes        :boolean          default(TRUE)
 #  afishas_statistics    :boolean          default(TRUE)
 #  discounts_statistics  :boolean          default(TRUE)
+#  account_id            :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  dating                :boolean          default(TRUE)
 #
 

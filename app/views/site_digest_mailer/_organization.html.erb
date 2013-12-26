@@ -1,1 +1,93 @@
-<%= organization.inspect %>
+<% decorator = OrganizationDecorator.new organization %>
+
+<td align="left" valign="top">
+  <table class="organization">
+    <tr align="center" class="middle_border top_border">
+      <td class="title without-padding">
+        <%= link_to(decorator.title.text_gilensize.truncated(40),
+                     organization_path(organization,
+                                            :only_path => false,
+                                            :utm_campaign => "znaigorod",
+                                            :utm_medium => "email",
+                                            :utm_source => "email")) %>
+      </td>
+    </tr>
+    <tr class="middle_border">
+      <td class="logo without-padding">
+
+        <% if decorator.sms_claimable? || decorator.organization.sms_claimable? %>
+          <%= link_to(image_tag(resized_image_url(organization.logotype_url, 178, 142),
+                                size: "#{178}x#{142}",
+                                alt: organization.title),
+                                organization_path(organization,
+                                                       :only_path => false,
+                                                       :utm_campaign => "znaigorod",
+                                                       :utm_medium => "email",
+                                                       :utm_source => "email")) %>
+        <% else %>
+          <%= link_to(image_tag(organization.logotype_url,
+                                size: "#{178}x#{178}",
+                                alt: organization.title),
+                                organization_path(organization,
+                                                       :only_path => false,
+                                                       :utm_campaign => "znaigorod",
+                                                       :utm_medium => "email",
+                                                       :utm_source => "email")) %>
+        <% end %>
+
+      </td>
+    </tr>
+    <tr class="bottom_border middle_border">
+      <td class="orange_button without-padding">
+        <% if decorator.is_a?(OrganizationDecorator) %>
+          <% if decorator.sms_claimable? %>
+            <%= link_to send("new_#{decorator.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path",
+                   decorator.priority_sms_claimable_suborganization,
+                   :only_path => false,
+                   :utm_campaign => "znaigorod",
+                   :utm_medium => "email",
+                   :utm_source => "email"),
+              :class => :sms_claim_link  do %>
+              <img src="<%= "#{Settings['app']['url']}/assets/public/emails/order_#{decorator.priority_sms_claimable_suborganization.class.name.underscore}.png" %>"
+
+              alt="<%= decorator.priority_sms_claimable_suborganization.reservation_title %>" />
+
+              <% end %>
+          <% end %>
+        <% else %>
+          <% if decorator.organization.sms_claimable? %>
+            <%= link_to send("new_#{decorator.model.class.name.underscore}_sms_claim_path",
+                   decorator.organization,
+                   :only_path => false,
+                   :utm_campaign => "znaigorod",
+                   :utm_medium => "email",
+                   :utm_source => "email"),
+              :class => :sms_claim_link do %>
+              <img src="<%= "#{Settings['app']['url']}/assets/public/emails/order_#{decorator.organization.priority_sms_claimable_suborganization.class.name.underscore}.png" %>"
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+
+    <tr align="center" class="middle_border">
+      <td class="place without-padding">
+        <%
+        %>
+
+      <span>
+        <% unless organization.address.to_s.blank? %>
+          <%= "#{organization.address}#{organization.office}".truncated(23, nil) %>
+        <% else %>
+          <%= "&nbsp;".html_safe %>
+        <% end %>
+      </span>
+      </td>
+    </tr>
+    <tr align="center" class="middle_border bottom_border">
+      <td class="phone without-padding">
+        <span><%= organization.decorated_phones %></span>
+      </td>
+    </tr>
+  </table>
+</td>
