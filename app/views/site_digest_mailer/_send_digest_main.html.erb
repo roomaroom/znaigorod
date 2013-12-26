@@ -7,9 +7,47 @@
         <%= t "notice_mailer.discount_title" if materials.first.is_a?(Discount) %>
       </h2>
 
-      <%= render(partial: "site_digest_mailer/afisha", collection: materials) if materials.first.is_a?(Afisha) %>
-      <%= render(partial: "site_digest_mailer/discount", collection: materials) if materials.first.is_a?(Discount) %>
-      <%= render(partial: "site_digest_mailer/organization", collection: materials) if materials.first.is_a?(Organization) %>
+      <% materials.each_with_index do |material, index| %>
+
+        <% if (index + 1).odd? %>
+
+          <tr>
+            <td class="center" align="center">
+              <center>
+                <table id="content_row" class="row content_row">
+                  <tr align="left">
+                    <td align="left" valign="top">
+                      <table class="small_column columns">
+                        <tr align="left">
+                          <%= render partial: "site_digest_mailer/afisha", :locals => { :afisha => material } if materials.first.is_a?(Afisha) %>
+                          <%= render partial: "site_digest_mailer/discount", :locals => { :discount => material } if materials.first.is_a?(Discount) %>
+                          <%= render partial: "site_digest_mailer/organization", :locals => { :organization => material } if materials.first.is_a?(Organization) %>
+
+        <% else %>
+
+                          <td>
+                            <table class="separator">
+                              <tr>
+                                <td>
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <%= render partial: "site_digest_mailer/afisha", :locals => { :afisha => material } if materials.first.is_a?(Afisha) %>
+                          <%= render partial: "site_digest_mailer/discount", :locals => { :discount => material } if materials.first.is_a?(Discount) %>
+                          <%= render partial: "site_digest_mailer/organization", :locals => { :organization => material } if materials.first.is_a?(Organization) %>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+
+        <% end %>
+      <% end %>
 
     </table>
   </td>
