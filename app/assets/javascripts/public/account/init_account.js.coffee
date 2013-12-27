@@ -60,6 +60,7 @@
     false
 
 @init_account_social_actions = () ->
+
   $('.images_list').on 'ajax:success', (evt, response, status, jqXHR) ->
     target = $(evt.target)
     target.closest('li').remove() if target.hasClass('trash')
@@ -128,5 +129,13 @@
         else
           $('input[type=submit]', $(this).closest('form')).attr('disabled', 'disabled').addClass('disabled')
         true
+
+  hash = window.location.hash
+  if hash.match(/invite/) != null || hash.match(/invite_me/) != null
+    if hash.match(/invite_me/) != null
+        $($('.user_actions li')[3]).find('a').click()
+    else
+      if hash.match(/invite/) != null
+        $($('.user_actions li')[2]).find('a').click()
 
   true

@@ -41,6 +41,7 @@
           <% if account.invitations.inviter.without_invited.any? %>
             <%= link_to account_path(account,
                                      :only_path => false,
+                                     :anchor => 'invite_me',
                                      :utm_campaign => "znaigorod",
                                      :utm_medium => "email",
                                      :utm_source => "email"),
@@ -53,6 +54,7 @@
           <% elsif account.invitations.invited.without_invited.any? %>
             <%= link_to account_path(account,
                                      :only_path => false,
+                                     :anchor => 'invite',
                                      :utm_campaign => "znaigorod",
                                      :utm_medium => "email",
                                      :utm_source => "email"),
