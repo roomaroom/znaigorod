@@ -95,26 +95,66 @@
   .left
     float: left
 
-    .index_preview, .show_preview
+    .index_preview, .show_preview, .gallery_preview
       +clearfix
       width: 785px
 
-      h2
-        background: #fafafa
-        border-bottom: 3px solid #e8e8e8
-        border-top: 3px solid #e8e8e8
-        color: #444
-        font-size: 20px
-        line-height: 26px
-        padding: 5px 0
-        text-align: center
+      .panel_header
+        +clearfix
+        background: #e8e8e8
+        color: #000
+        display: block
+        font-size: 14px
+        height: 24px
+        line-height: 24px
+        margin: 0 0 20px 0
+        padding: 0
+        width: 100%
 
+        .clear
+          +clearfix
+          float: left
+          position: relative
+          width: 45px
+
+          .panel
+            background: #009bdb
+            height: 24px
+            padding: 12px 10px 12px 15px
+            position: relative
+
+          .panel:after, .panel:before
+            border: solid transparent
+            content: " "
+            height: 0
+            left: 100%
+            position: absolute
+            top: 8px
+            width: 0
+
+          .panel:after
+            border-color: rgba(0, 155,  219, 0)
+            border-left-color: #009bdb
+            border-width: 12px
+
+          .panel:before
+            border-color: rgba(255, 255,  255, 0)
+            border-left-color: #fff
+            border-width: 16px
+            margin-left: 1px
+            margin-top: -4px
+
+      h3
         &:hover
           cursor: pointer
 
       .post_item
         +clearfix
         float: left
+
+        .details
+          .comments
+            font-size: 10px
 
       .post_show
         .left
@@ -143,10 +183,7 @@
           margin: 60px 0 0 0
 
         .index_content
-          margin: 150px 0 0 0
-
-    .index_preview
-      margin: 0 0 20px 0
+          margin: 170px 0 0 0
 
   .right
     float: left
