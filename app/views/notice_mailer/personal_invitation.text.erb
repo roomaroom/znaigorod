@@ -1,6 +1,0 @@
-<%= t("notice_mailer.personal_invitation") %>
-
-<%= @invite.account.users.first.name %> <%= t("notice_mailer.is_invite_you_at") %> <%= @invite.category.blank? ? @invite.inviteable.title : "на #{@invite.category}" %>
-<%= l(@invite.created_at, format: "%d %B %Y, %k:%M") %>
-
-<%= t("notice_mailer.to_invitations") %> (<%= my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>)
