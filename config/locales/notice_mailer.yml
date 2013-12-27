@@ -1,5 +1,7 @@
 ru:
   notice_mailer:
+    offered_discount: "Предложить свою цену"
+    buy_ticket: "Купить билет"
     you_can_unsubscribe_in: "Отписаться от рассылки можно в "
     private_settings: "Личном кабинете"
     on_the_site: "на сайте"
@@ -46,4 +48,7 @@ ru:
     organization_title: "Бесплатный заказ и бронирование в заведениях"
     discount_title: "Интересные предложения экономить на отдыхе и развлечениях"
     account_title: "Новые лица в знакомствах"
-    buy_ticket: "Купить билет"
+    take_a_part: "Участвовать"
+    buy: "Купить"
+    get: "Получить"
+    free: "бесплатно"

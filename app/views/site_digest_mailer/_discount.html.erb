@@ -1,1 +1,124 @@
-<%= discount.inspect %>
+<td align="left" valign="top">
+  <table class="discount">
+    <tr align="center" class="middle_border top_border">
+      <td class="title without-padding">
+        <%= link_to truncate(discount.title.text_gilensize, :length => 45),
+                    discount_path(discount,
+                                  :only_path => false,
+                                  :utm_campaign => "znaigorod",
+                                  :utm_medium => "email",
+                                  :utm_source => "email"),
+                    :title => discount.title.text_gilensize %>
+      </td>
+    </tr>
+    <tr class="middle_border">
+      <td class="without-padding">
+        <%= link_to image_tag(discount.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.22).to_i}" },
+                              :size => "#{220}x#{128}",
+                              :title => discount.title.text_gilensize,
+                              :alt => discount.title.text_gilensize),
+                              discount_path(discount,
+                                            :only_path => false,
+                                            :utm_campaign => "znaigorod",
+                                            :utm_medium => "email",
+                                            :utm_source => "email") %>
+      </td>
+    </tr>
+      <tr class="middle_border">
+        <td class="orange_button without-padding">
+          <% unless discount.is_a?(AffiliatedCoupon) %>
+
+            <% if discount.is_a?(OfferedDiscount) %>
+              <%= link_to discount_path(discount,
+                                        :anchor => :offer_price,
+                                        :only_path => false,
+                                        :utm_campaign => "znaigorod",
+                                        :utm_medium => "email",
+                                        :utm_source => "email"),
+                                        :class => 'for_sale offer_price' do %>
+                <img src="<%= "#{Settings['app']['url']}/assets/public/emails/offered_discount.png" %>"
+                     alt="<%= t("notice_mailer.offered_discount") %>"
+                     title="<%= t("notice_mailer.offered_discount") %>" />
+              <% end %>
+            <% else %>
+              <% if discount.price.nil? || discount.price.zero? %>
+                <%= link_to discount_path(discount,
+                                          :anchor => :buy_ticket,
+                                          :only_path => false,
+                                          :utm_campaign => "znaigorod",
+                                          :utm_medium => "email",
+                                          :utm_source => "email"),
+                                          :class => :for_sale do %>
+                  <img src="<%= "#{Settings['app']['url']}/assets/public/emails/take_a_part.png" %>"
+                       alt="<%= t("notice_mailer.take_a_part") %>"
+                       title="<%= t("notice_mailer.take_a_part") %>" />
+                <% end %>
+              <% else %>
+                <%= link_to discount_path(discount,
+                                          :anchor => :buy_ticket,
+                                          :only_path => false,
+                                          :utm_campaign => "znaigorod",
+                                          :utm_medium => "email",
+                                          :utm_source => "email"),
+                                          :class => :for_sale do %>
+                  <img src="<%= "#{Settings['app']['url']}/assets/public/emails/buy.png" %>"
+                       alt="<%= t("notice_mailer.buy") %>"
+                       title="<%= t("notice_mailer.buy") %>" />
+                <% end %>
+              <% end %>
+            <% end %>
+
+          <% else %>
+
+            <% if discount.price.nil? || discount.price.zero? %>
+              <% #NOTICE this is for pricupon %>
+              <%= link_to discount.supplier.try(:link),
+                          :target => '_blank',
+                          :class => :for_sale do %>
+                <img src="<%= "#{Settings['app']['url']}/assets/public/emails/get.png" %>"
+                     alt="<%= t("notice_mailer.get") %>"
+                     title="<%= t("notice_mailer.get") %>" />
+              <% end %>
+            <% else %>
+              <% #NOTICE this is for pricupon %>
+              <%= link_to discount.supplier.try(:link),
+                          :target => '_blank', :class =>
+                          :for_sale do %>
+                <img src="<%= "#{Settings['app']['url']}/assets/public/emails/buy.png" %>"
+                     alt="<%= t("notice_mailer.buy") %>"
+                     title="<%= t("notice_mailer.buy") %>" />
+              <% end %>
+            <% end %>
+
+          <% end %>
+        </td>
+      </tr>
+    <tr align="center" class="middle_border">
+      <td class="place without-padding">
+        <span>
+          <% if discount.places.empty? %>
+            <%= "&nbsp;".html_safe %>
+          <% else %>
+            <% place = discount.places.first %>
+            <% if place.organization_id? %>
+               <%= link_to truncate(place.organization.try(:title), :length => 30),
+                                    organization_path(place.organization,
+                                                      :only_path => false,
+                                                      :utm_campaign => "znaigorod",
+                                                      :utm_medium => "email",
+                                                      :utm_source => "email"),
+                                    :title => place.address %>
+            <% else %>
+              <%= truncate(place.address, :length => 30) %>
+            <% end %>
+          <% end %>
+        </span>
+      </td>
+    </tr>
+    <tr align="center" class="middle_border bottom_border">
+      <td class="info without-padding">
+        <%= render :partial => "site_digest_mailer/#{discount.class.name.underscore}_info", :locals => { :discount=> discount} %>
+      </td>
+    </tr>
+  </table>
+</td>

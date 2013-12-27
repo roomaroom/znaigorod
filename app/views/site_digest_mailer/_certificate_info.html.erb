@@ -1,0 +1,13 @@
+<table class="<%= discount.class.name.underscore %>">
+	<tr>
+		<td class="discount">&minus;<%= discount.discount %>%</td>
+		<td class="gray_arrow">
+			<img src="<%= "#{Settings['app']['url']}/assets/public/emails/gray_arrow.png" %>" />
+		</td>
+    <td class="old_price"><strike><%= number_to_currency(discount.origin_price, :unit => 'р.', :precision => 0) %></strike></td>
+    <td class="blue_arrow">
+			<img src="<%= "#{Settings['app']['url']}/assets/public/emails/blue_arrow.png" %>" />
+    </td>
+		<td class="new_price"><%= discount.price.zero? ? 'бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></td>
+	</tr>
+</table>

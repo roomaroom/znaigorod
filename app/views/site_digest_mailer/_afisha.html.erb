@@ -45,7 +45,7 @@
                                        :class => :orange_button do %>
 
            <img src="<%= "#{Settings['app']['url']}/assets/public/emails/buy_ticket.png" %>"
-                 alt="t("notice_mailer.buy_ticket")"
+                 alt="<%= t("notice_mailer.buy_ticket") %>"
                  title="<%= t("notice_mailer.buy_ticket") %>" />
          <% end %>
         </td>
@@ -53,7 +53,35 @@
     <% end %>
     <tr align="center" class="middle_border">
       <td class="place without-padding">
-        <span><%= afisha.afisha_place(23, nil, false) %></span>
+        <span>
+          <%
+            #NOTICE awful
+            max_lenght = 23
+            place_output = ""
+            places = afisha.places
+            places.each_with_index do |place, index|
+            place_title = place.organization ? place.organization.title : place.title
+            place_link_title = place_title.dup
+            place_title = place_title.gsub(/,.*/, '')
+            place_title = place_title.truncate(max_lenght, :separator => ' ')
+            max_lenght -= place_title.size
+            if place.organization
+              place_output += link_to(place_title.text_gilensize,
+                                      organization_path(place.organization,
+                                                        :only_path => false,
+                                                        :utm_campaign => "znaigorod",
+                                                        :utm_medium => "email",
+                                                        :utm_source => "email"),
+                                      :title => place_link_title.text_gilensize)
+            else
+              place_output += place_link_title.blank? ? place_title.text_gilensize : content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
+            end
+            break if max_lenght < 3
+            place_output += ", " if index < places.size - 1
+          end
+          %>
+          <%= raw place_output %>
+        </span>
       </td>
     </tr>
     <tr align="center" class="middle_border bottom_border">
