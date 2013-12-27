@@ -4,46 +4,26 @@
   <table class="afisha">
     <tr align="center" class="middle_border top_border">
       <td class="title without-padding">
-        <%= link_to(afisha.title.text_gilensize.truncated(40),
-                                     afisha_show_path(afisha,
-                                                      :only_path => false,
-                                                      :utm_campaign => "znaigorod",
-                                                      :utm_medium => "email",
-                                                      :utm_source => "email")) %>
+        <%= link_to(afisha.title.text_gilensize.truncated(40),path_for_email(afisha)) %>
       </td>
     </tr>
     <tr class="middle_border">
       <td class="without-padding">
         <% if afisha.has_tickets_for_sale? %>
-          <%= link_to(image_tag(resized_image_url(afisha.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.15).to_i}" }, 178, 204),
+          <%= link_to(image_tag(resized_image_url(croped_image_url_for_email(afisha.poster_url, 0.15), 178, 204),
                                 size: "#{178}x#{204}",
                                 alt: afisha.title),
-                                afisha_show_path(afisha,
-                                                 :only_path => false,
-                                                 :utm_campaign => "znaigorod",
-                                                 :utm_medium => "email",
-                                                 :utm_source => "email")) %>
+                                path_for_email(afisha)) %>
         <% else %>
           <%= link_to(image_tag(resized_image_url(afisha.poster_url,178, 240), size: "#{178}x#{240}", alt: afisha.title),
-                                 afisha_show_path(afisha,
-                                                  :only_path => false,
-                                                  :utm_campaign => "znaigorod",
-                                                  :utm_medium => "email",
-                                                  :utm_source => "email")) %>
+                                path_for_email(afisha)) %>
         <% end %>
       </td>
     </tr>
     <% if afisha.has_tickets_for_sale? %>
       <tr class="bottom_border middle_border">
         <td class="ticket without-padding">
-          <%= link_to afisha_show_path(afisha,
-                                       anchor: :buy_ticket,
-                                       :only_path => false,
-                                       :utm_campaign => "znaigorod",
-                                       :utm_medium => "email",
-                                       :utm_source => "email"),
-                                       :class => :orange_button do %>
-
+          <%= link_to path_for_email(afisha, :buy_ticket), :class => :orange_button do %>
            <img src="<%= "#{Settings['app']['url']}/assets/public/emails/buy_ticket.png" %>"
                  alt="<%= t("notice_mailer.buy_ticket") %>"
                  title="<%= t("notice_mailer.buy_ticket") %>" />
@@ -54,33 +34,7 @@
     <tr align="center" class="middle_border">
       <td class="place without-padding">
         <span>
-          <%
-            #NOTICE awful
-            max_lenght = 23
-            place_output = ""
-            places = afisha.places
-            places.each_with_index do |place, index|
-            place_title = place.organization ? place.organization.title : place.title
-            place_link_title = place_title.dup
-            place_title = place_title.gsub(/,.*/, '')
-            place_title = place_title.truncate(max_lenght, :separator => ' ')
-            max_lenght -= place_title.size
-            if place.organization
-              place_output += link_to(place_title.text_gilensize,
-                                      organization_path(place.organization,
-                                                        :only_path => false,
-                                                        :utm_campaign => "znaigorod",
-                                                        :utm_medium => "email",
-                                                        :utm_source => "email"),
-                                      :title => place_link_title.text_gilensize)
-            else
-              place_output += place_link_title.blank? ? place_title.text_gilensize : content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
-            end
-            break if max_lenght < 3
-            place_output += ", " if index < places.size - 1
-          end
-          %>
-          <%= raw place_output %>
+          <%= places_for_afisha(afisha) %>
         </span>
       </td>
     </tr>

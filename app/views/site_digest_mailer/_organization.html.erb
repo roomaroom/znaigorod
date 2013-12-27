@@ -2,12 +2,7 @@
   <table class="organization">
     <tr align="center" class="middle_border top_border">
       <td class="title without-padding">
-        <%= link_to(organization.title.text_gilensize.truncated(40),
-                     organization_path(organization,
-                                            :only_path => false,
-                                            :utm_campaign => "znaigorod",
-                                            :utm_medium => "email",
-                                            :utm_source => "email")) %>
+        <%= link_to(organization.title.text_gilensize.truncated(40), path_for_email(organization)) %>
       </td>
     </tr>
     <tr class="middle_border">
@@ -17,20 +12,12 @@
           <%= link_to(image_tag(resized_image_url(organization.logotype_url, 178, 142),
                                 size: "#{178}x#{142}",
                                 alt: organization.title),
-                                organization_path(organization,
-                                                       :only_path => false,
-                                                       :utm_campaign => "znaigorod",
-                                                       :utm_medium => "email",
-                                                       :utm_source => "email")) %>
+                                path_for_email(organization)) %>
         <% else %>
           <%= link_to(image_tag(resized_image_url(organization.logotype_url, 178, 178),
                                 size: "#{178}x#{178}",
                                 alt: organization.title),
-                                organization_path(organization,
-                                                       :only_path => false,
-                                                       :utm_campaign => "znaigorod",
-                                                       :utm_medium => "email",
-                                                       :utm_source => "email")) %>
+                                path_for_email(organization)) %>
         <% end %>
 
       </td>

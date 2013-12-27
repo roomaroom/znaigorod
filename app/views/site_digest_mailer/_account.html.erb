@@ -2,11 +2,7 @@
   <table class="account">
     <tr align="center" class="middle_border top_border">
       <td class="title without-padding">
-        <%= link_to truncate(account.title, length: 20), account_path(account,
-                                                      :only_path => false,
-                                                      :utm_campaign => "znaigorod",
-                                                      :utm_medium => "email",
-                                                      :utm_source => "email") %>
+        <%= link_to truncate(account.title, length: 20), path_for_email(account) %>
       </td>
     </tr>
     <tr class="middle_border">
@@ -17,21 +13,13 @@
                                 size: "#{178}x#{142}",
                                 title: account,
                                 alt: account),
-                      account_path(account,
-                                   :only_path => false,
-                                   :utm_campaign => "znaigorod",
-                                   :utm_medium => "email",
-                                   :utm_source => "email")) %>
+                                path_for_email(account)) %>
         <% else %>
           <%= link_to(image_tag(resized_image_url(account.avatar.url, 178, 178),
                                 size: "#{178}x#{178}",
                                 title: account,
                                 alt: account),
-                      account_path(account,
-                                   :only_path => false,
-                                   :utm_campaign => "znaigorod",
-                                   :utm_medium => "email",
-                                   :utm_source => "email")) %>
+                      path_for_email(account)) %>
         <% end %>
       </td>
     </tr>
@@ -39,26 +27,14 @@
       <tr class="middle_border">
         <td class="orange_button without-padding">
           <% if account.invitations.inviter.without_invited.any? %>
-            <%= link_to account_path(account,
-                                     :only_path => false,
-                                     :anchor => 'invite_me',
-                                     :utm_campaign => "znaigorod",
-                                     :utm_medium => "email",
-                                     :utm_source => "email"),
-                        :class => :orange_button do %>
+            <%= link_to path_for_email(account, 'invite_me'), :class => :orange_button do %>
 
              <img src="<%= "#{Settings['app']['url']}/assets/public/emails/invite_me.png" %>"
                    alt="<%= t("notice_mailer.invite_me") %>"
                    title="<%= t("notice_mailer.invite_me") %>" />
             <% end %>
           <% elsif account.invitations.invited.without_invited.any? %>
-            <%= link_to account_path(account,
-                                     :only_path => false,
-                                     :anchor => 'invite',
-                                     :utm_campaign => "znaigorod",
-                                     :utm_medium => "email",
-                                     :utm_source => "email"),
-                        :class => :orange_button do %>
+            <%= link_to path_for_email(account, 'invite_me'), :class => :orange_button do %>
 
              <img src="<%= "#{Settings['app']['url']}/assets/public/emails/invite.png" %>"
                    alt="<%= t("notice_mailer.invite") %>"
@@ -71,48 +47,7 @@
     <tr align="center" class="bottom_border middle_border">
       <td class="invitations without-padding">
         <span>
-          <% #NOTICE awful %>
-          <%
-              invitations = account.invitations
-              content = ''
-              if invitations.inviter.without_invited.any?
-                content += 'Приглашает'
-                content += ' '
-                invitations.inviter.without_invited.each do |invitation|
-                  if invitation.inviteable
-                    content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-                    content += ' '
-                    content += Preposition.new(invitation.inviteable).value
-                    content += ' '
-                    content += invitation.inviteable.title
-                  else
-                    content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-                    content += ' '
-                    content += invitation.category
-                  end
-                  content += ', '
-                end
-              end
-              if invitations.invited.without_invited.any? && content.empty?
-                content += 'Ждет приглашения'
-                content += ' '
-                invitations.invited.without_invited.each do |invitation|
-                  if invitation.inviteable
-                    content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-                    content += ' '
-                    content += Preposition.new(invitation.inviteable).value
-                    content += ' '
-                    content += invitation.inviteable.title
-                  else
-                    content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-                    content += ' '
-                    content += invitation.category
-                  end
-                  content += ', '
-                end
-              end
-            %>
-             <%= content.present? ? truncate(content[0..-3], length: 55) : 'Приглашает или ждет приглашения' %>
+          <%= invitations_for_account(account) %>
         </span>
       </td>
     </tr>
