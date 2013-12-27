@@ -687,6 +687,7 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.datetime "poster_image_updated_at"
     t.string   "state"
     t.integer  "account_id"
+    t.integer  "poster_id"
   end
 
   add_index "posts", ["account_id"], :name => "index_posts_on_account_id"

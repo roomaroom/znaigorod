@@ -14,9 +14,12 @@ class Post < ActiveRecord::Base
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
   before_save :handle_link_with_value
 
+   before_save :set_poster
+
   belongs_to :account
   belongs_to :afisha
   belongs_to :organization
+  belongs_to :poster, :class_name => 'GalleryImage', :foreign_key => :poster_id
 
   has_many :comments,       :as => :commentable,    :dependent => :destroy
   has_many :gallery_images, :as => :attachable,     :dependent => :destroy
@@ -24,7 +27,7 @@ class Post < ActiveRecord::Base
   has_many :page_visits,    :as => :page_visitable, :dependent => :destroy
   has_many :votes,          :as => :voteable,       :dependent => :destroy
 
-  has_one :feed, :as => :feedable, :dependent => :destroy
+  has_one :feed,   :dependent => :destroy, :as => :feedable
 
   alias_attribute :description, :content
 
@@ -127,6 +130,10 @@ class Post < ActiveRecord::Base
 
   def set_kinds
     self.kind = [:with_gallery, :with_video]
+  end
+
+  def set_poster
+    self.poster_id = Posts::ContentParser.new(content).gallery_image.id
   end
 end
 
