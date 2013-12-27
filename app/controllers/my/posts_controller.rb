@@ -46,7 +46,7 @@ class My::PostsController < My::ApplicationController
   end
 
   def available_tags
-    render :json => PostsTags.new(params[:term]).tags.to_json
+    render :json => Posts::Tags.new(params[:term]).tags.to_json
   end
 
   def preview
@@ -56,7 +56,7 @@ class My::PostsController < My::ApplicationController
   end
 
   def link_with
-    render :json => LinkWithAutocomplete.new(params[:term]).json
+    render :json => Posts::LinkWithAutocomplete.new(params[:term]).json
   end
 
   protected

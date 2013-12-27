@@ -1,4 +1,4 @@
-class PostsTags
+class Posts::Tags
   attr_accessor :term
 
   def initialize(term = nil)
@@ -13,11 +13,11 @@ class PostsTags
 
   def all_tags
     @all_tags ||= Post.pluck(:tag)
-      .map { |tag| tag || '' }
-      .flat_map { |tag| tag.split(',').map(&:squish) }
-      .uniq
-      .delete_if(&:blank?)
-      .sort_by(&:length)
+    .map { |tag| tag || '' }
+    .flat_map { |tag| tag.split(',').map(&:squish) }
+    .uniq
+    .delete_if(&:blank?)
+    .sort_by(&:length)
   end
 
   def tags_with_term

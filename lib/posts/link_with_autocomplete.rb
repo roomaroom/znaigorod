@@ -1,4 +1,4 @@
-class LinkWithAutocomplete
+class Posts::LinkWithAutocomplete
   attr_accessor :term
 
   def initialize(term)
