@@ -1,36 +1,3 @@
-HasSearcher.create_searcher :photoreport do
-  models :attachment
-
-  property :category
-  property :tags
-
-  scope :weekly do
-    with(:created_at).greater_than 1.week.ago.beginning_of_day
-  end
-
-  scope :monthly do
-    with(:created_at).greater_than 1.month.ago.beginning_of_day
-  end
-
-  scope do
-    any_of do
-      with(:type, 'GalleryImage')
-      with(:type, 'GallerySocialImage')
-    end
-    facet(:category)
-    facet(:tags)
-
-    order_by :id, :desc
-
-    with(:attachable_type, 'Afisha')
-    with(:attachable_state, 'published')
-  end
-
-  scope :grouped do
-    group :attachable_id_str
-  end
-end
-
 HasSearcher.create_searcher :actual_organization do
   models :meal, :entertainment, :culture, :sauna
 
@@ -138,7 +105,7 @@ HasSearcher.create_searcher :global do
     without :status, :draft
 
     adjust_solr_params do |params|
-      (params[:qf] || '').gsub! /\bterm_text\b/, ''
+      (params[:qf] || '').gsub!(/\bterm_text\b/, '')
       params[:fl] = 'id score'
     end
   end

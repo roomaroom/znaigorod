@@ -8,7 +8,7 @@ class My::GalleryImagesController < My::ApplicationController
   belongs_to :afisha,  :optional => true
   belongs_to :post,    :optional => true
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def destroy
     destroy! { render :nothing => true and return }

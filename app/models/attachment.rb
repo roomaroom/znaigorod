@@ -9,38 +9,11 @@ class Attachment < ActiveRecord::Base
 
   before_create :set_description
 
-  after_create :index_attachable
-  after_destroy :index_attachable
-
-  searchable do
-    integer :id
-    string :attachable_type
-    string(:attachable_id_str) { attachable_id.to_s }
-    string :category
-    string :tags, :multiple => true
-    string :type
-    string(:attachable_state) { attachable.state if attachable.respond_to? :state }
-    text :description
-    time :created_at
-  end
-
   def partial_for_render_object
     "#{self.class.name.underscore.pluralize}/#{self.class.name.underscore}"
   end
 
-private
-
-  def index_attachable
-    attachable.index_additional_attributes if attachable.respond_to? :index_additional_attributes
-  end
-
-  def category
-    attachable.class.model_name.human.mb_chars.downcase
-  end
-
-  def tags
-    attachable.respond_to?(:tags) ? attachable.tags : []
-  end
+  private
 
   def set_description
     self.description ||= File.basename(file_file_name, '.*').titleize

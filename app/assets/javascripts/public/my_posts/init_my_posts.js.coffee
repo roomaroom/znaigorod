@@ -84,9 +84,6 @@ handlePreview = ->
   textInputs = $('#post_title, .markItUpEditor')
   tagsInput = $('#post_tag')
 
-  #checkboxes.on 'change', ->
-    #form.trigger('preview')
-
   textInputs.on 'keyup', ->
     delay (->
       form.trigger('preview')
