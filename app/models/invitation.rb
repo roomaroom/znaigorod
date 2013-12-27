@@ -18,7 +18,6 @@ class Invitation < ActiveRecord::Base
   after_create :create_invite_message, :if => :invited_id?
   after_create :create_visit, :if => :inviteable_type?
   after_create :create_feed, :unless => :invited_id?
-  after_create :send_email, :if => :invited_id?
 
   delegate :index, :to => :account, :prefix => true
   after_save :account_index
@@ -39,12 +38,6 @@ class Invitation < ActiveRecord::Base
   scope :agreed,            -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :agree) }
   scope :disagreed,         -> { with_invited.joins(:invite_messages).where('messages.agreement = ?', :disagree) }
   scope :not_answered,      -> { with_invited.joins(:invite_messages).where('messages.agreement IS NULL') }
-
-  def send_email
-    if self.invited.account_settings.personal_invites && self.invited.email.present?
-      NoticeMailer.delay(:queue => 'mailer', :retry => false).personal_invitation(self)
-    end
-  end
 
   def opposite_kind
     (self.class.kind.values - [kind]).join
