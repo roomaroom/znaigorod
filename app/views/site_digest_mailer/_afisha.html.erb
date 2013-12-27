@@ -15,7 +15,7 @@
     <tr class="middle_border">
       <td class="without-padding">
         <% if afisha.has_tickets_for_sale? %>
-          <%= link_to(image_tag(afisha.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.15).to_i}" },
+          <%= link_to(image_tag(resized_image_url(afisha.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.15).to_i}" }, 178, 204),
                                 size: "#{178}x#{204}",
                                 alt: afisha.title),
                                 afisha_show_path(afisha,
@@ -24,7 +24,7 @@
                                                  :utm_medium => "email",
                                                  :utm_source => "email")) %>
         <% else %>
-          <%= link_to(image_tag(afisha.poster_url, size: "#{178}x#{240}", alt: afisha.title),
+          <%= link_to(image_tag(resized_image_url(afisha.poster_url,178, 240), size: "#{178}x#{240}", alt: afisha.title),
                                  afisha_show_path(afisha,
                                                   :only_path => false,
                                                   :utm_campaign => "znaigorod",

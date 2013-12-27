@@ -23,7 +23,7 @@
                                                        :utm_medium => "email",
                                                        :utm_source => "email")) %>
         <% else %>
-          <%= link_to(image_tag(organization.logotype_url,
+          <%= link_to(image_tag(resized_image_url(organization.logotype_url, 178, 178),
                                 size: "#{178}x#{178}",
                                 alt: organization.title),
                                 organization_path(organization,

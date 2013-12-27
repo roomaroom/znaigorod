@@ -13,7 +13,7 @@
     </tr>
     <tr class="middle_border">
       <td class="without-padding">
-        <%= link_to image_tag(discount.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.22).to_i}" },
+        <%= link_to image_tag(resized_image_url(discount.poster_url.gsub(/(\/region\/(\d+|\/)\/(\d+|\/))/) { "/region/#{$2}/#{($3.to_i - $3.to_i*0.22).to_i}" }, 220, 128),
                               :size => "#{220}x#{128}",
                               :title => discount.title.text_gilensize,
                               :alt => discount.title.text_gilensize),

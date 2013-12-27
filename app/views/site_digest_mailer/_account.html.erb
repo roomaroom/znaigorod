@@ -23,7 +23,7 @@
                                    :utm_medium => "email",
                                    :utm_source => "email")) %>
         <% else %>
-          <%= link_to(image_tag(account.avatar.url,
+          <%= link_to(image_tag(resized_image_url(account.avatar.url, 178, 178),
                                 size: "#{178}x#{178}",
                                 title: account,
                                 alt: account),
