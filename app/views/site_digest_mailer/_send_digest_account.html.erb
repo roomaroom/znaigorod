@@ -7,12 +7,41 @@
         <% end %>
       </h2>
 
-      <% if materials.first.first.is_a?(Account) %>
-        <%= render(partial: "site_digest_mailer/account", collection: materials.first) if @account.gender == 'male' %>
-        <%= render(partial: "site_digest_mailer/account", collection: materials.second) if @account.gender == 'female' %>
-      <% end %>
+      <% materials = materials.first if @account.gender == 'male' %>
+      <% materials = materials.second if @account.gender == 'female' %>
 
+      <% materials.each_with_index do |material, index| %>
+        <% if (index + 1).odd? %>
+          <tr>
+            <td class="center" align="center">
+              <center>
+                <table id="content_row" class="row content_row">
+                  <tr align="left">
+                    <td align="left" valign="top">
+                      <table class="small_column columns">
+                        <tr align="left">
+                          <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
+        <% else %>
+                          <td>
+                            <table class="separator">
+                              <tr>
+                                <td>
+                                  &nbsp;
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
     </table>
   </td>
 </tr>
-

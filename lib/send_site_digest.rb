@@ -55,10 +55,10 @@ class SendSiteDigest
       output = []
       %w[male female].each do |gender|
         accounts = []
-        prepared_accounts = Account.where("gender = ? and created_at > ?", gender, Time.zone.now - @period).order("rating DESC")
+        prepared_accounts = Account.includes{:invitations}.where("gender = ? ", gender).order("rating DESC")
 
-        prepared_accounts.each do |a|
-          if a.rating.present? && a.with_avatar? && a.invitations.with_categories.any?
+        prepared_accounts.where("created_at > ?", Time.zone.now - @period).each do |a|
+          if a.rating.present? && a.with_avatar? && a.invitations.any?
             accounts.push a
           end
         end
@@ -90,7 +90,7 @@ class SendSiteDigest
   end
 
   def self.send
-    period = 1.week
+    period = 1.day
     digest = Digest.collection_for_email(period)
 
     Account.with_email.where('last_visit_at <= ?', Time.zone.now - period).where("gender = 'male'").limit(1).each do |account|
