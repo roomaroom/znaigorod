@@ -2,10 +2,22 @@ class AddPosterToPosts < ActiveRecord::Migration
   def up
     add_column :posts, :poster_id, :integer
 
+    remove_column :posts, :poster_image_url
+    remove_column :posts, :poster_image_file_name
+    remove_column :posts, :poster_image_content_type
+    remove_column :posts, :poster_image_file_size
+    remove_column :posts, :poster_image_updated_at
+
     set_poster_for_posts
   end
 
   def down
+    add_column :posts, :poster_image_updated_at, :datetime
+    add_column :posts, :poster_image_file_size, :integer
+    add_column :posts, :poster_image_content_type, :string
+    add_column :posts, :poster_image_file_name, :string
+    add_column :posts, :poster_image_url, :text
+
     remove_column :posts, :poster_id
   end
 

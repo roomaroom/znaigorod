@@ -14,11 +14,7 @@
   </div>
 
   <div class="annotation">
-    <% if post.poster_url? %>
-      <%= link_to_if post.published?, image_tag(resized_image_url(post.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
-    <% else %>
-      <%= link_to_if post.published?, image_tag(post.poster_image.url, :size => "#{@width}x#{@height}"), post_path(post) %>
-    <% end %>
+    <%= link_to image_tag(resized_image_url(post.poster_file_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
 
     <%= post.content_for_index %>
   </div>

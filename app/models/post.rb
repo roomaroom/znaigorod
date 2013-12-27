@@ -14,12 +14,14 @@ class Post < ActiveRecord::Base
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
   before_save :handle_link_with_value
 
-   before_save :set_poster
+  before_save :set_poster
 
   belongs_to :account
   belongs_to :afisha
   belongs_to :organization
+
   belongs_to :poster, :class_name => 'GalleryImage', :foreign_key => :poster_id
+  delegate :file_url, :to => :poster, :prefix => true
 
   has_many :comments,       :as => :commentable,    :dependent => :destroy
   has_many :gallery_images, :as => :attachable,     :dependent => :destroy
