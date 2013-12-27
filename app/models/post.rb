@@ -97,7 +97,7 @@ class Post < ActiveRecord::Base
   end
 
   def ready_for_publication?
-    title.present? && content.present? && poster_image_url? && draft?
+    title.present? && content.present? && draft?
   end
 
   private

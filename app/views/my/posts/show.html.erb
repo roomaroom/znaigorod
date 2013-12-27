@@ -54,7 +54,6 @@
           <ul class='requirements'>
             <li class='<%= @post.title? ? 'enabled' : 'disabled' %>'>Название</li>
             <li class='<%= @post.description? ? 'enabled' : 'disabled' %>'>Описание</li>
-            <li class='<%= @post.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
           </ul>
 
           <% if can? :send_to_published, @post %>
