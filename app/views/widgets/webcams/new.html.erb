@@ -1,22 +1,51 @@
 <div class='my_wrapper'>
-  <h1>Виджет веб-камеры</h1>
-  <%= simple_form_for :widget, :url => new_widgets_webcam_path, :method => :get do |f| %>
-    <%= f.input :webcam_id,
-      :as => :select,
-      :collection => Webcam.our.published.to_a.insert(0, Webcam.new(:title => 'Случайная камера')),
-      :include_blank => false,
-      :label => 'Камера' %>
-    <%= f.input :width, :as => :integer, :label => 'Ширина' %>
-    <div class='submit'>
-      <%= f.button :submit, 'Сгенерировать', class: :button %>
-      <%= link_to 'Отмена', widgets_root_path %>
+  <div class='clearfix'>
+    <div class='widget_help'>
+      <div class='title'>
+        <%= 'Плюсы для владельцев томских сайтов:'.as_html %>
+      </div>
+      <div class='reasons'>
+        <ul>
+          <li>
+            <p>При правильном подборе виджетов можно обычный сайт превратить в небольшой портал: пользователь будет получать всю нужную информацию, не покидая его.</p>
+          </li>
+          <li>
+            <p>Расширение функционала. Если вы заинтересованы в посетителях-томичах, то живая онлайн картинка о дорожной ситуации Томска станет для них интересной находкой.</p>
+            <p>Благодаря такому виджету они больше времени проведут на вашем сайте со всеми благоприятными, вытекающими последствиями для вашего бюджета.</p>
+          </li>
+          <li>
+            <p>Географическая привязка. Если ваш магазин расположен поблизости от действующей вебкамеры, вашим посетителям будет интересно узнать дорожную обстановку и само расположения вашего магазина.</p>
+          </li>
+          <li>
+            <p>Простота внедрения. Для того, чтобы разместить виджет, требуется лишь скопировать и вставить кусок кода, см ниже.</p>
+          </li>
+        </ul>
+      </div>
+      <div class='widgets_links'>
+        <p><a target='_blank' href='http://www.yandex.ru/?add=152085&retpath=http%3A%2F%2Fwidgets.yandex.ru%2F%3Ftext%3D%25D0%25B7%25D0%25BD%25D0%25B0%25D0%25B9%25D0%25B3%25D0%25BE%25D1%2580%25D0%25BE%25D0%25B4&from=all'>Виджет афиши</a></p>
+        <p><a target='_blank' href='http://www.yandex.ru/?add=152086&retpath=http%3A%2F%2Fwidgets.yandex.ru%2F%3Ftext%3D%25D1%2581%25D0%25BA%25D0%25B8%25D0%25B4%25D0%25BA%25D0%25B8&from=all'>Виджет скидки</a></p>
+      </div>
     </div>
-  <% end %>
+    <div class='widget_wrapper'>
+      <%= simple_form_for :widget, :url => new_widgets_webcam_path, :method => :get do |f| %>
+        <%= f.input :webcam_id,
+          :as => :select,
+          :collection => Webcam.our.published.to_a.insert(0, Webcam.new(:title => 'Случайная камера')),
+          :include_blank => false,
+          :label => 'Камера' %>
+        <%= f.input :width, :as => :integer, :label => 'Ширина' %>
+        <div class='submit'>
+          <%= f.button :submit, 'Сгенерировать', class: :button %>
+          <%= link_to 'Отмена', widgets_root_path %>
+        </div>
+      <% end %>
 
-  <h1>Как будет отображаться на сайте</h1>
-  <%= render :partial => 'embded_code', :locals => {:widget => @widget} %>
-  <h1>Код для вставки на сайт</h1>
-  <div class='simple_form'>
-    <%= text_area_tag 'code', @widget.embded_code, :class => 'input', :rows => 8, :cols => 100 %>
+      <h1>Как будет отображаться на сайте</h1>
+      <%= render :partial => 'embded_code', :locals => {:widget => @widget} %>
+      <h1>Код для вставки на сайт</h1>
+      <div class='simple_form'>
+        <%= text_area_tag 'code', @widget.embded_code, :class => 'input', :rows => 8, :cols => 100 %>
+      </div>
+    </div>
   </div>
 </div>

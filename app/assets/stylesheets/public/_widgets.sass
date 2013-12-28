@@ -42,3 +42,58 @@
 
         p
           margin-top: 10px
+
+.my_wrapper
+
+  .widget_help
+    float: left
+    width: 288px
+    font-size: 12px
+    border: 1px solid #f60
+
+    .title
+      font-weight: bold
+      margin: 8px 15px
+
+    .reasons
+      +clearfix
+      background: transparent image_url('public/webcam_help_bg.png') no-repeat -298px -25px
+
+      ul
+        counter-reset: list
+        font-size: 11px
+
+        li
+          position: relative
+          background-color: rgba(#fff, 0.8)
+          margin: 10px 15px
+          padding: 5px 15px
+
+          &:before
+            color: #fff
+            display: block
+            position: absolute
+            top: 0
+            left: -15px
+            font-weight: bold
+            counter-increment: list
+            content: counter(list)
+            background-color: #f60
+            padding: 5px 2px 5px 5px
+
+          &:after
+            content: ""
+            height: 0
+            width: 0
+            position: absolute
+            top: 0
+            left: 0
+            border: solid transparent
+            border-left-color: #f60
+            border-width: 13px
+
+    .widgets_links
+      margin: 8px 15px
+
+  .widget_wrapper
+    margin-left: 300px
