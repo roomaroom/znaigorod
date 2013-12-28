@@ -29,8 +29,9 @@
                                   <img src="<%= Settings['app']['url'] %>/assets/public/logo.png" width="109px" height="56px" alt="znaigorod" title="znaigorod" />
                                 </a>
                               </td>
-                              <td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
+                              <td class="title_description_column sub-columns last" style="text-align:right; vertical-align:middle;">
                                 <h3><%= t "notice_mailer.#{@type}" %></h3>
+                                <span class="description"><%= t("notice_mailer.#{@type}_description").html_safe %></span>
                               </td>
                               <td class="expander"></td>
                             </tr>

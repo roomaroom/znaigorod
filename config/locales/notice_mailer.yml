@@ -40,3 +40,13 @@ ru:
     free: "бесплатно"
     invite: "Пригласить"
     invite_me: "Пригласи меня"
+    site_digest_description: |
+      Вы не заходили к нам больше недели,<br />
+      а у нас появилось много интересных обновлений
+    new_notifications_description: |
+      Хотим напомнить, что для Вас есть<br />
+      важные уведомления на сайте ЗнайГород
+    afisha_statistics_description: |
+      test
+    discount_statistics_discription: |
+      test
