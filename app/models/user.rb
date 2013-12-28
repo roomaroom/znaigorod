@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
                              email: self.email, gender: self.gender)
     account.users = [self]
     account.save!
-    update_attributes(account_id: account.id)
+    update_attributes(account: account)
   end
 
   def vk_uid
