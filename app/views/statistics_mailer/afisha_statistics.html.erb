@@ -13,7 +13,7 @@
                 <table class="custom_column columns" >
                   <tr align="left">
                     <td align="left" valign="top">
-                      <a href="<%= afisha_path afisha, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>">
+                      <a href="<%= path_for_email(afisha) %>">
 
                         <% if afisha.poster_url.present? %>
                           <%= image_tag(resized_image_url(afisha.poster_url, 100 , 135),
@@ -31,7 +31,7 @@
                 <table class="eight columns">
                   <tr align="left">
                     <td class="line_height" align="left" valign="top">
-                      <a href="<%= afisha_path afisha, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>"><%= afisha.title %></a>
+                      <a href="<%= path_for_email(afisha) %>"><%= afisha.title %></a>
                     </td>
                   </tr>
                   <tr align="left">

@@ -2,6 +2,7 @@ class StatisticsMailer < ActionMailer::Base
   default :from => "\"znaigorod.ru\" <#{Settings['mail']['from']}>"
   layout "notice_layout"
   add_template_helper(ImageHelper)
+  add_template_helper(EmailDigestHelper)
 
   def afisha_statistics(afishas, account)
     @account = account

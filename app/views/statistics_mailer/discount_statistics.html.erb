@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <% @discounts.each do |discount| %>
-    <% unless afisha == @afishas.last %>
+    <% unless discount == @discounts.last %>
       <tr class="dashed_border">
      <% end %>
       <td class="center" align="center">
@@ -12,7 +12,7 @@
                 <table class="custom_column columns">
                   <tr align="left">
                     <td align="left" valign="top">
-                      <a href="<%= discount_path discount, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>" >
+                      <a href="<%= path_for_email(discount) %>" >
 
                         <%= image_tag(resized_image_url(discount.poster_url.nil? ? 'public/stub_poster.png' : discount.poster_url, 100 , 74),
                                       :size => '100x74', :alt => discount.title) %>
@@ -25,7 +25,7 @@
                 <table class="eight columns" >
                   <tr align="left">
                     <td class="line_height" align="left" valign="top">
-                      <a href="<%= discount_path discount, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>" ><%= discount.title %></a>
+                      <a href="<%= path_for_email(discount) %>" ><%= discount.title %></a>
                     </td>
                   </tr>
                   <tr align="left">
