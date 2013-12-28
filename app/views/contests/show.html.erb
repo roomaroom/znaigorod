@@ -23,6 +23,30 @@
   <div class='share_and_likes'>
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => contest_url(@contest) } %>
   </div>
+
+  <% if @contest.slug == 'vyigray-novogodnyuyu-noch-s-chempionami-vysshey-ligi-kvn-1998-goda-deti-leytenanta-shmidta' %>
+    <div class='winners'>
+      <h2>Победители</h2>
+      <ul>
+        <li class='first'>
+          <div class='title gold'>Первое место</div>
+          <div class='image'><img alt='' height='278' src='http://storage.znaigorod.ru/files/58029/278-278!mn/DSC_3676.jpg' width='278'></div>
+          <div class='contest_work_vk_like_on_list'>278 голосов</div>
+        </li>
+        <li class='second'>
+          <div class='title silver'>Второе место</div>
+          <div class='image'><img alt='' height='278' src='http://storage.znaigorod.ru/files/57059/278-278!mn/image002.jpg' width='278'></div>
+          <div class='contest_work_vk_like_on_list'>175 голосов</div>
+        </li>
+        <li class='third'>
+          <div class='title bronze'>Третье место</div>
+          <div class='image'><img alt='Мишенька с мамой резвится' height='278' src='http://storage.znaigorod.ru/files/57068/278-278!mn/DSC_1247.jpg' width='278'></div>
+          <div class='contest_work_vk_like_on_list'>205 голосов</div>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+
   <% if @works.any? %>
     <div class='works ajaxed_voteable'>
       <h2>Участники</h2>
