@@ -36,23 +36,71 @@
   &.show h1
     float: none
 
-  .add_webcam_to_your_site
-    width: 350px
-    text-align: center
-    margin: 7px auto 0
-
-    a
-      font-size: 18px
-      line-height: 16px
-
   .webcams_list
     display: none
 
+  .webcam_map_help
+    float: left
+    width: 268px
+    font-size: 12px
+    border: 1px solid #f60
+    margin-left: 9px
+
+    .title
+      font-weight: bold
+      margin: 8px 15px
+
+    .reasons
+      +clearfix
+      background: transparent image_url('public/webcam_help_bg.png') no-repeat -11px -25px
+
+      ul
+        counter-reset: list
+        font-size: 11px
+
+        li
+          position: relative
+          background-color: rgba(#fff, 0.8)
+          margin: 10px 15px
+          padding: 5px 15px
+
+          &:before
+            color: #fff
+            display: block
+            position: absolute
+            top: 0
+            left: -15px
+            font-weight: bold
+            counter-increment: list
+            content: counter(list)
+            background-color: #f60
+            padding: 5px 2px 5px 5px
+
+          &:after
+            content: ""
+            height: 0
+            width: 0
+            position: absolute
+            top: 0
+            left: 0
+            border: solid transparent
+            border-left-color: #f60
+            border-width: 13px
+
+    .add_webcam_to_your_site
+      text-align: center
+      margin: 0 15px 9px
+
+      a
+        font-size: 11px
+        +inline-block
+        +button-style
+
   .webcam_map
-    width: 1180px
+    width: 900px
     height: 480px
     border: 1px solid #bfbfbf
-    margin: 10px 9px
+    margin: 0 289px 9px
 
   .share_and_likes
     min-height: 30px
