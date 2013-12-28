@@ -8,7 +8,7 @@
             <table class="one columns">
               <tr align="left">
                 <td align="left" valign="top">
-                  <a href="<%= account_path vote.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email"  %>">
+                  <a href="<%= path_for_email(vote.user.account) %>">
                     <img src="<%= resized_image_url(vote.user.account.avatar.url, 30, 30) %>" align="left" title="<%= vote.user.account.title %>" alt="<%= vote.user.account.title %>" />
                   </a>
                 </td>
@@ -19,7 +19,7 @@
             <table class="nine columns">
               <tr align="left">
                 <td class="line_height" align="left" valign="top">
-                  <a href="<%= account_path vote.user.account, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email" %>"><%= vote.user.account.title %></a>
+                  <a href="<%= path_for_email(vote.user.account) %>"><%= vote.user.account.title %></a>
                   <span id="time"><%= l(vote.created_at, format: "%d %B %Y, %k:%M") %></span>
                   <span class="gray_text"><%= t "notice_mailer.liked_your_comment.#{vote.user.account.gender}" %> </span>
                 </td>
