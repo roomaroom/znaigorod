@@ -13,12 +13,12 @@
       <title><%= I18n.t('meta.default.title', :default => '').squish.html_safe %></title>
     <% end %>
     <% if content_for?(:meta_keywords) %>
-      <meta name='keywords' content='<%= "#{yield(:meta_keywords)}, #{I18n.t('meta.default.keywords', :default => '')}".squish.html_safe %>' />
+      <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
     <% else %>
       <meta name='keywords' content='<%= I18n.t('meta.default.keywords', :default => '').squish.html_safe %>' />
     <% end %>
     <% if content_for?(:meta_description) %>
-      <meta name='description' content='<%= "#{yield(:meta_description)}. #{I18n.t('meta.default.description', :default => '')}".squish.html_safe %>' />
+      <meta name='description' content='<%= yield(:meta_description) %>' />
     <% else %>
       <meta name='description' content='<%= I18n.t('meta.default.description', :default => '').squish.html_safe %>' />
     <% end %>
