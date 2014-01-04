@@ -1,4 +1,5 @@
 User-Agent: *
+Disallow:  /artem2k.html
 Disallow: /organizations?order_by
 Disallow: /meals?order_by=
 Disallow: /meals/kafe?order_by=
