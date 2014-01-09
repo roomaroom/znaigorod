@@ -1,0 +1,19 @@
+<% afisha = AfishaDecorator.new afisha %>
+
+<%= afisha.title.text_gilensize.truncated(40) %>
+<%= path_for_email(afisha) %>
+
+<% if afisha.has_tickets_for_sale? %>
+       <%= afisha.title %>
+       <%= path_for_email afisha %>
+<% else %>
+  <%= afisha.title %>
+  <%= path_for_email(afisha) %>
+<% end %>
+<% if afisha.has_tickets_for_sale? %>
+  <%= path_for_email(afisha) %>
+<% end %>
+
+<%= places_for_afisha(afisha, true) %>
+
+<%= afisha.human_when ? afisha.human_when.replace_special_html_chars : "&nbsp;".html_safe %>

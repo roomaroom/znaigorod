@@ -1,0 +1,17 @@
+ЗнайГород
+<%= t "notice_mailer.#{@type}" %>
+<%= t("notice_mailer.#{@type}_text_description").html_safe %>
+
+<% @digest.each do |materials| %>
+
+  <%= t "notice_mailer.afisha_title" if materials.first.is_a?(Afisha) %>
+  <%= t "notice_mailer.organization_title" if materials.first.is_a?(Organization) %>
+  <%= t "notice_mailer.discount_title" if materials.first.is_a?(Discount) %>
+
+  <% materials.each_with_index do |material, index| %>
+    <%= render partial: "site_digest_mailer/afisha", :locals => { :afisha => material } if materials.first.is_a?(Afisha) %>
+    <%= render partial: "site_digest_mailer/discount", :locals => { :discount => material } if materials.first.is_a?(Discount) %>
+    <%= render partial: "site_digest_mailer/organization", :locals => { :organization => material } if materials.first.is_a?(Organization) %>
+  <% end %>
+
+<% end %>

@@ -63,7 +63,7 @@ module EmailDigestHelper
     content.present? ? truncate(content[0..-3], length: 55) : 'Приглашает или ждет приглашения'
   end
 
-  def places_for_afisha(afisha)
+  def places_for_afisha(afisha, only_text = false)
     max_lenght = 23
     place_output = ""
     places = afisha.places
@@ -73,22 +73,35 @@ module EmailDigestHelper
       place_title = place_title.gsub(/,.*/, '')
       place_title = place_title.truncate(max_lenght, :separator => ' ')
       max_lenght -= place_title.size
-      if place.organization
-        place_output += link_to(place_title.text_gilensize,
-                                organization_path(place.organization,
-                                                  :only_path => false,
-                                                  :utm_campaign => "znaigorod",
-                                                  :utm_medium => "email",
-                                                  :utm_source => "email"),
-                                                  :title => place_link_title.text_gilensize)
+      # NOTICE hell
+      if only_text
+        if place.organization
+          place_output += place_title.text_gilensize +
+                          organization_path(place.organization,
+                                            :only_path => false,
+                                            :utm_campaign => "znaigorod",
+                                            :utm_medium => "email",
+                                            :utm_source => "email")
+        else
+          place_output += place_link_title.blank? ? place_title.text_gilensize : place_link_title.text_gilensize
+        end
       else
-        place_output += place_link_title.blank? ? place_title.text_gilensize : content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
+        if place.organization
+          place_output += link_to(place_title.text_gilensize,
+                                  organization_path(place.organization,
+                                                    :only_path => false,
+                                                    :utm_campaign => "znaigorod",
+                                                    :utm_medium => "email",
+                                                    :utm_source => "email"),
+                                  :title => place_link_title.text_gilensize)
+        else
+          place_output += place_link_title.blank? ? place_title.text_gilensize : content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
+        end
       end
       break if max_lenght < 3
       place_output += ", " if index < places.size - 1
     end
     raw place_output
   end
-
 
 end
