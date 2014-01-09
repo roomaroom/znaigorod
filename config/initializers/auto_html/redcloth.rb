@@ -2,7 +2,6 @@ require 'gilenson'
 require 'redcloth'
 require 'rexml/document'
 require 'rinku'
-require 'uri'
 
 def add_attributes_to_links(html, options)
   fragment = Nokogiri::HTML.fragment(html)
@@ -11,7 +10,6 @@ def add_attributes_to_links(html, options)
     unless a['href'] =~ /znaigorod.ru/
       a['target'] = options[:target] if options[:target].present?
       a['rel'] = options[:rel] if options[:rel].present?
-      a['href'] = URI.decode(a['href'])
     end
   end
 
