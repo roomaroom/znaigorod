@@ -1,0 +1,33 @@
+        <%= link_to truncate(account.title, length: 20), path_for_email(account) %>
+
+        <% if account.invitations.without_invited.any? %>
+          <%= link_to(image_tag(resized_image_url(account.avatar.url, 178, 142),
+                                size: "#{178}x#{142}",
+                                title: account,
+                                alt: account),
+                                path_for_email(account)) %>
+        <% else %>
+          <%= link_to(image_tag(resized_image_url(account.avatar.url, 178, 178),
+                                size: "#{178}x#{178}",
+                                title: account,
+                                alt: account),
+                      path_for_email(account)) %>
+        <% end %>
+    <% if account.invitations.without_invited.any? %>
+          <% if account.invitations.inviter.without_invited.any? %>
+            <%= link_to path_for_email(account, 'invite_me'), :class => :orange_button do %>
+
+             <img src="<%= "#{Settings['app']['url']}/assets/public/emails/invite_me.png" %>"
+                   alt="<%= t("notice_mailer.invite_me") %>"
+                   title="<%= t("notice_mailer.invite_me") %>" />
+            <% end %>
+          <% elsif account.invitations.invited.without_invited.any? %>
+            <%= link_to path_for_email(account, 'invite_me'), :class => :orange_button do %>
+
+             <img src="<%= "#{Settings['app']['url']}/assets/public/emails/invite.png" %>"
+                   alt="<%= t("notice_mailer.invite") %>"
+                   title="<%= t("notice_mailer.invite") %>" />
+            <% end %>
+          <% end %>
+    <% end %>
+          <%= invitations_for_account(account) %>
