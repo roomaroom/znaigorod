@@ -6,6 +6,9 @@ class CooperationController < ApplicationController
   def statistics
   end
 
+  def extra_catalogs
+  end
+
   def services
     @service_payment = ServicePayment.new
   end
