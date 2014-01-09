@@ -1,0 +1,3 @@
+- <%= discount.discount %>%
+<%= number_to_currency(discount.origin_price, :unit => 'р.', :precision => 0) %>
+<%= discount.price.zero? ? 'бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %>

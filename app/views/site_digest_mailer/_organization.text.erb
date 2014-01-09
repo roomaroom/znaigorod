@@ -1,0 +1,39 @@
+<%= organization.title.text_gilensize.truncated(40) %>
+<%= path_for_email(organization) %>
+
+<% if organization.sms_claimable? || organization.organization.sms_claimable? %>
+  <%= organization.title %>
+  <%= path_for_email(organization) %>
+<% else %>
+  <%= organization.title %>
+  <%= path_for_email(organization) %>
+<% end %>
+
+<% if organization.is_a?(Organization) %>
+  <% if organization.sms_claimable? %>
+    <%= send("new_#{organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path",
+           organization.priority_sms_claimable_suborganization,
+           :only_path => false,
+           :utm_campaign => "znaigorod",
+           :utm_medium => "email",
+           :utm_source => "email")
+       %>
+      <%= organization.priority_sms_claimable_suborganization.reservation_title %>
+  <% end %>
+<% else %>
+  <% if organization.organization.sms_claimable? %>
+    <%= send("new_#{organization.class.name.underscore}_sms_claim_path",
+           organization.organization,
+           :only_path => false,
+           :utm_campaign => "znaigorod",
+           :utm_medium => "email",
+           :utm_source => "email")
+      %>
+  <% end %>
+<% end %>
+<% unless organization.address.to_s.blank? %>
+  <%= "#{organization.address}#{organization.office}".truncated(23, nil) %>
+<% else %>
+  <%= "&nbsp;".html_safe %>
+<% end %>
+<%= organization.phone.blank? ? "  " : organization.phone.squish.split(', ').first %>
