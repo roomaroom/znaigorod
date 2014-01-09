@@ -2,14 +2,16 @@ require 'gilenson'
 require 'redcloth'
 require 'rexml/document'
 require 'rinku'
+require 'uri'
 
-def add_attributes_to_links(html)
+def add_attributes_to_links(html, options)
   fragment = Nokogiri::HTML.fragment(html)
 
   fragment.css('a').each do |a|
     unless a['href'] =~ /znaigorod.ru/
-      a['target'] = '_blank'
-      a['rel'] = 'nofollow'
+      a['target'] = options[:target] if options[:target].present?
+      a['rel'] = options[:rel] if options[:rel].present?
+      a['href'] = URI.decode(a['href'])
     end
   end
 
@@ -20,7 +22,7 @@ AutoHtml.add_filter(:redcloth).with({}) do |text, options|
   attributes = Array(options).reject { |k,v| v.nil? }.map { |k, v| %{#{k}="#{REXML::Text::normalize(v)}"} }.join(' ')
   result = RedCloth.new(text).to_html
   result = Rinku.auto_link(result, :all, attributes)
-  result = add_attributes_to_links(result)
+  result = add_attributes_to_links(result, options)
   result = Gilenson.new(result.gsub('&#8220;', '"').gsub('&#8221;', '"')).to_html.html_safe
 
   result
