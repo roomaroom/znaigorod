@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   def index
     @presenter = PostsPresenter.new(params)
     @posts = @presenter.decorated_collection
+
+    render partial: 'posts/post_posters', layout: false and return if request.xhr?
   end
 
   def show

@@ -1,5 +1,8 @@
 @import 'simple_form'
 
+.non_scrollable
+  overflow: hidden
+
 .my_posts_wrapper
   margin-top: 20px
   overflow: hidden
@@ -90,6 +93,16 @@
 
     .post_show
       display: inline-block
+
+  .loader
+    background: image_url('public/ajax_loading_items_indicator.gif') center center no-repeat rgba(0, 0, 0, 0)
+    display: none
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 1000
 
 .my_posts_wrapper
   .left

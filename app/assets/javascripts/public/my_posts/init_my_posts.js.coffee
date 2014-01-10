@@ -23,6 +23,18 @@ beforeImageInsert = (h) ->
       textarea.val("#{before}!#{url}!#{after}")
       textarea.trigger('preview')
 
+    start: (e) ->
+      top = $(document).scrollTop()
+      $('body').addClass('non_scrollable')
+
+      $('.loader').show().offset
+        left: 0
+        top: top
+
+    stop: (e) ->
+      $('body').removeClass('non_scrollable')
+      $('.loader').hide()
+
     fail: (e, data) ->
       message = data.jqXHR.responseText
       $('.message_wrapper').text(message).show().delay(5000).slideUp('slow')
