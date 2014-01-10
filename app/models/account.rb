@@ -17,6 +17,7 @@ class Account < ActiveRecord::Base
   has_many :visits,          through: :users, order: 'visits.created_at DESC'
   has_many :page_visits,     through: :users
   has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
+  has_many :members,         dependent: :destroy
 
   has_many :gallery_images,  dependent: :destroy, :as => :attachable
 
