@@ -1,0 +1,44 @@
+<div class='show'>
+  <p><%= link_to 'Перейти к списку', manage_page_metas_path %></p>
+  <h1>
+    <%= resource.path %>
+    <%= link_to 'Редактировать мета страницы', edit_manage_page_meta_path, :class => 'edit_link' %>
+  </h1>
+
+  <div class='attribute'>
+    <span class='label'>Title</span>
+    <span class='value'><%= resource.title %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>H1</span>
+    <span class='value'><%= resource.header %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>Keywords</span>
+    <span class='value'><%= resource.keywords %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>Description</span>
+    <span class='value'><%= resource.description %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>OG title</span>
+    <span class='value'><%= resource.og_title %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>OG description</span>
+    <span class='value'><%= resource.og_description %></span>
+  </div>
+
+  <div class='attribute'>
+    <span class='label'>Introduction</span>
+  </div>
+  <div class="introduction">
+    <%= resource.html_introduction %>
+  </div>
+</div>

@@ -27,6 +27,7 @@ Znaigorod::Application.routes.draw do
 
     post 'red_cloth' => 'red_cloth#show'
 
+    resources :page_metas
     resources :comments,  :only => [:index, :destroy]
     resources :search,    :only => :index
     resources :sessions,  :only => [:new, :create, :destroy]

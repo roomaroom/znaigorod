@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213035659) do
+ActiveRecord::Schema.define(:version => 20140110015825) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -274,6 +274,34 @@ ActiveRecord::Schema.define(:version => 20131213035659) do
   add_index "copies", ["copy_payment_id"], :name => "index_tickets_on_payment_id"
   add_index "copies", ["copyable_id"], :name => "index_copies_on_copyable_id"
   add_index "copies", ["copyable_type"], :name => "index_copies_on_copyable_type"
+
+  create_table "coupons", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "discount"
+    t.string   "vfs_path"
+    t.integer  "organization_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "image_url"
+    t.integer  "price_with_discount"
+    t.integer  "price_without_discount"
+    t.integer  "organization_quota"
+    t.integer  "price"
+    t.string   "kind"
+    t.string   "place"
+    t.integer  "number"
+    t.datetime "stale_at"
+    t.datetime "complete_at"
+    t.text     "categories"
+    t.text     "affiliate_url"
+  end
+
+  add_index "coupons", ["organization_id"], :name => "index_coupons_on_organization_id"
 
   create_table "creations", :force => true do |t|
     t.integer  "organization_id"
@@ -565,6 +593,19 @@ ActiveRecord::Schema.define(:version => 20131213035659) do
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
   add_index "organizations", ["user_id"], :name => "index_organizations_on_user_id"
+
+  create_table "page_meta", :force => true do |t|
+    t.text     "path"
+    t.text     "title"
+    t.text     "header"
+    t.text     "keywords"
+    t.text     "description"
+    t.text     "introduction"
+    t.text     "og_title"
+    t.text     "og_description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "page_visits", :force => true do |t|
     t.text     "session"

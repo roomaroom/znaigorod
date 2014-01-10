@@ -1,0 +1,14 @@
+<%= simple_form_for [:manage, @page_meta], :url => @page_meta.new_record? ? collection_url : resource_url do |f| %>
+  <%= f.input :path, as: :string, placeholder: 'путь страницы, например afisha' %>
+  <%= f.input :title, as: :string, placeholder: 'Заголовок страницы' %>
+  <%= f.input :header, as: :string, placeholder: 'h1 страницы' %>
+  <%= f.input :keywords, placeholder: 'ключевые слова через ,' %>
+  <%= f.input :description, placeholder: 'мета-описание' %>
+  <%= f.input :og_title, as: :string, placeholder: 'OG заголовок' %>
+  <%= f.input :og_description, placeholder: 'OG описание' %>
+  <%= f.input :introduction, :input_html => { :class => 'markitup' } %>
+  <div class='published actions'>
+    <%= f.submit "Сохранить" %>
+    <%= link_to 'Удалить'.html_safe, resource_path, method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
+  </div>
+<% end %>

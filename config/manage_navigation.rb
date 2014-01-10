@@ -3,7 +3,7 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
-    primary.item :comments, 'Комментарии', manage_comments_path, :if => -> { can?(:manage, Comment) }
+    primary.item :page_metas, 'Мета страниц', manage_page_metas_path
 
     primary.item :users, 'Пользователи', manage_admin_users_path,
       :highlights_on => ->(){ controller_name == 'users' || resource_class.try(:superclass) == User },
@@ -62,6 +62,7 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
       statistics_item.item :tickets, 'Билеты', manage_statistics_tickets_path
       statistics_item.item :offers, 'Предложения цены', by_state_manage_statistics_offers_path(:fresh)
+      statistics_item.item :comments, 'Комментарии', manage_comments_path, :if => -> { can?(:manage, Comment) }
     end
 
     primary.dom_class = 'navigation'
