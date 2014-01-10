@@ -7,17 +7,23 @@
     <meta name='yandex-verification' content='6f2efa53b5d49370' />
     <meta name='verify-reformal' content='de04fd7b8e7499f228171212' />
     <meta property='fb:app_id' content='131807160304776'/>
-    <% if content_for?(:page_title) %>
+    <% if page_meta %>
+      <title><%= page_meta.title.squish.html_safe %></title>
+    <% elsif content_for?(:page_title) %>
       <title><%= yield(:page_title).squish.html_safe %></title>
     <% else %>
       <title><%= I18n.t('meta.default.title', :default => '').squish.html_safe %></title>
     <% end %>
-    <% if content_for?(:meta_keywords) %>
+    <% if page_meta %>
+      <meta name='keywords' content='<%= page_meta.keywords.squish.html_safe %>' />
+    <% elsif content_for?(:meta_keywords) %>
       <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
     <% else %>
       <meta name='keywords' content='<%= I18n.t('meta.default.keywords', :default => '').squish.html_safe %>' />
     <% end %>
-    <% if content_for?(:meta_description) %>
+    <% if page_meta %>
+      <meta name='description' content='<%= page_meta.description.squish.html_safe %>' />
+    <% elsif content_for?(:meta_description) %>
       <meta name='description' content='<%= yield(:meta_description) %>' />
     <% else %>
       <meta name='description' content='<%= I18n.t('meta.default.description', :default => '').squish.html_safe %>' />

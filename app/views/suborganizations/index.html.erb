@@ -47,7 +47,11 @@
 
 <%= paginate @presenter.paginated_collection %>
 
-<% if t("meta.#{@presenter.selected_category}.introduction", default: '').present? %>
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
+  </div>
+<% elsif t("meta.#{@presenter.selected_category}.introduction", default: '').present? %>
   <div class='introduction'>
     <%= t("meta.#{@presenter.selected_category}.introduction").as_html %>
   </div>

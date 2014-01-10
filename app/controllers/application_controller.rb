@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :banners, :hot_offers, :page, :per_page
+  helper_method :banners, :hot_offers, :page, :per_page, :page_meta
 
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
@@ -69,5 +69,9 @@ class ApplicationController < ActionController::Base
        current_user.account.last_visit_at < DateTime.now - 5.minute
       current_user.account.update_column :last_visit_at, DateTime.now
     end
+  end
+
+  def page_meta
+    @page_meta ||= PageMeta.find_by_path request.path
   end
 end
