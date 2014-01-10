@@ -35,6 +35,11 @@
     <span class='value'><%= resource.og_description %></span>
   </div>
 
+  <div class='snapshot'>
+    <span class="label">OG image:</span>
+    <%= content_tag(:p, image_tag(resized_image_url(resource.og_image_url, 200, 97), size: '200x97')) if resource.og_image.present? %>
+  </div>
+
   <div class='attribute'>
     <span class='label'>Introduction</span>
   </div>

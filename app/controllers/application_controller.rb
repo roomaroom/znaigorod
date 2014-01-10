@@ -72,6 +72,6 @@ class ApplicationController < ActionController::Base
   end
 
   def page_meta
-    @page_meta ||= PageMeta.find_by_path request.path
+    @current_page_meta ||= PageMeta.find_by_path request.path
   end
 end

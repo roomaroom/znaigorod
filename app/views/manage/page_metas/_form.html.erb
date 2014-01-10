@@ -6,6 +6,7 @@
   <%= f.input :description, placeholder: 'мета-описание' %>
   <%= f.input :og_title, as: :string, placeholder: 'OG заголовок' %>
   <%= f.input :og_description, placeholder: 'OG описание' %>
+  <%= f.input :og_image, label: 'Выберите изображение', required: true, class: :button %>
   <%= f.input :introduction, :input_html => { :class => 'markitup' } %>
   <div class='published actions'>
     <%= f.submit "Сохранить" %>

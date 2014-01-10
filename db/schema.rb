@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140110015825) do
+ActiveRecord::Schema.define(:version => 20140110054933) do
 
   create_table "account_settings", :force => true do |t|
     t.boolean  "personal_invites",      :default => true
@@ -603,8 +603,13 @@ ActiveRecord::Schema.define(:version => 20140110015825) do
     t.text     "introduction"
     t.text     "og_title"
     t.text     "og_description"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "og_image_file_name"
+    t.string   "og_image_content_type"
+    t.integer  "og_image_file_size"
+    t.datetime "og_image_updated_at"
+    t.text     "og_image_url"
   end
 
   create_table "page_visits", :force => true do |t|
