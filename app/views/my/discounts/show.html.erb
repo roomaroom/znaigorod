@@ -14,9 +14,7 @@
       <div class="info">
         <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
       </div>
-    </div>
 
-    <div class="right">
       <div class="wrapper">
         <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount && @discount.copies.any? %>
 
@@ -50,6 +48,59 @@
 
         </div>
       </div>
+    </div>
+
+    <div class="right">
+
+      <div class="advertisement">
+
+        <div class="orange cell">
+          <%= t("afisha.pay_attention_discount") %>
+        </div>
+
+        <div class="cell dashed_border arrow_box">
+          Закрепление акции на главной странице
+          <p><strong>100 руб./сутки</strong></p>
+        </div>
+
+        <div class="cell dashed_border">
+          Закрепление акции на первой странице раздела &laquo;Скидки&raquo;
+          <p><strong>50 руб./сутки</strong></p>
+        </div>
+
+        <div class="cell dashed_border">
+          Закрепление и увеличение в 4 раза акции на первой странице раздела &laquo;Скидки&raquo;
+          <p><strong>200 руб./сутки</strong></p>
+        </div>
+
+        <div class="cell">
+          Продажа купонов, сертификатов с вашими товарами или услугами. Комиссия - <strong>10%</strong>
+        </div>
+
+      </div>
+
+      <div class="phones">
+        <div class="icon">
+        </div>
+        <div class="body">
+          <strong>
+            +7-952-800-5544
+          </strong>
+          <br />
+          <strong>
+            +7-952-802-5352
+          </strong>
+        </div>
+      </div>
+
+      <div class="emails">
+        <div class="icon">
+        </div>
+        <div class="body">
+          <%= mail_to 'office@znaigorod.ru' %>
+        </div>
+      </div>
+
     </div>
 
     <div class="center">
