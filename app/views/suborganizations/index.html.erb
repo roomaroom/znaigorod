@@ -4,7 +4,11 @@
 <% content_for :meta_keywords, @presenter.meta_keywords %>
 <% content_for :meta_description, @presenter.meta_description %>
 <% content_for :extra_meta do %>
-  <%= vk_meta(@presenter.pluralized_kind, (send @presenter.collection_direct_url), 'znaigorod_logo.png') %>
+  <% if page_meta %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% else %>
+    <%= vk_meta(@presenter.pluralized_kind, (send @presenter.collection_direct_url), 'znaigorod_logo.png') %>
+  <% end %>
 <% end %>
 
 <div class='presentation_filters organization'>
@@ -16,10 +20,12 @@
     </ul>
   </div>
   <div class='filter_header'>
-    <% if @presenter.page_header.blank? %>
-      <%= t('meta.organizations.page_header') %>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% elsif @presenter.page_header.blank? %>
+      <h1><%= t('meta.organizations.page_header') %></h1>
     <% else %>
-      <%= @presenter.page_header %>
+      <h1><%= @presenter.page_header %></h1>
     <% end %>
   </div>
   <div class='order_by'>
