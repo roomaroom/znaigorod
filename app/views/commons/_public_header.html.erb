@@ -5,6 +5,7 @@
     <div class='dashboard'>
       <% if user_signed_in? %>
         <p class='user'>
+          <%= link_to 'Добавить скидку', help_my_discounts_path, class: :new_my_afisha %>
           <%= link_to 'Добавить афишу', new_my_afisha_path, class: :new_my_afisha %>
           <%= link_to account_path(current_user.account), target: :_blank, class: :avatar do %>
             <%= image_tag(resized_image_url(current_user.account.avatar.url, 22, 22), size: '22x22', title: current_user.account, alt: current_user.account) %>
