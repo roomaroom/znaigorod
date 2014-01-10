@@ -231,16 +231,19 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def category_links
+    return [] if suborganizations.compact.blank?
     [].tap do |arr|
-      categories.each do |category|
-        url = suborganization.need_categories? ?
-          "#{suborganization.class.name.underscore.pluralize}_#{category.mb_chars.downcase.from_russian_to_param.pluralize}_path"
-        :
-          "#{suborganization.class.name.underscore.pluralize}_path"
-        arr << Link.new(
-          title: category,
-          url: h.send(url)
-        )
+      suborganizations.each do |suborganization|
+        suborganization.categories.each do |category|
+          url = suborganization.need_categories? ?
+            "#{suborganization.class.name.underscore.pluralize}_#{category.mb_chars.downcase.from_russian_to_param.pluralize}_path"
+          :
+            "#{suborganization.class.name.underscore.pluralize}_path"
+          arr << Link.new(
+            title: category,
+            url: h.send(url)
+          )
+        end
       end
     end
   end
