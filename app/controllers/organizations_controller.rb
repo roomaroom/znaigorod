@@ -39,7 +39,7 @@ class OrganizationsController < ApplicationController
       @presenter = SaunaHallsPresenter.new
     else
       klass = "#{@organization.priority_suborganization_kind.pluralize}_presenter".classify.constantize
-      @presenter = klass.new(:categories => [@organization.priority_suborganization.categories.first.mb_chars.downcase])
+      @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)])
     end
     cookie = cookies['_znaigorod_afisha_list_settings'].to_s
     settings_from_cookie = {}

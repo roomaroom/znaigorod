@@ -119,6 +119,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def decorated_suborganizations
+    return [] if suborganizations.compact.blank?
     suborganizations.map { |suborganization| "#{suborganization.class.name.underscore}_decorator".classify.constantize.decorate suborganization }
   end
 
@@ -127,6 +128,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def categories
+    return [] if suborganizations.compact.blank?
     suborganizations.each.map(&:categories).flatten
   end
 
@@ -230,17 +232,15 @@ class OrganizationDecorator < ApplicationDecorator
 
   def category_links
     [].tap do |arr|
-      suborganizations.each do |suborganization|
-        suborganization.categories.each do |category|
-          url = suborganization.need_categories? ?
-            "#{suborganization.class.name.underscore.pluralize}_#{category.mb_chars.downcase.from_russian_to_param.pluralize}_path"
-          :
-            "#{suborganization.class.name.underscore.pluralize}_path"
-          arr << Link.new(
-            title: category,
-            url: h.send(url)
-          )
-        end
+      categories.each do |category|
+        url = suborganization.need_categories? ?
+          "#{suborganization.class.name.underscore.pluralize}_#{category.mb_chars.downcase.from_russian_to_param.pluralize}_path"
+        :
+          "#{suborganization.class.name.underscore.pluralize}_path"
+        arr << Link.new(
+          title: category,
+          url: h.send(url)
+        )
       end
     end
   end
@@ -340,6 +340,7 @@ class OrganizationDecorator < ApplicationDecorator
   def raw_similar_organizations
     lat, lon = organization.latitude, organization.longitude
     radius = 3
+    return [] if priority_suborganization.blank?
 
     search = priority_suborganization.class.search do
       with(:location).in_radius(lat, lon, radius) if lat.present? && lon.present?
