@@ -15,13 +15,28 @@ class Posts::LinkWithAutocomplete
     }.results
   end
 
+  def afisha_hash(item)
+    item = AfishaDecorator.new(item)
+
+    label = item.title
+    label << ", #{item.places.first.title}" if item.places.any?
+    label << ", #{item.human_when}"
+
+    {
+      :value => "#{item.class.name.underscore}_#{item.id}",
+      :label => label
+    }
+  end
+
+  def organization_hash(item)
+    {
+      :value => "#{item.class.name.underscore}_#{item.id}",
+      :label => "#{item.title}, #{item.address}"
+    }
+  end
+
   def items_hash
-    items.map do |item|
-      {
-        :value => "#{item.class.name.underscore}_#{item.id}",
-        :label => item.title
-      }
-    end
+    items.map { |item| send "#{item.class.name.underscore}_hash", item }
   end
 
   def json

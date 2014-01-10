@@ -124,6 +124,7 @@ linkWithChange = ->
     $('.link_with_content').closest('.link_with_wrapper').hide()
     $('.post_link_with_title').removeClass('linked').addClass('not_linked')
     $('#post_link_with_reset').val('true')
+    $('#post_link_with_title').focus()
     false
 
 handleLinkWith = ->

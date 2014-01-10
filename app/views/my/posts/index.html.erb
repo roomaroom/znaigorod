@@ -4,9 +4,10 @@
       <div class='clear'>
         <span class="panel"></span>
       </div>
-      <h3>Обзоры</h3>
-      <%= link_to 'Добавить обзор', new_my_post_path, :class => :invitation_link if can? :new, Post %>
+      <h3><%= link_to 'Мои обзоры', new_my_post_path, :class => 'add_link' %></h3>
+      <%= link_to 'Добавить обзоры', new_my_post_path, :class => 'invitation_link' %>
     </div>
+
     <div id='discounts_filter'>
       <ul>
         <% %w[all draft published].each do |state| %>

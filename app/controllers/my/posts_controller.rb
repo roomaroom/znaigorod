@@ -31,6 +31,14 @@ class My::PostsController < My::ApplicationController
     end
   end
 
+  def destroy
+    destroy! {
+      render :json => Posts::MyCounters.new(current_user.account).counters  and return if request.xhr?
+
+      my_root_path
+    }
+  end
+
   def send_to_published
     @post = current_user.account.posts.available_for_edit.find(params[:id])
     @post.to_published!

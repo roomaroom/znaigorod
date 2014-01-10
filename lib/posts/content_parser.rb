@@ -5,10 +5,12 @@ class Posts::ContentParser
     @content = content
   end
 
-  def gallery_image
-    return stub_poster if gallery_images.empty? && youtube_videos.empty?
-
+  def poster
     return gallery_images.first if gallery_images.any?
+
+    return first_youtube_video_preview if youtube_videos.any?
+
+    return stub_poster
   end
 
   def gallery_images
@@ -33,5 +35,9 @@ class Posts::ContentParser
     @stub_poster ||= begin
                       GalleryImage.create! :file => File.open(Rails.root.join('app/assets/images/public/post_poster_stub.jpg'))
                      end
+  end
+
+  def first_youtube_video_preview
+    @first_youtube_video_preview ||= GalleryImage.create!(:file => URI.parse(youtube_videos.first.preview))
   end
 end

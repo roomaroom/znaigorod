@@ -135,7 +135,7 @@ class Post < ActiveRecord::Base
   end
 
   def set_poster
-    self.poster_id = Posts::ContentParser.new(content).gallery_image.id
+    self.poster_id = Posts::ContentParser.new(content).poster.id
   end
 end
 

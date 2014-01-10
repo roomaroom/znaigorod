@@ -2,7 +2,7 @@
   <div class="feed_wrapper">
     <% if @feeds_presenter.is_discount?(feed.feedable.class.name)  %>
       <%= render partial: "feeds/feed_discount", :object => feed %>
-    <% else %>
+    <% elsif feed.feedable %>
       <%= render partial: "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>
     <% end %>
   </div>

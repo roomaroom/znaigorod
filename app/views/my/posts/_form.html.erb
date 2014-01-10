@@ -17,12 +17,13 @@
       :data => { 'autocomplete-source' => link_with_my_posts_path, :target => '#post_link_with_value', :reset => '#post_link_with_reset' },
       :placeholder => 'Введите название заведения или мероприятия' } %>
 
-  <div class="input link_with_wrapper">
-    <%= label_tag 'Это пост связан с' %>
-    <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
-
-    <%= render :partial => 'posts/link_with' if @post.linked? %>
-  </div>
+  <% if @post.linked? %>
+    <div class="input link_with_wrapper">
+      <%= label_tag 'Это пост связан с' %>
+      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+      <%= render :partial => 'posts/link_with' %>
+    </div>
+  <% end %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>
