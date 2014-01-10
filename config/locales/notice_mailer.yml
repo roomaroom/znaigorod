@@ -51,3 +51,5 @@ ru:
       test
     discount_statistics_discription: |
       test
+    my_price: "Предложение цены"
+    discount: "Скидка"

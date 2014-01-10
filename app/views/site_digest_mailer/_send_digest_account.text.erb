@@ -6,8 +6,8 @@
 
 <% materials.each_with_index do |material, index| %>
   <% if (index + 1).odd? %>
-                    <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
+    <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
   <% else %>
-                    <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
+    <%= render partial: "site_digest_mailer/account", :locals => { :account => material } %>
   <% end %>
 <% end %>

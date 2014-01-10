@@ -4,6 +4,7 @@ desc "Generating feeds from another models"
 task :generate_feeds => :environment do
   puts "Deleting all feeds. Please wait."
 
+  raise "# TODO at first someone should check afisha and discount are published".inspect
   Feed.destroy_all
 
   %w[member discount].each do |model|
