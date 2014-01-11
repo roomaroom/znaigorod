@@ -5,7 +5,11 @@
   <% if request.query_parameters.any? %>
     <link rel='canonical' href='<%= request.url.split('?').first %>' />
   <% end %>
-  <%= vk_meta((@presenter.has_tickets ? 'tickets' : @presenter.kind), (send @presenter.direct_url), 'znaigorod_logo.png') %>
+  <% if page_meta %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% else %>
+    <%= vk_meta((@presenter.has_tickets ? 'tickets' : @presenter.kind), (send @presenter.direct_url), 'znaigorod_logo.png') %>
+  <% end %>
 <% end %>
 
 <div class='presentation_filters afisha'>
@@ -50,7 +54,11 @@
 
 <%= paginate @presenter.paginated_collection %>
 
-<% if !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
+  </div>
+<% elsif !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
   <div class='introduction'>
     <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
   </div>
