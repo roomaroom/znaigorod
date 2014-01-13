@@ -28,10 +28,7 @@
           <% if organization.sms_claimable? %>
             <%= link_to send("new_#{organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path",
                    organization.priority_sms_claimable_suborganization,
-                   :only_path => false,
-                   :utm_campaign => "znaigorod",
-                   :utm_medium => "email",
-                   :utm_source => "email"),
+                   keys_for_path),
               :class => :sms_claim_link  do %>
               <img src="<%= "#{Settings['app']['url']}/assets/public/emails/order_#{organization.priority_sms_claimable_suborganization.class.name.underscore}.png" %>"
               alt="<%= organization.priority_sms_claimable_suborganization.reservation_title %>" />
@@ -42,10 +39,7 @@
           <% if organization.organization.sms_claimable? %>
             <%= link_to send("new_#{organization.class.name.underscore}_sms_claim_path",
                    organization.organization,
-                   :only_path => false,
-                   :utm_campaign => "znaigorod",
-                   :utm_medium => "email",
-                   :utm_source => "email"),
+                   keys_for_path),
               :class => :sms_claim_link do %>
               <img src="<%= "#{Settings['app']['url']}/assets/public/emails/order_#{organization.organization.priority_sms_claimable_suborganization.class.name.underscore}.png" %>"
             <% end %>

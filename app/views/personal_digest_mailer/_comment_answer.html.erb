@@ -30,27 +30,18 @@
                     <% if comment.commentable.title.present? %>
                       <%= link_to comment.commentable.title, contest_work_path(comment.commentable.contest,
                                                                                comment.commentable,
-                                                                               :only_path => false,
-                                                                               :utm_campaign => "znaigorod",
-                                                                               :utm_medium => "email",
-                                                                               :utm_source => "email") %>
+                                                                               keys_for_path) %>
                     <% else %>
                       <%= link_to comment.commentable.slug, contest_work_path(comment.commentable.contest,
                                                                               comment.commentable,
-                                                                              :only_path => false,
-                                                                              :utm_campaign => "znaigorod",
-                                                                              :utm_medium => "email",
-                                                                              :utm_source => "email") %>
+                                                                              keys_for_path) %>
                     <% end %>
                   <% end %>
                   <% %w[afisha discount organization post].each do |item| %>
                     <% if comment.commentable.is_a?(item.camelize.constantize) %>
                       <%= link_to comment.commentable.title, send("#{item}_path",
                                                                   comment.commentable,
-                                                                  :only_path => false,
-                                                                  :utm_campaign => "znaigorod",
-                                                                  :utm_medium => "email",
-                                                                  :utm_source => "email") %>
+                                                                  keys_for_path) %>
                     <% end %>
                   <% end %>
 
@@ -73,11 +64,7 @@
                                                       :alt => t("notice_mailer.answer")),
                                                       contest_work_path(comment.commentable.contest,
                                                                         comment.commentable,
-                                                                        :only_path => false,
-                                                                        :anchor => "answer_#{comment.id}",
-                                                                        :utm_campaign => "znaigorod",
-                                                                        :utm_medium => "email",
-                                                                        :utm_source => "email") %>
+                                                                        keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
                               <% end %>
                               <% %w[afisha discount organization post].each do |item| %>
                                 <% if comment.commentable.is_a?(item.camelize.constantize) %>
@@ -86,11 +73,7 @@
                                                         :alt => t("notice_mailer.answer")),
                                                         send("#{item}_path",
                                                              comment.commentable,
-                                                             :only_path => false,
-                                                             :anchor => "answer_#{comment.id}",
-                                                             :utm_campaign => "znaigorod",
-                                                             :utm_medium => "email",
-                                                             :utm_source => "email") %>
+                                                             keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
                                 <% end %>
                               <% end %>
 
@@ -107,6 +90,5 @@
         </tr>
       </table>
     </center>
-
   </td>
 </tr>

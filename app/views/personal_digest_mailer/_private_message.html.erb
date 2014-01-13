@@ -34,11 +34,7 @@
                   <table id="orange-button">
                     <tr align="left">
                       <td class="without-padding" align="left" valign="top">
-                        <a href="<%= my_dialogs_path(:only_path => false,
-                                                     :anchor => "dialog_#{private_message.producer.id}",
-                                                     :utm_campaign => "znaigorod",
-                                                     :utm_medium => "email",
-                                                     :utm_source => "email") %>">
+                        <a href="<%= my_dialogs_path(keys_for_path.merge({:anchor => "dialog_#{private_message.producer.id}"})) %>">
                           <img src="<%= "#{Settings['app']['url']}/assets/public/mailer_buttons_to_dialogs.png" %>" alt="<%= t("notice_mailer.to_dialog") %>" title="<%= t("notice_mailer.to_dialog") %>" />
                         </a>
                       </td>
@@ -51,6 +47,5 @@
         </tr>
       </table>
     </center>
-
   </td>
 </tr>

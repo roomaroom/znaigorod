@@ -34,14 +34,14 @@
                   <span class="gray_text"><%= t "notice_mailer.at" %></span>
                   <% if vote.voteable.commentable.is_a?(Work) %>
                     <% if vote.voteable.commentable.title.present? %>
-                      <%= link_to vote.voteable.commentable.title, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                      <%= link_to vote.voteable.commentable.title, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, keys_for_path) %>
                     <% else %>
-                      <%= link_to vote.voteable.commentable.slug, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                      <%= link_to vote.voteable.commentable.slug, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, keys_for_path) %>
                     <% end %>
                   <% end %>
                   <% %w[afisha discount organization post].each do |item| %>
                     <% if vote.voteable.commentable.is_a?(item.camelize.constantize) %>
-                      <%= link_to vote.voteable.commentable.title, send("#{item}_path", vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") %>
+                      <%= link_to vote.voteable.commentable.title, send("#{item}_path", vote.voteable.commentable, keys_for_path) %>
                     <% end %>
                   <% end %>
                 </td>
@@ -51,6 +51,5 @@
         </tr>
       </table>
     </center>
-
   </td>
 </tr>
