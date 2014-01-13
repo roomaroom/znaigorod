@@ -81,7 +81,6 @@ class Posts::ContentParser
                               min = 300
 
                               images.each do |image|
-                                p image.url
                                 next unless image.dimensions
 
                                 width, height = image.dimensions.width, image.dimensions.height

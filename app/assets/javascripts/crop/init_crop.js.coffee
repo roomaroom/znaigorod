@@ -4,10 +4,13 @@
   crop_width = parseInt($('[id*="crop_width"]').val()) || 0
   crop_height = parseInt($('[id*="crop_height"]').val()) || 0
   aspect_ratio = parseFloat($('[id*="aspect_ratio"]').val()) || 1
+  min_width = parseFloat($('[id*="min_width"]').val()) || 0
+  min_height = parseFloat($('[id*="min_height"]').val()) || 0
 
   $('.jcrop').Jcrop
     setSelect: [ crop_x, crop_y, crop_x + crop_width, crop_y + crop_height ]
     aspectRatio: aspect_ratio
+    minSize: [min_width, min_height]
     onChange: (coords) ->
       update_crop(coords)
       crop_x = $('[id*="crop_x"]').val(coords.x)
@@ -15,6 +18,7 @@
       crop_width = $('[id*="crop_width"]').val(coords.w)
       crop_height = $('[id*="crop_height"]').val(coords.h)
       true
+
 
   $('#afisha_poster_image').on 'change', ->
     $(this).parents('form').append('<input id="crop" name="crop" type="hidden" value="true">').submit()

@@ -69,6 +69,7 @@ group :default do
   gem 'timecop',                    :require => false
   gem 'validates_email_format_of'
   gem 'vkontakte_api',              :require => false
+  gem 'string-scrub'
 end
 
 group :development do

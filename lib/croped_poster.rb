@@ -4,9 +4,12 @@ module CropedPoster
   extend ActiveSupport::Concern
 
   included do
-    attr_accessible :set_region, :crop_x, :crop_y, :crop_width, :crop_height, :poster_image
+    attr_accessible :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
+      :set_region,
+      :poster_image
 
-    attr_accessor :set_region, :crop_x, :crop_y, :crop_width, :crop_height
+    attr_accessor :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
+      :set_region
 
     has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
