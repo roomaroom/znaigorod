@@ -2,6 +2,16 @@
 
 module EmailDigestHelper
 
+  # return hash, which adds our paths the full path and the utm tags
+  def keys_for_path
+    {
+      :only_path => false,
+      :utm_campaign => "znaigorod",
+      :utm_medium => "email",
+      :utm_source => "email"
+    }
+  end
+
   def path_for_email(obj, anchor = nil )
     obj = obj.model if obj.class.name.underscore.match(/decorator/)
     method = "#{obj.class.name.underscore}_path"
@@ -10,11 +20,9 @@ module EmailDigestHelper
 
     send(method,
          obj,
-         :anchor => anchor,
-         :only_path => false,
-         :utm_campaign => "znaigorod",
-         :utm_medium => "email",
-         :utm_source => "email")
+         keys_for_path.merge({
+           :anchor => anchor
+         }))
   end
 
   def croped_image_url_for_email(url, ratio)
@@ -27,39 +35,29 @@ module EmailDigestHelper
     if invitations.inviter.without_invited.any?
       content += 'Приглашает'
       content += ' '
-      invitations.inviter.without_invited.each do |invitation|
-        if invitation.inviteable
-          content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-          content += ' '
-          content += Preposition.new(invitation.inviteable).value
-          content += ' '
-          content += invitation.inviteable.title
-        else
-          content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-          content += ' '
-          content += invitation.category
-        end
-        content += ', '
-      end
+
     end
+
     if invitations.invited.without_invited.any? && content.empty?
       content += 'Ждет приглашения'
       content += ' '
-      invitations.invited.without_invited.each do |invitation|
-        if invitation.inviteable
-          content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-          content += ' '
-          content += Preposition.new(invitation.inviteable).value
-          content += ' '
-          content += invitation.inviteable.title
-        else
-          content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
-          content += ' '
-          content += invitation.category
-        end
-        content += ', '
-      end
     end
+
+    invitations.inviter.without_invited.each do |invitation|
+      if invitation.inviteable
+        content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
+        content += ' '
+        content += Preposition.new(invitation.inviteable).value
+        content += ' '
+        content += invitation.inviteable.title
+      else
+        content += t("enumerize.invitation.gender.custom.#{invitation.kind}.#{invitation.gender}")
+        content += ' '
+        content += invitation.category
+      end
+      content += ', '
+    end
+
     content.present? ? truncate(content[0..-3], length: 55) : 'Приглашает или ждет приглашения'
   end
 
@@ -67,22 +65,21 @@ module EmailDigestHelper
     max_lenght = 23
     place_output = ""
     places = afisha.places
+
     places.each_with_index do |place, index|
       place_title = place.organization ? place.organization.title : place.title
       place_link_title = place_title.dup
       place_title = place_title.gsub(/,.*/, '')
       place_title = place_title.truncate(max_lenght, :separator => ' ')
       max_lenght -= place_title.size
-      # NOTICE hell
+
+      # first part for text messages, second for html
       if only_text
         if place.organization
           place_output += place_title.text_gilensize +
                           "(" +
                           organization_path(place.organization,
-                                            :only_path => false,
-                                            :utm_campaign => "znaigorod",
-                                            :utm_medium => "email",
-                                            :utm_source => "email") +
+                                            keys_for_path) +
                           " )"
         else
           place_output += place_link_title.blank? ? place_title.text_gilensize : place_link_title.text_gilensize
@@ -91,18 +88,17 @@ module EmailDigestHelper
         if place.organization
           place_output += link_to(place_title.text_gilensize,
                                   organization_path(place.organization,
-                                                    :only_path => false,
-                                                    :utm_campaign => "znaigorod",
-                                                    :utm_medium => "email",
-                                                    :utm_source => "email"),
+                                                    keys_for_path),
                                   :title => place_link_title.text_gilensize)
         else
           place_output += place_link_title.blank? ? place_title.text_gilensize : content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
         end
       end
+
       break if max_lenght < 3
       place_output += ", " if index < places.size - 1
     end
+
     raw place_output
   end
 
@@ -110,6 +106,7 @@ module EmailDigestHelper
     result = "ЗнайГород\n\n"
     result << t("notice_mailer.#{@type}") + "\n\n"
     result << t("notice_mailer.#{@type}_text_description") + "\n\n"
+
     collection.each do |materials|
       result << "="*60 << "\n\n"
 
@@ -216,21 +213,13 @@ module EmailDigestHelper
         result << organization.priority_sms_claimable_suborganization.reservation_title
         result << " (" + send("new_#{organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path",
              organization.priority_sms_claimable_suborganization,
-             :only_path => false,
-             :utm_campaign => "znaigorod",
-             :utm_medium => "email",
-             :utm_source => "email") + " ) "
-
+             keys_for_path) + " ) "
       end
     else
       if organization.organization.sms_claimable?
         result << send("new_#{organization.class.name.underscore}_sms_claim_path",
              organization.organization,
-             :only_path => false,
-             :utm_campaign => "znaigorod",
-             :utm_medium => "email",
-             :utm_source => "email")
-
+             keys_for_path)
       end
     end
 
@@ -287,7 +276,6 @@ module EmailDigestHelper
         materials.each do |material|
           result << send("#{ material.class.name.underscore }_personal_text", material)
         end
-
       end
     end
 
@@ -339,47 +327,33 @@ module EmailDigestHelper
     result << t("notice_mailer.on_your_comment") + "\n"
     result << comment.parent.body.truncated + "\n" if comment.body?
     result << t("notice_mailer.at") + "\n"
+
     if comment.commentable.is_a?(Work)
       if comment.commentable.title.present?
         result << comment.commentable.title + " ("
-        result << contest_work_path(comment.commentable.contest,
-                                    comment.commentable,
-                                    :only_path => false,
-                                    :utm_campaign => "znaigorod",
-                                    :utm_medium => "email",
-                                    :utm_source => "email") + " )\n"
       else
         result << comment.commentable.slug + "\n"
-        result << contest_work_path(comment.commentable.contest,
-                                    comment.commentable,
-                                    :only_path => false,
-                                    :utm_campaign => "znaigorod",
-                                    :utm_medium => "email",
-                                    :utm_source => "email") + " )\n"
       end
+      result << contest_work_path(comment.commentable.contest,
+                                  comment.commentable,
+                                  keys_for_path) + " )\n"
     end
+
     %w[afisha discount organization post].each do |item|
       if comment.commentable.is_a?(item.camelize.constantize)
         result << comment.commentable.title
         result << " (" + send("#{item}_path",
                        comment.commentable,
-                       :only_path => false,
-                       :utm_campaign => "znaigorod",
-                       :utm_medium => "email",
-                       :utm_source => "email") + " )\n"
+                       keys_for_path) + " )\n"
       end
     end
-
 
     if comment.commentable.is_a?(Work)
       result << t("notice_mailer.answer")
       result << " (" + contest_work_path(comment.commentable.contest,
-                                  comment.commentable,
-                                  :only_path => false,
-                                  :anchor => "answer_#{comment.id}",
-                                  :utm_campaign => "znaigorod",
-                                  :utm_medium => "email",
-                                  :utm_source => "email") + " )\n "
+                                  comment.commentable, keys_for_path.merge({
+                                  :anchor => "answer_#{comment.id}"}))
+      result << " )\n "
     end
 
     %w[afisha discount organization post].each do |item|
@@ -387,11 +361,9 @@ module EmailDigestHelper
         result << t("notice_mailer.answer")
         result << " (" + send("#{item}_path",
                        comment.commentable,
-                       :only_path => false,
-                       :anchor => "answer_#{comment.id}",
-                       :utm_campaign => "znaigorod",
-                       :utm_medium => "email",
-                       :utm_source => "email") + " )\n "
+                       keys_for_path.merge({
+                       :anchor => "answer_#{comment.id}"}))
+        result << " )\n "
       end
     end
 
@@ -400,14 +372,15 @@ module EmailDigestHelper
 
   def discount_comment_personal_text(comment)
     result = ""
+
     result << comment.user.account.title + " ("
     result << path_for_email(comment.user.account) + " )\n"
-
     result << l(comment.created_at, format: "%d %B %Y, %k:%M") + "\n"
     result << t("notice_mailer.at") + "\n"
     result << comment.commentable.title + " ("
     result << path_for_email(comment.commentable) + " )\n"
     result << comment.body.truncated + "\n" if comment.body?
+
     if comment.commentable.is_a?(Discount)
       result << t("notice_mailer.answer") + " ("
       result << path_for_email(comment.commentable, "answer_#{comment.id}") + " )\n"
@@ -425,21 +398,33 @@ module EmailDigestHelper
     result << t("notice_mailer.liked_your_comment.#{vote.user.account.gender}") + "\n"
     result << vote.voteable.body.truncated + "\n" if vote.voteable.body?
     result << t("notice_mailer.at") + "\n"
+
     if vote.voteable.commentable.is_a?(Work)
       if vote.voteable.commentable.title.present?
         result << vote.voteable.commentable.title + " ("
-        result << contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+        result << contest_work_path(vote.voteable.commentable.contest,
+                                    vote.voteable.commentable,
+                                    keys_for_path)
+        result << " )\n"
       else
         result << vote.voteable.commentable.slug + " ("
-        result << contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+        result << contest_work_path(vote.voteable.commentable.contest,
+                                    vote.voteable.commentable,
+                                    keys_for_path)
+        result << " )\n"
       end
     end
+
     %w[afisha discount organization post].each do |item|
       if vote.voteable.commentable.is_a?(item.camelize.constantize)
         result << vote.voteable.commentable.title + " ("
-        result << send("#{item}_path", vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+        result << send("#{item}_path",
+                       vote.voteable.commentable,
+                       keys_for_path)
+        result << " )\n"
       end
     end
+
     result << "\n"
 
     result
@@ -463,18 +448,16 @@ module EmailDigestHelper
     result << l(invitation.created_at, format: "%d %B %Y, %k:%M") + "\n"
 
     result << t("notice_mailer.accept_invite") + " ("
-    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
-                            :utm_medium => "email", :utm_source => "email",
-                            :anchor => "accept_invite_#{invitation.invite_messages.first.id}") + " )\n"
+    result << my_invite_messages_path(keys_for_path.merge({
+                            :anchor => "accept_invite_#{invitation.invite_messages.first.id}"}))
+    result << " )\n"
 
     result << t("notice_mailer.abandon_invite") + " ("
-    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
-                            :utm_medium => "email", :utm_source => "email",
-                            :anchor => "abandon_invite_#{invitation.invite_messages.first.id}") + " )\n"
+    result << my_invite_messages_path(keys_for_path.merge({
+                            :anchor => "abandon_invite_#{invitation.invite_messages.first.id}"})) + " )\n"
 
     result << t("notice_mailer.to_invitations") + " ("
-    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
-                            :utm_medium => "email", :utm_source => "email") + " )\n\n"
+    result << my_invite_messages_path(keys_for_path) + " )\n\n"
 
     result
   end
@@ -488,11 +471,8 @@ module EmailDigestHelper
     result << l(private_message.created_at, format: "%d %B %Y, %k:%M") + "\n"
     result << private_message.body + "\n"
     result << t("notice_mailer.to_dialog") + " ("
-    result << my_dialogs_path(:only_path => false,
-                    :anchor => "dialog_#{private_message.producer.id}",
-                    :utm_campaign => "znaigorod",
-                    :utm_medium => "email",
-                    :utm_source => "email") + " )\n\n"
+    result << my_dialogs_path(keys_for_path.merge({
+                    :anchor => "dialog_#{private_message.producer.id}"})) + " )\n\n"
 
     result
   end
