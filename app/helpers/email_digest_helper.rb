@@ -268,4 +268,233 @@ module EmailDigestHelper
     result
   end
 
+  def personal_digest_text(digest, account)
+    result = "ЗнайГород\n\n"
+    digest.each do |materials|
+      unless materials.blank?
+
+        result << "="*60 + "\n\n"
+
+        if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name)
+          result << t("notice_mailer.#{materials.first.class.name.underscore}_title") + "\n\n"
+        elsif materials.first.is_a?(Comment)
+          if materials.map(&:parent).all? { |i| i.present? }
+            result << t("notice_mailer.answered_on_you_comment") + "\n\n"
+          elsif materials.first.commentable.is_a?(Afisha) || materials.first.commentable.is_a?(Discount)
+            result << t("notice_mailer.materials_comment") + "\n\n"
+          end
+        end
+        materials.each do |material|
+          result << send("#{ material.class.name.underscore }_personal_text", material)
+        end
+
+      end
+    end
+
+    result
+  end
+
+  def comment_personal_text(comment)
+    result = ""
+
+    if comment.parent.present?
+      result << answer_comment_personal_text(comment) + "\n"
+    elsif comment.commentable.is_a?(Afisha)
+      result << afisha_comment_personal_text(comment) + "\n"
+    elsif comment.commentable.is_a?(Discount)
+      result << discount_comment_personal_text(comment) + "\n"
+    end
+
+    result
+  end
+
+  def afisha_comment_personal_text(comment)
+    result = ""
+
+    result << path_for_email(comment.user.account) + "\n"
+    result << comment.user.account.title + "\n"
+
+    result << t("notice_mailer.at") + "\n"
+
+    result << comment.commentable.title + " ( "
+    result << path_for_email(comment.commentable) + ")\n"
+    result << comment.body.truncated + "\n" if comment.body?
+
+    if comment.commentable.is_a?(Afisha)
+      result << t("notice_mailer.answer") + " ("
+      result << path_for_email(comment.commentable, "answer_#{comment.id}") + " )\n"
+    end
+
+    result
+  end
+
+  def answer_comment_personal_text(comment)
+    result = ""
+
+    result << comment.user.account.title
+    result << " (" + path_for_email(comment.user.account) + " )\n"
+    result << l(comment.created_at, format: "%d %B %Y, %k:%M") + "\n"
+    result << t("notice_mailer.answered") + "\n"
+    result << comment.body.truncated + "\n" if comment.body?
+    result << t("notice_mailer.on_your_comment") + "\n"
+    result << comment.parent.body.truncated + "\n" if comment.body?
+    result << t("notice_mailer.at") + "\n"
+    if comment.commentable.is_a?(Work)
+      if comment.commentable.title.present?
+        result << comment.commentable.title + " ("
+        result << contest_work_path(comment.commentable.contest,
+                                    comment.commentable,
+                                    :only_path => false,
+                                    :utm_campaign => "znaigorod",
+                                    :utm_medium => "email",
+                                    :utm_source => "email") + " )\n"
+      else
+        result << comment.commentable.slug + "\n"
+        result << contest_work_path(comment.commentable.contest,
+                                    comment.commentable,
+                                    :only_path => false,
+                                    :utm_campaign => "znaigorod",
+                                    :utm_medium => "email",
+                                    :utm_source => "email") + " )\n"
+      end
+    end
+    %w[afisha discount organization post].each do |item|
+      if comment.commentable.is_a?(item.camelize.constantize)
+        result << comment.commentable.title
+        result << " (" + send("#{item}_path",
+                       comment.commentable,
+                       :only_path => false,
+                       :utm_campaign => "znaigorod",
+                       :utm_medium => "email",
+                       :utm_source => "email") + " )\n"
+      end
+    end
+
+
+    if comment.commentable.is_a?(Work)
+      result << t("notice_mailer.answer")
+      result << " (" + contest_work_path(comment.commentable.contest,
+                                  comment.commentable,
+                                  :only_path => false,
+                                  :anchor => "answer_#{comment.id}",
+                                  :utm_campaign => "znaigorod",
+                                  :utm_medium => "email",
+                                  :utm_source => "email") + " )\n "
+    end
+
+    %w[afisha discount organization post].each do |item|
+      if comment.commentable.is_a?(item.camelize.constantize)
+        result << t("notice_mailer.answer")
+        result << " (" + send("#{item}_path",
+                       comment.commentable,
+                       :only_path => false,
+                       :anchor => "answer_#{comment.id}",
+                       :utm_campaign => "znaigorod",
+                       :utm_medium => "email",
+                       :utm_source => "email") + " )\n "
+      end
+    end
+
+    result
+  end
+
+  def discount_comment_personal_text(comment)
+    result = ""
+    result << comment.user.account.title + " ("
+    result << path_for_email(comment.user.account) + " )\n"
+
+    result << l(comment.created_at, format: "%d %B %Y, %k:%M") + "\n"
+    result << t("notice_mailer.at") + "\n"
+    result << comment.commentable.title + " ("
+    result << path_for_email(comment.commentable) + " )\n"
+    result << comment.body.truncated + "\n" if comment.body?
+    if comment.commentable.is_a?(Discount)
+      result << t("notice_mailer.answer") + " ("
+      result << path_for_email(comment.commentable, "answer_#{comment.id}") + " )\n"
+    end
+
+    result
+  end
+
+  def vote_personal_text(vote)
+    result = ""
+
+    result << vote.user.account.title + " ("
+    result << path_for_email(vote.user.account) + " )\n"
+    result << l(vote.created_at, format: "%d %B %Y, %k:%M") + "\n"
+    result << t("notice_mailer.liked_your_comment.#{vote.user.account.gender}") + "\n"
+    result << vote.voteable.body.truncated + "\n" if vote.voteable.body?
+    result << t("notice_mailer.at") + "\n"
+    if vote.voteable.commentable.is_a?(Work)
+      if vote.voteable.commentable.title.present?
+        result << vote.voteable.commentable.title + " ("
+        result << contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+      else
+        result << vote.voteable.commentable.slug + " ("
+        result << contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+      end
+    end
+    %w[afisha discount organization post].each do |item|
+      if vote.voteable.commentable.is_a?(item.camelize.constantize)
+        result << vote.voteable.commentable.title + " ("
+        result << send("#{item}_path", vote.voteable.commentable, :only_path => false, :utm_campaign => "znaigorod", :utm_medium => "email", :utm_source => "email") + " )\n"
+      end
+    end
+    result << "\n"
+
+    result
+  end
+
+  def invitation_personal_text(invitation)
+    result = ""
+
+    result << invitation.account.title + " ("
+    result << path_for_email(invitation.account) + " )\n"
+    result << t("notice_mailer.is_invite_you_at") + " "
+
+    if invitation.category.blank?
+      result << t("notice_mailer.at") + "\n"
+      result << invitation.inviteable.title + " ("
+      result << path_for_email(invitation.inviteable) + " )\n"
+    else
+      result << invitation.category + "\n"
+    end
+
+    result << l(invitation.created_at, format: "%d %B %Y, %k:%M") + "\n"
+
+    result << t("notice_mailer.accept_invite") + " ("
+    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                            :utm_medium => "email", :utm_source => "email",
+                            :anchor => "accept_invite_#{invitation.invite_messages.first.id}") + " )\n"
+
+    result << t("notice_mailer.abandon_invite") + " ("
+    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                            :utm_medium => "email", :utm_source => "email",
+                            :anchor => "abandon_invite_#{invitation.invite_messages.first.id}") + " )\n"
+
+    result << t("notice_mailer.to_invitations") + " ("
+    result << my_invite_messages_path(:only_path => false, :utm_campaign => "znaigorod",
+                            :utm_medium => "email", :utm_source => "email") + " )\n\n"
+
+    result
+  end
+
+  def private_message_personal_text(private_message)
+    result = ""
+
+    result << private_message.producer.title + " ("
+    result << path_for_email(private_message.producer) + " )\n"
+    result << private_message.producer.title + "\n"
+    result << l(private_message.created_at, format: "%d %B %Y, %k:%M") + "\n"
+    result << private_message.body + "\n"
+    result << t("notice_mailer.to_dialog") + " ("
+    result << my_dialogs_path(:only_path => false,
+                    :anchor => "dialog_#{private_message.producer.id}",
+                    :utm_campaign => "znaigorod",
+                    :utm_medium => "email",
+                    :utm_source => "email") + " )\n\n"
+
+    result
+  end
+
 end
