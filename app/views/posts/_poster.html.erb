@@ -1,0 +1,7 @@
+<% if post.poster_url? %>
+  <%= link_to image_tag(post.poster_url), post_path(post) %>
+<% elsif post.poster_image_url? %>
+  <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
+<% else %>
+  <%= link_to image_tag('public/post_poster_stub.jpg'), post_path(post) %>
+<% end %>

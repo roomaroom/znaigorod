@@ -20,20 +20,26 @@
 
       <%= simple_form_for resource, as: :post, :url => my_post_path(resource.id) do |f| %>
         <p><strong>Для изменения постера - просто загрузи новый или измени область!</strong></p>
+
         <%= f.input :poster_image, label: 'Выберите изображение', required: true, class: :button %>
         <%= f.error :poster_image_content_type %>
+
         <div>
+          <%= f.input :need_poster, :as => :hidden, :input_html => { :value => false } %>
           <%= f.input :set_region, :as => :hidden, :input_html => { :value => true } %>
           <%= f.input :crop_x, :as => :hidden, :input_html => { :value => crop_x } %>
           <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
           <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
           <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
+
           <%= hidden_field_tag :aspect_ratio, 353.0 / 199.0 %>
+
           <%= image_tag resized_image_url(resource.poster_image_url,
                                           resource.poster_image_resized_dimensions[:width],
                                           resource.poster_image_resized_dimensions[:height]),
                                           :class => 'jcrop' %>
         </div>
+
         <div class='submit'>
           <%= f.button :submit, 'Обрезать постер', class: :button %>
           <%= link_to 'Отмена', my_post_path(resource) %>
@@ -42,8 +48,12 @@
     <% else %>
       <%= simple_form_for resource, as: :post, url: my_post_path(resource.id) do |f| %>
         <%= hidden_field_tag :crop, true %>
+        <%= f.input :need_poster, :as => :hidden, :input_html => { :value => false } %>
+
         <%= f.input :poster_image, label: 'Выберите изображение', required: true, class: :button %>
+
         <%= f.error :poster_image_content_type %>
+
         <div class='submit'>
           <%= link_to 'Отмена', my_post_path(resource) %>
         </div>

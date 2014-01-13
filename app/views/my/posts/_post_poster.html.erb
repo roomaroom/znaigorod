@@ -15,7 +15,8 @@
     </div>
 
     <div class="annotation">
-      <%= link_to image_tag(resized_image_url(post.poster_file_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
+
+      <%= render :partial => 'posts/poster', :locals => { :post => post } %>
 
       <%= post.content_for_index %>
     </div>

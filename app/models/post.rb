@@ -14,14 +14,13 @@ class Post < ActiveRecord::Base
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
   before_save :handle_link_with_value
 
-  before_save :set_poster
+  attr_accessible :need_poster
+  attr_accessor :need_poster
+  before_save :set_poster, :if => :need_poster?
 
   belongs_to :account
   belongs_to :afisha
   belongs_to :organization
-
-  belongs_to :poster, :class_name => 'GalleryImage', :foreign_key => :poster_id
-  delegate :file_url, :to => :poster, :prefix => true
 
   has_many :comments,       :as => :commentable,    :dependent => :destroy
   has_many :gallery_images, :as => :attachable,     :dependent => :destroy
@@ -43,7 +42,6 @@ class Post < ActiveRecord::Base
   end
 
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
-  alias_attribute :file_url, :poster_image_url
 
   serialize :kind, Array
   enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
@@ -134,8 +132,12 @@ class Post < ActiveRecord::Base
     self.kind = [:with_gallery, :with_video]
   end
 
+  def need_poster?
+    !(need_poster == 'false')
+  end
+
   def set_poster
-    self.poster_id = Posts::ContentParser.new(content).poster.id
+    self.poster_image = Posts::ContentParser.new(content).poster
   end
 end
 

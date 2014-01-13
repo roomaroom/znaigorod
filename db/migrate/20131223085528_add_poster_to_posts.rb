@@ -1,62 +1,27 @@
 class AddPosterToPosts < ActiveRecord::Migration
   def up
-    add_column :posts, :poster_id, :integer
-
-    remove_column :posts, :poster_image_url
-    remove_column :posts, :poster_image_file_name
-    remove_column :posts, :poster_image_content_type
-    remove_column :posts, :poster_image_file_size
-    remove_column :posts, :poster_image_updated_at
-
-    set_poster_for_posts
+    disable_callback
+    set_poster_image_url
   end
 
   def down
-    add_column :posts, :poster_image_updated_at, :datetime
-    add_column :posts, :poster_image_file_size, :integer
-    add_column :posts, :poster_image_content_type, :string
-    add_column :posts, :poster_image_file_name, :string
-    add_column :posts, :poster_image_url, :text
-
-    remove_column :posts, :poster_id
   end
 
-  def first_img(content)
-    img_match_data = content.scan(/<img.*?\/>/).first
-    return nil unless img_match_data
-
-    src_match_data = img_match_data.match(/src="(.*?)"/)
-    return nil unless src_match_data
-
-    src_match_data[1]
+  def disable_callback
+    Post.skip_callback :save, :before, :set_poster
   end
 
-  def update_poster(post, gallery_image)
-    post.update_column :poster_id, gallery_image.id
-  end
-
-  def set_poster_for_posts
+  def set_poster_image_url
     pb = ProgressBar.new(Post.count)
 
     Post.all.each do |post|
-      content_parser = Posts::ContentParser.new(post.content)
+      begin
+        url = Posts::ContentParser.new(post.content).poster
 
-      if content_parser.gallery_images.any?
-        update_poster post, content_parser.gallery_images.first
-      else
-        if url = first_img(post.content)
-          begin
-            tempfile = Tempfile.open('poster')
-            tempfile.binmode
-            tempfile << open(url, :read_timeout => 3).read
-
-            update_poster post, GalleryImage.create!(:file => tempfile)
-          rescue
-            update_poster post, content_parser.stub_poster
-          end
-        else
-          update_poster post, content_parser.stub_poster
-        end
+        post.poster_image = url
+        post.save! :validate => false
+      rescue
+        puts "Unable to set poster for Post with id = #{post.id}"
       end
 
       pb.increment!

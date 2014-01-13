@@ -671,18 +671,22 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.text     "poster_url"
     t.string   "vfs_path"
     t.string   "slug"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "status",          :default => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.boolean  "status",                    :default => false
     t.float    "rating"
     t.text     "kind"
     t.text     "tag"
     t.text     "categories"
     t.integer  "afisha_id"
     t.integer  "organization_id"
+    t.text     "poster_image_url"
+    t.string   "poster_image_file_name"
+    t.string   "poster_image_content_type"
+    t.integer  "poster_image_file_size"
+    t.datetime "poster_image_updated_at"
     t.string   "state"
     t.integer  "account_id"
-    t.integer  "poster_id"
   end
 
   add_index "posts", ["account_id"], :name => "index_posts_on_account_id"
