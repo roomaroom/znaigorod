@@ -226,6 +226,10 @@ class Afisha < ActiveRecord::Base
     showings.pluck(:place).uniq.join(' ')
   end
 
+  def organization
+    showings.map(&:organization).uniq.first
+  end
+
   alias_method :address_ru, :address
   alias_method :place_ru,   :place
 
