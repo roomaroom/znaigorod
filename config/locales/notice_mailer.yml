@@ -48,9 +48,9 @@ ru:
       Хотим напомнить, что для Вас есть<br />
       важные уведомления на сайте ЗнайГород
     new_notifications_text_description: Хотим напомнить, что для Вас есть важные уведомления на сайте ЗнайГород
-    afisha_statistics_description: |
-      test
-    discount_statistics_discription: |
-      test
+    statistics_digest_description: |
+      Вы публиковали Ваши материалы<br />
+      на сайте ЗнайГород
+    statistics_digest: "Статистика по Вашим материалам"
     my_price: "Предложение цены"
     discount: "Скидка"

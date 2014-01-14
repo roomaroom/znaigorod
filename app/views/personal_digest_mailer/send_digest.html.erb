@@ -4,18 +4,19 @@
       <tr class="solid_border">
         <td>
           <table class="custom_column_width columns">
-
-            <h2>
-              <% if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name) %>
-                <%= t "notice_mailer.#{materials.first.class.name.underscore}_title" %>
-              <% elsif materials.first.is_a?(Comment) %>
-                <% if materials.map(&:parent).all? { |i| i.present? } %>
-                  <%= t "notice_mailer.answered_on_you_comment" %>
-                <% elsif materials.first.commentable.is_a?(Afisha) || materials.first.commentable.is_a?(Discount) %>
-                  <%= t "notice_mailer.materials_comment" %>
+            <tr>
+              <h2>
+                <% if %w[Invitation PrivateMessage Vote].include?(materials.first.class.name) %>
+                  <%= t "notice_mailer.#{materials.first.class.name.underscore}_title" %>
+                <% elsif materials.first.is_a?(Comment) %>
+                  <% if materials.map(&:parent).all? { |i| i.present? } %>
+                    <%= t "notice_mailer.answered_on_you_comment" %>
+                  <% elsif materials.first.commentable.is_a?(Afisha) || materials.first.commentable.is_a?(Discount) %>
+                    <%= t "notice_mailer.materials_comment" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </h2>
+              </h2>
+            </tr>
 
             <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore }", collection: materials) %>
 

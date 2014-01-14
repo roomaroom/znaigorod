@@ -1,11 +1,13 @@
 <tr class="solid_border">
   <td>
     <table class="custom_column_width columns">
-      <h2 class="by_center">
-        <% if materials.first.first.is_a?(Account) %>
-          <%= t "notice_mailer.account_title"  %>
-        <% end %>
-      </h2>
+      <tr>
+        <h2 class="by_center">
+          <% if materials.first.first.is_a?(Account) %>
+            <%= t "notice_mailer.account_title"  %>
+          <% end %>
+        </h2>
+      </tr>
 
       <% materials = materials.first if @account.gender == 'male' %>
       <% materials = materials.second if @account.gender == 'female' %>

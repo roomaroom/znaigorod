@@ -1,0 +1,55 @@
+<td class="center without-padding" align="center">
+  <center>
+    <table id="content_row" class="row content_row">
+      <tr align="left">
+        <td id="left_content" align="left" valign="top">
+          <table class="custom_column columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <a href="<%= path_for_email(material) %>" >
+                  <%= image_tag(resized_image_url(material.poster_url.nil? ? 'public/stub_poster.png' : material.poster_url, 100 , 74),
+                                :size => '100x74', :alt => material.title) %>
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td id="right_content_stat" align="left" valign="top">
+          <table class="eight columns" >
+            <tr align="left">
+              <td class="line_height" align="left" valign="top">
+                <a href="<%= path_for_email(material) %>" ><%= material.title %></a>
+              </td>
+            </tr>
+            <tr align="left">
+              <td align="left" valign="top">
+                <table class="eight columns">
+                  <tr align="left">
+                    <td class="category" align="left" valign="top">
+                      <span>Участники: </span>
+                      <span class="category_value"><%= material.members.size %></span>
+                    </td>
+                    <td class="category" align="left" valign="top">
+                      <span >Комментарии: </span>
+                      <span class="category_value"><%= material.comments.size %></span>
+                    </td>
+                  </tr>
+                  <tr align="left">
+                    <td class="category" align="left" valign="top">
+                      <span >Понравилось: </span>
+                      <span class="category_value"><%= material.likes_count %></span>
+                    </td>
+                    <td class="category" align="left" valign="top">
+                      <span>Просмотры: </span>
+                      <span class="category_value"><%= material.page_visits.count %></span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+</td>
