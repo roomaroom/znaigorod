@@ -42,6 +42,7 @@ class Post < ActiveRecord::Base
   end
 
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
+  alias_attribute :file_url, :poster_image_url
 
   serialize :kind, Array
   enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
@@ -101,6 +102,14 @@ class Post < ActiveRecord::Base
 
   def ready_for_publication?
     title.present? && content.present? && draft?
+  end
+
+  def content_parser
+    @content_parser ||= Posts::ContentParser.new(content)
+  end
+
+  def video_preview?
+    !poster_url? && Posts::ContentParser.new(content).youtube_videos.any?
   end
 
   private

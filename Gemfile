@@ -64,12 +64,12 @@ group :default do
   gem 'sinatra',                    :require => false
   gem 'sitemap_generator'
   gem 'state_machine'
+  gem 'string-scrub'
   gem 'sunspot_rails'
   gem 'text-hyphen'
   gem 'timecop',                    :require => false
   gem 'validates_email_format_of'
   gem 'vkontakte_api',              :require => false
-  gem 'string-scrub'
 end
 
 group :development do

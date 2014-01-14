@@ -21,6 +21,33 @@
   &:hover
     background: #f9f9f9
 
+  .js-video-preview
+    display: block
+    position: relative
+
+    &:hover
+      &:after
+        opacity: 1
+
+    &:after
+      background: image_url('public/youtube.png')
+      content: ''
+      display: block
+      height: 32px
+      left: 50%
+      margin-left: -16px
+      margin-top: -16px
+      opacity: 0.5
+      position: absolute
+      top: 50%
+      width: 32px
+
+    img
+      display: block
+
+  .hidden
+    display: none
+
   .title
     font-size: 22px
     line-height: 26px

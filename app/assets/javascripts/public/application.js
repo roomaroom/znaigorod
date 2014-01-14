@@ -96,6 +96,7 @@
  * = require ./offer_price
  * = require ./sweets_carousel
  * = require ./my_posts
+ * = require ./post_video_preview
  * = require ./my_posts_accordion
  * = require ./main
  */

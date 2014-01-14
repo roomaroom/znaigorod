@@ -35,4 +35,8 @@ class AutoHtmlRenderer
   def render_index(length=180)
     remove_tags(apply_auto_html(text)).to_s.truncate(length, :separator => ' ')
   end
+
+  def youtube
+    auto_html(text) { youtube :width => 700 }
+  end
 end

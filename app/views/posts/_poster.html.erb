@@ -1,7 +1,23 @@
 <% if post.poster_url? %>
   <%= link_to image_tag(post.poster_url), post_path(post) %>
 <% elsif post.poster_image_url? %>
-  <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height), :size => "#{@width}x#{@height}", :title => post.title, :alt => post.title), post_path(post) %>
+  <% if post.video_preview? %>
+    <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height),
+                          :size => "#{@width}x#{@height}",
+                          :title => post.title, :alt => post.title),
+                post_path(post),
+                :class => 'js-video-preview' %>
+
+    <div class="js-video-container hidden">
+      <%= AutoHtmlRenderer.new(post.content_parser.youtube_videos.first.url).youtube %>
+    </div>
+
+  <% else %>
+    <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height),
+                          :size => "#{@width}x#{@height}",
+                          :title => post.title, :alt => post.title),
+                post_path(post) %>
+  <% end %>
 <% else %>
   <%= link_to image_tag('public/post_poster_stub.jpg'), post_path(post) %>
 <% end %>
