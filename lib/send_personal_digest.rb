@@ -84,7 +84,12 @@ class SendPersonalDigest
   def self.send
     visit_period = 1.day
 
-    Account.with_email.where('id = 2743', Time.zone.now - 1.day).each do |account|
+    accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - visit_period)
+    managers = Role.all.map(&:user).map(&:account).uniq
+    # NOTICE this array is contained ids of the users which have to receive digest
+    should_receive = Account.where(:id => [2743])
+
+    (accounts - managers + should_receive).each do |account|
       digest = Digest.collection_for_email(account, visit_period)
       PersonalDigestMailer.send_digest(account, digest) unless digest.flatten.blank? && account.account_settings.personal_digest?
     end

@@ -3,9 +3,8 @@ class SendStatisticsDigest
 
   class Digest
 
-    def self.collection_for_email(account, period)
+    def self.collection_for_email(account)
       @account = account
-      @period = period
       [
         afisha,
         discounts,
@@ -30,13 +29,15 @@ class SendStatisticsDigest
 
 
   def self.send
-    period = 1.day
-    accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - period)
+    accounts = Account.with_email
     managers = Role.all.map(&:user).map(&:account).uniq
-    (accounts - managers).each do |account|
+    # NOTICE this array is contained ids of the users which have to receive digest
+    should_receive = Account.where(:id => [2743])
+
+    (accounts - managers + should_receive).each do |account|
       if account.account_settings.statistics_digest?
-        digest = Digest.collection_for_email(account, period)
-        StatisticsDigestMailer.send_digest(account, digest)
+        digest = Digest.collection_for_email(account)
+        StatisticsDigestMailer.send_digest(account, digest) unless digest.flatten.blank?
       end
     end
   end

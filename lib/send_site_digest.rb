@@ -91,9 +91,14 @@ class SendSiteDigest
 
   def self.send
     period = 1.week
-    digest = Digest.collection_for_email(period)
 
-    Account.with_email.where('last_visit_at <= ?', Time.zone.now - period).where("gender = 'male'").limit(1).each do |account|
+    digest = Digest.collection_for_email(period)
+    accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - period)
+    managers = Role.all.map(&:user).map(&:account).uniq
+    # NOTICE this array is contained ids of the users which have to receive digest
+    should_receive = Account.where(:id => [2743])
+
+    (accounts - managers + should_receive).each do |account|
       SiteDigestMailer.send_digest(account, digest) if account.account_settings.site_digest?
     end
   end
