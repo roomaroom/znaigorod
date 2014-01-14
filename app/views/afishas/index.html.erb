@@ -23,10 +23,10 @@
   <div class='filter_header'>
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.categories.empty? %>
+    <% elsif @presenter.categories_filter.selected.empty? %>
       <h1><%= t('meta.afisha.page_header') %></h1>
     <% else %>
-      <h1><%= t("meta.#{@presenter.categories.first.pluralize}.page_header") %></h1>
+      <h1><%= t("meta.#{@presenter.categories_filter.selected.first.pluralize}.page_header") %></h1>
     <% end %>
   </div>
   <div class='order_by'>

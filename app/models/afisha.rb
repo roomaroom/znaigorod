@@ -45,7 +45,7 @@ class Afisha < ActiveRecord::Base
   has_one :feed, :as => :feedable, :dependent => :destroy
 
   serialize :kind, Array
-  enumerize :kind, in: [:newyear, :child, :movie, :concert, :party,
+  enumerize :kind, in: [:child, :movie, :concert, :party,
                         :spectacle, :exhibition, :training,
                         :masterclass, :sportsevent, :competition, :other], multiple: true, predicates: true
 

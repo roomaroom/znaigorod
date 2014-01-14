@@ -87,4 +87,6 @@ Znaigorod::Application.routes.draw do
       end
       URI.encode(url)
     }
+
+    get 'newyears' => 'afishas#index', :as => "newyears_index", :defaults => { :categories => ['newyear'], :hide_categories => true }
 end
