@@ -37,12 +37,16 @@ Znaigorod::Application.routes.draw do
     get "/#{kind.pluralize}",
       :constraints => lambda { |req| req.query_parameters.has_key?('categories') },
       :to =>  redirect { |params, req|
-        category = req.query_parameters['categories'].first.mb_chars.downcase
+        category = req.query_parameters['categories'].try(:first).try(:mb_chars).try(:downcase)
         other_parameters = req.query_parameters.to_h
         other_parameters.delete('categories')
         parameter_string = other_parameters.to_param
         parameter_string.insert(0, "?") unless parameter_string.empty?
-        "/#{kind.pluralize}/#{category.from_russian_to_param}" + parameter_string
+        if category.present?
+          "/#{kind.pluralize}/#{categoryfrom_russian_to_param}" + parameter_string
+        else
+          "/#{kind.pluralize}" + parameter_string
+        end
       }
 
       # short categories urls
