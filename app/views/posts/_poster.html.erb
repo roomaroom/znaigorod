@@ -6,12 +6,9 @@
                           :size => "#{@width}x#{@height}",
                           :title => post.title, :alt => post.title),
                 post_path(post),
-                :class => 'js-video-preview' %>
-
-    <div class="js-video-container hidden">
-      <%= AutoHtmlRenderer.new(post.content_parser.youtube_videos.first.url).youtube %>
-    </div>
-
+                :class => 'js-video-preview',
+                :data => { :video => { :uid => post.content_parser.youtube_videos.first.uid, :width => '700' } }
+              %>
   <% else %>
     <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height),
                           :size => "#{@width}x#{@height}",

@@ -41,7 +41,7 @@ class Posts::ContentParser
                     regex = /https?:\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
 
                     content.scan(regex).map do |match_groups|
-                      YoutubeVideo.new "http://#{match_groups.join}", match_groups[2]
+                      YoutubeVideo.new match_groups.join, match_groups[2]
                     end
                   end
     end
