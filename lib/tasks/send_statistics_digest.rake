@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'airbrake'
+
 desc "Send by email afisha and discout statistics to users"
 task :send_statistics_digest => :environment do
 

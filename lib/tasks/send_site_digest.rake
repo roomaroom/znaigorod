@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'airbrake'
+
 desc "Send by email site digest to users"
 task :send_site_digest => :environment do
 
