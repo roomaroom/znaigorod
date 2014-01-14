@@ -51,6 +51,12 @@ ru:
     statistics_digest_description: |
       Вы публиковали Ваши материалы<br />
       на сайте ЗнайГород
+    statistics_digest_text_description: "Вы публиковали Ваши материалы на сайте ЗнайГород"
     statistics_digest: "Статистика по Вашим материалам"
     my_price: "Предложение цены"
     discount: "Скидка"
+    members: "Участники"
+    invites: "Приглашения"
+    comments: "Комментарии"
+    votes: "Голоса"
+    views: "Просмотры"

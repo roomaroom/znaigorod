@@ -477,4 +477,62 @@ module EmailDigestHelper
     result
   end
 
+  def statistics_text(digest, account)
+    result = "ЗнайГород\n\n"
+    result << t("notice_mailer.statistics_digest") + "\n\n"
+    result << t("notice_mailer.statistics_digest_text_description") + "\n\n"
+
+    digest.each do |materials|
+      unless materials.blank?
+
+        result << "="*60 + "\n\n"
+
+        result << t("notice_mailer.afisha_statistics") + "\n\n" if materials.first.is_a?(Afisha)
+        result << t("notice_mailer.discount_statistics") + "\n\n" if materials.first.is_a?(Discount)
+
+        materials.each do |material|
+          result << send("#{ material.class.name.underscore }_statistics_text", material) + "\n"
+        end
+      end
+    end
+
+    result
+  end
+
+  def afisha_statistics_text(afisha)
+    result = ""
+
+    result << afisha.title + " ("
+    result << polymorphic_url(afisha, keys_for_path ) + " )\n"
+    result << t("notice_mailer.members") + "  "
+    result << afisha.visits.size.to_s + "\n"
+    result << t("notice_mailer.invites") + "  "
+    result << afisha.invitations.inviter.without_invited.size.to_s + "\n"
+    result << t("notice_mailer.comments") + "  "
+    result << afisha.comments.size.to_s + "\n"
+    result << t("notice_mailer.votes") + "  "
+    result << afisha.likes_count.to_s + "\n"
+    result << t("notice_mailer.views") + "  "
+    result << afisha.page_visits.size.to_s + "\n"
+
+    result
+  end
+
+  def discount_statistics_text(discount)
+    result = ""
+
+    result << discount.title + " ("
+    result << discount_path(discount, keys_for_path) + " )\n"
+    result << t("notice_mailer.members") + "  "
+    result << discount.members.size.to_s + "\n"
+    result << t("notice_mailer.comments") + "  "
+    result << discount.comments.size.to_s + "\n"
+    result << t("notice_mailer.votes") + "  "
+    result << discount.votes.liked.size.to_s + "\n"
+    result << t("notice_mailer.views") + "  "
+    result << discount.page_visits.size.to_s + "\n"
+
+    result
+  end
+
 end
