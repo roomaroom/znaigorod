@@ -93,8 +93,8 @@ class SendSiteDigest
     period = 1.week
     digest = Digest.collection_for_email(period)
 
-    Account.with_email.where('last_visit_at <= ? and account_settings.site_digest = true', Time.zone.now - period).where("gender = 'male'").limit(1).each do |account|
-      SiteDigestMailer.send_digest(account, digest)
+    Account.with_email.where('last_visit_at <= ?', Time.zone.now - period).where("gender = 'male'").limit(1).each do |account|
+      SiteDigestMailer.send_digest(account, digest) if account.account_settings.site_digest?
     end
   end
 

@@ -36,8 +36,10 @@ class SendStatisticsDigest
     managers = Role.all.map(&:user).map(&:account).uniq
     counter = 0
     (accounts - managers).each do |account|
-      digest = Digest.collection_for_email(account, period)
-      StatisticsDigestMailer.send_digest(account, digest)
+      if account.account_settings.statistics_digest?
+        digest = Digest.collection_for_email(account, period)
+        StatisticsDigestMailer.send_digest(account, digest)
+      end
     end
   end
 
