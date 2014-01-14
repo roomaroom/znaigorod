@@ -91,6 +91,7 @@ class SendSiteDigest
 
   def self.send
     period = 1.week
+    counter = 0
 
     digest = Digest.collection_for_email(period)
     accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - period)
@@ -99,8 +100,13 @@ class SendSiteDigest
     should_receive = Account.where(:id => [2743])
 
     (accounts - managers + should_receive).each do |account|
-      SiteDigestMailer.send_digest(account, digest) if account.account_settings.site_digest?
+      if account.account_settings.site_digest?
+        SiteDigestMailer.send_digest(account, digest)
+        counter += 1
+      end
     end
+
+    counter
   end
 
 end

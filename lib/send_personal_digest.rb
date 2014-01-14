@@ -83,6 +83,7 @@ class SendPersonalDigest
 
   def self.send
     visit_period = 1.day
+    counter = 0
 
     accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - visit_period)
     managers = Role.all.map(&:user).map(&:account).uniq
@@ -91,8 +92,13 @@ class SendPersonalDigest
 
     (accounts - managers + should_receive).each do |account|
       digest = Digest.collection_for_email(account, visit_period)
-      PersonalDigestMailer.send_digest(account, digest) unless digest.flatten.blank? && account.account_settings.personal_digest?
+      unless digest.flatten.blank? && account.account_settings.personal_digest?
+        PersonalDigestMailer.send_digest(account, digest)
+        counter += 1
+      end
     end
+
+    counter
   end
 
 end

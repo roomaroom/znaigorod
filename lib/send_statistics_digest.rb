@@ -29,6 +29,8 @@ class SendStatisticsDigest
 
 
   def self.send
+    counter = 0
+
     accounts = Account.with_email
     managers = Role.all.map(&:user).map(&:account).uniq
     # NOTICE this array is contained ids of the users which have to receive digest
@@ -37,9 +39,14 @@ class SendStatisticsDigest
     (accounts - managers + should_receive).each do |account|
       if account.account_settings.statistics_digest?
         digest = Digest.collection_for_email(account)
-        StatisticsDigestMailer.send_digest(account, digest) unless digest.flatten.blank?
+        unless digest.flatten.blank?
+          StatisticsDigestMailer.send_digest(account, digest)
+          counter += 1
+        end
       end
     end
+
+    counter
   end
 
 end
