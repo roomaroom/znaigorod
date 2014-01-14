@@ -259,6 +259,9 @@ module EmailDigestHelper
 
   def personal_digest_text(digest, account)
     result = "ЗнайГород\n\n"
+    result << t("notice_mailer.#{@type}") + "\n\n"
+    result << t("notice_mailer.#{@type}_text_description") + "\n\n"
+
     digest.each do |materials|
       unless materials.blank?
 
