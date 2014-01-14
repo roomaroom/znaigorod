@@ -1,94 +1,92 @@
-<tr class="dashed_border">
-  <td class="center" align="center">
-    <center>
+<td class="center" align="center">
+  <center>
 
-      <table id="content_row" class="row content_row">
-        <tr align="left">
-          <td class="one_column_width" align="left" valign="top">
-            <table class="one_column_width one columns">
-              <tr align="left">
-                <td align="left" valign="top">
-                  <a href="<%= path_for_email(comment.user.account) %>">
-                    <img src="<%= resized_image_url(comment.user.account.avatar.url, 30, 30) %>" align="left"
-                         title="<%= comment.user.account.title %>"
-                         alt="<%= comment.user.account.title %>" />
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td class="without-padding" id="right_content" align="left" valign="top">
-            <table class="another_custom_column columns">
-              <tr align="left">
-                <td class="line_height" align="left" valign="top">
-                  <a href="<%= path_for_email(comment.user.account) %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %></span>, <span class="gray_text"><%= t "notice_mailer.answered" %></span>
-                  <span><%= comment.body.truncated.as_html if comment.body? %></span>
-                  <span class="gray_text"><%= t "notice_mailer.on_your_comment" %></span>
-                  <span><%= comment.parent.body.truncated.as_html if comment.body? %></span>
-                  <span class="gray_text"><%= t "notice_mailer.at" %></span>
-                  <% if comment.commentable.is_a?(Work) %>
-                    <% if comment.commentable.title.present? %>
-                      <%= link_to comment.commentable.title, contest_work_path(comment.commentable.contest,
-                                                                               comment.commentable,
-                                                                               keys_for_path) %>
-                    <% else %>
-                      <%= link_to comment.commentable.slug, contest_work_path(comment.commentable.contest,
-                                                                              comment.commentable,
-                                                                              keys_for_path) %>
-                    <% end %>
+    <table id="content_row" class="row content_row">
+      <tr align="left">
+        <td class="one_column_width" align="left" valign="top">
+          <table class="one_column_width one columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <a href="<%= path_for_email(comment.user.account) %>">
+                  <img src="<%= resized_image_url(comment.user.account.avatar.url, 30, 30) %>" align="left"
+                       title="<%= comment.user.account.title %>"
+                       alt="<%= comment.user.account.title %>" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="without-padding" id="right_content" align="left" valign="top">
+          <table class="another_custom_column columns">
+            <tr align="left">
+              <td class="line_height" align="left" valign="top">
+                <a href="<%= path_for_email(comment.user.account) %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %></span>, <span class="gray_text"><%= t "notice_mailer.answered" %></span>
+                <span><%= comment.body.truncated.as_html if comment.body? %></span>
+                <span class="gray_text"><%= t "notice_mailer.on_your_comment" %></span>
+                <span><%= comment.parent.body.truncated.as_html if comment.body? %></span>
+                <span class="gray_text"><%= t "notice_mailer.at" %></span>
+                <% if comment.commentable.is_a?(Work) %>
+                  <% if comment.commentable.title.present? %>
+                    <%= link_to comment.commentable.title, contest_work_path(comment.commentable.contest,
+                                                                             comment.commentable,
+                                                                             keys_for_path) %>
+                  <% else %>
+                    <%= link_to comment.commentable.slug, contest_work_path(comment.commentable.contest,
+                                                                            comment.commentable,
+                                                                            keys_for_path) %>
                   <% end %>
-                  <% %w[afisha discount organization post].each do |item| %>
-                    <% if comment.commentable.is_a?(item.camelize.constantize) %>
-                      <%= link_to comment.commentable.title, send("#{item}_path",
-                                                                  comment.commentable,
-                                                                  keys_for_path) %>
-                    <% end %>
+                <% end %>
+                <% %w[afisha discount organization post].each do |item| %>
+                  <% if comment.commentable.is_a?(item.camelize.constantize) %>
+                    <%= link_to comment.commentable.title, send("#{item}_path",
+                                                                comment.commentable,
+                                                                keys_for_path) %>
                   <% end %>
+                <% end %>
 
-                </td>
-              </tr>
-            </table>
-            <table class="another_custom_column columns">
-              <tr align="left">
-                <td align="left" valign="top">
-                  <table class="another_custom_column columns">
-                    <tr align="left">
-                      <td class="without-padding" align="left" valign="top">
-                        <table id="orange-answer-button">
-                          <tr align="left">
-                            <td class="without-padding" id="answer_button_reply" align="left" valign="top">
+              </td>
+            </tr>
+          </table>
+          <table class="another_custom_column columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <table class="another_custom_column columns">
+                  <tr align="left">
+                    <td class="without-padding" align="left" valign="top">
+                      <table id="orange-answer-button">
+                        <tr align="left">
+                          <td class="without-padding" id="answer_button_reply" align="left" valign="top">
 
-                              <% if comment.commentable.is_a?(Work) %>
+                            <% if comment.commentable.is_a?(Work) %>
+                              <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png",
+                                                    :title => t("notice_mailer.answer"),
+                                                    :alt => t("notice_mailer.answer")),
+                                                    contest_work_path(comment.commentable.contest,
+                                                                      comment.commentable,
+                                                                      keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
+                            <% end %>
+                            <% %w[afisha discount organization post].each do |item| %>
+                              <% if comment.commentable.is_a?(item.camelize.constantize) %>
                                 <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png",
                                                       :title => t("notice_mailer.answer"),
                                                       :alt => t("notice_mailer.answer")),
-                                                      contest_work_path(comment.commentable.contest,
-                                                                        comment.commentable,
-                                                                        keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
+                                                      send("#{item}_path",
+                                                           comment.commentable,
+                                                           keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
                               <% end %>
-                              <% %w[afisha discount organization post].each do |item| %>
-                                <% if comment.commentable.is_a?(item.camelize.constantize) %>
-                                  <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png",
-                                                        :title => t("notice_mailer.answer"),
-                                                        :alt => t("notice_mailer.answer")),
-                                                        send("#{item}_path",
-                                                             comment.commentable,
-                                                             keys_for_path.merge({:anchor => "answer_#{comment.id}"})) %>
-                                <% end %>
-                              <% end %>
+                            <% end %>
 
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </center>
-  </td>
-</tr>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+</td>

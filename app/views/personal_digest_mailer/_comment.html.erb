@@ -1,7 +1,7 @@
-<% if comment.parent.present? %>
-  <%= render partial: 'comment_answer', :locals => { :comment => comment } %>
-<% elsif comment.commentable.is_a?(Afisha) %>
-  <%= render partial: 'afisha_comment', :locals => { :comment => comment } %>
-<% elsif comment.commentable.is_a?(Discount) %>
-  <%= render partial: 'discount_comment', :locals => { :comment => comment } %>
+<% if material.parent.present? %>
+  <%= render partial: 'comment_answer', :locals => { :comment => material } %>
+<% elsif material.commentable.is_a?(Afisha) %>
+  <%= render partial: 'afisha_comment', :locals => { :comment => material } %>
+<% elsif material.commentable.is_a?(Discount) %>
+  <%= render partial: 'discount_comment', :locals => { :comment => material } %>
 <% end %>

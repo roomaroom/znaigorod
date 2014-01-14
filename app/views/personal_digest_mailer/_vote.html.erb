@@ -1,55 +1,53 @@
-<tr class="dashed_border">
-  <td class="center" align="center">
-    <center>
+<td class="center" align="center">
+  <center>
 
-      <table id="content_row" class="row content_row">
-        <tr align="left">
-          <td align="left" valign="top">
-            <table class="one columns">
-              <tr align="left">
-                <td align="left" valign="top">
-                  <a href="<%= path_for_email(vote.user.account) %>">
-                    <img src="<%= resized_image_url(vote.user.account.avatar.url, 30, 30) %>" align="left" title="<%= vote.user.account.title %>" alt="<%= vote.user.account.title %>" />
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td class="without-padding" id="right_content" align="left" valign="top">
-            <table class="nine columns">
-              <tr align="left">
-                <td class="line_height" align="left" valign="top">
-                  <a href="<%= path_for_email(vote.user.account) %>"><%= vote.user.account.title %></a>
-                  <span id="time"><%= l(vote.created_at, format: "%d %B %Y, %k:%M") %></span>
-                  <span class="gray_text"><%= t "notice_mailer.liked_your_comment.#{vote.user.account.gender}" %> </span>
-                </td>
-              </tr>
-              <tr align="left">
-                <td class="without-padding" align="left" valign="top">
-                  <span><%= vote.voteable.body.truncated.as_html if vote.voteable.body? %></span>
-                </td>
-              </tr>
-              <tr align="left">
-                <td>
-                  <span class="gray_text"><%= t "notice_mailer.at" %></span>
-                  <% if vote.voteable.commentable.is_a?(Work) %>
-                    <% if vote.voteable.commentable.title.present? %>
-                      <%= link_to vote.voteable.commentable.title, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, keys_for_path) %>
-                    <% else %>
-                      <%= link_to vote.voteable.commentable.slug, contest_work_path(vote.voteable.commentable.contest, vote.voteable.commentable, keys_for_path) %>
-                    <% end %>
+    <table id="content_row" class="row content_row">
+      <tr align="left">
+        <td align="left" valign="top">
+          <table class="one columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <a href="<%= path_for_email(material.user.account) %>">
+                  <img src="<%= resized_image_url(material.user.account.avatar.url, 30, 30) %>" align="left" title="<%= material.user.account.title %>" alt="<%= material.user.account.title %>" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="without-padding" id="right_content" align="left" valign="top">
+          <table class="nine columns">
+            <tr align="left">
+              <td class="line_height" align="left" valign="top">
+                <a href="<%= path_for_email(material.user.account) %>"><%= material.user.account.title %></a>
+                <span id="time"><%= l(material.created_at, format: "%d %B %Y, %k:%M") %></span>
+                <span class="gray_text"><%= t "notice_mailer.liked_your_comment.#{material.user.account.gender}" %> </span>
+              </td>
+            </tr>
+            <tr align="left">
+              <td class="without-padding" align="left" valign="top">
+                <span><%= material.voteable.body.truncated.as_html if material.voteable.body? %></span>
+              </td>
+            </tr>
+            <tr align="left">
+              <td>
+                <span class="gray_text"><%= t "notice_mailer.at" %></span>
+                <% if material.voteable.commentable.is_a?(Work) %>
+                  <% if material.voteable.commentable.title.present? %>
+                    <%= link_to material.voteable.commentable.title, contest_work_path(material.voteable.commentable.contest, material.voteable.commentable, keys_for_path) %>
+                  <% else %>
+                    <%= link_to material.voteable.commentable.slug, contest_work_path(material.voteable.commentable.contest, material.voteable.commentable, keys_for_path) %>
                   <% end %>
-                  <% %w[afisha discount organization post].each do |item| %>
-                    <% if vote.voteable.commentable.is_a?(item.camelize.constantize) %>
-                      <%= link_to vote.voteable.commentable.title, send("#{item}_path", vote.voteable.commentable, keys_for_path) %>
-                    <% end %>
+                <% end %>
+                <% %w[afisha discount organization post].each do |item| %>
+                  <% if material.voteable.commentable.is_a?(item.camelize.constantize) %>
+                    <%= link_to material.voteable.commentable.title, send("#{item}_path", material.voteable.commentable, keys_for_path) %>
                   <% end %>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </center>
-  </td>
-</tr>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+</td>

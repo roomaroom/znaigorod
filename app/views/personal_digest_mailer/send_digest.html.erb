@@ -18,7 +18,18 @@
               </h2>
             </tr>
 
-            <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore }", collection: materials) %>
+            <% materials.each do |material| %>
+
+              <% unless material == materials.last %>
+                <tr class="dashed_border">
+              <% else %>
+                <tr>
+              <% end %>
+
+              <%= render(partial: "personal_digest_mailer/#{ materials.first.class.name.underscore }", :locals => { :material => material }) %>
+              </tr>
+
+            <% end %>
 
           </table>
         </td>

@@ -1,83 +1,81 @@
-<tr class="dashed_border">
-  <td class="center" align="center">
-    <center>
+<td class="center" align="center">
+  <center>
 
-      <table id="content_row" class="row content_row">
-        <tr align="left">
-          <td align="left" valign="top">
-            <table class="one columns">
-              <tr align="left">
-                <td align="left" valign="top">
-                  <a href="<%= path_for_email(invitation.account) %>">
-                    <img src="<%= resized_image_url(invitation.account.avatar.url, 30, 30) %>" align="left"
-                         title="<%= invitation.account.title %>"
-                         alt="<%= invitation.account.title %>" />
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td id="right_content" class="without-padding" align="left" valign="top">
-            <table class="nine columns">
-              <tr align="left">
-                <td class="line_height" align="left" valign="top">
-                  <a href="<%= path_for_email(invitation.account) %>"><%= invitation.account.title %></a> <span><%= t "notice_mailer.is_invite_you_at" %></span>
-                  <% if invitation.category.blank? %>
-                    <% if invitation.inviteable.is_a?(Afisha) %>
+    <table id="content_row" class="row content_row">
+      <tr align="left">
+        <td align="left" valign="top">
+          <table class="one columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <a href="<%= path_for_email(material.account) %>">
+                  <img src="<%= resized_image_url(material.account.avatar.url, 30, 30) %>" align="left"
+                       title="<%= material.account.title %>"
+                       alt="<%= material.account.title %>" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td id="right_content" class="without-padding" align="left" valign="top">
+          <table class="nine columns">
+            <tr align="left">
+              <td class="line_height" align="left" valign="top">
+                <a href="<%= path_for_email(material.account) %>"><%= material.account.title %></a> <span><%= t "notice_mailer.is_invite_you_at" %></span>
+                <% if material.category.blank? %>
+                  <% if material.inviteable.is_a?(Afisha) %>
 
-                      <span>на</span> <%= link_to invitation.inviteable.title, path_for_email(invitation.inviteable) %>
-                    <% end %>
-
-                    <% if invitation.inviteable.is_a?(Organization) %>
-
-                      <span>на</span> <%= link_to invitation.inviteable.title, path_for_email(invitation.inviteable) %>
-                    <% end %>
-
-                  <% else %>
-                    <span> <%= invitation.category %></span>
+                    <span>на</span> <%= link_to material.inviteable.title, path_for_email(material.inviteable) %>
                   <% end %>
-                </td>
-              </tr>
-              <tr align="left">
-                <td id="time" class="line_height" align="left" valign="top"><%= l(invitation.created_at, format: "%d %B %Y, %k:%M") %></span></span></td>
-              </tr>
-            </table>
-            <table class="nine columns">
-              <tr align="left">
-                <td class="without-padding" align="left" valign="top">
-                  <table id="orange-button">
-                    <tr align="left">
-                      <td class="without-padding" align="left" valign="top">
-                        <table class="columns">
-                        	<tr>
-                            <td>
-                              <a href="<%= my_invite_messages_path(keys_for_path.merge({:anchor => "accept_invite_#{invitation.invite_messages.first.id}"})) %>">
-                                 <img src="<%= Settings['app']['url'] %>/assets/public/emails/accept_invite.png"
-                                 alt="<%= t("notice_mailer.accept_invite") %>" title="<%= t("notice_mailer.accept_invite") %>" />
-                              </a>
-                            </td>
-                            <td>
-                              <a href="<%= my_invite_messages_path(keys_for_path.merge({:anchor => "abandon_invite_#{invitation.invite_messages.first.id}"})) %>">
-                                 <img src="<%= Settings['app']['url'] %>/assets/public/emails/abandon_invite.png"
-                                 alt="<%= t("notice_mailer.abandon_invite") %>" title="<%= t("notice_mailer.abandon_invite") %>" />
-                              </a>
-                            </td>
-                            <td class="padding_center">
-                              <a href="<%= my_invite_messages_path(keys_for_path) %>">
-                                <%= t "notice_mailer.to_invitations" %>
-                              </a>
-                            </td>
-                        	</tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </center>
-  </td>
-</tr>
+
+                  <% if material.inviteable.is_a?(Organization) %>
+
+                    <span>на</span> <%= link_to material.inviteable.title, path_for_email(material.inviteable) %>
+                  <% end %>
+
+                <% else %>
+                  <span> <%= material.category %></span>
+                <% end %>
+              </td>
+            </tr>
+            <tr align="left">
+              <td id="time" class="line_height" align="left" valign="top"><%= l(material.created_at, format: "%d %B %Y, %k:%M") %></span></span></td>
+            </tr>
+          </table>
+          <table class="nine columns">
+            <tr align="left">
+              <td class="without-padding" align="left" valign="top">
+                <table id="orange-button">
+                  <tr align="left">
+                    <td class="without-padding" align="left" valign="top">
+                      <table class="columns">
+                        <tr>
+                          <td>
+                            <a href="<%= my_invite_messages_path(keys_for_path.merge({:anchor => "accept_invite_#{material.invite_messages.first.id}"})) %>">
+                               <img src="<%= Settings['app']['url'] %>/assets/public/emails/accept_invite.png"
+                               alt="<%= t("notice_mailer.accept_invite") %>" title="<%= t("notice_mailer.accept_invite") %>" />
+                            </a>
+                          </td>
+                          <td>
+                            <a href="<%= my_invite_messages_path(keys_for_path.merge({:anchor => "abandon_invite_#{material.invite_messages.first.id}"})) %>">
+                               <img src="<%= Settings['app']['url'] %>/assets/public/emails/abandon_invite.png"
+                               alt="<%= t("notice_mailer.abandon_invite") %>" title="<%= t("notice_mailer.abandon_invite") %>" />
+                            </a>
+                          </td>
+                          <td class="padding_center">
+                            <a href="<%= my_invite_messages_path(keys_for_path) %>">
+                              <%= t "notice_mailer.to_invitations" %>
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+</td>

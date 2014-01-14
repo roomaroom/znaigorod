@@ -1,65 +1,63 @@
-<tr class="dashed_border">
-  <td class="center" align="center">
-    <center>
+<td class="center" align="center">
+  <center>
 
-      <table id="content_row" class="row content_row">
-        <tr align="left">
-          <td align="left" valign="top">
-            <table class="one columns" >
-              <tr align="left">
-                <td align="left" valign="top">
-                  <a href="<%= path_for_email(comment.user.account) %>">
-                    <img src="<%= resized_image_url(comment.user.account.avatar.url, 30, 30) %>" align="left"
-                         title="<%= comment.user.account.title %>"
-                         alt="<%= comment.user.account.title %>" />
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td class="without-padding" id="right_content" align="left" valign="top">
-            <table class="nine columns">
-              <tr align="left">
-                <td class="line_height" align="left" valign="top">
-                  <a href="<%= path_for_email(comment.user.account) %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %><span> <span class="gray_text"><%= t "notice_mailer.at" %></span>
-                </td>
-              </tr>
-              <tr align="left">
-                <td id="time" class="line_height" align="left" valign="top">
-                  <span><a href="<%= path_for_email(comment.commentable) %>"><%= comment.commentable.title %></a></span>
-                </td>
-              </tr>
-              <tr align="left">
-                <td align="left" valign="top">
-                  <span><%= comment.body.truncated.as_html if comment.body? %></span>
+    <table id="content_row" class="row content_row">
+      <tr align="left">
+        <td align="left" valign="top">
+          <table class="one columns" >
+            <tr align="left">
+              <td align="left" valign="top">
+                <a href="<%= path_for_email(comment.user.account) %>">
+                  <img src="<%= resized_image_url(comment.user.account.avatar.url, 30, 30) %>" align="left"
+                       title="<%= comment.user.account.title %>"
+                       alt="<%= comment.user.account.title %>" />
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="without-padding" id="right_content" align="left" valign="top">
+          <table class="nine columns">
+            <tr align="left">
+              <td class="line_height" align="left" valign="top">
+                <a href="<%= path_for_email(comment.user.account) %>"><%= comment.user.account.title %></a>, <span id="time"><%= l(comment.created_at, format: "%d %B %Y, %k:%M") %><span> <span class="gray_text"><%= t "notice_mailer.at" %></span>
+              </td>
+            </tr>
+            <tr align="left">
+              <td id="time" class="line_height" align="left" valign="top">
+                <span><a href="<%= path_for_email(comment.commentable) %>"><%= comment.commentable.title %></a></span>
+              </td>
+            </tr>
+            <tr align="left">
+              <td align="left" valign="top">
+                <span><%= comment.body.truncated.as_html if comment.body? %></span>
 
-                </td>
-              </tr>
-            </table>
-            <table class="nine columns">
-              <tr align="left">
-                <td align="left" valign="top">
-                  <table id="orange-button">
-                    <tr align="left">
-                      <td class="without-padding" align="left" valign="top">
+              </td>
+            </tr>
+          </table>
+          <table class="nine columns">
+            <tr align="left">
+              <td align="left" valign="top">
+                <table id="orange-button">
+                  <tr align="left">
+                    <td class="without-padding" align="left" valign="top">
 
-                        <% if comment.commentable.is_a?(Afisha) %>
-                          <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png",
-                                                :title => t("notice_mailer.answer"),
-                                                :alt => t("notice_mailer.answer")),
-                                                path_for_email(comment.commentable, "answer_#{comment.id}") %>
-                        <% end %>
+                      <% if comment.commentable.is_a?(Afisha) %>
+                        <%= link_to image_tag("#{Settings['app']['url']}/assets/public/mailer_buttons_answer.png",
+                                              :title => t("notice_mailer.answer"),
+                                              :alt => t("notice_mailer.answer")),
+                                              path_for_email(comment.commentable, "answer_#{comment.id}") %>
+                      <% end %>
 
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </center>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
 
-  </td>
-</tr>
+</td>
