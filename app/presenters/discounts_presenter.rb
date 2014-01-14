@@ -98,7 +98,7 @@ class DiscountsPresenter
     def more?
       return false if selected.blank?
 
-      available.index(selected) > 6
+      available.index(selected).to_i > 6
     end
 
     def human_titles
