@@ -6,7 +6,6 @@ class SendStatisticsDigest
     def self.collection_for_email(account, period)
       @account = account
       @period = period
-      count
       [
         afisha,
         discounts,
@@ -23,7 +22,7 @@ class SendStatisticsDigest
     def self.afisha
       Afisha.actual
             .includes(:invitations, :comments, :visits, :showings)
-            .where("afisha.user_id = '#{account.users.first.id}'")
+            .where("afisha.user_id = ?", @account.users.first.id)
             .where(:state => "published")
     end
 
@@ -32,9 +31,8 @@ class SendStatisticsDigest
 
   def self.send
     period = 1.day
-    accounts = Account.with_email.where('last_visit_at <= ? and account_settings.statistics_digest = true', Time.zone.now - period)
+    accounts = Account.with_email.where('last_visit_at <= ?', Time.zone.now - period)
     managers = Role.all.map(&:user).map(&:account).uniq
-    counter = 0
     (accounts - managers).each do |account|
       if account.account_settings.statistics_digest?
         digest = Digest.collection_for_email(account, period)
