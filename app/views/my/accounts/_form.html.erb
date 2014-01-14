@@ -20,19 +20,14 @@
     </div>
   </div>
   <div class="email_notifications">
-    <h3>Присылать уведомления на E-mail</h3>
+    <h3>Присылать на E-mail</h3>
     <div class="email_notifications_form">
       <%= f.simple_fields_for :account_settings do |s| %>
         <ul>
           <% [
-            :afishas_statistics,
-            :personal_invites,
-            :discounts_statistics,
-            :personal_messages,
-            :comments_to_afishas,
-            :comments_answers,
-            :comments_to_discounts,
-            :comments_likes
+            :personal_digest,
+            :site_digest,
+            :statistics_digest
           ].each do |item| %>
           <li>
             <%= s.input item, :wrapper => :checkbox %>
