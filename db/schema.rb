@@ -275,34 +275,6 @@ ActiveRecord::Schema.define(:version => 20140110054933) do
   add_index "copies", ["copyable_id"], :name => "index_copies_on_copyable_id"
   add_index "copies", ["copyable_type"], :name => "index_copies_on_copyable_type"
 
-  create_table "coupons", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "discount"
-    t.string   "vfs_path"
-    t.integer  "organization_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.text     "image_url"
-    t.integer  "price_with_discount"
-    t.integer  "price_without_discount"
-    t.integer  "organization_quota"
-    t.integer  "price"
-    t.string   "kind"
-    t.string   "place"
-    t.integer  "number"
-    t.datetime "stale_at"
-    t.datetime "complete_at"
-    t.text     "categories"
-    t.text     "affiliate_url"
-  end
-
-  add_index "coupons", ["organization_id"], :name => "index_coupons_on_organization_id"
-
   create_table "creations", :force => true do |t|
     t.integer  "organization_id"
     t.string   "title"
