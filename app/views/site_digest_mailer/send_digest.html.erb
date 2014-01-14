@@ -2,10 +2,10 @@
   <% @digest.each do |materials| %>
 
     <% unless materials.blank? %>
-      <% unless materials.first.is_a?(Array) %>
-        <%= render(partial: "site_digest_mailer/send_digest_main", :locals => { :materials => materials }) %>
-      <% else %>
+      <% if materials.first.is_a?(Array) && @account.account_settings.dating? %>
         <%= render(partial: "site_digest_mailer/send_digest_account", :locals => { :materials => materials }) unless @account.gender == 'undefined' %>
+      <% else %>
+        <%= render(partial: "site_digest_mailer/send_digest_main", :locals => { :materials => materials }) %>
       <% end %>
     <% end %>
 
