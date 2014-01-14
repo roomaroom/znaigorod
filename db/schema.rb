@@ -11,21 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140110054933) do
+ActiveRecord::Schema.define(:version => 20140114020719) do
 
   create_table "account_settings", :force => true do |t|
-    t.boolean  "personal_invites",      :default => true
-    t.boolean  "personal_messages",     :default => true
-    t.boolean  "comments_to_afishas",   :default => true
-    t.boolean  "comments_to_discounts", :default => true
-    t.boolean  "comments_answers",      :default => true
-    t.boolean  "comments_likes",        :default => true
-    t.boolean  "afishas_statistics",    :default => true
-    t.boolean  "discounts_statistics",  :default => true
     t.integer  "account_id"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.boolean  "dating",                :default => true
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "dating",            :default => true
+    t.boolean  "personal_digest",   :default => true
+    t.boolean  "site_digest",       :default => true
+    t.boolean  "statistics_digest", :default => true
   end
 
   add_index "account_settings", ["account_id"], :name => "index_account_settings_on_account_id"
