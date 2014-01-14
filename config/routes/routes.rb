@@ -47,8 +47,6 @@ Znaigorod::Application.routes.draw do
   get '/afisha' => 'afishas#index', :as => :afisha_index, :controller => 'afishas'
   get '/afisha/:id' => 'afishas#show', :as => :afisha_show, :controller => 'afishas'
 
-  resources :saunas,   :only => :index
-
   get 'accounts_search' => 'accounts_search#show',         :as => :accounts_search
   get 'geocoder' => 'geocoder#get_coordinates'
   get 'search' => 'search#search',                :as => :search
@@ -74,10 +72,10 @@ Znaigorod::Application.routes.draw do
     resources :user_ratings, :only => [:new, :create, :edit, :update, :show]
   end
 
-  Organization.basic_suborganization_kinds.each do |kind|
-    get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
-  end
-  get '/entertainments' => 'suborganizations#index', :as => :billiards, :constraints => { :kind => 'entertainments' }, :defaults => { :kind => 'entertainments' }
+  #Organization.basic_suborganization_kinds.each do |kind|
+    #get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
+  #end
+  #get '/entertainments' => 'suborganizations#index', :as => :billiards, :constraints => { :kind => 'entertainments' }, :defaults => { :kind => 'entertainments' }
 
   resources :posts, :only => [:index, :show] do
     get :draft, :on => :collection, :as => :draft

@@ -112,4 +112,7 @@ Znaigorod::Application.routes.draw do
     o = Organization.find(params[:id])
     "/organizations/#{o.slug}"
   }
+
+  get "/kafe_i_restorany_tomska" => 'suborganizations#index', :as => 'meals', :constraints => { :kind => 'meal' }, :defaults => { :kind => 'meal' }
+  get '/meals' => redirect('/kafe_i_restorany_tomska')
 end
