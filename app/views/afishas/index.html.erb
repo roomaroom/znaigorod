@@ -21,10 +21,12 @@
     </ul>
   </div>
   <div class='filter_header'>
-    <% unless @presenter.categories.empty? %>
-      <h1><%= t("meta.#{@presenter.categories.first.pluralize}.page_header") %></h1>
-    <% else %>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% elsif @presenter.categories.empty? %>
       <h1><%= t('meta.afisha.page_header') %></h1>
+    <% else %>
+      <h1><%= t("meta.#{@presenter.categories.first.pluralize}.page_header") %></h1>
     <% end %>
   </div>
   <div class='order_by'>
