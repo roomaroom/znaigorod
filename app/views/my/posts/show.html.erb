@@ -5,25 +5,38 @@
     <div class="post_preview_wrapper">
       <div class="post_show_preview">
         <div class="header_with_marker">
-          <h3>Так обзор будет выглядеть при просмотре</h3>
-          <% if @post.draft? %>
-            <% if can? :send_to_published, @post %>
-              <% if @post.ready_for_publication? %>
-                <%= link_to t('my.send_to_public'), publish_my_post_path(@post), :method => :put, :class => 'enabled',
-                  :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
-              <% else %>
-                <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
-              <% end %>
-              <%= link_to t('my.destroy'), my_post_path(@post), :method => :delete, :class => :destroy,
-                :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' %>
-            <% end %>
+          <div class="to_right">
+            <% if @post.draft?  %>
+              <%= link_to t('my.send_to_public'), publish_my_post_path(@post), :method => :put, :class => 'button change_state',
+                :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
 
-          <% else %>
-            <h2><%= t("activerecord.state_machines.state.states.#{@post.state}") %></h2>
-            <%= content_tag :p, link_to('Посмотреть в публичном виде', post_path(@post), target: '_blank') %>
-            <%= link_to t('my.send_to_draft'), draft_my_post_path(@post), :method => :put,
-              :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
-          <% end %>
+              <%= link_to poster_my_post_path(@post), :class => 'button change_poster' do %>
+                <span></span>
+              <% end %>
+
+              <%= link_to edit_my_post_path(@post), :class => 'button change_post' do %>
+                <span></span>
+              <% end %>
+
+              <%= link_to my_post_path(@post), :method => :delete, :class => 'button remove_post',
+                :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
+                <span></span>
+              <% end %>
+
+            <% else %>
+              <%= link_to 'В черновики', draft_my_post_path(@post), :method => :put, :class => 'button change_state',
+                :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
+
+              <%= link_to poster_my_post_path(@post), :class => 'button change_poster' do %>
+                <span></span>
+              <% end %>
+
+              <%= link_to edit_my_post_path(@post), :class => 'button change_post' do %>
+                <span></span>
+              <% end %>
+            <% end %>
+          </div>
+          <h3>Так обзор будет выглядеть при просмотре</h3>
         </div>
 
         <%= render :partial => 'posts/post_show', :locals => { :post => @post, :for_preview => true } %>

@@ -136,9 +136,58 @@
       width: 740px
 
       .header_with_marker
+        +clearfix
+
         h3
-          display: inline-block
-          width: 350px
+          //float: left
+          //width: 350px
+
+        .to_right
+          +clearfix
+          background: #fff
+          float: right
+          height: 27px
+          padding: 0 0 0 3px
+
+        a
+          float: left
+          font-size: 12px
+          height: 21px
+          line-height: 21px
+          margin: 0 0 0 5px
+          padding: 1px 0 2px
+          text-align: center
+          width: 28px
+
+          &:first-child
+            margin: 0
+
+          span
+            background: image_url('public/my_post_icons.png') no-repeat
+            display: block
+            height: 24px
+            margin: 0 auto
+
+          &.change_state
+            padding: 1px 8px 2px
+            width: 120px
+
+          &.change_poster
+            span
+              background-position: -9px 0
+              width: 14px
+
+          &.change_post
+            span
+              background-position: -45px 0
+              margin: 0 8px 0 10px
+              width: 10px
+
+          &.remove_post
+            span
+              background-position: -73px 0
+              margin: 0 auto
+              width: 18px
 
       .post_show
         padding: 10px 0
