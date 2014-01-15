@@ -44,7 +44,7 @@ Znaigorod::Application.routes.draw do
         parameter_string = other_parameters.to_param
         parameter_string.insert(0, "?") unless parameter_string.empty?
         if category.present?
-          "/#{kind.pluralize}/#{categoryfrom_russian_to_param}" + parameter_string
+          "/#{kind.pluralize}/#{category.from_russian_to_param}" + parameter_string
         else
           "/#{kind.pluralize}" + parameter_string
         end
