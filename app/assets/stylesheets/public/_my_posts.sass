@@ -6,6 +6,7 @@
 .my_posts_wrapper
   margin-top: 20px
   overflow: hidden
+  padding: 0 20px
 
   h1
     font-size: 22px
@@ -114,7 +115,6 @@
 
     .post_help
       font-size: 12px
-      margin-right: 20px
 
       b
         font-weight: bold
@@ -126,27 +126,51 @@
 
     .header_with_marker
       background: image-url('public/blue_marker.png') no-repeat
-      height: 35px
+      height: 40px
       margin-bottom: 5px
-      padding-left: 29px
+      padding-left: 28px
 
     .post_show_preview
       float: left
-      width: 800px
+      margin: 0 40px 0 0
+      width: 740px
 
       .header_with_marker
-        margin-left: 20px
-
         h3
           display: inline-block
           width: 350px
 
       .post_show
+        padding: 10px 0
+
         .left
           width: auto
 
+      .gallery_images_wrapper
+        h3
+          margin-bottom: 10px
+
+        .info
+          display: block
+          line-height: 25px
+          overflow: hidden
+
+          span
+            background: image_url('public/more_button_sprite.png') no-repeat 0 0
+            float: left
+            height: 25px
+            margin-right: 10px
+            width: 25px
+
+        .gallery_images
+
+
     .post_index_preview
       float: right
-      width: 400px
+      width: 380px
+
+      .post_item
+        margin: 0 0 10px 0
+
 
 

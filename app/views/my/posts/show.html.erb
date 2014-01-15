@@ -6,18 +6,39 @@
       <div class="post_show_preview">
         <div class="header_with_marker">
           <h3>Так обзор будет выглядеть при просмотре</h3>
+          <% if @post.draft? %>
+            <% if can? :send_to_published, @post %>
+              <% if @post.ready_for_publication? %>
+                <%= link_to t('my.send_to_public'), publish_my_post_path(@post), :method => :put, :class => 'enabled',
+                  :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
+              <% else %>
+                <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
+              <% end %>
+              <%= link_to t('my.destroy'), my_post_path(@post), :method => :delete, :class => :destroy,
+                :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' %>
+            <% end %>
 
+          <% else %>
+            <h2><%= t("activerecord.state_machines.state.states.#{@post.state}") %></h2>
+            <%= content_tag :p, link_to('Посмотреть в публичном виде', post_path(@post), target: '_blank') %>
+            <%= link_to t('my.send_to_draft'), draft_my_post_path(@post), :method => :put,
+              :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
+          <% end %>
         </div>
 
         <%= render :partial => 'posts/post_show', :locals => { :post => @post, :for_preview => true } %>
 
+        <div class="gallery_images_wrapper">
           <h3 id="gallery_images_header">Фотографии</h3>
           <ul class="gallery_images">
             <%= render @post.gallery_images %>
           </ul>
 
-          <%= simple_form_for @post.gallery_images.new, :url => my_post_gallery_images_path(@post.id), :html => { :multipart => true, :class => 'file_upload' } do |f| %>
+          <%= simple_form_for @post.gallery_images.new, :url => my_post_gallery_images_path(@post.id), :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
             <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+            <span class='info'>
+              <span></span>Можно выбрать сразу несколько файлов
+            </span>
           <% end %>
 
           <div class="upload_wrapper">
@@ -29,6 +50,7 @@
             </script>
           </div>
         </div>
+      </div>
 
       <div class="post_index_preview">
         <div class="header_with_marker">
@@ -39,7 +61,7 @@
 
         <ul class="post_help">
           <li>
-            <b>Заголовок и текст</b> можно <%= link_to 'отредактировать', edit_my_post_path(@post) %>. <b>Для аннотации</b> берутся первые 180 символов текста.
+          <b>Заголовок и текст</b> можно <%= link_to 'отредактировать', edit_my_post_path(@post) %>. <b>Для&nbsp;аннотации</b> берутся первые 180 символов текста.
           </li>
 
           <li>

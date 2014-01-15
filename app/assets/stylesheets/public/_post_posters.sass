@@ -13,78 +13,91 @@
         padding: 0 0 0 20px
         width: 766px
 
+.posts_list
+  li:nth-child(3n+2)
+    margin: 0 20px
+
 .post_item
   +clearfix
-  padding: 0 20px
-  width: 353px
-
-  &:hover
-    background: #f9f9f9
-
-  .js-video-preview
-    display: block
-    position: relative
-
-    &:hover
-      &:after
-        opacity: 1
-
-    &:after
-      background: image_url('public/youtube.png')
-      content: ''
-      display: block
-      height: 32px
-      left: 50%
-      margin-left: -16px
-      margin-top: -16px
-      opacity: 0.5
-      position: absolute
-      top: 50%
-      width: 32px
-
-    img
-      display: block
+  border: 1px solid #ccc
+  padding: 12px
+  width: 354px
 
   .title
-    font-size: 22px
-    line-height: 26px
-    height: 78px
-    margin: 0 0 10px
+    font-size: 18px
+    height: 66px
+    line-height: 22px
+    text-align: center
+    margin: 0 0 5px 0
+
+    a
 
   .details
     +clearfix
     color: #777
+    float: right
     font-size: 10px
     line-height: 12px
-    float: right
 
     .first_line
       display: block
 
       span
         +inline-block
+        background: transparent image_url('public/details_sprite.png') no-repeat 10px 5px
         cursor: help
         padding-left: 25px
-        background: transparent image_url('public/details_sprite.png') no-repeat 10px 5px
 
         &.comments
           background-position: 5px -38px
+          font-size: 10px
           margin: 0
+
         &.likes
           background-position: 12px -59px
+
         &.visits
           background-position: 6px -79px
 
-  .date
-    color: #777
-    font-size: 10px
-    line-height: 12px
+  .post_date
+    float: left
+
+    .date
+      color: #777
+      font-size: 10px
+      line-height: 12px
 
   .annotation
+    +clearfix
     font-size: 14px
-    line-height: 22px
-    margin: 10px 0
+    line-height: 20px
+    padding: 10px 0 0 0
+    width: 354px
 
-  .image
-    margin: 10px 0 0 0
-    display: block
+    a
+      display: block
+      margin: 0 0 5px 0
+
+      img
+        display: block
+
+
+      &.js-video-preview
+        position: relative
+
+        &:hover
+          &:after
+            opacity: 1
+
+        &:after
+          background: image_url('public/youtube.png')
+          content: ''
+          display: block
+          height: 32px
+          left: 50%
+          margin-left: -16px
+          margin-top: -16px
+          opacity: 0.5
+          position: absolute
+          top: 50%
+          width: 32px
