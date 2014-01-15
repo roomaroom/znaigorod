@@ -10,15 +10,15 @@
               <%= link_to t('my.send_to_public'), publish_my_post_path(@post), :method => :put, :class => 'button change_state',
                 :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
 
-              <%= link_to poster_my_post_path(@post), :class => 'button change_poster' do %>
+              <%= link_to poster_my_post_path(@post), :class => 'button change_poster', :title => 'Изменить постер' do %>
                 <span></span>
               <% end %>
 
-              <%= link_to edit_my_post_path(@post), :class => 'button change_post' do %>
+              <%= link_to edit_my_post_path(@post), :class => 'button change_post', :title => 'Редактировать пост' do %>
                 <span></span>
               <% end %>
 
-              <%= link_to my_post_path(@post), :method => :delete, :class => 'button remove_post',
+              <%= link_to my_post_path(@post), :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
                 :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
                 <span></span>
               <% end %>
@@ -27,11 +27,11 @@
               <%= link_to 'В черновики', draft_my_post_path(@post), :method => :put, :class => 'button change_state',
                 :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
 
-              <%= link_to poster_my_post_path(@post), :class => 'button change_poster' do %>
+              <%= link_to poster_my_post_path(@post), :class => 'button change_poster', :title => 'Изменить постер' do %>
                 <span></span>
               <% end %>
 
-              <%= link_to edit_my_post_path(@post), :class => 'button change_post' do %>
+              <%= link_to edit_my_post_path(@post), :class => 'button change_post', :title => 'Редактировать пост' do %>
                 <span></span>
               <% end %>
             <% end %>
