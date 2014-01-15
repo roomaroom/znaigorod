@@ -9,8 +9,9 @@
         </h2>
       </tr>
 
-      <% materials = materials.first if @account.gender == 'male' %>
-      <% materials = materials.second if @account.gender == 'female' %>
+      <% materials = materials.third if @account.gender == 'undefined' %>
+      <% materials = materials.first if @account.gender == 'female' %>
+      <% materials = materials.second if @account.gender == 'male' %>
 
       <% materials.each_with_index do |material, index| %>
         <% if (index + 1).odd? %>

@@ -3,7 +3,7 @@
 
     <% unless materials.blank? %>
       <% if materials.first.is_a?(Array) && @account.account_settings.dating? %>
-        <%= render(partial: "site_digest_mailer/send_digest_account", :locals => { :materials => materials }) unless @account.gender == 'undefined' %>
+        <%= render(partial: "site_digest_mailer/send_digest_account", :locals => { :materials => materials }) %>
       <% else %>
         <%= render(partial: "site_digest_mailer/send_digest_main", :locals => { :materials => materials }) %>
       <% end %>

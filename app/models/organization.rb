@@ -217,7 +217,7 @@ class Organization < ActiveRecord::Base
    "#{title}, #{address}"
   end
 
-  def as_json(options)
+  def as_json
     super(:only => :id, :methods => [:term, :latitude, :longitude])
   end
 

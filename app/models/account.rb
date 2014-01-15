@@ -59,6 +59,11 @@ class Account < ActiveRecord::Base
   scope :with_email, where('email is not null')
   scope :with_email_and_stat_digest, where('email is not null').includes(:account_settings).where('account_settings.statistics_digest = ?', true)
   scope :with_email_and_pesonal_digest, where('email is not null').includes(:account_settings).where('account_settings.personal_digest = ?', true)
+  scope :with_email_and_site_digest, where('email is not null').includes(:account_settings).where('account_settings.site_digest = ?', true)
+  scope :with_public_invitations, joins(:invitations).group('accounts.id, invitations.invited_id').having('count(invitations.id) > ? and invitations.invited_id is null', 0)
+  scope :with_rating, where('rating is not null')
+  scope :males, where(:gender => :male)
+  scope :females, where(:gender => :female)
 
   has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
   alias_attribute :file_url, :avatar_url
@@ -99,11 +104,7 @@ class Account < ActiveRecord::Base
   end
 
   def limit_is_reached?
-    if Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count < 10
-      false
-    else
-      true
-    end
+    Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count >= 10
   end
 
   def remove_comments

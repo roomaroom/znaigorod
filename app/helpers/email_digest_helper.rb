@@ -123,7 +123,7 @@ module EmailDigestHelper
             result << organization_text(material) + "\n\n" if materials.first.is_a?(Organization)
           end
         else
-          result << account_text(materials, account) + "\n\n" unless account.gender == 'undefined'
+          result << account_text(materials, account) + "\n\n" if account.account_settings.dating?
         end
       end
     end
@@ -235,8 +235,9 @@ module EmailDigestHelper
   def account_text(materials, account)
     result = ""
 
-    materials = materials.first if account.gender == 'male'
-    materials = materials.second if account.gender == 'female'
+    materials = materials.first if account.gender == 'female'
+    materials = materials.second if account.gender == 'male'
+    materials = materials.third if account.gender == 'undefined'
 
     materials.each_with_index do |material, index|
       result << material.title + "\n"

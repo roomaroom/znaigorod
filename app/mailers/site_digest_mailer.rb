@@ -5,10 +5,12 @@ class SiteDigestMailer < ActionMailer::Base
   add_template_helper(EmailDigestHelper)
 
   def send_digest(account, digest)
-    @digest = digest
-    @account = account
     @type = "site_digest"
+    @account = account
+    @digest = digest
+
     mail(:to => account.email, :subject => t("notice_mailer.site_digest")).deliver!
+
   end
 
 end
