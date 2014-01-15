@@ -84,8 +84,11 @@ class Ability
       can [:new, :create, :index, :edit, :update], GalleryImage if user.persisted?
 
       can [:destroy, :destroy_all], GalleryImage do |gallery_image|
-        if gallery_image.attachable.class.name == 'Account'
+        case gallery_image.attachable
+        when Account
           gallery_image.attachable.users.first == user
+        when Post
+          gallery_image.attachable.account == user.account
         else
           gallery_image.attachable.state != 'pending' && gallery_image.attachable.user == user
         end
