@@ -1,31 +1,34 @@
 <% content_for :content do %>
   <% @digest.each do |materials| %>
 
-    <tr class="solid_border">
-      <td class="without-padding">
-        <table class="custom_column_width columns">
-          <tr>
-            <h2 class="by_center">
+    <% unless materials.flatten.blank? %>
+      <tr class="solid_border">
+        <td class="without-padding">
+          <table class="custom_column_width columns">
+            <tr>
+              <h2 class="by_center">
 
-              <%= t "notice_mailer.afisha_statistics" if materials.first.is_a?(Afisha) %>
-              <%= t "notice_mailer.discount_statistics" if materials.first.is_a?(Discount) %>
+                <%= t "notice_mailer.afisha_statistics" if materials.first.is_a?(Afisha) %>
+                <%= t "notice_mailer.discount_statistics" if materials.first.is_a?(Discount) %>
 
-            </h2>
-          </tr>
+              </h2>
+            </tr>
 
-          <% materials.each do |material| %>
-            <% unless material == materials.last %>
-              <tr class="dashed_border">
-            <% else %>
-              <tr>
-            <% end %>
-                <%= render(partial: "statistics_digest_mailer/#{material.class.name.underscore}_statistics", :locals => { :material => material }) %>
-              </tr>
-          <% end %>
+              <% materials.each do |material| %>
+                <% unless material == materials.last %>
+                  <tr class="dashed_border">
+                <% else %>
+                  <tr>
+                <% end %>
 
-        </table>
-      </td>
-    </tr>
+                  <%= render(partial: "statistics_digest_mailer/#{material.class.name.underscore}_statistics", :locals => { :material => material }) %>
+                </tr>
+              <% end %>
+
+          </table>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
 
 <% end %>

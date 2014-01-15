@@ -57,6 +57,7 @@ class Account < ActiveRecord::Base
   scope :ordered, -> { order('ID ASC') }
 
   scope :with_email, where('email is not null')
+  scope :with_email_and_stat_digest, where('email is not null').includes(:account_settings).where('account_settings.statistics_digest = ?', true)
 
   has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
   alias_attribute :file_url, :avatar_url

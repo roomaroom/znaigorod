@@ -4,10 +4,12 @@ class StatisticsDigestMailer < ActionMailer::Base
   add_template_helper(ImageHelper)
   add_template_helper(EmailDigestHelper)
 
-  def send_digest(account, digest)
-    @digest = digest
+  def send_digest(account)
     @type = "statistics_digest"
-    mail(:to => account.email, :subject => t("notice_mailer.statistics_digest")).deliver!
+
+    @digest = SendStatisticsDigest.collection_for_email(account)
+
+    mail(:to => account.email, :subject => t("notice_mailer.statistics_digest")) unless @digest.flatten.blank?
   end
 
 end
