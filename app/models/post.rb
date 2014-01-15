@@ -44,9 +44,8 @@ class Post < ActiveRecord::Base
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
   alias_attribute :file_url, :poster_image_url
 
-  serialize :kind, Array
-  enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
-  before_save :set_kinds
+  #serialize :kind, Array
+  #enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
 
   serialize :categories, Array
   enumerize :categories, in: [:avto, :beaty, :other], multiple: true, predicates: true
@@ -64,7 +63,7 @@ class Post < ActiveRecord::Base
 
     string :state
     string(:category, :multiple => true) { categories.map(&:value) }
-    string(:kind, :multiple => true) { kind.map(&:value) }
+    string(:kind, :multiple => true) { kinds }
 
     text :content, :more_like_this => true
     text :title,   :more_like_this => true,  :stored => true
@@ -137,16 +136,19 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def set_kinds
-    self.kind = [:with_gallery, :with_video]
-  end
-
   def need_poster?
     !(need_poster == 'false')
   end
 
   def set_poster
     self.poster_image = Posts::ContentParser.new(content).poster
+  end
+
+  def kinds
+    [].tap do |kinds|
+      kinds << :with_gallery if gallery_images.any?
+      kinds << :with_video if content_parser.youtube_videos.any?
+    end
   end
 end
 

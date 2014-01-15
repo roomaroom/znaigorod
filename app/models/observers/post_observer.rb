@@ -2,6 +2,8 @@
 
 class PostObserver < ActiveRecord::Observer
   def after_to_published(post, transition)
+    post.index!
+
     if post.account.present?
       MyMailer.delay(:queue => 'mailer').mail_new_published_post(post) unless post.account.is_admin?
       Feed.create(:feedable => post, :account => post.account, :created_at => post.created_at, :updated_at => post.updated_at)
