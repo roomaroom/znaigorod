@@ -13,7 +13,9 @@
     </ul>
   </div>
   <div class='filter_header'>
-    <% if @presenter.page_header.blank? %>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% elsif @presenter.page_header.blank? %>
       <%= t('meta.organizations.page_header') %>
     <% else %>
       <%= @presenter.page_header %>
@@ -48,7 +50,11 @@
 
 <% category = @presenter.categories_links.select{|c| c[:selected]}.first[:klass] %>
 
-<% if t("meta.#{category}.introduction", default: '').present? %>
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
+  </div>
+<% elsif t("meta.#{category}.introduction", default: '').present? %>
   <div class='introduction'>
     <%= t("meta.#{category}.introduction").as_html %>
   </div>
