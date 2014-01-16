@@ -8,8 +8,16 @@ else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
 
+every :thursday, :at => '8:00 am' do
+  rake 'send_digest:site'
+end
+
 every :day, :at => '6:00 am' do
-  rake 'send_statistics'
+  rake 'send_digest:personal'
+end
+
+every :day, :at => '6:30 am' do
+  rake 'send_digest:statistics'
 end
 
 every :day, :at => '7:15 am' do
