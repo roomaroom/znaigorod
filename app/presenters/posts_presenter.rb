@@ -174,17 +174,17 @@ class PostsPresenter
 
   # TODO
   def page_title
-    searcher_params[:kind].present? ? I18n.t("meta.discount.#{searcher_params[:kind]}.title") : I18n.t('meta.discount.title')
+    "Find me at #{__FILE__}:#{__LINE__}"
   end
 
   # TODO
   def meta_description
-    I18n.t("meta.discount.description", default: '')
+    "Find me at #{__FILE__}:#{__LINE__}"
   end
 
   # TODO
   def meta_keywords
-    I18n.t("meta.discount.keywords", default: '')
+    "Find me at #{__FILE__}:#{__LINE__}"
   end
 
   private
