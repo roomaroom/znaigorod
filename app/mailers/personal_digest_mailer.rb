@@ -4,13 +4,12 @@ class PersonalDigestMailer < ActionMailer::Base
   add_template_helper(ImageHelper)
   add_template_helper(EmailDigestHelper)
 
-  def send_digest(account)
-    visit_period = 1.day
+  def send_digest(account, digest)
     @type = "new_notifications"
-
-    @digest = SendPersonalDigest.collection_for_email(account, visit_period)
     @account = account
-    mail(:to => account.email, :subject => t("notice_mailer.personal_digest")) unless @digest.flatten.blank?
+    @digest = digest
+
+    mail(:to => account.email, :subject => t("notice_mailer.personal_digest")).deliver! unless @digest.flatten.blank?
 
   end
 

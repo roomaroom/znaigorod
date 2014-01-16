@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-class SendPersonalDigest
+class PersonalDigest
 
-  attr_accessor :digest, :account
+  attr_accessor :digest, :account, :period
 
-  def self.collection_for_email(account, period)
+  def initialize(account, period)
     @account = account
     @period = period
     @digest = [
@@ -16,7 +16,7 @@ class SendPersonalDigest
     ].compact
   end
 
-  def self.invitations
+  def invitations
     invitations = []
     invite = Invitation.where(['invited_id = ? and created_at > ?', @account.id, Time.zone.now - @period])
     invite.each do  |i|
@@ -27,11 +27,11 @@ class SendPersonalDigest
     invitations
   end
 
-  def self.private_messages
+  def private_messages
     @account.private_messages.where("state = 'unread' and created_at > ?", Time.zone.now - @period)
   end
 
-  def self.comment_likes
+  def comment_likes
     likes = []
     notifications = NotificationMessage.where("state = 'unread' and " +
                                               "messageable_type = 'Vote' and " +
@@ -46,7 +46,7 @@ class SendPersonalDigest
     likes
   end
 
-  def self.comment_answers
+  def comment_answers
     comments = []
     notifications = NotificationMessage.where("state = 'unread' and " +
                                               "messageable_type = 'Comment' and " +
@@ -62,7 +62,7 @@ class SendPersonalDigest
     comments
   end
 
-  def self.material_comments
+  def material_comments
     comments = []
 
     notifications = NotificationMessage.where("state = 'unread' and " +

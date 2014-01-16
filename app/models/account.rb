@@ -56,10 +56,10 @@ class Account < ActiveRecord::Base
 
   scope :ordered, -> { order('ID ASC') }
 
-  scope :with_email, where('email is not null')
-  scope :with_email_and_stat_digest, where('email is not null').includes(:account_settings).where('account_settings.statistics_digest = ?', true)
-  scope :with_email_and_pesonal_digest, where('email is not null').includes(:account_settings).where('account_settings.personal_digest = ?', true)
-  scope :with_email_and_site_digest, where('email is not null').includes(:account_settings).where('account_settings.site_digest = ?', true)
+  scope :with_email, where("email is not null and email != ''")
+  scope :with_statistics_digest, includes(:account_settings).where('account_settings.statistics_digest = ?', true)
+  scope :with_personal_digest, includes(:account_settings).where('account_settings.personal_digest = ?', true)
+  scope :with_site_digest, includes(:account_settings).where('account_settings.site_digest = ?', true)
   scope :with_public_invitations, joins(:invitations).group('accounts.id, invitations.invited_id').having('count(invitations.id) > ? and invitations.invited_id is null', 0)
   scope :with_rating, where('rating is not null')
   scope :males, where(:gender => :male)

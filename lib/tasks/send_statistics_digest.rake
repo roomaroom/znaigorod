@@ -10,7 +10,7 @@ task :send_statistics_digest => :environment do
 
   puts "Sending of the afisha and discounts statistics digest. Please wait..."
 
-  accounts = Account.with_email_and_stat_digest - Role.all.map(&:user).map(&:account).uniq
+  accounts = Account.with_email.with_statistics_digest - Role.all.map(&:user).map(&:account).uniq
 
   bar = ProgressBar.new(accounts.count)
   accounts.each do |account|
