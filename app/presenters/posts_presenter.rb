@@ -23,7 +23,6 @@ class PostsPresenter
       @args = args
     end
 
-    # TODO
     def count
       HasSearcher.searcher(:posts_new, @args).total_count
     end
