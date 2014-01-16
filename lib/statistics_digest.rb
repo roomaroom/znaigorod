@@ -1,24 +1,24 @@
 
-class SendStatisticsDigest
+class StatisticsDigest
 
   attr_accessor :account, :digest
 
-  def self.collection_for_email(account)
+  def initialize(account)
     @account = account
-    @objects = [
+    @digest = [
       afisha,
       discounts,
     ].compact
   end
 
-  def self.discounts
+  def discounts
     Discount.includes(:votes, :account, :members, :comments, :page_visits)
     .where("discounts.account_id" => @account.id)
     .where('discounts.state' => "published")
     .where("discounts.ends_at >= '#{DateTime.now}' or discounts.ends_at is null")
   end
 
-  def self.afisha
+  def afisha
     Afisha.actual
     .includes(:invitations, :comments, :visits, :showings)
     .where("afisha.user_id = ?", @account.users.first.id)
