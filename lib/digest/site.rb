@@ -1,6 +1,9 @@
-# encoding: utf-8
+require 'afisha_presenter'
+require 'discounts_presenter'
+require 'accounts_presenter'
+require 'organizations_catalog_presenter'
 
-class SiteDigest
+class Digest::Site
 
   attr_accessor :digest
 

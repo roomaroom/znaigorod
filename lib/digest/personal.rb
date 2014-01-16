@@ -1,6 +1,7 @@
-# encoding: utf-8
+require 'invitation'
+require 'notification_message'
 
-class PersonalDigest
+class Digest::Personal
 
   attr_accessor :digest, :account, :period
 

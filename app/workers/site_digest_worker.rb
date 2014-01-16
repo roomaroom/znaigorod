@@ -4,7 +4,7 @@ class SiteDigestWorker
 
   def perform
     period = 1.week
-    digest = SiteDigest.new(period).digest
+    digest = Digest::Site.new(period).digest
     accounts = Account.with_email.with_site_digest.where('last_visit_at <= ?', Time.zone.now - period) -
                Role.all.map(&:user).map(&:account).uniq +
                ## NOTICE this array is contained ids of the users which have to receive digest

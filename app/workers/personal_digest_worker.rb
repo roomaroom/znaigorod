@@ -5,7 +5,7 @@ class PersonalDigestWorker
   def perform(account_id)
     visit_period = 1.day
     account = Account.find(account_id)
-    digest = PersonalDigest.new(account, visit_period).digest
+    digest = Digest::Personal.new(account, visit_period).digest
 
     PersonalDigestMailer.send_digest(account, digest)
   end
