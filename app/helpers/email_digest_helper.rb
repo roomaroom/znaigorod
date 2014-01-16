@@ -495,7 +495,8 @@ module EmailDigestHelper
         result << t("notice_mailer.discount_statistics") + "\n\n" if materials.first.is_a?(Discount)
 
         materials.each do |material|
-          result << send("#{ material.class.name.underscore }_statistics_text", material) + "\n"
+          result << send("afisha_statistics_text", material) + "\n" if materials.first.is_a?(Afisha)
+          result << send("discount_statistics_text", material) + "\n" if materials.first.is_a?(Discount)
         end
       end
     end

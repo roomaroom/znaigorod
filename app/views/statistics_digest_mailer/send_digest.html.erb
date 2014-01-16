@@ -21,7 +21,8 @@
                   <tr>
                 <% end %>
 
-                  <%= render(partial: "statistics_digest_mailer/#{material.class.name.underscore}_statistics", :locals => { :material => material }) %>
+                  <%= render(partial: "statistics_digest_mailer/afisha_statistics", :locals => { :material => material }) if materials.first.is_a?(Afisha) %>
+                  <%= render(partial: "statistics_digest_mailer/discount_statistics", :locals => { :material => material })  if materials.first.is_a?(Discount) %>
                 </tr>
               <% end %>
 
