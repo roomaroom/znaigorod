@@ -838,21 +838,25 @@
 
     .posts_list
       li
-        width: 325px
+        width: 315px
         margin: 0
+
+        &:nth-child(3n+2)
+          margin: 0 11px
 
         .post_item
           padding: 0 10px
-          width: 305px
+          width: 293px
 
           .title
-            font-size: 14px
+            font-size: 12px
             height: 40px
             line-height: 20px
 
           .annotation
-            font-size: 12px
+            font-size: 10px
             line-height: 18px
+            width: 293px
 
     .trash
       background: url('user_menu.png') no-repeat no-repeat -9px -8px
