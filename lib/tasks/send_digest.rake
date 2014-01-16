@@ -1,4 +1,5 @@
 require 'airbrake'
+require 'optparse'
 require_relative '../../app/workers/personal_digest_worker'
 require_relative '../../app/workers/site_digest_worker'
 require_relative '../../app/workers/statistics_digest_worker'
@@ -23,7 +24,12 @@ namespace :send_digest do
   desc "Send by email site digest to users"
   task :site => :environment do
     puts "Sending of site digest. Please wait..."
-    SiteDigestWorker.perform_async
+
+    if ENV['accounts'].present?
+      args = ENV['accounts'].split(',').map(&:squish)
+    end
+
+    SiteDigestWorker.perform_async(args)
   end
 
   desc "Send by email afisha and discout statistics to users"
