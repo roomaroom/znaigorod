@@ -44,11 +44,11 @@ class Post < ActiveRecord::Base
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
   alias_attribute :file_url, :poster_image_url
 
-  #serialize :kind, Array
-  #enumerize :kind, in: [:with_gallery, :with_video], multiple: true, predicates: true
-
   serialize :categories, Array
-  enumerize :categories, in: [:avto, :beaty, :other], multiple: true, predicates: true
+  enumerize :categories,
+    in: [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],
+    multiple: true,
+    predicates: true
   normalize_attribute :categories, :with => :blank_array
 
   normalize_attribute :content, :with => [:strip, :blank]

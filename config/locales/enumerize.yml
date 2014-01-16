@@ -125,14 +125,19 @@ ru:
         canceled: Отменен
 
     post:
-      kind:
-        review: Обзор
-        photoreport: Фоторепортаж
-
       categories:
-        avto: Авто
-        beaty: Красота
-        other: Другое
+        auto:          Авто
+        sport:         Спорт
+        entertainment: Досуг и отдых
+        humor:         Юмор
+        family:        Семья, дом, дети
+        culture:       Культура
+        accidents:     Происшествия
+        animals:       Животные
+        informative:   Познавательно
+        creation:      Творчество и развитие
+        cafe:          Кафе и рестораны
+        other:         Другое
 
     notification_message:
       kind:
