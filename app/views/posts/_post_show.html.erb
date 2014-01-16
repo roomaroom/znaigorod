@@ -66,9 +66,10 @@
         <%= render :partial => 'posts/link_with' %>
       <% end %>
 
+      <h2>Похожие обзоры:</h2>
       <ul class="similar_posts">
         <% @similar_posts.each do |item| %>
-          <li><%= render :partial => 'posts/post_poster', :locals => { :post => item, :@width => '230', :@height => '144' } %></li>
+          <li><%= render :partial => 'posts/post_poster', :locals => { :post => item, :@width => '218', :@height => '136' } %></li>
         <% end %>
       </ul>
     </div>

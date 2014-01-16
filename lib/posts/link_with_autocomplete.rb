@@ -23,14 +23,14 @@ class Posts::LinkWithAutocomplete
     label << ", #{item.human_when}"
 
     {
-      :value => "#{item.class.name.underscore}_#{item.id}",
+      :value => "afisha_#{item.id}",
       :label => label
     }
   end
 
   def organization_hash(item)
     {
-      :value => "#{item.class.name.underscore}_#{item.id}",
+      :value => "organization_#{item.id}",
       :label => "#{item.title}, #{item.address}"
     }
   end
