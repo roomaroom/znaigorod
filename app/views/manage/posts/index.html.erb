@@ -1,18 +1,25 @@
-<div class="new_link">
-  <%= link_to "Добавить новый пост", new_manage_post_path('post[vfs_path]' => Post.generate_vfs_path), :class => 'new_resource' %>
+<div style="text-align: center">
+  <h1>Ведутся работы</h1>
+  <img src="http://www.lhsfna.org/LHSFNA/assets/image/older_workers_75.jpg" alt="" />
 </div>
 
-<div class="clearfix"></div>
+<% if false %>
+  <div class="new_link">
+    <%= link_to "Добавить новый пост", new_manage_post_path('post[vfs_path]' => Post.generate_vfs_path), :class => 'new_resource' %>
+  </div>
 
-<ul class="collection">
-  <% @posts.each do |post| %>
-    <li>
+  <div class="clearfix"></div>
+
+  <ul class="collection">
+    <% @posts.each do |post| %>
+      <li>
       <span class="title">
         <%= link_to post.title, manage_post_path(post) %>
       </span>
       <span class="status">
         <%= post.status? ? 'Опубликован' : 'Не опубликован' %>
       </span>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
