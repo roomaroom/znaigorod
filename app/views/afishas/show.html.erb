@@ -180,17 +180,8 @@
         <p><%= link_to "Страница события ВКонтакте", @afisha.vk_event_url, target: '_blank', rel: 'nofollow' %></p>
       <% end %>
       <%= @afisha.html_attachments %>
-      <% if @afisha.user.present? && ![2, 4, 13, 1936, 2303].include?(@afisha.user.account.id) %>
-        <p class='afisha_owner'>
-          <span>Автор:</span>
-          <%= link_to(@afisha.user.account.title, @afisha.user.account) %>
-        </p>
-      <% else %>
-        <p class='afisha_owner'>
-          <span>Автор:</span>
-          <%= link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') %>
-        </p>
-      <% end %>
+
+      <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } %>
     </div>
 
     <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>

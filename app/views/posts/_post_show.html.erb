@@ -29,6 +29,10 @@
           <%= paginate post_images %>
         <% end %>
 
+        <div class="author">
+          <%= render :partial => 'commons/author', :locals => { :account => post.account } %>
+        </div>
+
         <div class='share_and_likes'>
           <%= render :partial => 'commons/share_this' %>
         </div>
