@@ -24,6 +24,7 @@
         <% end %>
         </p>
       <% else %>
+        <%= link_to 'Добавить скидку', help_my_discounts_path, class: :new_my_afisha %>
         <%= link_to 'Добавить афишу', new_my_afisha_path, class: :new_my_afisha %>
         <span class='sign_in'>Войти:</span>
         <%= render :partial => 'commons/social_auth' %>
