@@ -16,7 +16,8 @@
   </div>
 
   <div class="annotation">
-    <%= render :partial => 'posts/poster', :locals => { :post => post } %>
+    <%= render :partial => 'posts/poster', :locals => { :post => post, :url => post_path(post) } %>
+
     <%= post.content_for_index %>
   </div>
 </div>

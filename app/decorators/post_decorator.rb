@@ -5,9 +5,15 @@ class PostDecorator < ApplicationDecorator
 
   delegate :title, :html_content, :kind, to: :post
 
+  def truncated_title(length, separator = ' ')
+    title.length > length ?
+      title.text_gilensize.truncated(length, separator) :
+      title.text_gilensize
+  end
+
   def truncated_title_link(length, options = { separator: ' ', anchor: nil })
     if title.length > length
-      h.link_to(title.text_gilensize.truncated(length, options[:separator]), h.post_path(post, anchor: options[:anchor]), :title => title)
+      h.link_to(truncated_title(length, options[:separator]), h.post_path(post, anchor: options[:anchor]), :title => title)
     else
       h.link_to(title.text_gilensize, h.post_path(post, anchor: options[:anchor]))
     end

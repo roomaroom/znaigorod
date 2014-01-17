@@ -1,11 +1,11 @@
 <% if post.poster_url? %>
-  <%= link_to image_tag(post.poster_url, :size => "#{@width}x#{@height}"), post_path(post) %>
+  <%= link_to image_tag(post.poster_url, :size => "#{@width}x#{@height}"), url %>
 <% elsif post.poster_image_url? %>
   <% if post.video_preview? %>
     <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height),
                           :size => "#{@width}x#{@height}",
                           :title => post.title, :alt => post.title),
-                post_path(post),
+                url,
                 :class => 'js-video-preview',
                 :data => { :video => { :uid => post.content_parser.youtube_videos.first.uid, :width => '700' } }
               %>
@@ -13,8 +13,8 @@
     <%= link_to image_tag(resized_image_url(post.poster_image_url, @width, @height),
                           :size => "#{@width}x#{@height}",
                           :title => post.title, :alt => post.title),
-                post_path(post) %>
+                          url %>
   <% end %>
 <% else %>
-  <%= link_to image_tag('public/post_poster_stub.jpg', :size => "#{@width}x#{@height}"), post_path(post) %>
+  <%= link_to image_tag('public/post_poster_stub.jpg', :size => "#{@width}x#{@height}"), url %>
 <% end %>

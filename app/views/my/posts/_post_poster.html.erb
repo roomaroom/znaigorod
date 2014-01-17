@@ -1,7 +1,7 @@
 <div class="item" id="ad_<%= post.id %>">
   <div class="post_item">
     <div class="title">
-      <%= post.truncated_title_link(50) %>
+      <%= link_to post.truncated_title(50), my_post_path(post) %>
     </div>
     <div class="details">
       <span class="first_line">
@@ -16,13 +16,13 @@
 
     <div class="annotation">
 
-      <%= render :partial => 'posts/poster', :locals => { :post => post } %>
+      <%= render :partial => 'posts/poster', :locals => { :post => post, :url => my_post_path(post) } %>
 
       <%= post.content_for_index %>
     </div>
 
     <div class="badges">
-      <%= link_to '', my_post_path(post), :class => 'edit_button show_tipsy', :title => 'Редактировать' %>
+      <%= link_to '', edit_my_post_path(post), :class => 'edit_button show_tipsy', :title => 'Редактировать' %>
 
       <% if post.draft? %>
         <%= link_to '', my_post_path(post), :method => :delete, :class => :destroy, :remote => true, :confirm => 'Вы уверены? Обзор будет удален без возможности восстановления', :class => 'trash show_tipsy', :title => 'Удалить' %>
