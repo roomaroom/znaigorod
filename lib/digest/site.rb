@@ -22,7 +22,8 @@ class Digest::Site
   end
 
   def actual_events
-    AfishaPresenter.new(:per_page => count, :without_advertisement => true, :has_tickets => true, :order_by => 'rating').decorated_collection.map(&:model)
+    #AfishaPresenter.new(:per_page => 100, :without_advertisement => true, :has_tickets => true, :order_by => 'rating').decorated_collection.map(&:model)
+    afisha = Afisha.where('afisha.updated_at > ?', Time.zone.now - 1.week).on_weekend.order("afisha.total_rating desc").sort_by{ |e| -e.total_rating }.first(4)
   end
 
   def new_discounts

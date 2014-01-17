@@ -72,6 +72,7 @@ class Afisha < ActiveRecord::Base
 
   scope :actual,                -> { includes(:showings).where('showings.starts_at >= ? OR (showings.ends_at is not null AND showings.ends_at > ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
   scope :archive,               -> { joins(:showings).where('showings.starts_at < ? OR (showings.ends_at is not null AND showings.ends_at < ?)', DateTime.now.beginning_of_day, Time.zone.now).uniq }
+  scope :on_weekend,            -> { includes(:showings).where('showings.starts_at >= ? and  showings.starts_at <= ?', Time.zone.now.end_of_week - 2.days, Time.zone.now.end_of_week) }
 
   normalize_attribute :image_url
 
