@@ -181,7 +181,7 @@
       <% end %>
       <%= @afisha.html_attachments %>
 
-      <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } %>
+      <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } if @afisha.user.present? %>
     </div>
 
     <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>
