@@ -3,7 +3,7 @@ require 'redcloth'
 require 'rexml/document'
 require 'rinku'
 
-def add_attributes_to_links(html)
+def add_attributes_to_links(html, options)
   fragment = Nokogiri::HTML.fragment(html.scrub)
 
   fragment.css('a').each do |a|

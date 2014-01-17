@@ -47,7 +47,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= simple_form_for resource, as: :post, url: my_post_path(resource.id) do |f| %>
+      <%= simple_form_for resource, as: :post, url: my_post_path(resource.id), :html => { :class => 'default_simple_form' } do |f| %>
         <%= hidden_field_tag :crop, true %>
         <%= f.input :need_poster, :as => :hidden, :input_html => { :value => false } %>
 
