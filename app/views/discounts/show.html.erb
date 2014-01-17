@@ -149,7 +149,7 @@
       <% end %>
     </div>
 
-    <%= render :partial => 'commons/yandex_direct' %>
+    <%= render :partial => 'commons/yandex_direct' if Rails.env.proiduction? %>
 
     <div class="share_and_likes">
       <%= render :partial => 'commons/share_and_like_this', :locals => { :url => discount_url(@discount.model) } %>
