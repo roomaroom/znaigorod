@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   include DraftPublishedStates
   include MakePageVisit
 
-  attr_accessible :content, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id
+  attr_accessible :content, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id, :state_event
 
   attr_accessible :link_with_title, :link_with_value, :link_with_reset
   attr_accessor :link_with_title, :link_with_value, :link_with_reset

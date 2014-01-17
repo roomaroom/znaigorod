@@ -1,15 +1,43 @@
-<%= javascript_include_tag 'esp-ckeditor/application' %>
-<%= javascript_include_tag 'manage/info_plugin/info_plugin' %>
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
 
-<%= simple_form_for [:manage, @post] do |f| %>
-  <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path' } %>
-  <%= f.input :title %>
-  <%= f.input :kind, as: :check_boxes %>
-  <%= f.input :content, :as => :ckeditor, :label => false %>
-  <%= f.input :tag %>
-  <%= f.input :status, :as => :boolean %>
-  <div class='actions'>
-    <%= f.submit "Сохранить" %>
-    <%= link_to 'Удалить'.html_safe, resource_path, method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
+<%= simple_form_for [:manage, @post], :html => { :class => 'my_post_form default_simple_form' } do |f| %>
+  <%= f.input :categories, :as => :check_boxes, :input_html => { :class => 'post_categories_input' } %>
+  <%= f.input :title, :input_html => { :maxlength => 140 } %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
+  <%= f.input :tag, :as => :string, :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
+
+  <%= f.input :link_with_value, :as => :hidden %>
+  <%= f.input :link_with_reset, :as => :hidden %>
+
+  <%= f.input :link_with_title,
+    :wrapper_html => { :class => @post.linked? ? :linked : :not_linked },
+    :input_html => {
+      :data => { 'autocomplete-source' => link_with_my_posts_path, :target => '#post_link_with_value', :reset => '#post_link_with_reset' },
+      :placeholder => 'Введите название заведения или мероприятия' } %>
+
+  <% if @post.linked? %>
+    <div class="input link_with_wrapper">
+      <%= label_tag 'Это пост связан с' %>
+      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+      <%= render :partial => 'posts/link_with' %>
+    </div>
+  <% end %>
+
+  <div class="submit">
+    <%= f.submit 'Сохранить', :class => 'button' %>
+    <%= link_to 'Отмена', :back %>
   </div>
 <% end %>
+
+<div class="preview_wrapper">
+  <h1>Предварительный просмотр</h1>
+  <div class="show_preview">
+    <%= render :partial => 'posts/post_show', :locals => { :post => PostDecorator.new(@post), :for_preview => true } %>
+  </div>
+</div>
+
+<div class="loader"></div>
+
+

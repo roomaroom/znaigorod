@@ -15,6 +15,7 @@
  * = require file_upload
  * = require jcrop
  * = require markitup
+ * = require tagit
  * = require public/discount_map
  * = require ./info_plugin
  * = require ./choose_file
@@ -31,5 +32,6 @@
  * = require ./contest
  * = require ./accounts_for_lottery
  * = require ./offers
+ * = require ../public/my_posts
  * = require ./main
  */
