@@ -1,9 +1,5 @@
 <div class="poster">
-  <% if feed_post.feedable.poster_url? %>
-    <%= link_to_if feed_post.feedable.published?, image_tag(resized_image_url(feed_post.feedable.poster_url, 100, 56), :size => '100x56', :title => feed_post.feedable.title, :alt => feed_post.feedable.title), post_path(feed_post.feedable) %>
-  <% else %>
-    <%= link_to_if feed_post.feedable.published?, image_tag(feed_post.feedable.poster_image.url, :size => '100x56'), post_path(feed_post.feedable) %>
-  <% end %>
+  <%= render :partial => 'posts/poster', :locals => { :post => feed_post.feedable, :url => post_path(feed_post.feedable), :@width => 105, :@height => 56 } %>
 </div>
 
 <div class="main">
