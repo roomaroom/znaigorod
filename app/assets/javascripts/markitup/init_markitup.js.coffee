@@ -1,2 +1,2 @@
 @init_markitup = () ->
-  #$('.markitup').markItUp(mySettings)
+  $('.markitup').markItUp(mySettings)
