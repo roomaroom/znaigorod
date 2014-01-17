@@ -22,7 +22,7 @@ class Digest::Site
   end
 
   def actual_events
-    afisha = Afisha.where('afisha.updated_at > ?', Time.zone.now - 1.week).on_weekend.order("afisha.total_rating desc").sort_by{ |e| -e.total_rating }.first(4)
+    afisha = Afisha.where('afisha.created_at > ? and afisha.state = ?', Time.zone.now - 1.week, 'published').on_weekend.order("afisha.total_rating desc").sort_by{ |e| -e.total_rating }.first(4)
     prepared_afisha = Afisha.where('afisha.updated_at > ?', Time.zone.now - 1.week).order("afisha.total_rating desc").sort_by{ |e| -e.total_rating }
     if afisha.count < count
       (0..(count - afisha.count - 1)).each do |i|
