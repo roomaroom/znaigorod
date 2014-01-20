@@ -11,8 +11,6 @@
     margin-bottom: 0
 
   .content
-    +border-top-left-radius
-    +border-top-right-radius
     +box-shadow(#555 0 0 3px)
     background-color: #fff
     padding: 5px
@@ -652,20 +650,21 @@
 
   +unique_content_style
 
-
 .dvorcovaya_content_wrapper
-  background: +background(linear-gradient(top, #f3eee8, #f2ebe5))
+  +background(image_url('public/sauna_dvorcovaya/tx1.png') repeat, linear-gradient(top, #50150d, #8f2611))
+  padding-top: 5px
 
   .dvorcovaya_logo
-    width: 1154px
-    height: 185px
     background: transparent image_url('public/sauna_dvorcovaya/dvorcovaya.png') no-repeat 0 top
+    height: 185px
     margin: 0 auto
+    width: 1154px
 
   +unique_content_style
 
   .content
-    background: transparent image_url('public/lazertag/content_bg.png') repeat left top
+    +box-shadow(none)
+    background: transparent image_url('public/sauna_dvorcovaya/content_bg.png') repeat left top
     color: #fff
     margin-top: -75px
 
@@ -674,12 +673,19 @@
 
     .organization_show
       .left
-        border: 1px solid #3fbbee
+
+        .social_actions, .offers_wrapper, .image
+          background-color: transparent
+          +background(linear-gradient(top, rgba(108,48,38, 0.1), rgba(148,65,51, 0.5)))
+          border: 1px solid #b3503d
 
         .user_actions
-          border-bottom: 1px solid #3fbbee
+          border-bottom: 1px solid #b3503d
 
       .center
+        .share_and_likes
+          border-bottom: 1px solid #b3503d
+
         .phone_wrapper
           background: transparent image_url('public/lazertag/icon_phone.png') no-repeat 0 4px
 
@@ -689,8 +695,16 @@
 
 
         .suborganization_info
+          .sauna_hall_info
+            .sauna_hall_header
+              background-color: rgba(157,68,52, 0.7)
+              .title
+                background: #ce5b49
+                &:after
+                  border-left-color: #ce5b49
+
           > .title
-            background-color: #1c272b
+            background-color: rgba(157,68,52, 0.7)
 
           &.afisha_details .posters .item .title
             background-color: transparent
@@ -711,12 +725,11 @@
 
       .right
         .wrapper
-          border: 1px solid #3fbbee
+          border: 1px solid #b3503d
 
           .yandex_map
-            background: transparent
-            border-bottom: 1px solid #3fbbee
+            +background(linear-gradient(top, rgba(108,48,38, 0.1), rgba(148,65,51, 0.5)))
+            border-bottom: 1px solid #b3503d
 
           .more_like_this
-            background: transparent
-
+            +background(linear-gradient(top, rgba(108,48,38, 0.1), rgba(148,65,51, 0.5)))
