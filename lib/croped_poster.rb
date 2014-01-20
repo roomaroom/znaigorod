@@ -3,23 +3,25 @@
 module CropedPoster
   extend ActiveSupport::Concern
 
-  included do
-    attr_accessible :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
-      :set_region,
-      :poster_image
+  module ClassMethods
+    def has_croped_poster(min_width: 300, min_height: 300)
+      attr_accessible :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
+        :set_region,
+        :poster_image
 
-    attr_accessor :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
-      :set_region
+      attr_accessor :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
+        :set_region
 
-    has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+      has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
-    validates_attachment :poster_image, :presence => true, :content_type => {
-      :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
-      :message => 'Изображение должно быть в формате jpeg, jpg или png' },             :if => :poster_image?
+      validates_attachment :poster_image, :presence => true, :content_type => {
+        :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
+        :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :poster_image?
 
-    validates :poster_image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :poster_image?
+        validates :poster_image, :dimensions => { :width_min => min_width, :height_min => min_height }, :if => :poster_image?
 
-    after_validation :set_poster_url, :if => :set_region?
+        after_validation :set_poster_url, :if => :set_region?
+    end
   end
 
   def poster_image_original_dimensions

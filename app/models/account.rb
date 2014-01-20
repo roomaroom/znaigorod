@@ -55,6 +55,8 @@ class Account < ActiveRecord::Base
   validates_email_format_of :email, :allow_nil => true
   normalize_attribute :email, :with => [:strip, :blank]
 
+  has_croped_poster
+
   scope :dating,  -> { account_settings.dating? }
   scope :ordered, -> { order('ID ASC') }
 

@@ -52,6 +52,8 @@ class Discount < ActiveRecord::Base
 
   normalize_attribute :kind, :with => :blank_array
 
+  has_croped_poster
+
   alias_attribute :title_ru,       :title
   alias_attribute :description_ru, :description
 

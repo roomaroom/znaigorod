@@ -41,6 +41,8 @@ class Post < ActiveRecord::Base
     false
   end
 
+  has_croped_poster min_width: 353, min_height: 199
+
   has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
   alias_attribute :file_url, :poster_image_url
 
