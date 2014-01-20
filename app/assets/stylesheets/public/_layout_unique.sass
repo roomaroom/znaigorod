@@ -651,3 +651,72 @@
     margin: 0 auto
 
   +unique_content_style
+
+
+.dvorcovaya_content_wrapper
+  background: +background(linear-gradient(top, #f3eee8, #f2ebe5))
+
+  .dvorcovaya_logo
+    width: 1154px
+    height: 185px
+    background: transparent image_url('public/sauna_dvorcovaya/dvorcovaya.png') no-repeat 0 top
+    margin: 0 auto
+
+  +unique_content_style
+
+  .content
+    background: transparent image_url('public/lazertag/content_bg.png') repeat left top
+    color: #fff
+    margin-top: -75px
+
+    a
+      color: #3ebcee
+
+    .organization_show
+      .left
+        border: 1px solid #3fbbee
+
+        .user_actions
+          border-bottom: 1px solid #3fbbee
+
+      .center
+        .phone_wrapper
+          background: transparent image_url('public/lazertag/icon_phone.png') no-repeat 0 4px
+
+        .photogallery
+          .jcarousel-item a
+            background-color: #1c272b
+
+
+        .suborganization_info
+          > .title
+            background-color: #1c272b
+
+          &.afisha_details .posters .item .title
+            background-color: transparent
+
+        .comment_form
+          div.text
+            border: none !important
+            padding: 0
+
+        .comment_item
+          .comment_wrapper
+            &:hover, &.active
+              background: none
+
+            .votes_wrapper
+              .like_box
+                color: #222
+
+      .right
+        .wrapper
+          border: 1px solid #3fbbee
+
+          .yandex_map
+            background: transparent
+            border-bottom: 1px solid #3fbbee
+
+          .more_like_this
+            background: transparent
+
