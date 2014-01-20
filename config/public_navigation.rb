@@ -36,7 +36,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { params[:controller] == 'afishas' } do |afisha|
       Afisha.kind.values.each do |item|
-        afisha.item item, I18n.t("enumerize.afisha.kind.#{item}") ,send("#{item.pluralize}_path")
+        afisha.item "afisha_#{item}", I18n.t("enumerize.afisha.kind.#{item}") ,send("#{item.pluralize}_path")
       end
     end
 
@@ -45,7 +45,7 @@ SimpleNavigation::Configuration.run do |navigation|
       Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind|
         organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path") do |category|
           "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.each do |link|
-          category.item link[:klass], link[:title], send(link[:url])
+          category.item "#{suborganization_kind}_#{link[:klass]}", link[:title], send(link[:url])
         end
         end
       end
@@ -53,7 +53,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' } do |discount|
       Discount.kind.values.each do |item|
-        discount.item item, I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
+        discount.item "discounts_#{item}", I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
       end
     end
 
