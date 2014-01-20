@@ -23,6 +23,15 @@ post:
       content_type: 'post'
       replaced_count: 4
 
+discount:
+  places:
+    '1.1':
+      from: '2013-10-10 00:00'
+      to: '2015-01-01 00:00'
+      content_type: 'discount'
+      discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
+      replaced_count: 1
+
 main_page:
   afisha:
     '0':
@@ -36,5 +45,5 @@ main_page:
   discounts:
     '0':
       from: '2014-01-15 12:30'
-      to: '2014-01-16 18:30'
-      discount_slug: 'skidki-na-obuchenie-za-rubezhom--2'
+      to: '2015-01-16 18:30'
+      discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
