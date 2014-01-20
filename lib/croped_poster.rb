@@ -5,6 +5,8 @@ module CropedPoster
 
   module ClassMethods
     def has_croped_poster(min_width: 300, min_height: 300)
+      @min_width, @min_height = min_width, min_height
+
       attr_accessible :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
         :set_region,
         :poster_image
@@ -18,9 +20,17 @@ module CropedPoster
         :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
         :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :poster_image?
 
-        validates :poster_image, :dimensions => { :width_min => min_width, :height_min => min_height }, :if => :poster_image?
+      validates :poster_image, :dimensions => { :width_min => min_width, :height_min => min_height }, :if => :poster_image?
 
-        after_validation :set_poster_url, :if => :set_region?
+      after_validation :set_poster_url, :if => :set_region?
+    end
+
+    def min_width
+      @min_width
+    end
+
+    def min_height
+      @min_height
     end
   end
 

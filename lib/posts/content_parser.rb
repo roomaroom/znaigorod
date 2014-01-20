@@ -77,14 +77,12 @@ class Posts::ContentParser
 
     def image_for_poster
       @image_for_poster ||= begin
-                              min = 300
-
                               images.each do |image|
                                 next unless image.dimensions
 
                                 width, height = image.dimensions.width, image.dimensions.height
 
-                                return @image_for_poster = image if width >= min && height >= min
+                                return @image_for_poster = image if width >= Post.min_width && height >= Post.min_height
                               end
 
                               nil

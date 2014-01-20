@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 
   attr_accessible :need_poster
   attr_accessor :need_poster
-  before_save :set_poster, :if => :need_poster?
+  before_save :set_poster, :if => :need_poster?, :unless => :poster_url?
 
   belongs_to :account
   belongs_to :afisha
@@ -139,7 +139,7 @@ class Post < ActiveRecord::Base
   end
 
   def need_poster?
-    !(need_poster == 'false')
+    need_poster == 'true'
   end
 
   def set_poster
