@@ -1,4 +1,9 @@
-<%= hit.result_decorator.annotation_image(88, 88) if hit.result_decorator.annotation_image? %>
+<div class="image">
+  <%= link_to hit.result_decorator.show_url do %>
+    <%= image_tag(hit.result_decorator.annotation_image(88, 88), :size => '88x88', :alt => hit.title) %>
+  <% end %>
+</div>
+
 <%= link_to hit.title, hit.result_decorator.show_url, class: :title %>
 
 <div class="info">

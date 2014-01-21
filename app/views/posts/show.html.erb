@@ -1,3 +1,19 @@
 <% content_for :page_title, "#{@post.title}. #{t('meta.default.title')}" %>
 
+<% content_for :extra_meta do %>
+  <meta property='og:site_name' content='Афиша Томска, кафе, рестораны, бары, сауны, театры, клубы, знакомства - ЗнайГород' />
+  <meta property='og:title' content='<%= @post.title %>' />
+  <meta property='og:description' content='<%= @post.description.text_gilensize.truncated(130, nil) %>' />
+  <meta property='og:url' content='<%= @post.show_url %>' />
+  <meta property='og:image' content='<%= @post.annotation_image(640, 480) %>' />
+  <meta name='image' content='<%= @post.annotation_image(640, 480) %>' />
+  <link rel='image_src' href='<%= @post.annotation_image(640, 480) %>' />
+  <meta name='twitter:card' content='summary'>
+  <meta name='twitter:site' content='@znaigorod'/>
+  <meta name='twitter:url' content='<%= @post.show_url %>'/>
+  <meta name='twitter:title' content='<%= @post.title %>'/>
+  <meta name='twitter:description' content='<%= @post.description.text_gilensize.truncated(80, nil) %>'/>
+  <meta name='twitter:image' content='<%= @post.annotation_image(640, 480) %>'/>
+<% end %>
+
 <%= render :partial => 'post_show', :locals => { :post => @post } %>

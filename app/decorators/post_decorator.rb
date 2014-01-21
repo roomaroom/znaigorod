@@ -23,13 +23,13 @@ class PostDecorator < ApplicationDecorator
     @show_url ||= h.post_url(post)
   end
 
-  def annotation_image?
-    return true if gallery_images.any?
-  end
-
   def annotation_image(width, height)
-    h.link_to h.post_path(post) do
-      h.content_tag :div, h.image_tag(h.resized_image_url(gallery_images.first.file_url, width, height), size: "#{width}x#{height}", alt: post.title.gilensize), class: :image
+    if post.poster_url?
+      post.poster_url
+    elsif post.poster_image_url?
+      h.resized_image_url(post.poster_image_url, width, height)
+    else
+      'public/post_poster_stub.jpg'
     end
   end
 
