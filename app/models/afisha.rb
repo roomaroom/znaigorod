@@ -230,7 +230,7 @@ class Afisha < ActiveRecord::Base
   end
 
   def organization
-    showings.map(&:organization).uniq.first
+    organizations.first
   end
 
   alias_method :address_ru, :address
