@@ -1,5 +1,5 @@
 <div class="poster">
-  <%= render :partial => 'posts/poster', :locals => { :post => feed_post.feedable, :url => post_path(feed_post.feedable), :@width => 105, :@height => 56 } %>
+  <%= render :partial => 'posts/poster', :locals => { :post => PostDecorator.new(feed_post.feedable), :url => post_path(feed_post.feedable), :@width => 105, :@height => 56 } %>
 </div>
 
 <div class="main">
