@@ -53,6 +53,7 @@ group :default do
   gem 'paperclip-elvfs'
   gem 'pg'
   gem 'progress_bar'
+  gem 'rack-utf8_sanitizer'
   gem 'rails'
   gem 'roadie'
   gem 'russian'

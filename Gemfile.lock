@@ -327,6 +327,8 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-utf8_sanitizer (1.1.0)
+      rack (~> 1.0)
     rails (3.2.16)
       actionmailer (= 3.2.16)
       actionpack (= 3.2.16)
@@ -534,6 +536,7 @@ DEPENDENCIES
   progress_bar
   pry
   quiet_assets
+  rack-utf8_sanitizer
   rails
   rails-erd
   roadie
