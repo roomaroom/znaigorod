@@ -11,6 +11,16 @@ module Affiches
       expose (:url)         { |model, options| "#{Settings['app.url']}/afisha/#{model.slug}" }
       expose (:poster_url)  { |model, options| AfishaDecorator.new(model).resized_image_url(model.poster_url, 290, 390) }
     end
+
+    class AfishaWithTicket < Afisha
+      expose(:price) do |model, options|
+        model.max_tickets_discount ?
+          "#{model.max_tickets_discount.to_s} %" :
+          AfishaDecorator.new(model).human_price.gsub(/\u00AD+/,'')
+      end
+
+      expose(:place) { |model, options| AfishaDecorator.new(model).afisha_place(256, ' ', false) }
+    end
   end
 
   class API < Grape::API
@@ -28,6 +38,12 @@ module Affiches
         Afisha.search { keywords params[:term]; order_by :created_at, :desc }.results.map do |afisha|
           { :value => afisha.id, :label => "#{afisha.title}, #{afisha.place}" }
         end
+      end
+    end
+
+    resources :with_tickets do
+      get do
+        present Afisha.where(:id => AfishaPresenter.new(:has_tickets => true).collection.map(&:value)), :with => Entities::AfishaWithTicket
       end
     end
   end

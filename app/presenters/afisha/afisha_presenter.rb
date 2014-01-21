@@ -78,8 +78,6 @@ class AfishaPresenter
   end
 
   def decorated_collection
-    #raise @organizations_filter.used?.inspect
-    #raise (!@organizations_filter.used? || !for_mobile_api).inspect
     @decorated_collection ||= [].tap do |list|
       collection.each do |group|
         afisha = Afisha.find(group.value)
