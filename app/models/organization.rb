@@ -42,6 +42,7 @@ class Organization < ActiveRecord::Base
   has_many :votes,               :dependent => :destroy, :as => :voteable
 
   has_many :afisha,            :through => :showings, :uniq => true
+  has_many :certificates,      :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'Certificate' }
   has_many :discounts,         :through => :places, :source => :placeable, :source_type => 'Discount'
   has_many :offered_discounts, :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'OfferedDiscount' }
   has_many :sauna_halls,       :through => :sauna
@@ -247,7 +248,7 @@ class Organization < ActiveRecord::Base
   end
 
   def self.grouped_collection_for_select
-    organizations = Organization.where(:organization_id => nil).order(:title)
+    Organization.where(:organization_id => nil).order(:title)
   end
 
   def html_description

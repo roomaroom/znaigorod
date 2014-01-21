@@ -102,6 +102,8 @@
       </ul>
     <% end %>
 
+    <%= render :partial => 'organizations/discounts', :locals => { :collection => @certificates } %>
+
     <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
   </div>
 

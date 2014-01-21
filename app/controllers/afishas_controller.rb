@@ -30,6 +30,8 @@ class AfishasController < ApplicationController
     @afisha.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     @visits = @afisha.visits.page(1)
     @bet = @afisha.bets.build
+    @certificates = @afisha.organization ? DiscountsPresenter.new(:organization_id => @afisha.organization.id, :type => 'certificate').decorated_collection : []
+
     respond_to do |format|
       format.html
     end

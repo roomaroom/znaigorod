@@ -1,0 +1,139 @@
+.certificates
+  .posters
+    li
+      margin: 0 0 10px 0
+
+    .item
+      border: 1px solid #ccc
+      height: 222px
+      margin: 0 auto
+      padding: 1px 0 1px 0
+      width: 208px
+
+      .title
+        display: table-cell
+        height: 38px
+        padding: 0 3px
+        text-align: center
+        vertical-align: middle
+        width: 208px
+
+      .image
+        +clearfix
+        border: none
+        height: 155px
+        padding: 0
+        margin: 0
+        position: relative
+        width: 208px
+
+        .for_sale
+          +button-style
+          display: none
+          font-size: 12px
+          left: 52px
+          padding: 2px 15.5px 3px
+          position: absolute
+          text-align: center
+          top: 50px
+          width: 75px
+
+          &:active
+            padding: 3px 15.5px 2px
+
+        .details
+          color: #000
+
+        .first_line
+          bottom: 7px
+
+        .first_line
+          display: none
+          font-size: 11px
+          left: 0
+          position: absolute
+          width: 100%
+
+          span
+            background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
+            cursor: help
+            display: block
+            float: left
+            padding-left: 25px
+            width: 22px
+
+            &.to_go
+              background-position: 12px 3px
+            &.comments
+              background-position: 5px -36px
+            &.likes
+              background-position: 12px -57px
+            &.visits
+              background-position: 6px -77px
+
+        &:hover
+          img
+            +opacity(0.15)
+
+          .first_line,
+          .for_sale
+            display: block
+
+      .info
+        +clearfix
+        letter-spacing: 0px
+        height: 30px
+
+        span
+          color: #f60
+          font-weight: bold
+          line-height: 30px
+          font-size: 11px
+
+        strong
+          margin: 0 0 0 10px
+          font-size: 11px
+
+        em
+          font-size: 11px
+
+        .origin_price
+          +left-arrow(#ececec, #fff, #000)
+          margin: 0 0 0 10px
+
+          &:after
+            +rotate(-10deg)
+            border-top: 1px solid #000
+            content: ""
+            left: 12px
+            position: absolute
+            right: 0
+            top: 50%
+            width: 70%
+
+          em
+            font-style: normal
+            padding: 8px 0
+
+        .profit
+          font-size: 11px
+
+        .price
+          +left-arrow(#009bdb, #ececec, #fff)
+
+          em
+            font-style: normal
+            padding: 8px 0
+
+        .coupon
+          .price
+            +left-arrow(#009bdb, #fff, #fff)
+
+        .certificate
+          float: right
+
+          span
+            +inline-block
+
+    .place
+      display: none
