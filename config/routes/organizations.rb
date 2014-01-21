@@ -27,8 +27,8 @@ Znaigorod::Application.routes.draw do
   }
   resources :saunas, :only => :index
   get '/saunas/sauny', :to => redirect('/saunas')
-  get '/meals' => redirect('/kafe_i_restorany_tomska')
-  get '/kafe_i_restoran_tomska' => redirect('/kafe_tomska')
+  get '/meals' => redirect('/kafe_tomska')
+  get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
   (Organization.basic_suborganization_kinds << 'billiard').each do |kind|
     resources kind.pluralize, :only => [] do
