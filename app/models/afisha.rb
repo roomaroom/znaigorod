@@ -76,7 +76,7 @@ class Afisha < ActiveRecord::Base
 
   normalize_attribute :image_url
 
-  has_croped_poster
+  has_croped_poster min_width: 200, min_height: 269
 
   extend FriendlyId
   friendly_id :title, :use => :slugged
@@ -389,7 +389,7 @@ class Afisha < ActiveRecord::Base
       photo_vk_id = "photo#{photo.first.owner_id}_#{photo.first.pid}"
       self.update_column(:poster_vk_id, photo_vk_id)
       client.photos.edit(oid: photo.first.owner_id, photo_id: photo.first.pid, caption: self.title)
-    rescue VkontakteApi::Error => e
+    rescue
     end
   end
   # <<<<<<<<<<<< Poster to VK <<<<<<<<<<<

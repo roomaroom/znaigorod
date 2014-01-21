@@ -55,7 +55,7 @@ class Account < ActiveRecord::Base
   validates_email_format_of :email, :allow_nil => true
   normalize_attribute :email, :with => [:strip, :blank]
 
-  has_croped_poster
+  has_croped_poster min_width: 200, min_height: 200
 
   scope :dating,  -> { account_settings.dating? }
   scope :ordered, -> { order('ID ASC') }
@@ -234,7 +234,7 @@ class Account < ActiveRecord::Base
           self.friends.create(friendable: get_account(uid.to_s), friendly: true) unless self.friends_with?(get_account(uid.to_s))
         end
       end
-    rescue VkontakteApi::Error => e
+    rescue
     end
   end
 

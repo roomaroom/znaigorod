@@ -52,7 +52,7 @@ class Discount < ActiveRecord::Base
 
   normalize_attribute :kind, :with => :blank_array
 
-  has_croped_poster
+  has_croped_poster min_width: 220, min_height: 164
 
   alias_attribute :title_ru,       :title
   alias_attribute :description_ru, :description

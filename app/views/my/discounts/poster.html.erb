@@ -18,6 +18,7 @@
         <%= f.input :crop_y, :as => :hidden, :input_html => { :value => crop_y } %>
         <%= f.input :crop_width, :as => :hidden, :input_html => { :value => crop_width } %>
         <%= f.input :crop_height, :as => :hidden, :input_html => { :value => crop_height } %>
+        <%= f.input :min_width, :as => :hidden, :input_html => { :value => 220 } %>
         <%= hidden_field_tag :aspect_ratio, 390.0 / 290.0 %>
         <%= image_tag resized_image_url(resource.poster_image_url,
                                         resource.poster_image_resized_dimensions[:width],
