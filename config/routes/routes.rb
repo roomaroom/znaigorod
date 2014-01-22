@@ -72,20 +72,6 @@ Znaigorod::Application.routes.draw do
     resources :user_ratings, :only => [:new, :create, :edit, :update, :show]
   end
 
-  #Organization.basic_suborganization_kinds.each do |kind|
-    #get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
-  #end
-  #get '/entertainments' => 'suborganizations#index', :as => :billiards, :constraints => { :kind => 'entertainments' }, :defaults => { :kind => 'entertainments' }
-
-  resources :posts, :only => [:index, :show] do
-    get :draft, :on => :collection, :as => :draft
-
-    put 'change_vote' => 'votes#change_vote', :as => :change_vote
-    get 'liked' => 'votes#liked', :as => :liked
-
-    resources :comments, :only => [:new, :create, :show]
-  end
-
   resources :contests, :only => [:index, :show] do
     resources :works, :only => :show do
       put 'change_vote' => 'votes#change_vote', :as => :change_vote

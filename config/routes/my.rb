@@ -36,19 +36,6 @@ Znaigorod::Application.routes.draw do
       delete 'destroy_all', :on => :collection, :as => :destroy_all
     end
 
-    resources :posts do
-      get :available_tags, :on => :collection
-      get :link_with,      :on => :collection
-      get :poster,         :on => :member, :as => :poster
-
-      post :preview,       :on => :collection
-
-      put 'publish'  => 'posts#send_to_published', :on => :member, :as => :publish
-      put 'draft' => 'posts#send_to_draft', :on => :member, :as => :draft
-
-      resources :gallery_images, :except => [:show, :edit, :update]
-    end
-
     resources :afisha, :except => [:show], :controller => 'afishas' do
       get 'edit/step/:step' => 'afishas#edit', :defaults => { :step => 'first' }, :on => :member, :as => :edit_step
       get 'available_tags' => 'afishas#available_tags', :as => :available_tags

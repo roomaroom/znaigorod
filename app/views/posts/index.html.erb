@@ -1,14 +1,3 @@
-<% if false %>
-  <% content_for :page_title, @presenter.page_title %>
-  <% content_for :meta_keywords, @presenter.meta_keywords %>
-  <% content_for :meta_description, @presenter.meta_description %>
-
-  <% content_for :extra_meta do %>
-    <link rel='canonical' href='<%= discounts_url %>' />
-    <%= vk_meta('discount', discounts_url, 'public/vk_logotype.png') %>
-  <% end %>
-<% end %>
-
 <div class="presentation_filters posts">
   <div class="filter_header">
     <h1><%= t('meta.posts.page_header') %></h1>

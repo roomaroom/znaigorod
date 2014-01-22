@@ -14,7 +14,11 @@ class PostsPresenter
     end
 
     def path(kind: kind, category: category, order_by: order_by)
-      posts_path(:kind => kind, :category => category, :order_by => order_by)
+      return posts_path(:order_by => order_by) if kind.blank? && category.blank?
+
+      path = [category, kind].compact.join('_')
+
+      send "posts_#{path}_path", :order_by => order_by
     end
   end
 
