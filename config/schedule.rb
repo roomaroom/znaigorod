@@ -50,7 +50,7 @@ end
 
 every 3.hours do
   rake 'update_rating:all'
-  rake 'balance_notify'
+  #rake 'balance_notify'
 end
 
 every 6.hours do
