@@ -100,4 +100,12 @@ class DiscountDecorator < ApplicationDecorator
   def meta_description
     description.to_s.truncate(200, separator: ' ')
   end
+
+  def smart_path(options = {})
+    if discount.is_a?(OfferedDiscount) && discount.organizations.any?
+      h.organization_path discount.organizations.first, options
+    else
+      h.discount_path discount, options
+    end
+  end
 end

@@ -1,21 +1,25 @@
 <div class="item">
   <div class="title">
-    <%= link_to truncate(discount.title.text_gilensize, :length => 45), discount_path(discount), :title => discount.title.text_gilensize %>
+    <%= link_to truncate(discount.title.text_gilensize, :length => 45), discount.smart_path, :title => discount.title.text_gilensize %>
   </div>
 
   <div class="image">
-    <%= link_to image_tag(resized_image_url(discount.poster_url, @width, @height), :size => "#{@width}x#{@height}", :title => discount.title.text_gilensize, :alt => discount.title.text_gilensize), discount_path(discount) %>
+    <%= link_to image_tag(resized_image_url(discount.poster_url, @width, @height),
+                          :size => "#{@width}x#{@height}",
+                          :title => discount.title.text_gilensize,
+                          :alt => discount.title.text_gilensize),
+                discount.smart_path %>
 
     <%= content_tag(:div, discount.label_url, :class => :origin_url) if discount.supplier.try(:link).present? %>
 
     <% unless discount.is_a?(AffiliatedCoupon) %>
       <% if discount.is_a?(OfferedDiscount) %>
-        <%= link_to 'Предложить свою цену', discount_path(discount, :anchor => :offer_price), :class => 'for_sale offer_price' %>
+        <%= link_to 'Предложить свою цену', discount.smart_path(:anchor => :offer_price), :class => 'for_sale offer_price' %>
       <% else %>
         <% if discount.price.nil? || discount.price.zero? %>
-          <%= link_to 'Участвовать', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
+          <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
         <% else %>
-          <%= link_to 'Купить', discount_path(discount, :anchor => :buy_ticket), :class => :for_sale %>
+          <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
         <% end %>
       <% end %>
     <% else %>
