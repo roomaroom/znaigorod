@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 Znaigorod::Application.routes.draw do
   get "posts/with_gallery" => 'posts#index', :defaults => { :kind => 'with_gallery' }
   get "posts/with_video"   => 'posts#index', :defaults => { :kind => 'with_video' }

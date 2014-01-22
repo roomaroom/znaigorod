@@ -14,6 +14,8 @@ class PostsPresenter
     end
 
     def path(kind: kind, category: category, order_by: order_by)
+      return posts_path unless KindFilter.new.available.include?(kind) # fucking legacy url
+
       return posts_path(:order_by => order_by) if kind.blank? && category.blank?
 
       path = [category, kind].compact.join('_')
