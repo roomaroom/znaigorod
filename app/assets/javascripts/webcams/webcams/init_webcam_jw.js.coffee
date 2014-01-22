@@ -9,7 +9,6 @@
     "<div id='jwplayer_container'>" +
     "<video src='#{file} width=#{width} height=#{height} /></video>" +
     "</div>"
-  console.log file
   conteainer.html(html)
   jwplayer.key = 'SZeRfk9B2yiaCiIDORB62cYchqlDqQok9qZQCr1qkNg='
 
