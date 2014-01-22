@@ -62,6 +62,8 @@ module Znaigorod
 
     I18n.enforce_available_locales = false
 
+    config.middleware.insert_before "Rack::Runtime", Rack::UTF8Sanitizer
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
