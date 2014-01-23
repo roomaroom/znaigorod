@@ -2,11 +2,11 @@ afisha:
   places:
 
     '1.0':
-      from: '2013-12-26 14:30'
-      to: '2013-12-30 15:00'
+      from: '2014-01-23 16:40'
+      to: '2014-01-25 11:00'
       content_type: 'afisha'
-      afisha_slug: 'soberi-druzey-na-novyy-god-v-yorsh-i-poluchi-skidku'
-      replaced_count: 4
+      afisha_slug: 'bm-besplatnyy-otkrytyy-master-klass-biznes-molodosti-kak-sozdat-potok-klientov-v-vash-biznes'
+      replaced_count: 1
 
     '1.4':
       from: '2013-10-10 00:00'
