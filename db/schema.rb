@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140123031709) do
+ActiveRecord::Schema.define(:version => 20140123034047) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1142,11 +1142,14 @@ ActiveRecord::Schema.define(:version => 20140123031709) do
     t.integer  "contest_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "slug"
     t.integer  "vk_likes"
     t.integer  "account_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
   end
 
   add_index "works", ["account_id"], :name => "index_works_on_account_id"

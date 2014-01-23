@@ -3,7 +3,7 @@
 class Work < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :author_info, :image_url, :title, :description
+  attr_accessible :author_info, :image_url, :title, :description, :image
 
   belongs_to :account
   belongs_to :contest
@@ -11,9 +11,19 @@ class Work < ActiveRecord::Base
   has_many :votes, :as => :voteable, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  validates_presence_of :image_url
+  validates_presence_of :image_url, :unless => :image?
 
   friendly_id :title, use: :slugged
+
+  has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+
+  validates_attachment :image,
+    :presence => true,
+    :content_type => {
+      :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
+      :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :image?
+
+  validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
 
   scope :ordered, order('created_at desc')
   scope :ordered_by_likes, order('vk_likes desc')

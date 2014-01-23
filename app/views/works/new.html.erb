@@ -1,7 +1,6 @@
+<%= @work.errors.inspect %>
 <%= simple_form_for [@contest, @work] do |f| %>
-  <div>
-    тут поле для фотки
-  </div>
+  <%= f.input :image %>
 
   <%= f.submit 'Добавить' %>
 <% end %>
