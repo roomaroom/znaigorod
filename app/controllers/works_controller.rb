@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
   inherit_resources
-  actions :show
+
+  actions :new, :create, :show
+
   belongs_to :contest
 end
