@@ -5,6 +5,7 @@ class Work < ActiveRecord::Base
 
   attr_accessible :author_info, :image_url, :title, :description
 
+  belongs_to :account
   belongs_to :contest
 
   has_many :votes, :as => :voteable, :dependent => :destroy

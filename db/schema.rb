@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140114020719) do
+ActiveRecord::Schema.define(:version => 20140123031709) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1146,8 +1146,10 @@ ActiveRecord::Schema.define(:version => 20140114020719) do
     t.datetime "updated_at",  :null => false
     t.string   "slug"
     t.integer  "vk_likes"
+    t.integer  "account_id"
   end
 
+  add_index "works", ["account_id"], :name => "index_works_on_account_id"
   add_index "works", ["contest_id"], :name => "index_works_on_contest_id"
   add_index "works", ["slug"], :name => "index_works_on_slug", :unique => true
 
