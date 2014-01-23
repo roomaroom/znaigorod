@@ -13,6 +13,8 @@ class Work < ActiveRecord::Base
 
   validates_presence_of :image_url, :unless => :image?
 
+  before_validation :check_contest_actuality
+
   friendly_id :title, use: :slugged
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
@@ -39,6 +41,13 @@ class Work < ActiveRecord::Base
     self.title
   end
 
+  private
+
+  def check_contest_actuality
+    return false unless contest.actual?
+
+    true
+  end
 end
 
 # == Schema Information

@@ -25,6 +25,10 @@ class Contest < ActiveRecord::Base
   def self.generate_vfs_path
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
+
+  def actual?
+    ends_at > Time.zone.now
+  end
 end
 
 # == Schema Information

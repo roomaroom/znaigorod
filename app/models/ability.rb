@@ -18,6 +18,8 @@ class Ability
 
     can [:new, :create], Offer if user.persisted?
 
+    can [:new, :create], Work if user.persisted?
+
     can :manage, Visit do |visit|
       user.persisted? && visit.user == user
     end

@@ -20,6 +20,9 @@
   <div class='description'>
     <%= @contest.description.as_html %>
   </div>
+
+  <%= link_to 'Добавить работу', new_contest_work_path(@contest, @work), :class => 'js-add-work', :remote => true if @contest.actual? %>
+
   <div class='share_and_likes'>
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => contest_url(@contest) } %>
   </div>
