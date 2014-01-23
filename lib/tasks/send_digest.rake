@@ -1,4 +1,3 @@
-require 'airbrake'
 require 'optparse'
 require_relative '../../app/workers/personal_digest_worker'
 require_relative '../../app/workers/site_digest_worker'
@@ -34,9 +33,6 @@ namespace :send_digest do
     accounts.each do |account|
       PersonalDigestWorker.perform_async(account.id)
     end
-    message = "Personal digest sended."
-    puts message
-    Airbrake.notify(:error_class => "Rake Task", :error_message => message)
   end
 
   desc "Send by email site digest to users"
@@ -61,9 +57,6 @@ namespace :send_digest do
     accounts.each do |account|
       StatisticsDigestWorker.perform_async(account.id)
     end
-    message = "Statistics digest sending finished."
-    puts message
-    Airbrake.notify(:error_class => "Rake Task", :error_message => message)
   end
 
 end
