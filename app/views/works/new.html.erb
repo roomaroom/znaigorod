@@ -1,5 +1,5 @@
 <div class="ajaxed_item">
-  <%= simple_form_for [@contest, @work], :html => { :remote => true } do |f| %>
+  <%= simple_form_for [@contest, @work] do |f| %>
     <%= f.input :image %>
     <%= f.input :agree, :as => :boolean %>
     <%= @contest.agreement %>

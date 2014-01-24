@@ -13,7 +13,6 @@ class Work < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates_presence_of :image_url, :unless => :image?
-  #validates :image, :presence => true, :unless => :image_url
 
   before_validation :check_contest_actuality
   after_validation :check_agreement_accepted
