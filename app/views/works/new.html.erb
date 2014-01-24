@@ -1,5 +1,6 @@
 <div class="ajaxed_item">
   <%= simple_form_for [@contest, @work] do |f| %>
+    <%= f.error :base %>
     <%= f.input :image %>
     <%= f.input :agree, :as => :boolean %>
     <%= @contest.agreement %>
