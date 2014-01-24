@@ -93,7 +93,10 @@ GEM
     choice (0.1.6)
     chronic (0.10.1)
     chunky_png (1.2.8)
-    cocaine (0.4.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -229,7 +232,7 @@ GEM
     mime-types (1.25.1)
     money (5.1.1)
       i18n (~> 0.6.0)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     nested_form (0.3.1)
@@ -293,11 +296,10 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.4.0)
-    paperclip (3.4.0)
+    paperclip (3.5.2)
       activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (~> 0.4.0)
+      cocaine (~> 0.5.3)
       mime-types
     paperclip-elvfs (0.0.5.2)
       curb
@@ -531,6 +533,7 @@ DEPENDENCIES
   omniauth-yandex
   openteam-capistrano
   openteam-commons
+  paperclip
   paperclip-elvfs
   pg
   progress_bar

@@ -15,7 +15,7 @@ class Work < ActiveRecord::Base
   validates_presence_of :image_url, :unless => :image?
   validates :image, :presence => true, :unless => :image_url
 
-  #before_validation :check_contest_actuality
+  before_validation :check_contest_actuality
   after_validation :check_agreement_accepted
 
   friendly_id :title, use: :slugged
@@ -47,15 +47,15 @@ class Work < ActiveRecord::Base
   private
 
   def check_contest_actuality
-    return false unless contest.actual?
+    errors[:base] << 'Contest is not actual' unless contest.actual?
 
     true
   end
 
   def check_agreement_accepted
-    agree.inspect
+    errors[:agree] << 'Необходимо принять пользовательское соглашение' unless agree == '1'
 
-    false
+    true
   end
 end
 

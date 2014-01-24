@@ -51,6 +51,7 @@ group :default do
   gem 'omniauth-yandex'
   gem 'openteam-commons'
   gem 'paperclip-elvfs'
+  gem 'paperclip'
   gem 'pg'
   gem 'progress_bar'
   gem 'rack-utf8_sanitizer'
