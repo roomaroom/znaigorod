@@ -19,7 +19,7 @@ class Manage::Statistics::InvitationsController < Manage::ApplicationController
 
     @service_payments = ServicePayment.approved.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
 
-    @afishas = Afisha.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
+    @afishas = Afisha.published.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
     @afishas_person = @afishas.where('user_id not in (?)', Role.all.map(&:user_id))
 
     @tickets = Ticket.where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
