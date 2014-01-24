@@ -1,5 +1,7 @@
 <%= simple_form_for [@contest, @work] do |f| %>
   <%= f.input :image %>
+  <%= f.input :agree, :as => :boolean %>
+  <%= @contest.agreement %>
 
   <%= f.submit 'Добавить' %>
 <% end %>

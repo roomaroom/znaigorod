@@ -3,7 +3,8 @@
 class Work < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :author_info, :image_url, :title, :description, :image
+  attr_accessible :agree, :author_info, :image_url, :title, :description, :image
+  attr_accessor :agree
 
   belongs_to :account
   belongs_to :contest
@@ -12,8 +13,10 @@ class Work < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates_presence_of :image_url, :unless => :image?
+  validates :image, :presence => true, :unless => :image_url
 
-  before_validation :check_contest_actuality
+  #before_validation :check_contest_actuality
+  after_validation :check_agreement_accepted
 
   friendly_id :title, use: :slugged
 
@@ -47,6 +50,12 @@ class Work < ActiveRecord::Base
     return false unless contest.actual?
 
     true
+  end
+
+  def check_agreement_accepted
+    agree.inspect
+
+    false
   end
 end
 

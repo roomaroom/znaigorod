@@ -3,7 +3,7 @@
 class Contest < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :title, :description, :ends_at, :starts_at, :vfs_path, :og_description, :og_image
+  attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vfs_path, :og_description, :og_image
 
   has_many :works, :dependent => :destroy
 

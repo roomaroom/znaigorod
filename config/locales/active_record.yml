@@ -134,6 +134,7 @@ ru:
 
       contest:
         <<: *common_attributes
+        agreement: Пользовательское соглашение
         ends_at: Окончание
         published: Опубликован
         starts_at: Начало

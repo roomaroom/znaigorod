@@ -15,7 +15,5 @@ class WorksController < ApplicationController
 
   def build_resource
     super.account_id = current_user.account_id
-
-    @work
   end
 end
