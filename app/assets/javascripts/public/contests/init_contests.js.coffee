@@ -3,18 +3,36 @@
   true
 
 @init_add_work_to_contest = () ->
-  wrapper = $('.add_work_wrapper')
+  wrapper = $('.new_work_wrapper')
+
+  $.fn.append_work_from = (response) ->
+    $(this).hide()
+    $('.winners').hide()
+    $('.works').hide()
+
+    wrapper.append(response)
+
+  $.fn.submit_form = (response) ->
+    if !$(response).find('form').length
+      remove_add_work_form()
+      show_link()
+
+      $('.works').show()
+      $('.works').replaceWith(response)
 
   remove_add_work_form = () ->
-    $('.new_work', wrapper).remove()
+    $('.ajaxed_item', wrapper).remove()
 
   show_link = () ->
-    $('.js-add-work').show()
+    $('.add_work_link').show()
 
   cancel_handler = () ->
     $('.cancel', wrapper).on 'click', ->
       remove_add_work_form()
       show_link()
+
+      $('.winners').show()
+      $('.works').show()
       false
 
   wrapper.on 'ajax:success', (evt, response, status, jqXHR) ->
@@ -44,10 +62,8 @@
       return false
 
     # в респонсе пришла форма для загрузки работы
-    wrapper.append(response)
-
-    target.hide()
-    $('.works').hide()
+    switch target.attr('class')
+      when 'add_work_link' then target.append_work_from(jqXHR.responseText)
+      else target.submit_form(jqXHR.responseText)
 
     cancel_handler()
-

@@ -21,8 +21,8 @@
     <%= @contest.description.as_html %>
   </div>
 
-  <div class="add_work_wrapper">
-    <%= link_to 'Добавить работу', new_contest_work_path(@contest, @work), :class => 'js-add-work', :remote => true %>
+  <div class="new_work_wrapper">
+    <%= link_to 'Добавить работу', new_contest_work_path(@contest, @work), :class => 'add_work_link', :remote => true %>
   </div>
 
   <div class='share_and_likes'>
