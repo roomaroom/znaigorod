@@ -2,27 +2,20 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-01-23 16:40'
-      to: '2014-01-25 11:00'
-      content_type: 'afisha'
-      afisha_slug: 'bm-besplatnyy-otkrytyy-master-klass-biznes-molodosti-kak-sozdat-potok-klientov-v-vash-biznes'
-      replaced_count: 1
-
-    '1.1':
       from: '2014-01-24 12:00'
       to: '2014-02-09 12:00'
       content_type: 'afisha'
       afisha_slug: 'planetango-10-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.2':
+    '1.1':
       from: '2014-01-24 12:00'
       to: '2014-02-08 12:00'
       content_type: 'afisha'
       afisha_slug: 'gala-kontsert-festivalya-planetango-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.3':
+    '1.2':
       from: '2014-01-25 00:00'
       to: '2014-01-27 00:00'
       content_type: 'afisha'
