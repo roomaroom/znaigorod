@@ -1,3 +1,11 @@
+<% content_for :extra_meta do %>
+  <% if request.query_parameters.any? %>
+    <link rel='canonical' href='<%= request.url.split('?').first %>' />
+  <% end %>
+  <% if page_meta %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% end %>
+<% end %>
 <div class="presentation_filters posts">
   <div class="filter_header">
     <h1><%= t('meta.posts.page_header') %></h1>

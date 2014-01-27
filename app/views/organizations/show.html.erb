@@ -5,6 +5,9 @@
 <% content_for :meta_description, @organization.meta_description %>
 
 <% content_for :extra_meta do %>
+  <% if request.query_parameters.any? %>
+    <link rel='canonical' href='<%= request.url.split('?').first %>' />
+  <% end %>
   <%= @organization.tags_for_vk %>
 <% end %>
 
