@@ -39,9 +39,7 @@ class Work < ActiveRecord::Base
   end
 
   def to_feed_title
-    if self.title.empty?
-      return self.slug
-    end
+    return self.slug.to_s if self.title.blank?
     self.title
   end
 
