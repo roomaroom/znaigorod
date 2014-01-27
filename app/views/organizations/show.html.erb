@@ -121,7 +121,7 @@
     <% if @organization.social_links.present? %>
       <ul class='social_links'>
         <% @organization.social_links.each do |link| %>
-          <li><%= link_to link.title, link.url, :target => '_blank' %></li>
+          <li><%= link_to link.title, AwayLink.to(link.url), :target => '_blank' %></li>
         <% end %>
       </ul>
     <% end %>

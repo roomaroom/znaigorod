@@ -67,7 +67,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def site_link
-    h.link_to site.squish, site.squish, rel: "nofollow", target: "_blank" unless site.blank?
+    h.link_to site.squish, AwayLink.to(site.squish), rel: "nofollow", target: "_blank" unless site.blank?
   end
 
   def contact_links
