@@ -22,7 +22,7 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => contest_url(@contest) } %>
   </div>
 
-  <div class="upload_work_wrapper">
+  <div class="upload_work_wrapper" id="add_work">
     <%= simple_form_for [@contest, @work] do |f| %>
       <%= f.error :base %>
       <%= f.input :image %>
