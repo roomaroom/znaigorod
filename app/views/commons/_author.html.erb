@@ -2,6 +2,6 @@
   <span>Автор:</span>
 
   <%= account.nil? || account.is_admin? ?
-    link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') :
+    link_to('ЗнайГород (Афиша Томска)', AwayLink.to('http://vk.com/znaigorod')) :
     link_to(account.title, account) %>
 </p>
