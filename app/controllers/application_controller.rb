@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def resolve_layout
-    request.xhr? ? false : 'contests/mega_valentinka'
+    request.xhr? ? false : 'public'
   end
 
   def page
