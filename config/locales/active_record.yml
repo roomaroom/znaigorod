@@ -144,6 +144,8 @@ ru:
       work:
         <<: *common_attributes
         author_info: Информация об авторе
+        agree: Меня устраивают условия
+        image: Выберите фотографию для загрузки
 
       afisha:
         <<: *common_attributes

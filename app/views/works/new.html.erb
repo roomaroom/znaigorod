@@ -18,15 +18,25 @@
 <div class='contest <%= @contest.slug %>'>
   <%= render :partial => 'contests/description' %>
 
-  <div class="ajaxed_item">
+  <div class='share_and_likes'>
+    <%= render :partial => 'commons/share_and_like_this', :locals => { :url => contest_url(@contest) } %>
+  </div>
+
+  <div class="upload_work_wrapper">
     <%= simple_form_for [@contest, @work] do |f| %>
       <%= f.error :base %>
       <%= f.input :image %>
-      <%= f.input :agree, :as => :boolean %>
-      <%= @contest.agreement %>
 
-      <%= f.submit 'Добавить' %>
-      <%= link_to 'Отмена', '#', :class => 'cancel' %>
+      <div class="agreement_wrapper">
+        <%= f.input :agree, :as => :boolean %>
+        <%= link_to 'соглашения', '#', :class => 'agreement_link' %>
+
+        <div class="agreement_text">
+          <%= @contest.agreement %>
+        </div>
+      </div>
+
+      <%= f.submit 'Готово', :class => 'submit' %>
     <% end %>
   </div>
 </div>

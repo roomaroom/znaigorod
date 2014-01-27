@@ -77,6 +77,7 @@ $ ->
   init_offer_price() if $('.offer_price').length
   init_sweets_carousel() if $('#sweets_carousel').length
   init_contests() if $('.contest .work').length
+  init_contest_agreement() if $('.upload_work_wrapper').length
   initMyPosts() if $('.post_form').length
   initPostVideoPreview() if $('.post_item').length
 
