@@ -13,7 +13,9 @@ class Work < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates_presence_of :image_url, :unless => :image?
+  validates :account_id, :uniqueness => { :scope => :contest_id }
 
+  before_validation :check_account_work_uniquness
   before_validation :check_contest_actuality
   after_validation :check_agreement_accepted
 
@@ -53,6 +55,12 @@ class Work < ActiveRecord::Base
 
   def check_agreement_accepted
     errors[:agree] << 'Необходимо принять пользовательское соглашение' unless agree == '1'
+
+    true
+  end
+
+  def check_account_work_uniquness
+    errors[:base] << 'Можно добавить только одну работу для конкурса' if contest.accounts.include?(account)
 
     true
   end

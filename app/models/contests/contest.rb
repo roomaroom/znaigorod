@@ -7,6 +7,8 @@ class Contest < ActiveRecord::Base
 
   has_many :works, :dependent => :destroy
 
+  has_many :accounts, :through => :works, :uniq => true
+
   validates_presence_of :title
 
   scope :available, -> { where('starts_at <= ?', Time.zone.now).order('starts_at desc') }
