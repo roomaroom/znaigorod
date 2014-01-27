@@ -85,6 +85,8 @@ $ ->
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length
 
+  handleWorkAddition() if $('.new_work', '.upload_work_wrapper').length
+
   true
 
 $(window).load ->
