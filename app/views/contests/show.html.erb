@@ -16,10 +16,7 @@
 <% end %>
 
 <div class='contest <%= @contest.slug %>'>
-  <h1><%= @contest.title.excerpt %></h1>
-  <div class='description'>
-    <%= @contest.description.as_html %>
-  </div>
+  <%= render :partial => 'contests/description' %>
 
   <div class="new_work_wrapper">
     <%= link_to 'Добавить работу', new_contest_work_path(@contest, @work), :class => 'add_work_link' if @contest.actual? %>
