@@ -2,7 +2,7 @@ app:
   secret:               secret
   host:                 host.name
   port:                 8080
-  url:                  http://host.name
+  url:                  http://host.name # without / at the end
 
 solr:
   url:                  http://localhost:8982/solr
