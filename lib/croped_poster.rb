@@ -16,9 +16,10 @@ module CropedPoster
 
       has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
-      validates_attachment :poster_image, :presence => true, :content_type => {
-        :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
-        :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :poster_image?
+      # TODO
+      #validates_attachment :poster_image, :presence => true, :content_type => {
+        #:content_type => ['image/jpeg', 'image/jpg', 'image/png'],
+        #:message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :poster_image?
 
       validates :poster_image, :dimensions => { :width_min => min_width, :height_min => min_height }, :if => :poster_image?
 
