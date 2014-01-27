@@ -8,6 +8,7 @@ def add_attributes_to_links(html, options)
 
   fragment.css('a').each do |a|
     unless a['href'] =~ /znaigorod.ru/
+      a['href'] = AwayLink.to(a['href'])
       a['target'] = options[:target] if options[:target].present?
       a['rel'] = options[:rel] if options[:rel].present?
     end
