@@ -105,6 +105,7 @@
     margin: 0 10px
 
     .share_and_likes
+      border-bottom: 1px solid #ccc
       min-height: 30px
 
       .share
@@ -252,9 +253,18 @@
             margin-top: 7px
 
     .new_work_wrapper
-      margin: 20px 0
-      padding: 10px
-      background: #f1f1f1
+      margin: 15px 0
+
+      .add_work_link
+        +button-style
+        display: block
+        margin: 0 auto
+        text-align: center
+        width: 180px
+
+      a.add_work_link
+        font-size: 15px
+        line-height: 30px
 
     .works
       h2
