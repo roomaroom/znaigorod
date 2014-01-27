@@ -19,7 +19,7 @@ class AutoHtmlRenderer
       str,
       :elements => ['a', 'img', 'p', 'div', 'h2', 'h3', 'strong', 'em', 'ul', 'ol', 'li', 'iframe'],
       :attributes => {
-        :all => ['src', 'alt', 'title', 'href', 'width', 'height', 'frameborder', 'allowfullscreen']
+        :all => ['src', 'alt', 'title', 'href', 'width', 'height', 'frameborder', 'allowfullscreen', 'target', 'rel']
       }
     )
   end
