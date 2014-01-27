@@ -18,7 +18,7 @@
 <%= content_for :content do %>
   <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
   <div class='mega_valentinka'>
-    <%= link_to 'Мега валентинка. Открой свое сердце.', '#', :title => ' Мега валентинка. Открой свое сердце.', :class => 'mega_valentinka_header' %>
+    <%= link_to 'Мега валентинка. Открой свое сердце.', '/contests/megavalentinka', :title => ' Мега валентинка. Открой свое сердце.', :class => 'mega_valentinka_header' %>
     <div class='mega_valentinka_cotent'>
       <%= render :partial => 'commons/public_header' %>
       <%= render :partial => 'commons/public_content' %>
