@@ -179,7 +179,7 @@
         <p>Нет описания</p>
       <% end %>
       <% if @afisha.vk_event_url? %>
-        <p><%= link_to "Страница события ВКонтакте", @afisha.vk_event_url, target: '_blank', rel: 'nofollow' %></p>
+        <p><%= link_to "Страница события ВКонтакте", AwayLink.to(@afisha.vk_event_url), target: '_blank', rel: 'nofollow' %></p>
       <% end %>
       <%= @afisha.html_attachments %>
 
