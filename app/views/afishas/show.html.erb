@@ -35,6 +35,8 @@
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
     </div>
 
+    <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
+
     <% @afisha.discounts.published.each do |discount| %>
       <div class="offers_wrapper">
         <div class="info">
@@ -104,7 +106,6 @@
 
     <%= render :partial => 'organizations/discounts', :locals => { :collection => @certificates } %>
 
-    <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
   </div>
 
   <div class='right'>
