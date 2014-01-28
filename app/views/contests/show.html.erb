@@ -34,7 +34,7 @@
 
   <% if @works.any? %>
     <div class='works ajaxed_voteable'>
-      <h2>Участники</h2>
+      <h2>Участники (<%= @contest.works.count %>)</h2>
       <ul>
         <%= render :partial => 'works/list' %>
       </ul>
