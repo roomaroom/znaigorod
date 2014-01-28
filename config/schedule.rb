@@ -37,7 +37,6 @@ every 6.hours do
 end
 
 every :day, :at => '5am' do
-  rake 'refresh_sitemaps'
   rake 'account:get_friends'
   rake 'invitations:destroy_irrelevant'
 end
@@ -51,10 +50,6 @@ end
 every 3.hours do
   rake 'update_rating:all'
   #rake 'balance_notify'
-end
-
-every 6.hours do
-  rake 'sitemap:refresh refresh_sitemaps'
 end
 
 every 5.minutes do
