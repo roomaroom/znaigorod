@@ -45,8 +45,8 @@ SimpleNavigation::Configuration.run do |navigation|
       Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind|
         organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path") do |category|
           "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.each do |link|
-          category.item "#{suborganization_kind}_#{link[:klass]}", link[:title], send(link[:url])
-        end
+            category.item "#{suborganization_kind}_#{link[:klass]}", link[:title], send(link[:url])
+          end
         end
       end
     end

@@ -12,7 +12,8 @@ Znaigorod::Application.routes.draw do
     delete '/users/sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  get 'away' => 'away#go'
+  get 'away'    => 'away#go'
+  get 'sitemap' => 'sitemap#show'
 
   %w[services benefit statistics our_customers extra_catalogs ticket_sales].each do |method|
     get method => "cooperation##{method}"

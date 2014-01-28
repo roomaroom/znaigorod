@@ -1,0 +1,62 @@
+<div class="sitemap_wrapper">
+  <h3>Карта сайта</h3>
+
+  <ul>
+    <li>
+      <%= link_to 'Афиша', afisha_index_path, :class => 'title' %>
+
+      <ul class="clearfix inner">
+        <% Afisha.kind.values.each do |item| %>
+          <li class="floatl">
+            <%= link_to t("enumerize.afisha.kind.#{item}"), send("#{item.pluralize}_path") %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+
+  </ul>
+
+  <ul>
+    <% Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind| %>
+      <li>
+        <%= link_to t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path"), :class => 'title' %>
+
+        <ul class="clearfix inner">
+          <% "#{suborganization_kind.pluralize}_presenter".classify.constantize.new.categories_links.drop(1).each do |link| %>
+            <li class="floatl">
+              <%= link_to link[:title], link[:url] %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul>
+    <li>
+      <%= link_to 'Скидки', discounts_path, :class => 'title' %>
+
+      <ul class="clearfix inner">
+        <% Discount.kind.values.each do |item| %>
+          <li class="floatl">
+            <%= link_to t("enumerize.discount.kind.#{item}"), send("discounts_#{item}_path") %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <%= link_to 'Обзоры', posts_path, :class => 'title' %>
+
+      <ul class="clearfix inner">
+        <% Post.categories.values.each do |item| %>
+          <li class="floatl">
+            <%= link_to t("enumerize.post.categories.#{item}"), send("posts_#{item}_path") %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</div>
