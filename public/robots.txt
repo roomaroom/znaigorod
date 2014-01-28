@@ -1,8 +1,9 @@
 User-Agent: *
-Disallow:  /1ps_links.html
-Disallow:  /kafe
-Disallow:  /extra_catalogs.html
-Disallow:  /extra_catalogs
+Disallow: /1ps_links.html
+Disallow: /creations/kompyuternyy_mir
+Disallow: /kafe
+Disallow: /extra_catalogs.html
+Disallow: /extra_catalogs
 Disallow: /organizations?order_by
 Disallow: /meals?order_by=
 Disallow: /meals/kafe?order_by=
