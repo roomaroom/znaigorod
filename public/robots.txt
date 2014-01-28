@@ -1,5 +1,5 @@
 User-Agent: *
-Disallow:  /artem2k.html
+Disallow:  /1ps_links.html
 Disallow:  /kafe
 Disallow:  /extra_catalogs.html
 Disallow:  /extra_catalogs
