@@ -11,6 +11,8 @@
             <%= link_to t("enumerize.afisha.kind.#{item}"), send("#{item.pluralize}_path") %>
           </li>
         <% end %>
+
+        <li><%= link_to "Добавить афишу", new_my_afisha_path %></li>
       </ul>
     </li>
   </ul>
@@ -45,6 +47,8 @@
             <%= link_to t("enumerize.discount.kind.#{item}"), send("discounts_#{item}_path") %>
           </li>
         <% end %>
+
+        <li><%= link_to "Добавить скидку", help_my_discounts_path %></li>
       </ul>
     </li>
   </ul>
@@ -59,6 +63,8 @@
             <%= link_to t("enumerize.post.categories.#{item}"), send("posts_#{item}_path") %>
           </li>
         <% end %>
+
+        <li><%= link_to "Добавить обзор", new_my_post_path %></li>
       </ul>
     </li>
   </ul>
