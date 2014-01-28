@@ -3,10 +3,14 @@
 class Account < ActiveRecord::Base
   include CropedPoster
 
+  attr_accessor :poster_image_url, :poster_image_content_type
+  attr_accessible :poster_image_url
+
   attr_accessible :avatar, :birthday, :email,
                   :first_name, :gender, :last_name, :patronymic,
                   :rating, :nickname, :location,
                   :account_settings_attributes
+
 
   has_many :users,           order: 'id ASC', dependent: :destroy
   has_many :afisha,          through: :users
@@ -363,9 +367,6 @@ class Account < ActiveRecord::Base
   def poster_image_url?
     true
   end
-
-  attr_accessor :poster_image_url
-  attr_accessible :poster_image_url
 
   def poster_url=(poster_url)
     self.avatar_url = poster_url
