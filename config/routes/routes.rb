@@ -14,7 +14,7 @@ Znaigorod::Application.routes.draw do
 
   get 'away' => 'away#go'
 
-  %w[services benefit statistics our_customers extra_catalogs].each do |method|
+  %w[services benefit statistics our_customers extra_catalogs ticket_sales].each do |method|
     get method => "cooperation##{method}"
   end
 

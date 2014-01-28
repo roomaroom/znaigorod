@@ -302,3 +302,113 @@
 
     img
       border: none
+
+.content .cooperation.ticket_sales
+  .service_left
+    .phones, .emails, .scheme, .information
+      +clearfix
+
+    .scheme
+      background: transparent image_url('public/cooperation/ticket_sales_scheme.png') no-repeat center top
+      height: 458px
+      margin: 10px 0 0 0
+      position: relative
+      width: 248px
+
+      .first, .second, .third
+        left: 10px
+        position: absolute
+        right: 10px
+        text-align: center
+
+      .first
+        top: 75px
+
+      .second
+        top: 255px
+
+      .third
+        top: 395px
+
+    .information
+      margin: 10px 0 0 0
+
+      ul
+        margin: 0
+
+        li
+          margin: 0 0 10px 0
+
+        li:last-child
+          margin: 0
+
+  .service_right
+    .header
+      background-color: #e8e8e8
+      font-size: 14px
+      margin: 10px 0
+      padding: 0
+
+      .clear
+        +clearfix
+        float: left
+        position: relative
+        width: 45px
+
+        .panel
+          background: #009bdb
+          height: 24px
+          padding: 12px 10px 12px 15px
+          position: relative
+
+        .panel:after, .panel:before
+          border: solid transparent
+          content: " "
+          height: 0
+          left: 100%
+          position: absolute
+          top: 8px
+          width: 0
+
+        .panel:after
+          border-color: rgba(0, 155,  219, 0)
+          border-left-color: #009bdb
+          border-width: 12px
+
+        .panel:before
+          border-color: rgba(255, 255,  255, 0)
+          border-left-color: #fff
+          border-width: 16px
+          margin-left: 1px
+          margin-top: -4px
+
+    .description
+      margin: 0 0 20px 0
+
+      ul
+        margin: 0 0 0 15px
+
+        li
+          line-height: 25px
+
+      .dashed
+        li
+          &:before
+            content: "\2013"
+            padding-right: 5px
+
+      .resume
+        margin: 5px 0
+
+        .minus, .plus
+          line-height: 21px
+          margin: 0 0 5px 0
+
+        .minus
+          background: transparent image_url('public/plus_minus_sprite.png') no-repeat 0 0
+          padding: 0 0 0 25px
+
+        .plus
+          background: transparent image_url('public/plus_minus_sprite.png') no-repeat 0 -42px
+          padding: 0 0 0 25px
+

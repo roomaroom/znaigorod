@@ -19,4 +19,6 @@ class CooperationController < ApplicationController
     render partial: 'organizations/organizations_posters', layout: false and return if request.xhr?
   end
 
+  def ticket_sales
+  end
 end
