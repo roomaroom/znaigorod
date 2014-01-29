@@ -7,7 +7,7 @@
       <% @account.poster_image_url = @gallery_image.file_url %>
       <% crop_width, crop_height, crop_x, crop_y = [resource.poster_image_resized_dimensions[:width] / resource.resize_factor, resource.poster_image_resized_dimensions[:height] , 0, 0] %>
 
-      <%= simple_form_for @account, :url => my_account_path(@account) do |f| %>
+      <%= simple_form_for @account, :url => my_account_path do |f| %>
         <div class='input'>
           <p><strong>Выбирете часть изображения которая будет вашей аватаркой</strong></p>
         </div>

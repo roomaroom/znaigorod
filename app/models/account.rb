@@ -57,8 +57,8 @@ class Account < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  validates_email_format_of :email, :allow_nil => true
   normalize_attribute :email, :with => [:strip, :blank]
+  validates_email_format_of :email, :allow_nil => true
 
   has_croped_poster min_width: 200, min_height: 200
 
