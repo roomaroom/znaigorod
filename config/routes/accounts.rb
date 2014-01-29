@@ -1,14 +1,22 @@
 # encoding: utf-8
 
 Znaigorod::Application.routes.draw do
-  #get '/znakomstva' => 'accounts#index', :as => :znakomstva
-  #get '/accounts', :to => redirect('/znakomstva')
+  get '/znakomstva' => 'accounts#index', :as => :accounts
 
-  Inviteables.instance.transliterated_category_titles.each do |hash|
-    get "accounts/#{hash.transliterated}" => 'accounts#index',
-      :constraints => { :category => hash.transliterated },
-      :defaults => { :category => hash.transliterated },
-      :as => "accounts_#{hash.transliterated}"
+  get '/accounts', :to => redirect do |_, request|
+    params = request.query_parameters.dup
+    category = params.delete(:category).try(:from_russian_to_param)
+
+    ['/znakomstva', category].compact.join('/') << "?#{params.to_query}"
+  end
+
+  Inviteables.instance.transliterated_category_titles.each do |transliterated, _|
+    category = transliterated.dup
+
+    get "znakomstva/#{transliterated}" => 'accounts#index',
+      :constraints => { :category => category },
+      :defaults => { :category => category },
+      :as => "accounts_#{category}"
   end
 
   resources :accounts, :only => [:index, :show] do

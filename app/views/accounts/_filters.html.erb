@@ -6,7 +6,7 @@
       <ul>
         <% @presenter.gender_links.each do |link| %>
           <li class='<%= link[:klass] %><%=  %><%= " selected".html_safe if link[:selected] %>'>
-            <%= link_to link[:title], accounts_path(link[:parameters]) %>
+            <%= link_to link[:title], send(link[:url], link[:parameters]) %>
           </li>
         <% end %>
       </ul>
@@ -16,7 +16,7 @@
       <ul>
         <% @presenter.acts_as_links.each do |link| %>
           <li class='<%= link[:klass] %><%=  %><%= " selected".html_safe if link[:selected] %>'>
-            <%= link_to link[:title], accounts_path(link[:parameters]) %>
+            <%= link_to link[:title], send(link[:url], link[:parameters]) %>
           </li>
         <% end %>
       </ul>

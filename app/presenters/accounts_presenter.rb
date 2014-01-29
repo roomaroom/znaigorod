@@ -101,8 +101,8 @@ class AccountsPresenter
         links << {
           title: caption,
           klass: value,
-          url: 'accounts_path',
-          parameters: searcher_parameters(gender: value == 'undefined' ? nil : value),
+          url: ['accounts', category_filter.category, 'path'].compact.join('_'),
+          parameters: searcher_parameters(gender: value == 'undefined' ? nil : value).except(:category),
           selected: gender_filter.gender == value
         }
       end
@@ -115,8 +115,8 @@ class AccountsPresenter
         links << {
           title: caption,
           klass: value,
-          url: 'accounts_path',
-          parameters: searcher_parameters(acts_as: value == 'all' ? nil : value),
+          url: ['accounts', category_filter.category, 'path'].compact.join('_'),
+          parameters: searcher_parameters(acts_as: value == 'all' ? nil : value).except(:category),
           selected: acts_as_filter.acts_as == [value]
         }
       end
