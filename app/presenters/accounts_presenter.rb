@@ -55,8 +55,8 @@ class AccountsPresenter
     attr_accessor :category, :available_values
 
     def initialize(category)
-      @available_values = Values.instance.invitation.categories
-      @category  = @available_values.include?(category) ? category : nil
+      @available_values = Inviteables.instance.transliterated_category_titles
+      @category = @available_values.keys.include?(category) ? category : nil
     end
 
     def used?
@@ -125,14 +125,14 @@ class AccountsPresenter
 
   def categories_links
     @categories_links ||= [].tap do |links|
-      category_filter.available_values.each do |value|
+      category_filter.available_values.each do |transliterated, title|
         links << {
-          title: value,
-          klass: value.from_russian_to_param,
+          title: title,
+          klass: transliterated,
           url: 'accounts_path',
-          parameters: searcher_parameters(category: value),
-          selected: category_filter.category == value,
-          count: count(category: value)
+          parameters: searcher_parameters(category: transliterated),
+          selected: category_filter.category == transliterated,
+          count: count(category: title)
         }
       end
       links.sort! {|a,b| b[:count] <=> a[:count]}
@@ -157,7 +157,7 @@ class AccountsPresenter
     {
       gender: gender_filter.used? ? gender_filter.gender : nil,
       acts_as: acts_as_filter.used? ? acts_as_filter.acts_as : nil,
-      category: category_filter.used? ? category_filter.category : nil,
+      category: category_filter.used? ? category_filter.available_values[category_filter.category] : nil,
       with_avatar: with_avatar ? true : nil
     }.merge(hash).select {|k,v| v}
   end

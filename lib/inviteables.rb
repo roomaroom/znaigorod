@@ -27,4 +27,12 @@ class Inviteables
       (value.afisha.kinds & afisha.kind.values.to_a).any?
     }.keys
   end
+
+  def transliterated_category_titles
+    Hashie::Mash.new.tap do |hash|
+      categories.each do |category, _|
+        hash[category.from_russian_to_param] = category
+      end
+    end
+  end
 end

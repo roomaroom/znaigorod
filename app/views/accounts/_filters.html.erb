@@ -28,7 +28,7 @@
     <div class='by_category'>
       <ul>
         <li class='all<%= ' selected' unless @presenter.category_filter.used? %>'>
-          <%= link_to accounts_path(@presenter.searcher_parameters(category: nil)) do %>
+          <%= link_to accounts_path do %>
             <span class='name'>Все</span>
             <span class='count'><%= @presenter.count(category: nil) %></span>
           <% end %>
@@ -45,7 +45,7 @@
         <% @presenter.categories_links.take(6).each do |link| %>
           <% more_is_selected = false if link[:selected] %>
           <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
-            <%= link_to accounts_path(link[:parameters]) do %>
+            <%= link_to send("accounts_#{link[:klass]}_path") do %>
               <span class='name'><%= link[:title] %></span>
               <span class='count'><%= link[:count] %></span>
             <% end %>
@@ -67,7 +67,7 @@
     <ul class='more'>
       <% @presenter.categories_links.from(6).each do |link| %>
         <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
-          <%= link_to accounts_path(link[:parameters]) do %>
+          <%= link_to send("accounts_#{link[:klass]}_path") do %>
             <span class='name'><%= link[:title] %></span>
             <span class='count'><%= link[:count] %></span>
           <% end %>

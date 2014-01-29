@@ -59,9 +59,9 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
 
-    primary.item :accounts, 'Знакомства', znakomstva_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
+    primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
       Inviteables.instance.categories.keys.each do |item|
-        account.item Russian::translit(item).gsub(/\s|\//, '_'), item, znakomstva_path(:category => item)
+        account.item Russian::translit(item).gsub(/\s|\//, '_'), item, send("accounts_#{(transliterate(item))}_path")
       end
     end
 
