@@ -28,18 +28,6 @@ afisha:
       afisha_slug: 'kontsert-gruppy-7-rasa'
       replaced_count: 1
 
-    '1.8':
-      from: '2014-01-29 14:00'
-      to: '2014-02-28 00:00'
-      content_type: 'banner'
-      title: 'Реклама на футболе'
-      image: 'http://storage.znaigorod.ru/files/80822/756-1129/forma_football.jpg'
-      link: 'http://www.forma.sibr.ru/football.phtml?p=football&fl=19'
-      width: 180
-      height: 320
-      follow: false
-      target: '_blank'
-
 post:
   places:
 
@@ -51,16 +39,16 @@ post:
 
 discount:
   places:
-    '1.1':
-      from: '2013-10-10 00:00'
-      to: '2015-01-01 00:00'
+    '1.0':
+      from: '2014-01-15 12:30'
+      to: '2015-01-16 18:30'
       content_type: 'discount'
       discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
       replaced_count: 1
 
 main_page_afisha:
   places:
-    '1.0':
+    '1.5':
       from: '2014-01-29 14:00'
       to: '2014-02-28 00:00'
       content_type: 'banner'
