@@ -1,6 +1,5 @@
 afisha:
   places:
-
     '1.0':
       from: '2014-01-28 00:00'
       to: '2014-02-03 00:00'
@@ -59,18 +58,23 @@ discount:
       discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
       replaced_count: 1
 
-main_page:
-  afisha:
-    '0':
-      from: '2014-01-04 16:40'
-      to: '2014-02-28 16:40'
-      afisha_slug: 'postoyannaya-deystvuyuschaya-vystavka-zhivyh-tropicheskih-babochek-babochkin-dom'
-    '1':
-      from: '2013-12-12 19:00'
-      to: '2013-12-13 19:00'
-      afisha_slug: 'kulinarnyy-master-klass-merry-christmas'
-  discounts:
-    '0':
+main_page_afisha:
+  places:
+    '1.0':
+      from: '2014-01-29 14:00'
+      to: '2014-02-28 00:00'
+      content_type: 'banner'
+      title: 'Реклама на футболе'
+      image: 'http://storage.znaigorod.ru/files/80822/756-1129/forma_football.jpg'
+      link: 'http://www.forma.sibr.ru/football.phtml?p=football&fl=19'
+      width: 180
+      height: 320
+
+main_page_discounts:
+  places:
+    '1.0':
       from: '2014-01-15 12:30'
       to: '2015-01-16 18:30'
+      content_type: 'discount'
       discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
+      replaced_count: 1

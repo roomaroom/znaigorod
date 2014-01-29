@@ -27,6 +27,9 @@ class Advertisement
         when 'afisha'
           afisha_adv = AfishaAdvertisementPlace.new(share_config.merge(slug: place_config['afisha_slug']))
           afisha_adv.afisha ? afisha_adv : nil
+        when 'discount'
+          discount_adv = DiscountAdvertisementPlace.new(share_config.merge(slug: place_config['discount_slug']))
+          discount_adv.discount ? discount_adv : nil
         when 'webcam'
           WebcamAdvertisementPlace.new(share_config)
         when 'post'
@@ -61,11 +64,6 @@ class Advertisement
 
   class AfishaAdvertisementPlace < AdvertisementPlace
     attr_accessor :slug, :afisha
-    delegate :title, :human_when, :human_price, :places, :poster_url,
-             :distribution_ends_on?, :showings, :tickets, :truncated_title_link,
-             :has_tickets_for_sale?, :poster_with_link, :premiere?,
-             :visits, :invitations, :comments, :likes_count, :page_visits,
-             :age_min, :afisha_place, to: :decorated_afisha
 
     def initialize(args)
       super(args)
@@ -78,6 +76,24 @@ class Advertisement
 
     def decorated_afisha
       @decorated_afisha ||= AfishaDecorator.new(afisha)
+    end
+
+  end
+
+  class DiscountAdvertisementPlace < AdvertisementPlace
+    attr_accessor :slug, :discount
+
+    def initialize(args)
+      super(args)
+      @discount = Discount.published.find_by_slug(slug)
+    end
+
+    def partial
+      "advertisements/#{list}_discount_#{replaced_count}"
+    end
+
+    def decorated_discount
+      @decorated_discount ||= DiscountDecorator.new(discount)
     end
 
   end

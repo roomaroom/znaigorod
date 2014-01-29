@@ -1,5 +1,4 @@
 User-Agent: *
-Disallow: /1ps_links.html
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe
 Disallow: /extra_catalogs.html
