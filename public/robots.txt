@@ -1,4 +1,9 @@
 User-Agent: *
+
+Allow: /accounts$
+
+Disallow: /1ps_links.html
+Disallow: /accounts/*
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe
 Disallow: /extra_catalogs.html
@@ -82,6 +87,8 @@ Disallow: /salon_centers/vizazh_studii?order_by=
 Disallow: /salon_centers/massazhnye_salony?order_by=
 Disallow: /salon_centers/kosmeticheskie_salony?order_by=
 Disallow: /salon_centers/spa_salony?order_by=
+
 Sitemap: http://znaigorod.ru/sitemap.xml.gz
 Sitemap: http://znaigorod.ru/sitemap.xml
+
 Host: znaigorod.ru
