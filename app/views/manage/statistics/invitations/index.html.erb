@@ -65,8 +65,8 @@
         <td><%= @tickets.map {|t| t.price*t.copies.count}.sum %></td>
         <td><%= @tickets.map {|t| t.price*t.copies.count - t.undertow.to_f*t.copies.count}.sum %></td>
         <td><%= @sold_tickets.map {|cp| cp.copies.count }.sum %></td>
-        <td><%= @sold_tickets.map {|cp| cp.paymentable.price*cp.copies.count}.sum %></td>
-        <td><%= @sold_tickets.map {|cp| cp.paymentable.price*cp.copies.count-cp.paymentable.undertow.to_f*cp.copies.count}.sum %></td>
+        <td><%= @sold_tickets.map {|cp| cp.paymentable.try(:price).to_i*cp.copies.count}.sum %></td>
+        <td><%= @sold_tickets.map {|cp| cp.paymentable.try(:price).to_i*cp.copies.count-cp.paymentable.try(:undertow).to_f*cp.copies.count}.sum %></td>
       </tr>
     </tbody>
   </table>
