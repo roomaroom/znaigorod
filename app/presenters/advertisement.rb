@@ -31,6 +31,13 @@ class Advertisement
           WebcamAdvertisementPlace.new(share_config)
         when 'post'
           PostAdvertisementPlace.new(share_config)
+        when 'banner'
+          BannerAdvertisementPlace.new(share_config.merge({
+            image: place_config['image'],
+            link: place_config['link'],
+            width: place_config['width'],
+            height: place_config['height']
+          }))
         else
           nil
         end
@@ -95,6 +102,18 @@ class Advertisement
 
     def partial
       "advertisements/#{list}_widget_#{replaced_count}"
+    end
+  end
+
+  class BannerAdvertisementPlace < AdvertisementPlace
+    attr_accessor :link, :image, :width, :height, :title
+
+    def initialize(args)
+      super(args)
+    end
+
+    def partial
+      "advertisements/#{list}_banner_#{width}_#{height}"
     end
   end
 end
