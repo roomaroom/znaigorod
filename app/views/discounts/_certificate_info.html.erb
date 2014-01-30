@@ -1,7 +1,7 @@
-<div class="<%= discount_poster.class.name.underscore %>">
+<div class="<%= discount.class.name.underscore %>">
   <span class="price">
-    <em><%= discount_poster.price.zero? ? 'бесплатно' : number_to_currency(discount_poster.price, :unit => 'р.', :precision => 0) %></em>
+    <em><%= discount.price.zero? ? 'бесплатно' : number_to_currency(discount.price, :unit => 'р.', :precision => 0) %></em>
   </span>
-  <span class="origin_price"><em><%= number_to_currency(discount_poster.origin_price, :unit => 'р.', :precision => 0) %></em></span>
-  <span class="profit">&minus;<%= discount_poster.discount %>%</span>
+  <span class="origin_price"><em><%= number_to_currency(discount.origin_price, :unit => 'р.', :precision => 0) %></em></span>
+  <span class="profit">&minus;<%= discount.discount %>%</span>
 </div>

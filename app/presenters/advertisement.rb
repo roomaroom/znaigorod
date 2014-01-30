@@ -96,6 +96,13 @@ class Advertisement
       @decorated_discount ||= DiscountDecorator.new(discount)
     end
 
+    def method_missing(method, *args, &block)
+      if decorated_discount.respond_to?(method)
+        decorated_discount.send method, *args
+      else
+        super
+      end
+    end
   end
 
   class WebcamAdvertisementPlace < AdvertisementPlace
