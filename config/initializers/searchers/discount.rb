@@ -7,6 +7,10 @@ HasSearcher.create_searcher :discounts do
   property :kind
   property :organization_ids
 
+  property :without do |search|
+    search.without [*search_object.without] if [*search_object.without].any?
+  end
+
   scope do
     facet :kind, :sort => :count, :zero => true
 

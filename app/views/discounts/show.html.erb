@@ -27,7 +27,7 @@
 
     <div class="payment">
       <div class="wrapper">
-        <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount => @discount.model } %>
+        <%= render :partial => "discounts/#{@discount.model.class.name.underscore}_info", :locals => { :discount_poster => @discount.model } %>
 
         <% if @discount.copies.for_sale.any? && @discount.price %>
           <span class="copies_count"><%= t("#{@discount.model.class.name.underscore}_count", :count => @discount.copies.for_sale.count) %></span>

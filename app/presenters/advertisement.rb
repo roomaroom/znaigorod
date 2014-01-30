@@ -88,7 +88,7 @@ class Advertisement
       @discount = Discount.published.find_by_slug(slug)
     end
 
-    def partial
+    def to_partial_path
       "advertisements/#{list}_discount_#{replaced_count}"
     end
 

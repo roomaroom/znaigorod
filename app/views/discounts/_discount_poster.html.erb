@@ -1,50 +1,52 @@
-<div class="item">
-  <div class="title">
-    <%= link_to truncate(discount.title.text_gilensize, :length => 45), discount.smart_path, :title => discount.title.text_gilensize %>
-  </div>
+<li>
+  <div class="item">
+    <div class="title">
+      <%= link_to truncate(discount_poster.title.text_gilensize, :length => 45), discount_poster.smart_path, :title => discount_poster.title.text_gilensize %>
+    </div>
 
-  <div class="image">
-    <%= link_to image_tag(resized_image_url(discount.poster_url, @width, @height),
-                          :size => "#{@width}x#{@height}",
-                          :title => discount.title.text_gilensize,
-                          :alt => discount.title.text_gilensize),
-                discount.smart_path %>
+    <div class="image">
+      <%= link_to image_tag(resized_image_url(discount_poster.poster_url, @width, @height),
+                            :size => "#{@width}x#{@height}",
+                            :title => discount_poster.title.text_gilensize,
+                            :alt => discount_poster.title.text_gilensize),
+                  discount_poster.smart_path %>
 
-    <%= content_tag(:div, discount.label_url, :class => :origin_url) if discount.supplier.try(:link).present? %>
+      <%= content_tag(:div, discount_poster.label_url, :class => :origin_url) if discount_poster.supplier.try(:link).present? %>
 
-    <% unless discount.is_a?(AffiliatedCoupon) %>
-      <% if discount.is_a?(OfferedDiscount) %>
-        <%= link_to 'Предложить свою цену', discount.smart_path(:anchor => :offer_price), :class => 'for_sale offer_price' %>
-      <% else %>
-        <% if discount.price.nil? || discount.price.zero? %>
-          <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+      <% unless discount_poster.is_a?(AffiliatedCoupon) %>
+        <% if discount_poster.is_a?(OfferedDiscount) %>
+          <%= link_to 'Предложить свою цену', discount_poster.smart_path(:anchor => :offer_price), :class => 'for_sale offer_price' %>
         <% else %>
-          <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+          <% if discount_poster.price.nil? || discount_poster.price.zero? %>
+            <%= link_to 'Участвовать', discount_poster.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+          <% else %>
+            <%= link_to 'Купить', discount_poster.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if discount_poster.price.nil? || discount_poster.price.zero? %>
+          <%= link_to 'Получить', discount_poster.supplier.try(:link), :target => '_blank', :class => :for_sale %>
+        <% else %>
+          <%= link_to 'Купить', discount_poster.supplier.try(:link), :target => '_blank', :class => :for_sale %>
         <% end %>
       <% end %>
-    <% else %>
-      <% if discount.price.nil? || discount.price.zero? %>
-        <%= link_to 'Получить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale %>
-      <% else %>
-        <%= link_to 'Купить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale %>
+
+      <%= link_to discount_path(discount_poster), :class => :details do %>
+        <span class="first_line">
+          <span class="show_tipsy to_go" title="Участники"><%= discount_poster.members.count %></span>
+          <span class="show_tipsy comments" title="Комментарии"><%= discount_poster.comments.count %></span>
+          <span class="show_tipsy likes" title="Понравилось"><%= discount_poster.likes_count %></span>
+          <span class="show_tipsy visits" title="Просмотры"><%= discount_poster.page_visits.count %></span>
+        </span>
       <% end %>
-    <% end %>
+    </div>
 
-    <%= link_to discount_path(discount), :class => :details do %>
-      <span class="first_line">
-        <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>
-        <span class="show_tipsy comments" title="Комментарии"><%= discount.comments.count %></span>
-        <span class="show_tipsy likes" title="Понравилось"><%= discount.likes_count %></span>
-        <span class="show_tipsy visits" title="Просмотры"><%= discount.page_visits.count %></span>
-      </span>
-    <% end %>
-  </div>
+    <div class="place">
+      <%= discount_poster.place_without_map %>
+    </div>
 
-  <div class="place">
-    <%= discount.place_without_map %>
+    <div class="info">
+      <%= render :partial => "discounts/#{discount_poster.model.class.name.underscore}_info", :locals => { :discount_poster => discount_poster.model } %>
+    </div>
   </div>
-
-  <div class="info">
-    <%= render :partial => "discounts/#{discount.model.class.name.underscore}_info", :locals => { :discount => discount.model } %>
-  </div>
-</div>
+</li>

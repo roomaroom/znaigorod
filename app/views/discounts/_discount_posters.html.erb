@@ -1,3 +1,1 @@
-<% @discounts.each do |discount| %>
-  <li><%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220' ,:@height => '164' } %></li>
-<% end %>
+<%= render @discounts, { :@width => '220' ,:@height => '164' } %>

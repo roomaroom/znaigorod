@@ -163,7 +163,8 @@ class DiscountsPresenter
   end
 
   attr_accessor :type, :kind, :organization_id,
-                :order_by, :page, :per_page, :q
+                :order_by, :page, :per_page, :q,
+                :advertisement, :with_advertisement
 
   attr_reader :type_filter, :kind_filter, :order_by_filter
 
@@ -173,14 +174,31 @@ class DiscountsPresenter
     normalize_args
     store_parameters
     initialize_filters
+    initialize_advertisement
+  end
+
+  def initialize_advertisement
+    @advertisement = Advertisement.new(list: 'discount', page: @page)
   end
 
   def collection
     searcher.results
   end
 
+  def with_advertisement?
+    with_advertisement
+  end
+
   def decorated_collection
-    @decorated_collection ||= DiscountDecorator.decorate(collection)
+    @decorated_collection ||= begin
+                                list = collection.map { |item| DiscountDecorator.decorate item }
+
+                                advertisement.places_at(page).each do |ad|
+                                  list.insert(ad.position, ad)
+                                end if with_advertisement?
+
+                                list
+                              end
   end
 
   def page_title
@@ -217,7 +235,8 @@ class DiscountsPresenter
       params[:type]             = type_filter.selected
       params[:kind]             = kind_filter.selected
       params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
-      params[:q] =              q if q.present?
+      params[:q]                = q if q.present?
+      params[:without]          = advertisement.places_at(page).map(&:discount) if with_advertisement?
     end
   end
 

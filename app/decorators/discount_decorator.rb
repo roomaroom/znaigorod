@@ -108,4 +108,8 @@ class DiscountDecorator < ApplicationDecorator
       h.discount_path discount, options
     end
   end
+
+  def to_partial_path
+    'discounts/discount_poster'
+  end
 end

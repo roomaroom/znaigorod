@@ -31,10 +31,6 @@
   <% end %>
 
   <ul class="posters">
-    <% @discounts.each do |discount| %>
-      <li>
-        <%= render :partial => (discount.is_a?(DiscountDecorator) ? 'discounts/discount_poster' : discount.partial), :locals => { :discount => discount, :@width => '220' ,:@height => '164' } %>
-      </li>
-    <% end %>
+    <%= render @discounts, { :@width => '220' ,:@height => '164' } %>
   </ul>
 </div>

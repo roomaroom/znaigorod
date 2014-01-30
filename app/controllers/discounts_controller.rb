@@ -4,7 +4,7 @@ class DiscountsController < ApplicationController
   actions :show
 
   def index
-    @presenter = DiscountsPresenter.new(params)
+    @presenter = DiscountsPresenter.new(params.merge(:with_advertisement => true))
     @discounts = @presenter.decorated_collection
 
     render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
