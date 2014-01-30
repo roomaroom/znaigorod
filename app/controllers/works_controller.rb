@@ -1,7 +1,7 @@
 class WorksController < ApplicationController
   inherit_resources
 
-  authorize_resource
+  authorize_resource :only => :new
 
   actions :new, :create, :show
 
