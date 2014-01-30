@@ -21,7 +21,7 @@
             </li>
             <% @accounts.categories_links.take(8).each do |link| %>
               <li class='<%= link[:klass] %>'>
-                <%= link_to accounts_path(link[:parameters]) do %>
+                <%= link_to send("accounts_#{link[:klass]}_path") do %>
                   <span class='name'><%= link[:title] %></span>
                   <span class='count'><%= link[:count] %></span>
                 <% end %>
