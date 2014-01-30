@@ -27,6 +27,7 @@
     <% else %>
       <meta name='description' content='<%= I18n.t('meta.default.description', :default => '').squish.html_safe %>' />
     <% end %>
+    <%= yield(:canonical_link) %>
     <%= yield(:extra_meta) %>
     <%= favicon_link_tag %>
     <%= yield(:stylesheets) %>

@@ -31,4 +31,10 @@
   <%= render :partial => 'commons/public_reformal' %>
 <% end %>
 
+<% content_for :canonical_link do %>
+  <% if request.query_parameters.any? %>
+    <link rel='canonical' href='<%= request.url.split('?').first %>' />
+  <% end %>
+<% end %>
+
 <%= render :template => 'layouts/application' %>
