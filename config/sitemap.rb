@@ -39,7 +39,7 @@ SitemapGenerator::Sitemap.create do
   add discounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Discount.unscoped.last.updated_at
 
   # Знакомства
-  add znakomstva_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Account.unscoped.last.updated_at
+  add accounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Account.unscoped.last.updated_at
 
   # Публикации
   add posts_path, :changefreq => 'weekly', :priority => 0.7, :lastmod => Post.unscoped.last.updated_at
