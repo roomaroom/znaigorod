@@ -2,7 +2,6 @@ User-Agent: *
 
 Allow: /accounts$
 
-Disallow: /1ps_links.html
 Disallow: /accounts/*
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe
