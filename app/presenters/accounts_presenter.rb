@@ -129,7 +129,6 @@ class AccountsPresenter
         links << {
           title: title,
           klass: transliterated,
-          url: 'accounts_path',
           parameters: searcher_parameters(category: transliterated),
           selected: category_filter.category == transliterated,
           count: count(category: title)
@@ -145,8 +144,8 @@ class AccountsPresenter
         links << {
           title: caption,
           klass: value,
-          url: 'accounts_path',
-          parameters: searcher_parameters(order_by: value),
+          url: ['accounts', category_filter.category, 'path'].compact.join('_'),
+          parameters: searcher_parameters(order_by: value).except(:category),
           selected: order_by_filter.order_by == value,
         }
       end

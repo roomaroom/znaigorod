@@ -56,7 +56,7 @@
     <ul>
       <% @presenter.order_by_links.each do |link| %>
         <li<%= " class=selected" if link[:selected] %>>
-          <%= link_to link[:title], accounts_path(link[:parameters]), :class => link[:klass] %>
+          <%= link_to link[:title], send(link[:url], link[:parameters]) %>
         </li>
       <% end %>
     </ul>
