@@ -3,12 +3,12 @@
 Znaigorod::Application.routes.draw do
   get '/znakomstva' => 'accounts#index', :as => :accounts
 
-  get '/accounts', :to => redirect do |_, request|
+  get '/accounts', :to => redirect { |_, request|
     params = request.query_parameters.dup
     category = params.delete(:category).try(:from_russian_to_param)
 
-    ['/znakomstva', category].compact.join('/') << "?#{params.to_query}"
-  end
+    params.any? ? ['/znakomstva', category].compact.join('/') << "?#{params.to_query}" : ['/znakomstva', category].compact.join('/')
+  }
 
   Inviteables.instance.transliterated_category_titles.each do |transliterated, _|
     category = transliterated.dup
