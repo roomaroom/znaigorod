@@ -39,7 +39,8 @@ class Advertisement
             image: place_config['image'],
             link: place_config['link'],
             width: place_config['width'],
-            height: place_config['height']
+            height: place_config['height'],
+            title: place_config['title']
           }))
         else
           nil
