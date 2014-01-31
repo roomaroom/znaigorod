@@ -53,7 +53,14 @@ markItUpSettings = ->
       beforeImageInsert(h)
   }
 
+  youtubeButton = {
+    name: 'Видео с Youtube'
+    className: 'youtube_button'
+    replaceWith: '[![Добавление видео с Youtube:!:Просто вставьте сюда ссылку на видео с Youtube, например, http://www.youtube.com/watch?v=e-GYrbecb88]!]'
+  }
+
   settings.markupSet.push(imageButton)
+  settings.markupSet.push(youtubeButton)
 
   settings
 
