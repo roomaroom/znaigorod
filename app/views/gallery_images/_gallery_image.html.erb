@@ -1,5 +1,5 @@
 <li>
-  <%= link_to gallery_image.file.url, :rel => rel do %>
+  <%= link_to gallery_image.file.url, :data => { :rel => rel } do %>
     <%= image_tag(resized_image_url(gallery_image.file.url, 130, 99), :size => '130x99', :alt => gallery_image.description) %>
   <% end %>
 </li>
