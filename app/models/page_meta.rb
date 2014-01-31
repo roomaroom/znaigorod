@@ -4,6 +4,8 @@ class PageMeta < ActiveRecord::Base
   validates_uniqueness_of :path
   validates_presence_of :path, :description, :header, :introduction, :keywords, :og_description, :og_title, :title
 
+  normalize_attribute :path, :with => :strip
+
   def html_introduction
     introduction.to_s.as_html
   end
