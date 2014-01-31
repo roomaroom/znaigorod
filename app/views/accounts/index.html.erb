@@ -70,6 +70,6 @@
 
 <% unless t("meta.account.introduction", default: '').blank? %>
   <div class='introduction'>
-    <%= t("meta.account.introduction").as_html %>
+    <%= t("meta.account.introduction").html_safe %>
   </div>
 <% end %>
