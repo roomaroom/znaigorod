@@ -10,6 +10,7 @@ class AutoHtmlRenderer
   def apply_auto_html(str, options = {})
     auto_html(str) do
       youtube options[:youtube] || { :width => 700 }
+      vimeo options[:vimeo] || { :width => 700 }
       redcloth
       away_links
     end

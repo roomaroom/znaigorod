@@ -59,8 +59,15 @@ markItUpSettings = ->
     replaceWith: '[![Добавление видео с Youtube:!:Просто вставьте сюда ссылку на видео с Youtube, например, http://www.youtube.com/watch?v=e-GYrbecb88]!]'
   }
 
+  vimeoButton = {
+    name: 'Видео с Vimeo'
+    className: 'vimeo_button'
+    replaceWith: '[![Добавление видео с Vimeo:!:Просто вставьте сюда ссылку на видео с Vimeo, например, http://vimeo.com/11192521]!]'
+  }
+
   settings.markupSet.push(imageButton)
   settings.markupSet.push(youtubeButton)
+  settings.markupSet.push(vimeoButton)
 
   settings
 
