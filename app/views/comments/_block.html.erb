@@ -7,5 +7,5 @@
     <% end %>
   </ul>
 
-  <%= link_to "Оставить комментарий", polymorphic_url([:new, parent_obj, :comment].flatten), :remote => true, :class => 'new_comment' :rel => 'nofollow' %>
+  <%= link_to "Оставить комментарий", polymorphic_url([:new, parent_obj, :comment].flatten), :remote => true, :class => 'new_comment', :rel => 'nofollow' %>
 </div>
