@@ -34,6 +34,7 @@ class Comment < ActiveRecord::Base
     html_escape
     simple_format
     znaigorod_link :target => "_blank", :rel => 'nofollow'
+    away_links
   end
 
   private
