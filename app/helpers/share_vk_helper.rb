@@ -21,7 +21,6 @@ module ShareVkHelper
     res << "<meta property='og:title' content='#{I18n.t("meta.#{item}.title")}' />\n"
     res << "<meta property='og:url' content='#{url}' />\n"
     res << "<meta property='og:image' content='#{image}' />\n"
-    res << "<meta name='image' content='#{image}' />\n"
     res << "<link rel='image_src' href='#{image}' />\n"
     res.html_safe
   end
