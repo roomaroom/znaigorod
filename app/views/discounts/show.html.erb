@@ -157,7 +157,7 @@
 
     <div class="tags_and_visits">
       <ul class="categories">
-        Категории:
+        <li class="title">Категории:</li>
         <% @discount.kind.each do |key| %>
           <li><%= link_to key.text, discounts_path(:kind => key) %></li>
         <%end%>
