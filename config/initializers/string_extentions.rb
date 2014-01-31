@@ -16,13 +16,6 @@ class String
     self.gsub(/<table>.*<\/table>/m, '')
   end
 
-  def hyphenate
-    require 'text-hyphen'
-    hh = Text::Hyphen.new(:language => 'ru', :left => 2, :right => 2)
-    result = self.split(" ").map { |word| hh.visualize(word, "\u00AD") }.join(" ")
-    self.html_safe? ? result.html_safe : result
-  end
-
   def truncated(length = 230, separator = ' ')
     self.truncate(length, :separator => separator, :omission => '…')
   end

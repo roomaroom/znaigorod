@@ -104,14 +104,14 @@ class SaunaDecorator < SuborganizationDecorator
     organization.schedules.each do |schedule|
       day = h.content_tag(:div, schedule.short_human_day, class: :dow)
       schedule_content = if schedule.holiday?
-        h.content_tag(:div, "Выходной".hyphenate, class: :string)
+        h.content_tag(:div, "Выходной", class: :string)
       elsif grouped_prices[schedule.day] == nil
-        h.content_tag(:div, "Цена не указана".hyphenate, class: :string)
+        h.content_tag(:div, "Цена не указана", class: :string)
       else
         intervals_html = ""
         grouped_prices[schedule.day].each do |interval|
           if interval.from == interval.to
-            intervals_html << h.content_tag(:div, "Круглосуточно".hyphenate, class: :string)
+            intervals_html << h.content_tag(:div, "Круглосуточно", class: :string)
           else
             intervals_html << h.content_tag(:div, h.raw("#{I18n.l(interval.from, :format => "%H:%M")}&ndash;#{I18n.l(interval.to, :format => "%H:%M")}"), class: [:from_to, :small])
           end

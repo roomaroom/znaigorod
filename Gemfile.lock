@@ -438,7 +438,6 @@ GEM
     sunspot_solr (2.0.0)
     temple (0.6.7)
     terminal-table (1.4.5)
-    text-hyphen (1.4.1)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -560,7 +559,6 @@ DEPENDENCIES
   sunspot_matchers
   sunspot_rails
   sunspot_solr
-  text-hyphen
   thin
   timecop
   turbo-sprockets-rails3

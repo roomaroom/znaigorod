@@ -175,9 +175,9 @@ class OrganizationDecorator < ApplicationDecorator
     schedules.each do |schedule|
       day = h.content_tag(:div, schedule.short_human_day, class: :dow)
       schedule_content = if schedule.holiday?
-        h.content_tag(:div, "Выходной".hyphenate, class: :string)
+        h.content_tag(:div, "Выходной", class: :string)
       elsif schedule.from == schedule.to
-        h.content_tag(:div, "Круглосуточно".hyphenate, class: :string)
+        h.content_tag(:div, "Круглосуточно", class: :string)
       else
         (h.content_tag(:div, I18n.l(schedule.from, :format => "%H:%M"), class: :from) + h.content_tag(:div, I18n.l(schedule.to, :format => "%H:%M"), class: :to)).html_safe
       end
@@ -326,7 +326,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def truncated_description
-    description.excerpt.hyphenate
+    description.excerpt
   end
 
   def iconize_info
