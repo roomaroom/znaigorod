@@ -136,7 +136,6 @@ class AfishaDecorator < ApplicationDecorator
     res << "<meta property='og:title' content='#{title.to_s.text_gilensize}' />\n"
     res << "<meta property='og:url' content='#{h.afisha_show_url(afisha)}' />\n"
     res << "<meta property='og:image' content='#{image}' />\n"
-    res << "<meta name='image' content='#{image}' />\n"
     res << "<link rel='image_src' href='#{image}' />\n"
     res.html_safe
   end
