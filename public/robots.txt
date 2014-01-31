@@ -3,6 +3,10 @@ User-Agent: *
 Allow: /accounts$
 
 Disallow: /accounts/*
+
+Disallow: */invitations/new
+Disallow: */comments/new
+
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe
 Disallow: /extra_catalogs.html
