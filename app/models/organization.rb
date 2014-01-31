@@ -260,9 +260,10 @@ class Organization < ActiveRecord::Base
   end
 
   auto_html_for :description do
-    youtube(:width => 580, :height => 350)
-    vimeo(:width => 580, :height => 350)
-    redcloth :target => '_blank', :rel => 'nofollow'
+    youtube :width => 580, :height => 350
+    vimeo :width => 580, :height => 350
+    redcloth
+    away_links
   end
 
   def self.inherited_suborganization_kinds

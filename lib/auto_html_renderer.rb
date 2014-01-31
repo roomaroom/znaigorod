@@ -11,6 +11,7 @@ class AutoHtmlRenderer
     auto_html(str) do
       youtube options[:youtube] || { :width => 700 }
       redcloth
+      away_links
     end
   end
 

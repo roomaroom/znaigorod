@@ -11,7 +11,8 @@ class PageMeta < ActiveRecord::Base
   end
 
   auto_html_for :introduction do
-    redcloth :target => '_blank', :rel => 'nofollow'
+    redcloth
+    away_links
   end
 
   has_attached_file :og_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
