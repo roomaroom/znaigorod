@@ -135,7 +135,9 @@
     <% if @organization.has_photogallery? %>
       <div class='photogallery'>
         <ul>
-          <%= render @organization.gallery_images, :rel => "organization_gallery_#{@organization.id}" %>
+          <% @organization.gallery_images.each do |image| %>
+            <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "organization_gallery_#{@organization.id}" } %>
+          <% end %>
         </ul>
       </div>
     <% end %>
