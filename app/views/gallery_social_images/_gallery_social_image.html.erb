@@ -1,5 +1,5 @@
 <li>
-  <%= link_to gallery_social_image.file_url, :rel => rel do %>
+  <%= link_to gallery_social_image.file_url, :data => { :rel => rel } do %>
     <% if gallery_social_image.width? && gallery_social_image.height? %>
       <% if 130 * gallery_social_image.height / gallery_social_image.width < 99 %>
         <%= image_tag(gallery_social_image.thumbnail_url,
