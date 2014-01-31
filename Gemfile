@@ -79,6 +79,7 @@ group :development do
   gem 'brakeman'
   gem 'capistrano-db-tasks',        :git => 'git://github.com/sgruhier/capistrano-db-tasks'
   gem 'capistrano-unicorn',         '~> 0.1.10'
+  gem 'mock_redis',                 :require => false
   gem 'hirb'
   gem 'letter_opener'
   gem 'openteam-capistrano'

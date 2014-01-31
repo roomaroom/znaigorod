@@ -230,6 +230,7 @@ GEM
       httparty (~> 0.10)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mock_redis (0.11.0)
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.8.4)
@@ -523,6 +524,7 @@ DEPENDENCIES
   koala (~> 1.7.0rc1)
   letter_opener
   mainsms_api
+  mock_redis
   nested_form
   omniauth-facebook
   omniauth-google-oauth2
