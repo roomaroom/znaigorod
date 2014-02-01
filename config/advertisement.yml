@@ -22,10 +22,10 @@ afisha:
       replaced_count: 1
 
     '1.3':
-      from: '2014-01-31 12:20'
-      to: '2014-02-01 12:20'
+      from: '2014-02-01 13:00'
+      to: '2014-02-02 13:00'
       content_type: 'afisha'
-      afisha_slug: 'kontsert-gruppy-7-rasa'
+      afisha_slug: 'kulinarnyy-master-klass-romanticheskiy-uzhin'
       replaced_count: 1
 
 post:
