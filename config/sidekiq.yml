@@ -6,7 +6,7 @@
   - [mailer, 1]
 
 production:
-  :concurrency: 50
+  :concurrency: 55
   :queues:
     - [critical, 20]
     - [default, 25]
