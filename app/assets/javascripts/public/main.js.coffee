@@ -86,6 +86,7 @@ $ ->
   process_change_message_status() if $('#notifications').length
 
   handleWorkAddition() if $('.new_work', '.upload_work_wrapper').length
+  handleBanners() if $('.banners_wrapper').length
 
   true
 

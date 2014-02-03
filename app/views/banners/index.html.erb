@@ -1,56 +1,48 @@
-<div class="first">
-  <h3>Первый вариант</h3>
+<div class="banners_wrapper default_styles">
+  <div class="content_wrapper">
+    <div class="first banner">
+      <h3>Первый вариант</h3>
 
-  <div class="image">
-    <%= image_tag 'public/banners/88_31.gif' %>
-  </div>
+      <%= image_tag 'public/banners/88_31.gif', :size => '88x31' %>
 
-  <div class="code">
-    <%= label_tag :code, 'Код для вставки:' %>
-    <%= text_area_tag :code, link_to(image_tag('public/banners/88_31.gif'), root_url, :target => '_blank', :title => 'ЗнайГород') %>
-  </div>
-</div>
-
-<div class="second">
-  <h3>Второй вариант</h3>
-
-  <div class="image">
-    <%= image_tag 'public/banners/240_120.jpg' %>
-  </div>
-
-  <div class="code">
-    <div>
-      <%= label_tag :width, 'Ширина:' %>
-      <%= text_field_tag :width, 240 %>
-    </div>
-
-    <div>
       <%= label_tag :code, 'Код для вставки:' %>
-      <%= text_area_tag :code %>
+      <%= text_area_tag :code, link_to(image_tag('public/banners/88_31.gif', :size => '88x31'), root_url, :target => '_blank', :title => 'ЗнайГород') %>
     </div>
 
-    <%= submit_tag 'Сгенерировать код' %>
-  </div>
-</div>
+    <div class="second banner">
+      <h3>Второй вариант</h3>
 
-<div class="third">
-  <h3>Третий вариант</h3>
+      <%= image_tag 'public/banners/240_120.jpg', :size => '240x120' %>
 
-  <div class="image">
-    <%= image_tag 'public/banners/120_240.jpg' %>
-  </div>
+      <%= text_area_tag :second_banner_hidden_code,
+        link_to(image_tag(("#{root_url}public/banners/240_120.jpg")), root_url, :target => '_blank', :title => 'ЗнайГород'),
+        :class => 'hidden_code' %>
 
-  <div class="code">
-    <div>
-      <%= label_tag :width, 'Ширина:' %>
-      <%= text_field_tag :width, 120 %>
+      <%= label_tag :second_banner_width, 'Ширина:' %>
+      <%= text_field_tag :second_banner_width, 240, :class => 'width' %>
+
+      <%= label_tag :second_banner_code, 'Код для вставки:' %>
+      <%= text_area_tag :second_banner_code, nil, :class => 'code' %>
+
+      <%= submit_tag 'Сгенерировать код', :class => 'generate' %>
     </div>
 
-    <div>
-      <%= label_tag :code, 'Код для вставки:' %>
-      <%= text_area_tag :code %>
-    </div>
+    <div class="third banner">
+      <h3>Третий вариант</h3>
 
-    <%= submit_tag 'Сгенерировать код' %>
+      <%= image_tag 'public/banners/120_240.jpg', :size => '120x240' %>
+
+      <%= text_area_tag :third_banner_hidden_code,
+        link_to(image_tag("#{root_url}public/banners/120_240.jpg"), root_url, :target => '_blank', :title => 'ЗнайГород'),
+        :class => 'hidden_code' %>
+
+      <%= label_tag :third_banner_width, 'Ширина:' %>
+      <%= text_field_tag :third_banner_width, 120, :class => 'width' %>
+
+      <%= label_tag :third_banner_code, 'Код для вставки:' %>
+      <%= text_area_tag :third_banner_code, nil, :class => 'code' %>
+
+      <%= submit_tag 'Сгенерировать код', :class => 'generate' %>
+    </div>
   </div>
 </div>

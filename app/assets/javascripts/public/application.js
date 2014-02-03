@@ -99,5 +99,6 @@
  * = require ./post_video_preview
  * = require ./my_posts_accordion
  * = require ./work_addition
+ * = require ./banners
  * = require ./main
  */
