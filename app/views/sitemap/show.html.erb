@@ -75,7 +75,7 @@
     <ul class="clearfix inner">
       <% AccountsPresenter.new({}).categories_links.each do |link| %>
         <li class="floatl">
-          <%= link_to "Ищут компанию #{link[:title]}", accounts_path(link[:parameters]) %>
+          <%= link_to "Ищут компанию #{link[:title]}", send("accounts_#{link[:klass]}_path") %>
         </li>
       <% end %>
     </ul>
