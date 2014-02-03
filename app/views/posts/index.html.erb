@@ -5,7 +5,11 @@
 <% end %>
 <div class="presentation_filters posts">
   <div class="filter_header">
-    <h1><%= t('meta.posts.page_header') %></h1>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% else %>
+      <h1><%= t('meta.posts.page_header') %></h1>
+    <% end %>
   </div>
 
   <div class="order_by">
@@ -28,8 +32,8 @@
 
 <%= paginate @presenter.collection %>
 
-<% if false %>
+<% if page_meta %>
   <div class='introduction'>
-    <%= t("meta.discount.introduction").as_html %>
+    <%= page_meta.html_introduction %>
   </div>
 <% end %>
