@@ -7,4 +7,6 @@ Znaigorod::Application.routes.draw do
 
     root :to => 'widgets#index'
   end
+
+  get 'banners' => 'banners#index'
 end

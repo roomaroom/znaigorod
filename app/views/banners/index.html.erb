@@ -1,0 +1,56 @@
+<div class="first">
+  <h3>Первый вариант</h3>
+
+  <div class="image">
+    <%= image_tag 'public/banners/88_31.gif' %>
+  </div>
+
+  <div class="code">
+    <%= label_tag :code, 'Код для вставки:' %>
+    <%= text_area_tag :code, link_to(image_tag('public/banners/88_31.gif'), root_url, :target => '_blank', :title => 'ЗнайГород') %>
+  </div>
+</div>
+
+<div class="second">
+  <h3>Второй вариант</h3>
+
+  <div class="image">
+    <%= image_tag 'public/banners/240_120.jpg' %>
+  </div>
+
+  <div class="code">
+    <div>
+      <%= label_tag :width, 'Ширина:' %>
+      <%= text_field_tag :width, 240 %>
+    </div>
+
+    <div>
+      <%= label_tag :code, 'Код для вставки:' %>
+      <%= text_area_tag :code %>
+    </div>
+
+    <%= submit_tag 'Сгенерировать код' %>
+  </div>
+</div>
+
+<div class="third">
+  <h3>Третий вариант</h3>
+
+  <div class="image">
+    <%= image_tag 'public/banners/120_240.jpg' %>
+  </div>
+
+  <div class="code">
+    <div>
+      <%= label_tag :width, 'Ширина:' %>
+      <%= text_field_tag :width, 120 %>
+    </div>
+
+    <div>
+      <%= label_tag :code, 'Код для вставки:' %>
+      <%= text_area_tag :code %>
+    </div>
+
+    <%= submit_tag 'Сгенерировать код' %>
+  </div>
+</div>
