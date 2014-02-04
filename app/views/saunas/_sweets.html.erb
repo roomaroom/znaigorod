@@ -10,11 +10,6 @@
             <% end %>
           </div>
 
-          <% if false %>
-            <%= render partial: 'saunas/discount_footer', locals: { discount: discount } %>
-            <%= render partial: 'saunas/coupon_footer', locals: { discount: discount } %>
-          <% end %>
-
           <% if discount.is_a?(Certificate) %>
             <%= render partial: 'saunas/certificate_footer', locals: { discount: discount } %>
           <% elsif discount.is_a?(OfferedDiscount) %>

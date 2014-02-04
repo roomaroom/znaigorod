@@ -1,11 +1,9 @@
 <div class="footer_button">
-  <center>
-    <div class="footer">
-      <%= link_to 'Предложить свою цену',
-        [:new, discount, :offer],
-        :remote => true,
-        :class => 'offer_price my_price',
-        :data => { :title => t("afisha.discounts.my_price") } %>
-    </div>
-  </center>
+  <div class="footer">
+    <%= link_to 'Предложить свою цену',
+      [:new, discount, :offer],
+      :remote => true,
+      :class => 'offer_price my_price',
+      :data => { :title => t("afisha.discounts.my_price") } %>
+  </div>
 </div>
