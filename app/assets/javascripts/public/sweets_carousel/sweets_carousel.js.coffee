@@ -6,7 +6,7 @@
   carousel = $('#sweets_carousel')
   # the paginator config
   paginator_parent = $('.discounts_count') # this is the paginator container
-  paginator_item = $('.discounts_count .counter') # this is the paginator items container
+  paginator_item = $('.discounts_count ul.counter') # this is the paginator items container
   classname = 'circle' # this is a class name of paginator item
   # the arrows config
   next_arrow = $("#Next")
@@ -88,11 +88,11 @@
   paginator = (paginator_item, classname) ->
     count = $('li', carousel).length
     for i in [1..count]
-      paginator_item.append("<a id='sweet_#{i}' href='##{i}' class='#{classname}' ></a>")
+      paginator_item.append("<li><a id='sweet_#{i}' href='##{i}' class='#{classname}' ></a></li>")
 
     change_current '#sweet_1'
 
-    $('a', paginator_item).each (i, val) ->
+    $('li a', paginator_item).each (i, val) ->
       $(val).on 'click', (e) ->
         e.preventDefault()
         unless busy

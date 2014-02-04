@@ -254,24 +254,28 @@
           position: absolute
           width: 378px
           z-index: 1
+          text-align: center
 
-          .counter
-            display: table-cell
-            height: 30px
-            vertical-align: middle
+          ul.counter
+            display: inline-block
+            height: 25px
+            margin: 5px 0 0 0
 
-            .circle
-              +border-radius(50%)
-              background-color: #ccc
-              float: left
-              height: 13px
-              margin: 0px 2px 0px 2px
-              padding: 0px
-              position: relative
-              width: 13px
+            li
+              margin: 0
 
-            .selected
-              background-color: #f60
+              .circle
+                +border-radius(50%)
+                background-color: #ccc
+                float: left
+                height: 13px
+                margin: 0px 2px 0px 2px
+                padding: 0px
+                position: relative
+                width: 13px
+
+              .selected
+                background-color: #f60
 
         .image
           height: 282px

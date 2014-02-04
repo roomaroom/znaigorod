@@ -5,11 +5,9 @@
         <li>
 
           <div class='image'>
-
             <%= link_to discount_path(discount) do %>
               <%= image_tag resized_image_url(discount.poster_url, 378, 282), :size => '378x282', :alt => discount.title.to_s.text_gilensize %>
             <% end %>
-
           </div>
 
           <% if false %>
@@ -43,10 +41,7 @@
       <button id="Next" class="active">Следующая</button>
 
       <div class="discounts_count">
-        <center>
-          <div class="counter">
-          </div>
-        </center>
+        <ul class="counter"></ul>
       </div>
     <% end %>
   </li>
