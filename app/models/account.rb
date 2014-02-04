@@ -11,7 +11,6 @@ class Account < ActiveRecord::Base
                   :rating, :nickname, :location,
                   :account_settings_attributes
 
-
   has_many :users,           order: 'id ASC', dependent: :destroy
   has_many :afisha,          through: :users
   has_many :discounts
