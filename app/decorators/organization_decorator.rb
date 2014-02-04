@@ -301,7 +301,6 @@ class OrganizationDecorator < ApplicationDecorator
     if logotype_url
       image = h.resized_image_url(logotype_url, 180, 242)
       res << "<meta property='og:image' content='#{image}' />\n"
-      res << "<meta name='image' content='#{image}' />\n"
       res << "<link rel='image_src' href='#{image}' />\n"
     end
     res.html_safe

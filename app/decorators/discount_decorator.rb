@@ -26,7 +26,6 @@ class DiscountDecorator < ApplicationDecorator
     res << "<meta property='og:title' content='#{discount.title}' />\n"
     res << "<meta property='og:url' content='#{h.discount_url(discount)}' />\n"
     res << "<meta property='og:image' content='#{discount.poster_url}' />\n"
-    res << "<meta name='image' content='#{discount.poster_url}' />\n"
     res << "<link rel='image_src' href='#{discount.poster_url}' />\n"
     res.html_safe
   end
