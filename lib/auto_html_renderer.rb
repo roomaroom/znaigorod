@@ -30,7 +30,6 @@ class AutoHtmlRenderer
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
-      away_links
     end
   end
 
@@ -39,6 +38,7 @@ class AutoHtmlRenderer
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
+      away_links
     end
   end
 
