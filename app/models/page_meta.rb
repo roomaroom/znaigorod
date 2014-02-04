@@ -12,7 +12,8 @@ class PageMeta < ActiveRecord::Base
 
   auto_html_for :introduction do
     redcloth
-    away_links
+    external_links_attributes
+    external_links_redirect
   end
 
   has_attached_file :og_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']

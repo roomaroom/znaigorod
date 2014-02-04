@@ -8,7 +8,9 @@ class AutoHtmlRenderer
   end
 
   def apply_auto_html(str, options = {})
-    allow_external_links ? auto_html_with_away_links(str, options) : auto_html_without_away_links(str, options)
+    allow_external_links ?
+      auto_html_with_external_links(str, options) :
+      auto_html_without_external_links(str, options)
   end
 
   def render_show(options = {})
@@ -25,20 +27,22 @@ class AutoHtmlRenderer
 
   private
 
-  def auto_html_with_away_links(str, options = {})
+  def auto_html_with_external_links(str, options = {})
     auto_html(str) do
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
+      external_links_attributes
     end
   end
 
-  def auto_html_without_away_links(str, options = {})
+  def auto_html_without_external_links(str, options = {})
     auto_html(str) do
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
-      away_links
+      external_links_attributes
+      external_links_redirect
     end
   end
 

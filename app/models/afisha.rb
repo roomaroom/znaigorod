@@ -288,7 +288,8 @@ class Afisha < ActiveRecord::Base
     youtube :width => 580, :height => 350
     vimeo :width => 580, :height => 350
     redcloth
-    away_links
+    external_links_attributes
+    external_links_redirect
   end
 
   def text_description
