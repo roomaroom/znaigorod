@@ -58,6 +58,11 @@ class Advertisement
     @afishas ||= places.select {|pl| pl.is_a?(AfishaAdvertisementPlace) }.map(&:afisha)
   end
 
+  def discounts
+    @afishas ||= places.select {|pl| pl.is_a?(DiscountAdvertisementPlace) }.map(&:discount)
+  end
+
+
   class AdvertisementPlace
     include ActiveAttr::MassAssignment
     attr_accessor :page, :position, :replaced_count, :list

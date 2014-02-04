@@ -236,7 +236,7 @@ class DiscountsPresenter
       params[:kind]             = kind_filter.selected
       params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
       params[:q]                = q if q.present?
-      params[:without]          = advertisement.places_at(page).map(&:discount) if with_advertisement?
+      params[:without]          = advertisement.discounts if with_advertisement?
     end
   end
 
