@@ -3,9 +3,13 @@ User-Agent: *
 Allow: /accounts$
 
 Disallow: /accounts/*
+Disallow: /my
 
-Disallow: */invitations/new
+Disallow: */change_vote
 Disallow: */comments/new
+Disallow: */invitations/new
+Disallow: */visits
+Disallow: */works/new
 
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe
