@@ -1,29 +1,22 @@
 afisha:
   places:
     '1.0':
-      from: '2014-01-28 00:00'
-      to: '2014-02-03 00:00'
-      content_type: 'afisha'
-      afisha_slug: 'seminar-dyhanie-prirody'
-      replaced_count: 4
-
-    '1.1':
       from: '2014-01-24 12:00'
       to: '2014-02-09 12:00'
       content_type: 'afisha'
       afisha_slug: 'planetango-10-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.2':
+    '1.1':
       from: '2014-01-24 12:00'
       to: '2014-02-08 12:00'
       content_type: 'afisha'
       afisha_slug: 'gala-kontsert-festivalya-planetango-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.3':
-      from: '2014-02-01 13:00'
-      to: '2014-02-02 13:00'
+    '1.2':
+      from: '2014-02-04 08:00'
+      to: '2014-02-07 08:00'
       content_type: 'afisha'
       afisha_slug: 'kulinarnyy-master-klass-romanticheskiy-uzhin'
       replaced_count: 1
