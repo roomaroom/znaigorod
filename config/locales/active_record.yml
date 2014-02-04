@@ -212,12 +212,13 @@ ru:
 
       post:
         <<: *common_attributes
-        categories:      Категории
-        content:         Содержание
-        kind:            Тип обзора
-        link_with_title: Этот пост связан с
-        status:          Опубликовать
-        tag:             Теги через запятую
+        categories:           Категории
+        content:              Содержание
+        kind:                 Тип обзора
+        link_with_title:      Этот пост связан с
+        status:               Опубликовать
+        tag:                  Теги через запятую
+        allow_external_links: Разрешить внешние ссылки
 
       image:
         <<: *common_attributes

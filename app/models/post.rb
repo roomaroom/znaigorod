@@ -8,7 +8,8 @@ class Post < ActiveRecord::Base
   include DraftPublishedStates
   include MakePageVisit
 
-  attr_accessible :content, :title, :vfs_path, :rating, :tag, :kind, :categories, :afisha_id, :organization_id, :state_event
+  attr_accessible :content, :title, :vfs_path, :rating, :tag, :kind, :categories,
+    :afisha_id, :organization_id, :state_event, :allow_external_links
 
   attr_accessible :link_with_title, :link_with_value, :link_with_reset
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
@@ -55,6 +56,8 @@ class Post < ActiveRecord::Base
 
   normalize_attribute :content, :with => [:strip, :blank]
 
+  default_value_for :allow_external_links, false
+
   default_scope order('id DESC')
 
   scope :draft,     -> { where :state => :draft }
@@ -74,11 +77,11 @@ class Post < ActiveRecord::Base
   end
 
   def content_for_show
-    @content_for_show = AutoHtmlRenderer.new(content).render_show
+    @content_for_show = AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show
   end
 
   def content_for_index
-    @content_for_index = AutoHtmlRenderer.new(content).render_index
+    @content_for_index = AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_index
   end
 
   def tags

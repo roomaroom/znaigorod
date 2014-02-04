@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140123095727) do
+ActiveRecord::Schema.define(:version => 20140204034612) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -688,6 +688,7 @@ ActiveRecord::Schema.define(:version => 20140123095727) do
     t.datetime "poster_image_updated_at"
     t.string   "state"
     t.integer  "account_id"
+    t.boolean  "allow_external_links"
   end
 
   add_index "posts", ["account_id"], :name => "index_posts_on_account_id"
