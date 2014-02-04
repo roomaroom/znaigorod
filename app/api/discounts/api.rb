@@ -17,8 +17,12 @@ module Discounts
         @affiliated_coupon ||= Prikupon::Importer.new(params[:data]).import
       end
 
-      def url
+      def url_of_created_coupon
         Rails.application.routes.url_helpers.discount_url affiliated_coupon, :host => Settings['app.host']
+      end
+
+      def log_params
+        API.logger.debug "API (api/discounts) parameters: #{params.except('route_info').to_hash}"
       end
     end
 
@@ -28,7 +32,9 @@ module Discounts
       end
 
       post do
-        url
+        log_params
+
+        url_of_created_coupon
       end
     end
   end
