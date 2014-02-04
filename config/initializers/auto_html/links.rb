@@ -2,14 +2,13 @@ def skip_url?(url)
   url =~ /#{Settings['app.url']}/ || url =~ /mailto:/
 end
 
-AutoHtml.add_filter(:external_links_attributes) do |html, options|
+AutoHtml.add_filter(:external_links_attributes).with({}) do |html, options|
   fragment = Nokogiri::HTML.fragment(html.scrub)
 
   fragment.css('a').each do |a|
     next if skip_url?(a['href'])
 
-    a['target'] = '_blank'
-    a['rel']    = 'nofollow'
+    options.each { |attr, value| a[attr] = value }
   end
 
   fragment.to_html

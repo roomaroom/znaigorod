@@ -32,7 +32,7 @@ class AutoHtmlRenderer
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
-      external_links_attributes
+      external_links_attributes :target => '_blank'
     end
   end
 
@@ -41,7 +41,7 @@ class AutoHtmlRenderer
       youtube options[:youtube] || { :width => 700 }
       vimeo options[:vimeo] || { :width => 700 }
       redcloth
-      external_links_attributes
+      external_links_attributes :target => '_blank', :rel => 'nofollow'
       external_links_redirect
     end
   end

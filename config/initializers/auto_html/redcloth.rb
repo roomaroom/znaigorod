@@ -3,7 +3,7 @@ require 'redcloth'
 require 'rexml/document'
 require 'rinku'
 
-AutoHtml.add_filter(:redcloth) do |text, options|
+AutoHtml.add_filter(:redcloth).with({}) do |text, options|
   attributes = Array(options).reject { |k,v| v.nil? }.map { |k, v| %{#{k}="#{REXML::Text::normalize(v)}"} }.join(' ')
   result = RedCloth.new(text).to_html
   result = Rinku.auto_link(result, :all, attributes)
