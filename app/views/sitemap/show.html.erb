@@ -22,7 +22,7 @@
   </ul>
 
   <ul>
-    <% Organization.suborganization_models.drop(1).map(&:name).map(&:underscore).each do |suborganization_kind| %>
+    <% Organization.suborganization_kinds_for_navigation.drop(1).each do |suborganization_kind| %>
       <li>
         <%= link_to t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path"), :class => 'title' %>
 
