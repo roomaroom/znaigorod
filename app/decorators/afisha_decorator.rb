@@ -118,20 +118,14 @@ class AfishaDecorator < ApplicationDecorator
   end
 
   def meta_description
-    description.to_s.truncate(200, separator: ' ')
+    html_description.without_table.gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe.truncate(350, :separator => ' ').html_safe
   end
 
   def tags_for_vk
-    desc = ""
-    desc << when_with_price
-    desc << " "
-    desc << h.link_to(afisha.title.text_gilensize.truncated, h.afisha_show_path(afisha), :title => afisha.title)
-    desc << ". "
-    desc << html_description
-    desc = desc.without_table.gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe
     image = h.resized_image_url(poster_url, 180, 242)
+
     res = ""
-    res << "<meta property='og:description' content='#{desc.truncate(350, :separator => ' ').html_safe}'/>\n"
+    res << "<meta property='og:description' content='#{meta_description}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
     res << "<meta property='og:title' content='#{title.to_s.text_gilensize}' />\n"
     res << "<meta property='og:url' content='#{h.afisha_show_url(afisha)}' />\n"
