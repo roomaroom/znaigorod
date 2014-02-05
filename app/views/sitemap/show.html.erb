@@ -22,19 +22,24 @@
   </ul>
 
   <ul>
-    <% Organization.suborganization_kinds_for_navigation.drop(1).each do |suborganization_kind| %>
-      <li>
-        <%= link_to t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path"), :class => 'title' %>
+    <li>
+      <%= link_to 'Заведения', organizations_path, :class => 'title' %>
 
-        <ul class="clearfix inner">
-          <% "#{suborganization_kind.pluralize}_presenter".classify.constantize.new.categories_links.drop(1).each do |link| %>
-            <li class="floatl">
-              <%= link_to link[:title], link[:url] %>
-            </li>
+      <ul class="clearfix inner">
+        <% Organization.available_suborganization_kinds.each do |kind| %>
+          <% begin %>
+            <% HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.each do |row| %>
+              <% next if kind == 'sauna' || row.value.from_russian_to_param == 'kafe' %>
+
+              <li class="floatl">
+                <%= link_to row.value.mb_chars.capitalize, send("#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path") %>
+              </li>
+            <% end %>
+          <% rescue %>
           <% end %>
-        </ul>
-      </li>
-    <% end %>
+        <% end %>
+      </ul>
+    </li>
   </ul>
 
   <ul>
