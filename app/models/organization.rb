@@ -81,8 +81,8 @@ class Organization < ActiveRecord::Base
 
   ### Payments ===>
 
-  def self.suborganization_models
-    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter]
+  def self.suborganization_kinds_for_navigation
+    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter].map(&:name).map(&:underscore)
   end
 
   def self.available_suborganization_kinds

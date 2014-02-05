@@ -20,10 +20,6 @@ module OrganizationsPresenter
     include Rails.application.routes.url_helpers
     attr_accessor :kind, :filters
 
-    def suborganization_kinds
-      Organization.suborganization_models
-    end
-
     def acts_as_organizations_presenter(*args)
       options = args.extract_options!
 
@@ -169,7 +165,7 @@ module OrganizationsPresenter
 
   def kinds_links
     @kinds_links ||= [].tap do |kinds_links|
-      self.class.suborganization_kinds.map(&:name).map(&:underscore).each do |suborganization_kind|
+      Organization.suborganization_kinds_for_navigation.each do |suborganization_kind|
         kinds_links << {
           title: I18n.t("organization.kind.#{suborganization_kind}"),
           klass: suborganization_kind,
