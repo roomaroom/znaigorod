@@ -411,11 +411,13 @@ module EmailDigestHelper
                                     keys_for_path)
         result << " )\n"
       else
-        result << vote.voteable.commentable.slug + " ("
-        result << contest_work_path(vote.voteable.commentable.contest,
-                                    vote.voteable.commentable,
-                                    keys_for_path)
-        result << " )\n"
+        if vote.try(:voteable).try(:commentable).try(:slug).present?
+          result << vote.voteable.commentable.slug + " ("
+          result << contest_work_path(vote.voteable.commentable.contest,
+                                      vote.voteable.commentable,
+                                      keys_for_path)
+          result << " )\n"
+        end
       end
     end
 
