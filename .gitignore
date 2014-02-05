@@ -19,4 +19,5 @@ erd.pdf
 log/sunspot-solr-development.log*
 public/assets/
 public/cache/
+public/sitemap.xml
 .DS_Store
