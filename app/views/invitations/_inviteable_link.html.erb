@@ -12,6 +12,7 @@
                 polymorphic_path([:new, inviteable, :invitation], 'invitation[kind]' => kind),
                 :class => "invitation_link #{kind}",
                 'data-title' => t("enumerize.invitation.kind.#{kind}"),
-                :remote => true %>
+                :remote => true,
+                :rel => 'nofollow' %>
   </li>
 <% end %>

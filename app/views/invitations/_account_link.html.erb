@@ -3,5 +3,6 @@
     polymorphic_path([:new, :invitation], 'invitation[kind]' => kind, 'invitation[invited_id]' => invited_id),
     :class => "invitation_link",
     'data-title' => t("invitation.kind.#{kind}"),
-    :remote => true %>
+    :remote => true,
+    :rel => 'nofollow' %>
 </li>

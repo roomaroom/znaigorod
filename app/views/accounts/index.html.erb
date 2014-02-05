@@ -30,13 +30,15 @@
         new_invitation_path('invitation[kind]' => :inviter),
         :remote => true,
         :class => 'invitation_link grey_button',
-        :data => { :title => 'Пригласить', :target => '.invited' } %>
+        :data => { :title => 'Пригласить', :target => '.invited' },
+        :rel => 'nofollow' %>
 
     <%= link_to 'Жду приглашения',
         new_invitation_path('invitation[kind]' => :invited),
         :remote => true,
         :class => 'invitation_link grey_button',
-        :data => { :title => 'Жду приглашения', :target => '.invited' } %>
+        :data => { :title => 'Жду приглашения', :target => '.invited' },
+        :rel => 'nofollow' %>
   </div>
 </div>
 
