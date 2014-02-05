@@ -1,83 +1,113 @@
-# Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = Rails.env.production? ? "http://znaigorod.ru" : "http://localhost:3000"
 SitemapGenerator::Sitemap.sitemaps_path = Rails.env.production? ? File.expand_path('../../../../shared/sitemaps/', __FILE__) : ''
 SitemapGenerator::Sitemap.create_index = false
 
+
 SitemapGenerator::Sitemap.create do
-
-  # Списки афиши
-  add afisha_index_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Afisha.unscoped.last.updated_at
-
-  # Заведения города Томска
-  add organizations_path, :changefreq => 'daily', :priority => 0.5, :lastmod => Organization.unscoped.last.updated_at
-
-  # Заведения общественного питания в Томске
-  add meals_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Meal.unscoped.last.updated_at
-
-  # Развлекательные заведения в Томске
-  add entertainments_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Entertainment.unscoped.last.updated_at
-
-  # Сауны
-  add saunas_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Sauna.unscoped.last.updated_at
-
-  # Культурные заведения в Томске
-  add cultures_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Culture.unscoped.last.updated_at
-
-  # Спортивные заведения
-  add sports_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Sport.unscoped.last.updated_at
-
-  # Творчество и развитие
-  add creations_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Creation.unscoped.last.updated_at
-
-  # Вебкамеры
-  add webcams_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Webcam.unscoped.last.updated_at
-
-  # Конкурсы
-  add contests_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Contest.unscoped.last.updated_at
-
-  # Скидки, сертификаты и купоны, акции и распродажи
-  add discounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Discount.unscoped.last.updated_at
-
-  # Знакомства
-  add accounts_path, :changefreq => 'daily', :priority => 0.7, :lastmod => Account.unscoped.last.updated_at
-
-  # Публикации
-  add posts_path, :changefreq => 'weekly', :priority => 0.7, :lastmod => Post.unscoped.last.updated_at
-
-  # Размещение информации
-  add cooperation_path, :changefreq => 'weekly', :priority => 0.7, :lastmod => DateTime.now - 7.days
-
-  # Мероприятия
-  max_rating = Afisha.pluck(:total_rating).compact.max
-  Afisha.find_each do |affiche|
-    add send("#{affiche.class.name.downcase}_path", affiche),
-      :changefreq => 'weekly',
-      :priority => affiche.total_rating/max_rating,
-      :lastmod => affiche.updated_at #,
-      #:images => [{ :loc => affiche.poster_url, :title => affiche.title }]
+  def afisha_priority(afisha)
+    return 1 - [(Date.today - afisha.created_at.to_date).days, 5].min * 0.1
   end
 
-  max_rating = Organization.pluck(:rating).compact.max
-  Organization.find_each do |organization|
-    if organization.subdomain.blank?
-      add organization_path(organization),
-        :changefreq => 'weekly',
-        :priority => organization.rating.to_f > 0 ? organization.rating.to_f/max_rating : 0,
-        :lastmod => organization.updated_at #,
-      #:images => [{ :loc => organization.logotype_url, :title => organization.title }]
-    else
-      add '',
-        :changefreq => 'weekly',
-        :priority => organization.rating.to_f/max_rating,
-        :lastmod => organization.updated_at,
-        :host => "http://#{organization.subdomain}.znaigorod.ru"
+  def organization_priority(organization)
+    organization.client? ? 1.0 : 0.5
+  end
+
+  # Список афиш
+  add afisha_index_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Afisha.unscoped.last.updated_at
+  add afisha_with_tickets_index_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Ticket.for_sale.last.afisha.updated_at
+
+  # Список афиш по категориям
+  Afisha.kind.values.each do |item|
+    add send("#{item.pluralize}_path"),
+      :changefreq => 'daily',
+      :priority => 0.8,
+      :lastmod => Afisha.actual.select{|a| a.kind.include?(item)}.last.updated_at
+  end
+
+  # Просмотр афиш
+  Afisha.actual.each do |afisha|
+    add send("#{afisha.class.name.downcase}_path", afisha),
+      :changefreq => 'weekly',
+      :priority => afisha_priority(afisha),
+      :lastmod => afisha.updated_at
+  end
+
+  # Список заведений
+  add organizations_path, :changefreq => 'weekly', :priority => 1.0, :lastmod => Organization.unscoped.last.updated_at
+
+  # Список заведений по категориям
+  Organization.available_suborganization_kinds.each do |kind|
+    begin
+      HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.each do |row|
+        next if kind == 'sauna' || row.value.from_russian_to_param == 'kafe'
+
+        add send("#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path"),
+          :changefreq => 'daily',
+          :priority => 0.8,
+          :lastmod => kind.classify.constantize.unscoped.last.updated_at
+      end
+    rescue
     end
   end
 
-  Post.find_each do |post|
-    add post_path(post),
-      :changefreq => 'monthly',
-      :priority => 0.6,
-      :lastmod => post.updated_at
+  # Просмотр заведения
+  Organization.find_each do |organization|
+    add organization_path(organization),
+      :changefreq => 'weekly',
+      :priority => organization_priority(organization),
+      :lastmod => organization.updated_at
   end
+
+  # Список скидок
+  add discounts_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Discount.unscoped.last.updated_at
+
+  # Список скидок по категориям
+  Discount.kind.values.each do |item|
+    add send("discounts_#{item}_path"),
+      :changefreq => 'daily',
+      :priority => 0.8,
+      :lastmod => Discount.actual.select { |a| a.kind.include?(item) }.last.try(:updated_at)
+  end
+
+  # Список веб-камер
+  add webcams_path, :changefreq => 'weekly', :priority => 0.5, :lastmod => Webcam.published.unscoped.last.updated_at
+
+  # Просмотр вер-камеры
+  Webcam.published.each do |webcam|
+    add webcam_path(webcam), :changefreq => 'weekly', :priority => '0.5', :lastmod => webcam.updated_at
+  end
+
+  # Конкурсы
+  add contests_path, :changefreq => 'weekly', :priority => 0.5, :lastmod => Contest.unscoped.last.updated_at
+
+  # Знакомства
+  add accounts_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Account.unscoped.last.updated_at
+
+  # Знакомства по категориям
+  Inviteables.instance.transliterated_category_titles.each do |transliterated, original|
+    category = transliterated.dup
+
+    add send("accounts_#{category}_path"),
+      :changefreq => 'weekly',
+      :priority => 0.5,
+      :lastmod => Invitation.with_invited.where(:category => original).last.try(:updated_at)
+  end
+
+  # Список обзоров
+  add posts_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Post.unscoped.last.updated_at
+
+  # Список обзоров по категориям
+  Post.categories.values.each do |item|
+    add send("posts_#{item}_path"),
+      :changefreq => 'daily',
+      :priority => 0.8,
+      :lastmod => Post.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
+  end
+
+  # Услуги и цены
+  add services_path,      :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
+  add benefit_path,       :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
+  add statistics_path,    :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
+  add our_customers_path, :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
+  add ticket_sales_path,  :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
 end
