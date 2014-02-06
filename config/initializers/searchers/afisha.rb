@@ -28,7 +28,6 @@ HasSearcher.create_searcher :showings do
     search.without search_object.send(:without) if search_object.send(:without).try(:any?)
   end
 
-
   # categories tags organizations
   [:categories, :tags, :organization_ids].each do |field|
     property field do |search|
