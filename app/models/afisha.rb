@@ -19,7 +19,8 @@ class Afisha < ActiveRecord::Base
                   :distribution_starts_on, :distribution_ends_on,
                   :original_title, :trailer_code, :vk_aid, :yandex_fotki_url, :constant,
                   :age_min, :age_max, :state_event, :state, :user_id, :kind, :vk_event_url,
-                  :fb_likes, :odn_likes, :vkontakte_likes, :poster_vk_id
+                  :fb_likes, :odn_likes, :vkontakte_likes, :poster_vk_id,
+                  :promoted_at
 
   belongs_to :user
 
