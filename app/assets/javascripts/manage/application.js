@@ -32,6 +32,7 @@
  * = require ./contest
  * = require ./accounts_for_lottery
  * = require ./offers
+ * = require ./promote_afisha
  * = require ../public/my_posts
  * = require ./main
  */

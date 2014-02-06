@@ -21,6 +21,7 @@ $ ->
   init_offers() if $('.offers').length
   init_contest() if $('#contest_og_image').length
   initMyPosts() if $('.post_form').length
+  initPromoteAfisha() if $('.promoted_link').length
 
 $(window).load ->
   init_organization_map() if $('.edit_organization, .new_organization').length

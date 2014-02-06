@@ -21,6 +21,8 @@ class Manage::AfishasController < Manage::ApplicationController
   def update
     update! do |success, failure|
       success.html {
+        render :nothing => true and return if request.xhr?
+
         if params[:crop]
           redirect_to poster_manage_afisha_path(resource)
         else
