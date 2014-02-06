@@ -6,11 +6,13 @@
   <% end %>
   <%= @discount.kind.map(&:text).join(', ') %> в Томске
 <% end %>
+
 <% content_for :meta_keywords, @discount.meta_keywords %>
 <% content_for :meta_description, @discount.meta_description %>
 
 <% content_for :extra_meta do %>
-  <%= @discount.tags_for_vk %>
+  <%= @discount.open_graph_meta %>
+  <%= @discount.twitter_cards_meta %>
 <% end %>
 
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>

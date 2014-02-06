@@ -2,6 +2,8 @@
 
 class AfishaDecorator < ApplicationDecorator
   include AutoHtmlFor
+  include OpenGraphMeta
+
   decorates :afisha
 
   delegate :distribution_starts_on, :distribution_ends_on, :distribution_starts_on?, :distribution_ends_on?, :kind, :to => :afisha
@@ -11,6 +13,10 @@ class AfishaDecorator < ApplicationDecorator
   def initialize(afisha, showings = nil)
     super
     @showings = showings ? ShowingDecorator.decorate(showings) : ShowingDecorator.decorate(afisha.showings.actual)
+  end
+
+  def open_graph_meta_tags
+    tags
   end
 
   def truncated_title_link(length, options = { separator: ' ', anchor: nil })
@@ -111,27 +117,6 @@ class AfishaDecorator < ApplicationDecorator
       end
     end
     nealest_showing.actual? ? nealest_showing.human_when : "Было #{nealest_showing.e_B(nealest_showing.starts_at)}"
-  end
-
-  def meta_keywords
-    [kind.map(&:text).join(', '), afisha.tags].flatten.map(&:mb_chars).map(&:downcase).join(', ')
-  end
-
-  def meta_description
-    html_description.without_table.gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe.truncate(350, :separator => ' ').html_safe
-  end
-
-  def tags_for_vk
-    image = h.resized_image_url(poster_url, 180, 242)
-
-    res = ""
-    res << "<meta property='og:description' content='#{meta_description}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:title' content='#{title.to_s.text_gilensize}' />\n"
-    res << "<meta property='og:url' content='#{h.afisha_show_url(afisha)}' />\n"
-    res << "<meta property='og:image' content='#{image}' />\n"
-    res << "<link rel='image_src' href='#{image}' />\n"
-    res.html_safe
   end
 
   def human_price

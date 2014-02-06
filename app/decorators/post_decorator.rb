@@ -3,6 +3,8 @@
 class PostDecorator < ApplicationDecorator
   decorates :post
 
+  include OpenGraphMeta
+
   delegate :title, :html_content, :kind, to: :post
 
   def truncated_title(length, separator = ' ')
@@ -31,6 +33,11 @@ class PostDecorator < ApplicationDecorator
     else
       'public/post_poster_stub.jpg'
     end
+  end
+
+  # overrides OpenGraphMeta.object_image
+  def object_image
+    annotation_image(242, 180)
   end
 
   def date

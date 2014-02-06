@@ -5,7 +5,8 @@
 <% content_for :meta_description, @organization.meta_description %>
 
 <% content_for :extra_meta do %>
-  <%= @organization.tags_for_vk %>
+  <%= @organization.open_graph_meta %>
+  <%= @organization.twitter_cards_meta %>
 <% end %>
 
 <div class='organization_show'>

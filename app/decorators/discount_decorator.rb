@@ -3,6 +3,13 @@
 class DiscountDecorator < ApplicationDecorator
   decorates :discount
 
+  include OpenGraphMeta
+
+  # overrides OpenGraphMeta.object_url
+  def object_url
+    h.discount_url(model)
+  end
+
   def goes_now?
     starts_at < Time.zone.now && ends_at > Time.zone.now
   end
@@ -17,17 +24,6 @@ class DiscountDecorator < ApplicationDecorator
     else
       starts_at.to_i * 1000
     end
-  end
-
-  def tags_for_vk
-    res = ""
-    res << "<meta property='og:description' content='#{discount.description}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:title' content='#{discount.title}' />\n"
-    res << "<meta property='og:url' content='#{h.discount_url(discount)}' />\n"
-    res << "<meta property='og:image' content='#{discount.poster_url}' />\n"
-    res << "<link rel='image_src' href='#{discount.poster_url}' />\n"
-    res.html_safe
   end
 
   def when_with_price
@@ -90,14 +86,6 @@ class DiscountDecorator < ApplicationDecorator
   def similar_discount
     count = geo_present? ? 3 : 5
     HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(count).results.map { |d| DiscountDecorator.new d }
-  end
-
-  def meta_keywords
-    kind.map(&:text).map(&:mb_chars).map(&:downcase).join(', ')
-  end
-
-  def meta_description
-    description.to_s.truncate(200, separator: ' ')
   end
 
   def smart_path(options = {})

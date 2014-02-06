@@ -3,6 +3,8 @@
 class OrganizationDecorator < ApplicationDecorator
   decorates :organization
 
+  include OpenGraphMeta
+
   delegate :decorated_phones, :to => :decorated_priority_suborganization
 
   def title
@@ -58,7 +60,6 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def organization_url
-    #organization.subdomain? ? h.root_url(subdomain: organization.subdomain) :
     h.organization_url(organization)
   end
 
@@ -292,24 +293,7 @@ class OrganizationDecorator < ApplicationDecorator
     links
   end
 
-  def tags_for_vk
-    res = ""
-    res << "<meta property='og:description' content='#{text_description.truncate(350, :separator => ' ')}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:url' content='#{organization_url}' />\n"
-    res << "<meta property='og:title' content='#{title.text_gilensize}' />\n"
-    if logotype_url
-      image = h.resized_image_url(logotype_url, 180, 242)
-      res << "<meta property='og:image' content='#{image}' />\n"
-      res << "<link rel='image_src' href='#{image}' />\n"
-    end
-    res.html_safe
-  end
-
-  def meta_description
-    text_description.truncate(700, :separator => ' ')
-  end
-
+  # overrides OpenGraphMeta.meta_keywords
   def meta_keywords
     keywords = categories
     suborganizations.each do |suborganization|
@@ -317,7 +301,7 @@ class OrganizationDecorator < ApplicationDecorator
         keywords += suborganization.send(field) if suborganization.respond_to?(field) && suborganization.send(field).any?
       end
     end
-    keywords.map(&:mb_chars).map(&:downcase).join(',')
+    keywords.map(&:mb_chars).map(&:downcase).join(', ')
   end
 
   def actual_affiches_count
