@@ -53,11 +53,15 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :discounts, 'Скидки', discounts_path, highlights_on: -> { params[:controller] == 'discounts' } do |discount|
       Discount.kind.values.each do |item|
-        discount.item "discounts_#{item}", I18n.t("enumerize.discount.kind.#{item}") ,send("discounts_#{item}_path")
+        discount.item "discounts_#{item}", I18n.t("enumerize.discount.kind.#{item}"), send("discounts_#{item}_path")
       end
     end
 
-    primary.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
+    primary.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' } do |post|
+      Post.categories.values.each do |item|
+        post.item "posts_#{item}_path", I18n.t("enumerize.post.categories.#{item}"), send("posts_#{item}_path")
+      end
+    end
 
     primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { params[:controller] == 'accounts' } do |account|
       Inviteables.instance.categories.keys.each do |item|
@@ -68,7 +72,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests posts works cooperation].include?(params[:controller]) } do |more|
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { params[:controller] == nil }
-      more.item :posts, 'Обзоры', posts_path, highlights_on: -> { params[:controller] == 'posts' }
+      more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { params[:controller] == 'webcams' }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? params[:controller] }
       more.item :services, 'Реклама', services_path, highlights_on: -> { params[:controller] == 'cooperation' }
       more.item :widgets, 'Виджеты', widgets_root_path, highlights_on: -> { params[:controller].match /widgets/i }
