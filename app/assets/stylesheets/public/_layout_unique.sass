@@ -750,3 +750,81 @@
 
           .more_like_this
             +background(linear-gradient(top, rgba(108,48,38, 0.1), rgba(148,65,51, 0.5)))
+
+.sibbliny_content_wrapper
+  background: #c2224e
+  +background(linear-gradient(top, #c2224e, #fed54f))
+
+  .sibbliny_logo
+    background: transparent image_url('public/sibbliny/logo.png') no-repeat center center
+    height: 111px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      +box-shadow(none)
+      +border-top-left-radius
+      +border-top-right-radius
+      background: rgba(255,255,255,0.5)
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        a
+          color: #cf2344
+
+        .left
+          .image, .social_actions, .offers_wrapper
+            border: 1px solid #d12345
+
+            .user_actions
+              border-bottom: 1px solid #d12345
+
+            .list
+              li:first-child
+                border: none
+
+          .image
+            background: #e07879
+
+        .social_actions, .offers_wrapper, .virtual_tour, .more_like_this
+          background: #eaa481
+          +background(linear-gradient(top, #eaa481, #ed9d6f))
+          color: #fff
+
+        .yandex_map
+          background: #e07879
+
+        .center
+          background: transparent image_url('public/sibbliny/girl.png') no-repeat bottom center
+          color: #fff
+          padding: 0 0 285px 0
+
+          .suborganization_info
+            .title
+              background: #e07171
+
+            strong
+              color: #fed64f
+
+          .share_and_likes
+            border-bottom: 1px solid #d12345
+
+        .comments
+          +override_comments
+
+          .date
+            color: #fff !important
+
+        .right
+          .wrapper
+            border: 1px solid #d12345
+
+            .virtual_tour, .yandex_map
+              border-bottom: 1px solid #d12345
