@@ -1,0 +1,7 @@
+<%= simple_form_for @review, :url => [:my, :reviews] do |f| %>
+  <%= f.input :title %>
+
+  <%= render "#{@review.name_without_prefix}_fields", :f => f %>
+
+  <%= f.button :submit %>
+<% end %>

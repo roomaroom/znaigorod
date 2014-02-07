@@ -1,0 +1,2 @@
+class ReviewPhoto < Review
+end

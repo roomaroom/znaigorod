@@ -1,0 +1,2 @@
+class ReviewArticle < Review
+end

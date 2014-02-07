@@ -751,6 +751,13 @@ ActiveRecord::Schema.define(:version => 20140211034007) do
   add_index "reservations", ["reserveable_id"], :name => "index_reservations_on_reserveable_id"
   add_index "reservations", ["reserveable_type"], :name => "index_reservations_on_reserveable_type"
 
+  create_table "reviews", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "type"
+  end
+
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
     t.string   "role"
