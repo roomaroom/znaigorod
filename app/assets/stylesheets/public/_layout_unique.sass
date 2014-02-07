@@ -15,6 +15,21 @@
     background-color: #fff
     padding: 5px
 
+=override_comments
+  .comment_form
+    div.text
+      border: none !important
+      padding: 0
+
+  .comment_item
+    .comment_wrapper
+      &:hover, &.active
+        background: none
+
+      .votes_wrapper
+        .like_box
+          color: #222
+
 .anapa_content_wrapper
   background: #d4fbbc image_url('public/anapa/bg.png') no-repeat center -50px
   +background(image_url('public/anapa/bg.png') no-repeat center -50px, linear-gradient(top, #d4fbbc, #8cddfa))
@@ -104,19 +119,8 @@
           &.afisha_details .posters .item .title
             background-color: transparent
 
-        .comment_form
-          div.text
-            border: none !important
-            padding: 0
-
-        .comment_item
-          .comment_wrapper
-            &:hover, &.active
-              background: none
-
-            .votes_wrapper
-              .like_box
-                color: #222
+        .comments
+          +override_comments
 
       .right
         .wrapper
@@ -176,19 +180,8 @@
             .title
               background: #ffd9b5
 
-          .comment_form
-            div.text
-              border: none !important
-              padding: 0
-
-            textarea
-              border: 1px solid #ccc
-              width: 680px
-
-          .comment_item
-            .comment_wrapper
-              &:hover, &.active
-                background: none
+          .comments
+            +override_comments
 
         .right
           .wrapper
@@ -255,19 +248,12 @@
           .share_and_likes
             border-color: #e3686b
 
-          .comment_form
-            div.text
-              border: none !important
-              padding: 0
+          .comments
+            +override_comments
 
             textarea
               border: 1px solid #e3686b
               width: 680px
-
-          .comment_item
-            .comment_wrapper
-              &:hover, &.active
-                background: none
 
         .right
           .wrapper
@@ -329,19 +315,12 @@
             .afisha_list .posters li .item
               border-color: #42acd8
 
-          .comment_form
-            div.text
-              border: none !important
-              padding: 0
+          .comments
+            +override_comments
 
             textarea
               border: 1px solid #ccc
               width: 680px
-
-          .comment_item
-            .comment_wrapper
-              &:hover, &.active
-                background: none
 
         .right
           .wrapper
@@ -422,19 +401,12 @@
                 &:after
                   border-left-color: #b12c25
 
-          .comment_form
-            div.text
-              border: none !important
-              padding: 0
+          .comments
+            +override_comments
 
             textarea
               border: 1px solid #b12c25
               width: 680px
-
-          .comment_item
-            .comment_wrapper
-              &:hover, &.active
-                background: none
 
         .right
           .wrapper
@@ -474,16 +446,72 @@
   +unique_content_style
 
 .nezabudka_content_wrapper
-  background: #95e5fe image_url('public/nezabudka/bg.png') no-repeat center -50px
-  +background(image_url('public/nezabudka/bg.png') no-repeat center -50px, linear-gradient(top, #95e5fe, #675098))
+  +background(image_url('public/nezabudka/bg.png') no-repeat center 0, linear-gradient(top, #98e5fd, #695196))
 
   .nezabudka_logo
-    width: 1200px
-    height: 110px
     background: transparent image_url('public/nezabudka/logo.png') no-repeat center center
+    height: 97px
     margin: 0 auto
+    width: 1200px
 
-  +unique_content_style
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      +box-shadow(none)
+      +border-top-left-radius
+      +border-top-right-radius
+      background: rgba(255,255,255,0.5)
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+      .organization_show
+        margin: 0
+
+        .left
+          .image, .social_actions, .offers_wrapper
+            border: 1px solid #87a1c2
+
+            .user_actions
+              border-bottom: 1px solid #87a1c2
+
+            .list
+              li:first-child
+                border: none
+
+        .social_actions, .offers_wrapper, .virtual_tour, .yandex_map, .more_like_this
+          background: #c3dbee
+          +background(linear-gradient(top, #c3dbee, #aec2de))
+
+        .center
+          .suborganization_info
+            .title
+              background: #a3bdde
+
+          .share_and_likes
+            border-bottom: 1px solid #87a1c2
+
+          .sauna_hall_header
+            span,
+            a
+              color: #7786ba !important
+
+            background: #a3bdde
+            .title
+              background: #7986b7
+              &:after
+                border-left-color: #7986b7
+
+        .comments
+          +override_comments
+
+        .right
+          .wrapper
+            border: 1px solid #87a1c2
+
+            .virtual_tour, .yandex_map
+              border-bottom: 1px solid #87a1c2
 
 .nika_content_wrapper
   border-top: 2px solid #75563a
@@ -709,19 +737,8 @@
           &.afisha_details .posters .item .title
             background-color: transparent
 
-        .comment_form
-          div.text
-            border: none !important
-            padding: 0
-
-        .comment_item
-          .comment_wrapper
-            &:hover, &.active
-              background: none
-
-            .votes_wrapper
-              .like_box
-                color: #222
+        .comments
+          +override_comments
 
       .right
         .wrapper
