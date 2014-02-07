@@ -1,27 +1,34 @@
 afisha:
   places:
     '1.0':
+      from: '2014-02-07 19:00'
+      to: '2014-02-08 19:00'
+      content_type: 'afisha'
+      afisha_slug: 'kontsert-ellai-v-nk-fakel-5-marta'
+      replaced_count: 4
+
+    '1.1':
       from: '2014-01-24 12:00'
       to: '2014-02-09 12:00'
       content_type: 'afisha'
       afisha_slug: 'planetango-10-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.1':
+    '1.2':
       from: '2014-01-24 12:00'
       to: '2014-02-08 12:00'
       content_type: 'afisha'
       afisha_slug: 'gala-kontsert-festivalya-planetango-v-gosti-k-nam'
       replaced_count: 1
 
-    '1.2':
+    '1.3':
       from: '2014-02-06 09:00'
       to: '2014-02-10 09:00'
       content_type: 'afisha'
       afisha_slug: 'master-klass-po-risovaniyu-peskom'
       replaced_count: 1
 
-    '1.3':
+    '1.4':
       from: '2014-02-07 09:00'
       to: '2014-02-09 09:00'
       content_type: 'afisha'
