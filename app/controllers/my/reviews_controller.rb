@@ -4,10 +4,6 @@ class My::ReviewsController < My::ApplicationController
 
   actions :new, :create
 
-  def create
-    raise params.inspect
-  end
-
   protected
 
   def build_resource

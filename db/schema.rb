@@ -756,6 +756,13 @@ ActiveRecord::Schema.define(:version => 20140211034007) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "type"
+    t.text     "content"
+    t.string   "slug"
+    t.string   "status"
+    t.text     "tag"
+    t.text     "categories"
+    t.string   "state"
+    t.integer  "account_id"
   end
 
   create_table "roles", :force => true do |t|

@@ -1,0 +1,13 @@
+<%= simple_form_for @review, :url => [:my, :reviews], :html => { :class => 'my_post_form default_simple_form' } do |f| %>
+  <%= hidden_field_tag :type, @review.useful_type %>
+
+  <%= f.input :title %>
+
+  <%= render "#{@review.useful_type}_fields", :f => f %>
+
+  <div class="submit">
+    <%= f.submit 'Сохранить', :class => 'button' %>
+
+    <%= link_to 'Отмена', :back %>
+  </div>
+<% end %>
