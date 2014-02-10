@@ -2,11 +2,10 @@ module DraftPublishedStates
   extend ActiveSupport::Concern
 
   included do
-    scope :available_for_edit,    -> { where(:state => [:draft, :published]) }
-    scope :by_kind,               ->(kind) { where(:kind => kind) }
-    scope :by_state,              ->(state) { where(:state => state) }
-    scope :draft,                 -> { with_state(:draft) }
-    scope :published,             -> { with_state(:published) }
+    scope :by_kind,   ->(kind) { where(:kind => kind) }
+    scope :by_state,  ->(state) { where(:state => state) }
+    scope :draft,     -> { with_state(:draft) }
+    scope :published, -> { with_state(:published) }
 
     state_machine :initial => :draft do
       after_transition any => :published do |object, transition|

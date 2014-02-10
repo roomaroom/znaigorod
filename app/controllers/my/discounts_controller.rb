@@ -47,14 +47,14 @@ class My::DiscountsController < My::ApplicationController
   end
 
   def send_to_published
-    @discount = current_user.account.discounts.available_for_edit.find(params[:id])
+    @discount = current_user.account.discounts.find(params[:id])
     @discount.to_published!
 
     redirect_to discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» опубликована."
   end
 
   def send_to_draft
-    @discount = current_user.account.discounts.available_for_edit.find(params[:id])
+    @discount = current_user.account.discounts.find(params[:id])
     @discount.to_draft!
 
     redirect_to my_discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» возвращена в черновики."

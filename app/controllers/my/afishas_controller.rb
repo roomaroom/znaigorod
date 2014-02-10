@@ -28,11 +28,11 @@ class My::AfishasController < My::ApplicationController
   end
 
   def edit
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
   end
 
   def update
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
     @afisha.step = @step
     @afisha.attributes = params[:afisha]
 
@@ -77,7 +77,7 @@ class My::AfishasController < My::ApplicationController
   end
 
   def destroy_image
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
     @afisha.poster_url = nil
     @afisha.poster_image.destroy
     @afisha.poster_image_url = nil
@@ -86,21 +86,21 @@ class My::AfishasController < My::ApplicationController
   end
 
   def send_to_published
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
     @afisha.to_published!
 
     redirect_to my_afisha_path, :notice => "Афиша «#{@afisha.title}» опубликована."
   end
 
   def send_to_draft
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
     @afisha.to_draft!
 
     redirect_to [:my, @afisha], :notice => "Афиша «#{@afisha.title}» возвращена в черновики."
   end
 
   def social_gallery
-    @afisha = current_user.afisha.available_for_edit.find(params[:id])
+    @afisha = current_user.afisha.find(params[:id])
     gallery_url = params[:afisha][:social_gallery_url]
     case gallery_url
     when /yandex/
