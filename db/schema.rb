@@ -758,7 +758,6 @@ ActiveRecord::Schema.define(:version => 20140211034007) do
     t.string   "type"
     t.text     "content"
     t.string   "slug"
-    t.string   "status"
     t.text     "tag"
     t.text     "categories"
     t.string   "state"
