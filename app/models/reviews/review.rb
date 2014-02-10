@@ -2,6 +2,8 @@ class Review < ActiveRecord::Base
   extend Enumerize
   extend FriendlyId
 
+  include DraftPublishedStates
+
   attr_accessible :content, :title, :tag, :categories
 
   belongs_to :account
@@ -11,8 +13,7 @@ class Review < ActiveRecord::Base
   scope :draft,     -> { where :state => :draft }
   scope :published, -> { where :state => :published }
 
-  validates :title, :presence => true
-  validates :content, :presence => true
+  validates_presence_of :content, :title, :tag, :categories
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],

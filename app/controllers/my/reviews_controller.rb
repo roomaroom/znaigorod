@@ -2,7 +2,7 @@ class My::ReviewsController < My::ApplicationController
   # TODO: написать ability
   skip_authorization_check
 
-  actions :new, :create
+  actions :all, :except => :index
 
   def preview
     build_resource

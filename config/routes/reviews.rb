@@ -1,6 +1,6 @@
 Znaigorod::Application.routes.draw do
   namespace :my do
-    resources :reviews, :only => [:new, :create] do
+    resources :reviews, :except => :index do
       get 'add' => 'reviews#add', :on => :collection
 
       post :preview,       :on => :collection
