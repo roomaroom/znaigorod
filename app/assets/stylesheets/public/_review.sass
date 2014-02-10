@@ -1,0 +1,99 @@
+.reviews_index
+
+.reviews_show
+  .left
+    +clearfix
+    float: left
+    font-size: 16px
+    line-height: 28px
+    margin: 20px 0 0 0
+    text-align: justify
+    width: 900px
+
+    .title
+      font-size: 26px
+      line-height: 36px
+      margin: 0 0 10px
+
+    .details
+      +clearfix
+      color: #777
+      float: right
+      font-size: 10px
+      height: 14px
+      line-height: 14px
+
+      span
+        +inline-block
+        background: transparent image_url('public/details_sprite.png') no-repeat 10px 5px
+        cursor: help
+        line-height: 12px
+        padding-left: 25px
+
+        &.comments
+          background-position: 5px -38px
+          font-size: 10px
+          margin: 0
+
+        &.likes
+          background-position: 12px -59px
+
+        &.visits
+          background-position: 6px -79px
+
+    .date
+
+    .description
+      h3
+        font-size: 18px
+        font-weight: normal
+        margin: 0 0 15px 0
+        padding: 20px 0 0 0
+
+      h4
+        font-size: 20px
+        font-weight: normal
+        margin: 0 0 15px 0
+        padding: 20px 0 0 0
+
+      p
+        margin: 0 0 15px 0
+
+      ol
+        list-style: inside decimal
+
+      ul
+        list-style: inside disc
+
+      ol, ul
+        li
+          margin: 0 0 0 15px
+
+      strong
+        font-weight: bold
+
+      em
+        font-weight: italic
+
+      img
+        border: 1px solid #bbb
+        display: block
+        height: auto
+        margin: 15px auto
+        padding: 1px
+        width: 700px
+
+      iframe
+        display: block
+        margin: 15px auto
+        width: 700px
+
+      a
+        text-decoration: underline
+
+        &:hover
+          text-decoration: none
+
+  .right
+    .similar
+

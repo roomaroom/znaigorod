@@ -56,6 +56,14 @@ class Review < ActiveRecord::Base
     tag.split(',').map(&:squish).map(&:mb_chars).map(&:downcase)
   end
 
+  def content_for_show
+    @content_for_show ||= AutoHtmlRenderer.new(content).render_show
+  end
+
+  def content_for_index
+    @content_for_index ||= AutoHtmlRenderer.new(content).render_index
+  end
+
   private
 
   def self.prefix

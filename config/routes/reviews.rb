@@ -14,4 +14,7 @@ Znaigorod::Application.routes.draw do
       end
     end
   end
+
+  resources :reviews, :only => [:index, :show] do
+  end
 end

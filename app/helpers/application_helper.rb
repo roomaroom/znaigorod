@@ -1,6 +1,13 @@
 # encoding: utf-8
 
 module ApplicationHelper
+  def auto_content_class
+    name_with_action = "#{controller_name}_#{action_name}"
+
+    controller_name == controller_path ?
+      name_with_action :
+      "#{controller_path.split('/').join('_')}_#{action_name} #{name_with_action}"
+  end
 
   def price_for(showing)
     return 'бесплатно' if showing.price_min.zero? && showing.price_max.zero?
