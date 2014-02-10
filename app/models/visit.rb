@@ -11,6 +11,7 @@ class Visit < ActiveRecord::Base
   has_one :feed, :as => :feedable, :dependent => :destroy
 
   validate :authenticated_user
+  validates :user_id, :uniqueness => { :scope => [:visitable_id, :visitable_type] }
 
   scope :rendereable,       -> { where(:visitable_type => ['Afisha', 'Organization']) }
 
