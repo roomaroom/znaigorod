@@ -1,13 +1,14 @@
+//TODO rename this file into my_review
+
 @import 'simple_form'
 
 .non_scrollable
   overflow: hidden
 
-.my_reviews_wrapper
-  margin-top: 20px
-  overflow: hidden
-  padding: 0 20px
+.my_reviews_new, .my_reviews_add, .my_reviews_show
+  padding: 10px 20px
 
+.my_reviews_new
   h1
     font-size: 22px
     margin-bottom: 10px
@@ -91,10 +92,13 @@
     width: 100%
     z-index: 1000
 
+
+.my_reviews_show
   h3
     background: #e9e9e9
     font-size: 14px
-    padding: 3px 0 3px 7px
+    line-height: 27px
+    padding: 0 0 0 7px
 
   .header_with_marker
     background: image-url('public/blue_marker.png') no-repeat
@@ -108,7 +112,6 @@
     width: 740px
 
     .header_with_marker
-      +clearfix
 
       .to_right
         +clearfix

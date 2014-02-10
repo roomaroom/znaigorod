@@ -1,58 +1,55 @@
 <div class="my_wrapper">
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
-  <div class="my_reviews_wrapper">
-    <div class="left">
-      <div class="header_with_marker">
-        <div class="to_right">
-          <% if @review.draft?  %>
-            <%= link_to t('my.send_to_public'), '#', :method => :put, :class => 'button change_state',
-              :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
+  <div class="left">
+    <div class="header_with_marker">
+      <div class="to_right">
+        <% if @review.draft?  %>
+          <%= link_to t('my.send_to_public'), '#', :method => :put, :class => 'button change_state',
+            :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
 
-            <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
-              <span></span>
-            <% end %>
-
-            <%= link_to "#", :class => 'button change_post', :title => 'Редактировать пост' do %>
-              <span></span>
-            <% end %>
-
-            <%= link_to "#", :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
-              :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
-              <span></span>
-            <% end %>
-
-          <% else %>
-            <%= link_to 'В черновики', '#', :method => :put, :class => 'button change_state',
-              :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
-
-            <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
-              <span></span>
-            <% end %>
-
-            <%= link_to '#', :class => 'button change_post', :title => 'Редактировать пост' do %>
-              <span></span>
-            <% end %>
+          <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
+            <span></span>
           <% end %>
-        </div>
-        <h3>Так обзор будет выглядеть при просмотре</h3>
-        lll
-        <%= render :partial => 'reviews/review' %>
 
+          <%= link_to "#", :class => 'button change_post', :title => 'Редактировать пост' do %>
+            <span></span>
+          <% end %>
 
+          <%= link_to "#", :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
+            :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
+            <span></span>
+          <% end %>
+
+        <% else %>
+          <%= link_to 'В черновики', '#', :method => :put, :class => 'button change_state',
+            :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
+
+          <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
+            <span></span>
+          <% end %>
+
+          <%= link_to '#', :class => 'button change_post', :title => 'Редактировать пост' do %>
+            <span></span>
+          <% end %>
+        <% end %>
       </div>
+      <h3>Так обзор будет выглядеть при просмотре</h3>
     </div>
 
-    <div class="right">
-      <div class="header_with_marker">
-        <h3>Так обзор будет выглядеть на списке</h3>
-      </div>
-
-      <ul class="review_help">
-        <li><strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', '#' %>. <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.</li>
-        <li>В качестве <strong>постера</strong> используется картинка из текста или кадр из видео. Также можно <%= link_to 'изменить постер', '#' %>.</li>
-        <li>К обзору можно <a href="#gallery_images_header">добавить фотографии</a></li>
-      </ul>
-    </div>
+    <%= render 'reviews/review' %>
   </div>
+
+  <div class="right">
+    <div class="header_with_marker">
+      <h3>Так обзор будет выглядеть на списке</h3>
+    </div>
+
+    <ul class="review_help">
+      <li><strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', '#' %>. <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.</li>
+      <li>В качестве <strong>постера</strong> используется картинка из текста или кадр из видео. Также можно <%= link_to 'изменить постер', '#' %>.</li>
+      <li>К обзору можно <a href="#gallery_images_header">добавить фотографии</a></li>
+    </ul>
+  </div>
+
 </div>
