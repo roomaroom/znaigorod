@@ -123,7 +123,7 @@ handlePreview = ->
     serialized = $('input[name!=_method], textarea', form)
     $.post('/my/reviews/preview', serialized)
       .done (data) ->
-        $('.show_preview').html(data)
+        $('.reviews_show').html(data)
 
 @initMyPosts = ->
   initMarkitup()

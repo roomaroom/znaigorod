@@ -5,10 +5,10 @@
 .non_scrollable
   overflow: hidden
 
-.my_reviews_new, .my_reviews_add, .my_reviews_show
+.my_reviews_new, .my_reviews_add, .my_reviews_show, .my_reviews_create
   padding: 10px 20px
 
-.my_reviews_new
+.my_reviews_new, .my_reviews_create
   h1
     font-size: 22px
     margin-bottom: 10px
@@ -59,28 +59,13 @@
     position: relative
     width: 560px
 
-    .post_show
-      padding: 20px 0
-      width: 100%
+    img
+      margin: 0 auto
+      max-width: 500px
+      width: auto
 
-      .left
-        width: 555px
-
-        .wrapper
-          border: none
-
-          .post_content
-            img
-              margin: 0 auto
-              max-width: 500px
-              width: auto
-
-            iframe
-              width: 500px
-
-    //NOTE
-    .post_show
-      display: inline-block
+    iframe
+      width: 500px
 
   .loader
     background: image_url('public/ajax_loading_items_indicator.gif') center center no-repeat rgba(0, 0, 0, 0)
