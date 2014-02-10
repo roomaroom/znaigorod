@@ -124,7 +124,7 @@ ru:
         approved: Подтвержден
         canceled: Отменен
 
-    post:
+    review:
       categories:
         auto:          Авто
         sport:         Спорт

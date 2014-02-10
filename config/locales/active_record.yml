@@ -211,7 +211,7 @@ ru:
         latitude: Широта
         longitude: Долгота
 
-      post:
+      review:
         <<: *common_attributes
         categories:           Категории
         content:              Содержание
