@@ -4,6 +4,12 @@ class My::ReviewsController < My::ApplicationController
 
   actions :new, :create
 
+  def preview
+    build_resource
+
+    render :partial => "reviews/#{@review.useful_type}"
+  end
+
   protected
 
   def build_resource

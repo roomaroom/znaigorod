@@ -94,7 +94,7 @@ handleImageButtonClick = ->
     $('#gallery_image_file').focus().trigger('click')
 
 initTagit = ->
-  tagitFor $('#post_tag')
+  tagitFor $('#review_tag')
 
 delay = (->
   timer = 0
@@ -104,11 +104,10 @@ delay = (->
 )()
 
 handlePreview = ->
-  form = $('.my_post_form')
+  form = $('.my_review_form')
 
-  checkboxes = $('.post_categories_input, .post_kind_input', form)
-  textInputs = $('#post_title, .markItUpEditor')
-  tagsInput = $('#post_tag')
+  textInputs = $('#review_title, .markItUpEditor')
+  tagsInput = $('#review_tag')
 
   textInputs.on 'keyup', ->
     delay (->
@@ -122,44 +121,12 @@ handlePreview = ->
 
   form.on 'preview', ->
     serialized = $('input[name!=_method], textarea', form)
-    $.post('/my/posts/preview', serialized)
+    $.post('/my/reviews/preview', serialized)
       .done (data) ->
         $('.show_preview').html(data)
-
-linkWithAutocomplete = ->
-  input = $('#post_link_with_title')
-  target = $(input.data('target'))
-  reset = $(input.data('reset'))
-
-  input.autocomplete
-    source: input.data('autocomplete-source')
-    minLength: 2
-
-    focus: (event, ui) ->
-      $(this).val(ui.item.label)
-      false
-
-    select: (event, ui) ->
-      $(this).val(ui.item.label)
-      target.val(ui.item.value)
-      reset.val('')
-      false
-
-linkWithChange = ->
-  $('.link_with_change').click ->
-    $('.link_with_content').closest('.link_with_wrapper').hide()
-    $('.post_link_with_title').removeClass('linked').addClass('not_linked')
-    $('#post_link_with_reset').val('true')
-    $('#post_link_with_title').focus()
-    false
-
-handleLinkWith = ->
-  linkWithAutocomplete()
-  linkWithChange()
 
 @initMyPosts = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
   handlePreview()
-  handleLinkWith()

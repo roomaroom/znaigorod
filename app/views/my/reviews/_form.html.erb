@@ -1,8 +1,8 @@
-<%= simple_form_for @review, :url => [:my, :reviews], :html => { :class => 'my_post_form default_simple_form' } do |f| %>
+<%= simple_form_for @review, :as => :review, :url => [:my, :reviews], :html => { :class => 'my_review_form default_simple_form' } do |f| %>
   <%= hidden_field_tag :type, @review.useful_type %>
 
-  <%= f.input :categories, :as => :check_boxes, :input_html => { :class => 'post_categories_input' } %>
-  <%= f.input :title %>
+  <%= f.input :categories, :as => :check_boxes %>
+  <%= f.input :title, :as => :text %>
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
 
   <%= render "#{@review.useful_type}_fields", :f => f %>
@@ -15,3 +15,11 @@
     <%= link_to 'Отмена', :back %>
   </div>
 <% end %>
+
+<div class="preview_wrapper">
+  <h1>Предварительный просмотр</h1>
+  <div class="show_preview">
+  </div>
+</div>
+
+<div class="loader"></div>

@@ -3,7 +3,7 @@
 .non_scrollable
   overflow: hidden
 
-.my_posts_wrapper
+.my_reviews_wrapper
   margin-top: 20px
   overflow: hidden
   padding: 0 20px
@@ -24,7 +24,7 @@
       outline: none
       resize: none
 
-      &#post_title
+      &#review_title
         height: 51px
         width: 540px
 
@@ -32,9 +32,6 @@
         border-top-left-radius: 0 !important
         border-top-right-radius: 0 !important
         border-top: 1px solid #909090 !important
-        width: 540px
-
-      &#post_link_with_title
         width: 540px
 
     .input
@@ -48,26 +45,12 @@
       .markItUpHeader
         border-color: #880000
 
-    .post_categories
+    .review_categories
       +clearfix
 
       .checkbox
         float: left
         width: 175px !important
-
-    .post_link_with_title.linked
-      display: none
-
-    .link_with_wrapper
-      label
-        float: left
-        margin-right: 5px
-
-      .link_with_change
-        line-height: 23px
-
-      .link_with_content
-        clear: both
 
   .preview_wrapper
     float: left

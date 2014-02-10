@@ -3,6 +3,8 @@ Znaigorod::Application.routes.draw do
     resources :reviews, :only => [:new, :create] do
       get 'add' => 'reviews#add', :on => :collection
 
+      post :preview,       :on => :collection
+
       Review.descendant_names_without_prefix.each do |name|
         get 'new/:type' => 'reviews#new',
           :on => :collection,
