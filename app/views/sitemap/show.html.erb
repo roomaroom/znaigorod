@@ -26,17 +26,17 @@
       <%= link_to 'Заведения', organizations_path, :class => 'title' %>
 
       <ul class="clearfix inner">
-        <% Organization.available_suborganization_kinds.each do |kind| %>
-          <% begin %>
-            <% HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.each do |row| %>
-              <% next if kind == 'sauna' || row.value.from_russian_to_param == 'kafe' %>
+        <% Organization.suborganization_kinds_for_navigation.drop(1).each do |suborganization_kind| %>
+          <li class="floatl justify">
+            <%= link_to I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path")  %>
 
-              <li class="floatl">
-                <%= link_to row.value.mb_chars.capitalize, send("#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path") %>
-              </li>
-            <% end %>
-          <% rescue %>
-          <% end %>
+            <ul class="clearfix inner">
+              <% "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.drop(1).each do |link| %>
+                <% next if link[:klass] == 'kafe' %>
+                <li class="floatl"><%= link_to link[:title], send(link[:url]) %></li>
+              <% end %>
+            </ul>
+          </li>
         <% end %>
       </ul>
     </li>
