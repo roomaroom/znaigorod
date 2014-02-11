@@ -15,6 +15,13 @@ Znaigorod::Application.routes.draw do
 
       resources :gallery_images, :except => [:show, :edit, :update]
     end
+
+    #TODO нужно для ссылки удаления фото в /my/rewiews/:id
+    Review.descendant_names.each do |name|
+      resources "#{name}", :only => :show do
+        resources :gallery_images, :except => [:show, :edit, :update]
+      end
+    end
   end
 
   resources :reviews, :only => [:index, :show] do

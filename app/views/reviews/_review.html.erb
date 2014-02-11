@@ -14,4 +14,8 @@
 
 <div class="description">
   <%= review.content_for_show %>
+
+  <ul class="gallery js-gallery">
+    <%= render :partial => 'reviews/gallery', :locals => { :review => @review } if @review.is_a?(ReviewPhoto) %>
+  </ul>
 </div>

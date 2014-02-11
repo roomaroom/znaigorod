@@ -73,7 +73,7 @@
  * = require ./sauna_halls_scroll
  * = require ./iconize_info
  * = require ./virtual_tour_link
- * = require ./post_photos
+ * = require ./review_gallery
  * = require ./schedule_toggle
  * = require ./pagination
  * = require ./list_settings

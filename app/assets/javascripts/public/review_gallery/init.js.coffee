@@ -1,8 +1,5 @@
-@init_post_photos = () ->
-
-  $('.post_show a.colorbox').attr('rel', 'gallery')
-
-  $('.post_show a[rel="colorbox"], .post_show a.colorbox').colorbox
+@init_review_gallery = () ->
+  $('.js-gallery a[rel="colorbox"], .js-gallery a.colorbox').colorbox
     close: 'закрыть'
     current: '{current} / {total}'
     maxHeight: '90%'
