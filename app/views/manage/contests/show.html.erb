@@ -23,7 +23,16 @@
   </div>
 
   <div>
-    <span class="label">Дата и время окончания:</span>
+    <span class="label">Дата и время окончания приема работ:</span>
+    <% if resource.participation_ends_at? %>
+      <span class="value"><%= l resource.participation_ends_at %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
+    <span class="label">Дата и время окончания голосования:</span>
     <% if resource.ends_at? %>
       <span class="value"><%= l resource.ends_at %></span>
     <% else %>

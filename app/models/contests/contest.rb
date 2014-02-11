@@ -3,13 +3,13 @@
 class Contest < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vfs_path, :og_description, :og_image
+  attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :participation_ends_at, :vfs_path, :og_description, :og_image
 
   has_many :works, :dependent => :destroy
 
   has_many :accounts, :through => :works, :uniq => true
 
-  validates_presence_of :title
+  validates_presence_of :title, :starts_at, :ends_at, :participation_ends_at
 
   scope :available, -> { where('starts_at <= ?', Time.zone.now).order('starts_at desc') }
 
@@ -29,7 +29,11 @@ class Contest < ActiveRecord::Base
   end
 
   def actual?
-    ends_at > Time.zone.now
+    ends_at > Time.zone.now && starts_at < Time.zone.now
+  end
+
+  def available_participation?
+    participation_ends_at > Time.zone.now && starts_at < Time.zone.now
   end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140210030641) do
+ActiveRecord::Schema.define(:version => 20140211034007) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(:version => 20140210030641) do
     t.datetime "og_image_updated_at"
     t.text     "og_image_url"
     t.text     "agreement"
+    t.datetime "participation_ends_at"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
@@ -271,6 +272,34 @@ ActiveRecord::Schema.define(:version => 20140210030641) do
   add_index "copies", ["copy_payment_id"], :name => "index_tickets_on_payment_id"
   add_index "copies", ["copyable_id"], :name => "index_copies_on_copyable_id"
   add_index "copies", ["copyable_type"], :name => "index_copies_on_copyable_type"
+
+  create_table "coupons", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "discount"
+    t.string   "vfs_path"
+    t.integer  "organization_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "image_url"
+    t.integer  "price_with_discount"
+    t.integer  "price_without_discount"
+    t.integer  "organization_quota"
+    t.integer  "price"
+    t.string   "kind"
+    t.string   "place"
+    t.integer  "number"
+    t.datetime "stale_at"
+    t.datetime "complete_at"
+    t.text     "categories"
+    t.text     "affiliate_url"
+  end
+
+  add_index "coupons", ["organization_id"], :name => "index_coupons_on_organization_id"
 
   create_table "creations", :force => true do |t|
     t.integer  "organization_id"

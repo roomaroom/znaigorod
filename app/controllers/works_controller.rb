@@ -1,11 +1,10 @@
 class WorksController < ApplicationController
   inherit_resources
+  belongs_to :contest
 
-  authorize_resource :only => :new
+  load_and_authorize_resource :only => [:new, :create]
 
   actions :new, :create, :show
-
-  belongs_to :contest
 
   def create
     create! { contest_path(@work.contest) }

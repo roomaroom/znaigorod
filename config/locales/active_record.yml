@@ -135,7 +135,8 @@ ru:
       contest:
         <<: *common_attributes
         agreement: Пользовательское соглашение
-        ends_at: Окончание
+        ends_at: Окончание голосования
+        participation_ends_at: Окончание приема работ
         published: Опубликован
         starts_at: Начало
         og_description: OG description
