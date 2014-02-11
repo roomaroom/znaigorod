@@ -10,6 +10,12 @@
   <div class="share_and_likes">
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => review_url(@review) } %>
   </div>
+
+  <ul class="tags">
+    <% @review.tags.each do |item| %>
+      <li><%= item %></li>
+    <% end %>
+  </ul>
 </div>
 
 <div class="right">
