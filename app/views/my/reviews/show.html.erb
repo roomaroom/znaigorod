@@ -67,6 +67,10 @@
       <h3>Так обзор будет выглядеть на списке</h3>
     </div>
 
+    <ul class="posters">
+      <li class="item"><%= render :partial => "reviews/#{@review.useful_type}", :locals => { :review => @review } %></li>
+    </ul>
+
     <ul class="review_help">
       <li><strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', '#' %>. <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.</li>
       <li>В качестве <strong>постера</strong> используется картинка из текста или кадр из видео. Также можно <%= link_to 'изменить постер', '#' %>.</li>

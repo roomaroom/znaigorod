@@ -1,0 +1,36 @@
+=details
+  color: #999
+  float: right
+  font-size: 11px
+  line-height: 16px
+
+  span
+    +inline-block
+    background: transparent url(/assets/public/details_sprite.png) no-repeat 10px 3px
+    cursor: help
+    font-size: 11px
+    margin-left: 5px
+
+    &.to_go
+      background-position: 0 4px
+      padding-left: 13px
+
+    &.wait_invite
+      background-position: 0 -16px
+      padding-left: 20px
+
+    &.comments
+      background-position: 0 -35px
+      margin-bottom: 0
+      padding-left: 19px
+
+    &.likes
+      background-position: 0 -56px
+      padding-left: 13px
+
+    &.visits
+      background-position: 0 -77px
+      padding-left: 19px
+
+    &.minimal_age
+      background: none

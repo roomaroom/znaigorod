@@ -12,14 +12,14 @@
   <%= review.created_at %>
 </div>
 
-<div class="description">
+<div class="annotation">
   <ul class="images">
   <% review.gallery_images.take(6).each_with_index do |image, index| %>
     <li>
-      <% if index == 1 %>
-        <%= image_tag resized_image_url(image.file_url, 230, 80), :size => "230x80", :alt => review.title %>
-      <% else%>
-        <%= image_tag resized_image_url(image.file_url, 115, 80), :size => "115x80", :alt => review.title %>
+      <% if index == 0 %>
+        <%= image_tag resized_image_url(image.file_url, 230, 166), :size => "230x166", :alt => review.title, :title => review.title %>
+      <% else %>
+        <%= image_tag resized_image_url(image.file_url, 115, 83), :size => "115x83", :alt => review.title, :title => review.title %>
       <% end %>
     </li>
   <% end %>

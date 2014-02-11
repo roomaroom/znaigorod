@@ -1,9 +1,8 @@
-.reviews_index
+.reviews_index, .my_reviews_show
   padding: 10px 20px
 
   .posters
-
-    li
+    li.item
       +clearfix
       border: 1px solid #ccc
       float: left
@@ -18,32 +17,39 @@
         margin: 0 0 5px 0
         text-align: center
 
+      .date, .details
+        margin: 0 0 5px 0
+
       .details
         +clearfix
-        color: #777
-        float: right
-        font-size: 10px
-        line-height: 12px
+        +details
 
       .date
+        color: #999
         float: left
         font-size: 11px
+        line-height: 16px
 
-      .description
-        +clearfix
-        width: 100%
+      .annotation
 
         .images
-          padding: 0 5px 0 5px
+          +clearfix
+          margin: 0 auto
+          width: 345px
 
         li
-          +inline-block
-          background: #777
-          border: none
-          height: 80px
+          float: left
+          height: 83px
           margin: 0
-          padding: 2px
-          width: 80px
+          padding: 0
+          width: 115px
+
+          img
+            border: 1px solid #fff
+
+        li:first-child
+          height: 166px
+          width: 230px
 
     li:nth-child(3n+2)
       margin: 0 20px
@@ -69,29 +75,9 @@
 
   .details
     +clearfix
-    color: #777
-    float: right
-    font-size: 10px
+    +details
     height: 14px
     line-height: 14px
-
-    span
-      +inline-block
-      background: transparent image_url('public/details_sprite.png') no-repeat 10px 5px
-      cursor: help
-      line-height: 12px
-      padding-left: 25px
-
-      &.comments
-        background-position: 5px -38px
-        font-size: 10px
-        margin: 0
-
-      &.likes
-        background-position: 12px -59px
-
-      &.visits
-        background-position: 6px -79px
 
   .date
     color: #777
