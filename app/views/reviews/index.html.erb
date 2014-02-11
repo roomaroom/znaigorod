@@ -1,0 +1,5 @@
+<ul class="posters">
+  <% @reviews.each do |review|%>
+    <li><%= render :partial => "reviews/#{review.useful_type}", :locals => { :review => review } %></li>
+  <% end %>
+</ul>

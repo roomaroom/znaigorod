@@ -1,5 +1,5 @@
 <div class="title">
-  <%= review.title %>
+  <%= link_to review.title, review_path(review) %>
 </div>
 
 <div class="details">
@@ -13,5 +13,5 @@
 </div>
 
 <div class="description">
-  <%= review.content_for_show %>
+  <%= review.content_for_index %>
 </div>

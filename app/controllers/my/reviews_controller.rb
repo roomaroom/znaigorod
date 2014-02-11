@@ -7,7 +7,7 @@ class My::ReviewsController < My::ApplicationController
   def preview
     build_resource
 
-    render :partial => "reviews/review"
+    render :partial => "reviews/review", :locals => { :review => @review }
   end
 
   protected

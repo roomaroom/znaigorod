@@ -1,5 +1,5 @@
 <div class="left">
-  <%= render 'review' %>
+  <%= render :partial => 'review', :locals => { :review => @review } %>
 
   <div class="author">
     <%= render :partial => 'commons/author', :locals => { :account => @review.account } %>
