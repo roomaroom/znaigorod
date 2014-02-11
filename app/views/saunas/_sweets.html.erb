@@ -1,10 +1,9 @@
-<noindex>
 <% if @discount_collection.any? %>
   <li class='sauna_item sweets'>
     <ul id="sweets_carousel">
       <% @discount_collection.each do |discount| %>
         <li>
-
+        <noindex>
           <div class='image'>
             <%= link_to discount_path(discount) do %>
               <%= image_tag resized_image_url(discount.poster_url, 378, 282), :size => '378x282', :alt => discount.title.to_s.text_gilensize %>
@@ -29,6 +28,7 @@
             </p>
           </div>
 
+          </noindex>
         </li>
       <% end %>
     </ul>
@@ -42,4 +42,3 @@
     <% end %>
   </li>
 <% end %>
-</noindex>
