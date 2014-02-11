@@ -37,7 +37,29 @@
       <h3>Так обзор будет выглядеть при просмотре</h3>
     </div>
 
-    <%= render 'reviews/review' %>
+    <%= render :partial => 'reviews/review', :locals => { :review => @review } %>
+
+    <div class="gallery_images_wrapper">
+      <h3 id="gallery_images_header">Фотографии</h3>
+      <ul class="gallery_images">
+        <%= render @review.gallery_images %>
+      </ul>
+
+      <%= simple_form_for @review.gallery_images.new, :url => my_review_gallery_images_path(@review.id), :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
+        <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+        <span class='info'>Можно выбрать сразу несколько файлов</span>
+      <% end %>
+
+      <div class="upload_wrapper">
+        <script id="template-upload" type="text/x-tmpl">
+          <div class="upload">
+            {%=o.name%}
+            <div class="progress"><div class="bar" style="width: 0%"></div></div>
+          </div>
+        </script>
+      </div>
+    </div>
+
   </div>
 
   <div class="right">

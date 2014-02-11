@@ -12,6 +12,8 @@ Znaigorod::Application.routes.draw do
           :defaults => { :type => name },
           :constraints => { :type => name }
       end
+
+      resources :gallery_images, :except => [:show, :edit, :update]
     end
   end
 

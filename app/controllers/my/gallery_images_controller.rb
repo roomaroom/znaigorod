@@ -6,7 +6,10 @@ class My::GalleryImagesController < My::ApplicationController
 
   belongs_to :account, :optional => true
   belongs_to :afisha,  :optional => true
+
+  #TODO remove post
   belongs_to :post,    :optional => true
+  belongs_to :review,  :optional => true
 
   respond_to :html, :js, :json
 
