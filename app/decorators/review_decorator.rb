@@ -9,8 +9,26 @@ class ReviewDecorator < ApplicationDecorator
     h.content_tag :div, I18n.l(date, :format => "%d %B %Y"), :class => :date
   end
 
+  def html_image(image, width, height)
+    return "<li>#{h.image_tag h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title}</li>"
+  end
+
   def annotation_gallery
-    if review.gallery_images
+    gallery_size = review.gallery_images.limit(6).size
+
+    gallery = ''
+
+    review.gallery_images.limit(6).each do |image|
+      case gallery_size
+      when 1..3
+        gallery << html_image(image, (347 / gallery_size) - 2, 260)
+      when 4
+        gallery << html_image(image, (347 / 2) - 2, (260 / 2) - 2)
+      else
+        gallery << html_image(image, (347 / gallery_size), 260 / gallery_size)
+      end
     end
+
+    gallery.html_safe
   end
 end
