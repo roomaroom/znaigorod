@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211034007) do
+ActiveRecord::Schema.define(:version => 20140212023816) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -762,6 +762,7 @@ ActiveRecord::Schema.define(:version => 20140211034007) do
     t.text     "categories"
     t.string   "state"
     t.integer  "account_id"
+    t.text     "video_url"
   end
 
   create_table "roles", :force => true do |t|

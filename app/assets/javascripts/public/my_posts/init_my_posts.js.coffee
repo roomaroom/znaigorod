@@ -106,7 +106,7 @@ delay = (->
 handlePreview = ->
   form = $('.my_review_form')
 
-  textInputs = $('#review_title, .markItUpEditor')
+  textInputs = $('#review_title, .with-preview')
   tagsInput = $('#review_tag')
 
   textInputs.on 'keyup', ->

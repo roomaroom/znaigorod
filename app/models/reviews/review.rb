@@ -15,7 +15,7 @@ class Review < ActiveRecord::Base
   scope :draft,     -> { where :state => :draft }
   scope :published, -> { where :state => :published }
 
-  validates_presence_of :content, :title, :tag, :categories
+  validates_presence_of :title, :tag, :categories
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],

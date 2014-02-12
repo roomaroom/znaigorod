@@ -59,6 +59,10 @@ ru:
       coupon:                             Все купоны
       offered_discount:                   Все предложения
 
+      review_article:                     обзор
+      review_photo:                       фотообзор
+      review_video:                       видеообзор
+
     attributes:
       common_attributes: &common_attributes
         description: Описание
@@ -220,6 +224,7 @@ ru:
         status:               Опубликовать
         tag:                  Теги через запятую
         allow_external_links: Разрешить внешние ссылки
+        video_url:            Ссылка на видео
 
       image:
         <<: *common_attributes
