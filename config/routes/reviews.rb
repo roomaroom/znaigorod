@@ -3,7 +3,7 @@ Znaigorod::Application.routes.draw do
     resources :reviews, :except => :index do
       get 'add' => 'reviews#add', :on => :collection
 
-      post :preview,       :on => :collection
+      post :preview, :on => :collection
 
       Review.descendant_names_without_prefix.each do |name|
         get 'new/:type' => 'reviews#new',
@@ -12,6 +12,8 @@ Znaigorod::Application.routes.draw do
           :defaults => { :type => name },
           :constraints => { :type => name }
       end
+
+      get 'images/add' => 'reviews#add_images', :on => :member
 
       resources :gallery_images, :except => [:show, :edit, :update]
     end

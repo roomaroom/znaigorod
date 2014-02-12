@@ -4,6 +4,8 @@ class My::ReviewsController < My::ApplicationController
 
   actions :all, :except => :index
 
+  custom_actions :resource => :add_images
+
   def preview
     build_resource
 
@@ -16,5 +18,11 @@ class My::ReviewsController < My::ApplicationController
     klass = Reviews::VerifiedClass.new(type: params[:type]).klass
 
     @review = klass.new(params[:review])
+  end
+
+  def resource_url
+    @review.is_a?(ReviewPhoto) ?
+      images_add_my_review_path(@review) :
+      my_review_path(@review)
   end
 end
