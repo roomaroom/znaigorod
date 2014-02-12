@@ -7,6 +7,7 @@ Disallow: /my
 
 Disallow: */change_vote
 Disallow: */comments/new
+Disallow: */copy_payments/new
 Disallow: */invitations/new
 Disallow: */visits
 Disallow: */works/new
