@@ -1,10 +1,6 @@
 <div class="left">
   <%= render :partial => 'review', :locals => { :review => @review } %>
 
-  <div class="author">
-    <%= render :partial => 'commons/author', :locals => { :account => @review.account } %>
-  </div>
-
   <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>
 
   <div class="share_and_likes">

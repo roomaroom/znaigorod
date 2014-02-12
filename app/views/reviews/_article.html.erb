@@ -8,9 +8,7 @@
   <span class="show_tipsy visits" title="Просмотры">100 <%#= review.page_visits.count %></span>
 </div>
 
-<div class="date">
-  <%= review.created_at %>
-</div>
+<%= review.date %>
 
 <div class="annotation">
   <%= review.content_for_index %>

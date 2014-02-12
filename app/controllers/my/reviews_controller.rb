@@ -6,10 +6,16 @@ class My::ReviewsController < My::ApplicationController
 
   custom_actions :resource => :add_images
 
+  def show
+    show!{
+      @review = ReviewDecorator.new(@review)
+    }
+  end
+
   def preview
     build_resource
 
-    render :partial => "reviews/review", :locals => { :review => @review }
+    render :partial => "reviews/review", :locals => { :review => ReviewDecorator.new(@review) }
   end
 
   protected

@@ -8,9 +8,7 @@
   <span class="show_tipsy visits" title="Просмотры">100 <%#= review.page_visits.count %></span>
 </div>
 
-<div class="date">
-  <%= review.created_at %>
-</div>
+<%= review.date %>
 
 <div class="description">
   <%= review.content_for_show %>
@@ -18,4 +16,8 @@
   <ul class="gallery js-gallery">
     <%= render :partial => 'reviews/gallery', :locals => { :review => @review } if @review.is_a?(ReviewPhoto) %>
   </ul>
+</div>
+
+<div class="author">
+  <%= render :partial => 'commons/author', :locals => { :account => @review.account } %>
 </div>

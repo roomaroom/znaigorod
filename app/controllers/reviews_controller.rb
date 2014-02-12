@@ -7,4 +7,10 @@ class ReviewsController < ApplicationController
       @reviews = collection.map { |item| ReviewDecorator.decorate item }
     }
   end
+
+  def show
+    show!{
+      @review = ReviewDecorator.new(@review)
+    }
+  end
 end
