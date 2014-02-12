@@ -23,6 +23,10 @@
   <meta name='twitter:image:src' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
 <% end %>
 
+<% content_for :canonical_link do %>
+  <link rel='canonical' href='<%= contest_url(@contest) %>' />
+<% end %>
+
 <div class='contest <%= @work.contest.slug %>'>
   <h1><%= @work.contest.title.excerpt %></h1>
 
