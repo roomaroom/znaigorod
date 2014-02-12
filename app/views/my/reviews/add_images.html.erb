@@ -1,29 +1,36 @@
-<h1>Добавление фотографий</h1>
+<div class="my_wrapper">
+  <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
-<div class="gallery_images_wrapper">
-  <h3 id="gallery_images_header">Фотографии</h3>
-  <ul class="gallery_images">
-    <%= render @review.gallery_images %>
-  </ul>
+  <div class="my_reviews_wrapper review_form">
+    <h1>Добавление фотографий</h1>
 
-  <%= simple_form_for @review.gallery_images.new,
-    :url => my_review_gallery_images_path(@review.id),
-    :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
+    <div class="gallery_images_wrapper">
+      <h3 id="gallery_images_header">Фотографии</h3>
+      <ul class="gallery_images">
+        <%= render :partial => 'gallery', :locals => { :review => @review } %>
+      </ul>
 
-    <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
-    <span class='info'>
-      <span></span>Можно выбрать сразу несколько файлов
-    </span>
-  <% end %>
+      <%= simple_form_for @review.gallery_images.new,
+        :url => my_review_gallery_images_path(@review.id),
+        :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
 
-  <div class="upload_wrapper">
-    <script id="template-upload" type="text/x-tmpl">
-      <div class="upload">
-        {%=o.name%}
-        <div class="progress"><div class="bar" style="width: 0%"></div></div>
+        <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+        <span class='info'>
+          <span></span>Можно выбрать сразу несколько файлов
+        </span>
+      <% end %>
+
+      <div class="upload_wrapper">
+        <script id="template-upload" type="text/x-tmpl">
+          <div class="upload">
+            {%=o.name%}
+            <div class="progress"><div class="bar" style="width: 0%"></div></div>
+          </div>
+        </script>
       </div>
-    </script>
+    </div>
+
+    <%= link_to 'Готово', my_review_path(@review)%>
   </div>
 </div>
 
-<%= link_to 'Готово', my_review_path(@review)%>
