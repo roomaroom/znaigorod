@@ -39,7 +39,7 @@ SitemapGenerator::Sitemap.create do
   Organization.suborganization_kinds_for_navigation.drop(1).each do |suborganization_kind|
     add send("#{suborganization_kind.pluralize}_path"), :changefreq => 'weekly', :priority => 0.8, :lastmod => suborganization_kind.classify.constantize.unscoped.last.updated_at
     "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.drop(1).each do |link|
-      next if link[:klass] == 'kafe'
+      next if link[:klass] == 'kafe' || link[:klass] == 'kompyuternyy_mir'
       add send(link[:url]), :changefreq => 'weekly', :priority => '0.5', :lastmod => suborganization_kind.classify.constantize.unscoped.last.updated_at
     end
   end
