@@ -37,13 +37,13 @@
   <div class='title'>
     <%= link_to(feed_discount.feedable.title, discount_path(feed_discount.feedable)) %>
   </div>
-<div class="info">
-  <%= render :partial => "discounts/#{feed_discount.feedable.class.name.underscore}_info", :locals => { :discount => feed_discount.feedable } %>
-</div>
+  <div class="info">
+    <%= render :partial => "discounts/#{feed_discount.feedable.class.name.underscore}_info", :locals => { :discount => feed_discount.feedable } %>
+  </div>
 
   <div class="buy_ticket">
     <% unless feed_discount.feedable.price.nil? || feed_discount.feedable.price.zero? %>
-      <%= link_to 'Купить', new_discount_copy_payment_path(feed_discount.feedable), :class => 'payment_link participate', :remote => true, :rel => :nofollow %>
+      <%= link_to 'Купить', new_discount_copy_payment_path(feed_discount.feedable), :class => 'payment_link participate', :remote => true, :rel => 'nofollow' %>
     <% end %>
   </div>
 </div>

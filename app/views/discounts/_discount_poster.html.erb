@@ -15,19 +15,19 @@
 
       <% unless discount.is_a?(AffiliatedCoupon) %>
         <% if discount.is_a?(OfferedDiscount) %>
-          <%= link_to 'Предложить свою цену', discount.smart_path(:anchor => :offer_price), :class => 'for_sale offer_price' %>
+          <%= link_to 'Предложить свою цену', discount.smart_path(:anchor => :offer_price), :class => 'for_sale offer_price', :rel => 'nofollow' %>
         <% else %>
           <% if discount.price.nil? || discount.price.zero? %>
-            <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+            <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale, :rel => 'nofollow' %>
           <% else %>
-            <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale %>
+            <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => :for_sale, :rel => 'nofollow' %>
           <% end %>
         <% end %>
       <% else %>
         <% if discount.price.nil? || discount.price.zero? %>
-          <%= link_to 'Получить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale %>
+          <%= link_to 'Получить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale, :rel => 'nofollow' %>
         <% else %>
-          <%= link_to 'Купить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale %>
+          <%= link_to 'Купить', discount.supplier.try(:link), :target => '_blank', :class => :for_sale, :rel => 'nofollow' %>
         <% end %>
       <% end %>
 
