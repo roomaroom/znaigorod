@@ -11,5 +11,5 @@
 <%= review.date %>
 
 <div class="annotation">
-  <%= review.content_for_index %>
+  <%= render :partial => "reviews/poster_#{review.useful_type}", :locals => { :review => review } %>
 </div>

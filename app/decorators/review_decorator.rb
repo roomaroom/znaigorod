@@ -9,6 +9,18 @@ class ReviewDecorator < ApplicationDecorator
     h.content_tag :div, I18n.l(date, :format => "%d %B %Y"), :class => :date
   end
 
+  def content_for_show
+    @content_for_index ||= review.is_a?(ReviewVideo) ?
+      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content).render_show :
+      AutoHtmlRenderer.new(content).render_show
+  end
+
+  def content_for_index
+    @content_for_index ||= review.is_a?(ReviewVideo) ?
+      AutoHtmlRenderer.new(video_url).render_index :
+      AutoHtmlRenderer.new(content).render_index
+  end
+
   def html_image(image, width, height)
     return "<li>#{h.image_tag h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title}</li>"
   end
