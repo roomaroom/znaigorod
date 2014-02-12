@@ -103,7 +103,7 @@ class Afisha < ActiveRecord::Base
   end
 
   def ready_for_publication?
-    title.present? && description.present? && poster_image_url? && showings.any? && draft?
+    title.present? && description.present? && poster_url.present? && showings.any? && draft?
   end
 
   # <<<<<<<<<<<< Wizard  <<<<<<<<<<<

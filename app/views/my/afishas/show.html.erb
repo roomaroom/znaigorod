@@ -34,10 +34,22 @@
             <h2>Публикация мероприятия</h2>
             <p>Для того, чтобы опубликовать созданное мероприятие, необходимо заполнить следующие поля:</p>
             <ul class='requirements'>
-              <li class='<%= @afisha.title? ? 'enabled' : 'disabled' %>'>Название мероприятия</li>
-              <li class='<%= @afisha.description? ? 'enabled' : 'disabled' %>'>Описание</li>
-              <li class='<%= @afisha.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
-              <li class='<%= @afisha.showings.any? ? 'enabled' : 'disabled' %>'>Расписание</li>
+              <li class='<%= @afisha.title? ? 'enabled' : 'disabled' %>'>Название заполнено</li>
+              <li class='<%= @afisha.description? ? 'enabled' : 'disabled' %>'>Описание заполнено</li>
+              <% if @afisha.poster_url.present? %>
+                <li class='enabled'>Постер добавлен</li>
+              <% else %>
+                <li class='disabled'>Нет постера</li>
+                <li><%= link_to 'изменить', edit_step_my_afisha_path(@afisha, step: :second) if can? :edit, @afisha %></li>
+              <% end %>
+              <% if @afisha.showings.any? %>
+                <li class='enabled'>
+                  Время проведения заполнено
+                </li>
+              <% else %>
+                <li class='disabled'>Время проведения неизвестно</li>
+                <li><%= link_to 'добавить сеанс', new_my_afisha_showing_path(@afisha) if can? :new, @afisha.showings.new %></li>
+              <% end %>
             </ul>
 
             <% if can? :send_to_published, @afisha %>
@@ -219,7 +231,7 @@
 
       <div class='many_showings'>
         <div class='many_showing_header'>
-          Расписание
+          Место, время проведения и стоимость участия
           <%= link_to 'добавить', new_my_afisha_showing_path(@afisha) if can? :new, @afisha.showings.new %>
         </div>
         <ul>
