@@ -2,12 +2,13 @@
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <div class="my_reviews_wrapper review_form">
-    <h1>Добавление обзора</h1>
-
     <% Review.descendant_names_without_prefix.each do |name| %>
-      <ul>
-        <li><%= link_to "new #{name}", ["new_#{name}", :my, :reviews] %></li>
-      </ul>
+      <div class="info_wrapper">
+        <h4><%= t("review.title.#{name}") %></h4>
+        <p><%= t("review.about.#{name}") %></p>
+
+        <%= link_to 'Добавить', ["new_#{name}", :my, :reviews], :class => 'button' %>
+      </div>
     <% end %>
   </div>
 </div>
