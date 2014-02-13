@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212023816) do
+ActiveRecord::Schema.define(:version => 20140212095310) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -753,8 +753,8 @@ ActiveRecord::Schema.define(:version => 20140212023816) do
 
   create_table "reviews", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "type"
     t.text     "content"
     t.string   "slug"
@@ -763,6 +763,11 @@ ActiveRecord::Schema.define(:version => 20140212023816) do
     t.string   "state"
     t.integer  "account_id"
     t.text     "video_url"
+    t.text     "poster_image_url"
+    t.string   "poster_image_file_name"
+    t.string   "poster_image_content_type"
+    t.integer  "poster_image_file_size"
+    t.datetime "poster_image_updated_at"
   end
 
   create_table "roles", :force => true do |t|

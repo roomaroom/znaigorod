@@ -1,3 +1,7 @@
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
+
 <%= simple_form_for @review, :as => :review, :url => [:my, :reviews], :html => { :class => 'my_review_form default_simple_form' } do |f| %>
   <%= hidden_field_tag :type, @review.useful_type %>
 
