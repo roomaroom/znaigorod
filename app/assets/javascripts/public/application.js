@@ -98,6 +98,7 @@
  * = require ./my_posts
  * = require ./post_video_preview
  * = require ./my_posts_accordion
+ * = require ./my_review_js_submit
  * = require ./work_addition
  * = require ./banners
  * = require ./main

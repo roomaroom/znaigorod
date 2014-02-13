@@ -1,0 +1,40 @@
+.btn
+  cursor: pointer
+  font-size: 12px
+  line-height: 16px
+  padding: 1px 8px 2px
+  text-align: center
+
+  &:hover
+    text-decoration: none
+
+  &:active
+    padding: 2px 8px 1px
+
+.btn-block
+  display: block
+
+.btn-sm
+
+.btn-lg
+  padding: 5px 10px
+  font-size: 14px
+  line-height: 18px
+
+  &:active
+    padding: 6px 10px 4px
+
+.btn-gray
+
+.btn-orange
+  +background(linear-gradient(top, #f93, #f60))
+  border: 1px solid #f60
+  color: #fff
+
+  &:hover
+    +text-shadow(#f60 1px 1px 1px)
+    background-color: #f93
+
+  &:active
+    background-color: #ff7f1a
+    +background(linear-gradient(top, #f60, #f93))

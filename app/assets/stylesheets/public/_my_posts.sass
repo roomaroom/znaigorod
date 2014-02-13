@@ -68,6 +68,38 @@
     iframe
       width: 500px
 
+    .gallery_images_help
+      border: 1px solid #f60
+      width: 100%
+      margin: 0 0 20px 0
+
+      .cell
+        background: #f60
+        color: #fff
+        padding: 10px
+
+      .arrow_box
+        background: #fff
+        color: #222
+        position: relative
+
+        &:after
+          bottom: 100%
+          left: 40px
+          border: solid transparent
+          content: " "
+          height: 0
+          width: 0
+          position: absolute
+          pointer-events: none
+          border-color: rgba(255, 255, 255, 0)
+          border-bottom-color: white
+          border-width: 15px 15px 10px 15px
+          margin-left: -30px
+
+      ul
+        list-style: circle inside
+
   .loader
     background: image_url('public/ajax_loading_items_indicator.gif') center center no-repeat rgba(0, 0, 0, 0)
     display: none
@@ -191,3 +223,7 @@
       margin: 0 auto
       text-align: center
       width: 160px
+
+.review_photo_form
+  .submit
+    display: none

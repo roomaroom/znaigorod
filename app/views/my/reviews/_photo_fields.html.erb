@@ -1,3 +1,25 @@
 <%= f.input :content,
   :input_html => { :id => 'html', :class => 'description with-preview', :maxlength => 140, :placeholder => 'Коротко опишите добавляемые фотографии' },
   :label => 'Описание' %>
+
+<%= content_for :review_preview do %>
+  <div class="preview_wrapper">
+    <div class="gallery_images_help">
+      <div class="orange cell">
+        Помощь
+      </div>
+
+      <div class="arrow_box cell">
+        <ul>
+          <li>Заполните основные поля на форме слева</li>
+          <li>На следущем шаге можно будет добавить фотографии загрузив из с вашего компьютера, из альбома <strong>ВКонтакте</strong> или <strong>Яндекс.Фото</strong></li>
+          <li>Минимальное количество фотографий <strong>6 шт.</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <%= link_to 'Продолжить', '#', :class => 'btn btn-orange btn-block btn-lg js-submit' %>
+  </div>
+
+  <div class="loader"></div>
+<% end %>

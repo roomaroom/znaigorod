@@ -1,1 +1,11 @@
 <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup with-preview' }  %>
+
+<%= content_for :review_preview do %>
+  <div class="preview_wrapper">
+    <h1>Предварительный просмотр</h1>
+    <div class="reviews_show">
+    </div>
+  </div>
+
+  <div class="loader"></div>
+<% end %>
