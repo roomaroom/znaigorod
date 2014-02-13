@@ -18,7 +18,13 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def annotation_image(width, height)
-    review.poster_url? ? review.poster_url : h.resized_image_url(review.poster_image_url, width, height)
+    if review.poster_url?
+      review.poster_url
+    elsif review.poster_image_url?
+      h.resized_image_url(review.poster_image_url, width, height)
+    else
+      'public/post_poster_stub.jpg'
+    end
   end
 
   def date
