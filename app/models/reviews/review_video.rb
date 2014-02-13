@@ -7,6 +7,6 @@ class ReviewVideo < Review
   private
 
   def set_poster
-    self.poster_image = Posts::ContentParser.new(video_url).poster
+    self.poster_image = Reviews::Content::Parser.new(video_url).poster
   end
 end

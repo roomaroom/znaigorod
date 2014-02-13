@@ -1,0 +1,2 @@
+module Reviews::Content
+end

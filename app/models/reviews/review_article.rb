@@ -12,6 +12,6 @@ class ReviewArticle < Review
   end
 
   def set_poster
-    self.poster_image = Posts::ContentParser.new(content).poster if generate_poster? && !poster_url?
+    self.poster_image = Reviews::Content::Parser.new(content).poster if generate_poster? && !poster_url?
   end
 end
