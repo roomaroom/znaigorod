@@ -17,6 +17,10 @@ class ReviewDecorator < ApplicationDecorator
       h.link_to(title.text_gilensize, h.review_path(review, anchor: options[:anchor]))
   end
 
+  def annotation_image(width, height)
+    review.poster_url? ? review.poster_url : h.resized_image_url(review.poster_image_url, width, height)
+  end
+
   def date
     date = review.created_at || Time.zone.now
 
@@ -24,7 +28,7 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def content_for_show
-    @content_for_index ||= review.is_a?(ReviewVideo) ?
+    @content_for_show ||= review.is_a?(ReviewVideo) ?
       AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content).render_show :
       AutoHtmlRenderer.new(content).render_show
   end
