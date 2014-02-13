@@ -38,6 +38,12 @@ discount:
       content_type: 'discount'
       discount_slug: 'kupon-na-valentinku-s-zhivoy-tropicheskoy-babochkoy'
       replaced_count: 1
+    '1.2':
+      from: '2014-02-13 14:30'
+      to: '2014-03-14 14:30'
+      content_type: 'discount'
+      discount_slug: 'rozygrysh-abonementov-na-mesyats-besplatnyh-zanyatiy-v-fitnes-tsentre-i-podarochnyh-sertifikatov'
+      replaced_count: 1
 
 main_page_afisha:
   places:
