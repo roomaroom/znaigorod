@@ -3,6 +3,20 @@
 class ReviewDecorator < ApplicationDecorator
   decorates :review
 
+  delegate :title, :to => :review
+
+  def truncated_title(length, separator = ' ')
+    title.length > length ?
+      title.text_gilensize.truncated(length, separator) :
+      title.text_gilensize
+  end
+
+  def truncated_title_link(length, options = { separator: ' ', anchor: nil })
+    title.length > length ?
+      h.link_to(truncated_title(length, options[:separator]), h.review_path(review, anchor: options[:anchor]), :title => title) :
+      h.link_to(title.text_gilensize, h.review_path(review, anchor: options[:anchor]))
+  end
+
   def date
     date = review.created_at || Time.zone.now
 
@@ -26,19 +40,10 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def annotation_gallery
-    gallery_size = review.gallery_images.limit(6).size
-
     gallery = ''
 
-    review.gallery_images.limit(6).each do |image|
-      case gallery_size
-      when 1..3
-        gallery << html_image(image, (347 / gallery_size) - 2, 260)
-      when 4
-        gallery << html_image(image, (347 / 2) - 2, (260 / 2) - 2)
-      else
-        gallery << html_image(image, (347 / gallery_size), 260 / gallery_size)
-      end
+    review.gallery_images.limit(6).each_with_index do |image, index|
+      index == 0 ? gallery << html_image(image, 234, 158) : gallery << html_image(image, 116, 78)
     end
 
     gallery.html_safe

@@ -12,11 +12,11 @@
             <span></span>
           <% end %>
 
-          <%= link_to "#", :class => 'button change_post', :title => 'Редактировать пост' do %>
+          <%= link_to edit_my_review_path(@review), :class => 'button change_post', :title => 'Редактировать пост' do %>
             <span></span>
           <% end %>
 
-          <%= link_to "#", :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
+          <%= link_to my_review_path(@review), :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
             :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
             <span></span>
           <% end %>
@@ -29,7 +29,7 @@
             <span></span>
           <% end %>
 
-          <%= link_to '#', :class => 'button change_post', :title => 'Редактировать пост' do %>
+          <%= link_to edit_my_review_path(@review), :class => 'button change_post', :title => 'Редактировать пост' do %>
             <span></span>
           <% end %>
         <% end %>
@@ -52,11 +52,11 @@
     </div>
 
     <ul class="posters">
-      <li class="item"><%= render :partial => "reviews/poster_#{@review.useful_type}", :locals => { :review => @review } %></li>
+      <li class="item"><%= render :partial => "reviews/poster", :locals => { :review => @review } %></li>
     </ul>
 
     <ul class="review_help">
-      <li><strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', '#' %>. <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.</li>
+      <li><strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', edit_my_review_path(@review) %>. <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.</li>
       <li>В качестве <strong>постера</strong> используется картинка из текста или кадр из видео. Также можно <%= link_to 'изменить постер', '#' %>.</li>
       <li>К обзору можно <%= link_to 'добавить фотографии', images_add_my_review_path(@review) %></li>
     </ul>
