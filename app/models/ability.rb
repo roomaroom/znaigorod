@@ -91,7 +91,7 @@ class Ability
         case gallery_image.attachable
         when Account
           gallery_image.attachable.users.first == user
-        #TODO: remove Post
+        # TODO: remove Post
         when Post, Review
           gallery_image.attachable.account == user.account
         else

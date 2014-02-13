@@ -5,7 +5,7 @@
     <div class="header_with_marker">
       <div class="to_right">
         <% if @review.draft?  %>
-          <%= link_to t('my.send_to_public'), '#', :method => :put, :class => 'button change_state',
+          <%= link_to t('my.send_to_public'), publish_my_review_path(@review), :method => :put, :class => 'button change_state',
             :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
 
           <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
@@ -22,7 +22,7 @@
           <% end %>
 
         <% else %>
-          <%= link_to 'В черновики', '#', :method => :put, :class => 'button change_state',
+          <%= link_to 'В черновики', draft_my_review_path(@review), :method => :put, :class => 'button change_state',
             :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
 
           <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>

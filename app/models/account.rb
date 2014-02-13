@@ -14,7 +14,11 @@ class Account < ActiveRecord::Base
   has_many :users,           order: 'id ASC', dependent: :destroy
   has_many :afisha,          through: :users
   has_many :discounts
+
+  # TODO: remove posts
   has_many :posts,           :order => 'created_at'
+  has_many :reviews,         :order => 'created_at'
+
   has_many :showings,        through: :users
   has_many :comments,        through: :users, order: 'comments.created_at DESC'
   has_many :roles,           through: :users
