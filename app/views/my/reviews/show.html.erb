@@ -52,7 +52,7 @@
     </div>
 
     <ul class="posters">
-      <li class="item"><%= render :partial => "reviews/#{@review.useful_type}", :locals => { :review => @review } %></li>
+      <li class="item"><%= render :partial => "reviews/poster_#{@review.useful_type}", :locals => { :review => @review } %></li>
     </ul>
 
     <ul class="review_help">
