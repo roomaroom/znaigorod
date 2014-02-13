@@ -1,12 +1,12 @@
 afisha:
   places:
 
-    '1.3':
-      from: '2014-02-06 09:00'
-      to: '2014-02-10 09:00'
+    '1.0':
+      from: '2014-02-13 14:20'
+      to: '2014-02-14 14:20'
       content_type: 'afisha'
-      afisha_slug: 'master-klass-po-risovaniyu-peskom'
-      replaced_count: 1
+      afisha_slug: 'kontsert-ellai-v-nk-fakel-5-marta'
+      replaced_count: 4
 
     '1.4':
       from: '2014-02-07 09:00'
