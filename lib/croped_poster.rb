@@ -4,7 +4,7 @@ module CropedPoster
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def has_croped_poster(min_width: 300, min_height: 300)
+    def has_croped_poster(min_width: 300, min_height: 300, default_url: nil)
       @min_width, @min_height = min_width, min_height
 
       attr_accessible :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
@@ -14,7 +14,10 @@ module CropedPoster
       attr_accessor :crop_x, :crop_y, :crop_width, :crop_height, :min_width, :min_height,
         :set_region
 
-      has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+      options = { :storage => :elvfs, :elvfs_url => Settings['storage.url'] }
+      options.merge! :default_url => default_url if default_url.present?
+
+      has_attached_file :poster_image, options
 
       # TODO
       validates_attachment :poster_image, :content_type => {

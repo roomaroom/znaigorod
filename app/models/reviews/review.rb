@@ -29,8 +29,7 @@ class Review < ActiveRecord::Base
 
   friendly_id :title, :use => :slugged
 
-  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
-  has_croped_poster min_width: 353, min_height: 199
+  has_croped_poster min_width: 353, min_height: 199, :default_url => 'public/post_poster_stub.jpg'
 
   normalize_attribute :categories, :with => :blank_array
 
