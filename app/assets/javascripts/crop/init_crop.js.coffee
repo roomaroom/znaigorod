@@ -34,12 +34,16 @@
 
   true
 
+  # TODO: remove post
   $('#post_poster_image').on 'change', ->
     $(this).parents('form').append('<input id="crop" name="crop" type="hidden" value="true">').submit()
     $(this).parents('form').submit()
     true
 
   true
+
+  $('#review_poster_image').on 'change', ->
+    $(this).parents('form').submit()
 
 update_crop = (coords) ->
   rx = 200/coords.w

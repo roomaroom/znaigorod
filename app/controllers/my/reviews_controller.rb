@@ -12,6 +12,18 @@ class My::ReviewsController < My::ApplicationController
     }
   end
 
+  def update
+    update! do |success, failure|
+      success.html {
+        redirect_to params[:crop] ? poster_edit_my_review_path(resource) : my_review_path(resource)
+      }
+
+      failure.html {
+        render params[:crop] ? :edit_poster : :edit
+      }
+    end
+  end
+
   def preview
     build_resource
 
@@ -41,7 +53,9 @@ class My::ReviewsController < My::ApplicationController
   def build_resource
     klass = Reviews::VerifiedClass.new(type: params[:type]).klass
 
-    @review = klass.new(params[:review])
+    @review = klass.new(params[:review]) do |review|
+      review.account = current_user.account
+    end
   end
 
   def resource_url

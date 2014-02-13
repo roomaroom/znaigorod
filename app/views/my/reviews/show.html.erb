@@ -8,7 +8,7 @@
           <%= link_to t('my.send_to_public'), publish_my_review_path(@review), :method => :put, :class => 'button change_state',
             :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
 
-          <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
+          <%= link_to poster_edit_my_review_path(@review), :class => 'button change_poster', :title => 'Изменить постер' do %>
             <span></span>
           <% end %>
 

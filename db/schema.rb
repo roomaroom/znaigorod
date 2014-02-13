@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212095310) do
+ActiveRecord::Schema.define(:version => 20140213052651) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -768,6 +768,7 @@ ActiveRecord::Schema.define(:version => 20140212095310) do
     t.string   "poster_image_content_type"
     t.integer  "poster_image_file_size"
     t.datetime "poster_image_updated_at"
+    t.text     "poster_url"
   end
 
   create_table "roles", :force => true do |t|
