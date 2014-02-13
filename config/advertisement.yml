@@ -1,25 +1,5 @@
 afisha:
   places:
-    '1.0':
-      from: '2014-02-10 16:30'
-      to: '2014-02-12 16:30'
-      content_type: 'afisha'
-      afisha_slug: 'smayl-darit-lyubov'
-      replaced_count: 4
-
-    '1.1':
-      from: '2014-02-11 12:00'
-      to: '2014-02-25 12:00'
-      content_type: 'afisha'
-      afisha_slug: 'letnie-kanikuly-v-ssha'
-      replaced_count: 1
-
-    '1.2':
-      from: '2014-02-11 12:00'
-      to: '2014-02-25 12:00'
-      content_type: 'afisha'
-      afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
-      replaced_count: 1
 
     '1.3':
       from: '2014-02-06 09:00'
@@ -61,6 +41,20 @@ discount:
 
 main_page_afisha:
   places:
+    '1.0':
+      from: '2014-02-13 09:00'
+      to: '2014-02-20 09:00'
+      content_type: 'afisha'
+      afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
+      replaced_count: 1
+
+    '1.2':
+      from: '2014-02-13 09:00'
+      to: '2014-02-20 09:00'
+      content_type: 'afisha'
+      afisha_slug: 'letnie-kanikuly-v-ssha'
+      replaced_count: 1
+
     '1.5':
       from: '2014-01-29 14:00'
       to: '2014-02-28 00:00'
