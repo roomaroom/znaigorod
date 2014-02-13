@@ -1,4 +1,5 @@
 <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup with-preview' }  %>
+<%= f.input :generate_poster, :as => :hidden, :input_html => { :value => true } %>
 
 <%= content_for :review_preview do %>
   <div class="preview_wrapper">
