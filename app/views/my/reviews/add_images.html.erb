@@ -5,7 +5,6 @@
     <h1>Добавление фотографий</h1>
 
     <div class="gallery_images_wrapper">
-      <h3 id="gallery_images_header">Фотографии</h3>
       <ul class="gallery_images">
         <%= render :partial => 'gallery', :locals => { :review => @review } %>
       </ul>
@@ -15,9 +14,9 @@
         :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
 
         <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
-        <span class='info'>
-          <span></span>Можно выбрать сразу несколько файлов
-        </span>
+        <div class="info_wrapper">
+          <span class='info'></span> <span>Можно выбрать сразу несколько файлов</span>
+        </div>
       <% end %>
 
       <div class="upload_wrapper">
@@ -30,7 +29,7 @@
       </div>
     </div>
 
-    <%= link_to 'Готово', my_review_path(@review)%>
+    <%= link_to 'Сохранить', my_review_path(@review), :class => 'btn btn-lg btn-orange' %>
   </div>
 </div>
 
