@@ -1,0 +1,11 @@
+<li>
+  <strong>Заголовок и текст</strong> можно <%= link_to 'отредактировать', edit_my_review_path(@review) %>.
+  <strong>Для&nbsp;аннотации</strong> берутся первые 180 символов текста.
+</li>
+<li>
+  В качестве <strong>постера</strong> используется картинка из текста или кадр из видео.
+  Также можно <%= link_to 'изменить постер', poster_edit_my_review_path(@review) %>.
+</li>
+<li>
+  К обзору можно <%= link_to 'добавить фотографии', images_add_my_review_path(@review) %>
+</li>
