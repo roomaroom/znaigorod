@@ -29,6 +29,13 @@ Znaigorod::Application.routes.draw do
     end
   end
 
+  Review.descendant_names.each do |name|
+    resources name, :only => :show do
+      resources :comments, :only => [:new, :create, :show]
+    end
+  end
+
   resources :reviews, :only => [:index, :show] do
+    resources :comments, :only => [:new, :create, :show]
   end
 end

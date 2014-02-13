@@ -10,8 +10,15 @@ class CommentsController < ApplicationController
   belongs_to :discount, :polymorphic => true, :optional => true
   belongs_to :offered_discount, :polymorphic => true, :optional => true
   belongs_to :organization, :polymorphic => true, :optional => true
-  belongs_to :post, :polymorphic => true, :optional => true
   belongs_to :work, :polymorphic => true, :optional => true
+
+  #TODO: remove post
+  belongs_to :post, :polymorphic => true, :optional => true
+  belongs_to :review, :polymorphic => true, :optional => true
+
+  Review.descendant_names.each do |name|
+    belongs_to name, :polymorphic => true, :optional => true
+  end
 
   layout false
 

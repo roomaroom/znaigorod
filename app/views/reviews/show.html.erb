@@ -12,6 +12,8 @@
       <li><%= item %></li>
     <% end %>
   </ul>
+
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @review } %>
 </div>
 
 <div class="right">

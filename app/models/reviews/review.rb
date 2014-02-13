@@ -13,7 +13,8 @@ class Review < ActiveRecord::Base
 
   belongs_to :account
 
-  has_many :gallery_images, :as => :attachable, :dependent => :destroy
+  has_many :comments,       :as => :commentable, :dependent => :destroy
+  has_many :gallery_images, :as => :attachable,  :dependent => :destroy
 
   serialize :categories, Array
 
