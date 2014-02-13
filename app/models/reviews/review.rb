@@ -4,6 +4,7 @@ class Review < ActiveRecord::Base
 
   include CropedPoster
   include DraftPublishedStates
+  include MakePageVisit
 
   alias_attribute :file_url, :poster_image_url
 
@@ -13,8 +14,9 @@ class Review < ActiveRecord::Base
 
   belongs_to :account
 
-  has_many :comments,       :as => :commentable, :dependent => :destroy
-  has_many :gallery_images, :as => :attachable,  :dependent => :destroy
+  has_many :comments,       :as => :commentable,    :dependent => :destroy
+  has_many :gallery_images, :as => :attachable,     :dependent => :destroy
+  has_many :page_visits,    :as => :page_visitable, :dependent => :destroy
 
   serialize :categories, Array
 

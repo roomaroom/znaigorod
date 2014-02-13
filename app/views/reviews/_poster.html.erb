@@ -3,9 +3,9 @@
 </div>
 
 <div class="details">
-  <span class="show_tipsy comments" title="Комментарии">5 <%#= review.comments.count %></span>
+  <span class="show_tipsy comments" title="Комментарии"><%= review.comments.count %></span>
   <span class="show_tipsy likes" title="Понравилось">3 <%#= review.likes_count %></span>
-  <span class="show_tipsy visits" title="Просмотры">100 <%#= review.page_visits.count %></span>
+  <span class="show_tipsy visits" title="Просмотры"><%= review.page_visits.count %></span>
 </div>
 
 <%= review.date %>

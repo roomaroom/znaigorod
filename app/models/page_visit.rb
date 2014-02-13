@@ -5,7 +5,6 @@ class PageVisit < ActiveRecord::Base
 
   belongs_to :page_visitable, :polymorphic => true
   belongs_to :user
-
 end
 
 # == Schema Information
