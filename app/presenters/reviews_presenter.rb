@@ -26,7 +26,7 @@ class ReviewsPresenter
     end
 
     def count
-      HasSearcher.searcher(:discounts, @args).total_count
+      HasSearcher.searcher(:reviews, @args).total_count
     end
   end
 
@@ -105,13 +105,13 @@ class ReviewsPresenter
         :title => 'ВСЕ ОБЗОРЫ',
         :klass => "all #{params[:type]}".tap { |s| s << ' selected' if category.blank? },
         :path => Parameters.instance.path(category: nil),
-        :results_count => 99
+        :results_count => Counter.new(params).count
       )
     end
 
     def category_links
       available.map do |category|
-        #params = Parameters.instance.params.merge(:category => category)
+        params = Parameters.instance.params.merge(:category => category)
         title = human_titles[category]
 
         Hashie::Mash.new(
@@ -119,7 +119,7 @@ class ReviewsPresenter
           :title => title,
           :klass => category.dup.tap { |s| s << ' selected' if category == selected },
           :path => Parameters.instance.path(category: category),
-          :results_count => 99
+          :results_count => Counter.new(params).count
         )
       end
     end
