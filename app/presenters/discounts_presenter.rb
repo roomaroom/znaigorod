@@ -17,7 +17,7 @@ class DiscountsPresenter
       organization_id.present?
     end
 
-    def path(type: type, kind: kind, order_by: order_by)
+    def path(type: self.type, kind: self.kind, order_by: self.order_by)
       return discounts_path(:order_by => order_by) if type.blank? && kind.blank?
 
       path = [type, kind].compact.join('_')
