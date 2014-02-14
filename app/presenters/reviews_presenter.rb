@@ -11,8 +11,10 @@ class ReviewsPresenter
       { :type => type, :category => category, :order_by => order_by }
     end
 
-    def path(type: type, category: category, order_by: order_by)
+    def path(type: self.type, category: self.category, order_by: self.order_by)
       return reviews_path(:order_by => order_by) if type.blank? && category.blank?
+
+      path = [type, category].compact.join('_')
 
       send "reviews_#{path}_path", :order_by => order_by
     end
@@ -109,7 +111,7 @@ class ReviewsPresenter
 
     def category_links
       available.map do |category|
-        params = Parameters.instance.params.merge(:category => category)
+        #params = Parameters.instance.params.merge(:category => category)
         title = human_titles[category]
 
         Hashie::Mash.new(
