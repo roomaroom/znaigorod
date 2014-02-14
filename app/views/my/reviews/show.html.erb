@@ -4,9 +4,13 @@
   <div class="left">
     <div class="header_with_marker">
       <div class="to_right">
-        <% if @review.draft?  %>
-          <%= link_to t('my.send_to_public'), publish_my_review_path(@review), :method => :put, :class => 'button change_state',
-            :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
+        <% if @review.draft? %>
+          <% if @review.ready_for_publication? %>
+            <%= link_to t('my.send_to_public'), publish_my_review_path(@review), :method => :put, :class => 'btn btn-orange btn-lg change_state',
+              :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
+          <% else %>
+            <%= link_to t('my.send_to_public'), '#', :class => 'btn btn-grey btn-lg change_state disabled', :disabled => :disabled %>
+          <% end %>
 
           <%= link_to poster_edit_my_review_path(@review), :class => 'button change_poster', :title => 'Изменить постер' do %>
             <span></span>
