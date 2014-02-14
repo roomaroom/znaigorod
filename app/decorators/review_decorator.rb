@@ -41,7 +41,7 @@ class ReviewDecorator < ApplicationDecorator
 
   def content_for_index
     @content_for_index ||= review.is_a?(ReviewVideo) ?
-      AutoHtmlRenderer.new(video_url).render_index :
+      AutoHtmlRenderer.new(video_url).render_index + AutoHtmlRenderer.new(content).render_index :
       AutoHtmlRenderer.new(content).render_index
   end
 
