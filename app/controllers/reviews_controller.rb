@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
 
   def index
     @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
+    @reviews = @presenter.decorated_collection
   end
 
   def show

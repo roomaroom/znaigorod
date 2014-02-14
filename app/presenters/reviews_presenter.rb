@@ -193,6 +193,8 @@ class ReviewsPresenter
 
                                 #list
                               #end
+
+    @decorated_collection ||= ReviewDecorator.decorate(collection)
   end
 
   def page_title
