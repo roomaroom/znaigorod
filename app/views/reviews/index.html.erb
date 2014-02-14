@@ -1,5 +1,20 @@
-<ul class="posters">
-  <% @reviews.each do |review|%>
-    <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review } %></li>
-  <% end %>
-</ul>
+<% content_for :page_title, @presenter.page_title %>
+<% content_for :meta_keywords, @presenter.meta_keywords %>
+<% content_for :meta_description, @presenter.meta_description %>
+
+<div class="presentation_filters reviews">
+  <div class="filter_header">
+    <h1><%= t('meta.reviews.page_header') %></h1>
+  </div>
+
+  <div class="order_by">
+    <p>Сортировать по:</p>
+    <ul>
+      <% @presenter.order_by_filter.links.each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.title, link.path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -3,9 +3,7 @@ class ReviewsController < ApplicationController
   actions :index, :show
 
   def index
-    index!{
-      @reviews = collection.map { |item| ReviewDecorator.decorate item }
-    }
+    @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
   end
 
   def show

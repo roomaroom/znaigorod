@@ -40,6 +40,7 @@ class Review < ActiveRecord::Base
   searchable do
     string :state
     string(:category, :multiple => true) { categories.map(&:value) }
+    string(:type) { useful_type }
 
     text :content, :more_like_this => true
     text :title,   :more_like_this => true,  :stored => true

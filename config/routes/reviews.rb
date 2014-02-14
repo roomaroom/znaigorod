@@ -29,17 +29,17 @@ Znaigorod::Application.routes.draw do
     end
   end
 
-  Review.descendant_names.each do |type|
+  Review.descendant_names_without_prefix.each do |type|
     # /reviews/[article|photo|video]
     get "reviews/#{type}" => 'reviews#index', :constraints => { :type => type }, :defaults => { :type => type }
 
     # /reviews/[discount|certificate|coupon]/[auto|beauty|sport|...]
     Review.categories.values.each do |category|
-      get "reviews/#{type}/#{category}" => 'reviews#index', :constraints => { :type => type, :category => category }, :defaults => { :type => type, :category => category }
+      get "reviews/#{type}/#{category}" => 'reviews#index', :constraints => { :category => category, :type => type }, :defaults => { :category => category, :type => type }
     end
 
     # comments
-    resources type.pluralize, :only => [] do
+    resources "#{Review.prefix}#{type.pluralize}", :only => [] do
       resources :comments, :only => [:new, :show, :create]
     end
   end
