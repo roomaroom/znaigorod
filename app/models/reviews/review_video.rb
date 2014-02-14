@@ -8,6 +8,10 @@ class ReviewVideo < Review
   validates :video_url, :presence => true
   validates :content, :length => { :maximum => 140 }
 
+  def content_parser
+    @content_parser ||= Reviews::Content::Videos.new(video_url)
+  end
+
   private
 
   def set_poster

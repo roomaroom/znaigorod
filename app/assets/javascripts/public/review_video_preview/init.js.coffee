@@ -5,7 +5,7 @@ videoContainer = (uid, width) ->
   $('<div class="video-container"></div>').html(iframe)
 
 handlePictureClick = ->
-  $('.js-video-preview', '.post_item').click ->
+  $('.js-video-preview', '.item').click ->
     target = $(this)
 
     uid = target.data('video').uid
@@ -21,5 +21,5 @@ handlePictureClick = ->
 
     false
 
-@initPostVideoPreview = ->
+@initReviewVideoPreview = ->
   handlePictureClick()
