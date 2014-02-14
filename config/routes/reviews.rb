@@ -29,13 +29,25 @@ Znaigorod::Application.routes.draw do
     end
   end
 
-  Review.descendant_names.each do |name|
-    resources name, :only => :show do
-      resources :comments, :only => [:new, :create, :show]
+  Review.descendant_names.each do |type|
+    # /reviews/[article|photo|video]
+    get "reviews/#{type}" => 'reviews#index', :constraints => { :type => type }, :defaults => { :type => type }
+
+    # /reviews/[discount|certificate|coupon]/[auto|beauty|sport|...]
+    Review.categories.values.each do |category|
+      get "reviews/#{type}/#{category}" => 'reviews#index', :constraints => { :type => type, :category => category }, :defaults => { :type => type, :category => category }
+    end
+
+    # comments
+    resources type.pluralize, :only => [] do
+      resources :comments, :only => [:new, :show, :create]
     end
   end
 
-  resources :reviews, :only => [:index, :show] do
-    resources :comments, :only => [:new, :create, :show]
+  # /reviews/[auto|beauty|sport|...]
+  Review.categories.values.each do |category|
+    get "reviews/#{category}" => 'reviews#index', :constraints => { :category => category }, :defaults => { :category => category }
   end
+
+  resources :reviews, :only => [:index, :show]
 end
