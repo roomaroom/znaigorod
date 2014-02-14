@@ -82,6 +82,7 @@ $ ->
   initMyPosts() if $('.review_form').length
   initPostVideoPreview() if $('.post_item').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
+  initMyReviewVideoHelp() if $('.js-video-help').length
 
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length

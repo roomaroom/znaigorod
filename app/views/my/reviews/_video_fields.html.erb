@@ -1,8 +1,26 @@
 <%= f.input :reset_poster, :as => :hidden, :input_html => { :value => true } %>
 
-<%= f.input :video_url,
-  :as => :string,
-  :input_html => { :class => 'with-preview', :placeholder => 'Вставьте сюда ссылку на видео с Youtube или Vimeo' } %>
+<div class="video_url_wrapper">
+  <span class="info"></span>
+  <%= link_to 'Помощь', '#', :class => 'js-video-help' %>
+  <%= f.input :video_url,
+    :as => :string,
+    :input_html => { :class => 'with-preview', :placeholder => 'Вставьте сюда ссылку на видео с Youtube или Vimeo' } %>
+
+  <div class="js-video-help-content">
+    <div class="youtube_help"></div>
+    <div class="vimeo_help"></div>
+
+    <div class="help_wrapper">
+      <h4>Помощь добавления видео с Youtube или Vimeo</h4>
+      <ul>
+        <li>Скопируйте ссылку на видео как показано на рисунках выше</li>
+        <li>Вставьте ссылку в поле на форме и через несколько секунд появится предпросмотр видео справа</li>
+        <li>Если предпросмотр видео не появился &dash; ссылка скопирована не верно</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <%= f.input :content,
   :input_html => { :id => 'html', :class => 'description with-preview', :maxlength => 140, :placeholder => 'Коротко опишите добавляемое видео' },
