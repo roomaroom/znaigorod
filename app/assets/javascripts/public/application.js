@@ -24,6 +24,7 @@
  * = require crop
  * = require ajax_delete
  * = require popup_window
+ * = require isotope
  * = require ./email_form
  * = require ./share_to_vk_wall
  * = require ./auth
@@ -102,5 +103,6 @@
  * = require ./my_review_video_help
  * = require ./work_addition
  * = require ./banners
+ * = require ./isotoped_reviews
  * = require ./main
  */

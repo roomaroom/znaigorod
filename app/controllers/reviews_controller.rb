@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
   def index
     @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
     @reviews = @presenter.decorated_collection
+
+    render partial: 'reviews/posters', :layout => false and return if request.xhr?
   end
 
   def show

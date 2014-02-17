@@ -83,6 +83,7 @@ $ ->
   initReviewVideoPreview() if $('.reviews_index').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length
+  initIsotopedReviews() if $('.reviews_index').length
 
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length

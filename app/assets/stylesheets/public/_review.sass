@@ -2,11 +2,13 @@
   padding: 10px
 
   .posters
+    position: relative
+
     li.item
-      +clearfix
+      //+clearfix
       border: 1px solid #ccc
       float: left
-      height: 380px
+      //height: 380px
       margin: 20px 6px
       padding: 12px
       width: 354px
@@ -32,15 +34,15 @@
         line-height: 16px
 
       .annotation
-        float: left
+        //float: left
+        clear: both
         font-size: 14px
         line-height: 20px
         padding: 5px 0 0 0
 
         .images
-          +clearfix
-          background: #777
           margin: 0 auto
+          height: 240px
 
         li
           float: left
