@@ -9,6 +9,8 @@ class ReviewsController < ApplicationController
 
   def show
     show!{
+      @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
+
       @review = ReviewDecorator.new(@review)
 
       @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)

@@ -49,5 +49,7 @@ Znaigorod::Application.routes.draw do
     get "reviews/#{category}" => 'reviews#index', :constraints => { :category => category }, :defaults => { :category => category }
   end
 
-  resources :reviews, :only => [:index, :show]
+  resources :reviews, :only => [:index, :show] do
+    resources :comments, :only => [:new, :show, :create]
+  end
 end

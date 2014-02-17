@@ -16,10 +16,10 @@ module Reviews
       private
 
       def youtube_videos
-        regex = /https?:\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\S)*/
+        regex = /(https?:\/\/)?(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]*)(\&\S+)?(\?\S+)?/
 
-        text.scan(regex).map do |match_groups|
-          YoutubeVideo.new match_groups.join, match_groups[2]
+        text.scan(regex).map do |matched_groups|
+          YoutubeVideo.new matched_groups.join, matched_groups[3]
         end
       end
     end
