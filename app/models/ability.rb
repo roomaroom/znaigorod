@@ -47,7 +47,6 @@ class Ability
     case namespace
     when 'manage'
       can :manage, Afisha if user.is_afisha_editor?
-      can :manage, Post   if user.is_posts_editor?
 
       if user.is_organizations_editor?
         can :manage, [Organization] + Organization.available_suborganization_classes
@@ -91,8 +90,7 @@ class Ability
         case gallery_image.attachable
         when Account
           gallery_image.attachable.users.first == user
-        # TODO: remove Post
-        when Post, Review
+        when Review
           gallery_image.attachable.account == user.account
         else
           gallery_image.attachable.state != 'pending' && gallery_image.attachable.user == user
@@ -122,7 +120,7 @@ class Ability
       end
 
       can [:new, :create, :index, :available_tags, :preview], Review if user.persisted?
-      can [:show, :edit, :update, :destroy, :reviewer], Review do |review|
+      can [:show, :edit, :update, :destroy, :add_images, :edit_poster], Review do |review|
         review.account == user.account
       end
 
