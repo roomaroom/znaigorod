@@ -66,10 +66,6 @@ class Review < ActiveRecord::Base
     false
   end
 
-  def tags
-    tag.split(',').map(&:squish).map(&:mb_chars).map(&:downcase)
-  end
-
   def ready_for_publication?
     true
   end

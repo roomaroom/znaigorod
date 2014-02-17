@@ -7,11 +7,13 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => review_url(@review) } %>
   </div>
 
-  <ul class="tags">
-    <% @review.tags.each do |item| %>
-      <li><%= item %></li>
-    <% end %>
-  </ul>
+  <% if @review.tag %>
+    <ul class="tags">
+      <% @review.tags.each do |item| %>
+        <li><%= item %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @review } %>
 </div>

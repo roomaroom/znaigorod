@@ -33,6 +33,14 @@ class ReviewDecorator < ApplicationDecorator
     h.content_tag :div, I18n.l(date, :format => "%d %B %Y"), :class => :date
   end
 
+  def likes_count
+    votes.liked.size
+  end
+
+  def tags
+    tag.split(',').map(&:squish).map(&:mb_chars).map(&:downcase)
+  end
+
   def content_for_show
     @content_for_show ||= review.is_a?(ReviewVideo) ?
       AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content).render_show :
