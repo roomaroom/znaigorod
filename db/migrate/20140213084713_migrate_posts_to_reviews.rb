@@ -18,7 +18,7 @@ class MigratePostsToReviews < ActiveRecord::Migration
   end
 
   def set_type(review)
-    if review.gallery_images.any?
+    if review.gallery_images > 5
       review.type = 'ReviewPhoto'
       review.save :validate => false
 
