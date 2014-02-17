@@ -8,6 +8,8 @@
  * = require jquery-ui/jquery-ui-timepicker-ru.js
  * = require sugar
  * = require infinitescroll.min
+ * = require isotope.min
+ * = require imagesloaded
  * = require magicsuggest
  * = require inputmask
  * = require tipsy
@@ -24,7 +26,6 @@
  * = require crop
  * = require ajax_delete
  * = require popup_window
- * = require isotope
  * = require ./email_form
  * = require ./share_to_vk_wall
  * = require ./auth
