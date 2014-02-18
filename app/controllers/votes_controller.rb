@@ -1,14 +1,13 @@
 class VotesController < ApplicationController
   inherit_resources
 
-  custom_actions :collection => [:change_vote, :liked]
-
-  belongs_to :afisha, :polymorphic => true, :optional => true
-  belongs_to :comment, :polymorphic => true, :optional => true
+  belongs_to :account,                            :optional => true
+  belongs_to :afisha,       :polymorphic => true, :optional => true
+  belongs_to :comment,      :polymorphic => true, :optional => true
   belongs_to :organization, :polymorphic => true, :optional => true
-  belongs_to :work, :polymorphic => true, :optional => true
-  belongs_to :post, :polymorphic => true, :optional => true
-  belongs_to :account, :optional => true
+  belongs_to :work,         :polymorphic => true, :optional => true
+
+  custom_actions :collection => [:change_vote, :liked]
 
   layout false
 
