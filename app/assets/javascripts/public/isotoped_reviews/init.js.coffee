@@ -12,7 +12,8 @@
     nextSelector: "nav.pagination span.next a"
     loading:
       msgText: ''
-      img: 'assets/public/ajax_loading_items_indicator.gif'
+      finishedMsg: ''
+      img: '/assets/public/ajax_loading_items_indicator.gif'
 
 
     , (newElements) ->
