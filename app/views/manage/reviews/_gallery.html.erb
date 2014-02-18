@@ -1,0 +1,12 @@
+<% @review.gallery_images.each do |image| %>
+  <li>
+    <div class='image_wrapper'>
+      <%= image_tag resized_image_url(image.file.url, 198, 152), :size => '198x152', :alt => image.description  %>
+    </div>
+    <%= link_to 'удалить', my_review_gallery_image_path(review, image),
+      :method => :delete,
+      :remote => true,
+      :class => 'ajax_delete icon-trash show_tipsy',
+      :title => 'Удалить'  %>
+  </li>
+<% end %>

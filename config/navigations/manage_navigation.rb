@@ -28,7 +28,7 @@ SimpleNavigation::Configuration.run do |navigation|
         afisha_item.item 'draft', "Черновики (#{Afisha.draft.count})", by_state_manage_afisha_index_path(:draft)
     end
 
-    primary.item :posts, 'Скидки', manage_discounts_path,
+    primary.item :discounts, 'Скидки', manage_discounts_path,
       :highlights_on => ->(){ resource_class == Discount || resource_class == Coupon || resource_class == Certificate },
       :if => -> { can?(:manage, Discount) } do |discount_item|
         Discount.kind.values.each do |kind|
@@ -37,13 +37,14 @@ SimpleNavigation::Configuration.run do |navigation|
         discount_item.item 'draft', "Черновики (#{Discount.draft.count})", by_state_manage_discounts_path(:draft)
       end
 
-    primary.item :posts, 'Конкурсы', manage_contests_path,
+    primary.item :contests, 'Конкурсы', manage_contests_path,
       :highlights_on => ->(){ resource_class == Contest },
       :if => -> { can?(:manage, Contest) }
 
-    primary.item :posts, 'Посты', manage_posts_path,
-      :highlights_on => ->(){ resource_class == Post },
-      :if => -> { can?(:manage, Post) }
+    primary.item :reviews, 'Обзоры', manage_reviews_path,
+      :highlights_on => ->(){ resource_class == Review },
+      :if => -> { can?(:manage, Review) }
+
     primary.item :payments, 'Вебкамеры', manage_webcams_path
 
     primary.item :crm, 'ЦРМ', crm_root_path,

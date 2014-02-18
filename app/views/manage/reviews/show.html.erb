@@ -1,0 +1,25 @@
+<div class="reviews_show">
+  <div class="actions">
+    <% if @review.draft? %>
+      <%= link_to 'Опубликовать', publish_manage_review_path(@review), :method => :put %>
+    <% else %>
+      <%= link_to 'В черновики', draft_manage_review_path(@review), :method => :put %>
+    <% end %>
+    <%= link_to 'Удалить', manage_review_path(@review), :confirm => 'Вы уверены?', :method => :delete %>
+    <%= link_to 'Загрузить фотогарфии', images_add_manage_review_path(@review) %>
+  </div>
+
+  <div class="left">
+    <%= render :partial => 'reviews/review', :locals => { :review => @review } %>
+
+    <% if @review.tag %>
+      <ul class="tags">
+        <% @review.tags.each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+  <div class="right">
+  </div>
+</div>

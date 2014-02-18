@@ -73,12 +73,6 @@ Znaigorod::Application.routes.draw do
       put 'fire_event_state/:event' => 'discounts#fire_state_event', :on => :member, :as => :fire_state_event
     end
 
-    resources :posts do
-      resources :gallery_images, :except => [:index, :show] do
-        delete 'destroy_file', :on => :member, :as => :destroy_file
-      end
-    end
-
     get 'organizations/rated' => 'organizations#index', :defaults => { :rated => true }
 
     resources :organizations do

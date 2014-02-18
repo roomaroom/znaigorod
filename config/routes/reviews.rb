@@ -29,6 +29,25 @@ Znaigorod::Application.routes.draw do
     end
   end
 
+  namespace :manage do
+    resources :reviews do
+      resources :gallery_images, :except => [:index, :show] do
+        delete 'destroy_file', :on => :member, :as => :destroy_file
+      end
+
+      get 'images/add'  => 'reviews#add_images',  :on => :member
+      put 'publish' => 'reviews#send_to_published', :on => :member
+      put 'draft'   => 'reviews#send_to_draft',     :on => :member
+    end
+
+    # TODO: Used at app/views/manage/gallery_images/_gallery_image.html.erb:5
+    Review.descendant_names.each do |name|
+      resources name, :only => :show do
+        resources :gallery_images, :only => :destroy
+      end
+    end
+  end
+
   Review.descendant_names_without_prefix.each do |type|
     # /reviews/[article|photo|video]
     get "reviews/#{type}" => 'reviews#index', :constraints => { :type => type }, :defaults => { :type => type }
