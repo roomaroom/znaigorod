@@ -17,10 +17,10 @@ $ ->
   init_webcam() if $('#webcam_snapshot_image').length
   init_webcam_map() if $('#webcam_map').length
   init_accounts_for_lottery() if $('.accounts_for_lottery').length
-  init_markitup() if $('.markitup').length
+  init_markitup() if $('.discount .markitup').length
   init_offers() if $('.offers').length
   init_contest() if $('#contest_og_image').length
-  initMyPosts() if $('.post_form').length
+  initMyPosts() if $('.review_form').length
   initPromoteAfisha() if $('.promoted_link').length
 
 $(window).load ->
