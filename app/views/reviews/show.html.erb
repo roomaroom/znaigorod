@@ -1,3 +1,11 @@
+<% content_for :meta_keywords, @review.meta_keywords %>
+<% content_for :meta_description, @review.meta_description %>
+
+<% content_for :extra_meta do %>
+  <%= @review.open_graph_meta %>
+  <%= @review.twitter_cards_meta %>
+<% end %>
+
 <div class="left">
   <%= render :partial => 'review', :locals => { :review => @review } %>
 

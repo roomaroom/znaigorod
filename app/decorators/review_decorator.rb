@@ -3,6 +3,8 @@
 class ReviewDecorator < ApplicationDecorator
   decorates :review
 
+  include OpenGraphMeta
+
   delegate :title, :to => :review
 
   def truncated_title(length, separator = ' ')
@@ -65,5 +67,30 @@ class ReviewDecorator < ApplicationDecorator
     end
 
     gallery.html_safe
+  end
+
+  # overrides OpenGraphMeta.meta_keywords
+  def meta_keywords
+    [categories.map(&:text).join(', '), open_graph_meta_tags].compact.flatten.map(&:mb_chars).map(&:downcase).join(', ')
+  end
+
+  # overrides OpenGraphMeta.open_graph_meta_tags
+  def open_graph_meta_tags
+    @open_graph_meta_tags ||= tags if tag?
+  end
+
+  # overrides OpenGraphMeta.html_description
+  def html_description
+    @html_description ||= content.to_s.as_html.without_table.gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe
+  end
+
+  # overrides OpenGraphMeta.object_url
+  def object_url
+    h.review_url(review)
+  end
+
+  # overrides OpenGraphMeta.object_image
+  def object_image
+    annotation_image(242, 180)
   end
 end
