@@ -73,4 +73,15 @@ Znaigorod::Application.routes.draw do
   resources :reviews, :only => [:index, :show] do
     resources :comments, :only => [:new, :show, :create]
   end
+
+  # legacy
+  get 'posts'              => redirect('/reviews')
+  get 'posts/with_gallery' => redirect('/reviews/photo')
+  get 'posts/with_video'   => redirect('/reviews/video')
+
+  Review.categories.values.each do |category|
+    get "posts/#{category}" => redirect("/reviews/#{category}")
+  end
+
+  get 'posts/:id' => redirect { |params, req| "/reviews/#{params[:id]}" }
 end
