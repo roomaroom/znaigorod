@@ -89,14 +89,14 @@ SitemapGenerator::Sitemap.create do
   end
 
   # Список обзоров
-  add posts_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Post.unscoped.last.updated_at
+  add reviews_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Review.unscoped.last.updated_at
 
   # Список обзоров по категориям
-  Post.categories.values.each do |item|
-    add send("posts_#{item}_path"),
+  Review.categories.values.each do |item|
+    add send("reviews_#{item}_path"),
       :changefreq => 'daily',
       :priority => 0.8,
-      :lastmod => Post.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
+      :lastmod => Review.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
   end
 
   # Услуги и цены
