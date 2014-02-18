@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218080130) do
+ActiveRecord::Schema.define(:version => 20140218094909) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -695,33 +695,6 @@ ActiveRecord::Schema.define(:version => 20140218080130) do
   end
 
   add_index "pool_tables", ["billiard_id"], :name => "index_pool_tables_on_billiard_id"
-
-  create_table "posts", :force => true do |t|
-    t.text     "title"
-    t.text     "content"
-    t.text     "poster_url"
-    t.string   "vfs_path"
-    t.string   "slug"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.boolean  "status",                    :default => false
-    t.float    "rating"
-    t.text     "kind"
-    t.text     "tag"
-    t.text     "categories"
-    t.integer  "afisha_id"
-    t.integer  "organization_id"
-    t.text     "poster_image_url"
-    t.string   "poster_image_file_name"
-    t.string   "poster_image_content_type"
-    t.integer  "poster_image_file_size"
-    t.datetime "poster_image_updated_at"
-    t.string   "state"
-    t.integer  "account_id"
-    t.boolean  "allow_external_links"
-  end
-
-  add_index "posts", ["account_id"], :name => "index_posts_on_account_id"
 
   create_table "prices", :force => true do |t|
     t.string   "kind"
