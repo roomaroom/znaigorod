@@ -25,7 +25,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    primary.item :reviews, 'Обзоры', reviews_path, highlights_on: -> { controller_name == 'posts' } do |reviews|
+    primary.item :reviews, 'Обзоры', reviews_path, highlights_on: -> { controller_name == 'reviews' } do |reviews|
       Hash[Review.categories.options].invert.each do |category, title|
         reviews.item category, title, [:reviews, category]
       end
@@ -38,7 +38,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
-      highlights_on: -> { %w[contests posts works cooperation].include?(controller_name) } do |more|
+      highlights_on: -> { %w[contests works cooperation].include?(controller_name) } do |more|
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }
       more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { controller_name == 'webcams' }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? controller_name }
