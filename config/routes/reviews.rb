@@ -1,9 +1,11 @@
 Znaigorod::Application.routes.draw do
   namespace :my do
     resources :reviews, :except => :index do
-      get 'add'         => 'reviews#add',         :on => :collection
-      get 'images/add'  => 'reviews#add_images',  :on => :member
-      get 'poster/edit' => 'reviews#edit_poster', :on => :member
+      get 'add'                   => 'reviews#add',                   :on => :collection
+      get 'images/add'            => 'reviews#add_images',            :on => :member
+      get 'linked_with/available' => 'reviews#available_linked_with', :on => :collection
+      get 'poster/edit'           => 'reviews#edit_poster',           :on => :member
+      get 'tags/available'        => 'reviews#available_tags',        :on => :collection
 
       post :preview, :on => :collection
 
@@ -21,7 +23,7 @@ Znaigorod::Application.routes.draw do
       resources :gallery_images, :only => [:new, :create, :destroy]
     end
 
-    # TODO: Used at app/views/my/gallery_images/_gallery_image.html.erb:5
+    # NOTE: Used at app/views/my/gallery_images/_gallery_image.html.erb:5
     Review.descendant_names.each do |name|
       resources name, :only => :show do
         resources :gallery_images, :only => :destroy
