@@ -44,6 +44,14 @@ class My::ReviewsController < My::ApplicationController
     redirect_to my_review_path(@review), :notice => "Обзор «#{@review.title}» возвращен в черновики."
   end
 
+  def available_linked_with
+    render :json => Reviews::LinkWith.new(params[:term]).json
+  end
+
+  def available_tags
+    render :json => Reviews::Tags.new(params[:term]).tags.to_json
+  end
+
   protected
 
   def begin_of_association_chain
