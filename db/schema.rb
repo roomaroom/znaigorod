@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213084713) do
+ActiveRecord::Schema.define(:version => 20140218080130) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -769,7 +769,12 @@ ActiveRecord::Schema.define(:version => 20140213084713) do
     t.integer  "poster_image_file_size"
     t.datetime "poster_image_updated_at"
     t.text     "poster_url"
+    t.integer  "afisha_id"
+    t.integer  "organization_id"
   end
+
+  add_index "reviews", ["afisha_id"], :name => "index_reviews_on_afisha_id"
+  add_index "reviews", ["organization_id"], :name => "index_reviews_on_organization_id"
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"

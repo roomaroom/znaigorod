@@ -6,13 +6,19 @@ class Review < ActiveRecord::Base
   include DraftPublishedStates
   include MakePageVisit
 
+  attr_accessor :link_with_title, :link_with_value, :link_with_reset
+
   alias_attribute :file_url, :poster_image_url
 
+  before_save :handle_link_with_value
   before_save :set_poster
 
-  attr_accessible :content, :title, :tag, :categories
+  attr_accessible :content, :title, :tag, :categories,
+    :link_with_title, :link_with_value, :link_with_reset
 
   belongs_to :account
+  belongs_to :afisha
+  belongs_to :organization
 
   has_many :comments,       :as => :commentable,    :dependent => :destroy
   has_many :gallery_images, :as => :attachable,     :dependent => :destroy
@@ -70,6 +76,10 @@ class Review < ActiveRecord::Base
     true
   end
 
+  def linked?
+    !!(afisha_id || organization_id)
+  end
+
   private
 
   def self.prefix
@@ -78,5 +88,28 @@ class Review < ActiveRecord::Base
 
   def set_poster
     true
+  end
+
+  def handle_link_with_value
+    if link_with_reset == 'true'
+      self.afisha_id = self.organization_id = nil
+      return true
+    end
+
+    return true if link_with_value.blank?
+
+    class_name, id = link_with_value.split('_')
+
+    return false unless %w[afisha organization].include?(class_name)
+
+    object = class_name.classify.constantize.find(id)
+
+    if object.is_a?(Afisha)
+      self.afisha = object
+      self.organization = object.organizations.first
+    else
+      self.afisha = nil
+      self.organization = object
+    end
   end
 end
