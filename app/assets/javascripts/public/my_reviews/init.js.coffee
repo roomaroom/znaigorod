@@ -43,7 +43,7 @@ markItUpSettings = ->
   settings = clone(mySettings)
 
   settings.afterInsert = (h) ->
-    $('textarea[name="post[content]"]').trigger('preview')
+    $('textarea[name="review[content]"]').trigger('preview')
 
   imageButton = {
     name:'Изображение'
