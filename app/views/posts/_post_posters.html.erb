@@ -1,7 +1,0 @@
-<% @posts.each do |post| %>
-  <% if post.is_a?(Advertisement::PostAdvertisementPlace) %>
-    <li><%= render :partial => post.partial %></li>
-  <% else %>
-    <li><%= render :partial => 'posts/post_poster', :locals => { :post => post, :@width => '353', :@height => '199' } %></li>
-  <% end %>
-<% end %>

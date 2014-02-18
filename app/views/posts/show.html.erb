@@ -1,8 +1,0 @@
-<% content_for :page_title, "#{@post.title}. #{t('meta.default.title')}" %>
-
-<% content_for :extra_meta do %>
-  <%= @post.open_graph_meta %>
-  <%= @post.twitter_cards_meta %>
-<% end %>
-
-<%= render :partial => 'post_show', :locals => { :post => @post } %>

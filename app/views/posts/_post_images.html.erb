@@ -1,8 +1,0 @@
-<% @post_images.each do |image| %>
-  <li>
-    <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
-      <%= image_tag resized_image_url(image.file_url, 143, 109), :size => '143x109', :alt => image.description %>
-    <% end %>
-  </li>
-<% end %>
-
