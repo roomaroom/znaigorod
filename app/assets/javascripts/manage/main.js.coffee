@@ -20,7 +20,7 @@ $ ->
   init_markitup() if $('.discount .markitup').length
   init_offers() if $('.offers').length
   init_contest() if $('#contest_og_image').length
-  initMyPosts() if $('.review_form').length
+  initMyReviews() if $('.review_form').length
   initPromoteAfisha() if $('.promoted_link').length
 
 $(window).load ->

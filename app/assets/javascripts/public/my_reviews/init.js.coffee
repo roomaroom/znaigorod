@@ -125,7 +125,7 @@ handlePreview = ->
       .done (data) ->
         $('.reviews_show').html(data)
 
-@initMyPosts = ->
+@initMyReviews = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
