@@ -1,55 +1,52 @@
 # encoding: utf-8
 
 class Account < ActiveRecord::Base
+  extend Enumerize
+
   include CropedPoster
 
   attr_accessor :poster_image_url, :poster_image_content_type
-  attr_accessible :poster_image_url
+
+  alias_attribute :file_url, :avatar_url
+  alias_attribute :to_s,     :title
 
   attr_accessible :avatar, :birthday, :email,
                   :first_name, :gender, :last_name, :patronymic,
                   :rating, :nickname, :location,
-                  :account_settings_attributes
+                  :account_settings_attributes,
+                  :poster_image_url
 
-  has_many :users,           order: 'id ASC', dependent: :destroy
-  has_many :afisha,          through: :users
-  has_many :discounts
+  has_many :discounts,            :dependent => :destroy
+  has_many :feeds,                :dependent => :destroy
+  has_many :friends,              :dependent => :destroy
+  has_many :gallery_images,       :dependent => :destroy, :as => :attachable
+  has_many :invitations,          :dependent => :destroy
+  has_many :members,              :dependent => :destroy
+  has_many :received_invitations, :dependent => :destroy, :class_name => 'Invitation', :foreign_key => :invited_id
+  has_many :reviews,              :dependent => :destroy, :order => 'created_at'
+  has_many :users,                :dependent => :destroy, :order => 'id ASC'
+  has_many :works,                :dependent => :destroy
 
-  # TODO: remove posts
-  has_many :posts,           :order => 'created_at'
-  has_many :reviews,         :order => 'created_at'
+  # STI
+  has_many :messages, :dependent => :destroy, :order => 'messages.created_at DESC'
+  has_many :notification_messages,            :order => 'messages.created_at DESC'
+  has_many :private_messages,                 :order => 'messages.created_at DESC'
+  has_many :produced_messages, :as => :producer, :class_name => 'PrivateMessage'
 
-  has_many :showings,        through: :users
-  has_many :comments,        through: :users, order: 'comments.created_at DESC'
-  has_many :roles,           through: :users
-  has_many :votes,           through: :users, order: 'votes.id DESC'
-  has_many :visits,          through: :users, order: 'visits.created_at DESC'
-  has_many :page_visits,     through: :users
-  has_many :my_page_visits,  as: :page_visitable, class_name: PageVisit
-  has_many :members,         dependent: :destroy
-  has_many :works,           dependent: :destroy
+  has_many :afisha,                   :through => :users
+  has_many :comments,                 :through => :users,                :order => 'comments.created_at DESC'
+  has_many :events,                   :through => :users,                :order => 'afisha.created_at DESC'
+  has_many :invite_messages,          :through => :invitations,          :order => 'messages.created_at DESC'
+  has_many :page_visits,              :through => :users
+  has_many :payments,                 :through => :users
+  has_many :received_invite_messages, :through => :received_invitations, :order => 'messages.created_at DESC', :source => :invite_messages
+  has_many :roles,                    :through => :users
+  has_many :showings,                 :through => :users
+  has_many :visits,                   :through => :users,                :order => 'visits.created_at DESC'
+  has_many :votes,                    :through => :users,                :order => 'votes.id DESC'
 
-  has_many :gallery_images,  dependent: :destroy, :as => :attachable
-
-  has_many :invitations,     dependent: :destroy
-  has_many :invite_messages, order: 'messages.created_at DESC', :through => :invitations
-
-  has_many :received_invitations, :class_name => 'Invitation', :foreign_key => :invited_id
-  has_many :received_invite_messages, :source => :invite_messages, order: 'messages.created_at DESC', :through => :received_invitations
-
-  has_many :friends,         dependent: :destroy
-  has_many :friendable,      as: :friendable, class_name: 'Friend'
-
-  has_many :events,          through: :users, order: 'afisha.created_at DESC'
-
-  has_many :messages,                     order: 'messages.created_at DESC'
-  has_many :notification_messages,        order: 'messages.created_at DESC'
-  has_many :private_messages,             order: 'messages.created_at DESC'
-  has_many :produced_messages,            as: :producer, class_name: 'PrivateMessage'
-
-  has_many :payments, through: :users
-
-  has_many :feeds,           :dependent => :destroy
+  has_many :friendable,      :as => :friendable,     :class_name => 'Friend'
+  has_many :my_page_visits,  :as => :page_visitable, :class_name => 'PageVisit'
 
   has_one :account_settings, :dependent => :destroy
   accepts_nested_attributes_for :account_settings
@@ -58,55 +55,51 @@ class Account < ActiveRecord::Base
 
   before_destroy :remove_private_messages, :remove_friendable, :remove_comments
 
-  alias_attribute :to_s, :title
+  scope :dating,                  -> { account_settings.dating? }
+  scope :females,                 -> { where :gender => 'female' }
+  scope :males,                   -> { where :gender => 'male' }
+  scope :ordered,                 -> { order 'id ASC' }
+  scope :with_email,              -> { where "email IS NOT NULL AND email != ''" }
+  scope :with_personal_digest,    -> { includes(:account_settings).where('account_settings.personal_digest = ?', true) }
+  scope :with_public_invitations, -> { joins(:invitations).group('accounts.id, invitations.invited_id').having('COUNT(invitations.id) > ? AND invitations.invited_id IS NULL', 0) }
+  scope :with_rating,             -> { where('rating IS NOT NULL') }
+  scope :with_site_digest,        -> { includes(:account_settings).where('account_settings.site_digest = ?', true) }
+  scope :with_statistics_digest,  -> { includes(:account_settings).where('account_settings.statistics_digest = ?', true) }
+
+  enumerize :gender, :in => [:undefined, :male, :female], :default => :undefined, :predicates => true
 
   normalize_attribute :email, :with => [:strip, :blank]
   validates_email_format_of :email, :allow_nil => true
 
   has_croped_poster min_width: 200, min_height: 200
 
-  scope :dating,  -> { account_settings.dating? }
-  scope :ordered, -> { order('ID ASC') }
-
-  scope :with_email, where("email is not null and email != ''")
-  scope :with_statistics_digest, includes(:account_settings).where('account_settings.statistics_digest = ?', true)
-  scope :with_personal_digest, includes(:account_settings).where('account_settings.personal_digest = ?', true)
-  scope :with_site_digest, includes(:account_settings).where('account_settings.site_digest = ?', true)
-  scope :with_public_invitations, joins(:invitations).group('accounts.id, invitations.invited_id').having('count(invitations.id) > ? and invitations.invited_id is null', 0)
-  scope :with_rating, where('rating is not null')
-  scope :males, where(:gender => :male)
-  scope :females, where(:gender => :female)
-
   has_attached_file :avatar, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => :resolve_default_avatar_url
-  alias_attribute :file_url, :avatar_url
-
-  extend Enumerize
-  enumerize :gender, in: [:undefined, :male, :female], default: :undefined, predicates: true
 
   searchable do
+    boolean(:dating)      { account_settings.dating? }
     boolean(:with_avatar) { with_avatar? }
-    boolean(:dating) { account_settings.dating? }
+
+    float :rating,   :trie => true
+
+    integer(:friendable) { my_page_visits.count + received_invitations.count }
+
+    string :gender
+    string :search_kind
+    string(:acts_as, :multiple => true)            { acts_as }
+    string(:friend_ids, :multiple => true)         { friendable }
+    string(:invited_categories, :multiple => true) { invitations.invited.with_categories.select(&:actual?).flat_map(&:categories).uniq }
+    string(:inviter_categories, :multiple => true) { invitations.inviter.with_categories.select(&:actual?).flat_map(&:categories).uniq }
+    string(:kind, :multiple => true)               { indexing_kinds }
 
     text :first_name
     text :last_name
-    text :patronymic
-    text :nickname
     text :location
-    text :title,     :stored => true
-
-    string :gender
-    float :rating,   :trie => true
-    time :created_at, :trie => true
-    integer(:friendable) { my_page_visits.count + received_invitations.count }
-    string :search_kind
-    string(:kind, :multiple => true) { indexing_kinds }
-    string(:acts_as, :multiple => true) { acts_as }
-    string(:friend_ids, :multiple => true) { friendable }
-
-    string(:inviter_categories, :multiple => true) { invitations.inviter.with_categories.select(&:actual?).flat_map(&:categories).uniq }
-    string(:invited_categories, :multiple => true) { invitations.invited.with_categories.select(&:actual?).flat_map(&:categories).uniq }
-
+    text :nickname
+    text :patronymic
     text :title, :as => :term_text
+    text :title, :stored => true
+
+    time :created_at, :trie => true
   end
 
   Role.role.values.each do |role|
@@ -116,7 +109,7 @@ class Account < ActiveRecord::Base
   end
 
   def limit_is_reached?
-    Invitation.where("account_id = ? and created_at > ?", self.id, DateTime.now - 1.day).count >= 10
+    invitations.where('created_at > ?', DateTime.now - 1.day).count >= 10
   end
 
   def remove_comments
@@ -157,9 +150,9 @@ class Account < ActiveRecord::Base
   end
 
   def resolve_default_avatar_url
-    return "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png"     if gender.female?
-    return "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png"       if gender.male?
-    return "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png"  if gender.undefined?
+    return "#{Settings['storage.url']}/files/44240/200-200/default_female_avatar.png"    if gender.female?
+    return "#{Settings['storage.url']}/files/44241/200-200/default_male_avatar.png"      if gender.male?
+    return "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png" if gender.undefined?
 
     "#{Settings['storage.url']}/files/28694/200-200/default_avatar.png"
   end
@@ -328,18 +321,16 @@ class Account < ActiveRecord::Base
   end
 
   def dialogs
-    dialogs = (PrivateMessage.to(self).includes(&:producer) + PrivateMessage.from(self).includes(&:account)).sort_by{|t| - t.created_at.to_i}
+    dialogs = (PrivateMessage.to(self).includes(&:producer) + PrivateMessage.from(self).includes(&:account))
+      .sort_by { |t| - t.created_at.to_i }
 
-    accounts = []
-    dialogs.each do |dialog|
-      if dialog.producer_id == self.id
-        accounts.push dialog.account
-      else
-        accounts.push dialog.producer
+    [].tap { |array|
+      dialogs.each do |dialog|
+        account = dialog.producer_id == self.id ? dialog.account : dialog.producer
+
+        array << account
       end
-    end
-
-    accounts.uniq
+    }.uniq
   end
 
   def invitation_for(account, kind, category, inviteable)
