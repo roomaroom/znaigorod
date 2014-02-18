@@ -8,7 +8,9 @@ class Review < ActiveRecord::Base
 
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
 
-  alias_attribute :file_url, :poster_image_url
+  alias_attribute :file_url,       :poster_image_url
+  alias_attribute :description,    :content
+  alias_attribute :description_ru, :content
 
   before_save :handle_link_with_value
   before_save :set_poster
@@ -48,8 +50,9 @@ class Review < ActiveRecord::Base
     string(:category, :multiple => true) { categories.map(&:value) }
     string(:type) { useful_type }
 
-    text :content, :more_like_this => true
-    text :title,   :more_like_this => true,  :stored => true
+    text :content,        :boost => 0.1 * 1.2
+    text :description_ru, :boost => 0.1, :more_like_this => true, :stored => true
+    text :title,          :boost => 1.0, :more_like_this => true, :stored => true
 
     time :created_at, :trie => true
   end

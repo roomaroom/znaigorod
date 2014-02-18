@@ -13,31 +13,17 @@ class HitDecorator < ApplicationDecorator
         AfishaDecorator.new(result)
       elsif account?
         AccountDecorator.new(result)
-      elsif post?
-        PostDecorator.new(result)
+      elsif review?
+        ReviewDecorator.new(result)
       elsif discount?
         DiscountDecorator.new(result)
       end
   end
 
-  def afisha?
-    result.is_a?(Afisha)
-  end
-
-  def organization?
-    result.is_a?(Organization)
-  end
-
-  def post?
-    result.is_a?(Post)
-  end
-
-  def account?
-    result.is_a?(Account)
-  end
-
-  def discount?
-    result.is_a?(Discount)
+  %w[afisha organization review account discount].each do |name|
+    define_method "#{name}?" do
+      result.is_a? name.classify.constantize
+    end
   end
 
   def show_url

@@ -62,7 +62,7 @@ HasSearcher.create_searcher :manage_organization do
 end
 
 HasSearcher.create_searcher :global do
-  models :organization, :afisha, :post, :account, :discount
+  models :organization, :afisha, :review, :account, :discount
 
   property :search_kind do |search|
     search.with(:search_kind, search_object.search_kind) if search_object.search_kind.try(:present?)

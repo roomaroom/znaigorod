@@ -29,6 +29,10 @@ class ReviewDecorator < ApplicationDecorator
     end
   end
 
+  def show_url
+    h.review_url(review)
+  end
+
   def date
     date = review.created_at || Time.zone.now
 
