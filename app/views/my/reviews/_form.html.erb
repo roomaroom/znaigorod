@@ -15,7 +15,7 @@
   <%= render "#{@review.useful_type}_fields", :f => f %>
 
   <%= f.input :tag, :as => :string,
-    :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
+    :input_html => { :data => { 'autocomplete-source' => tags_available_my_reviews_path } } %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
