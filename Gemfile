@@ -27,6 +27,7 @@ group :default do
   gem 'enumerize'
   gem 'esp-ckeditor'
   gem 'fastimage'
+  gem 'font-awesome-sass'
   gem 'friendly_id'
   gem 'gilenson'
   gem 'grape',                      '~> 0.6.0'

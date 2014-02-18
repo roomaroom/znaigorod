@@ -56,7 +56,7 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def html_image(image, width, height)
-    return "<li>#{h.image_tag h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title}</li>"
+    return "<li>#{h.link_to(h.image_tag(h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title), h.review_path(review), :title => review.title)}</li>"
   end
 
   def annotation_gallery
