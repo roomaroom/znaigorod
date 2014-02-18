@@ -3,22 +3,18 @@ class CommentsController < ApplicationController
 
   actions :index, :show, :new, :create
 
-  belongs_to :account, :optional => true
-  belongs_to :afisha, :polymorphic => true, :optional => true
-  belongs_to :certificate, :polymorphic => true, :optional => true
-  belongs_to :coupon, :polymorphic => true, :optional => true
-  belongs_to :discount, :polymorphic => true, :optional => true
+  belongs_to :account,                                :optional => true
+  belongs_to :afisha,           :polymorphic => true, :optional => true
+  belongs_to :certificate,      :polymorphic => true, :optional => true
+  belongs_to :coupon,           :polymorphic => true, :optional => true
+  belongs_to :discount,         :polymorphic => true, :optional => true
   belongs_to :offered_discount, :polymorphic => true, :optional => true
-  belongs_to :organization, :polymorphic => true, :optional => true
-  belongs_to :work, :polymorphic => true, :optional => true
-
-  #TODO: remove post
-  belongs_to :post, :polymorphic => true, :optional => true
-  belongs_to :review, :polymorphic => true, :optional => true
-
-  Review.descendant_names.each do |name|
-    belongs_to name, :polymorphic => true, :optional => true
-  end
+  belongs_to :organization,     :polymorphic => true, :optional => true
+  belongs_to :review,           :polymorphic => true, :optional => true
+  belongs_to :review_article,   :polymorphic => true, :optional => true
+  belongs_to :review_photo,     :polymorphic => true, :optional => true
+  belongs_to :review_video,     :polymorphic => true, :optional => true
+  belongs_to :work,             :polymorphic => true, :optional => true
 
   layout false
 

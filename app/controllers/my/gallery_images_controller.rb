@@ -2,14 +2,12 @@ class My::GalleryImagesController < My::ApplicationController
   load_and_authorize_resource
 
   actions :index, :new, :create, :destroy
-  custom_actions :collection => :destroy_all
 
   belongs_to :account, :optional => true
   belongs_to :afisha,  :optional => true
-
-  #TODO remove post
-  belongs_to :post,    :optional => true
   belongs_to :review,  :optional => true
+
+  custom_actions :collection => :destroy_all
 
   respond_to :html, :js, :json
 
