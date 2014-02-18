@@ -26,3 +26,9 @@
 </div>
 
 <%= paginate @presenter.collection %>
+
+<% if page_meta %>
+  <div class="introduction">
+    <%= page_meta.html_introduction %>
+  </div>
+<% end %>
