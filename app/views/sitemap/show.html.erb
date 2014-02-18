@@ -60,16 +60,16 @@
 
   <ul>
     <li>
-      <%= link_to 'Обзоры', posts_path, :class => 'title' %>
+      <%= link_to 'Обзоры', reviews_path, :class => 'title' %>
 
       <ul class="clearfix inner">
-        <% Post.categories.values.each do |item| %>
+        <% Review.categories.values.each do |item| %>
           <li class="floatl">
-            <%= link_to t("enumerize.post.categories.#{item}"), send("posts_#{item}_path") %>
+            <%= link_to t("enumerize.review.categories.#{item}"), send("reviews_#{item}_path") %>
           </li>
         <% end %>
 
-        <li><%= link_to "Добавить обзор", new_my_post_path %></li>
+        <li><%= link_to "Добавить обзор", add_my_reviews_path %></li>
       </ul>
     </li>
   </ul>
