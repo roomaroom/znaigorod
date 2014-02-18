@@ -10,6 +10,10 @@
     itemSelector: ".item"
     navSelector: "nav.pagination"
     nextSelector: "nav.pagination span.next a"
+    loading:
+      msgText: ''
+      img: 'assets/public/ajax_loading_items_indicator.gif'
+
 
     , (newElements) ->
       $newElems = $(newElements).css(opacity: 0)
