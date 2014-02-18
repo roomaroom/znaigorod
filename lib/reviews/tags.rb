@@ -1,4 +1,4 @@
-class Posts::Tags
+class Reviews::Tags
   attr_accessor :term
 
   def initialize(term = nil)
@@ -12,7 +12,7 @@ class Posts::Tags
   private
 
   def all_tags
-    @all_tags ||= Post.pluck(:tag)
+    @all_tags ||= Review.pluck(:tag)
     .map { |tag| tag || '' }
     .flat_map { |tag| tag.split(',').map(&:squish) }
     .uniq

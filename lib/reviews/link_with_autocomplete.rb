@@ -1,9 +1,15 @@
-class Posts::LinkWithAutocomplete
+class Reviews::LinkWith
   attr_accessor :term
 
   def initialize(term)
     @term = term
   end
+
+  def json
+    items_hash.to_json
+  end
+
+  private
 
   def items
     return @items if @items
@@ -37,10 +43,6 @@ class Posts::LinkWithAutocomplete
 
   def items_hash
     items.map { |item| send "#{item.class.name.underscore}_hash", item }
-  end
-
-  def json
-    items_hash.to_json
   end
 end
 
