@@ -1,0 +1,33 @@
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
+
+<%= simple_form_for @review,
+  :as => :review,
+  :url => manage_review_path(@review),
+  :html => { :class => "my_review_form default_simple_form review_#{@review.useful_type}_form" } do |f| %>
+
+  <%= hidden_field_tag :type, @review.useful_type %>
+
+  <%= f.input :categories, :as => :check_boxes %>
+  <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
+
+  <%= render "my/reviews/#{@review.useful_type}_fields", :f => f %>
+
+  <%= f.input :tag, :as => :string,
+    :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
+
+  <div class="submit">
+    <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
+    <%= link_to 'Отмена', :back %>
+  </div>
+<% end %>
+
+<div class="preview_wrapper">
+  <h1>Предварительный просмотр</h1>
+  <div class="reviews_show">
+    <%= render :partial => 'reviews/review', :locals => { :review => ReviewDecorator.new(@review) } %>
+  </div>
+</div>
+
+<div class="loader"></div>

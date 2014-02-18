@@ -6,6 +6,7 @@
       <%= link_to 'В черновики', draft_manage_review_path(@review), :method => :put %>
     <% end %>
     <%= link_to 'Удалить', manage_review_path(@review), :confirm => 'Вы уверены?', :method => :delete %>
+    <%= link_to 'Редактировать', edit_manage_review_path(@review) %>
     <%= link_to 'Загрузить фотогарфии', images_add_manage_review_path(@review) %>
   </div>
 
@@ -19,7 +20,5 @@
         <% end %>
       </ul>
     <% end %>
-
-  <div class="right">
   </div>
 </div>

@@ -49,12 +49,26 @@
       .markItUpHeader
         border-color: #880000
 
-    .review_categories
-      +clearfix
+  .check_boxes
+    +clearfix
+    margin-bottom: 5px
 
-      .checkbox
-        float: left
-        width: 175px !important
+    label.checkbox
+      width: 115px
+      float: left
+      margin-right: 10px
+
+      &:nth-child(5)
+        clear: left
+
+      &:nth-child(4n+4)
+        clear: left
+
+      &:nth-child(4)
+        clear: none
+
+      input
+        margin-right: 5px
 
   .preview_wrapper
     float: left
