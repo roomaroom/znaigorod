@@ -36,6 +36,11 @@ class MigratePostsToReviews < ActiveRecord::Migration
         item.save :validate => false
       end
     end
+
+    if feed = post.feed
+      feed.feedable = review
+      feed.save :validate => false
+    end
   end
 
   def set_type(review)
