@@ -73,6 +73,14 @@ class ReviewDecorator < ApplicationDecorator
     gallery.html_safe
   end
 
+  def similar
+    @similar ||= review.more_like_this{ paginate :page => 1, :per_page => 3 }.results
+  end
+
+  def decorated_similar
+    @decorated_similar ||= ReviewDecorator.decorate(similar)
+  end
+
   # overrides OpenGraphMeta.meta_keywords
   def meta_keywords
     [categories.map(&:text).join(', '), open_graph_meta_tags].compact.flatten.map(&:mb_chars).map(&:downcase).join(', ')
