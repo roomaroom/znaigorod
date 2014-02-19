@@ -26,6 +26,10 @@ class FeedsPresenter
     %w[Coupon Discount Certificate].include?(class_name)
   end
 
+  def is_review?(class_name)
+    %w[ReviewArticle ReviewPhoto ReviewVideo].include?(class_name)
+  end
+
   def kinds_links
     @kinds_links ||= [].tap { |array|
       @kind_filter.available_kind_values.each do |kind|

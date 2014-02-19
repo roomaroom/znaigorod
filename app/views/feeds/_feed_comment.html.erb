@@ -31,8 +31,8 @@
       <%= link_to(feed_comment.feedable.commentable.title, organization_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
     <% end %>
 
-    <% if feed_comment.feedable.commentable.is_a?(Post) %>
-      <%= link_to(feed_comment.feedable.commentable.title, post_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
+    <% if feed_comment.feedable.commentable.is_a?(Review) %>
+      <%= link_to(feed_comment.feedable.commentable.title, review_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
     <% end %>
   </div>
 
