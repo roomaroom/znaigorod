@@ -15,7 +15,26 @@
   <%= render "my/reviews/#{@review.useful_type}_fields", :f => f %>
 
   <%= f.input :tag, :as => :string,
-    :input_html => { :data => { 'autocomplete-source' => available_tags_my_posts_path } } %>
+    :input_html => { :data => { 'autocomplete-source' => tags_available_my_reviews_path } } %>
+
+  <%= f.input :allow_external_links, :as => :boolean %>
+
+  <%= f.input :link_with_value, :as => :hidden %>
+  <%= f.input :link_with_reset, :as => :hidden %>
+
+  <%= f.input :link_with_title,
+    :wrapper_html => { :class => @review.linked? ? :linked : :not_linked },
+    :input_html => {
+      :data => { 'autocomplete-source' => linked_with_available_my_reviews_path, :target => '#review_link_with_value', :reset => '#review_link_with_reset' },
+      :placeholder => 'Введите название заведения или мероприятия' } %>
+
+  <% if @review.linked? %>
+    <div class="input link_with_wrapper">
+      <%= label_tag 'Это пост связан с' %>
+      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+      <%= render :partial => 'reviews/link_with' %>
+    </div>
+  <% end %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
