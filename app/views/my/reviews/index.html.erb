@@ -1,0 +1,46 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3><%= link_to 'Мои обзоры', add_my_reviews_path, :class => 'add_link' %></h3>
+      <%= link_to 'Добавить обзор', add_my_reviews_path, :class => 'invitation_link' %>
+    </div>
+
+    <div id="discounts_filter">
+      <ul>
+        <% %w[all draft published].each do |state| %>
+          <li>
+            <%= link_to "##{state}" do %>
+              <% unless state == 'all' %>
+                <%= t(state, :count => @reviews.by_state(state).count) %>
+              <% else %>
+                <%= t(state, :count => current_user.account.reviews.count) %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+
+      <% %w[all draft published].each do |state| %>
+        <div id='<%= state %>' class='reviews-paginator'>
+          <% if collection.any? %>
+            <ul class="posters">
+              <% unless state == 'all' %>
+                <%= render :partial => 'reviews/posters', :locals => { :collection => ReviewDecorator.decorate(@reviews.by_state(state)), :width => '280', :height => '156' } %>
+              <% else %>
+                <%= render :partial => 'reviews/posters', :locals => { :collection => ReviewDecorator.decorate(@reviews), :width => 280, :height => '156'} %>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>
+
+<%= render file: "my/accounts/wrapper" %>

@@ -1,4 +1,4 @@
-<%= link_to image_tag(review.annotation_image(354, 200), :size => '354x200'), review_path(review),
+<%= link_to image_tag(review.annotation_image(width, height), :size => "#{width}x#{height}"), review_path(review),
   :class => 'js-video-preview',
   :data => { :video => { :uid => review.content_parser.videos.first.uid, :width => '700' } } %>
 

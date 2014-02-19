@@ -1,10 +1,13 @@
 class My::ReviewsController < My::ApplicationController
-  # TODO: написать ability
-  skip_authorization_check
+  load_and_authorize_resource
 
-  actions :all, :except => :index
+  actions :all
 
   custom_actions :resource => [:add_images, :edit_poster, :send_to_published, :send_to_draft]
+
+  def index
+    render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '156', :width => '280' }, :layout => false and return if request.xhr?
+  end
 
   def show
     show!{

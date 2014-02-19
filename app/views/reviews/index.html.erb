@@ -21,7 +21,7 @@
 
 <div class="reviews-paginator">
   <ul class="posters isotope js-isotope">
-    <%= render :partial => 'reviews/posters' %>
+    <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
   </ul>
 </div>
 

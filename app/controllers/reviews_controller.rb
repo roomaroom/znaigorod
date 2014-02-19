@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
     @reviews = @presenter.decorated_collection
 
-    render partial: 'reviews/posters', :layout => false and return if request.xhr?
+    render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' }, :layout => false and return if request.xhr?
   end
 
   def show

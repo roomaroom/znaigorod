@@ -29,6 +29,7 @@ class Review < ActiveRecord::Base
 
   serialize :categories, Array
 
+  scope :by_state,  ->(state) { where :state => state }
   scope :draft,     -> { where :state => :draft }
   scope :published, -> { where :state => :published }
 

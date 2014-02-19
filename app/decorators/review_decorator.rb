@@ -63,11 +63,11 @@ class ReviewDecorator < ApplicationDecorator
     return "<li>#{h.link_to(h.image_tag(h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title), h.review_path(review), :title => review.title)}</li>"
   end
 
-  def annotation_gallery
+  def annotation_gallery(width = 234, height = 158)
     gallery = ''
 
     review.gallery_images.limit(6).each_with_index do |image, index|
-      index == 0 ? gallery << html_image(image, 234, 158) : gallery << html_image(image, 116, 78)
+      index == 0 ? gallery << html_image(image, width, height) : gallery << html_image(image, width/2 - 1, height/2 - 1)
     end
 
     gallery.html_safe

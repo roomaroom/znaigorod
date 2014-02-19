@@ -1,6 +1,6 @@
 Znaigorod::Application.routes.draw do
   namespace :my do
-    resources :reviews, :except => :index do
+    resources :reviews do
       get 'add'                   => 'reviews#add',                   :on => :collection
       get 'images/add'            => 'reviews#add_images',            :on => :member
       get 'linked_with/available' => 'reviews#available_linked_with', :on => :collection
