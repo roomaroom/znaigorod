@@ -17,8 +17,8 @@ namespace :update_rating do
   end
 
   desc "Обновление рейтинга обзоров"
-  task :posts => :environment do
-    Post.all.map(&:update_rating)
+  task :reviews => :environment do
+    Review.all.map(&:update_rating)
   end
 
   desc "Обновление рейтинга купонов"
@@ -27,5 +27,5 @@ namespace :update_rating do
   end
 
   desc "Обновление рейтинга"
-  task :all => [:accounts, :afisha, :organizations, :posts, :discounts]
+  task :all => [:accounts, :afisha, :organizations, :reviews, :discounts]
 end

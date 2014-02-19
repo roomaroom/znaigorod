@@ -53,6 +53,8 @@ class Review < ActiveRecord::Base
   normalize_attribute :categories, :with => :blank_array
 
   searchable do
+    float :rating
+
     string :state
     string(:category, :multiple => true) { categories.map(&:value) }
     string(:type) { useful_type }
@@ -88,6 +90,10 @@ class Review < ActiveRecord::Base
 
   def linked?
     !!(afisha_id || organization_id)
+  end
+
+  def update_rating
+    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
 
   private
