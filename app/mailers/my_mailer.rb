@@ -23,8 +23,8 @@ class MyMailer < ActionMailer::Base
     mail(:to => Settings['mail']['to_discount'], :subject => 'В ЗнайГород опубликована новая скидка')
   end
 
-  def mail_new_published_post(post)
-    @post = post
+  def mail_new_published_review(review)
+    @review = review
     mail(:to => Settings['mail']['to_afisha'], :subject => 'В ЗнайГород опубликован новый обзор')
   end
 end
