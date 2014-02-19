@@ -14,7 +14,7 @@
   <%= render :partial => "reviews/poster_#{review.useful_type}", :locals => { :review => review, :height => height, :width => width} %>
 </div>
 
-<% if controller_path == 'my/reviews' %>
+<% if controller_path == 'my/reviews' && action_name == 'index' %>
   <div class="actions">
     <%= link_to '', edit_my_review_path(review), :class => 'show_tipsy icon-edit', :title => 'Редактировать' %>
     <%= link_to '', my_review_path(review), :class => 'show_tipsy icon-trash', :method => :delete, :title => 'Удалить',
