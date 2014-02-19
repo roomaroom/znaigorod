@@ -1,3 +1,24 @@
+class Post < ActiveRecord::Base
+  extend Enumerize
+
+  has_many :comments,       :as => :commentable,    :dependent => :destroy
+  has_many :gallery_images, :as => :attachable,     :dependent => :destroy
+  has_many :messages,       :as => :messageable,    :dependent => :destroy
+  has_many :page_visits,    :as => :page_visitable, :dependent => :destroy
+  has_many :votes,          :as => :voteable,       :dependent => :destroy
+
+  has_one :feed,   :dependent => :destroy, :as => :feedable
+
+  has_attached_file :poster_image, :storage => :elvfs, :elvfs_url => Settings['storage.url'], :default_url => 'public/post_poster_stub.jpg'
+  alias_attribute :file_url, :poster_image_url
+
+  serialize :categories, Array
+  enumerize :categories,
+    in: [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],
+    multiple: true,
+    predicates: true
+end
+
 class MigratePostsToReviews < ActiveRecord::Migration
   def handle_associations(post, review)
     associations_data = {
@@ -41,13 +62,17 @@ class MigratePostsToReviews < ActiveRecord::Migration
 
     Post.all.each do |post|
       review = ReviewArticle.new do |r|
-        r.account      = post.account
-        r.categories   = post.categories
-        r.content      = post.content
-        r.poster_image = URI.parse(post.poster_image_url) if post.poster_image_url
-        r.state        = post.state
-        r.tag          = post.tag
-        r.title        = post.title
+        r.account_id           = post.account_id
+        r.afisha_id            = post.afisha_id
+        r.allow_external_links = post.allow_external_links
+        r.categories           = post.categories.any? ? post.categories : [:other]
+        r.content              = post.content
+        r.organization_id      = post.organization_id
+        r.poster_image         = URI.parse(post.poster_image_url) if post.poster_image_url
+        r.slug                 = post.slug
+        r.state                = post.state
+        r.tag                  = post.tag
+        r.title                = post.title
 
         r.created_at   = post.created_at
         r.updated_at   = post.updated_at

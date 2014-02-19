@@ -16,7 +16,8 @@ class Review < ActiveRecord::Base
   before_save :set_poster
 
   attr_accessible :content, :title, :tag, :categories,
-    :link_with_title, :link_with_value, :link_with_reset
+    :link_with_title, :link_with_value, :link_with_reset,
+    :allow_external_links
 
   belongs_to :account
   belongs_to :afisha
@@ -34,6 +35,8 @@ class Review < ActiveRecord::Base
   scope :published, -> { where :state => :published }
 
   validates_presence_of :title, :tag, :categories
+
+  default_value_for :allow_external_links, false
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],

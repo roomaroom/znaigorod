@@ -735,6 +735,9 @@ ActiveRecord::Schema.define(:version => 20140218094909) do
     t.text     "categories"
     t.string   "state"
     t.integer  "account_id"
+    t.integer  "afisha_id"
+    t.integer  "organization_id"
+    t.boolean  "allow_external_links"
     t.text     "video_url"
     t.text     "poster_image_url"
     t.string   "poster_image_file_name"
@@ -742,8 +745,6 @@ ActiveRecord::Schema.define(:version => 20140218094909) do
     t.integer  "poster_image_file_size"
     t.datetime "poster_image_updated_at"
     t.text     "poster_url"
-    t.integer  "afisha_id"
-    t.integer  "organization_id"
   end
 
   add_index "reviews", ["afisha_id"], :name => "index_reviews_on_afisha_id"
