@@ -19,7 +19,7 @@
     </div>
 
     <div class='type'>
-      <%= link_to feed_review_article.feedable.user.name, feed_review_article.feedable.account  %>
+      <%= link_to feed_review_article.feedable.account, feed_review_article.feedable.account  %>
       <%= t "account.rated.#{feed_review_article.feedable.account.gender}" %> обзор
     </div>
   <% end %>

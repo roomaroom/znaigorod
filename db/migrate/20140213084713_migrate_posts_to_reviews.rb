@@ -38,7 +38,11 @@ class MigratePostsToReviews < ActiveRecord::Migration
     end
 
     if feed = post.feed
+      updated_at = feed.updated_at
+
       feed.feedable = review
+      feed.updated_at = updated_at
+
       feed.save :validate => false
     end
   end

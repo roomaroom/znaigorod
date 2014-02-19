@@ -1,0 +1,34 @@
+<% review = ReviewDecorator.new(feed_vote_review_article.feedable.voteable) %>
+
+<div class='poster'>
+  <%= link_to review_path(review) do %>
+    <%= image_tag review.annotation_image(100, 100), :size => '100x100' %>
+<% end %>
+</div>
+
+<div class='main'>
+  <div class='time'><%= time_ago_in_words(review.created_at) %> назад</div>
+
+  <% if current_user.present? && current_user.account_id == review.account_id %>
+    <div class='type'>
+      ???
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to review.account do %>
+        <%= image_tag(resized_image_url(feed_vote_review_article.feedable.user.account.avatar.url, 23, 23),
+                      :size => '23x23', :alt => feed_vote_review_article.feedable.user.account.title) %>
+      <% end %>
+    </div>
+
+    <div class='type'>
+      <%= link_to feed_vote_review_article.feedable.user.name, review.account %>
+      <%= t "account.rated.#{feed_vote_review_article.feedable.user.account.gender}" %> обзор
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to review.title, review_path(review) %>
+  </div>
+</div>
+

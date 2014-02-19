@@ -17,7 +17,7 @@ class Account < ActiveRecord::Base
                   :poster_image_url
 
   has_many :discounts,            :dependent => :destroy
-  has_many :feeds,                :dependent => :destroy
+  has_many :feeds,                :dependent => :destroy, :order => 'created_at DESC'
   has_many :friends,              :dependent => :destroy
   has_many :gallery_images,       :dependent => :destroy, :as => :attachable
   has_many :invitations,          :dependent => :destroy
