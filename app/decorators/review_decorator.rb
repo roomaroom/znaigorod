@@ -49,8 +49,8 @@ class ReviewDecorator < ApplicationDecorator
 
   def content_for_show
     @content_for_show ||= review.is_a?(ReviewVideo) ?
-      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content).render_show :
-      AutoHtmlRenderer.new(content).render_show
+      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content, allow_external_links: review.allow_external_links).render_show :
+      AutoHtmlRenderer.new(content, allow_external_links: review.allow_external_links).render_show
   end
 
   def content_for_index
