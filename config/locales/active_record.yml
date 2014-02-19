@@ -63,6 +63,12 @@ ru:
       review_photo:                       фотообзор
       review_video:                       видеообзор
 
+      review:
+        article:                          Все обзоры
+        photo:                            Все фотообзоры
+        video:                            Все видеообзоры
+
+
     attributes:
       common_attributes: &common_attributes
         description: Описание

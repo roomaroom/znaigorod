@@ -102,7 +102,7 @@ class ReviewsPresenter
 
       Hashie::Mash.new(
         :value => nil,
-        :title => 'ВСЕ ОБЗОРЫ',
+        :title => params[:type]? I18n.t("activerecord.models.review.#{params[:type]}") : 'Все обзоры',
         :klass => "all #{params[:type]}".tap { |s| s << ' selected' if category.blank? },
         :path => Parameters.instance.path(category: nil),
         :results_count => Counter.new(params).count
