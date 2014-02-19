@@ -32,7 +32,8 @@ class HitDecorator < ApplicationDecorator
 
   def has_image?
     return true if organization? && result_decorator.logotype_url?
-    return true if post? && result.poster_url?
+
+    return true if review?
   end
 
   # FIXME: грязный хак

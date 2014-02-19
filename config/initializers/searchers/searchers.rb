@@ -75,7 +75,7 @@ HasSearcher.create_searcher :global do
     highlight :title
 
     HitDecorator::ADDITIONAL_FIELDS.each do |field|
-      if (Organization.instance_methods + Afisha.instance_methods + Post.instance_methods + Account.instance_methods).include? :"#{field}_ru"
+      if (Organization.instance_methods + Afisha.instance_methods + Review.instance_methods + Account.instance_methods).include? :"#{field}_ru"
         highlight "#{field}_ru"
       else
         highlight field

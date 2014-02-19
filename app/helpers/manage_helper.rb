@@ -27,12 +27,6 @@ module ManageHelper
       else
         [:manage, @organization, @sauna_hall, :gallery_image]
       end
-    elsif parent.class == Post
-      if resource_class == PostImage && resource.persisted?
-        [:manage, @post, @post_image]
-      else
-        [:manage, @post, :post_images]
-      end
     elsif resource_class == SaunaHall
       if resource.new_record?
         manage_organization_sauna_sauna_halls_path(@organization)

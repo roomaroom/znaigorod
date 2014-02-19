@@ -343,7 +343,7 @@ module EmailDigestHelper
                                   keys_for_path) + " )\n"
     end
 
-    %w[afisha discount organization post].each do |item|
+    %w[afisha discount organization].each do |item|
       if comment.commentable.is_a?(item.camelize.constantize)
         result << comment.commentable.title
         result << " (" + send("#{item}_path",

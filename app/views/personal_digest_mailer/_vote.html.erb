@@ -38,7 +38,7 @@
                     <%= link_to material.voteable.commentable.slug, contest_work_path(material.voteable.commentable.contest, material.voteable.commentable, keys_for_path) %>
                   <% end %>
                 <% end %>
-                <% %w[afisha discount organization post].each do |item| %>
+                <% %w[afisha discount organization].each do |item| %>
                   <% if material.voteable.commentable.is_a?(item.camelize.constantize) %>
                     <%= link_to material.voteable.commentable.title, send("#{item}_path", material.voteable.commentable, keys_for_path) %>
                   <% end %>
