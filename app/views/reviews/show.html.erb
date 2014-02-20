@@ -27,10 +27,13 @@
 </div>
 
 <div class="right">
+  <h2>Этот обзор связан с:</h2>
+  <%= render 'link_with' %>
+
   <h2>Похожие обзоры:</h2>
   <ul class="similar posters">
     <% @review.decorated_similar.each do |review| %>
-      <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
+      <li class="item tiny"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
     <% end %>
   </ul>
 </div>
