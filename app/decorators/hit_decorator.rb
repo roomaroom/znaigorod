@@ -92,7 +92,7 @@ class HitDecorator < ApplicationDecorator
   end
 
   def excerpt
-    (highlighted(:description) || result.description.excerpt).gilensize
+    (highlighted(:description) || (result.description || '').excerpt).gilensize
   end
 
   def snipped_links
