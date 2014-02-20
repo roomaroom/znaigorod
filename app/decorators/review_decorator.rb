@@ -73,6 +73,10 @@ class ReviewDecorator < ApplicationDecorator
     gallery.html_safe
   end
 
+  def images
+    gallery_images
+  end
+
   def similar
     @similar ||= review.more_like_this{ paginate :page => 1, :per_page => 3 }.results
   end

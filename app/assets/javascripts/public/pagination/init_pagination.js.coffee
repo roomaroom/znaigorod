@@ -10,8 +10,7 @@
     '.content_wrapper .search_results ul.items_list,' +
     '.content_wrapper .tickets_list,' +
     '.content_wrapper .accounts_list ul,' +
-    '.content_wrapper .posts_list ul,' +
-    '.content_wrapper .post_images,' +
+    '.content_wrapper .reviews_show .gallery,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
     '.content_wrapper .contest .works ul,' +
     '.feeds > ul, ' +
