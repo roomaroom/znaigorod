@@ -21,7 +21,7 @@ class Reviews::Content::Images
 
                               width, height = image.dimensions.width, image.dimensions.height
 
-                              return @image_for_poster = image if width >= Post.min_width && height >= Post.min_height
+                              return @image_for_poster = image if width >= Review.min_width && height >= Review.min_height
                             end
 
                             nil
