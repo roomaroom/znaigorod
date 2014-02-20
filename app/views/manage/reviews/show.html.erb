@@ -23,7 +23,9 @@
   </div>
 
   <div class="right">
-    <h2>Этот обзор связан с:</h2>
-    <%= render 'reviews/link_with' %>
+    <% if @review.linked? %>
+      <h2>Этот обзор связан с:</h2>
+      <%= render 'link_with' %>
+    <% end %>
   </div>
 </div>
