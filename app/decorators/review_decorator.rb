@@ -19,6 +19,10 @@ class ReviewDecorator < ApplicationDecorator
       h.link_to(title.text_gilensize, h.review_path(review, anchor: options[:anchor]))
   end
 
+  def has_annotation_image?
+    true if review.poster_url? || review.poster_image_url?
+  end
+
   def annotation_image(width, height)
     if review.poster_url?
       review.poster_url
