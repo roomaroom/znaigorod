@@ -29,7 +29,14 @@
       </div>
     </div>
 
-    <%= link_to 'Сохранить', my_review_path(@review), :class => 'btn btn-lg btn-orange' %>
+    <%= simple_form_for @review, :url => download_album_my_review_path(@review) do |f| %>
+      <div class="input">
+        <%= label_tag :album_url, 'Адрес альбома из Вконтакте или Яндекс.Фотки:' %>
+        <%= text_field_tag :album_url, nil, :class => 'string' %>
+      </div>
+
+      <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-orange' %>
+    <% end %>
   </div>
 </div>
 

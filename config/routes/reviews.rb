@@ -9,6 +9,8 @@ Znaigorod::Application.routes.draw do
 
       post :preview, :on => :collection
 
+      put :download_album, :on => :member
+
       put 'publish' => 'reviews#send_to_published', :on => :member
       put 'draft'   => 'reviews#send_to_draft',     :on => :member
 

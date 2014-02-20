@@ -2,6 +2,7 @@ class Review < ActiveRecord::Base
   extend Enumerize
   extend FriendlyId
 
+  include Album::Downloader
   include CropedPoster
   include DraftPublishedStates
   include MakePageVisit
