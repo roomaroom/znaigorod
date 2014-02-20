@@ -19,6 +19,9 @@
     , (newElements) ->
       $newElems = $(newElements).css(opacity: 0)
 
+      # просмотр видео в окне для постов приехавших со следующих страниц
+      initReviewVideoPreview()
+
       $newElems.imagesLoaded ->
         $newElems.animate opacity: 1
         list.isotope "appended", $newElems
