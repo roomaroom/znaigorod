@@ -1,4 +1,5 @@
 @init_pagination = () ->
+
   $('body nav.pagination').css
     'height': '0'
     'visibility': 'hidden'
@@ -18,8 +19,13 @@
     '#invites > ul, ' +
     '.content_wrapper .images_list > ul'
   )
+
+  # отключаем пагинацию для обзоров при просмотре в /my
+  return true if $('.my_reviews_show').length
+
   first_item = $('li:first', list)
   return true unless first_item.length
+
   if first_item.siblings().length
     last_item = first_item.siblings().last()
   else
