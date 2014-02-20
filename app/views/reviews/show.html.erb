@@ -1,3 +1,12 @@
+<% content_for :page_title do %>
+  <% if @review.title.present? %>
+    <%= @review.title.text_gilensize %>,
+  <% else %>
+    Нет названия,
+  <% end %>
+  <%= @review.categories.map(&:text).join(', ') %> в Томске
+<% end %>
+
 <% content_for :meta_keywords, @review.meta_keywords %>
 <% content_for :meta_description, @review.meta_description %>
 
