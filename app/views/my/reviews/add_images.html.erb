@@ -27,16 +27,40 @@
           </div>
         </script>
       </div>
+
+      <%= simple_form_for @review, :url => download_album_my_review_path(@review) do |f| %>
+        <div class="input">
+          <%= label_tag :album_url, 'Адрес альбома из Вконтакте или Яндекс.Фотки:' %>
+          <%= text_field_tag :album_url, nil, :class => 'string' %>
+        </div>
+
+        <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-orange' %>
+      <% end %>
+
     </div>
 
-    <%= simple_form_for @review, :url => download_album_my_review_path(@review) do |f| %>
-      <div class="input">
-        <%= label_tag :album_url, 'Адрес альбома из Вконтакте или Яндекс.Фотки:' %>
-        <%= text_field_tag :album_url, nil, :class => 'string' %>
-      </div>
+    <div class="preview_wrapper">
+      <div class="gallery_images_help">
+        <div class="orange cell">
+          Помощь
+        </div>
 
-      <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-orange' %>
-    <% end %>
+        <div class="arrow_box cell">
+          <h4>Фотографии можно загрузить двумя способами:</h4>
+          <ol>
+            <li>Загрузить непосредственно с компьютера, выбрав одну или несколько фотографий сразу.</li>
+            <li>Указать ссылку на альбом Вконтакте или на Яндекс.Фотки
+            <ul>
+              <li>Ссылка на альбом Вконтакте имеет вид: <a target="_blank" rel="nofollow" href="http://vk.com/album-35689602_173541663">http://vk.com/album-35689602_173541663</a> (можно добавить только из открытых альбомов)</li>
+              <li>Ссылка на альбом Яндекс.Фотки имеет вид: <a target="_blank" rel="nofollow" href="http://fotki.yandex.ru/users/s-s-nega/album/131256/">http://fotki.yandex.ru/users/s-s-nega/album/131256</a></li>
+            </ul>
+            </li>
+            <li>При необходимости можно добавить несколько альбомов по очереди.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

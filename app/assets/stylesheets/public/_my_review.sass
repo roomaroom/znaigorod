@@ -8,7 +8,7 @@
 .my_reviews_add_images, .my_reviews_edit_poster
   padding: 10px 20px
 
-.my_reviews_new, .my_reviews_create, .my_reviews_edit, .my_reviews_update
+.my_reviews_new, .my_reviews_create, .my_reviews_edit, .my_reviews_update, .my_reviews_add_images
   h1
     font-size: 22px
     margin-bottom: 10px
@@ -262,6 +262,18 @@
   .info_wrapper
     line-height: 25px
 
+  .preview_wrapper
+    margin: -100px 0 0 0
+
+    h4
+      font-size: 14px
+      line-height: 24px
+
+    ol
+      li
+        font-size: 12px
+        line-height: 22px
+
   span
     +inline-block
 
@@ -269,6 +281,10 @@
     background: image_url('public/more_button_sprite.png') no-repeat 0 0
     height: 25px
     width: 25px
+
+  input#album_url
+    width: 335px
+
 
 .my_reviews_new, .my_reviews_edit, .my_reviews_update, .my_reviews_create
   .video_url_wrapper
