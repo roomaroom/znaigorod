@@ -212,4 +212,9 @@ class AfishaDecorator < ApplicationDecorator
     end
     url
   end
+
+  def event_label
+    h.content_tag(:span, '', :class => 'event_label facebook') if /facebook/.match(vk_event_url)
+    h.content_tag(:span, '', :class => 'event_label vk') if /vk/.match(vk_event_url)
+  end
 end

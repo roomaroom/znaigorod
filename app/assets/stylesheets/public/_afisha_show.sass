@@ -417,6 +417,18 @@
         a img
           +border-radius(50%)
 
+    .event_label
+      +inline-block
+      background: transparent image_url('public/our_social_link.png') no-repeat 0 0
+      height: 16px
+      width: 16px
+
+      &.vk
+        background-position: 0 0
+
+      &.facebook
+        background-position: -16px 0
+
     .share_and_likes
       min-height: 30px
       border-bottom: 1px solid #ccc

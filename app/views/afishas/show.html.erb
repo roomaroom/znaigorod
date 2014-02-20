@@ -173,9 +173,14 @@
       <% else %>
         <p>Нет описания</p>
       <% end %>
+
       <% if @afisha.vk_event_url? %>
-        <p><%= link_to "Страница события ВКонтакте", AwayLink.to(@afisha.vk_event_url), target: '_blank', rel: 'nofollow' %></p>
+        <p>
+          <%= @afisha.event_label %>
+          <%= link_to "Страница события", AwayLink.to(@afisha.vk_event_url), target: '_blank', rel: 'nofollow' %>
+        </p>
       <% end %>
+
       <%= @afisha.html_attachments %>
 
       <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } if @afisha.user.present? %>
