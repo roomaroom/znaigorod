@@ -10,7 +10,7 @@ class Reviews::Content::Images
                   img_tag_regex         = /<img.*src="(.+?)"/
                   textile_storage_regex = /!(#{Settings['storage.url']}.+?)!/
 
-                  text.scan(/#{img_tag_regex}|#{textile_storage_regex}/).flatten.compact.map { |url| Image.new url }
+                  text.scan(/#{img_tag_regex}|#{textile_storage_regex}/).flatten.compact.map { |url| Reviews::Content::Image.new url }
                 end
   end
 
