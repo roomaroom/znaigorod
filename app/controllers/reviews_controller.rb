@@ -11,9 +11,8 @@ class ReviewsController < ApplicationController
 
   def show
     show!{
-      @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
-
       @review = ReviewDecorator.new(@review)
+      @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
 
       @images = Kaminari.paginate_array(@review.images).page(params[:page]).per(30)
       render :partial => 'reviews/gallery' and return if request.xhr?
