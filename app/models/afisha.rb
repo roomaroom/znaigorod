@@ -6,6 +6,7 @@ require 'curb'
 class Afisha < ActiveRecord::Base
   extend Enumerize
 
+  include Album::Downloader
   include AutoHtml
   include CropedPoster
   include DraftPublishedStates
@@ -123,9 +124,6 @@ class Afisha < ActiveRecord::Base
     showings.actual.pluck(:price_min).compact.min || 0
   end
   # <<<<<<<<<<<< Auction <<<<<<<<<<<
-
-  after_save :save_images_from_vk,            :if => :vk_aid?
-  after_save :save_images_from_yandex_fotki,  :if => :yandex_fotki_url?
 
   alias_attribute :to_s,            :title
   alias_attribute :tag_ru,          :tag
@@ -406,69 +404,6 @@ class Afisha < ActiveRecord::Base
     end
 
     true
-  end
-
-  def save_images_from_vk
-    return unless changes.keys.include?('vk_aid')
-    get_images_from_vk.each do |image_hash|
-      self.gallery_social_images.find_or_initialize_by_file_url_and_thumbnail_url(
-        :file_url => (image_hash['photo']['src_xbig'].present? ? image_hash['photo']['src_xbig'] : image_hash['photo']['src_big']),
-        :thumbnail_url => image_hash['photo']['src']
-      ).tap do |image|
-        image.width  = image_hash['photo']['width']
-        image.height = image_hash['photo']['height']
-
-        next if image.width.nil? || image.height.nil?
-
-        image.description = image_hash['photo']['text']
-        image.save(:validate => false)
-      end
-    end
-  end
-
-  def get_images_from_vk
-    id, aid = vk_aid.split('_')
-
-    photos = []
-
-    response = Curl.get(prepare_url_4_vk({ uid: id, aid: aid })).body_str.gsub(/{"error":".+"}/, '')
-
-    if response.empty?
-      response = Curl.get(prepare_url_4_vk({ gid: id, aid: aid })).body_str.gsub(/{"error":".+"}/, '')
-    end
-
-    return [] if response.blank?
-
-    photos = JSON.parse(response)['response']
-  end
-
-  def prepare_url_4_vk(options)
-    vk_app_id = Settings['vk.app_id']
-    vk_app_secret = Settings['vk.app_secret']
-
-    params = { api_id: vk_app_id, format: 'JSON', method: 'photos.get' }.merge(options).sort
-
-    sig = Digest::MD5.hexdigest(params.map{|k,v| "#{k}=#{v}"}.join + vk_app_secret)
-
-    return "http://api.vk.com/api.php?#{params.map{|k,v| "#{k}=#{v}"}.join('&')}&sig=#{sig}"
-  end
-
-  def save_images_from_yandex_fotki
-    return unless changes.keys.include?('yandex_fotki_url')
-    get_images_from_yandex_fotki.each do |image_hash|
-      image_hash = image_hash['img']
-
-      self.gallery_social_images.find_or_initialize_by_file_url_and_thumbnail_url(:file_url => image_hash.keys.include?('XXL') ? image_hash['XXL']['href'] : image_hash['orig']['href'], :thumbnail_url => image_hash['M']['href']).tap do |image|
-        image.width  = image_hash.keys.include?('XXL') ? image_hash['XXL']['width'] : image_hash['orig']['width']
-        image.height = image_hash.keys.include?('XXL') ? image_hash['XXL']['height'] : image_hash['orig']['height']
-        image.description = image_hash['summary'] || ''
-        image.save(:validate => false)
-      end
-    end
-  end
-
-  def get_images_from_yandex_fotki
-    JSON.parse(Curl.get("http://api-fotki.yandex.ru/api/users/#{yandex_fotki_url}/photos/?format=json").body_str)['entries']
   end
 
   def prepare_trailer

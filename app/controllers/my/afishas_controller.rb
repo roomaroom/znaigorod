@@ -7,7 +7,6 @@ class My::AfishasController < My::ApplicationController
   before_filter :current_step
 
   actions :all
-  custom_actions :resource => [:destroy_image, :send_to_published, :social_gallery], :collection => [:available_tags, :preview_video]
 
   def index
     index! {
@@ -101,15 +100,8 @@ class My::AfishasController < My::ApplicationController
 
   def social_gallery
     @afisha = current_user.afisha.find(params[:id])
-    gallery_url = params[:afisha][:social_gallery_url]
-    case gallery_url
-    when /yandex/
-      url = gallery_url.match(/(?<=\/users\/).+\/album\/\d+/)
-      @afisha.update_attributes :yandex_fotki_url => url.to_s if url.present?
-    when /vk\.com/
-      url = gallery_url.match(/(?<=\/album)-?\d+_\d+/).to_s.match(/\d+_\d+/)
-      @afisha.update_attributes :vk_aid => url.to_s if url.present?
-    end
+
+    @afisha.download_album(params[:afisha][:social_gallery_url])
 
     redirect_to edit_step_my_afisha_path(@afisha.id, :step => :fourth)
   end
