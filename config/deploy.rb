@@ -12,4 +12,4 @@ end
 
 set :default_stage, 'production'
 
-set :shared_children, fetch(:shared_children) + %w[config/sape.yml]
+set :shared_children, fetch(:shared_children) + %w[config/sape.yml sape]
