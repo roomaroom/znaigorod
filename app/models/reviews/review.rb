@@ -16,6 +16,9 @@ class Review < ActiveRecord::Base
   before_save :handle_link_with_value
   before_save :set_poster
 
+  before_save :store_cached_content_for_index
+  before_save :store_cached_content_for_show
+
   attr_accessible :content, :title, :tag, :categories,
     :link_with_title, :link_with_value, :link_with_reset,
     :allow_external_links
@@ -128,5 +131,17 @@ class Review < ActiveRecord::Base
       self.afisha = nil
       self.organization = object
     end
+  end
+
+  def store_cached_content_for_index
+    self.cached_content_for_index = is_a?(ReviewVideo) ?
+      AutoHtmlRenderer.new(video_url).render_index + AutoHtmlRenderer.new(content).render_index :
+      AutoHtmlRenderer.new(content).render_index
+  end
+
+  def store_cached_content_for_show
+    self.cached_content_for_show = is_a?(ReviewVideo) ?
+      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show :
+      AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show
   end
 end

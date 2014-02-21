@@ -51,16 +51,18 @@ class ReviewDecorator < ApplicationDecorator
     tag.split(',').map(&:squish).map(&:mb_chars).map(&:downcase)
   end
 
-  def content_for_show
-    @content_for_show ||= review.is_a?(ReviewVideo) ?
-      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content, allow_external_links: review.allow_external_links).render_show :
-      AutoHtmlRenderer.new(content, allow_external_links: review.allow_external_links).render_show
+  def content_for_index
+    @content_for_index ||= cached_content_for_index
   end
 
-  def content_for_index
-    @content_for_index ||= review.is_a?(ReviewVideo) ?
-      AutoHtmlRenderer.new(video_url).render_index + AutoHtmlRenderer.new(content).render_index :
-      AutoHtmlRenderer.new(content).render_index
+  def content_for_show
+    @content_for_show ||= cached_content_for_show.try(:html_safe)
+  end
+
+  def raw_content_for_show
+    @raw_content_for_show ||= is_a?(ReviewVideo) ?
+      AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show :
+      AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show
   end
 
   def html_image(image, width, height)

@@ -30,7 +30,7 @@ class My::ReviewsController < My::ApplicationController
   def preview
     build_resource
 
-    render :partial => "reviews/review", :locals => { :review => ReviewDecorator.new(@review) }
+    render :partial => "my/reviews/review", :locals => { :review => ReviewDecorator.new(@review) }
   end
 
   def download_album
