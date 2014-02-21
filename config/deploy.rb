@@ -11,3 +11,5 @@ namespace :sitemap do
 end
 
 set :default_stage, 'production'
+
+set :shared_children, fetch(:shared_children) + %w[sape.yml]
