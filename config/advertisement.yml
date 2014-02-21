@@ -2,11 +2,11 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-02-15 12:00'
-      to: '2014-02-15 23:59'
+      from: '2014-02-21 11:30'
+      to: '2014-02-22 11:30'
       content_type: 'afisha'
-      afisha_slug: 'tasty-cookies-abcdeep-records-sankt-peterburg'
-      replaced_count: 4
+      afisha_slug: 'kulinarnyy-master-klass-vesenniy-fyuzhn'
+      replaced_count: 1
 
     '1.4':
       from: '2014-02-07 09:00'
