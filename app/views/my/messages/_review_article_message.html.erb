@@ -4,7 +4,7 @@
   </div>
   <div class="body">
     <span><%= message.kind_text %></span>
-    <%= link_to(message.messageable.title, polymorphic_path([:my, message.messageable])) %>
+    <%= link_to(message.messageable.title, my_review_path(message.messageable)) %>
     <div class="date">
       <%= time_ago_in_words(message.created_at) %> назад
     </div>
