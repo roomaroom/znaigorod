@@ -291,6 +291,7 @@ class Afisha < ActiveRecord::Base
     redcloth
     external_links_attributes
     external_links_redirect
+    real_external_url
   end
 
   def text_description
