@@ -60,6 +60,7 @@ group :default do
   gem 'roadie'
   gem 'russian'
   gem 'sanitize'
+  gem 'sape-rails', :git => 'git://github.com/hazg/sape-rails'
   gem 'sass-rails'
   gem 'sidekiq'
   gem 'simple-navigation'

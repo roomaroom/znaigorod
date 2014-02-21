@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/hazg/sape-rails
+  revision: 8005104e3ba9acddf80fb9f6b0a207293f248777
+  specs:
+    sape-rails (0.0.1)
+
+GIT
   remote: git://github.com/sgruhier/capistrano-db-tasks
   revision: 229c2a63ebb43a61ed2aa1f042d4d447ee186037
   specs:
@@ -550,6 +556,7 @@ DEPENDENCIES
   rspec-rails
   russian
   sanitize
+  sape-rails!
   sass-rails
   sidekiq
   simple-navigation
