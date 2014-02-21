@@ -1,11 +1,5 @@
-<div class="item">
-  <div class="date">
-    <%= time_ago_in_words(comment.created_at) %> назад
-  </div>
-  <div class="title">
-    <%= link_to comment.commentable.title, comment.commentable %>
-  </div>
-  <div class="body">
-    <%= comment.body_html %>
-  </div>
-</div>
+<% content_for :account_comment_link do %>
+  <%= link_to comment.commentable.title, comment.commentable %>
+<% end %>
+
+<%= render :partial => 'account_comment_wrapper', :locals => { :comment => comment } %>

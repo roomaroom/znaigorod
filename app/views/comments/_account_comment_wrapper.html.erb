@@ -3,7 +3,7 @@
     <%= time_ago_in_words(comment.created_at) %> назад
   </div>
   <div class="title">
-    <%= link_to comment.commentable.title, comment.commentable %>
+    <%= yield(:account_comment_link) %>
   </div>
   <div class="body">
     <%= comment.body_html %>

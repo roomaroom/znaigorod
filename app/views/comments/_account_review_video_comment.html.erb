@@ -1,5 +1,5 @@
 <% content_for :account_comment_link do %>
-  <%= link_to comment.commentable.title, afisha_show_path(comment.commentable) %>
+  <%= link_to comment.commentable.title, review_path(comment.commentable) %>
 <% end %>
 
 <%= render :partial => 'account_comment_wrapper', :locals => { :comment => comment } %>
