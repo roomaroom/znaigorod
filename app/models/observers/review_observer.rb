@@ -1,6 +1,12 @@
 # encoding: utf-8
 
 class ReviewObserver < ActiveRecord::Observer
+  def after_save(review)
+    return unless review.published?
+
+    review.delay(:queue => 'critical').upload_poster_to_vk if (review.poster_vk_id.nil? || review.poster_url_changed?) && review.has_poster?
+  end
+
   def after_to_published(review, transition)
     review.index!
 

@@ -11,7 +11,9 @@ module VkUpload
     if self.is_a?(Afisha)
       "Афиши #{I18n.l(Time.zone.today, :format => '%B-%Y')}"
     elsif self.is_a?(Discount)
-      'Скидки'
+      "Скидки #{I18n.l(Time.zone.today, :format => '%B-%Y')}"
+    elsif self.is_a?(Review)
+      "Обзоры #{I18n.l(Time.zone.today, :format => '%B-%Y')}"
     elsif self.is_a?(Organization)
       'Организации'
     end

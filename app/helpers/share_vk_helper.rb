@@ -10,6 +10,8 @@ module ShareVkHelper
       "#{item.poster_vk_id},#{discount_url(item)}"
     elsif item.is_a?(Organization)
       "#{item.poster_vk_id},#{organization_url(item)}"
+    elsif item.is_a?(Review)
+      "#{item.poster_vk_id},#{review_url(item)}"
     end
   end
 

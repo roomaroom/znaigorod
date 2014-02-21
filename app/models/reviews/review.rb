@@ -6,6 +6,7 @@ class Review < ActiveRecord::Base
   include CropedPoster
   include DraftPublishedStates
   include MakePageVisit
+  include VkUpload
 
   attr_accessor :link_with_title, :link_with_value, :link_with_reset
 
@@ -100,6 +101,10 @@ class Review < ActiveRecord::Base
     update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
 
+  def has_poster?
+    !!(image_url)
+  end
+
   private
 
   def self.prefix
@@ -143,5 +148,12 @@ class Review < ActiveRecord::Base
     self.cached_content_for_show = is_a?(ReviewVideo) ?
       AutoHtmlRenderer.new(video_url).render_show + AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show :
       AutoHtmlRenderer.new(content, allow_external_links: allow_external_links).render_show
+  end
+
+  # overrides VkUpload.image_url
+  def image_url
+    return poster_url if poster_url?
+    return poster_image_url if poster_image_url?
+    return gallery_images.first.file_url if gallery_images.any?
   end
 end

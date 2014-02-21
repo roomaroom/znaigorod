@@ -20,6 +20,13 @@
 
   <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>
 
+  <%= link_to 'Мне нравится', '#',
+    :class => 'share_to_vk',
+    :onClick => 'share_on_click(this);',
+    'data-owner_id' => current_user.try(:vk_uid),
+    'data-message' => "Рекомендую обзор \"#{@review.title}\"",
+    'data-attachments' => data_attachments(@review) %>
+
   <div class="share_and_likes">
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => review_url(@review) } %>
   </div>
