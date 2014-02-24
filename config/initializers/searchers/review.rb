@@ -5,6 +5,8 @@ HasSearcher.create_searcher :reviews do
   property :category
 
   scope do
+    facet :category, :sort => :count, :zero => true
+
     with :state, :published
   end
 
