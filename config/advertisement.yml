@@ -2,11 +2,11 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-02-22 19:00'
-      to: '2014-02-23 19:00'
+      from: '2014-02-24 12:30'
+      to: '2014-02-25 12:30'
       content_type: 'afisha'
-      afisha_slug: 'kontsert-ellai-v-nk-fakel-5-marta'
-      replaced_count: 4
+      afisha_slug: 'kulinarnyy-master-klass-vesenniy-fyuzhn'
+      replaced_count: 1
 
     '1.4':
       from: '2014-02-07 09:00'
