@@ -156,9 +156,14 @@ handleLinkWith = ->
   linkWithAutocomplete()
   linkWithChange()
 
+handleEighteenPlus = ->
+  label = $('#review_categories_eighteen_plus').closest('.checkbox')
+  label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
+
 @initMyReviews = ->
   initMarkitup()
   handleImageButtonClick()
   initTagit()
   handlePreview()
   handleLinkWith()
+  handleEighteenPlus()
