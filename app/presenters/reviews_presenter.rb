@@ -5,18 +5,18 @@ class ReviewsPresenter
     include Rails.application.routes.url_helpers
     include Singleton
 
-    attr_accessor :type, :category, :order_by
+    attr_accessor :type, :category, :order_by, :only_tomsk
 
     def params
-      { :type => type, :category => category, :order_by => order_by }
+      { :type => type, :category => category, :order_by => order_by, :only_tomsk => only_tomsk }
     end
 
-    def path(type: self.type, category: self.category, order_by: self.order_by)
-      return reviews_path(:order_by => order_by) if type.blank? && category.blank?
+    def path(type: self.type, category: self.category, order_by: self.order_by, only_tomsk: self.only_tomsk)
+      return reviews_path(:order_by => order_by, :only_tomsk => only_tomsk) if type.blank? && category.blank?
 
       path = [type, category].compact.join('_')
 
-      send "reviews_#{path}_path", :order_by => order_by
+      send "reviews_#{path}_path", :order_by => order_by, :only_tomsk => only_tomsk
     end
   end
 
@@ -160,11 +160,36 @@ class ReviewsPresenter
     end
   end
 
+  class OnlyTomskFilter
+    attr_accessor :only_tomsk
+
+    def initialize
+      @only_tomsk = Parameters.instance.only_tomsk
+    end
+
+    def selected?
+      only_tomsk
+    end
+
+    def value_for_path
+      selected? ? nil : true
+    end
+
+    def link
+      Hashie::Mash.new(
+        :title => 'Только Томск',
+        :klass => selected? ? 'only-tomsk selected': 'only-tomsk',
+        :path => Parameters.instance.path(only_tomsk: value_for_path)
+      )
+    end
+  end
+
   attr_accessor :type, :category,
                 :order_by, :page, :per_page,
-                :q, :advertisement, :with_advertisement
+                :q, :advertisement, :with_advertisement,
+                :only_tomsk
 
-  attr_reader :type_filter, :category_filter, :order_by_filter
+  attr_reader :type_filter, :category_filter, :order_by_filter, :only_tomsk_filter
 
   def initialize(args)
     super(args)
@@ -186,7 +211,6 @@ class ReviewsPresenter
   def with_advertisement?
     with_advertisement
   end
-
 
   def decorated_collection
     #@decorated_collection ||= begin
@@ -219,17 +243,20 @@ class ReviewsPresenter
   def normalize_args
     @page     ||= 1
     @per_page ||= per_page.to_i.zero? ? 15 : per_page.to_i
+    @only_tomsk ||= @only_tomsk.present? ? true : nil
   end
 
   def store_parameters
-    %w(type category order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
+    %w(type category order_by only_tomsk).each { |p| Parameters.instance.send "#{p}=", send(p) }
   end
 
   def initialize_filters
-    @type_filter     = TypeFilter.new
-    @category_filter = CategoryFilter.new
-    @order_by_filter = OrderByFilter.new
+    @type_filter       ||= TypeFilter.new
+    @category_filter   ||= CategoryFilter.new
+    @order_by_filter   ||= OrderByFilter.new
+    @only_tomsk_filter ||= OnlyTomskFilter.new
   end
+
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|

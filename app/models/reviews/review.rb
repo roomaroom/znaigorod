@@ -22,7 +22,8 @@ class Review < ActiveRecord::Base
 
   attr_accessible :content, :title, :tag, :categories,
     :link_with_title, :link_with_value, :link_with_reset,
-    :allow_external_links
+    :allow_external_links,
+    :only_tomsk
 
   belongs_to :account
   belongs_to :afisha
@@ -45,6 +46,7 @@ class Review < ActiveRecord::Base
   validates_presence_of :title, :tag, :categories
 
   default_value_for :allow_external_links, false
+  default_value_for :only_tomsk,           false
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :eighteen_plus, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],
@@ -58,6 +60,8 @@ class Review < ActiveRecord::Base
   normalize_attribute :categories, :with => :blank_array
 
   searchable do
+    boolean :only_tomsk
+
     float :rating
 
     string :state

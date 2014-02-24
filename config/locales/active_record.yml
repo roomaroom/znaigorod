@@ -223,13 +223,14 @@ ru:
 
       review:
         <<: *common_attributes
+        allow_external_links: Разрешить внешние ссылки
         categories:           Категории
         content:              Содержание
         kind:                 Тип обзора
         link_with_title:      Этот пост связан с
+        only_tomsk:           Только Томск
         status:               Опубликовать
         tag:                  Теги через запятую
-        allow_external_links: Разрешить внешние ссылки
         video_url:            Ссылка на видео
 
       image:

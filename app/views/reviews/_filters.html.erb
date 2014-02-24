@@ -9,6 +9,14 @@
         <% end %>
       </ul>
     </div>
+
+    <div class="only_tomsk">
+      <ul>
+        <li class="<%= @presenter.only_tomsk_filter.link.klass %>">
+          <%= link_to @presenter.only_tomsk_filter.link.title, @presenter.only_tomsk_filter.link.path %>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="filters reviews">
