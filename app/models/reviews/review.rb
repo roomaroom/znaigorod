@@ -47,7 +47,7 @@ class Review < ActiveRecord::Base
   default_value_for :allow_external_links, false
 
   enumerize :categories,
-    :in => [:auto, :sport, :entertainment, :humor, :family, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],
+    :in => [:auto, :sport, :entertainment, :humor, :family, :eighteen_plus, :culture, :accidents, :animals, :informative, :creation, :cafe, :other],
     :multiple => true,
     :predicates => true
 

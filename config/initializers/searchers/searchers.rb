@@ -103,6 +103,7 @@ HasSearcher.create_searcher :global do
     without :state, :draft
     without :state, :pending
     without :status, :draft
+    without :category, :eighteen_plus
 
     adjust_solr_params do |params|
       (params[:qf] || '').gsub!(/\bterm_text\b/, '')

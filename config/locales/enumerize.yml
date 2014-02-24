@@ -126,18 +126,19 @@ ru:
 
     review:
       categories:
-        auto:          Авто
-        sport:         Спорт
-        entertainment: Досуг и отдых
-        humor:         Юмор
-        family:        Семья, дом, дети
-        culture:       Культура
         accidents:     Происшествия
         animals:       Животные
-        informative:   Познавательно
-        creation:      Творчество и развитие
+        auto:          Авто
         cafe:          Кафе и рестораны
+        creation:      Творчество и развитие
+        culture:       Культура
+        eighteen_plus: 18+
+        entertainment: Досуг и отдых
+        family:        Семья, дом, дети
+        humor:         Юмор
+        informative:   Познавательно
         other:         Другое
+        sport:         Спорт
 
     notification_message:
       kind:

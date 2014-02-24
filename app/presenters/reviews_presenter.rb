@@ -93,6 +93,10 @@ class ReviewsPresenter
       available.index(selected).to_i > 6
     end
 
+    def eighteen_plus?
+      selected == 'eighteen_plus'
+    end
+
     def human_titles
       Hash[Review.categories.options].invert
     end
@@ -183,6 +187,7 @@ class ReviewsPresenter
     with_advertisement
   end
 
+
   def decorated_collection
     #@decorated_collection ||= begin
                                 #list = collection.map { |item| DiscountDecorator.decorate item }
@@ -238,6 +243,8 @@ class ReviewsPresenter
   def searcher
     @searcher ||= HasSearcher.searcher(:reviews, searcher_params).tap { |s|
       order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
+
+      s.send :without_eighteen_plus unless category_filter.eighteen_plus?
 
       s.paginate page: page, per_page: per_page
     }

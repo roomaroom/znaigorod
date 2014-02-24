@@ -84,7 +84,12 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def similar
-    @similar ||= review.more_like_this{ paginate :page => 1, :per_page => 3 }.results
+    @similar ||= begin
+                   searcher = HasSearcher.searcher(:reviews).paginate(:page => 1, :per_page => 3).more_like_this(review)
+                   searcher.without_eighteen_plus unless review.eighteen_plus?
+
+                   searcher.results
+                 end
   end
 
   def decorated_similar
