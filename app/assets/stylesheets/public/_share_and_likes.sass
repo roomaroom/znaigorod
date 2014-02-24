@@ -7,9 +7,10 @@
     height: 30px
     line-height: 30px
     float: left
-    width: 50%
 
   .share
+    width: 30%
+
     .title
       +inline-block
       font-size: 12px
@@ -21,6 +22,110 @@
 
   .likes
     line-height: 21px
+    width: 70%
+
+    .zg_like
+      +border-radius(3px)
+      +background-image(linear-gradient(#fff, #cfcfcf))
+      display: inline
+      float: right
+      margin: 0 0 0 20px
+      width: 125px
+
+      &:hover
+        cursor: pointer
+
+      .votes_wrapper
+        float: none !important
+
+        .like_box
+          height: 46px
+          margin: -70px 0 0 0
+          text-align: center
+          width: 200px
+
+        a
+          border: none
+          color: #333
+          height: 18px
+          line-height: 18px
+          padding: 3px 0 3px 5px
+
+        .votes_counter
+          +background-image(linear-gradient(#ff9832, #fe6500))
+          +border-right-radius(2px)
+          border: 1px solid #fe6500
+          color: #fff
+          float: right
+          height: 18px
+          line-height: 18px
+          margin: 0
+          padding: 0
+          position: relative
+          text-align: center
+          width: 30px
+
+          a
+            color: #fff
+            margin: 0
+            padding: 0
+
+        .votes_counter:after, .votes_counter:before
+          border: solid transparent
+          content: " "
+          height: 0
+          pointer-events: none
+          position: absolute
+          right: 100%
+          width: 0
+
+        .votes_counter:after
+          border-color: rgba(247, 17, 11, 0)
+          border-right-color: #ff811b
+          border-width: 5px
+          margin-top: -5px
+          top: 50%
+
+        .votes_counter:before
+          border-color: rgba(230, 80, 0, 0)
+          border-right-color: #fe6500
+          border-width: 6px
+          margin-top: -6px
+          top: 50%
+
+        .user_like
+          white-space: nowrap
+          float: left
+          height: 18px
+          width: 92px
+
+          &.liked
+            +background-image(linear-gradient(#fff, #ff9933))
+            +border-left-radius(2px)
+            border: 1px solid #ff9933
+            border-right: none
+            color: #fff
+
+          &.dont_liked
+            +background-image(linear-gradient(#fff, #cfcfcf))
+            +border-left-radius(2px)
+            border: 1px solid #ccc
+            border-right: none
+
+          &.liked, &.dont_liked
+            &:hover
+              +background-image(linear-gradient(#ccc, #fff))
+              border: 1px solid #ccc
+              border-right: none
+              cursor: pointer
+
+              a
+                text-decoration: none
+                &:hover
+                  text-decoration: none
+
+          span
+            display: none
 
     .vk_like
       clear: none !important

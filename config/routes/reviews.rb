@@ -61,9 +61,11 @@ Znaigorod::Application.routes.draw do
       get "reviews/#{type}/#{category}" => 'reviews#index', :constraints => { :category => category, :type => type }, :defaults => { :category => category, :type => type }
     end
 
-    # comments
+    # comments and votes
     resources "#{Review.prefix}#{type.pluralize}", :only => [] do
       resources :comments, :only => [:new, :show, :create]
+
+      put 'change_vote' => 'votes#change_vote', :as => :change_vote
     end
   end
 
@@ -74,6 +76,8 @@ Znaigorod::Application.routes.draw do
 
   resources :reviews, :only => [:index, :show] do
     resources :comments, :only => [:new, :show, :create]
+
+    put 'change_vote' => 'votes#change_vote', :as => :change_vote
   end
 
   # legacy
