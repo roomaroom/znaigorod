@@ -99,7 +99,6 @@
  * = require ./sweets_carousel
  * = require ./my_reviews
  * = require ./review_video_preview
- * = require ./my_posts_accordion
  * = require ./my_review_js_submit
  * = require ./my_review_video_help
  * = require ./work_addition
