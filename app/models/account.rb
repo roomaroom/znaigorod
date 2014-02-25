@@ -23,7 +23,7 @@ class Account < ActiveRecord::Base
   has_many :invitations,          :dependent => :destroy
   has_many :members,              :dependent => :destroy
   has_many :received_invitations, :dependent => :destroy, :class_name => 'Invitation', :foreign_key => :invited_id
-  has_many :reviews,              :dependent => :destroy, :order => 'created_at'
+  has_many :reviews,              :dependent => :destroy, :order => 'updated_at DESC'
   has_many :users,                :dependent => :destroy, :order => 'id ASC'
   has_many :works,                :dependent => :destroy
 

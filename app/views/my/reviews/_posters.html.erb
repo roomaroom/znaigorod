@@ -1,0 +1,3 @@
+<% collection.each do |review|%>
+  <li class="item"><%= render :partial => 'my/reviews/poster', :locals => { :review => review, :height => height, :width => width } %></li>
+<% end %>

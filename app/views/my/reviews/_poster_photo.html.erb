@@ -1,0 +1,12 @@
+<% if review.gallery_images %>
+  <ul class="images">
+    <% if controller_path == 'my/reviews' && action_name == 'index' %>
+      <%= review.annotation_gallery(185, 104) %>
+    <% elsif controller_path == 'reviews' && action_name == 'show' %>
+      <%= review.annotation_gallery(142, 80) %>
+    <% else %>
+      <%= review.annotation_gallery %>
+    <% end %>
+    <span class="counter fa fa-camera"> <%= review.gallery_images.size %></span>
+  </ul>
+<% end %>

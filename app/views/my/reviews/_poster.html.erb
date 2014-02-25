@@ -1,0 +1,21 @@
+<div class="title">
+  <%= link_to review.title, my_review_path(review) %>
+</div>
+
+<div class="details">
+  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= review.comments.count %></span>
+  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= review.likes_count %></span>
+  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= review.page_visits.count %></span>
+</div>
+
+<%= review.date %>
+
+<div class="annotation">
+  <%= render :partial => "my/reviews/poster_#{review.useful_type}", :locals => { :review => review, :height => height, :width => width} %>
+</div>
+
+<div class="actions">
+  <%= link_to '', my_review_path(review), :class => 'show_tipsy icon-edit', :title => 'Редактировать' %>
+  <%= link_to '', my_review_path(review), :class => 'show_tipsy icon-trash', :method => :delete, :title => 'Удалить',
+    :confirm => 'Вы уверены? Обзор будет удален без возможности восстановления' %>
+</div>
