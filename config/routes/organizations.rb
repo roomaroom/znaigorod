@@ -53,19 +53,19 @@ Znaigorod::Application.routes.draw do
 
       # short categories urls
       begin
-        HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.map do |row|
-        #Values.instance.send(kind).categories.each do |row|
+        #HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.map do |row|
+        Values.instance.send(kind).categories.each do |category|
           next if kind == 'sauna'
           if kind == 'meal' || kind == 'sport'
-            get "/#{kind.pluralize}/#{row.value.from_russian_to_param}",
-            :to => redirect("/#{row.value.from_russian_to_param}")
-            get "/#{row.value.from_russian_to_param}" => 'suborganizations#index',
-            :as => "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}".to_sym,
-            :defaults => {:kind => kind, :categories => [row.value]}
+            get "/#{kind.pluralize}/#{category.from_russian_to_param}",
+            :to => redirect("/#{category.from_russian_to_param}")
+            get "/#{category.from_russian_to_param}" => 'suborganizations#index',
+            :as => "#{kind.pluralize}_#{category.from_russian_to_param.pluralize}".to_sym,
+            :defaults => {:kind => kind, :categories => [category.mb_chars.downcase.to_s]}
           else
-            get "/#{kind.pluralize}/#{row.value.from_russian_to_param}" => 'suborganizations#index',
-            :as => "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}".to_sym,
-            :defaults => {:kind => kind, :categories => [row.value]}
+            get "/#{kind.pluralize}/#{category.from_russian_to_param}" => 'suborganizations#index',
+            :as => "#{kind.pluralize}_#{category.from_russian_to_param.pluralize}".to_sym,
+            :defaults => {:kind => kind, :categories => [category.mb_chars.downcase.to_s]}
           end
         end
       rescue
