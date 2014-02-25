@@ -54,6 +54,7 @@ Znaigorod::Application.routes.draw do
       # short categories urls
       begin
         HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.map do |row|
+        #Values.instance.send(kind).categories.each do |row|
           next if kind == 'sauna'
           if kind == 'meal' || kind == 'sport'
             get "/#{kind.pluralize}/#{row.value.from_russian_to_param}",
@@ -67,7 +68,7 @@ Znaigorod::Application.routes.draw do
             :defaults => {:kind => kind, :categories => [row.value]}
           end
         end
-      rescue Exception => e
+      rescue
       end
       get "/#{kind.pluralize}" => 'suborganizations#index', :as => kind.pluralize, :constraints => { :kind => kind }, :defaults => { :kind => kind }
 
