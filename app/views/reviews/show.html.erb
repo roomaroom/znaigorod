@@ -18,8 +18,6 @@
 <div class="left">
   <%= render :partial => 'review', :locals => { :review => @review } %>
 
-  <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>
-
   <% content_for :zg_like_with_vk_share do %>
     <!-- ZG Like -->
     <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @review } %>

@@ -186,8 +186,6 @@
       <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } if @afisha.user.present? %>
     </div>
 
-    <%= render :partial => 'commons/yandex_direct' if Rails.env.production? %>
-
     <div class='share_and_likes'>
       <%= render :partial => 'commons/share_and_like_this', :locals => { :url => afisha_show_url(@afisha) } %>
     </div>
