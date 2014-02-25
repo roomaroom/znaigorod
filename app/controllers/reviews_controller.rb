@@ -10,14 +10,12 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    show!{
-      @review = ReviewDecorator.new(@review)
-      @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
+    @review = ReviewDecorator.new Review.published.find(params[:id])
+    @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
 
-      @images = Kaminari.paginate_array(@review.images).page(params[:page]).per(30)
-      render :partial => 'reviews/gallery' and return if request.xhr?
+    @images = Kaminari.paginate_array(@review.images).page(params[:page]).per(30)
+    render :partial => 'reviews/gallery' and return if request.xhr?
 
-      @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
-    }
+    @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
   end
 end
