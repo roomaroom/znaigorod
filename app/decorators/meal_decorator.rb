@@ -4,7 +4,7 @@ class MealDecorator < SuborganizationDecorator
   decorates :meal
 
   def viewable?
-    meal.cuisines.any? || meal.offers.any? || meal.features.any?
+    description.present? || meal.cuisines.any? || meal.offers.any? || meal.features.any?
   end
 
   def characteristics_on_list

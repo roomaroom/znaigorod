@@ -4,7 +4,7 @@ class EntertainmentDecorator < SuborganizationDecorator
   decorates :entertainment
 
   def viewable?
-    entertainment.offers.any? || entertainment.features.any?
+    description.present? || entertainment.offers.any? || entertainment.features.any?
   end
 
   def characteristics_on_list
