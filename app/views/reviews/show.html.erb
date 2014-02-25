@@ -16,6 +16,14 @@
 <% end %>
 
 <div class="left">
+  <div class="actions">
+    <% if current_user && current_user.account == @review.account %>
+      <%= link_to ' изменить', my_review_path(@review), :class => 'fa fa-pencil' if can? :edit, @review %>
+    <% else %>
+      <%= link_to ' изменить', edit_manage_review_path(@review), :class => 'fa fa-pencil' if can? :edit, @review %>
+    <% end %>
+  </div>
+
   <%= render :partial => 'review', :locals => { :review => @review } %>
 
   <% content_for :zg_like_with_vk_share do %>
