@@ -7,13 +7,18 @@ class SocialLikes
   end
 
   def url(item)
-    case item.class.name
-    when 'Afisha'
-      class_name = item.class.name.underscore
+    resource = case item
+    when Afisha
+      'afisha'
+    when Discount
+      'discounts'
+    when Review
+      'reviews'
     else
-      class_name = item.class.name.underscore.pluralize
+      item.class.name.underscore.pluralize
     end
-    URI.escape("#{Settings[:app][:url]}/#{class_name}/#{item.slug}")
+
+    URI.escape("#{Settings[:app][:url]}/#{resource}/#{item.slug}")
   end
 
   def damn_likes(item)
@@ -36,7 +41,7 @@ class SocialLikes
   def vkontakte_likes(item)
     if item.slug?
       begin
-        likes = @vk_client.likes.get_list(type: 'sitepage', owner_id: '3136085', page_url: url(item))
+        likes = @vk_client.likes.get_list(:type => 'sitepage', :owner_id => '3136085', :page_url => url(item), :filter => 'likes', :friends_only => '0', :extended => '0', :offset => '0', :count => '100')
         uids = likes['users'].map!(&:to_s)
         count = 0
         uids.each do |uid|

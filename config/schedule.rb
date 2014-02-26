@@ -34,6 +34,7 @@ end
 
 every 6.hours do
   rake 'sitemap:refresh refresh_sitemaps'
+  rake 'social_likes'
 end
 
 every :day, :at => '5am' do
@@ -43,7 +44,6 @@ end
 
 every 2.hours do
   rake 'afisha:event_users'
-  rake 'social_likes'
   rake 'actualize_discounts'
 end
 
