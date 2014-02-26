@@ -15,6 +15,81 @@
     background-color: #fff
     padding: 5px
 
+// uniq_design -->
+=uniq_design($main_gradient_top_color, $main_gradient_bottom_color, $content_gradient_top_color, $content_gradient_bottom_color, $sidebar_background, $sidebar_gradient_top_color, $sidebar_gradient_bottom_color, $border_color, $link_color, $text_color)
+  background: $main_gradient_top_color
+  +background(linear-gradient(top, $main_gradient_top_color, $main_gradient_bottom_color))
+
+  .content_wrapper
+    margin-bottom: 0
+
+    .content
+      +box-shadow(none)
+      +border-top-left-radius
+      +border-top-right-radius
+      background: $content_gradient_top_color
+      +background(linear-gradient(top, $content_gradient_top_color, $content_gradient_bottom_color))
+      color: $text_color
+      margin: 0 auto
+      padding: 6px
+      width: 1178px
+
+
+      .organization_show
+        margin: 0
+
+        a
+          color: $link_color
+
+        .left
+          .image, .social_actions, .offers_wrapper
+            border: 1px solid $border_color
+
+            .user_actions
+              border-bottom: 1px solid $border_color
+
+            .list
+              li:first-child
+                border: none
+
+          .image
+            background: $sidebar_background
+
+        .social_actions, .offers_wrapper, .virtual_tour, .more_like_this
+          background: $sidebar_gradient_top_color
+          +background(linear-gradient(top, $sidebar_gradient_top_color, $sidebar_gradient_bottom_color))
+          color: $text_color
+
+        .yandex_map
+          background: $sidebar_background
+
+        .center
+
+          .suborganization_info
+            .title
+              background: #e07171
+
+            strong
+              color: #fed64f
+
+          .share_and_likes
+            border-bottom: 1px solid $border_color
+
+        .comments
+          +override_comments
+
+          .date
+            color: #fff !important
+
+        .right
+          .wrapper
+            border: 1px solid $border_color
+
+            .virtual_tour, .yandex_map
+              border-bottom: 1px solid $border_color
+
+// <-- uniq_design
+
 =override_comments
   .comment_form
     div.text
@@ -828,3 +903,16 @@
 
             .virtual_tour, .yandex_map
               border-bottom: 1px solid #d12345
+
+
+.shisha_content_wrapper
+  +uniq_design(#1f1a17, #c43e40, #1a1515, #a83535, #512221, #3a1d1c, #862e2e, #6f3c3f, #2c70c1, #fff)
+
+  .shisha_logo
+    background: transparent image_url('public/shisha/logo.png') no-repeat center center
+    height: 111px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    .content
