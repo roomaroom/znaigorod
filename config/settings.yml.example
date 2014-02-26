@@ -84,3 +84,6 @@ mainsms:
 sms_claim:
   price:                1
   warning:              10
+
+sape:
+  user_id:              SECRET

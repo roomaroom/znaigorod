@@ -12,6 +12,7 @@
 /db/*.sqlite3
 /log/*.log
 /log/*.log.lck
+/sape
 /solr/data
 /solr/pids
 /tmp

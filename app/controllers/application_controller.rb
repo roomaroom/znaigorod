@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
+  before_filter :sape_init
 
   layout :resolve_layout
 
@@ -74,5 +75,9 @@ class ApplicationController < ActionController::Base
 
   def page_meta
     @current_page_meta ||= PageMeta.find_by_path request.path
+  end
+
+  def sape_init
+    @sape = Sape.from_request(Settings['sape.user_id'], request)
   end
 end

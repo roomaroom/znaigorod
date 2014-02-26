@@ -172,9 +172,8 @@
     </div>
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @discount } %>
-    <% unless Rails.env.development? %>
-      <%= sape_links(2) %>
-      <%= sape_links() %>
-    <% end %>
+
+    <%= @sape.links(2).html_safe %>
+    <%= @sape.links.html_safe %>
   </div>
 </div>
