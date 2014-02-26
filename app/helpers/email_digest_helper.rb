@@ -360,7 +360,7 @@ module EmailDigestHelper
       result << " )\n "
     end
 
-    %w[afisha discount organization post].each do |item|
+    %w[afisha discount organization review].each do |item|
       if comment.commentable.is_a?(item.camelize.constantize)
         result << t("notice_mailer.answer")
         result << " (" + send("#{item}_path",
@@ -421,7 +421,7 @@ module EmailDigestHelper
       end
     end
 
-    %w[afisha discount organization post].each do |item|
+    %w[afisha discount organization review].each do |item|
       if vote.voteable.commentable.is_a?(item.camelize.constantize)
         result << vote.voteable.commentable.title + " ("
         result << send("#{item}_path",
