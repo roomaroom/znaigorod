@@ -2,6 +2,11 @@
 
 class GallerySocialImage < Attachment
   attr_accessible :file_url, :thumbnail_url
+
+  # NOTE: emulate response for #<GallerySocialImage>.file.url
+  def file
+    Hashie::Mash.new :url => file_url
+  end
 end
 
 # == Schema Information

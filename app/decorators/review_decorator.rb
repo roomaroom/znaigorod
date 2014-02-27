@@ -80,7 +80,7 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def images
-    gallery_images
+    all_images
   end
 
   def similar

@@ -1,4 +1,4 @@
-<% review.gallery_images.each do |image| %>
+<% review.all_images.each do |image| %>
   <li>
     <div class='image_wrapper'>
       <%= image_tag resized_image_url(image.file.url, 198, 152), :size => '198x152', :alt => image.description  %>
