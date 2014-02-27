@@ -1,8 +1,10 @@
 <% @images.each do |image| %>
   <li>
-    <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
+    <%= '<!--noindex-->'.html_safe if image.is_a?(GallerySocialImage) %>
+    <%= link_to image.file_url, :class => :colorbox, :rel => "gallery #{image.is_a?(GallerySocialImage) ? :nofollow : nil}" do %>
       <%= image_tag resized_image_url(image.file_url, 275, 206), :size => '275x206', :alt => image.description %>
     <% end %>
+    <%= '<!--/noindex-->'.html_safe if image.is_a?(GallerySocialImage) %>
   </li>
 <% end %>
 
