@@ -31,6 +31,7 @@ class Manage::ReviewsController < Manage::ApplicationController
 
   def collection
     @collection = Review.search {
+      keywords params[:q]
       order_by :created_at, :desc
       paginate paginate_options.merge(:per_page => per_page)
     }.results
