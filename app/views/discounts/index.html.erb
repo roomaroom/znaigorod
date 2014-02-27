@@ -3,12 +3,20 @@
 <% content_for :meta_description, @presenter.meta_description %>
 
 <% content_for :extra_meta do %>
-  <%= vk_meta('discount', discounts_url, 'public/vk_logotype.png') %>
+  <% if page_meta %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% else %>
+    <%= vk_meta('discount', discounts_url, 'public/vk_logotype.png') %>
+  <% end %>
 <% end %>
 
 <div class="presentation_filters discounts">
   <div class="filter_header">
-    <h1><%= t('meta.discount.page_header') %></h1>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% else %>
+      <h1><%= t('meta.discount.page_header') %></h1>
+    <% end %>
   </div>
   <div class="order_by">
     <p>Сортировать по:</p>
@@ -31,5 +39,9 @@
 <%= paginate @presenter.collection %>
 
 <div class='introduction'>
-  <%= t("meta.discount.introduction").as_html %>
+  <% if page_meta %>
+    <%= page_meta.html_introduction %>
+  <% else %>
+    <%= t("meta.discount.introduction").as_html %>
+  <% end %>
 </div>
