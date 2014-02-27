@@ -83,6 +83,11 @@ ru:
       male:      "оценил скидку"
       female:    "оценила скидку"
 
+    voted_offered_discount:
+      undefined: "оценил аукцион"
+      male:      "оценил аукцион"
+      female:    "оценила аукцион"
+
     added_discount:
       undefined: "добавил скидку"
       male:      "добавил скидку"
