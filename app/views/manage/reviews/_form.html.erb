@@ -12,7 +12,7 @@
   <%= f.input :categories, :as => :check_boxes %>
   <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
 
-  <%= render "my/reviews/#{@review.useful_type}_fields", :f => f %>
+  <%= render "manage/reviews/#{@review.useful_type}_fields", :f => f %>
 
   <%= f.input :only_tomsk %>
 
@@ -38,7 +38,7 @@
     </div>
   <% end %>
 
-  <div class="submit">
+  <div class="actions">
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
     <%= link_to 'Отмена', :back %>
   </div>
@@ -47,7 +47,7 @@
 <div class="preview_wrapper">
   <h1>Предварительный просмотр</h1>
   <div class="reviews_show">
-    <%= render :partial => 'reviews/review', :locals => { :review => ReviewDecorator.new(@review) } %>
+    <%= render :partial => 'manage/reviews/review', :locals => { :review => ReviewDecorator.new(@review) } %>
   </div>
 </div>
 

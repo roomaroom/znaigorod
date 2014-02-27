@@ -1,0 +1,9 @@
+<%= f.input :reset_poster, :as => :hidden, :input_html => { :value => true } %>
+
+<%= f.input :video_url,
+  :as => :string,
+  :input_html => { :class => 'with-preview', :placeholder => 'Вставьте сюда ссылку на видео с Youtube или Vimeo' } %>
+
+<%= f.input :content,
+  :input_html => { :id => 'html', :class => 'description with-preview', :maxlength => 140, :placeholder => 'Коротко опишите добавляемое видео' },
+  :label => 'Описание' %>
