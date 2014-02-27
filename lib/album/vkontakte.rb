@@ -21,6 +21,18 @@ class Album::Vkontakte
     def biggest_url
       big_url || url || small_url
     end
+
+    def width
+      hash['width']
+    end
+
+    def height
+      hash['height']
+    end
+
+    def description
+      hash['text']
+    end
   end
 
   attr_accessor :url
@@ -31,7 +43,9 @@ class Album::Vkontakte
   end
 
   def images
-    images_data.map { |elem| Image.new(elem['photo']) }
+    images_data.map { |elem|
+      Image.new(elem['photo'])
+    }
   end
 
   def image_biggest_urls

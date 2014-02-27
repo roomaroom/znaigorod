@@ -1,4 +1,5 @@
 class Album::Yandex
+  # TODO: optimize me
   class Image
     attr_accessor :hash
 
@@ -10,16 +11,24 @@ class Album::Yandex
       hash['img']
     end
 
+    def small_sizes
+      %w[XXXS XXS XS S]
+    end
+
+    def big_sizes
+      %w[XXXL XXL XL L]
+    end
+
     def small_url
-      img.try(:[], 'XXXS').try(:[], 'href') || img.try(:[], 'XXS').try(:[], 'href') || img.try(:[], 'XS').try(:[], 'href') || img.try(:[], 'S').try(:[], 'href')
+      small_sizes.each { |size| return img[size]['href'] if img[size] }
+    end
+
+    def big_url
+      big_sizes.each { |size| return img[size]['href'] if img[size] }
     end
 
     def medium_url
       img.try(:[], 'M').try(:[], 'href')
-    end
-
-    def big_url
-      img.try(:[], 'XXXL').try(:[], 'href') || img.try(:[], 'XXL').try(:[], 'href') || img.try(:[], 'XL').try(:[], 'href') || img.try(:[], 'L').try(:[], 'href')
     end
 
     def orig_url
@@ -28,6 +37,34 @@ class Album::Yandex
 
     def biggest_url
       orig_url || big_url || medium_url || small_url
+    end
+
+    def big_width
+      big_sizes.each { |size| return img[size]['width'] if img[size] }
+    end
+
+    def big_height
+      big_sizes.each { |size| return img[size]['height'] if img[size] }
+    end
+
+    def orig_width
+      img.try(:[], 'orig').try(:[], 'width')
+    end
+
+    def orig_height
+      img.try(:[], 'orig').try(:[], 'height')
+    end
+
+    def width
+      big_width || orig_width
+    end
+
+    def height
+      big_height || orig_height
+    end
+
+    def description
+      hash['summary']
     end
   end
 
