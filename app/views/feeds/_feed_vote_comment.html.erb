@@ -29,7 +29,7 @@
       <% elsif feed_vote_comment.feedable.voteable.commentable.is_a?(Review) %>
         <%= link_to feed_vote_comment.feedable.voteable.commentable.title, review_path(feed_vote_comment.feedable.voteable.commentable) %>
       <% else %>
-        <% if @feeds_presenter.is_discount?(feed_vote_comment.feedable.voteable.commentable.class.name) %>
+        <% if feed_vote_comment.feedable.voteable.commentable.is_a?(Discount) %>
           <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, discount_path(feed_vote_comment.feedable.voteable.commentable)) %>
         <% else %>
           <%= link_to(feed_vote_comment.feedable.voteable.commentable.title, feed_vote_comment.feedable.voteable.commentable) %>

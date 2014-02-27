@@ -22,10 +22,6 @@ class FeedsPresenter
     %w[accounts feeds].include?(@controller_name)
   end
 
-  def is_discount?(class_name)
-    %w[Coupon Discount Certificate].include?(class_name)
-  end
-
   def is_review?(class_name)
     %w[ReviewArticle ReviewPhoto ReviewVideo].include?(class_name)
   end

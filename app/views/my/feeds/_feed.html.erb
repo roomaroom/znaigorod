@@ -1,6 +1,6 @@
 <li>
   <div class="feed_wrapper">
-    <% if @feeds_presenter.is_discount?(feed.feedable.class.name)  %>
+    <% if feed.feedable.is_a?(Discount)  %>
       <%= render partial: "feeds/feed_discount", :object => feed %>
     <% elsif feed.feedable %>
       <%= render partial: "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>

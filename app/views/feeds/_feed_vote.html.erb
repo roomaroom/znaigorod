@@ -1,5 +1,5 @@
-<% if @feeds_presenter.is_discount?(feed_vote.feedable.class.name)  %>
-  <%= render partial: "feeds/feed_vote_discount", :object => feed %>
+<% if feed_vote.feedable.voteable.is_a?(Discount) %>
+  <%= render partial: "feeds/feed_vote_discount", :object => feed_vote %>
 <% else %>
-  <%= render partial: "feeds/feed_vote_#{feed_vote.feedable.voteable.class.name.underscore}", :object => feed_vote unless feed_vote.feedable.voteable.class.name.underscore == "nil_class" %>
+  <%= render partial: "feeds/feed_vote_#{feed_vote.feedable.voteable.class.name.underscore}", :object => feed_vote unless feed_vote.feedable.voteable.nil? %>
 <% end %>
