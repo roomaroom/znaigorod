@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140224063805) do
+ActiveRecord::Schema.define(:version => 20140227090202) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -644,6 +644,16 @@ ActiveRecord::Schema.define(:version => 20140224063805) do
 
   add_index "places", ["organization_id"], :name => "index_places_on_organization_id"
   add_index "places", ["placeable_id"], :name => "index_places_on_placeable_id"
+
+  create_table "ponominalu_tickets", :force => true do |t|
+    t.integer  "afisha_id_id"
+    t.string   "ponominalu_id"
+    t.integer  "count"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "ponominalu_tickets", ["afisha_id_id"], :name => "index_ponominalu_tickets_on_afisha_id_id"
 
   create_table "pool_table_prices", :force => true do |t|
     t.integer  "pool_table_id"
