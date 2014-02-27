@@ -26,4 +26,13 @@ class Manage::ReviewsController < Manage::ApplicationController
       redirect_to manage_review_path(@review), :notice => "Обзор «#{@review.title}» возвращен в черновики." and return
     }
   end
+
+  private
+
+  def collection
+    @collection = Review.search {
+      order_by :created_at, :desc
+      paginate paginate_options.merge(:per_page => per_page)
+    }.results
+  end
 end
