@@ -42,17 +42,17 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-02-20 13:00'
-      to: '2014-02-27 13:00'
+      from: '2014-02-27 21:00'
+      to: '2014-02-28 21:00'
       content_type: 'afisha'
-      afisha_slug: 'otkrytie-novogo-katka'
+      afisha_slug: '28-02-fevralskiy-diskach-90-h'
       replaced_count: 1
 
     '1.2':
-      from: '2014-02-13 09:00'
-      to: '2014-02-20 09:00'
+      from: '2014-02-28 21:00'
+      to: '2014-03-01 21:00'
       content_type: 'afisha'
-      afisha_slug: 'letnie-kanikuly-v-ssha'
+      afisha_slug: '01-03-martovskiy-za-poy'
       replaced_count: 1
 
     '1.5':
