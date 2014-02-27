@@ -2,9 +2,15 @@
 <% content_for :meta_keywords, t('cooperation.service.keywords', :default => '') %>
 <% content_for :meta_description, t('cooperation.service.description', :default => '') %>
 
+<% if page_meta %>
+  <% content_for :extra_meta do %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% end %>
+<% end %>
+
 <div class='cooperation'>
 
-  <h1>Услуги и цены ЗнайГород</h1>
+  <h1><%= page_meta ? page_meta.header.squish.html_safe :  'Услуги и цены ЗнайГород' %></h1>
 
   <div class='service_left'>
     <div class='service_payment_wrapper'>
@@ -400,3 +406,9 @@
   </div>
 
 </div>
+
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
+  </div>
+<% end %>
