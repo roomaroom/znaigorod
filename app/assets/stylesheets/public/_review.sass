@@ -91,19 +91,6 @@
           height: 160px
           width: 236px
 
-.my_reviews_show, .review_form, .reviews_show
-  .gallery
-    li
-      float: left
-      font-size: 12px
-      line-height: 14px
-      text-align: center
-
-.my_reviews_show
-  .gallery
-    img
-      width: 222px !important
-
 .reviews_show
   padding: 0px !important
 
@@ -204,16 +191,24 @@
       width: 900px
 
       li
+        float: left
         list-style: none
-        margin: 10px
+        width: 275px
 
-        img
-          float: left
-          margin: 0
+        .colorbox
+          display: block
+          height: 206px
+          margin: 0 auto
+          overflow: hidden
           width: 275px
 
+          img
+            border: none
+            padding: 0
+            width: 275px
+
       .icon-trash
-        margin: 0 10px 0px 0
+        margin: 5px 5px 0px 0
 
   .author
     font-size: 12px

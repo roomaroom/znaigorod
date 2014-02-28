@@ -79,6 +79,10 @@ class ReviewDecorator < ApplicationDecorator
     gallery.html_safe
   end
 
+  def has_annotation_gallery?
+    gallery_images.count > 5
+  end
+
   def images
     all_images
   end

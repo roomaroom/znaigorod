@@ -1,8 +1,8 @@
 <% review.all_images.each do |image| %>
   <li>
-    <div class='image_wrapper'>
-      <%= image_tag resized_image_url(image.file.url, 198, 152), :size => '198x152', :alt => image.description  %>
-    </div>
+    <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
+      <%= image_tag resized_image_url(image.file_url, 230, 172), :size => '230x172', :alt => image.description %>
+    <% end %>
     <%= link_to '', my_review_gallery_image_path(review, image),
       :method => :delete,
       :remote => true,
