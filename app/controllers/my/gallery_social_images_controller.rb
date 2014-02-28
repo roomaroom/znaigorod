@@ -3,7 +3,8 @@ class My::GallerySocialImagesController < My::ApplicationController
   actions :destroy
   custom_actions :collection => :destroy_all
 
-  belongs_to :afisha, :polymorphic => true, :optional => true
+  belongs_to :afisha, :optional => true
+  belongs_to :review, :optional => true
 
   def destroy
     destroy! {
