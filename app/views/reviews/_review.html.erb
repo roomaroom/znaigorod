@@ -16,6 +16,7 @@
   <ul class="gallery js-gallery">
     <%= render :partial => 'gallery', :locals => { :review => @review } %>
   </ul>
+  <%= paginate @images %>
 </div>
 
 <div class="author">
