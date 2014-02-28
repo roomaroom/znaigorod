@@ -67,6 +67,8 @@ class Review < ActiveRecord::Base
 
     float :rating
 
+    integer(:commented) { comments.size }
+
     string :state
     string(:category, :multiple => true) { categories.map(&:value) }
     string(:type) { useful_type }

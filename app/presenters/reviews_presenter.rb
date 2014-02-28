@@ -137,7 +137,7 @@ class ReviewsPresenter
     end
 
     def available
-      { 'creation' => 'Новизне', 'rating' => 'Рейтингу' }
+      { 'creation' => 'Новизне', 'rating' => 'Рейтингу', 'commented' => 'Количеству комментариев' }
     end
 
     def selected
