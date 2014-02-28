@@ -1,8 +1,8 @@
 <div class='item'>
   <div class='title'><%= afisha.truncated_title_link(38, separator: '') %></div>
   <div class='image'>
-    <% if afisha.has_tickets_for_sale? %>
-      <% if afisha.max_tickets_discount > 0 %>
+    <% if afisha.has_available_tickets? %>
+      <% if afisha.has_tickets_for_sale? && afisha.max_tickets_discount > 0 %>
         <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
           Скидка на билеты <%= afisha.max_tickets_discount %>%
         </div>
@@ -12,17 +12,28 @@
         </div>
       <% end %>
     <% end %>
+
     <%= afisha.poster_with_link(178, 240) %>
+
     <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere?  %>
-    <% if afisha.has_tickets_for_sale? %>
-      <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
+
+    <% if afisha.has_available_tickets? %>
+      <% if afisha.has_tickets_for_sale? %>
+        <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
+      <% elsif afisha.has_available_ponominalu_tickets? %>
+        <%= link_to afisha.ponominalu_tickets.available.first.link, :target => '_blank', :class => 'for_sale ponominalu' do %>
+          <%= image_tag 'public/ponominalu_button.png', :size => '150x30', :class => 'link' %>
+        <% end %>
+      <% end %>
     <% end %>
+
     <%= link_to afisha_show_path(afisha), class: :details do %>
       <span class='first_line'>
         <span class='show_tipsy to_go' title='Участники'><%= afisha.visits.count %></span>
         <span class='show_tipsy wait_invite' title='Приглашения'><%= afisha.invitations.inviter.without_invited.count %></span>
         <span class='show_tipsy comments' title='Комментарии'><%= afisha.comments.count %></span>
       </span>
+
       <span class='second_line'>
         <span class='show_tipsy likes' title='Понравилось'><%= afisha.likes_count %></span>
         <span class='show_tipsy visits' title='Просмотры'><%= afisha.page_visits.count %></span>
@@ -30,6 +41,7 @@
       </span>
     <% end %>
   </div>
+
   <div class='place'><%= afisha.afisha_place(23, nil) %></div>
   <div class='human_when'><%= afisha.human_when ? afisha.human_when : "&nbsp;".html_safe %></div>
 </div>

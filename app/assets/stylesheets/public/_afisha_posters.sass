@@ -51,6 +51,11 @@
             &:active
               padding: 3px 15.5px 2px
 
+            &.ponominalu
+              background: none
+              border: none
+              left: 0
+
           .details
             color: #000
 
@@ -92,7 +97,7 @@
           &:hover
             .ribbon
               display: none
-            img
+            img:not(.link)
               +opacity(0.15)
             .for_sale,
             .first_line,
