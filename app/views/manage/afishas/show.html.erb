@@ -33,7 +33,8 @@
     <div>
       <span class="label">
         Билеты
-        <%= link_to 'Добавить', new_manage_statistics_afisha_ticket_path(resource) %>
+        <%= link_to 'Добавить', new_manage_statistics_afisha_ticket_path(resource), :class => 'button' %>
+        <%= link_to 'Добавить билет Ponominalu', new_manage_afisha_ponominalu_ticket_path(resource), :class => 'button' %>
       </span>
       <span class="value">
         <ul>
@@ -64,6 +65,11 @@
             <% end %>
           </table>
         </li>
+
+        <% resource.ponominalu_tickets.each do |ticket| %>
+          <li>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </span>

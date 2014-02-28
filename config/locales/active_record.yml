@@ -478,6 +478,9 @@ ru:
         row:           Ряд
         seat:          Место
 
+      ponominalu_ticket:
+        ponominalu_id: Код события в Ponominalu
+
       reservation:
         title: Название кнопки
         placeholder: Вступительный текст

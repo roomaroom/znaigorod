@@ -42,6 +42,8 @@ Znaigorod::Application.routes.draw do
 
       delete 'destroy_image', :on => :member, :as => :destroy_image
 
+      resources :ponominalu_tickets
+
       resources :gallery_files,  :except => [:index, :show] do
         delete 'destroy_file', :on => :member, :as => :destroy_file
       end

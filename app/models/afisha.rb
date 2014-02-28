@@ -35,6 +35,7 @@ class Afisha < ActiveRecord::Base
   has_many :invitations,           :dependent => :destroy, :as => :inviteable
   has_many :messages,              :dependent => :destroy, :as => :messageable
   has_many :page_visits,           :dependent => :destroy, :as => :page_visitable
+  has_many :ponominalu_tickets,    :dependent => :destroy, :order => 'id'
   has_many :showings,              :dependent => :destroy, :order => :starts_at
   has_many :tickets,               :dependent => :destroy
   has_many :versions,              :dependent => :destroy, :as => :versionable, :order => 'id ASC'

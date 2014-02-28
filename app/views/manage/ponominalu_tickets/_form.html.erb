@@ -1,0 +1,6 @@
+<%= simple_form_for [:manage, @afisha, @ponominalu_ticket] do |f| %>
+  <%= f.input :ponominalu_id %>
+
+  <%= f.button :submit, :class => 'button' %> или
+  <%= link_to 'Отмена', [:manage, @afisha] %>
+<% end %>
