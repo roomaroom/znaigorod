@@ -1,14 +1,29 @@
 class PonominaluTicket < ActiveRecord::Base
+  alias_attribute :to_s, :title
+
   attr_accessible :count, :ponominalu_id
 
-  before_save :get_raw_info
+  before_save :set_raw_info
   before_save :set_count
+  before_save :set_title
 
   belongs_to :afisha
 
   scope :available, -> { where 'count > 0' }
 
   serialize :raw_info, Hashie::Mash
+
+  def min_price
+    raw_info.message.min_price
+  end
+
+  def max_price
+    raw_info.message.max_price
+  end
+
+  def link
+    "#{raw_info.message.link}?promote=#{Settings['ponominalu.promote']}"
+  end
 
   private
 
@@ -32,7 +47,7 @@ class PonominaluTicket < ActiveRecord::Base
     @response ||= HTTParty.get(request_url).parsed_response
   end
 
-  def get_raw_info
+  def set_raw_info
     self.raw_info = Hashie::Mash.new(response)
   end
 
@@ -42,5 +57,9 @@ class PonominaluTicket < ActiveRecord::Base
 
   def set_count
     self.count = response_without_error? ? raw_info.message.ticket_count : 0
+  end
+
+  def set_title
+    self.title = response_without_error? ? raw_info.message.title : ''
   end
 end

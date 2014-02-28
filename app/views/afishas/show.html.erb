@@ -83,6 +83,33 @@
       </ul>
     <% end %>
 
+    <% if @afisha.ponominalu_tickets.available.any? %>
+      <ul class='tickets'>
+        <% @afisha.ponominalu_tickets.available.each do |ticket| %>
+          <li>
+            <div class='wrapper'>
+              <div class='has_items_for_sale without_discount'>
+                Купить билет
+              </div>
+
+              <div class='ticket_prices'>
+                Цена
+                <span class='price'>
+                  <%= ticket.min_price %> - <%= ticket.max_price %>р.
+                </span>
+              </div>
+
+              <div class="has_items_for_sale">
+                <%= link_to ticket.link, :target => '_blank' do %>
+                  <%= image_tag 'public/ponominalu_button.png', :size => '150x30' %>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= render :partial => 'commons/social_block', :locals => { :inviteable => @afisha.model } %>
 
     <% @afisha.discounts.published.each do |discount| %>

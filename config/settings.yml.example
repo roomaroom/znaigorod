@@ -87,3 +87,7 @@ sms_claim:
 
 sape:
   user_id:              SECRET
+
+ponominalu:
+  session:              SESSION
+  promote:              PROMOTE

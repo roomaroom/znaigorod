@@ -8,7 +8,7 @@ class Showing < ActiveRecord::Base
 
   validates_presence_of :place, :starts_at
 
-  delegate :distribution_starts_on, :rating, :tags, :title, :age_min, :age_max, :state, :has_tickets_for_sale?,
+  delegate :distribution_starts_on, :rating, :tags, :title, :age_min, :age_max, :state, :has_tickets_for_sale?, :has_available_tickets?,
     :to => :afisha,
     :prefix => true
 
@@ -53,7 +53,7 @@ class Showing < ActiveRecord::Base
     time :ends_at
     time :starts_at, :trie => true
 
-    boolean(:has_tickets) { afisha_has_tickets_for_sale? && actual? }
+    boolean(:has_tickets) { actual? && afisha_has_available_tickets? }
   end
 
   def afisha_created_at

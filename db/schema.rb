@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140227100103) do
+ActiveRecord::Schema.define(:version => 20140228033433) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -652,6 +652,7 @@ ActiveRecord::Schema.define(:version => 20140227100103) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.text     "raw_info"
+    t.string   "title"
   end
 
   add_index "ponominalu_tickets", ["afisha_id"], :name => "index_ponominalu_tickets_on_afisha_id"

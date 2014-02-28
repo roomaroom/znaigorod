@@ -262,6 +262,14 @@ class Afisha < ActiveRecord::Base
     tickets.available.any?
   end
 
+  def has_available_ponominalu_tickets?
+    ponominalu_tickets.available.any?
+  end
+
+  def has_available_tickets?
+    has_tickets_for_sale? || has_available_ponominalu_tickets?
+  end
+
   def max_tickets_discount
     tickets.joins(:copies).where('copies.state = ?', :for_sale).map(&:discount).sort.last
   end

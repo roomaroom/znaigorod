@@ -31,12 +31,11 @@
       </span>
     </div>
     <div>
-      <span class="label">
-        Билеты
-        <%= link_to 'Добавить', new_manage_statistics_afisha_ticket_path(resource), :class => 'button' %>
-        <%= link_to 'Добавить билет Ponominalu', new_manage_afisha_ponominalu_ticket_path(resource), :class => 'button' %>
-      </span>
       <span class="value">
+        <h3>
+          Наши билеты:
+          <%= link_to 'Добавить', new_manage_statistics_afisha_ticket_path(resource), :class => 'button' %>
+        </h3>
         <ul>
           <% resource.tickets.each do |ticket| %>
             <li>
@@ -66,12 +65,38 @@
           </table>
         </li>
 
-        <% resource.ponominalu_tickets.each do |ticket| %>
-          <li>
-          </li>
-        <% end %>
       <% end %>
     </ul>
+
+    <h3>
+      Билеты с Ponominalu:
+      <%= link_to 'Добавить билет Ponominalu', new_manage_afisha_ponominalu_ticket_path(resource), :class => 'button' %>
+    </h3>
+
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Название</td>
+          <td>Билетов</td>
+          <td>Действия</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% resource.ponominalu_tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.ponominalu_id %></td>
+            <td><%= ticket %></td>
+            <td><%= ticket.count %></td>
+            <td>
+              <%= link_to 'редактировать', edit_manage_afisha_ponominalu_ticket_path(ticket.afisha, ticket) %>
+              <%= link_to 'удалить', manage_afisha_ponominalu_ticket_path(ticket.afisha, ticket), :confirm => 'Вы уверены?', :method => :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </span>
 </div>
 <div>
