@@ -1,12 +1,8 @@
-<% @review.gallery_images.each do |image| %>
+<% review.all_images.each do |image| %>
   <li>
-    <div class='image_wrapper'>
-      <%= image_tag resized_image_url(image.file.url, 222, 166), :size => '222x166', :alt => image.description  %>
-    </div>
-    <%= link_to 'удалить', my_review_gallery_image_path(review, image),
-      :method => :delete,
-      :remote => true,
-      :class => 'ajax_delete icon-trash show_tipsy',
-      :title => 'Удалить'  %>
+    <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
+      <%= image_tag resized_image_url(image.file_url, 230, 172), :size => '230x172', :alt => image.description %>
+    <% end %>
+    <%= link_to 'удалить', [:manage, review, image], :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить'  %>
   </li>
 <% end %>

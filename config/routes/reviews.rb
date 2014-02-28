@@ -40,6 +40,7 @@ Znaigorod::Application.routes.draw do
       resources :gallery_images, :except => [:index, :show] do
         delete 'destroy_file', :on => :member, :as => :destroy_file
       end
+      resources :gallery_social_images, :only => [:edit, :update, :destroy]
 
       get 'images/add'  => 'reviews#add_images',  :on => :member
       put 'publish' => 'reviews#send_to_published', :on => :member
@@ -50,6 +51,7 @@ Znaigorod::Application.routes.draw do
     Review.descendant_names.each do |name|
       resources name, :only => :show do
         resources :gallery_images, :only => :destroy
+        resources :gallery_social_images, :only => [:edit, :update, :destroy]
       end
     end
   end
