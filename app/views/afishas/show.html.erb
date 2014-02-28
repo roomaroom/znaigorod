@@ -95,9 +95,11 @@
               <div class='ticket_prices'>
                 Цена
                 <span class='price'>
-                  <%= ticket.min_price %> - <%= ticket.max_price %>р.
+                  <%= ticket.price %>
                 </span>
               </div>
+
+              <div class='ticket_for_sale'><%= t 'copy.for_sale', count: ticket.count %></div>
 
               <div class="has_items_for_sale">
                 <%= link_to ticket.link, :target => '_blank' do %>

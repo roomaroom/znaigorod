@@ -25,6 +25,10 @@ class PonominaluTicket < ActiveRecord::Base
     "#{raw_info.message.link}?promote=#{Settings['ponominalu.promote']}"
   end
 
+  def price
+    min_price == max_price ? "#{min_price}р." : "#{min_price} - #{max_price}р."
+  end
+
   private
 
   def api_url
