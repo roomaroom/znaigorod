@@ -667,3 +667,79 @@
           display: inline-block
           height: 70px
           width: 159px
+
+.etalonnaya-svadba
+  > h1
+    display: none
+
+  .description
+    +clearfix
+    font-size: 14px
+
+    h1, h2
+      background: none
+      color: #179497
+      font-size: 22px
+      line-height: 32px
+      margin: 0
+      padding: 0
+
+    p, ul
+      margin-bottom: 15px
+
+    ul li
+      margin-bottom: 3px
+
+    .left
+      float: left
+      width: 405px
+
+      .contest_logo
+        background: transparent image_url('public/svadbavsibiri_contest/main.png') no-repeat center center
+        height: 465px
+        width: 405px
+
+    .right
+      float: left
+      width: 755px
+      margin: 0 0 0 20px
+
+    .main
+      clear: both
+
+      h2
+        color: #222
+        margin: 0 0 10px 0
+
+      .green_list, .yellow_list
+        +border-radius(10px)
+        padding: 10px 15px
+
+      .green_list
+        background: #179497
+        color: #fff
+
+        li
+          margin: 0 0 15px 0
+
+        li:last-child
+          margin: 0
+
+      .yellow_list
+        background: #fedb32
+        color: #222
+
+      .join
+        +border-radius(3px)
+        background: #4f76a1 image_url('public/svadbavsibiri_contest/vk.png') no-repeat left center
+        background-size: 135px
+        color: #fff
+        display: block
+        height: 35px
+        line-height: 35px
+        margin: 0 20%
+        padding: 0px 10px
+        text-align: center
+
+      .sponsors
+      .info
