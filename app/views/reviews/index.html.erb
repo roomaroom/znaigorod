@@ -2,9 +2,19 @@
 <% content_for :meta_keywords, @presenter.meta_keywords %>
 <% content_for :meta_description, @presenter.meta_description %>
 
+<% if page_meta %>
+  <% content_for :extra_meta do %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% end %>
+<% end %>
+
 <div class="presentation_filters reviews">
   <div class="filter_header">
-    <h1><%= t('meta.reviews.page_header') %></h1>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% else %>
+      <h1><%= t('meta.reviews.page_header') %></h1>
+    <% end %>
   </div>
 
   <div class="order_by">
