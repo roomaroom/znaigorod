@@ -1,0 +1,2 @@
+module YandexCompanies
+end
