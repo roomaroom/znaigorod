@@ -42,9 +42,10 @@ Znaigorod::Application.routes.draw do
       end
       resources :gallery_social_images, :only => [:edit, :update, :destroy]
 
-      get 'images/add'  => 'reviews#add_images',  :on => :member
-      put 'publish' => 'reviews#send_to_published', :on => :member
-      put 'draft'   => 'reviews#send_to_draft',     :on => :member
+      get 'poster/edit' => 'reviews#edit_poster',       :on => :member
+      get 'images/add'  => 'reviews#add_images',        :on => :member
+      put 'publish'     => 'reviews#send_to_published', :on => :member
+      put 'draft'       => 'reviews#send_to_draft',     :on => :member
     end
 
     # TODO: Used at app/views/manage/gallery_images/_gallery_image.html.erb:5
