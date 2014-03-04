@@ -66,7 +66,11 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def html_image(image, width, height)
-    return "<li>#{h.link_to(h.image_tag(h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title), h.review_path(review), :title => review.title)}</li>"
+    "<li>#{h.link_to(h.image_tag(h.resized_image_url(image.file_url, width, height), :size => '#{width}x#{height}', :alt => review.title, :title => review.title), h.review_path(review), :title => review.title)}</li>"
+  end
+
+  def html_social_image(image, width, height)
+    "<li>#{h.link_to(h.vk_image_tag(image, width, height), h.review_path(review), :title => review.title, :style => "display: block; width: #{width}px; height: #{height}px; position: relative; overflow: hidden;")}</li>"
   end
 
   def annotation_gallery(width = 234, height = 158)
@@ -76,11 +80,15 @@ class ReviewDecorator < ApplicationDecorator
       index == 0 ? gallery << html_image(image, width, height) : gallery << html_image(image, width/2 - 1, height/2 - 1)
     end
 
+    review.gallery_social_images.limit(6).each_with_index do |image, index|
+      index == 0 ? gallery << html_social_image(image, width, height) : gallery << html_social_image(image, width/2 - 1, height/2 - 1)
+    end if gallery.blank?
+
     gallery.html_safe
   end
 
   def has_annotation_gallery?
-    gallery_images.count > 5
+    gallery_images.count > 5 || gallery_social_images.count > 5
   end
 
   def images

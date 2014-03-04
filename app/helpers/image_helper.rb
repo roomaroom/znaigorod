@@ -20,4 +20,27 @@ module ImageHelper
   def image_direct_url(path)
     URI.join(root_url, image_path(path))
   end
+
+  def vk_image_tag(image, width = 234, height = 158)
+    scale = image.width.to_f / image.height.to_f
+    new_width  = width
+    new_height = width / scale
+
+    delta = new_height - height
+
+    if delta < 0
+      new_width += delta.abs
+      new_height += delta.abs
+    end
+
+    margin_top  = (height/2.0 - new_height/2.0).to_i
+    margin_left = (width/2.0  - new_width/2.0).to_i
+
+    image_tag image.file_url,
+              :width  => new_width,
+              :height => new_height,
+              :alt    => image.description,
+              :title  => image.description,
+              :style  => "position: absolute; left: 0; top: #{margin_top}px; left: #{margin_left}px; display: block;"
+  end
 end
