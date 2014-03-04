@@ -18,7 +18,7 @@
 <%= content_for :content do %>
   <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
   <div class='svadbavsibiri_contest'>
-    <%= link_to 'Эталонная свадбьба. Мы перевернем ваше представление о свадьбе!', '/contests/etalonnaya-svadba', :title => ' Мега валентинка. Открой свое сердце.', :class => 'svadbavsibiri_contest_header' %>
+    <%= link_to 'Эталонная свадбьба. Мы перевернем ваше представление о свадьбе!', '/contests/etalonnaya-svadba', :title => 'Эталонная свадбьба. Мы перевернем ваше представление о свадьбе!', :class => 'svadbavsibiri_contest_header' %>
     <div class='svadbavsibiri_contest_cotent'>
       <%= render :partial => 'commons/public_header' %>
       <%= render :partial => 'commons/public_content' %>
