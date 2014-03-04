@@ -9,6 +9,4 @@
     <% end %>
     <span class="counter fa fa-camera"> <%= review.all_images.size %></span>
   </ul>
-<% else %>
-  <%= link_to image_tag(review.annotation_image(width, height), :size => "#{width}x#{height}"), my_review_path(review) %>
 <% end %>

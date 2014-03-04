@@ -76,19 +76,19 @@ class ReviewDecorator < ApplicationDecorator
   def annotation_gallery(width = 234, height = 158)
     gallery = ''
 
-    review.gallery_images.limit(6).each_with_index do |image, index|
-      index == 0 ? gallery << html_image(image, width, height) : gallery << html_image(image, width/2 - 1, height/2 - 1)
+    review.all_images.limit(6).each_with_index do |image, index|
+      if image.is_a?(GalleryImage)
+        index == 0 ? gallery << html_image(image, width, height) : gallery << html_image(image, width/2 - 1, height/2 - 1)
+      else
+        index == 0 ? gallery << html_social_image(image, width, height) : gallery << html_social_image(image, width/2 - 1, height/2 - 1)
+      end
     end
-
-    review.gallery_social_images.limit(6).each_with_index do |image, index|
-      index == 0 ? gallery << html_social_image(image, width, height) : gallery << html_social_image(image, width/2 - 1, height/2 - 1)
-    end if gallery.blank?
 
     gallery.html_safe
   end
 
   def has_annotation_gallery?
-    gallery_images.count > 5 || gallery_social_images.count > 5
+    (gallery_images.count + gallery_social_images.count) > 5
   end
 
   def images
