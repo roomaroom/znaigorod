@@ -3,18 +3,18 @@ body
   +min-width(1270px)
 
 .svadbavsibiri_contest
-  background: #fff
   margin: 160px 0 0 0
 
   .svadbavsibiri_contest_header
-    background: transparent image_url('public/svadbavsibiri_contest/logo.jpg') no-repeat top center
+    background: #fff
+    +background(image_url('public/svadbavsibiri_contest/logo.jpg') no-repeat top center, linear-gradient(right, #fcc92f 50%, #fff 50%))
     display: block
-    height: 160px
+    height: 150px
     margin: -160px auto 0 auto
     text-indent: -9999em
 
   .svadbavsibiri_contest_cotent
-    margin: -10px auto 0 auto
+    margin: 0 auto
 
     .header_wrapper
       border-bottom: none
@@ -25,19 +25,12 @@ body
       .header
         background: #222
         background-color: #fff
-        padding-top: 30px
-
-        .logo
-          top: 30px
-
-        .tomsk
-          top: 30px
+        padding: 0px
 
         .dashboard
-          top: 30px
+          top: 5px
 
     .filters_wrapper
-      width: 1200px
       padding: 10px 0 0 0
       margin: 0 auto
 

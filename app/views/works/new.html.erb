@@ -36,7 +36,7 @@
         <%= link_to 'соглашения', '#', :class => 'agreement_link' %>
 
         <div class="agreement_text">
-          <%= @contest.agreement.as_html %>
+          <%= @contest.agreement.html_safe %>
         </div>
       </div>
 

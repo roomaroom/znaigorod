@@ -684,6 +684,10 @@
       margin: 0
       padding: 0
 
+    h3
+      font-size: 16px
+      line-height: 24px
+
     p, ul
       margin-bottom: 15px
 
@@ -706,6 +710,7 @@
 
     .main
       clear: both
+      margin: 0 0 20px 0
 
       h2
         color: #222
@@ -729,6 +734,9 @@
         background: #fedb32
         color: #222
 
+        a
+          color: #222
+
       .join
         +border-radius(3px)
         background: #4f76a1 image_url('public/svadbavsibiri_contest/vk.png') no-repeat left center
@@ -737,9 +745,42 @@
         display: block
         height: 35px
         line-height: 35px
-        margin: 0 20%
+        margin: 25px 20% 15px 20%
         padding: 0px 10px
         text-align: center
 
+
       .sponsors
+        float: left
+        width: 610px
+
+        a.svadbavsibiri
+          background: transparent image_url('public/svadbavsibiri_contest/svadbavsibiri.png') no-repeat left center
+          display: inline-block
+          height: 86px
+          text-indent: -9999em
+          width: 590px
+
+      .partners
+        float: left
+        width: 570px
+
+        a.znaigorod
+          background: transparent image_url('public/mega_valentinka/znaigorod.png') no-repeat center center
+          display: inline-block
+          height: 70px
+          text-indent: -9999em
+          width: 93px
+
       .info
+        +border-radius(5px)
+        clear: both
+        background: #179497
+        color: #fff
+        font-size: 17px
+        line-height: 24px
+        padding: 10px 20px
+        width: 675px
+
+        span
+          color: #fedb32
