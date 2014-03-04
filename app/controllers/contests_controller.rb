@@ -7,6 +7,7 @@ class ContestsController < ApplicationController
   def show
     @contest = Contest.find(params[:id])
     @works = @contest.works.ordered.page(params[:page]).per(12)
+    @reviews = ReviewDecorator.decorate(@contest.reviews)
 
     render :partial => 'works/list' and return if request.xhr?
   end

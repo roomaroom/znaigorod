@@ -9,16 +9,20 @@ class Reviews::LinkWith
     items_hash.to_json
   end
 
-  private
+  def self.available_types
+    %w[afisha organization contest]
+  end
+
+  # private
 
   def items
-    return @items if @items
+    @items ||= begin
+                 Sunspot.search(Afisha, Organization, Contest) {
+                   keywords term, :fields => [:title, :title_ru, :title_translit]
 
-    @items = Sunspot.search(Afisha, Organization) {
-      keywords term, :fields => [:title, :title_ru, :title_translit]
-
-      with :state, :published
-    }.results
+                   with :state, :published
+                 }.results
+               end
   end
 
   def afisha_hash(item)
@@ -38,6 +42,13 @@ class Reviews::LinkWith
     {
       :value => "organization_#{item.id}",
       :label => "#{item.title}, #{item.address}"
+    }
+  end
+
+  def contest_hash(item)
+    {
+      :value => "contest_#{item.id}",
+      :label => "#{item.title} (Конкурс)"
     }
   end
 

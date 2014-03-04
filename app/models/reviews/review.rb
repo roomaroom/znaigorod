@@ -27,6 +27,7 @@ class Review < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :afisha
+  belongs_to :contest
   belongs_to :organization
 
   has_many :all_images,            :as => :attachable, :class_name => 'Attachment', :conditions => { :type => %w[GalleryImage GallerySocialImage] }
@@ -130,7 +131,7 @@ class Review < ActiveRecord::Base
 
   def handle_link_with_value
     if link_with_reset == 'true'
-      self.afisha_id = self.organization_id = nil
+      self.afisha_id = self.organization_id = self.contest_id = nil
       return true
     end
 
@@ -138,16 +139,20 @@ class Review < ActiveRecord::Base
 
     class_name, id = link_with_value.split('_')
 
-    return false unless %w[afisha organization].include?(class_name)
+    return false unless Reviews::LinkWith.available_types.include?(class_name)
 
     object = class_name.classify.constantize.find(id)
 
-    if object.is_a?(Afisha)
+    self.afisha_id = self.organization_id = self.contest_id = nil
+
+    case object
+    when Afisha
       self.afisha = object
       self.organization = object.organizations.first
-    else
-      self.afisha = nil
+    when Organization
       self.organization = object
+    when Contest
+      self.contest = object
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228033433) do
+ActiveRecord::Schema.define(:version => 20140304053753) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -734,6 +734,7 @@ ActiveRecord::Schema.define(:version => 20140228033433) do
     t.text     "cached_content_for_show"
     t.text     "poster_vk_id"
     t.boolean  "only_tomsk"
+    t.integer  "contest_id"
   end
 
   add_index "reviews", ["afisha_id"], :name => "index_reviews_on_afisha_id"

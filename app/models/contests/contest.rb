@@ -6,8 +6,8 @@ class Contest < ActiveRecord::Base
   attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :participation_ends_at, :vfs_path, :og_description, :og_image
 
   has_many :works, :dependent => :destroy
-
   has_many :accounts, :through => :works, :uniq => true
+  has_many :reviews
 
   validates_presence_of :title, :starts_at, :ends_at, :participation_ends_at
 
@@ -23,6 +23,17 @@ class Contest < ActiveRecord::Base
     :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
     :message => 'Изображение должно быть в формате jpeg, jpg или png'
   }
+
+  alias_attribute :title_ru,       :title
+  alias_attribute :title_translit, :title
+
+  searchable do
+    text :title,          :boost => 1.0 * 1.2
+    text :title_ru,       :boost => 1.0,        :more_like_this => true
+    text :title_translit, :boost => 0.0,        :stored => true
+
+    string(:state) { :published }
+  end
 
   def self.generate_vfs_path
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
