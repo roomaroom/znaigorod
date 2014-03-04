@@ -13,7 +13,7 @@ class Reviews::LinkWith
     %w[afisha organization contest]
   end
 
-  # private
+  private
 
   def items
     @items ||= begin
