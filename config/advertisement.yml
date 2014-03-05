@@ -48,11 +48,11 @@ main_page_afisha:
       afisha_slug: 'turnir-po-mortal-kombat-9'
       replaced_count: 1
 
-    '1.2':
-      from: '2014-02-28 21:00'
-      to: '2014-03-01 21:00'
+    '1.1':
+      from: '2014-03-05 14:00'
+      to: '2014-03-09 14:00'
       content_type: 'afisha'
-      afisha_slug: '01-03-martovskiy-za-poy'
+      afisha_slug: 'prazdnichnaya-programma-den-vesny-i-krasoty'
       replaced_count: 1
 
     '1.5':
