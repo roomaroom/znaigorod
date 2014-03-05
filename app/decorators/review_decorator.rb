@@ -20,7 +20,7 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def has_annotation_image?
-    true if review.poster_url? || review.poster_image_url?
+    true if review.poster_url? || review.poster_image_url? || review.gallery_images.any? || review.gallery_social_images.any?
   end
 
   def annotation_image(width, height)
@@ -28,6 +28,10 @@ class ReviewDecorator < ApplicationDecorator
       review.poster_url
     elsif review.poster_image_url?
       h.resized_image_url(review.poster_image_url, width, height)
+    elsif review.gallery_images.any?
+      h.resized_image_url(review.gallery_images.first.file_url, width, height)
+    elsif review.gallery_social_images.any?
+      review.gallery_social_images.first.file.url
     else
       'public/post_poster_stub.jpg'
     end
