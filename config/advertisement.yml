@@ -42,10 +42,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-02-27 21:00'
-      to: '2014-02-28 21:00'
+      from: '2014-03-05 14:00'
+      to: '2014-03-06 14:00'
       content_type: 'afisha'
-      afisha_slug: '28-02-fevralskiy-diskach-90-h'
+      afisha_slug: 'turnir-po-mortal-kombat-9'
       replaced_count: 1
 
     '1.2':
