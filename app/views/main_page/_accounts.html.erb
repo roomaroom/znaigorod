@@ -19,7 +19,7 @@
             <li class="title">
               <div class="text">Ищут компанию:</div>
             </li>
-            <% @accounts.categories_links.take(8).each do |link| %>
+            <% @accounts.categories_links.take(7).each do |link| %>
               <li class='<%= link[:klass] %>'>
                 <%= link_to send("accounts_#{link[:klass]}_path") do %>
                   <span class='name'><%= link[:title] %></span>
