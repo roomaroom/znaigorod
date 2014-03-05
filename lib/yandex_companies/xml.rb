@@ -14,16 +14,6 @@ module YandexCompanies
       suborganizations.inject({}) { |hash, suborganization| hash[suborganization] = suborganization.organization; hash }
     end
 
-    def normalize_title(title)
-      #[/,\s*сауна/, /,\s*досугово-оздоровительный комплекс/].each do |regex|
-        #return title.gsub regex, '' if title.match(regex)
-      #end
-
-      #raise "Can't normalize title: #{title}" if title.include?(',')
-
-      title
-    end
-
     def country
       'Россия'
     end
@@ -42,25 +32,15 @@ module YandexCompanies
         raise("Not valid url #{url}")
     end
 
-    def date_day_short_name(date)
-      I18n.l(date, :format => "%a").mb_chars.downcase.to_s
-    end
+    def info_page(organization)
+      organization.subdomain? ?
+        "http://#{organization.subdomain}.#{Settings['app.host']}" :
+        organization_url(organization, :host => Settings['app.host'])
 
-    def schedules_equals?(schedule_one, schedule_two)
-      schedule_one.from == schedule_two.from &&
-        schedule_one.to == schedule_two.to
-    end
-
-    def working_time(organization)
-      'working time'
     end
 
     def actualization_date(suborganization)
       [suborganization.updated_at, suborganization.organization.updated_at].max.to_i
-    end
-
-    def images(suborganization)
-      suborganization.gallery_images + suborganization.organization.gallery_images
     end
 
     def car_park(suborganization)
@@ -101,7 +81,7 @@ module YandexCompanies
                      suborganizations_with_organization.each do |suborganization, organization|
                        companies.company do |company|
                          company.send :'company-id',                    organization.id
-                         company.name(:lang => 'ru')                    { company.text normalize_title(organization.title) }
+                         company.name(:lang => 'ru')                    { company.text organization.title }
                          company.address(:lang => 'ru')                 { company.text organization.address }
                          company.country(:lang => 'ru')                 { company.text country }
                          company.send(:'admn-area', :lang => 'ru')      { company.text admn_area }
@@ -114,10 +94,12 @@ module YandexCompanies
                            end
                          end
 
+                         # TODO: phones
+
                          company.email                 organization.email if organization.email?
                          company.url                   validated_url(organization.site) if organization.site?
-                         company.send :'info-page',    organization_url(organization, :host => Settings['app.host'])
-                         #company.send :'working-time', working_time(organization)
+                         company.send :'info-page',    info_page(organization)
+                         # TODO: working time
 
                          rubrics.each do |rubric|
                            company.send :'rubric-id', rubric

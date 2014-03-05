@@ -14,6 +14,12 @@ module YandexCompanies
       ['184106356']
     end
 
+    def images(suborganization)
+      suborganization.organization.gallery_images +
+        suborganization.gallery_images +
+        suborganization.sauna_halls.flat_map(&:gallery_images)
+    end
+
     def self.methods_data
       [
         {
