@@ -51,7 +51,7 @@ class Sape
     Sape.new( {
       :user => user,
       :host => request.host,
-      :uri => request.original_url,
+      :uri => request.path,
       :remote_ip => request.remote_ip,
       :filename => Rails.root.join('sape', user, 'links.db')
     }.merge(extra_opts) )
