@@ -173,5 +173,6 @@ class Review < ActiveRecord::Base
     return poster_url if poster_url?
     return poster_image_url if poster_image_url?
     return gallery_images.first.file_url if gallery_images.any?
+    return gallery_social_images.first.file_url if gallery_social_images.any?
   end
 end
