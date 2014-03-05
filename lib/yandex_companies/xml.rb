@@ -26,12 +26,6 @@ module YandexCompanies
       'город Томск'
     end
 
-    def validated_url(url)
-      url.match(/^http:\/\//) ?
-        url :
-        raise("Not valid url #{url}")
-    end
-
     def info_page(organization)
       organization.subdomain? ?
         "http://#{organization.subdomain}.#{Settings['app.host']}" :
@@ -94,14 +88,15 @@ module YandexCompanies
                            end
                          end
 
-                         # TODO: phones
 
                          company.email                 organization.email if organization.email?
-                         company.url                   validated_url(organization.site) if organization.site?
+                         company.url                   organization.site if organization.site?
                          company.send :'info-page',    info_page(organization)
+
+                         # TODO: phones
                          # TODO: working time
 
-                         rubrics.each do |rubric|
+                         rubrics(suborganization).each do |rubric|
                            company.send :'rubric-id', rubric
                          end
 

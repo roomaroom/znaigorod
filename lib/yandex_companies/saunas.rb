@@ -10,7 +10,7 @@ module YandexCompanies
       'known-features_saunas_ru.xml'
     end
 
-    def rubrics
+    def rubrics(suborganization)
       ['184106356']
     end
 
