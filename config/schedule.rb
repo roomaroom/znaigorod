@@ -57,3 +57,7 @@ every 5.minutes do
   rake 'refresh_copies'
   rake 'kill_offers'
 end
+
+every 15.minutes do
+  rake 'get_sape_links'
+end
