@@ -69,10 +69,28 @@ module YandexCompanies
       { :name => 'car_park', :value => '1' }
     end
 
+    def payment_card(suborganization)
+      return nil unless suborganization.organization.non_cash
+
+      { :name => 'payment_method', :value => 'payment_card' }
+    end
+
     def type_parking(suborganization)
       return nil unless suborganization.organization.organization_stand
 
       { :name => 'type_parking', :value => 'guarded_parking' } if suborganization.organization.organization_stand.guarded?
+    end
+
+    def features(suborganization)
+      {}.tap do |features|
+
+        features['feature-boolean'] = []
+        features['feature-boolean'] << car_park(suborganization) if car_park(suborganization)
+
+        features['feature-enum-multiple'] = []
+        features['feature-enum-multiple'] << type_parking(suborganization) if type_parking(suborganization)
+        features['feature-enum-multiple'] << payment_card(suborganization) if payment_card(suborganization)
+      end
     end
 
     def build_xml
@@ -99,7 +117,7 @@ module YandexCompanies
                          company.email                 organization.email if organization.email?
                          company.url                   validated_url(organization.site) if organization.site?
                          company.send :'info-page',    organization_url(organization, :host => Settings['app.host'])
-                         company.send :'working-time', working_time(organization)
+                         #company.send :'working-time', working_time(organization)
 
                          rubrics.each do |rubric|
                            company.send :'rubric-id', rubric
