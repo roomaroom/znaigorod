@@ -98,7 +98,7 @@ class Sape
       raise ContentError.new("no '__sape_new_url__' in links text") unless all_links['__sape_new_url__']
       file.seek(0)
       file.truncate(0)
-      file.write(content)
+      file.write(content.force_encoding('utf-8'))
       file.close
       return all_links
     end
