@@ -2,10 +2,10 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-02-28 19:00'
-      to: '2014-03-01 19:00'
+      from: '2014-03-06 11:00'
+      to: '2014-03-18 11:00'
       content_type: 'afisha'
-      afisha_slug: 'kontsert-ellai-v-nk-fakel-5-marta'
+      afisha_slug: 'pitstse-rio-10-let-i-my-darim-podarki'
       replaced_count: 4
 
     '1.1':
