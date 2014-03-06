@@ -78,6 +78,7 @@ class MovieSyncer
       title.squish!
       title.gsub!('Одноклассники.ru: НаCLICKай удачу', 'Одноклассники.ru')
       title.gsub!('Пришествие дъявола', 'Пришествие Дьявола')
+      title.gsub!('300 спартанцев: Рассвет империи', '300 спартанцев: Расцвет империи')
       Afisha.find_by_title(title) || find_similar_movie_by(title)
     end
 
