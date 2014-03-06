@@ -26,6 +26,18 @@ module YandexCompanies
       'город Томск'
     end
 
+    def known_features_href
+      nil
+    end
+
+    def rubrics(suborganization)
+      []
+    end
+
+    def images(suborganization)
+      []
+    end
+
     def info_page(organization)
       organization.subdomain? ?
         "http://#{organization.subdomain}.#{Settings['app.host']}" :
@@ -119,7 +131,7 @@ module YandexCompanies
                        end
                      end
 
-                     xml.send :'xi:include', :href => known_features_href
+                     xml.send :'xi:include', :href => known_features_href if known_features_href.present?
                    end
                  end
                end
