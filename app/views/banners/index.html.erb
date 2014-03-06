@@ -6,7 +6,7 @@
       <%= image_tag "#{root_path}images/banners/88_31.gif", :size => '88x31' %>
 
       <%= label_tag :code, 'Код для вставки:' %>
-      <%= text_area_tag :code, link_to(image_tag("#{root_url}images/banners/88_31.gif", :size => '88x31'), afisha_index_url, :target => '_blank', :title => 'ЗнайГород') %>
+      <%= text_area_tag :code, link_to(image_tag("#{root_url}images/banners/88_31.gif", :size => '88x31'), afisha_index_url, :target => '_blank', :title => 'Афиша Томска') %>
     </div>
 
     <div class="second banner">
@@ -15,7 +15,7 @@
       <%= image_tag "#{root_path}images/banners/240_120.jpg", :size => '240x120' %>
 
       <%= text_area_tag :second_banner_hidden_code,
-        link_to(image_tag(("#{root_url}images/banners/240_120.jpg")), afisha_index_url, :target => '_blank', :title => 'ЗнайГород'),
+        link_to(image_tag(("#{root_url}images/banners/240_120.jpg")), afisha_index_url, :target => '_blank', :title => 'Афиша Томска'),
         :class => 'hidden_code' %>
 
       <%= label_tag :second_banner_width, 'Ширина:' %>
@@ -33,7 +33,7 @@
       <%= image_tag "#{root_path}images/banners/120_240.jpg", :size => '120x240' %>
 
       <%= text_area_tag :third_banner_hidden_code,
-        link_to(image_tag("#{root_url}images/banners/120_240.jpg"), afisha_index_url, :target => '_blank', :title => 'ЗнайГород'),
+        link_to(image_tag("#{root_url}images/banners/120_240.jpg"), afisha_index_url, :target => '_blank', :title => 'Афиша Томска'),
         :class => 'hidden_code' %>
 
       <%= label_tag :third_banner_width, 'Ширина:' %>
