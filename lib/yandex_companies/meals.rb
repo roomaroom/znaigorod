@@ -1,7 +1,11 @@
 module YandexCompanies
   class Meals < Xml
     def initialize
-      @suborganizations = Meal.includes(:gallery_images, :organization => [:address, :gallery_images, :schedules]).all
+      @suborganizations = Meal.includes(
+        :gallery_images,
+        :menus => [:menu_positions],
+        :organization => [:address, :gallery_images, :schedules]
+      ).all
     end
 
     private
@@ -11,7 +15,25 @@ module YandexCompanies
     end
 
     def rubrics(suborganization)
-      ['184106356']
+      restaurants           = '184106394'
+      cafe_and_coffee_shops = '184106390'
+      pizzerias             = '184106392'
+      pubs_bars             = '184106384'
+      canteens              = '184106396'
+      sushi_bars            = '1387788996'
+
+      result = []
+
+      result << restaurants           if suborganization.categories.include?('Рестораны')
+      result << cafe_and_coffee_shops if (suborganization.categories & ['Кафе', 'Кофейни']).any?
+      result << pizzerias             if suborganization.categories.include?('Пиццерии')
+      result << pubs_bars             if suborganization.categories.include?('Бары')
+      result << canteens              if suborganization.categories.include?('Столовые')
+      result << sushi_bars            if suborganization.categories.include?('Суши-бары')
+
+      return result[0..2] if result.any?
+
+      [cafe_and_coffee_shops]
     end
 
     def images(suborganization)
@@ -54,11 +76,109 @@ module YandexCompanies
       end
     end
 
+    def self.special_menu_data
+      [
+        {
+          :pass => proc { |suborg| suborg.menus.flat_map(&:category).include? 'Выпечка' },
+          :success => { :name => 'special_menu', :value => 'pancakes_menu' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include? 'вегетарианское меню' },
+          :success => { :name => 'special_menu', :value => 'vegetarian_menu' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include? 'гриль-меню' },
+          :success => { :name => 'special_menu', :value => 'grill_menu' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include? 'детское меню' },
+          :success => { :name => 'special_menu', :value => 'childrens_menu' }
+        }
+      ]
+    end
+
+    def self.boolean_data
+      [
+        {
+          :pass => proc { |suborg| suborg.features.include?('кальян') },
+          :success => { :name => 'hookah', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('vip-зал') },
+          :success => { :name => 'vip_room', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('бильярд') },
+          :success => { :name => 'billiards', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('wi-fi') },
+          :success => { :name => 'wi_fi', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('боулинг') },
+          :success => { :name => 'bowling', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.menus.flat_map(&:menu_positions).flat_map(&:category).include?('Бизнес ланч') },
+          :success => { :name => 'business_lunch', :value => '1' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('спортивные трансляции') },
+          :success => { :name => 'sports_broadcasts', :value => '1' }
+        }
+      ]
+    end
+
+    def self.games_data
+      [
+        {
+          :pass => proc { |suborg| suborg.features.include?('нарды') },
+          :success => { :name => 'type_board_games', :value => 'backgammon' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('шахматы') },
+          :success => { :name => 'type_board_games', :value => 'chess' }
+        },
+
+        {
+          :pass => proc { |suborg| suborg.features.include?('шашки') },
+          :success => { :name => 'type_board_games', :value => 'checkers' }
+        }
+      ]
+    end
+
+    (special_menu_data + boolean_data + games_data).each do |e|
+      define_method e[:success][:value] do |suborg|
+        return e[:success] if e[:pass].call(suborg)
+
+        nil
+      end
+    end
+
     def features(suborganization)
       super_features = super
 
       self.class.cuisines_data.each do |cuisine_type, _|
         super_features['feature-enum-multiple'] << send(cuisine_type, suborganization) if send(cuisine_type, suborganization)
+      end
+
+      (self.class.special_menu_data + self.class.games_data).each do |e|
+        super_features['feature-enum-multiple'] << send(e[:success][:value], suborganization) if send(e[:success][:value], suborganization)
+      end
+
+      self.class.boolean_data.each do |e|
+        super_features['feature-boolean'] << send(e[:success][:value], suborganization) if send(e[:success][:value], suborganization)
       end
 
       super_features
