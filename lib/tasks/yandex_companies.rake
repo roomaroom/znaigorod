@@ -1,6 +1,6 @@
 desc 'Generate xml files for Yandex'
 task :generate_yandex_companies_xml_files => :environment do
-  dir = Rails.root.join('public', 'yandex_xml')
+  dir = Rails.root.join('public', 'yandex', 'integration', 'companies')
 
   %w[billiards creations cultures entertainments meals saunas sports].each do |kind|
     klass = "yandex_companies/#{kind}".camelize.constantize

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Tanning studios (184105816) -->
+<known-unit name="money"/>
+<unit-value name="money" value="rub"/>
+<unit-value name="money" value="grn"/>
+<unit-value name="money" value="k_rub"/>
+<unit-value name="money" value="rub_20_min"/>
+<unit-value name="money" value="grn_20_min"/>
+<unit-value name="money" value="k_rub_year"/>
+<unit-value name="money" value="k_grn_year"/>
+<unit-value name="money" value="k_rub_month"/>
+<unit-value name="money" value="rub_hour"/>
+<unit-value name="money" value="rub_min"/>
+<unit-value name="money" value="byr"/>
+<unit-value name="money" value="grn_month"/>
+<unit-value name="money" value="grn_year"/>
+<unit-value name="money" value="rub_day"/>
+<unit-value name="money" value="grn_day"/>
+<unit-value name="money" value="usd"/>
+<unit-value name="money" value="euro"/>
+<unit-value name="money" value="grn_hour"/>
+<unit-value name="money" value="usd_day"/>
+<unit-value name="money" value="tenge_hour"/>
+<unit-value name="money" value="tenge_30_min"/>
+<unit-value name="money" value="tng"/>
+<known-boolean name="car_park"/>
+<!-- types of tanning beds -->
+<known-enum-multiple name="types_of_tanning_beds"/>
+<enum-value name="types_of_tanning_beds">vertical_solarium</enum-value>
+<enum-value name="types_of_tanning_beds">sunbeds</enum-value>
+<enum-value name="types_of_tanning_beds">turbo_solarium</enum-value>
+<enum-value name="types_of_tanning_beds">bronzing</enum-value>
+<!-- chair-solarium -->
+<enum-value name="types_of_tanning_beds">wake_sun_deck</enum-value>
+<known-enum-multiple name="accepted_credit_cards"/>
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<known-boolean name="wi_fi"/>
+<!-- Gift certificate -->
+<known-boolean name="gift_certificate"/>
+<known-enum-multiple name="payment_method"/>
+<enum-value name="payment_method">cash</enum-value>
+<!-- payment by card -->
+<enum-value name="payment_method">payment_card</enum-value>
+<enum-value name="payment_method">electronic_money</enum-value>
+<enum-value name="payment_method">wire_transfer</enum-value>
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- Discounts on services preferential categories -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- discount system -->
+<enum-value name="payment_method">discount_system</enum-value>
+<enum-value name="payment_method">prepayment</enum-value>
+<enum-value name="payment_method">postpay</enum-value>
+<!-- tanning cosmetics  -->
+<known-boolean name="tanning_cosmetics"/>
+<known-range-in-units-single name="price_1_min" unit="money"/>
+<known-enum-single name="price_category"/>
+<enum-value name="price_category">economy</enum-value>
+<enum-value name="price_category">premium</enum-value>
+<enum-value name="price_category">standart</enum-value>
+<known-boolean name="payment_by_credit_card"/>
+<known-boolean name="availability_of_discounts"/>
+<!-- preliminary registration -->
+<known-boolean name="preliminary_registration"/>
+</known-features>

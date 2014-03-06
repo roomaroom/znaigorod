@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Restaurants (184106394); Cafes and coffee shops (184106390); Pizzerias (184106392); Pubs, bars (184106384); Fast food (184106386); Snack (184106388); Canteens (184106396); Sports Bars (770931537); Sushi Bars (1387788996) -->
+<known-unit name="money"/>
+<unit-value name="money" value="rub"/>
+<unit-value name="money" value="grn"/>
+<unit-value name="money" value="k_rub"/>
+<unit-value name="money" value="rub_20_min"/>
+<unit-value name="money" value="grn_20_min"/>
+<unit-value name="money" value="k_rub_year"/>
+<unit-value name="money" value="k_grn_year"/>
+<unit-value name="money" value="k_rub_month"/>
+<unit-value name="money" value="rub_hour"/>
+<unit-value name="money" value="rub_min"/>
+<unit-value name="money" value="byr"/>
+<unit-value name="money" value="grn_month"/>
+<unit-value name="money" value="grn_year"/>
+<unit-value name="money" value="rub_day"/>
+<unit-value name="money" value="grn_day"/>
+<unit-value name="money" value="usd"/>
+<unit-value name="money" value="euro"/>
+<unit-value name="money" value="grn_hour"/>
+<unit-value name="money" value="usd_day"/>
+<unit-value name="money" value="tenge_hour"/>
+<unit-value name="money" value="tenge_30_min"/>
+<unit-value name="money" value="tng"/>
+<known-boolean name="car_park"/>
+<known-boolean name="karaoke"/>
+<known-boolean name="nursery"/>
+<known-enum-multiple name="type_cuisine"/>
+<enum-value name="type_cuisine">australia_cuisine</enum-value>
+<enum-value name="type_cuisine">austrian_cuisine</enum-value>
+<enum-value name="type_cuisine">authors_cuisine</enum-value>
+<enum-value name="type_cuisine">azerbaijani_cuisine</enum-value>
+<enum-value name="type_cuisine">asian_cuisine</enum-value>
+<enum-value name="type_cuisine">american_cuisine</enum-value>
+<enum-value name="type_cuisine">english_cuisine</enum-value>
+<enum-value name="type_cuisine">arabian_cuisine</enum-value>
+<enum-value name="type_cuisine">argentine_cuisine</enum-value>
+<enum-value name="type_cuisine">armenian_cuisine</enum-value>
+<enum-value name="type_cuisine">african_cuisine</enum-value>
+<enum-value name="type_cuisine">bavarian_cuisine</enum-value>
+<enum-value name="type_cuisine">balkan_cuisine</enum-value>
+<enum-value name="type_cuisine">belarusian_cuisine</enum-value>
+<enum-value name="type_cuisine">belgian_cuisine</enum-value>
+<enum-value name="type_cuisine">bulgarian_cuisine</enum-value>
+<enum-value name="type_cuisine">brazilian_cuisine</enum-value>
+<enum-value name="type_cuisine">hungarian_cuisine</enum-value>
+<enum-value name="type_cuisine">middle_eastern_cuisine</enum-value>
+<enum-value name="type_cuisine">vietnamese_cuisine</enum-value>
+<enum-value name="type_cuisine">hawaiian_cuisine</enum-value>
+<enum-value name="type_cuisine">greek_cuisine</enum-value>
+<enum-value name="type_cuisine">georgian_cuisine</enum-value>
+<enum-value name="type_cuisine">danish_cuisine</enum-value>
+<enum-value name="type_cuisine">home_cuisine</enum-value>
+<enum-value name="type_cuisine">don_cuisine</enum-value>
+<enum-value name="type_cuisine">jewish_cuisine</enum-value>
+<enum-value name="type_cuisine">european_cuisine</enum-value>
+<enum-value name="type_cuisine">indian_cuisine</enum-value>
+<enum-value name="type_cuisine">indonesian_cuisine</enum-value>
+<enum-value name="type_cuisine">iranian_cuisine</enum-value>
+<enum-value name="type_cuisine">irish_cuisine</enum-value>
+<enum-value name="type_cuisine">spanish_cuisine</enum-value>
+<enum-value name="type_cuisine">italian_cuisine</enum-value>
+<enum-value name="type_cuisine">caucasian_cuisine</enum-value>
+<enum-value name="type_cuisine">kazakh_cuisine</enum-value>
+<enum-value name="type_cuisine">karaite_cuisine</enum-value>
+<enum-value name="type_cuisine">caribbean_cuisine</enum-value>
+<enum-value name="type_cuisine">chinese_cuisine</enum-value>
+<enum-value name="type_cuisine">colonial_cuisine</enum-value>
+<enum-value name="type_cuisine">continental_cuisine</enum-value>
+<enum-value name="type_cuisine">korean_cuisine</enum-value>
+<enum-value name="type_cuisine">cuban_cuisine</enum-value>
+<enum-value name="type_cuisine">latin_american_cuisine</enum-value>
+<enum-value name="type_cuisine">lebanese_cuisine</enum-value>
+<enum-value name="type_cuisine">moroccan_cuisine</enum-value>
+<enum-value name="type_cuisine">international_cuisine</enum-value>
+<enum-value name="type_cuisine">mexican_cuisine</enum-value>
+<enum-value name="type_cuisine">moldovan_cuisine</enum-value>
+<enum-value name="type_cuisine">molecular_gastronomy</enum-value>
+<enum-value name="type_cuisine">mongolian_cuisine</enum-value>
+<enum-value name="type_cuisine">sea_cuisine</enum-value>
+<enum-value name="type_cuisine">meat_cuisine</enum-value>
+<enum-value name="type_cuisine">sami_cuisine</enum-value>
+<enum-value name="type_cuisine">german_cuisine</enum-value>
+<enum-value name="type_cuisine">ossetian_cuisine</enum-value>
+<enum-value name="type_cuisine">hunting_cuisine</enum-value>
+<enum-value name="type_cuisine">pakistani_cuisine</enum-value>
+<enum-value name="type_cuisine">pan_asian_cuisine</enum-value>
+<enum-value name="type_cuisine">polynesian_cuisine</enum-value>
+<enum-value name="type_cuisine">polish_cuisine</enum-value>
+<enum-value name="type_cuisine">portuguese_cuisine</enum-value>
+<enum-value name="type_cuisine">baltic_cuisine</enum-value>
+<enum-value name="type_cuisine">provence_cuisine</enum-value>
+<enum-value name="type_cuisine">russian_cuisine</enum-value>
+<enum-value name="type_cuisine">fish_cuisine</enum-value>
+<enum-value name="type_cuisine">serbian_cuisine</enum-value>
+<enum-value name="type_cuisine">siberian_cuisine</enum-value>
+<enum-value name="type_cuisine">singaporean_cuisine</enum-value>
+<enum-value name="type_cuisine">scandinavian_cuisine</enum-value>
+<enum-value name="type_cuisine">slavic_cuisine</enum-value>
+<enum-value name="type_cuisine">slovak_cuisine</enum-value>
+<enum-value name="type_cuisine">mixed_cuisine</enum-value>
+<enum-value name="type_cuisine">mediterranean_cuisine</enum-value>
+<enum-value name="type_cuisine">tajik_cuisine</enum-value>
+<enum-value name="type_cuisine">taiwanese_cuisine</enum-value>
+<enum-value name="type_cuisine">thai_cuisine</enum-value>
+<enum-value name="type_cuisine">tatar_cuisine</enum-value>
+<enum-value name="type_cuisine">tibetan_cuisine</enum-value>
+<enum-value name="type_cuisine">tuscan_cuisine</enum-value>
+<enum-value name="type_cuisine">turkish_cuisine</enum-value>
+<enum-value name="type_cuisine">uzbek_cuisine</enum-value>
+<enum-value name="type_cuisine">uighur_cuisine</enum-value>
+<enum-value name="type_cuisine">ukrainian_cuisine</enum-value>
+<enum-value name="type_cuisine">filipino_cuisine</enum-value>
+<enum-value name="type_cuisine">french_cuisine</enum-value>
+<enum-value name="type_cuisine">fusion_cuisine</enum-value>
+<enum-value name="type_cuisine">czech_cuisine</enum-value>
+<enum-value name="type_cuisine">swiss_cuisine</enum-value>
+<enum-value name="type_cuisine">scottish_cuisine</enum-value>
+<enum-value name="type_cuisine">alsatian_cuisine</enum-value>
+<enum-value name="type_cuisine">yugoslav_cuisine</enum-value>
+<enum-value name="type_cuisine">yakut_cuisine</enum-value>
+<enum-value name="type_cuisine">jamaican_cuisine</enum-value>
+<enum-value name="type_cuisine">japanese_cuisine</enum-value>
+<known-enum-multiple name="special_menu"/>
+<enum-value name="special_menu">pancakes_menu</enum-value>
+<enum-value name="special_menu">vegetarian_menu</enum-value>
+<enum-value name="special_menu">grill_menu</enum-value>
+<enum-value name="special_menu">childrens_menu</enum-value>
+<enum-value name="special_menu">diet_menu</enum-value>
+<enum-value name="special_menu">kosher_menu</enum-value>
+<enum-value name="special_menu">beer_menu</enum-value>
+<enum-value name="special_menu">lenten_menu</enum-value>
+<enum-value name="special_menu">seasonal_menu</enum-value>
+<enum-value name="special_menu">fitness_menu</enum-value>
+<enum-value name="special_menu">exotic_menu</enum-value>
+<known-enum-multiple name="type_public_catering"/>
+<enum-value name="type_public_catering">banquet_hall</enum-value>
+<enum-value name="type_public_catering">bar</enum-value>
+<enum-value name="type_public_catering">wine_cellar</enum-value>
+<enum-value name="type_public_catering">grill_bar</enum-value>
+<enum-value name="type_public_catering">childrens_cafe</enum-value>
+<enum-value name="type_public_catering">snack_bar</enum-value>
+<enum-value name="type_public_catering">karaoke_bar</enum-value>
+<enum-value name="type_public_catering">cafe_type</enum-value>
+<enum-value name="type_public_catering">coffee_bar</enum-value>
+<enum-value name="type_public_catering">catering</enum-value>
+<enum-value name="type_public_catering">confectionery</enum-value>
+<enum-value name="type_public_catering">coffee_house</enum-value>
+<enum-value name="type_public_catering">pub</enum-value>
+<enum-value name="type_public_catering">beer_restaurant</enum-value>
+<enum-value name="type_public_catering">pancakes_gouse</enum-value>
+<enum-value name="type_public_catering">pizzeria</enum-value>
+<enum-value name="type_public_catering">restaurant</enum-value>
+<enum-value name="type_public_catering">wtr_bsd_rest</enum-value>
+<enum-value name="type_public_catering">fish_restaurant</enum-value>
+<enum-value name="type_public_catering">sport_bar</enum-value>
+<enum-value name="type_public_catering">steak_house</enum-value>
+<enum-value name="type_public_catering">dining_hall</enum-value>
+<enum-value name="type_public_catering">sushi_bar</enum-value>
+<enum-value name="type_public_catering">tavern</enum-value>
+<enum-value name="type_public_catering">inn</enum-value>
+<enum-value name="type_public_catering">fast_food</enum-value>
+<enum-value name="type_public_catering">tea_house</enum-value>
+<known-boolean name="hookah"/>
+<known-boolean name="food_delivery"/>
+<known-enum-multiple name="accepted_credit_cards"/>
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<known-boolean name="vip_room"/>
+<known-enum-multiple name="type_parking"/>
+<enum-value name="type_parking">vip_parking</enum-value>
+<enum-value name="type_parking">automatic_parking</enum-value>
+<enum-value name="type_parking">free_parking</enum-value>
+<enum-value name="type_parking">guest_parking</enum-value>
+<enum-value name="type_parking">long_term_parking</enum-value>
+<enum-value name="type_parking">parking_for_trucks</enum-value>
+<enum-value name="type_parking">parking_for_cars</enum-value>
+<enum-value name="type_parking">short_term_parking</enum-value>
+<enum-value name="type_parking">covered_parking</enum-value>
+<enum-value name="type_parking">multilevel_parking</enum-value>
+<enum-value name="type_parking">surface_parking</enum-value>
+<enum-value name="type_parking">unguarded_parking</enum-value>
+<enum-value name="type_parking">outdoor_parking</enum-value>
+<enum-value name="type_parking">guarded_parking</enum-value>
+<enum-value name="type_parking">paid_parking</enum-value>
+<enum-value name="type_parking">underground_parking</enum-value>
+<enum-value name="type_parking">advance_booking_parking</enum-value>
+<enum-value name="type_parking">intercepts_parking</enum-value>
+<enum-value name="type_parking">street_road_network_parking</enum-value>
+<enum-value name="type_parking">commercial_parking</enum-value>
+<known-boolean name="face_control"/>
+<known-boolean name="billiards"/>
+<known-boolean name="dress_code"/>
+<known-boolean name="dancefloor"/>
+<known-enum-multiple name="music"/>
+<enum-value name="music">80_90th_music</enum-value>
+<enum-value name="music">british_house_music</enum-value>
+<enum-value name="music">chillout2</enum-value>
+<enum-value name="music">deep_house</enum-value>
+<enum-value name="music">deep_tek_house_music</enum-value>
+<enum-value name="music">disco__house_music</enum-value>
+<enum-value name="music">djs_music</enum-value>
+<enum-value name="music">drum_n_bass</enum-value>
+<enum-value name="music">electro_music</enum-value>
+<enum-value name="music">electro_house_music</enum-value>
+<!-- euro dance -->
+<enum-value name="music">euro_dance</enum-value>
+<enum-value name="music">europop</enum-value>
+<enum-value name="music">funky_music</enum-value>
+<enum-value name="music">hard_dance</enum-value>
+<enum-value name="music">house_music</enum-value>
+<enum-value name="music">live_dj_sets</enum-value>
+<enum-value name="music">mash_up_music</enum-value>
+<enum-value name="music">pop_music</enum-value>
+<enum-value name="music">progressive_music</enum-value>
+<enum-value name="music">progressive_house_music</enum-value>
+<enum-value name="music">reggae</enum-value>
+<enum-value name="music">rnb</enum-value>
+<enum-value name="music">rockabilly</enum-value>
+<enum-value name="music">soul_music</enum-value>
+<enum-value name="music">tech_music</enum-value>
+<enum-value name="music">trance</enum-value>
+<enum-value name="music">bard</enum-value>
+<enum-value name="music">blues</enum-value>
+<enum-value name="music">oriental_music</enum-value>
+<enum-value name="music">jazz</enum-value>
+<enum-value name="music">disco</enum-value>
+<enum-value name="music">live_music</enum-value>
+<enum-value name="music">music_divas</enum-value>
+<enum-value name="music">instrumental_music</enum-value>
+<enum-value name="music">country_music</enum-value>
+<enum-value name="music">classical_music</enum-value>
+<enum-value name="music">latin_music</enum-value>
+<enum-value name="music">lounge_music</enum-value>
+<enum-value name="music">punk_music</enum-value>
+<enum-value name="music">music_on_demand</enum-value>
+<enum-value name="music">re_mix</enum-value>
+<enum-value name="music">retro_music</enum-value>
+<enum-value name="music">rock_music</enum-value>
+<enum-value name="music">rock_n_roll</enum-value>
+<enum-value name="music">rapping</enum-value>
+<enum-value name="music">dance_music</enum-value>
+<enum-value name="music">folklore_music</enum-value>
+<enum-value name="music">background_music</enum-value>
+<enum-value name="music">chanson</enum-value>
+<enum-value name="music">electronic_music</enum-value>
+<enum-value name="music">world_music</enum-value>
+<known-boolean name="wi_fi"/>
+<known-boolean name="bowling"/>
+<known-enum-multiple name="payment_method"/>
+<enum-value name="payment_method">cash</enum-value>
+<!-- payment by card -->
+<enum-value name="payment_method">payment_card</enum-value>
+<enum-value name="payment_method">electronic_money</enum-value>
+<enum-value name="payment_method">wire_transfer</enum-value>
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- Discounts on services preferential categories -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- discount system -->
+<enum-value name="payment_method">discount_system</enum-value>
+<enum-value name="payment_method">prepayment</enum-value>
+<enum-value name="payment_method">postpay</enum-value>
+<known-boolean name="banquet"/>
+<known-boolean name="takeaway"/>
+<known-enum-single name="restaurant_rooms"/>
+<enum-value name="restaurant_rooms">room_smokers</enum-value>
+<enum-value name="restaurant_rooms">room_non_smokers</enum-value>
+<enum-value name="restaurant_rooms">room_smokers_non_smokers</enum-value>
+<known-boolean name="summer_terrace"/>
+<known-enum-multiple name="admission"/>
+<enum-value name="admission">admission_free</enum-value>
+<enum-value name="admission">event_entrance_fee</enum-value>
+<enum-value name="admission">flyer_access</enum-value>
+<known-boolean name="at_hotel"/>
+<known-boolean name="business_lunch"/>
+<known-boolean name="menu_english"/>
+<known-enum-multiple name="type_board_games"/>
+<enum-value name="type_board_games">pick_up_sticks</enum-value>
+<enum-value name="type_board_games">go_game</enum-value>
+<enum-value name="type_board_games">domino</enum-value>
+<enum-value name="type_board_games">mahjong</enum-value>
+<enum-value name="type_board_games">mancala</enum-value>
+<enum-value name="type_board_games">monopoly</enum-value>
+<enum-value name="type_board_games">backgammon</enum-value>
+<enum-value name="type_board_games">puzzles</enum-value>
+<enum-value name="type_board_games">reversi</enum-value>
+<enum-value name="type_board_games">rummikub</enum-value>
+<enum-value name="type_board_games">shogi</enum-value>
+<enum-value name="type_board_games">chess</enum-value>
+<enum-value name="type_board_games">checkers</enum-value>
+<known-boolean name="board_games"/>
+<known-boolean name="breakfast"/>
+<known-range-in-units-single name="average_bill2" unit="money"/>
+<known-range-in-units-multiple name="business_lunch_price" unit="money"/>
+<known-numeric-single name="number_of_screens" min-value="0"/>
+<known-numeric-single name="number_of_halls"/>
+<known-numeric-single name="seats"/>
+<known-range-in-units-single name="breakfast_price" unit="money"/>
+<known-range-single name="number_seats_banquet_hall"/>
+<known-range-single name="hall_capacity"/>
+<known-boolean name="sports_broadcasts"/>
+<known-boolean name="payment_by_credit_card"/>
+<known-boolean name="availability_of_discounts"/>
+</known-features>

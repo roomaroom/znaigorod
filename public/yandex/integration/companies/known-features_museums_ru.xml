@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Музеи -->
+<!-- деньги -->
+<known-unit name="money"/>
+<!-- руб. -->
+<unit-value name="money" value="rub"/>
+<!-- грн. -->
+<unit-value name="money" value="grn"/>
+<!-- тыс.руб. -->
+<unit-value name="money" value="k_rub"/>
+<!-- руб./20 мин. -->
+<unit-value name="money" value="rub_20_min"/>
+<!-- грн./20 мин. -->
+<unit-value name="money" value="grn_20_min"/>
+<!-- тыс.руб./год -->
+<unit-value name="money" value="k_rub_year"/>
+<!-- тис.грн/рік -->
+<unit-value name="money" value="k_grn_year"/>
+<!-- тыс.руб./мес. -->
+<unit-value name="money" value="k_rub_month"/>
+<!-- руб./час -->
+<unit-value name="money" value="rub_hour"/>
+<!-- руб./мин. -->
+<unit-value name="money" value="rub_min"/>
+<!-- бел.руб. -->
+<unit-value name="money" value="byr"/>
+<!-- грн./мес. -->
+<unit-value name="money" value="grn_month"/>
+<!-- грн./год. -->
+<unit-value name="money" value="grn_year"/>
+<!-- руб./сутки -->
+<unit-value name="money" value="rub_day"/>
+<!-- грн./добу -->
+<unit-value name="money" value="grn_day"/>
+<!-- $ -->
+<unit-value name="money" value="usd"/>
+<!-- евро -->
+<unit-value name="money" value="euro"/>
+<!-- грн./час -->
+<unit-value name="money" value="grn_hour"/>
+<!-- $/сутки -->
+<unit-value name="money" value="usd_day"/>
+<!-- тнг./час -->
+<unit-value name="money" value="tenge_hour"/>
+<!-- тнг./30 мин. -->
+<unit-value name="money" value="tenge_30_min"/>
+<!-- тнг. -->
+<unit-value name="money" value="tng"/>
+<!-- тип музея -->
+<known-enum-multiple name="type_of_museum"/>
+<!-- общеисторический -->
+<enum-value name="type_of_museum">museum_general_historical</enum-value>
+<!-- краеведческий -->
+<enum-value name="type_of_museum">regional_studies_museum</enum-value>
+<!-- изобразительное искусство -->
+<enum-value name="type_of_museum">picture_gallery</enum-value>
+<!-- персональный, мемориальный -->
+<enum-value name="type_of_museum">memorial_museum</enum-value>
+<!-- литературный -->
+<enum-value name="type_of_museum">literary_museum</enum-value>
+<!-- архитектурный -->
+<enum-value name="type_of_museum">museum_architecture</enum-value>
+<!-- наука и техника -->
+<enum-value name="type_of_museum">science_technology_museum</enum-value>
+<!-- естественнонаучный -->
+<enum-value name="type_of_museum">museum_natural_history</enum-value>
+<!-- музей-заповедник -->
+<enum-value name="type_of_museum">reserve_museum</enum-value>
+<!-- музыкальный -->
+<enum-value name="type_of_museum">music_museum</enum-value>
+<!-- театральный -->
+<enum-value name="type_of_museum">theater_museum</enum-value>
+<!-- историко-бытовой -->
+<enum-value name="type_of_museum">museum_household</enum-value>
+<!-- военно-исторический -->
+<enum-value name="type_of_museum">military_history</enum-value>
+<!-- декоративное-прикладное искусство -->
+<enum-value name="type_of_museum">applied_arts_museum</enum-value>
+<!-- художественные ремесла -->
+<enum-value name="type_of_museum">crafts_museum</enum-value>
+<!-- скульптура -->
+<enum-value name="type_of_museum">museum_sculpture</enum-value>
+<!-- археологический -->
+<enum-value name="type_of_museum">archaeological_museum</enum-value>
+<!-- современное искусство -->
+<enum-value name="type_of_museum">museum_modern_art</enum-value>
+<!-- этнографический -->
+<enum-value name="type_of_museum">museum_ethnography</enum-value>
+<!-- музей-усадьба -->
+<enum-value name="type_of_museum">museum_estate</enum-value>
+<!-- военно-морской -->
+<enum-value name="type_of_museum">naval_museum</enum-value>
+<!-- истории организаций -->
+<enum-value name="type_of_museum">museum_history_organizations</enum-value>
+<!-- историко-революционный -->
+<enum-value name="type_of_museum">museum_revolution</enum-value>
+<!-- дворцово-парковый ансамбль -->
+<enum-value name="type_of_museum">palace_park_ensemble</enum-value>
+<!-- музей-храм -->
+<enum-value name="type_of_museum">museum_church</enum-value>
+<!-- антропологический -->
+<enum-value name="type_of_museum">anthropological_museum</enum-value>
+<!-- биологический -->
+<enum-value name="type_of_museum">museum_biology</enum-value>
+<!-- ботанический сад, парк -->
+<enum-value name="type_of_museum">botanical_garden</enum-value>
+<!-- геологический -->
+<enum-value name="type_of_museum">geological_museum</enum-value>
+<!-- медицинский -->
+<enum-value name="type_of_museum">medical_museum</enum-value>
+<!-- морской -->
+<enum-value name="type_of_museum">maritime_museum</enum-value>
+<!-- палеонтологический -->
+<enum-value name="type_of_museum">paleontological_museum</enum-value>
+<!-- почвенный -->
+<enum-value name="type_of_museum">soil_museum</enum-value>
+<!-- авиация и космонавтика -->
+<enum-value name="type_of_museum">aerospace_museum</enum-value>
+<!-- автотранспорт -->
+<enum-value name="type_of_museum">motor_transport_museum</enum-value>
+<!-- горное дело -->
+<enum-value name="type_of_museum">mining_museum</enum-value>
+<!-- ж-д транспорт и метро -->
+<enum-value name="type_of_museum">subway_museum</enum-value>
+<!-- сельское хозяйство -->
+<enum-value name="type_of_museum">agriculture_museum</enum-value>
+<!-- спортивный -->
+<enum-value name="type_of_museum">sports_museum</enum-value>
+<!-- средства связи -->
+<enum-value name="type_of_museum">communications_museum</enum-value>
+<!-- судостроение -->
+<enum-value name="type_of_museum">shipbuilding_museum</enum-value>
+<!-- фотография -->
+<enum-value name="type_of_museum">photo_museum</enum-value>
+<!-- историко-политический -->
+<enum-value name="type_of_museum">museum_history_political</enum-value>
+<!-- восковых фигур -->
+<enum-value name="type_of_museum">wax_museum</enum-value>
+<!-- аудиогид -->
+<known-boolean name="audio_guide"/>
+<!-- скидки льготным категориям -->
+<known-boolean name="some_people_are_eligible_for_discounts"/>
+<!-- вход свободный -->
+<known-boolean name="free_entrance"/>
+<!-- Выходные дни -->
+<known-enum-multiple name="day_off"/>
+<!-- пн -->
+<enum-value name="day_off">monday</enum-value>
+<!-- вт -->
+<enum-value name="day_off">tuesday</enum-value>
+<!-- ср -->
+<enum-value name="day_off">wednesday</enum-value>
+<!-- чт -->
+<enum-value name="day_off">thursday</enum-value>
+<!-- пт -->
+<enum-value name="day_off">friday</enum-value>
+<!-- сб -->
+<enum-value name="day_off">saturday</enum-value>
+<!-- вс -->
+<enum-value name="day_off">sunday</enum-value>
+<!-- год основания/постройки -->
+<known-numeric-multiple name="year_of_foundation"/>
+<!-- билеты -->
+<known-range-in-units-multiple name="tickets" unit="money"/>
+</known-features>

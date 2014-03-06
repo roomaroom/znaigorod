@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Банкоматы (184105402) -->
+<!-- дополнительные возможности -->
+<known-enum-multiple name="additional_features"/>
+<!-- оплата доступа в Интернет -->
+<enum-value name="additional_features">pay_for_internet_access</enum-value>
+<!-- оплата коммунальных платежей -->
+<enum-value name="additional_features">payment_for_communal_services</enum-value>
+<!-- оплата коммерческого (спутникового) телевидения -->
+<enum-value name="additional_features">payment_of_commercial_tv</enum-value>
+<!-- оплата услуг IP-телефонии -->
+<enum-value name="additional_features">payment_of_ip_telephony</enum-value>
+<!-- оплата услуг местной телефонной связи -->
+<enum-value name="additional_features">payment_for_phone</enum-value>
+<!-- оплата услуг сотовой связи -->
+<enum-value name="additional_features">payment_of_cellular_communication</enum-value>
+<!-- оплата штрафов ГИБДД -->
+<enum-value name="additional_features">payment_of_fines_stsi</enum-value>
+<!-- оплата за обучение -->
+<enum-value name="additional_features">payment_for_education</enum-value>
+<!-- оплата авиа- и ж/д билетов -->
+<enum-value name="additional_features">payment_of_tickets</enum-value>
+<!-- платежи в благотворительные фонды -->
+<enum-value name="additional_features">payments_to_charities</enum-value>
+<!-- покупка/продажа дорожных чеков American Express -->
+<enum-value name="additional_features">buying_american_express</enum-value>
+<!-- покупка/продажа монет из драгоценных металлов -->
+<enum-value name="additional_features">precious_metal_coins</enum-value>
+<!-- оплата заказов интернет-магазинов -->
+<enum-value name="additional_features">payment_online_stores</enum-value>
+<!-- оплата услуг охранной системы -->
+<enum-value name="additional_features">payment_security_system</enum-value>
+<!-- пополнение счета ТКС банка -->
+<enum-value name="additional_features">payment_tks</enum-value>
+<!-- внесение наличных средств на карту -->
+<known-boolean name="cash_to_card"/>
+<!-- валюта банкомата -->
+<known-enum-multiple name="currency_atm"/>
+<!-- российский рубль -->
+<enum-value name="currency_atm">atm_rur</enum-value>
+<!-- доллары США -->
+<enum-value name="currency_atm">atm_usd</enum-value>
+<!-- евро -->
+<enum-value name="currency_atm">atm_eur</enum-value>
+<!-- украинская гривна -->
+<enum-value name="currency_atm">atm_uah</enum-value>
+<!-- казахстанский тенге -->
+<enum-value name="currency_atm">atm_kzt</enum-value>
+<!-- белорусский рубль -->
+<enum-value name="currency_atm">atm_byr</enum-value>
+<!-- операции со счетами и картами -->
+<known-enum-multiple name="operations_accounts_cards"/>
+<!-- оплата кредита -->
+<enum-value name="operations_accounts_cards">loan_payment</enum-value>
+<!-- перевод с карты на карту -->
+<enum-value name="operations_accounts_cards">transfer_c2c</enum-value>
+<!-- перевод с карты на депозит -->
+<enum-value name="operations_accounts_cards">transfer_c2d</enum-value>
+<!-- просмотр состояния счета -->
+<enum-value name="operations_accounts_cards">status_account</enum-value>
+<!-- мини-выписка по счету -->
+<enum-value name="operations_accounts_cards">mini_account_statement</enum-value>
+<!-- открытие вклада -->
+<enum-value name="operations_accounts_cards">opening_deposit</enum-value>
+<!-- изменение PIN-кода карты -->
+<enum-value name="operations_accounts_cards">new_pin</enum-value>
+<!-- включение/отключение SMS-инфо -->
+<enum-value name="operations_accounts_cards">change_sms_info</enum-value>
+<!-- выдача наличности -->
+<enum-value name="operations_accounts_cards">issuance_of_cash</enum-value>
+<!-- обслуживаемые банковские карты -->
+<known-enum-multiple name="accepted_credit_cards"/>
+<!-- Visa -->
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<!-- MasterCard -->
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<!-- Visa Electron -->
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<!-- Maestro -->
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<!-- MasterCard Electronic -->
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<!-- American Express -->
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<!-- СБЕРКАРТ -->
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<!-- Ortcard International -->
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<!-- Золотая Корона -->
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<!-- Union Card -->
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<!-- JCB card -->
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<!-- Diners Club International -->
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<!-- STB Card -->
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<!-- Cirrus -->
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<!-- Eurocard -->
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<!-- China Union Pay -->
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<!-- валютообмен -->
+<known-boolean name="currency_exchange_atm"/>
+<!-- заявка на кредит/кредитную карту -->
+<known-boolean name="credit_card_application"/>
+<!-- получение доступа к интернет-банкингу -->
+<known-boolean name="access_internet_banking"/>
+<!-- пополнение счетов платежных систем -->
+<known-enum-multiple name="payment_systems"/>
+<!-- AlertPay -->
+<enum-value name="payment_systems">alertpay</enum-value>
+<!-- Authorize.Net -->
+<enum-value name="payment_systems">authorize_net</enum-value>
+<!-- CyberPlat -->
+<enum-value name="payment_systems">cyber_plat</enum-value>
+<!-- CypherMint -->
+<enum-value name="payment_systems">cypher_mint</enum-value>
+<!-- E-Bullion -->
+<enum-value name="payment_systems">e_bullion</enum-value>
+<!-- E-Gold -->
+<enum-value name="payment_systems">e_gold</enum-value>
+<!-- EasyPay -->
+<enum-value name="payment_systems">easy_pay</enum-value>
+<!-- Elios Gold -->
+<enum-value name="payment_systems">elios_gold</enum-value>
+<!-- ePayService -->
+<enum-value name="payment_systems">epay_service</enum-value>
+<!-- Gate2Shop -->
+<enum-value name="payment_systems">gate2shop</enum-value>
+<!-- Google Wallet -->
+<enum-value name="payment_systems">google_wallet</enum-value>
+<!-- ICQMoney -->
+<enum-value name="payment_systems">icq_money</enum-value>
+<!-- IntellectMoney -->
+<enum-value name="payment_systems">intellect_money</enum-value>
+<!-- Liberty Reserve -->
+<enum-value name="payment_systems">liberty_reserve</enum-value>
+<!-- Moneybookers -->
+<enum-value name="payment_systems">money_bookers</enum-value>
+<!-- MoneyMail -->
+<enum-value name="payment_systems">money_mail</enum-value>
+<!-- OkPay -->
+<enum-value name="payment_systems">ok_pay</enum-value>
+<!-- PayCash -->
+<enum-value name="payment_systems">pay_cash</enum-value>
+<!-- PayCashEuro -->
+<enum-value name="payment_systems">pay_cash_euro</enum-value>
+<!-- PayPal -->
+<enum-value name="payment_systems">pay_pal</enum-value>
+<!-- Pecunix -->
+<enum-value name="payment_systems">pecunix</enum-value>
+<!-- Perfect Money -->
+<enum-value name="payment_systems">perfect_money</enum-value>
+<!-- Qiwi -->
+<enum-value name="payment_systems">qiwi</enum-value>
+<!-- RBK Money -->
+<enum-value name="payment_systems">rbk_money</enum-value>
+<!-- TeleMoney -->
+<enum-value name="payment_systems">tele_money</enum-value>
+<!-- Wirex -->
+<enum-value name="payment_systems">wirex</enum-value>
+<!-- WebMoney -->
+<enum-value name="payment_systems">web_money</enum-value>
+<!-- Z-Payment -->
+<enum-value name="payment_systems">z_payment</enum-value>
+<!-- Единый кошелек -->
+<enum-value name="payment_systems">w1</enum-value>
+<!-- Платеж.RU -->
+<enum-value name="payment_systems">platezh_ru</enum-value>
+<!-- Платфон -->
+<enum-value name="payment_systems">myplatfon</enum-value>
+<!-- Система удобных платежей A3 -->
+<enum-value name="payment_systems">a_3</enum-value>
+<!-- Яндекс.Деньги -->
+<enum-value name="payment_systems">money_yandex</enum-value>
+<!-- Банкоматы партнеров -->
+<known-enum-multiple name="atms_partners"/>
+<!-- Промсвязьбанк -->
+<enum-value name="atms_partners">promsvyazbank</enum-value>
+<!-- МДМ Банк -->
+<enum-value name="atms_partners">mdmbank</enum-value>
+<!-- Мастер-Банк -->
+<enum-value name="atms_partners">master_bank</enum-value>
+<!-- Росбанк -->
+<enum-value name="atms_partners">rosbank</enum-value>
+<!-- Уральский банк реконструкции и развития -->
+<enum-value name="atms_partners">ural_bank_for_reconstruction_and_development</enum-value>
+<!-- Московский кредитный банк -->
+<enum-value name="atms_partners">credit_bank_moscow</enum-value>
+<!-- Альфа-Банк -->
+<enum-value name="atms_partners">alfa_bank</enum-value>
+</known-features>

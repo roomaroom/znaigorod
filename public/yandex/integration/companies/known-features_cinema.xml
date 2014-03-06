@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Кинотеатры (184105868) -->
+<!-- деньги -->
+<known-unit name="money"/>
+<!-- руб. -->
+<unit-value name="money" value="rub"/>
+<!-- грн. -->
+<unit-value name="money" value="grn"/>
+<!-- тыс.руб. -->
+<unit-value name="money" value="k_rub"/>
+<!-- руб./20 мин. -->
+<unit-value name="money" value="rub_20_min"/>
+<!-- грн./20 мин. -->
+<unit-value name="money" value="grn_20_min"/>
+<!-- тыс.руб./год -->
+<unit-value name="money" value="k_rub_year"/>
+<!-- тис.грн/рік -->
+<unit-value name="money" value="k_grn_year"/>
+<!-- тыс.руб./мес. -->
+<unit-value name="money" value="k_rub_month"/>
+<!-- руб./час -->
+<unit-value name="money" value="rub_hour"/>
+<!-- руб./мин. -->
+<unit-value name="money" value="rub_min"/>
+<!-- бел.руб. -->
+<unit-value name="money" value="byr"/>
+<!-- грн./мес. -->
+<unit-value name="money" value="grn_month"/>
+<!-- грн./год. -->
+<unit-value name="money" value="grn_year"/>
+<!-- руб./сутки -->
+<unit-value name="money" value="rub_day"/>
+<!-- грн./добу -->
+<unit-value name="money" value="grn_day"/>
+<!-- $ -->
+<unit-value name="money" value="usd"/>
+<!-- евро -->
+<unit-value name="money" value="euro"/>
+<!-- грн./час -->
+<unit-value name="money" value="grn_hour"/>
+<!-- $/сутки -->
+<unit-value name="money" value="usd_day"/>
+<!-- тнг./час -->
+<unit-value name="money" value="tenge_hour"/>
+<!-- тнг./30 мин. -->
+<unit-value name="money" value="tenge_30_min"/>
+<!-- тнг. -->
+<unit-value name="money" value="tng"/>
+<!-- ресторан -->
+<known-boolean name="has_restaurant"/>
+<!-- открытый -->
+<known-boolean name="outdoor"/>
+<!-- звук -->
+<known-enum-single name="sound"/>
+<!-- моно -->
+<enum-value name="sound">mono_sound</enum-value>
+<!-- Dolby A-type -->
+<enum-value name="sound">dolby_a_type</enum-value>
+<!-- Dolby SR -->
+<enum-value name="sound">dolby_sr</enum-value>
+<!-- Dolby SR-D -->
+<enum-value name="sound">dolby_sr_d</enum-value>
+<!-- Dolby Surround EX -->
+<enum-value name="sound">dolby_surround_ex</enum-value>
+<!-- DTS -->
+<enum-value name="sound">dts</enum-value>
+<!-- SDDS -->
+<enum-value name="sound">sdds</enum-value>
+<!-- 3D -->
+<known-boolean name="3d"/>
+<!-- VIP-зона -->
+<known-boolean name="vip_zone"/>
+<!-- места для влюбленных -->
+<known-boolean name="place_for_lovers"/>
+<!-- парковка -->
+<known-boolean name="car_park"/>
+<!-- imax -->
+<known-boolean name="imax"/>
+<!-- обслуживаемые банковские карты -->
+<known-enum-multiple name="accepted_credit_cards"/>
+<!-- Visa -->
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<!-- MasterCard -->
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<!-- Visa Electron -->
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<!-- Maestro -->
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<!-- MasterCard Electronic -->
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<!-- American Express -->
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<!-- СБЕРКАРТ -->
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<!-- Ortcard International -->
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<!-- Золотая Корона -->
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<!-- Union Card -->
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<!-- JCB card -->
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<!-- Diners Club International -->
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<!-- STB Card -->
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<!-- Cirrus -->
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<!-- Eurocard -->
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<!-- China Union Pay -->
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<!-- Бронирование билетов -->
+<known-boolean name="ticket_reservations"/>
+<!-- кафе -->
+<known-boolean name="cafe"/>
+<!-- wi-fi -->
+<known-boolean name="wi_fi"/>
+<!-- способ оплаты -->
+<known-enum-multiple name="payment_method"/>
+<!-- наличными -->
+<enum-value name="payment_method">cash</enum-value>
+<!-- оплата картой -->
+<enum-value name="payment_method">payment_card</enum-value>
+<!-- электронными деньгами -->
+<enum-value name="payment_method">electronic_money</enum-value>
+<!-- банковским переводом -->
+<enum-value name="payment_method">wire_transfer</enum-value>
+<!-- sms-платеж -->
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<!-- наложенным платежом -->
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- скидки на услуги льготным категориям -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- дисконтная система скидок -->
+<enum-value name="payment_method">discount_system</enum-value>
+<!-- предоплата -->
+<enum-value name="payment_method">prepayment</enum-value>
+<!-- постоплата -->
+<enum-value name="payment_method">postpay</enum-value>
+<!-- число залов -->
+<known-numeric-single name="number_of_halls"/>
+<!-- число мест -->
+<known-numeric-single name="seats"/>
+<!-- билеты -->
+<known-range-in-units-multiple name="tickets" unit="money"/>
+<!-- оплата картой -->
+<known-boolean name="payment_by_credit_card"/>
+</known-features>

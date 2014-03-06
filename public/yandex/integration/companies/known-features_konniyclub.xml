@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Horse Riding (184107287) -->
+<known-unit name="money"/>
+<unit-value name="money" value="rub"/>
+<unit-value name="money" value="grn"/>
+<unit-value name="money" value="k_rub"/>
+<unit-value name="money" value="rub_20_min"/>
+<unit-value name="money" value="grn_20_min"/>
+<unit-value name="money" value="k_rub_year"/>
+<unit-value name="money" value="k_grn_year"/>
+<unit-value name="money" value="k_rub_month"/>
+<unit-value name="money" value="rub_hour"/>
+<unit-value name="money" value="rub_min"/>
+<unit-value name="money" value="byr"/>
+<unit-value name="money" value="grn_month"/>
+<unit-value name="money" value="grn_year"/>
+<unit-value name="money" value="rub_day"/>
+<unit-value name="money" value="grn_day"/>
+<unit-value name="money" value="usd"/>
+<unit-value name="money" value="euro"/>
+<unit-value name="money" value="grn_hour"/>
+<unit-value name="money" value="usd_day"/>
+<unit-value name="money" value="tenge_hour"/>
+<unit-value name="money" value="tenge_30_min"/>
+<unit-value name="money" value="tng"/>
+<!-- individual training -->
+<known-boolean name="individual_training"/>
+<!-- excursions -->
+<known-boolean name="excursions"/>
+<known-range-in-units-single name="price_per_month2" unit="money"/>
+<known-enum-multiple name="horse_arena"/>
+<!-- Riding hall -->
+<enum-value name="horse_arena">riding_hall</enum-value>
+<!-- Parade ground -->
+<enum-value name="horse_arena">equestrian_platz</enum-value>
+<!-- Levada -->
+<enum-value name="horse_arena">levada</enum-value>
+<!-- Barrel -->
+<enum-value name="horse_arena">drum_dressage</enum-value>
+<known-boolean name="dressage_field"/>
+<known-boolean name="forest_trail"/>
+<known-boolean name="rental_stalls"/>
+<known-enum-single name="type_riding"/>
+<!-- vaulting -->
+<enum-value name="type_riding">vaulting_lessons</enum-value>
+<!-- Dressage -->
+<enum-value name="type_riding">dressage_lessons</enum-value>
+<!-- Jumping -->
+<enum-value name="type_riding">horse_jumping</enum-value>
+<!-- triathlon -->
+<enum-value name="type_riding">triathlon_training</enum-value>
+<known-boolean name="veterinarian"/>
+<known-boolean name="pony"/>
+<known-boolean name="hippotherapy"/>
+</known-features>

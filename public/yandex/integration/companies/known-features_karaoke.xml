@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Karaoke clubs (19244809283) -->
+<known-boolean name="hookah"/>
+<known-boolean name="vip_room"/>
+<!-- free entrance -->
+<known-boolean name="free_entrance"/>
+<known-boolean name="face_control"/>
+<known-boolean name="dress_code"/>
+<!-- table reservation -->
+<known-boolean name="table_reservation"/>
+<!-- scene -->
+<known-boolean name="scene"/>
+</known-features>

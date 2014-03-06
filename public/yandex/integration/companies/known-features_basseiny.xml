@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Бассейны (184107275) -->
+<!-- деньги -->
+<known-unit name="money"/>
+<!-- руб. -->
+<unit-value name="money" value="rub"/>
+<!-- грн. -->
+<unit-value name="money" value="grn"/>
+<!-- тыс.руб. -->
+<unit-value name="money" value="k_rub"/>
+<!-- руб./20 мин. -->
+<unit-value name="money" value="rub_20_min"/>
+<!-- грн./20 мин. -->
+<unit-value name="money" value="grn_20_min"/>
+<!-- тыс.руб./год -->
+<unit-value name="money" value="k_rub_year"/>
+<!-- тис.грн/рік -->
+<unit-value name="money" value="k_grn_year"/>
+<!-- тыс.руб./мес. -->
+<unit-value name="money" value="k_rub_month"/>
+<!-- руб./час -->
+<unit-value name="money" value="rub_hour"/>
+<!-- руб./мин. -->
+<unit-value name="money" value="rub_min"/>
+<!-- бел.руб. -->
+<unit-value name="money" value="byr"/>
+<!-- грн./мес. -->
+<unit-value name="money" value="grn_month"/>
+<!-- грн./год. -->
+<unit-value name="money" value="grn_year"/>
+<!-- руб./сутки -->
+<unit-value name="money" value="rub_day"/>
+<!-- грн./добу -->
+<unit-value name="money" value="grn_day"/>
+<!-- $ -->
+<unit-value name="money" value="usd"/>
+<!-- евро -->
+<unit-value name="money" value="euro"/>
+<!-- грн./час -->
+<unit-value name="money" value="grn_hour"/>
+<!-- $/сутки -->
+<unit-value name="money" value="usd_day"/>
+<!-- тнг./час -->
+<unit-value name="money" value="tenge_hour"/>
+<!-- тнг./30 мин. -->
+<unit-value name="money" value="tenge_30_min"/>
+<!-- тнг. -->
+<unit-value name="money" value="tng"/>
+<!-- расстояние -->
+<known-unit name="distance"/>
+<!-- м -->
+<unit-value name="distance" value="meter"/>
+<!-- км -->
+<unit-value name="distance" value="kilometer"/>
+<!-- мин. -->
+<unit-value name="distance" value="min"/>
+<!-- дней -->
+<unit-value name="distance" value="days"/>
+<!-- часов -->
+<unit-value name="distance" value="hours"/>
+<!-- га -->
+<unit-value name="distance" value="ga"/>
+<!-- способ очистки воды -->
+<known-enum-multiple name="water_purification_method"/>
+<!-- механическая фильтрация -->
+<enum-value name="water_purification_method">mechanical_filtration</enum-value>
+<!-- УФ -->
+<enum-value name="water_purification_method">uv_irradiation</enum-value>
+<!-- озонирование -->
+<enum-value name="water_purification_method">ozonation</enum-value>
+<!-- хлорирование -->
+<enum-value name="water_purification_method">chlorination</enum-value>
+<!-- программы водных занятий -->
+<known-enum-multiple name="water_activities"/>
+<!-- аквааэробика -->
+<enum-value name="water_activities">water_aerobic</enum-value>
+<!-- занятия для детей -->
+<enum-value name="water_activities">children_swimming_training</enum-value>
+<!-- занятия для беременных -->
+<enum-value name="water_activities">swimming_pregnant</enum-value>
+<!-- занятия для грудных детей -->
+<enum-value name="water_activities">swimming_infants</enum-value>
+<!-- водное поло -->
+<enum-value name="water_activities">water_polo</enum-value>
+<!-- дайвинг -->
+<enum-value name="water_activities">diving_pool</enum-value>
+<!-- обучение плаванию взрослых -->
+<enum-value name="water_activities">adults_swimming_training</enum-value>
+<!-- соревнования и марафоны -->
+<enum-value name="water_activities">competitions_marathons</enum-value>
+<!-- синхронное плавание -->
+<enum-value name="water_activities">synchronized_swimming</enum-value>
+<!-- вейкбординг -->
+<enum-value name="water_activities">wakeboarding</enum-value>
+<!-- тип бассейна -->
+<known-enum-single name="pool_type"/>
+<!-- крытый -->
+<enum-value name="pool_type">indoor_pool</enum-value>
+<!-- открытый -->
+<enum-value name="pool_type">outdoor_pool</enum-value>
+<!-- открытый и крытый -->
+<enum-value name="pool_type">outdoor_and_indoor_pool</enum-value>
+<!-- количество плавательных дорожек -->
+<known-numeric-single name="number_of_swimming_lanes"/>
+<!-- персональный тренер -->
+<known-boolean name="personal_trainer"/>
+<!-- трамплин -->
+<known-boolean name="trampoline"/>
+<!-- выдача справок -->
+<known-boolean name="information"/>
+<!-- wi-fi -->
+<known-boolean name="wi_fi"/>
+<!-- способ оплаты -->
+<known-enum-multiple name="payment_method"/>
+<!-- наличными -->
+<enum-value name="payment_method">cash</enum-value>
+<!-- оплата картой -->
+<enum-value name="payment_method">payment_card</enum-value>
+<!-- электронными деньгами -->
+<enum-value name="payment_method">electronic_money</enum-value>
+<!-- банковским переводом -->
+<enum-value name="payment_method">wire_transfer</enum-value>
+<!-- sms-платеж -->
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<!-- наложенным платежом -->
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- скидки на услуги льготным категориям -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- дисконтная система скидок -->
+<enum-value name="payment_method">discount_system</enum-value>
+<!-- предоплата -->
+<enum-value name="payment_method">prepayment</enum-value>
+<!-- постоплата -->
+<enum-value name="payment_method">postpay</enum-value>
+<!-- требуется справка -->
+<known-boolean name="note_required"/>
+<!-- продолжительность сеанса в бассейне -->
+<known-numeric-single name="time_swimming_pool"/>
+<!-- месячный абонемент -->
+<known-range-in-units-single name="price_per_month2" unit="money"/>
+<!-- цена 1 посещения -->
+<known-range-in-units-single name="price_1" unit="money"/>
+<!-- длина дорожки -->
+<known-in-units-multiple name="track_length" unit="distance"/>
+<!-- оплата картой -->
+<known-boolean name="payment_by_credit_card"/>
+</known-features>

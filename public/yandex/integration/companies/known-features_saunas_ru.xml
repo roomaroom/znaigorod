@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Бани и сауны -->
+<!-- деньги -->
+<known-unit name="money"/>
+<!-- руб. -->
+<unit-value name="money" value="rub"/>
+<!-- грн. -->
+<unit-value name="money" value="grn"/>
+<!-- тыс.руб. -->
+<unit-value name="money" value="k_rub"/>
+<!-- руб./20 мин. -->
+<unit-value name="money" value="rub_20_min"/>
+<!-- грн./20 мин. -->
+<unit-value name="money" value="grn_20_min"/>
+<!-- тыс.руб./год -->
+<unit-value name="money" value="k_rub_year"/>
+<!-- тис.грн/рік -->
+<unit-value name="money" value="k_grn_year"/>
+<!-- тыс.руб./мес. -->
+<unit-value name="money" value="k_rub_month"/>
+<!-- руб./час -->
+<unit-value name="money" value="rub_hour"/>
+<!-- руб./мин. -->
+<unit-value name="money" value="rub_min"/>
+<!-- бел.руб. -->
+<unit-value name="money" value="byr"/>
+<!-- грн./мес. -->
+<unit-value name="money" value="grn_month"/>
+<!-- грн./год. -->
+<unit-value name="money" value="grn_year"/>
+<!-- руб./сутки -->
+<unit-value name="money" value="rub_day"/>
+<!-- грн./добу -->
+<unit-value name="money" value="grn_day"/>
+<!-- $ -->
+<unit-value name="money" value="usd"/>
+<!-- евро -->
+<unit-value name="money" value="euro"/>
+<!-- грн./час -->
+<unit-value name="money" value="grn_hour"/>
+<!-- $/сутки -->
+<unit-value name="money" value="usd_day"/>
+<!-- тнг./час -->
+<unit-value name="money" value="tenge_hour"/>
+<!-- тнг./30 мин. -->
+<unit-value name="money" value="tenge_30_min"/>
+<!-- тнг. -->
+<unit-value name="money" value="tng"/>
+<!-- парковка -->
+<known-boolean name="car_park"/>
+<!-- обслуживаемые банковские карты -->
+<known-enum-multiple name="accepted_credit_cards"/>
+<!-- Visa -->
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<!-- MasterCard -->
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<!-- Visa Electron -->
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<!-- Maestro -->
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<!-- MasterCard Electronic -->
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<!-- American Express -->
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<!-- СБЕРКАРТ -->
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<!-- Ortcard International -->
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<!-- Золотая Корона -->
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<!-- Union Card -->
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<!-- JCB card -->
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<!-- Diners Club International -->
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<!-- STB Card -->
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<!-- Cirrus -->
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<!-- Eurocard -->
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<!-- China Union Pay -->
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<!-- тип парковки -->
+<known-enum-multiple name="type_parking"/>
+<!-- бесплатная -->
+<enum-value name="type_parking">free_parking</enum-value>
+<!-- краткосрочная -->
+<enum-value name="type_parking">short_term_parking</enum-value>
+<!-- длительная -->
+<enum-value name="type_parking">long_term_parking</enum-value>
+<!-- открытая -->
+<enum-value name="type_parking">outdoor_parking</enum-value>
+<!-- крытая -->
+<enum-value name="type_parking">covered_parking</enum-value>
+<!-- подземная -->
+<enum-value name="type_parking">underground_parking</enum-value>
+<!-- наземная -->
+<enum-value name="type_parking">surface_parking</enum-value>
+<!-- охраняемая -->
+<enum-value name="type_parking">guarded_parking</enum-value>
+<!-- неохраняемая -->
+<enum-value name="type_parking">unguarded_parking</enum-value>
+<!-- для грузовиков -->
+<enum-value name="type_parking">parking_for_trucks</enum-value>
+<!-- для легковых автомобилей -->
+<enum-value name="type_parking">parking_for_cars</enum-value>
+<!-- VIP -->
+<enum-value name="type_parking">vip_parking</enum-value>
+<!-- гостевая -->
+<enum-value name="type_parking">guest_parking</enum-value>
+<!-- предварительное бронирование -->
+<enum-value name="type_parking">advance_booking_parking</enum-value>
+<!-- платная -->
+<enum-value name="type_parking">paid_parking</enum-value>
+<!-- многоуровневая -->
+<enum-value name="type_parking">multilevel_parking</enum-value>
+<!-- автоматическая -->
+<enum-value name="type_parking">automatic_parking</enum-value>
+<!-- круглосуточность -->
+<known-boolean name="around_the_clock_work"/>
+<!-- вид парной -->
+<known-enum-multiple name="steam"/>
+<!-- русская -->
+<enum-value name="steam">russian_sauna</enum-value>
+<!-- турецкая -->
+<enum-value name="steam">turkish_bath</enum-value>
+<!-- на дровах -->
+<enum-value name="steam">wood_fired_sauna</enum-value>
+<!-- японская -->
+<enum-value name="steam">japanese_bath</enum-value>
+<!-- финская -->
+<enum-value name="steam">finnish_sauna</enum-value>
+<!-- инфракрасная -->
+<enum-value name="steam">infrared_sauna_2</enum-value>
+<!-- американская -->
+<enum-value name="steam">american_bath</enum-value>
+<!-- кислородная -->
+<enum-value name="steam">oxygen_bath</enum-value>
+<!-- римская -->
+<enum-value name="steam">roman_bath</enum-value>
+<!-- дополнительный сервис -->
+<known-enum-multiple name="service_rest"/>
+<!-- кафе/бар -->
+<enum-value name="service_rest">cafe_bar_sauna</enum-value>
+<!-- ресторан -->
+<enum-value name="service_rest">restaurant_sauna</enum-value>
+<!-- банкетный зал -->
+<enum-value name="service_rest">banqueting_hall</enum-value>
+<!-- чайная церемония -->
+<enum-value name="service_rest">tea_ceremony</enum-value>
+<!-- бильярд -->
+<enum-value name="service_rest">billiards_sauna</enum-value>
+<!-- тренажерный зал -->
+<enum-value name="service_rest">gym_sauna</enum-value>
+<!-- кальян -->
+<enum-value name="service_rest">hookah_sauna</enum-value>
+<!-- кальянная комната -->
+<enum-value name="service_rest">hookah_room_sauna</enum-value>
+<!-- танцпол -->
+<enum-value name="service_rest">dance_floor_sauna</enum-value>
+<!-- стрип-подиум -->
+<enum-value name="service_rest">runway_strip_sauna</enum-value>
+<!-- шоу-программы -->
+<enum-value name="service_rest">show_program_sauna</enum-value>
+<!-- гостиная -->
+<enum-value name="service_rest">lounge_sauna</enum-value>
+<!-- vip-зона -->
+<enum-value name="service_rest">vip_zone_sauna</enum-value>
+<!-- камин -->
+<enum-value name="service_rest">fireplace_sauna</enum-value>
+<!-- теплый пол -->
+<enum-value name="service_rest">heated_floor_sauna</enum-value>
+<!-- караоке -->
+<enum-value name="service_rest">karaoke_sauna</enum-value>
+<!-- телевизор -->
+<enum-value name="service_rest">tv_sauna</enum-value>
+<!-- вызов такси -->
+<enum-value name="service_rest">taxi_sauna</enum-value>
+<!-- массажное кресло -->
+<enum-value name="service_rest">massage_chair_sauna</enum-value>
+<!-- настольные игры -->
+<enum-value name="service_rest">games_sauna</enum-value>
+<!-- спутниковое ТВ -->
+<enum-value name="service_rest">satellite_tv_sauna</enum-value>
+<!-- аудио/видео аппаратура -->
+<enum-value name="service_rest">audio_video_sauna</enum-value>
+<!-- dvd -->
+<enum-value name="service_rest">dvd_sauna</enum-value>
+<!-- домашний кинотеатр -->
+<enum-value name="service_rest">home_cinema</enum-value>
+<!-- домашний кинозал -->
+<enum-value name="service_rest">home_cinema_2</enum-value>
+<!-- кондиционеры -->
+<enum-value name="service_rest">conditioners_sauna</enum-value>
+<!-- настольный теннис -->
+<enum-value name="service_rest">ping_pong_sauna</enum-value>
+<!-- настольный футбол -->
+<enum-value name="service_rest">table_football_sauna</enum-value>
+<!-- аэрохоккей -->
+<enum-value name="service_rest">air_hockey_sauna</enum-value>
+<!-- дартс -->
+<enum-value name="service_rest">darts_sauna</enum-value>
+<!-- летняя беседка -->
+<enum-value name="service_rest">summer_gazebo_sauna</enum-value>
+<!-- водный баскетбол -->
+<enum-value name="service_rest">water_basketball_sauna</enum-value>
+<!-- crazy menu -->
+<enum-value name="service_rest">crazy_menu_sauna</enum-value>
+<!-- боулинг -->
+<enum-value name="service_rest">bowling_sauna</enum-value>
+<!-- Wi-Fi -->
+<enum-value name="service_rest">wifi_sauna</enum-value>
+<!-- НТВ+ -->
+<enum-value name="service_rest">ntv_sauna</enum-value>
+<!-- банные услуги -->
+<known-enum-multiple name="service_sauna"/>
+<!-- выбор веников -->
+<enum-value name="service_sauna">selection_brooms</enum-value>
+<!-- услуги банщика -->
+<enum-value name="service_sauna">bathhouse_attendant</enum-value>
+<!-- фитосауна -->
+<enum-value name="service_sauna">fitosauna</enum-value>
+<!-- банные принадлежности -->
+<enum-value name="service_sauna">bath_accessories</enum-value>
+<!-- различные виды пропарок -->
+<enum-value name="service_sauna">types_steaming</enum-value>
+<!-- солярий -->
+<enum-value name="service_sauna">solarium_sauna</enum-value>
+<!-- массаж -->
+<enum-value name="service_sauna">massage_sauna</enum-value>
+<!-- spa-процедуры -->
+<enum-value name="service_sauna">spa_procedures</enum-value>
+<!-- косметический кабинет -->
+<enum-value name="service_sauna">wellness_sauna</enum-value>
+<!-- ароматерапия -->
+<enum-value name="service_sauna">aromatherapy</enum-value>
+<!-- гидромассаж -->
+<enum-value name="service_sauna">hydro_massage_sauna</enum-value>
+<!-- способ оплаты -->
+<known-enum-multiple name="payment_method"/>
+<!-- наличными -->
+<enum-value name="payment_method">cash</enum-value>
+<!-- безналичный способ -->
+<enum-value name="payment_method">payment_card</enum-value>
+<!-- электронными деньгами -->
+<enum-value name="payment_method">electronic_money</enum-value>
+<!-- банковским переводом -->
+<enum-value name="payment_method">wire_transfer</enum-value>
+<!-- sms-платеж -->
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<!-- наложенным платежом -->
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- Скидки на услуги льготным категориям -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- вода в бассейне -->
+<known-enum-multiple name="water_pool"/>
+<!-- с ионами серебра -->
+<enum-value name="water_pool">water_silver</enum-value>
+<!-- морская -->
+<enum-value name="water_pool">sea_water</enum-value>
+<!-- минеральная -->
+<enum-value name="water_pool">water_mineral</enum-value>
+<!-- бассейн в бане -->
+<known-enum-multiple name="water_stuff"/>
+<!-- бассейн -->
+<enum-value name="water_stuff">pool_sauna</enum-value>
+<!-- аквагорка -->
+<enum-value name="water_stuff">aqua_slide_sauna</enum-value>
+<!-- водопад -->
+<enum-value name="water_stuff">waterfall_sauna</enum-value>
+<!-- водосток -->
+<enum-value name="water_stuff">drain_sauna</enum-value>
+<!-- гейзер -->
+<enum-value name="water_stuff">geyser_sauna</enum-value>
+<!-- гидромассаж -->
+<enum-value name="water_stuff">hydromassage_sauna</enum-value>
+<!-- гидромассажная ванна -->
+<enum-value name="water_stuff">whirlpool_sauna</enum-value>
+<!-- джакузи -->
+<enum-value name="water_stuff">jacuzzi_sauna</enum-value>
+<!-- купель -->
+<enum-value name="water_stuff">font_sauna</enum-value>
+<!-- подогрев -->
+<enum-value name="water_stuff">heating_sauna</enum-value>
+<!-- подсветка -->
+<enum-value name="water_stuff">backlight_sauna</enum-value>
+<!-- фонтан -->
+<enum-value name="water_stuff">fountain_sauna</enum-value>
+<!-- противоток -->
+<enum-value name="water_stuff">backflow_sauna</enum-value>
+<!-- прорубь -->
+<enum-value name="water_stuff">ice_hole_sauna</enum-value>
+<!-- час в бане -->
+<known-range-in-units-single name="price_per_hour_sauna2" unit="money"/>
+<!-- число мест -->
+<known-numeric-single name="seats"/>
+</known-features>

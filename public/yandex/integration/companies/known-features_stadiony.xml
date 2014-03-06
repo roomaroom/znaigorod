@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Stadiums (184107315) -->
+<!-- stadium type -->
+<known-enum-single name="stadium_type"/>
+<enum-value name="stadium_type">indoor_stadium</enum-value>
+<enum-value name="stadium_type">outdoor_stadium</enum-value>
+<enum-value name="stadium_type">closed_open_areas</enum-value>
+<!-- video screen -->
+<known-boolean name="video_screen"/>
+<!-- covering -->
+<known-enum-multiple name="covering"/>
+<enum-value name="covering">covering_artificial_turf</enum-value>
+<enum-value name="covering">covering_natural_lawn</enum-value>
+<enum-value name="covering">covering_ice</enum-value>
+<!-- lease/events -->
+<known-boolean name="lease_events"/>
+<!-- for athletics -->
+<known-enum-multiple name="for_athletics"/>
+<enum-value name="for_athletics">circular_treadmill</enum-value>
+<enum-value name="for_athletics">straight_running_track</enum-value>
+<enum-value name="for_athletics">areas_shot_put</enum-value>
+<enum-value name="for_athletics">place_long_jump</enum-value>
+<enum-value name="for_athletics">space_high_jump</enum-value>
+<enum-value name="for_athletics">place_throw</enum-value>
+<enum-value name="for_athletics">space_pole_vault</enum-value>
+<known-numeric-single name="seats"/>
+<known-numeric-single name="number_of_stands"/>
+</known-features>

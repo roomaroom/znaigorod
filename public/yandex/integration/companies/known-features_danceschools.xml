@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Школы танцев (184105924) -->
+<!-- деньги -->
+<known-unit name="money"/>
+<!-- руб. -->
+<unit-value name="money" value="rub"/>
+<!-- грн. -->
+<unit-value name="money" value="grn"/>
+<!-- тыс.руб. -->
+<unit-value name="money" value="k_rub"/>
+<!-- руб./20 мин. -->
+<unit-value name="money" value="rub_20_min"/>
+<!-- грн./20 мин. -->
+<unit-value name="money" value="grn_20_min"/>
+<!-- тыс.руб./год -->
+<unit-value name="money" value="k_rub_year"/>
+<!-- тис.грн/рік -->
+<unit-value name="money" value="k_grn_year"/>
+<!-- тыс.руб./мес. -->
+<unit-value name="money" value="k_rub_month"/>
+<!-- руб./час -->
+<unit-value name="money" value="rub_hour"/>
+<!-- руб./мин. -->
+<unit-value name="money" value="rub_min"/>
+<!-- бел.руб. -->
+<unit-value name="money" value="byr"/>
+<!-- грн./мес. -->
+<unit-value name="money" value="grn_month"/>
+<!-- грн./год. -->
+<unit-value name="money" value="grn_year"/>
+<!-- руб./сутки -->
+<unit-value name="money" value="rub_day"/>
+<!-- грн./добу -->
+<unit-value name="money" value="grn_day"/>
+<!-- $ -->
+<unit-value name="money" value="usd"/>
+<!-- евро -->
+<unit-value name="money" value="euro"/>
+<!-- грн./час -->
+<unit-value name="money" value="grn_hour"/>
+<!-- $/сутки -->
+<unit-value name="money" value="usd_day"/>
+<!-- тнг./час -->
+<unit-value name="money" value="tenge_hour"/>
+<!-- тнг./30 мин. -->
+<unit-value name="money" value="tenge_30_min"/>
+<!-- тнг. -->
+<unit-value name="money" value="tng"/>
+<!-- танцевальные программы -->
+<known-enum-multiple name="dance"/>
+<!-- бальные -->
+<enum-value name="dance">ballroom</enum-value>
+<!-- восточные -->
+<enum-value name="dance">belly_dancing</enum-value>
+<!-- брейк-дэнс -->
+<enum-value name="dance">break_dance</enum-value>
+<!-- народные -->
+<enum-value name="dance">folk_dancing</enum-value>
+<!-- современные -->
+<enum-value name="dance">modern_dances</enum-value>
+<!-- Hip-Hop -->
+<enum-value name="dance">hip_hop_dances</enum-value>
+<!-- ирландские -->
+<enum-value name="dance">irish_dancing</enum-value>
+<!-- индийские -->
+<enum-value name="dance">dances_india</enum-value>
+<!-- клубные -->
+<enum-value name="dance">club_dance</enum-value>
+<!-- бачата -->
+<enum-value name="dance">bachata</enum-value>
+<!-- танец на шесте -->
+<enum-value name="dance">pole_dance</enum-value>
+<!-- балет -->
+<enum-value name="dance">ballet</enum-value>
+<!-- танго -->
+<enum-value name="dance">tango</enum-value>
+<!-- go-go -->
+<enum-value name="dance">go_go</enum-value>
+<!-- танец с огнем -->
+<enum-value name="dance">dance_with_fire</enum-value>
+<!-- сальса -->
+<enum-value name="dance">salsa</enum-value>
+<!-- латина -->
+<enum-value name="dance">latina</enum-value>
+<!-- джаз -->
+<enum-value name="dance">jazz_dance</enum-value>
+<!-- фламенко -->
+<enum-value name="dance">flamenco</enum-value>
+<!-- модерн -->
+<enum-value name="dance">dance_modern</enum-value>
+<!-- рок-н-ролл -->
+<enum-value name="dance">dance_rock_and_roll</enum-value>
+<!-- буги-вуги -->
+<enum-value name="dance">boogie_woogie</enum-value>
+<!-- хореография -->
+<enum-value name="dance">choreography</enum-value>
+<!-- шотландские -->
+<enum-value name="dance">scottish_dancing</enum-value>
+<!-- хастл -->
+<enum-value name="dance">hustle</enum-value>
+<!-- свободные -->
+<enum-value name="dance">free_dance</enum-value>
+<!-- хаус -->
+<enum-value name="dance">dance_house</enum-value>
+<!-- свинг -->
+<enum-value name="dance">swing</enum-value>
+<!-- стрип-дэнс -->
+<enum-value name="dance">strip_dance</enum-value>
+<!-- исторические -->
+<enum-value name="dance">historical_dance</enum-value>
+<!-- реггетон -->
+<enum-value name="dance">reggaeton</enum-value>
+<!-- меренге -->
+<enum-value name="dance">merengue</enum-value>
+<!-- контемпорари -->
+<enum-value name="dance">contemporary</enum-value>
+<!-- R&B -->
+<enum-value name="dance">r_b</enum-value>
+<!-- импровизация -->
+<enum-value name="dance">dance_improvisation</enum-value>
+<!-- капоэйра -->
+<enum-value name="dance">capoeira_dance</enum-value>
+<!-- локинг -->
+<enum-value name="dance">locking</enum-value>
+<!-- крамп -->
+<enum-value name="dance">krumping</enum-value>
+<!-- буто -->
+<enum-value name="dance">butoh</enum-value>
+<!-- поппинг -->
+<enum-value name="dance">popping</enum-value>
+<!-- афро-джаз -->
+<enum-value name="dance">afro_jazz</enum-value>
+<!-- линди-хоп -->
+<enum-value name="dance">lindy_hop</enum-value>
+<!-- tecktonik -->
+<enum-value name="dance">tecktonik</enum-value>
+<!-- контактная импровизация -->
+<enum-value name="dance">contact_improvisation</enum-value>
+<!-- постановка свадебного танца -->
+<known-boolean name="wedding_dances"/>
+<!-- постановка танцевальных номеров -->
+<known-boolean name="staging_of_dancing_routines"/>
+<!-- артисты для мероприятий -->
+<known-boolean name="artists_for_events"/>
+<!-- целевая аудитория -->
+<known-enum-single name="target_audience"/>
+<!-- для детей -->
+<enum-value name="target_audience">for_child</enum-value>
+<!-- для взрослых -->
+<enum-value name="target_audience">for_adults</enum-value>
+<!-- для взрослых и детей -->
+<enum-value name="target_audience">adults_children</enum-value>
+<!-- для пожилых людей -->
+<enum-value name="target_audience">elderly</enum-value>
+<!-- обслуживаемые банковские карты -->
+<known-enum-multiple name="accepted_credit_cards"/>
+<!-- Visa -->
+<enum-value name="accepted_credit_cards">visa</enum-value>
+<!-- MasterCard -->
+<enum-value name="accepted_credit_cards">mastercard</enum-value>
+<!-- Visa Electron -->
+<enum-value name="accepted_credit_cards">visa_electron</enum-value>
+<!-- Maestro -->
+<enum-value name="accepted_credit_cards">maestro</enum-value>
+<!-- MasterCard Electronic -->
+<enum-value name="accepted_credit_cards">mastercard_electronic</enum-value>
+<!-- American Express -->
+<enum-value name="accepted_credit_cards">american_express</enum-value>
+<!-- СБЕРКАРТ -->
+<enum-value name="accepted_credit_cards">sbercard</enum-value>
+<!-- Ortcard International -->
+<enum-value name="accepted_credit_cards">ortcard_international</enum-value>
+<!-- Золотая Корона -->
+<enum-value name="accepted_credit_cards">zolotaya_korona</enum-value>
+<!-- Union Card -->
+<enum-value name="accepted_credit_cards">union_card</enum-value>
+<!-- JCB card -->
+<enum-value name="accepted_credit_cards">jcb_card</enum-value>
+<!-- Diners Club International -->
+<enum-value name="accepted_credit_cards">diners_club_international</enum-value>
+<!-- STB Card -->
+<enum-value name="accepted_credit_cards">stb_card</enum-value>
+<!-- Cirrus -->
+<enum-value name="accepted_credit_cards">cirrus</enum-value>
+<!-- Eurocard -->
+<enum-value name="accepted_credit_cards">eurocard</enum-value>
+<!-- China Union Pay -->
+<enum-value name="accepted_credit_cards">china_union_pay</enum-value>
+<!-- персональный тренер -->
+<known-boolean name="personal_trainer"/>
+<!-- Прием по записи -->
+<known-boolean name="admission_by_appointment"/>
+<!-- наличие душа -->
+<known-boolean name="shower"/>
+<!-- wi-fi -->
+<known-boolean name="wi_fi"/>
+<!-- способ оплаты -->
+<known-enum-multiple name="payment_method"/>
+<!-- наличными -->
+<enum-value name="payment_method">cash</enum-value>
+<!-- оплата картой -->
+<enum-value name="payment_method">payment_card</enum-value>
+<!-- электронными деньгами -->
+<enum-value name="payment_method">electronic_money</enum-value>
+<!-- банковским переводом -->
+<enum-value name="payment_method">wire_transfer</enum-value>
+<!-- sms-платеж -->
+<enum-value name="payment_method">billing_to_mobile_phones</enum-value>
+<!-- наложенным платежом -->
+<enum-value name="payment_method">collect_on_delivery</enum-value>
+<!-- скидки на услуги льготным категориям -->
+<enum-value name="payment_method">subsidized_discounts</enum-value>
+<!-- дисконтная система скидок -->
+<enum-value name="payment_method">discount_system</enum-value>
+<!-- предоплата -->
+<enum-value name="payment_method">prepayment</enum-value>
+<!-- постоплата -->
+<enum-value name="payment_method">postpay</enum-value>
+<!-- месячный абонемент -->
+<known-range-in-units-single name="price_per_month2" unit="money"/>
+<!-- цена 1 посещения -->
+<known-range-in-units-single name="price_1" unit="money"/>
+<!-- цена 8 занятий -->
+<known-range-in-units-single name="price_8" unit="money"/>
+<!-- число залов -->
+<known-numeric-single name="number_of_halls"/>
+<!-- оплата картой -->
+<known-boolean name="payment_by_credit_card"/>
+</known-features>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Skating-rink (184107311) -->
+<known-unit name="money"/>
+<unit-value name="money" value="rub"/>
+<unit-value name="money" value="grn"/>
+<unit-value name="money" value="k_rub"/>
+<unit-value name="money" value="rub_20_min"/>
+<unit-value name="money" value="grn_20_min"/>
+<unit-value name="money" value="k_rub_year"/>
+<unit-value name="money" value="k_grn_year"/>
+<unit-value name="money" value="k_rub_month"/>
+<unit-value name="money" value="rub_hour"/>
+<unit-value name="money" value="rub_min"/>
+<unit-value name="money" value="byr"/>
+<unit-value name="money" value="grn_month"/>
+<unit-value name="money" value="grn_year"/>
+<unit-value name="money" value="rub_day"/>
+<unit-value name="money" value="grn_day"/>
+<unit-value name="money" value="usd"/>
+<unit-value name="money" value="euro"/>
+<unit-value name="money" value="grn_hour"/>
+<unit-value name="money" value="usd_day"/>
+<unit-value name="money" value="tenge_hour"/>
+<unit-value name="money" value="tenge_30_min"/>
+<unit-value name="money" value="tng"/>
+<!-- cafe -->
+<known-boolean name="cafe"/>
+<known-boolean name="skate_sharpening"/>
+<known-boolean name="skate_rental"/>
+<known-boolean name="dressing_room"/>
+<known-boolean name="ice_party"/>
+<known-boolean name="baggage_room"/>
+<known-boolean name="outfit"/>
+<known-range-in-units-multiple name="tickets" unit="money"/>
+<known-range-in-units-multiple name="price_hour" unit="money"/>
+<known-boolean name="outdoor_skating_rink"/>
+<known-boolean name="indoor_skating_rink"/>
+<known-enum-single name="seasonal"/>
+<enum-value name="seasonal">all_year</enum-value>
+</known-features>

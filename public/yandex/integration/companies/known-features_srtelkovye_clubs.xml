@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Стрелковые клубы и тиры (184107317) -->
+<!-- индивидуальное обучение -->
+<known-boolean name="individual_training"/>
+<!-- проведение турниров -->
+<known-boolean name="holding_tournaments"/>
+<!-- тип оружия -->
+<known-enum-multiple name="weapons"/>
+<!-- винтовки -->
+<enum-value name="weapons">rifles</enum-value>
+<!-- гладкоствольное -->
+<enum-value name="weapons">shotguns</enum-value>
+<!-- малокалиберное -->
+<enum-value name="weapons">small_caliber_weapons</enum-value>
+<!-- пистолеты -->
+<enum-value name="weapons">pistol</enum-value>
+<!-- пневматическое -->
+<enum-value name="weapons">air_guns</enum-value>
+<!-- травматическое -->
+<enum-value name="weapons">traumatic_weapons</enum-value>
+<!-- обучение стрельбе -->
+<known-enum-multiple name="fire_training"/>
+<!-- охота -->
+<enum-value name="fire_training">shooting_hunting</enum-value>
+<!-- охрана -->
+<enum-value name="fire_training">shooting_guard</enum-value>
+<!-- самооборона -->
+<enum-value name="fire_training">self_defense_shooting</enum-value>
+<!-- спорт -->
+<enum-value name="fire_training">sports_shooting</enum-value>
+<!-- дистанции стрельбы -->
+<known-enum-multiple name="distance_shooting"/>
+<!-- 10 м -->
+<enum-value name="distance_shooting">100m_shooting</enum-value>
+<!-- дополнительные услуги тира -->
+<known-enum-multiple name="additional_services_shooting"/>
+<!-- пристрелка оружия -->
+<enum-value name="additional_services_shooting">weapons_ranging</enum-value>
+<!-- обслуживание оружия -->
+<enum-value name="additional_services_shooting">maintenance_weapons</enum-value>
+<!-- чистка оружия -->
+<enum-value name="additional_services_shooting">cleaning_weapons</enum-value>
+<!-- магазин -->
+<enum-value name="additional_services_shooting">weapons_shop</enum-value>
+<!-- возможность стрелять из своего оружия -->
+<known-boolean name="his_arms"/>
+</known-features>

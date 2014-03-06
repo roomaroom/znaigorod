@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<known-features>
+<!-- Спортивные комплексы (184107313) -->
+<!-- бассейн -->
+<known-boolean name="pool"/>
+<!-- программы водных занятий -->
+<known-enum-multiple name="water_activities"/>
+<!-- аквааэробика -->
+<enum-value name="water_activities">water_aerobic</enum-value>
+<!-- занятия для детей -->
+<enum-value name="water_activities">children_swimming_training</enum-value>
+<!-- занятия для беременных -->
+<enum-value name="water_activities">swimming_pregnant</enum-value>
+<!-- занятия для грудных детей -->
+<enum-value name="water_activities">swimming_infants</enum-value>
+<!-- водное поло -->
+<enum-value name="water_activities">water_polo</enum-value>
+<!-- дайвинг -->
+<enum-value name="water_activities">diving_pool</enum-value>
+<!-- обучение плаванию взрослых -->
+<enum-value name="water_activities">adults_swimming_training</enum-value>
+<!-- соревнования и марафоны -->
+<enum-value name="water_activities">competitions_marathons</enum-value>
+<!-- синхронное плавание -->
+<enum-value name="water_activities">synchronized_swimming</enum-value>
+<!-- вейкбординг -->
+<enum-value name="water_activities">wakeboarding</enum-value>
+<!-- групповые занятия -->
+<known-enum-multiple name="group_classes"/>
+<!-- йога -->
+<enum-value name="group_classes">yoga</enum-value>
+<!-- шейпинг -->
+<enum-value name="group_classes">shaping</enum-value>
+<!-- пилатес -->
+<enum-value name="group_classes">pilates</enum-value>
+<!-- стрейчинг -->
+<enum-value name="group_classes">stretching</enum-value>
+<!-- степ -->
+<enum-value name="group_classes">step</enum-value>
+<!-- калланетика -->
+<enum-value name="group_classes">callanetics</enum-value>
+<!-- силовая аэробика -->
+<enum-value name="group_classes">aerobic_power</enum-value>
+<!-- body sculpt -->
+<enum-value name="group_classes">body_sculpt</enum-value>
+<!-- ABS -->
+<enum-value name="group_classes">abs</enum-value>
+<!-- аэробика -->
+<enum-value name="group_classes">aerobic</enum-value>
+<!-- ABL -->
+<enum-value name="group_classes">abl</enum-value>
+<!-- фитбол -->
+<enum-value name="group_classes">fitball</enum-value>
+<!-- interval -->
+<enum-value name="group_classes">interval</enum-value>
+<!-- свитчинг -->
+<enum-value name="group_classes">svitching</enum-value>
+<!-- аэромикс -->
+<enum-value name="group_classes">aeromix</enum-value>
+<!-- upper body -->
+<enum-value name="group_classes">upper_body</enum-value>
+<!-- lower body -->
+<enum-value name="group_classes">lower_body</enum-value>
+<!-- body flex -->
+<enum-value name="group_classes">body_flex</enum-value>
+<!-- флекс -->
+<enum-value name="group_classes">flex</enum-value>
+<!-- боди-памп -->
+<enum-value name="group_classes">body_pump</enum-value>
+<!-- iron grip -->
+<enum-value name="group_classes">iron_grip</enum-value>
+<!-- слайд-аэробика -->
+<enum-value name="group_classes">slide_aerobics</enum-value>
+<!-- stress-out -->
+<enum-value name="group_classes">stressout</enum-value>
+<!-- игровой спорт -->
+<known-enum-multiple name="sport_game"/>
+<!-- теннис -->
+<enum-value name="sport_game">tennis</enum-value>
+<!-- футбол -->
+<enum-value name="sport_game">football</enum-value>
+<!-- настольный теннис -->
+<enum-value name="sport_game">ping_pong</enum-value>
+<!-- фехтование -->
+<enum-value name="sport_game">fencing</enum-value>
+<!-- бадминтон -->
+<enum-value name="sport_game">badminton</enum-value>
+<!-- сквош -->
+<enum-value name="sport_game">squash_racket</enum-value>
+<!-- боулинг -->
+<enum-value name="sport_game">sport_bowling</enum-value>
+<!-- скалолазание -->
+<enum-value name="sport_game">rock_climbing</enum-value>
+<!-- прыжки на батуте -->
+<enum-value name="sport_game">jumping_trampoline</enum-value>
+<!-- мини-футбол -->
+<enum-value name="sport_game">mini_soccer</enum-value>
+<!-- волейбол -->
+<enum-value name="sport_game">volleyball</enum-value>
+<!-- баскетбол -->
+<enum-value name="sport_game">basketball</enum-value>
+<!-- бильярд -->
+<enum-value name="sport_game">sports_pool</enum-value>
+<!-- гольф -->
+<enum-value name="sport_game">golf</enum-value>
+<!-- стрит бол -->
+<enum-value name="sport_game">street_ball</enum-value>
+<!-- пейнтбол -->
+<enum-value name="sport_game">paintball</enum-value>
+<!-- боевые искусства -->
+<known-enum-multiple name="martial_arts"/>
+<!-- бокс -->
+<enum-value name="martial_arts">box</enum-value>
+<!-- каратэ -->
+<enum-value name="martial_arts">karate</enum-value>
+<!-- айкидо -->
+<enum-value name="martial_arts">aikido</enum-value>
+<!-- джиу-джитсу -->
+<enum-value name="martial_arts">jujitsu</enum-value>
+<!-- кикбоксинг -->
+<enum-value name="martial_arts">kickboxing</enum-value>
+<!-- рукопашный бой -->
+<enum-value name="martial_arts">dogfight</enum-value>
+<!-- таэквондо -->
+<enum-value name="martial_arts">taekwondo</enum-value>
+<!-- дзюдо -->
+<enum-value name="martial_arts">judo</enum-value>
+<!-- самбо -->
+<enum-value name="martial_arts">sambo</enum-value>
+<!-- самооборона -->
+<enum-value name="martial_arts">self_defense</enum-value>
+<!-- тай-бо -->
+<enum-value name="martial_arts">tai_bo</enum-value>
+<!-- капоэйра -->
+<enum-value name="martial_arts">capoeira</enum-value>
+<!-- вин чун -->
+<enum-value name="martial_arts">wing_chun</enum-value>
+<!-- кобудо -->
+<enum-value name="martial_arts">kobudo</enum-value>
+<!-- ушу -->
+<enum-value name="martial_arts">wushu</enum-value>
+<!-- тай-чи -->
+<enum-value name="martial_arts">tai_chi</enum-value>
+<!-- хапкидо -->
+<enum-value name="martial_arts">hapkido</enum-value>
+<!-- кендо -->
+<enum-value name="martial_arts">kendo</enum-value>
+<!-- бокс для женщин -->
+<enum-value name="martial_arts">boxing_women</enum-value>
+<!-- боевое самбо -->
+<enum-value name="martial_arts">combat_sambo</enum-value>
+<!-- окинава тэ -->
+<enum-value name="martial_arts">okinawa_te</enum-value>
+<!-- айки-кэн -->
+<enum-value name="martial_arts">aiki_ken</enum-value>
+<!-- киокушинкай -->
+<enum-value name="martial_arts">kyokushinkai</enum-value>
+<!-- греко-римская борьба -->
+<enum-value name="martial_arts">greco_roman_wrestling</enum-value>
+<!-- вольная борьба -->
+<enum-value name="martial_arts">freestyle_wrestling</enum-value>
+<!-- тайский бокс -->
+<enum-value name="martial_arts">thai_boxing</enum-value>
+<!-- славяно-горицкая борьба -->
+<enum-value name="martial_arts">slavic_goritskaya_wrestling</enum-value>
+<!-- сумо -->
+<enum-value name="martial_arts">sumo</enum-value>
+<!-- рестлинг -->
+<enum-value name="martial_arts">wrestling</enum-value>
+<!-- чанбара -->
+<enum-value name="martial_arts">chanbara</enum-value>
+<!-- панкратион -->
+<enum-value name="martial_arts">pankration</enum-value>
+<!-- тансудо -->
+<enum-value name="martial_arts">tansudo</enum-value>
+<!-- комбатан -->
+<enum-value name="martial_arts">combatants</enum-value>
+<!-- танцевальные программы -->
+<known-enum-multiple name="dance"/>
+<!-- бальные -->
+<enum-value name="dance">ballroom</enum-value>
+<!-- восточные -->
+<enum-value name="dance">belly_dancing</enum-value>
+<!-- брейк-дэнс -->
+<enum-value name="dance">break_dance</enum-value>
+<!-- народные -->
+<enum-value name="dance">folk_dancing</enum-value>
+<!-- современные -->
+<enum-value name="dance">modern_dances</enum-value>
+<!-- Hip-Hop -->
+<enum-value name="dance">hip_hop_dances</enum-value>
+<!-- ирландские -->
+<enum-value name="dance">irish_dancing</enum-value>
+<!-- индийские -->
+<enum-value name="dance">dances_india</enum-value>
+<!-- клубные -->
+<enum-value name="dance">club_dance</enum-value>
+<!-- бачата -->
+<enum-value name="dance">bachata</enum-value>
+<!-- танец на шесте -->
+<enum-value name="dance">pole_dance</enum-value>
+<!-- балет -->
+<enum-value name="dance">ballet</enum-value>
+<!-- танго -->
+<enum-value name="dance">tango</enum-value>
+<!-- go-go -->
+<enum-value name="dance">go_go</enum-value>
+<!-- танец с огнем -->
+<enum-value name="dance">dance_with_fire</enum-value>
+<!-- сальса -->
+<enum-value name="dance">salsa</enum-value>
+<!-- латина -->
+<enum-value name="dance">latina</enum-value>
+<!-- джаз -->
+<enum-value name="dance">jazz_dance</enum-value>
+<!-- фламенко -->
+<enum-value name="dance">flamenco</enum-value>
+<!-- модерн -->
+<enum-value name="dance">dance_modern</enum-value>
+<!-- рок-н-ролл -->
+<enum-value name="dance">dance_rock_and_roll</enum-value>
+<!-- буги-вуги -->
+<enum-value name="dance">boogie_woogie</enum-value>
+<!-- хореография -->
+<enum-value name="dance">choreography</enum-value>
+<!-- шотландские -->
+<enum-value name="dance">scottish_dancing</enum-value>
+<!-- хастл -->
+<enum-value name="dance">hustle</enum-value>
+<!-- свободные -->
+<enum-value name="dance">free_dance</enum-value>
+<!-- хаус -->
+<enum-value name="dance">dance_house</enum-value>
+<!-- свинг -->
+<enum-value name="dance">swing</enum-value>
+<!-- стрип-дэнс -->
+<enum-value name="dance">strip_dance</enum-value>
+<!-- исторические -->
+<enum-value name="dance">historical_dance</enum-value>
+<!-- реггетон -->
+<enum-value name="dance">reggaeton</enum-value>
+<!-- меренге -->
+<enum-value name="dance">merengue</enum-value>
+<!-- контемпорари -->
+<enum-value name="dance">contemporary</enum-value>
+<!-- R&B -->
+<enum-value name="dance">r_b</enum-value>
+<!-- импровизация -->
+<enum-value name="dance">dance_improvisation</enum-value>
+<!-- капоэйра -->
+<enum-value name="dance">capoeira_dance</enum-value>
+<!-- локинг -->
+<enum-value name="dance">locking</enum-value>
+<!-- крамп -->
+<enum-value name="dance">krumping</enum-value>
+<!-- буто -->
+<enum-value name="dance">butoh</enum-value>
+<!-- поппинг -->
+<enum-value name="dance">popping</enum-value>
+<!-- афро-джаз -->
+<enum-value name="dance">afro_jazz</enum-value>
+<!-- линди-хоп -->
+<enum-value name="dance">lindy_hop</enum-value>
+<!-- tecktonik -->
+<enum-value name="dance">tecktonik</enum-value>
+<!-- контактная импровизация -->
+<enum-value name="dance">contact_improvisation</enum-value>
+<!-- целевая аудитория -->
+<known-enum-single name="target_audience"/>
+<!-- для детей -->
+<enum-value name="target_audience">for_child</enum-value>
+<!-- для взрослых -->
+<enum-value name="target_audience">for_adults</enum-value>
+<!-- для взрослых и детей -->
+<enum-value name="target_audience">adults_children</enum-value>
+<!-- для пожилых людей -->
+<enum-value name="target_audience">elderly</enum-value>
+<!-- тип стадиона -->
+<known-enum-single name="stadium_type"/>
+<!-- крытый -->
+<enum-value name="stadium_type">indoor_stadium</enum-value>
+<!-- открытый -->
+<enum-value name="stadium_type">outdoor_stadium</enum-value>
+<!-- с крытой и открытой зонами -->
+<enum-value name="stadium_type">closed_open_areas</enum-value>
+<!-- программы занятий по йоге -->
+<known-enum-multiple name="yoga_lesson_programs"/>
+<!-- пилатес -->
+<enum-value name="yoga_lesson_programs">pilates_yoga</enum-value>
+<!-- кундалини -->
+<enum-value name="yoga_lesson_programs">kundalini_yoga</enum-value>
+<!-- хатха -->
+<enum-value name="yoga_lesson_programs">hatha_yoga</enum-value>
+<!-- айенгар -->
+<enum-value name="yoga_lesson_programs">iyengar_yoga</enum-value>
+<!-- для беременных -->
+<enum-value name="yoga_lesson_programs">yoga_pregnant</enum-value>
+<!-- аштанга -->
+<enum-value name="yoga_lesson_programs">ashtanga_yoga</enum-value>
+<!-- сахаджа -->
+<enum-value name="yoga_lesson_programs">sahaja_yoga</enum-value>
+<!-- фитнес-йога -->
+<enum-value name="yoga_lesson_programs">fitness_yoga</enum-value>
+<!-- раджа -->
+<enum-value name="yoga_lesson_programs">raja_yoga</enum-value>
+<!-- йогалатес -->
+<enum-value name="yoga_lesson_programs">yogalates</enum-value>
+<!-- тантра -->
+<enum-value name="yoga_lesson_programs">tantra_yoga</enum-value>
+<!-- мантра -->
+<enum-value name="yoga_lesson_programs">mantra_yoga</enum-value>
+<!-- крийя -->
+<enum-value name="yoga_lesson_programs">kriya_yoga</enum-value>
+<!-- гуру -->
+<enum-value name="yoga_lesson_programs">yoga_guru</enum-value>
+<!-- даосская -->
+<enum-value name="yoga_lesson_programs">taoist_yoga</enum-value>
+<!-- интегральная -->
+<enum-value name="yoga_lesson_programs">integral_yoga</enum-value>
+<!-- шивананда -->
+<enum-value name="yoga_lesson_programs">sivananda_yoga</enum-value>
+<!-- цигун -->
+<enum-value name="yoga_lesson_programs">qigong_yoga</enum-value>
+<!-- пранаяма -->
+<enum-value name="yoga_lesson_programs">pranayama_yoga</enum-value>
+<!-- лайя -->
+<enum-value name="yoga_lesson_programs">laya_yoga</enum-value>
+<!-- карма -->
+<enum-value name="yoga_lesson_programs">karma_yoga</enum-value>
+<!-- янтра -->
+<enum-value name="yoga_lesson_programs">yantra_yoga</enum-value>
+<!-- бхакти -->
+<enum-value name="yoga_lesson_programs">bhakti_yoga</enum-value>
+<!-- сукшма вьяяма -->
+<enum-value name="yoga_lesson_programs">sukshma_vyayama_yoga</enum-value>
+<!-- шакти -->
+<enum-value name="yoga_lesson_programs">shakti_yoga</enum-value>
+<!-- сиддха -->
+<enum-value name="yoga_lesson_programs">siddha_yoga</enum-value>
+<!-- ретриты -->
+<enum-value name="yoga_lesson_programs">retreat_yoga</enum-value>
+<!-- джняна -->
+<enum-value name="yoga_lesson_programs">jnana_yoga</enum-value>
+<!-- джапа -->
+<enum-value name="yoga_lesson_programs">japa_yoga</enum-value>
+<!-- наад -->
+<enum-value name="yoga_lesson_programs">naadam_yoga</enum-value>
+<!-- дхьяна -->
+<enum-value name="yoga_lesson_programs">dhyana_yoga</enum-value>
+<!-- анабхава -->
+<enum-value name="yoga_lesson_programs">anabhava_yoga</enum-value>
+<!-- траатик -->
+<enum-value name="yoga_lesson_programs">traatik_yoga</enum-value>
+<!-- самкхья -->
+<enum-value name="yoga_lesson_programs">samkhya_yoga</enum-value>
+<!-- горячая -->
+<enum-value name="yoga_lesson_programs">bikram_yoga</enum-value>
+<!-- нидра -->
+<enum-value name="yoga_lesson_programs">nidra_yoga</enum-value>
+<!-- йога 23 -->
+<enum-value name="yoga_lesson_programs">yoga_23</enum-value>
+<!-- йогатерапия -->
+<enum-value name="yoga_lesson_programs">yogatherapy</enum-value>
+<!-- женская -->
+<enum-value name="yoga_lesson_programs">women_yoga</enum-value>
+<!-- для пожилых -->
+<enum-value name="yoga_lesson_programs">fifty_plus</enum-value>
+<!-- каток -->
+<known-boolean name="ice_rink"/>
+<!-- спортивная медицина -->
+<known-enum-multiple name="sports_medicine"/>
+<!-- диетолог -->
+<enum-value name="sports_medicine">diet_advice</enum-value>
+<!-- консультация врача -->
+<enum-value name="sports_medicine">consult_doctor</enum-value>
+<!-- функциональная диагностика -->
+<enum-value name="sports_medicine">functional_diagnostics</enum-value>
+<!-- фитнес-тестирование -->
+<enum-value name="sports_medicine">fitness_test</enum-value>
+<!-- анализ состава тела -->
+<enum-value name="sports_medicine">body_composition</enum-value>
+<!-- залы -->
+<known-enum-multiple name="hall"/>
+<!-- тренажерный зал -->
+<enum-value name="hall">fitness_room</enum-value>
+<!-- кардиозал -->
+<enum-value name="hall">cardio_room</enum-value>
+<!-- зал групповых программ -->
+<enum-value name="hall">hall_group_program</enum-value>
+<!-- зал восточных единоборств -->
+<enum-value name="hall">hall_martial_arts</enum-value>
+<!-- зал бокса -->
+<enum-value name="hall">boxing_hall</enum-value>
+<!-- cycle зал -->
+<enum-value name="hall">cycle_hall</enum-value>
+<!-- зал на открытом воздухе -->
+<enum-value name="hall">hall_outdoor</enum-value>
+<!-- общеукрепляющие программы -->
+<known-enum-multiple name="restorative_program"/>
+<!-- восстановление после родов -->
+<enum-value name="restorative_program">recovery_birth</enum-value>
+<!-- лечебная гимнастика -->
+<enum-value name="restorative_program">medical_gymnastics</enum-value>
+<!-- 50+ -->
+<enum-value name="restorative_program">older_50</enum-value>
+<!-- занятия для беременных -->
+<enum-value name="restorative_program">classes_pregnant</enum-value>
+<!-- анти-возрастные программы -->
+<enum-value name="restorative_program">anti_aging</enum-value>
+<!-- велосипедные прогулки -->
+<enum-value name="restorative_program">cycling</enum-value>
+<!-- реабилитация -->
+<enum-value name="restorative_program">post_discharge_adjustment</enum-value>
+<!-- число мест -->
+<known-numeric-single name="seats"/>
+<!-- число трибун -->
+<known-numeric-single name="number_of_stands"/>
+<!-- спорт аренда -->
+<known-enum-multiple name="sports_rent"/>
+<!-- аренда спортивных площадей -->
+<enum-value name="sports_rent">rental_sports_areas</enum-value>
+<!-- аренда неспортивных площадей -->
+<enum-value name="sports_rent">rent_non_sporting_areas</enum-value>
+<!-- проведение мероприятий -->
+<enum-value name="sports_rent">implementation_measures</enum-value>
+</known-features>
