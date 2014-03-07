@@ -71,7 +71,7 @@ module Yandex
     def enum_multiple_features
       [
         {
-          :pass => proc { organization.organization_stand.guarded? },
+          :pass => proc { organization.organization_stand.try :guarded? },
           :success => { :name => 'type_parking', :value => 'guarded_parking' }
         },
 

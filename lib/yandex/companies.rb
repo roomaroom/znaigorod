@@ -8,9 +8,13 @@ module Yandex
 
     def build
       @build ||= begin
+                   pb = ProgressBar.new(companies.size)
+
                    Nokogiri::XML::Builder.new :encoding => 'utf-8' do |xml|
                      xml.companies :version => '2.1', :'xmlns:xi' => 'http://www.w3.org/2001/XInclude' do |xml_companies|
                        companies.each do |company|
+                         pb.increment!
+
                          xml_companies.company do |xml_company|
                            xml_company.send :'company-id',                    company.id
                            xml_company.name(:lang => 'ru')                    { xml_company.text company.title }
@@ -73,8 +77,12 @@ module Yandex
       ).all.map { |s| Yandex::Sauna.new(s) }
     end
 
+    def meals
+      ::Meal.all.map { |m| Yandex::Meal.new(m) }
+    end
+
     def companies
-      saunas
+      @companies ||= meals + saunas
     end
   end
 end
