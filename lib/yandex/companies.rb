@@ -59,6 +59,9 @@ module Yandex
                            end
                          end
                        end
+
+                       xml.send :'xi:include', :href => 'know-features_eda.xml'
+                       xml.send :'xi:include', :href => 'know-features_saunas_ru.xml'
                      end
                    end
                  end
