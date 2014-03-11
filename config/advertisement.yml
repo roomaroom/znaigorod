@@ -9,10 +9,10 @@ afisha:
       replaced_count: 4
 
     '1.1':
-      from: '2014-02-28 11:30'
-      to: '2014-03-01 11:30'
+      from: '2014-03-11 14:00'
+      to: '2014-03-12 14:00'
       content_type: 'afisha'
-      afisha_slug: 'kulinarnyy-master-klass-vesenniy-fyuzhn'
+      afisha_slug: 'turnir-po-mortal-kombat-9'
       replaced_count: 1
 
 post:
