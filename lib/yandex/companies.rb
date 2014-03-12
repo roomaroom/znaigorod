@@ -23,7 +23,7 @@ module Yandex
                            xml_company.send(:'admn-area', :lang => 'ru')      { xml_company.text company.admn_area }
                            xml_company.send(:'locality-name', :lang => 'ru')  { xml_company.text company.locality_name }
 
-                           if company.latitude.present? && company.longitude.present?
+                           if company.address && company.latitude.present? && company.longitude.present?
                              xml_company.coordinates do |xml_coordinates|
                                xml_coordinates.lat company.latitude
                                xml_coordinates.lon company.longitude
@@ -60,8 +60,8 @@ module Yandex
                          end
                        end
 
-                       xml.send :'xi:include', :href => 'know-features_eda.xml'
-                       xml.send :'xi:include', :href => 'know-features_saunas_ru.xml'
+                       xml.send :'xi:include', :href => 'known-features_saunas_ru.xml'
+                       xml.send :'xi:include', :href => 'known-features_eda.xml'
                      end
                    end
                  end
@@ -81,11 +81,31 @@ module Yandex
     end
 
     def meals
-      ::Meal.all.map { |m| Yandex::Meal.new(m) }
+      ::Meal.all.map { |s| Yandex::Meal.new(s) }
+    end
+
+    def entertainments
+      ::Entertainment.all.map { |s| Yandex::Entertainment.new(s) }
+    end
+
+    def cultures
+      ::Culture.all.map { |s| Yandex::Culture.new(s) }
+    end
+
+    def creations
+      ::Creation.all.map { |s| Yandex::Culture.new(s) }
+    end
+
+    def billiards
+      ::Billiard.all.map { |s| Yandex::Billiard.new(s) }
+    end
+
+    def sports
+      ::Sport.all.map { |s| Yandex::Sport.new(s) }
     end
 
     def companies
-      @companies ||= meals + saunas
+      @companies ||= meals + saunas + entertainments + cultures + creations + billiards + sports
     end
   end
 end
