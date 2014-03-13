@@ -106,6 +106,6 @@ class Album::Yandex
   end
 
   def images_data
-    @images_data ||= response['entries'] || []
+    @images_data ||= response['entries'] || [] rescue []
   end
 end
