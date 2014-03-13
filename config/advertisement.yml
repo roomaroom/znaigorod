@@ -15,6 +15,13 @@ afisha:
       afisha_slug: 'aktsiya-puteshestvie-na-dvoih-ot-turisticheskogo-agentstva-tvoy-tur'
       replaced_count: 1
 
+    '1.2':
+      from: '2014-03-13 12:00'
+      to: '2014-03-14 12:00'
+      content_type: 'afisha'
+      afisha_slug: 'turnir-po-mortal-kombat-9'
+      replaced_count: 1
+
 post:
   places:
 
