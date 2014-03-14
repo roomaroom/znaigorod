@@ -43,6 +43,14 @@ module Yandex
         organization_url(organization, :host => Settings['app.host'])
     end
 
+    def phones
+      return [] unless organization.phone?
+
+      organization.phone.split(',').map(&:squish)
+        .map { |phone_number| phone_number.gsub(/[^\d]/, '') }
+        .map { |phone_number| PhoneNumberNormalizer.new(phone_number).normalize }
+    end
+
     def actualization_date
       [suborganization.updated_at, organization.updated_at].max.to_i
     end

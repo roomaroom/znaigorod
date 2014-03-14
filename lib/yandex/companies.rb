@@ -37,6 +37,14 @@ module Yandex
                            xml_company.url                 company.site  if company.site.present?
                            xml_company.send :'info-page',  company.info_page
 
+                           company.phones.each do |phone|
+                             xml_company.phone do |xml_phone|
+                               xml_phone.ext    nil
+                               xml_phone.type   'phone'
+                               xml_phone.number phone
+                             end
+                           end
+
                            # TODO: phones
                            # TODO: working time
 
