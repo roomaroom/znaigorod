@@ -9,7 +9,7 @@ module Reviews
 
       def videos
         @videos ||= begin
-                      youtube_videos
+                      youtube_videos + vimeo_videos
                     end
       end
 
@@ -20,6 +20,14 @@ module Reviews
 
         text.scan(regex).map do |matched_groups|
           YoutubeVideo.new matched_groups.join, matched_groups[3]
+        end
+      end
+
+      def vimeo_videos
+        regex = /https?:\/\/(www.)?vimeo\.com\/([A-Za-z0-9._%-]*)((\?|#)\S+)?/
+
+        text.scan(regex).map do |matched_groups|
+          VimeoVideo.new "https://vimeo.com/#{matched_groups[1]}", matched_groups[1]
         end
       end
     end
