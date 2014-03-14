@@ -9,11 +9,13 @@ module Yandex
       @organization = @suborganization.organization
     end
 
-    delegate :id, :title, :address, :email, :site, :logotype_url, :description,
+    delegate :title, :address, :email, :site, :logotype_url, :description,
       :to => :organization
 
     delegate :latitude, :longitude,
       :to => :address
+
+    delegate :id, :to => :suborganization
 
     def country
       'Россия'
