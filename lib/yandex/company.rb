@@ -51,6 +51,28 @@ module Yandex
         .map { |phone_number| PhoneNumberNormalizer.new(phone_number).normalize }
     end
 
+    def working_time
+      grouped_schedules = organization.schedules.where(:holiday => false).inject([]) do |array, schedule|
+        key = "#{I18n.l(schedule.from, :format => '%H:%M')}-#{I18n.l(schedule.to, :format => '%H:%M')}"
+
+        key == array.last.try(:first) ? array.last.last << schedule : array << [key, [schedule]]
+
+        array
+      end
+
+      return "ежедн. #{grouped_schedules.first.first}" if grouped_schedules.one? && grouped_schedules.flatten.size == 8
+
+      array = grouped_schedules.map do |working_time, schedules|
+        str = schedules.many? ?
+          "#{schedules.first.short_human_day}-#{schedules.last.short_human_day} #{working_time}" :
+          "#{schedules.first.short_human_day} #{working_time}"
+
+        str.mb_chars.downcase.to_s
+      end
+
+      array.join(', ')
+    end
+
     def actualization_date
       [suborganization.updated_at, organization.updated_at].max.to_i
     end

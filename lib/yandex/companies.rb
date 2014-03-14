@@ -46,8 +46,7 @@ module Yandex
                              end
                            end
 
-                           # TODO: phones
-                           # TODO: working time
+                           xml_company.send :'working-time', company.working_time
 
                            company.rubrics.each do |rubric|
                              xml_company.send :'rubric-id', rubric
