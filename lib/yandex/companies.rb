@@ -15,6 +15,9 @@ module Yandex
                        companies.each do |company|
                          pb.increment!
 
+                         # TODO: set rubrics for all companies
+                         next if company.rubrics.empty?
+
                          xml_companies.company do |xml_company|
                            xml_company.send :'company-id',                    company.id
                            xml_company.name(:lang => 'ru')                    { xml_company.text company.title }
