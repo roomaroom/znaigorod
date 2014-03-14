@@ -11,6 +11,10 @@ module Reviews
         preview_url
       end
 
+      def src
+        "//player.vimeo.com/video/#{uid}?autoplay=true"
+      end
+
       private
 
       def video_info

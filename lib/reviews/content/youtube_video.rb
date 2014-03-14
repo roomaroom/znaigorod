@@ -10,6 +10,10 @@ module Reviews
       def preview
         "http://img.youtube.com/vi/#{uid}/hqdefault.jpg"
       end
+
+      def src
+        "//www.youtube.com/embed/#{uid}?autoplay=1&wmode=opaque"
+      end
     end
   end
 end
