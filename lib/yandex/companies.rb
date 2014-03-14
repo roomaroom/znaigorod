@@ -40,8 +40,9 @@ module Yandex
                            company.phones.each do |phone|
                              xml_company.phone do |xml_phone|
                                xml_phone.ext    nil
-                               xml_phone.type   'phone'
+                               xml_phone.info   nil
                                xml_phone.number phone
+                               xml_phone.type   'phone'
                              end
                            end
 
