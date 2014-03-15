@@ -16,10 +16,10 @@ afisha:
       replaced_count: 1
 
     '1.2':
-      from: '2014-03-13 12:00'
-      to: '2014-03-14 12:00'
+      from: '2014-03-15 14:00'
+      to: '2014-03-17 14:00'
       content_type: 'afisha'
-      afisha_slug: 'turnir-po-mortal-kombat-9'
+      afisha_slug: 'festival-istoricheskogo-tantsa'
       replaced_count: 1
 
 post:
