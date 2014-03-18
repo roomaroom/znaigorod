@@ -22,11 +22,6 @@ module Yandex
       [cafe_and_coffee_shops]
     end
 
-    def images
-      suborganization.organization.gallery_images +
-        suborganization.gallery_images
-    end
-
     private
 
     def cuisines_equivalence

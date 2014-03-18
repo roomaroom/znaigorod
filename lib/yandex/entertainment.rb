@@ -21,11 +21,6 @@ module Yandex
 
       result[0..2]
     end
-
-    def images
-      suborganization.organization.gallery_images +
-        suborganization.gallery_images
-    end
   end
 end
 

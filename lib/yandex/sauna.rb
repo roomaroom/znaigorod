@@ -5,9 +5,7 @@ module Yandex
     end
 
     def images
-      organization.gallery_images +
-        suborganization.gallery_images +
-        suborganization.sauna_halls.flat_map(&:gallery_images)
+      super + suborganization.sauna_halls.flat_map(&:gallery_images)
     end
 
     private
