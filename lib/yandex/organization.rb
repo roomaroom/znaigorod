@@ -63,7 +63,7 @@ module Yandex
     end
 
     def rubrics
-      @rubrics ||= companies.flat_map(&:rubrics)
+      @rubrics ||= companies.flat_map(&:rubrics)[0..2]
     end
 
     def actualization_date
@@ -75,12 +75,14 @@ module Yandex
     end
 
     def features
-      @features ||= companies.flat_map(&:features).inject({}) do |hash, features|
-        features.inject([]) do |tag, values|
+      @features ||= companies.flat_map(&:features).inject({}) do |hash, attributes_list|
+        attributes_list.each do |tag, features|
           hash[tag] ||= []
 
-          hash[tag] += values
+          hash[tag] += features
         end
+
+        hash
       end
     end
 
