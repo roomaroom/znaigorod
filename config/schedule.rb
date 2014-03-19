@@ -14,6 +14,7 @@ end
 
 every :day, :at => '6:00 am' do
   rake 'send_digest:personal'
+  rake 'generate_yandex_companies_xml_files'
 end
 
 every :day, :at => '6:30 am' do
