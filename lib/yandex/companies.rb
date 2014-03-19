@@ -56,7 +56,7 @@ module Yandex
                            xml_company.description                 organization.description if organization.description.present?
 
                            xml_company.photos :'gallery-url' => organization.info_page do |xml_photos|
-                             xml_photos.photo(:type => 'logo', :url => organization.logotype_url) if organization.logotype_url.present?
+                             #xml_photos.photo(:type => 'logo', :url => organization.logotype_url) if organization.logotype_url.present?
 
                              organization.images.each do |image|
                                xml_photos.photo(:url => image.file_url)
