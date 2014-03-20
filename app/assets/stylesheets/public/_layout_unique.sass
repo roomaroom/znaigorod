@@ -34,12 +34,12 @@
       padding: 6px
       width: 1178px
 
-
       .organization_show
         margin: 0
 
-        a
-          color: $link_color
+        .organization_content
+          a
+            color: $link_color
 
         .left
           .image, .social_actions, .offers_wrapper
@@ -852,3 +852,24 @@
     height: 115px
     margin: 0 auto
     width: 1200px
+
+.u_brodyachey_sobaki_content_wrapper
+  +uniq_design(#e4d4bb, #e4d4bb, #fff, #fff, #ede5d7, rgba(237,229,215, .5), rgba(219,198,181, .5), #ac7c5e, #06c, #000)
+
+  background: #e4d4bb image_url('public/u_brodyachey_sobaki/background.png') no-repeat center center
+
+  .u_brodyachey_sobaki_logo
+    background: transparent image_url('public/u_brodyachey_sobaki/logo.png') no-repeat center center
+    height: 111px
+    margin: 0 auto
+    width: 1200px
+
+  .content_wrapper
+    .content
+      background: rgba(255,255,255, .5)
+
+      .organization_show
+        .center
+          .suborganization_info
+            .title
+              background: rgba(219,198,181, .5)
