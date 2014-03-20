@@ -5,13 +5,15 @@
     <h1>Добавление фотографий</h1>
 
     <div class="gallery_images_wrapper">
-      <ul class="gallery close js-gallery js-gallery-sort" data-sort-url="<%= images_sort_my_review_path(@review.id) %>">
+      <ul class="gallery_images gallery close js-gallery js-gallery-sort" data-sort-url="<%= images_sort_my_review_path(@review.id) %>">
         <%= render :partial => 'gallery', :locals => { :review => @review } %>
       </ul>
 
       <%= simple_form_for @review.gallery_images.new,
         :url => my_review_gallery_images_path(@review.id),
         :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
+
+        <%= hidden_field_tag :review_gallery, true %>
 
         <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
         <div class="info_wrapper">
