@@ -49,17 +49,24 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-03-05 14:00'
-      to: '2014-03-06 14:00'
+      from: '2014-03-20 12:00'
+      to: '2014-03-21 18:00'
       content_type: 'afisha'
-      afisha_slug: 'turnir-po-mortal-kombat-9'
+      afisha_slug: 'trening-lichnaya-effektivnost-a-dubovika'
       replaced_count: 1
 
     '1.1':
-      from: '2014-03-05 14:00'
-      to: '2014-03-09 14:00'
+      from: '2014-03-20 12:00'
+      to: '2014-03-21 23:00'
       content_type: 'afisha'
-      afisha_slug: 'prazdnichnaya-programma-den-vesny-i-krasoty'
+      afisha_slug: 'spektakl-eti-svobodnye-babochki'
+      replaced_count: 1
+
+    '1.2':
+      from: '2014-03-20 12:00'
+      to: '2014-03-21 23:00'
+      content_type: 'afisha'
+      afisha_slug: 'spektakl-dvoe-na-kachelyah'
       replaced_count: 1
 
     '1.5':
