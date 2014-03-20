@@ -45,6 +45,7 @@ $ ->
   init_iconize_info() if $('.organization_show .show_description_link').length
   init_virtual_tour_link() if $('.organization_show .virtual_tour_link').length
   init_review_gallery() if $('.js-gallery, .review_show').length
+  handleReviewGallerySort() if $('.js-gallery').length
   init_schedule_toggle() if $('.organization_show .show_more_schedule').length
   init_photogallery() if $('.photogallery ul li').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length

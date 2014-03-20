@@ -5,7 +5,7 @@
     <h1>Добавление фотографий</h1>
 
     <div class="gallery_images_wrapper">
-      <ul class="gallery js-gallery">
+      <ul class="gallery close js-gallery js-gallery-sort" data-sort-url="<%= images_sort_my_review_path(@review.id) %>">
         <%= render :partial => 'gallery', :locals => { :review => @review } %>
       </ul>
 

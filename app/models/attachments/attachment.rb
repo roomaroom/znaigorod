@@ -5,7 +5,7 @@ class Attachment < ActiveRecord::Base
 
   belongs_to :attachable, :polymorphic => true
 
-  default_scope :order => 'id ASC'
+  default_scope :order => 'position, id'
 
   before_create :set_description
 

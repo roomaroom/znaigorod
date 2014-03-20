@@ -1,5 +1,5 @@
 <% review.all_images.each do |image| %>
-  <li>
+  <li data-id="attachments_<%= image.id %>">
     <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
       <%= image_tag resized_image_url(image.file_url, 230, 172), :size => '230x172', :alt => image.description %>
     <% end %>

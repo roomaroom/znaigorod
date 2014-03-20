@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304053753) do
+ActiveRecord::Schema.define(:version => 20140320043437) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20140304053753) do
     t.datetime "file_updated_at"
     t.text     "file_url"
     t.string   "file_image_url"
+    t.integer  "position"
   end
 
   create_table "bets", :force => true do |t|

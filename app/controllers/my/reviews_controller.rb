@@ -3,7 +3,7 @@ class My::ReviewsController < My::ApplicationController
 
   actions :all
 
-  custom_actions :resource => [:add_images, :download_album, :edit_poster, :send_to_published, :send_to_draft]
+  custom_actions :resource => [:add_images, :download_album, :edit_poster, :send_to_published, :send_to_draft, :sort_images]
 
   def index
     render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '156', :width => '280' }, :layout => false and return if request.xhr?
@@ -63,6 +63,20 @@ class My::ReviewsController < My::ApplicationController
 
   def available_tags
     render :json => Reviews::Tags.new(params[:term]).tags.to_json
+  end
+
+  def sort_images
+    ids = params[:attachments] || []
+
+    sort_images! do
+      ids.each_with_index do |id, index|
+        image = @review.all_images.find(id)
+        image.position = index
+        image.save
+      end
+
+      render :nothing => true and return
+    end
   end
 
   protected

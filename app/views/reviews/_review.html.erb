@@ -13,7 +13,7 @@
 <div class="description">
   <%= review.content_for_show %>
 
-  <ul class="gallery js-gallery">
+  <ul class="gallery wide js-gallery">
     <%= render :partial => 'gallery', :locals => { :review => @review } %>
   </ul>
   <%= paginate @images %>

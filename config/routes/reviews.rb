@@ -7,6 +7,8 @@ Znaigorod::Application.routes.draw do
       get 'poster/edit'           => 'reviews#edit_poster',           :on => :member
       get 'tags/available'        => 'reviews#available_tags',        :on => :collection
 
+      post 'images/sort'          => 'reviews#sort_images',           :on => :member
+
       post :preview, :on => :collection
 
       put :download_album, :on => :member
