@@ -22,6 +22,16 @@ afisha:
       afisha_slug: 'festival-istoricheskogo-tantsa'
       replaced_count: 1
 
+    '1.4':
+      from: '2014-03-21 16:00'
+      to: '2015-03-21 16:00'
+      content_type: 'banner'
+      title: ['Школа по грудному вскармливанию', 'Дыши свободно! Знай больше! Живи дольше']
+      image: ['http://storage.znaigorod.ru/files/110860/180-320/shkola_mam.jpg', 'http://storage.znaigorod.ru/files/110859/180-320/24_03_tbs_zg.jpg']
+      link: ['http://profilaktika.tomsk.ru/?p=2333', 'http://profilaktika.tomsk.ru/?p=4606']
+      width: 180
+      height: 320
+
 post:
   places:
 

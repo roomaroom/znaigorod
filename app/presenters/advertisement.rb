@@ -139,6 +139,12 @@ class Advertisement
 
     def initialize(args)
       super(args)
+      if image.is_a?(Array)
+        index = rand(0..image.size-1)
+        self.image = image[index]
+        self.link = link[index]
+        self.title = title[index]
+      end
     end
 
     def partial
