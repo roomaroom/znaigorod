@@ -1,25 +1,80 @@
-.default_styles
-  .content_wrapper
-    padding: 15px
-
 .banners_wrapper
-  +background(linear-gradient(top, #ffffff, #e8e8e8))
+  padding: 15px
 
-  img
-    display: block
+.alert,
+.promo_text
+  font-size: 14px
+  margin-bottom: 10px
 
-  label
-    display: block
-    margin: 5px 0
+.alert
+  .warning
+    color: red
 
-  textarea
-    height: 40px
-    margin: 0 0 5px 0
-    resize: none
-    width: 750px
+.promo_text
+  .table_title
+    background: #E8E8E8
+    margin: 20px 0 10px 0
+    padding: 1px 10px 2px
+    text-align: center
+    width: 1150px
 
-    &.hidden_code
-      display: none
+  .promo_table
+    margin-bottom: 10px
+    position: center
+    width: 1170px
 
-  input
-    display: block
+    tr
+      td
+        border: 1px #CCCCCC solid
+        padding: 4px
+
+        &.purple
+          color: #72006F
+        &.green
+          color: #019233
+        &.blue
+          color: #009AD8
+        &.orange
+          color: #ff6600
+
+.promo_info
+
+  h4
+    font-size: 14px
+    font-weight: bold
+    margin-bottom: 15px
+
+.banners
+  +clearfix
+
+  .banner
+    float: left
+    margin: 10px
+    width: 565px
+
+    &.first,
+    &.second
+      height: 315px
+
+    &.third,
+    &.fourth
+      height: 435px
+
+    img
+      display: block
+
+    label
+      display: block
+      margin: 5px 0
+
+    textarea
+      height: 30px
+      margin: 0 0 5px 0
+      resize: none
+      width: 560px
+
+      &.hidden_code
+        display: none
+
+    input
+      display: block
