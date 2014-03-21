@@ -69,6 +69,13 @@ main_page_afisha:
       afisha_slug: 'spektakl-dvoe-na-kachelyah'
       replaced_count: 1
 
+    '1.3':
+      from: '2014-03-21 10:00'
+      to: '2014-03-22 10:00'
+      content_type: 'afisha'
+      afisha_slug: 'besplatnoe-probnoe-zanyatie-po-akterskomu-masterstvu'
+      replaced_count: 1
+
     '1.5':
       from: '2014-03-01 14:00'
       to: '2014-04-01 00:00'
