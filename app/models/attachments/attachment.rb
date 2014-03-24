@@ -14,7 +14,7 @@ class Attachment < ActiveRecord::Base
   end
 
   def to_s
-    description? ? description : 'Без описания'
+    description? ? description.truncate(30) : 'Без описания'
   end
 
   private

@@ -5,7 +5,7 @@
     dialog = init_modal_dialog
       class:  'description'
       height: 'auto'
-      title:  $(this).attr('title')
+      title:  $(this).data('title')
       width: 640
 
     form = $(data)
