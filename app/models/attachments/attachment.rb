@@ -13,6 +13,10 @@ class Attachment < ActiveRecord::Base
     "#{self.class.name.underscore.pluralize}/#{self.class.name.underscore}"
   end
 
+  def to_s
+    description? ? description : 'Без описания'
+  end
+
   private
 
   def set_description

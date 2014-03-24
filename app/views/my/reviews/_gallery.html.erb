@@ -3,6 +3,7 @@
     <%= link_to image.file_url, :class => :colorbox, :rel => 'gallery' do %>
       <%= image_tag resized_image_url(image.file_url, 230, 172), :size => '230x172', :alt => image.description %>
     <% end %>
-    <%= link_to '', [:my, review, image], :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить'  %>
+    <%= link_to '', [:my, review, image], :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить' %>
+    <%= link_to image.to_s, edit_my_attachment_path(image), :remote => true, :class => 'js-edit-attachment-description', :title => 'Редактирование описания' %>
   </li>
 <% end %>

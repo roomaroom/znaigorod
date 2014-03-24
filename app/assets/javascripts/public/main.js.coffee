@@ -85,7 +85,7 @@ $ ->
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length
   initIsotopedReviews() if $('.reviews_index .js-isotope').length
-
+  initEditAttachmentDescription() if $('.js-edit-attachment-description').length
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length
 

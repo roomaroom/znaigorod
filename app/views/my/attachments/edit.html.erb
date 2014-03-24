@@ -1,0 +1,5 @@
+<%= simple_form_for @attachment, :as => :attachment, :url => my_attachment_path(@attachment), :html => { :class => 'edit-attachment-description' }, :remote => true do |f| %>
+  <%= f.input :description %>
+
+  <%= f.submit 'Сохранить' %>
+<% end %>
