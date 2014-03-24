@@ -1,16 +1,17 @@
 @initEditAttachmentDescription = ->
-  $('.js-edit-attachment-description').on 'ajax:success', (event, data) ->
-    link = $(this)
+  $('.js-gallery').on 'ajax:success', (event, data) ->
+    target = $(event.target)
 
-    dialog = init_modal_dialog
-      class:  'description'
-      height: 'auto'
-      title:  $(this).data('title')
-      width: 640
+    if target.hasClass('js-edit-attachment-description')
+      dialog = init_modal_dialog
+        class:  'description'
+        height: 'auto'
+        title:  target.data('title')
+        width: 640
 
-    form = $(data)
-    form.on 'ajax:success', (event, data) ->
-      link.text(data)
-      dialog.dialog('close')
+      form = $(data)
+      form.on 'ajax:success', (event, data) ->
+        target.text(data)
+        dialog.dialog('close')
 
-    dialog.html(form)
+      dialog.html(form)
