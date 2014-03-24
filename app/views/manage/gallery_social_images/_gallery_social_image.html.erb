@@ -1,4 +1,6 @@
 <li>
+  <%= link_to gallery_social_image.to_s, edit_manage_attachment_path(gallery_social_image), :remote => true, :class => 'js-edit-attachment-description' %>
+
   <p class='image'>
     <%= link_to gallery_social_image.file_url do %>
       <% if gallery_social_image.width? && gallery_social_image.height? %>
@@ -21,10 +23,8 @@
   <p class='action'>
     <% if gallery_social_image.attachable.is_a?(SaunaHall) %>
       <%= link_to "Удалить", [:manage, gallery_social_image.attachable.organization, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
-      <%= link_to "Редактировать", [:edit, :manage, gallery_social_image.attachable.organization, gallery_image.attachable, gallery_image] %>
     <% else %>
       <%= link_to "Удалить", [:manage, gallery_social_image.attachable, gallery_social_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
-      <%= link_to "Редактировать", [:edit, :manage, gallery_social_image.attachable, gallery_social_image] %>
     <% end %>
   </p>
 </li>

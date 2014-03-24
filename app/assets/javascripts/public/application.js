@@ -25,6 +25,8 @@
  * = require flash_detect
  * = require crop
  * = require ajax_delete
+ * = require attachment_description
+ * = require modal_dialog
  * = require popup_window
  * = require ./email_form
  * = require ./share_to_vk_wall
@@ -101,7 +103,6 @@
  * = require ./review_video_preview
  * = require ./my_review_js_submit
  * = require ./my_review_video_help
- * = require ./attachment_description
  * = require ./work_addition
  * = require ./banners
  * = require ./isotoped_reviews

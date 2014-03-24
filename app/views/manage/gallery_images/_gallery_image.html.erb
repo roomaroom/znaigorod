@@ -1,4 +1,6 @@
 <li>
+  <%= link_to gallery_image.to_s, edit_manage_attachment_path(gallery_image), :remote => true, :class => 'js-edit-attachment-description' %>
+
   <p class='image'>
     <%= link_to image_tag(resized_image_url(gallery_image.file_url, 160, 160), :size => '160x160', :alt => gallery_image.description), gallery_image.file_url, :target => '_blank' %>
   </p>

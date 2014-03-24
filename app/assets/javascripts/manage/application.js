@@ -9,6 +9,8 @@
  * = require jquery-fileupload/basic
  * = require jquery-fileupload/vendor/tmpl
  * = require ajax_delete
+ * = require attachment_description
+ * = require modal_dialog
  * = require autosuggest_handler
  * = require crop
  * = require datetime_picker

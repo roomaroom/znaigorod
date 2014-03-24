@@ -1,4 +1,5 @@
 @initEditAttachmentDescription = ->
+  console.log '123'
   $('.js-gallery').on 'ajax:success', (event, data) ->
     target = $(event.target)
 
