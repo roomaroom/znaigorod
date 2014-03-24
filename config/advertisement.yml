@@ -9,10 +9,10 @@ afisha:
       replaced_count: 4
 
     '1.1':
-      from: '2014-03-13 09:00'
-      to: '2014-03-18 09:00'
+      from: '2014-03-24 13:00'
+      to: '2014-03-26 13:00'
       content_type: 'afisha'
-      afisha_slug: 'aktsiya-puteshestvie-na-dvoih-ot-turisticheskogo-agentstva-tvoy-tur'
+      afisha_slug: 'italyanskiy-kulinarnyy-master-klass'
       replaced_count: 1
 
     '1.2':
