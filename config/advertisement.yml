@@ -59,10 +59,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-03-20 12:00'
-      to: '2014-03-21 18:00'
+      from: '2014-03-25 11:30'
+      to: '2014-03-27 11:30'
       content_type: 'afisha'
-      afisha_slug: 'trening-lichnaya-effektivnost-a-dubovika'
+      afisha_slug: 'vystavka-obrazovanie-za-rubezhom-2014'
       replaced_count: 1
 
     '1.1':
