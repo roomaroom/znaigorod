@@ -10,7 +10,7 @@ afisha:
 
     '1.1':
       from: '2014-03-24 13:00'
-      to: '2014-03-26 13:00'
+      to: '2014-03-28 13:00'
       content_type: 'afisha'
       afisha_slug: 'italyanskiy-kulinarnyy-master-klass'
       replaced_count: 1
