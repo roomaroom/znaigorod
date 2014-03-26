@@ -1,7 +1,7 @@
 class My::InviteMessagesController < My::ApplicationController
   load_and_authorize_resource
 
-  actions :update, :show, :index
+  actions :update, :index
 
   def index
     index!{
