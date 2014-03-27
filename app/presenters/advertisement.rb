@@ -136,7 +136,7 @@ class Advertisement
     end
 
     def partial
-      "advertisements/#{list}_widget_#{replaced_count}"
+      "advertisements/#{list}_review_#{replaced_count}"
     end
 
     def decorated_review

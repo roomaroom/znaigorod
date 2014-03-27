@@ -1,5 +1,9 @@
 <% (afishas || @presenter.decorated_collection).compact.each do |afisha| %>
-  <li class="item">
-    <%= render partial: (afisha.is_a?(AfishaDecorator) ? 'afishas/afisha_poster' : afisha.partial), locals: { afisha: afisha } %>
-  </li>
+  <% if afisha.is_a?(AfishaDecorator) %>
+    <li class="item">
+      <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
+    </li>
+  <% else %>
+    <%= render :partial => afisha.partial, :locals => { :afisha => afisha } %>
+  <% end %>
 <% end %>
