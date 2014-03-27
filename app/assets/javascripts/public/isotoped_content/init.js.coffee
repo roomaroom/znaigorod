@@ -1,10 +1,7 @@
-@initIsotopedReviews = ->
+@initIsotopedContent = ->
   list = $('.posters')
 
   list.isotope
-    itemSelector: ".item"
-    masonry:
-      columnWidth: 380
 
   list.infinitescroll
     itemSelector: ".item"
@@ -15,12 +12,11 @@
       finishedMsg: ''
       img: '/assets/public/ajax_loading_items_indicator.gif'
 
-
     , (newElements) ->
       $newElems = $(newElements).css(opacity: 0)
 
       # просмотр видео в окне для постов приехавших со следующих страниц
-      initReviewVideoPreview()
+      initReviewVideoPreview() if $('.reviews_index').length
 
       $newElems.imagesLoaded ->
         $newElems.animate opacity: 1

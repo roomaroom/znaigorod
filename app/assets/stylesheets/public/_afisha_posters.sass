@@ -1,16 +1,17 @@
 .content .afisha_list, .content .afisha_main_page_list
 
   .posters
-    +clearfix
+    padding: 0 0 100px 0
+    position: relative
 
-    li
+    li.item
+      border: 1px solid #ccc
       float: left
+      height: 330px
       margin: 0 10px 20px 10px
+      width: 178px
 
-      .item
-        width: 178px
-        height: 318px
-        border: 1px solid #ccc
+      .afisha_item
         margin: 0 auto
 
         .title
@@ -199,3 +200,15 @@
               width: 64px
               height: 64px
               background: transparent image_url('public/webcam_play.png') no-repeat center center
+
+  .reviews-block
+    background: orange
+    float: right
+    height: 330px
+    margin: 0 10px 20px 10px
+
+    &.full
+      width: 1180px
+
+    &.half
+      width: 580px

@@ -105,6 +105,6 @@
  * = require ./my_review_video_help
  * = require ./work_addition
  * = require ./banners
- * = require ./isotoped_reviews
+ * = require ./isotoped_content
  * = require ./main
  */

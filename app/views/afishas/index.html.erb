@@ -41,10 +41,9 @@
   </div>
 </div>
 
-<div class='afisha_list'>
-  <%= render :partial => 'advertisment' if DateTime.now <= DateTime.new(2013, 6, 23, 22, 00, 00, '+7') %>
+<div class="afisha-paginator afisha_list">
   <% if @presenter.collection.any? %>
-    <ul class='<%= @presenter.view %>'>
+    <ul class='posters isotope js-isotope <%= @presenter.view %>'>
       <%= render :partial => @presenter.partial, locals: { :afishas => nil } %>
     </ul>
   <% else %>
