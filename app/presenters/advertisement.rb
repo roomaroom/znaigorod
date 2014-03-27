@@ -34,6 +34,9 @@ class Advertisement
           WebcamAdvertisementPlace.new(share_config)
         when 'post'
           PostAdvertisementPlace.new(share_config)
+        when 'review'
+          review_adv = ReviewAdvertisementPlace.new(share_config.merge(slug: place_config['review_slug']))
+          review_adv.review ? review_adv : nil
         when 'banner'
           BannerAdvertisementPlace.new(share_config.merge({
             image: place_config['image'],
@@ -124,13 +127,20 @@ class Advertisement
     end
   end
 
-  class PostAdvertisementPlace < AdvertisementPlace
+  class ReviewAdvertisementPlace < AdvertisementPlace
+    attr_accessor :slug, :review
+
     def initialize(args)
       super(args)
+      @review = Review.published.find_by_slug(slug)
     end
 
     def partial
       "advertisements/#{list}_widget_#{replaced_count}"
+    end
+
+    def decorated_review
+      @decorated_review ||= ReviewDecorator.new(review)
     end
   end
 
