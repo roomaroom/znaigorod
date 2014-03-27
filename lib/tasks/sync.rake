@@ -86,10 +86,17 @@ class MovieSyncer
       similar_movies = Afisha.search{fulltext(title){fields(:title)}}.results
       if similar_movies.one?
         puts "Найден похожий фильм '#{title}' -> '#{similar_movies.first.title}'"
-      else
-        puts "Не могу найти фильм '#{title}': [#{place}]"
-
-        message = I18n.localize(Time.now, :format => :short) + " Не могу найти фильм '#{title}'"
+      end
+      if similar_movies.blank?
+        text = "Не могу найти фильм '#{title}': [#{place}]"
+        puts text
+        message = I18n.localize(Time.now, :format => :short) + " " + text
+        Airbrake.notify(Exception.new(message))
+      end
+      if similar_movies.any?
+        text = "Нашел больше одной афиши для фильма '#{title}': [#{place}]"
+        puts text
+        message = I18n.localize(Time.now, :format => :short) + " " + text
         Airbrake.notify(Exception.new(message))
       end
       similar_movies.first
