@@ -1,7 +1,12 @@
 @initIsotopedContent = ->
   list = $('.posters')
 
+  columnWidth = list.data('item-width')
+
   list.isotope
+    itemSelector: '.item'
+    masonry:
+      columnWidth: columnWidth
 
   list.infinitescroll
     itemSelector: ".item"
