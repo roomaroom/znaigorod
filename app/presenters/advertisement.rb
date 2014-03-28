@@ -32,8 +32,6 @@ class Advertisement
           discount_adv.discount ? discount_adv : nil
         when 'webcam'
           WebcamAdvertisementPlace.new(share_config)
-        when 'post'
-          PostAdvertisementPlace.new(share_config)
         when 'review'
           review_adv = ReviewAdvertisementPlace.new(share_config.merge(slug: place_config['review_slug']))
           review_adv.review ? review_adv : nil
