@@ -33,10 +33,10 @@
 
       <%= link_to discount_path(discount), :class => :details do %>
         <span class="first_line">
-          <span class="show_tipsy to_go" title="Участники"><%= discount.members.count %></span>
-          <span class="show_tipsy comments" title="Комментарии"><%= discount.comments.count %></span>
-          <span class="show_tipsy likes" title="Понравилось"><%= discount.likes_count %></span>
-          <span class="show_tipsy visits" title="Просмотры"><%= discount.page_visits.count %></span>
+          <span class="show_tipsy fa fa-users" title="Участники"> <%= discount.members.count %></span>
+          <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= discount.comments.count %></span>
+          <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= discount.likes_count %></span>
+          <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= discount.page_visits.count %></span>
         </span>
       <% end %>
     </div>
