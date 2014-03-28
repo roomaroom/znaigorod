@@ -33,19 +33,7 @@
       end
     %>
 
-    <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere?  %>
-    <%= link_to my_afisha_show_path(afisha), class: :details do %>
-      <span class='first_line'>
-        <span class='show_tipsy to_go' title='Участники'><%= afisha.visits.count %></span>
-        <span class='show_tipsy wait_invite' title='Приглашения'><%= afisha.invitations.inviter.without_invited.count %></span>
-        <span class='show_tipsy comments' title='Комментарии'><%= afisha.comments.count %></span>
-      </span>
-      <span class='second_line'>
-        <span class='show_tipsy likes' title='Понравилось'><%= afisha.likes_count %></span>
-        <span class='show_tipsy visits' title='Просмотры'><%= afisha.page_visits.count %></span>
-        <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возростное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
-      </span>
-    <% end %>
+    <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
   </div>
   <div class="badges">
     <%= link_to "", edit_my_afisha_path(afisha), class: 'edit_button show_tipsy', title: "Редактировать" %>

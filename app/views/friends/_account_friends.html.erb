@@ -22,14 +22,12 @@
       <%= render :partial => 'accounts/account_poster_link', :locals => { :kind => :invited, :invited_id => account.id } %>
       <%= link_to account_path(account), class: :details do %>
         <span class='first_line'>
-          <span class='show_tipsy to_go' title='Друзья'><%= account.friends_count %></span>
-          <span class='show_tipsy wait_invite' title='<%= invitations_for_tipsy(account.invitations) %>'>
-            <%= account.invitations.without_invited.count %>
-          </span>
-          <span class='show_tipsy comments' title='Комментарии'><%= account.comments.count %></span>
+          <span class='show_tipsy fa fa-users' title='Друзья'> <%= account.friends_count %></span>
+          <span class='show_tipsy fa fa-user' title='<%= invitations_for_tipsy(account.invitations) %>'> <%= account.invitations.without_invited.count %></span>
+          <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= account.comments.count %></span>
         </span>
         <span class='second_line'>
-          <span class='show_tipsy visits' title='Просмотры профиля'><%= account.my_page_visits.count %></span>
+          <span class='show_tipsy fa fa-eye' title='Просмотры профиля'> <%= account.my_page_visits.count %></span>
         </span>
       <% end %>
     </div>
