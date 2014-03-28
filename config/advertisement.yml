@@ -2,10 +2,10 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-03-21 18:00'
-      to: '2014-03-24 18:00'
+      from: '2014-03-28 10:00'
+      to: '2014-03-29 10:00'
       content_type: 'afisha'
-      afisha_slug: 'trening-lichnaya-effektivnost-a-dubovika'
+      afisha_slug: 'bal-romantika-proshlyh-vekov'
       replaced_count: 4
 
     '1.1':
