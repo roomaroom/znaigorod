@@ -5,7 +5,7 @@ module ImageHelper
     return if url.blank?
 
     if url.match(/\d+\/region\/\d+/)
-      return url.gsub(/(\/files\/\d+\/region\/(\d+|\/){8})/) { "#{$1}#{width}-#{height}/" }
+      return url.gsub(/(\/files\/\d+\/region\/(\d+|\/){8})/) { "#{$1}#{width}-#{height}#{options[:crop]}/" }
     end
 
     if url.match(/\/files\/\d+\/\d+-\d+\//)
