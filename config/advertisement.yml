@@ -32,21 +32,12 @@ afisha:
       width: 180
       height: 320
 
-    '1.6':
+    '1.7':
       from: '2014-03-26 23:00'
       to: '2014-12-31 23:00'
       content_type: 'review'
       review_slug: 'kak-interesno-provesti-vesennie-kanikuly-v-tomske'
-      replaced_count: 3
-
-post:
-  places:
-
-    '1.3':
-      from: '2013-10-30 00:00'
-      to: '2014-11-11 00:00'
-      content_type: 'post'
-      replaced_count: 4
+      replaced_count: 2
 
 discount:
   places:
@@ -123,3 +114,4 @@ main_page_discounts:
       content_type: 'discount'
       discount_slug: 'kupon-na-valentinku-s-zhivoy-tropicheskoy-babochkoy'
       replaced_count: 1
+

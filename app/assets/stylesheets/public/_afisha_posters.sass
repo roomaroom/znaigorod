@@ -4,7 +4,7 @@
     padding: 0 0 100px 0
     position: relative
 
-    li.item
+    .item
       border: 1px solid #ccc
       float: left
       height: 330px
@@ -58,7 +58,8 @@
               left: 0
 
           .details
-            color: #000
+            color: #999
+            font-size: 12px
 
           .first_line
             bottom: 35px
@@ -69,31 +70,15 @@
           .first_line,
           .second_line
             display: none
-            width: 100%
-            position: absolute
             left: 0
+            position: absolute
+            width: 100%
 
             span
               cursor: help
-              display: block
-              float: left
-              width: 34px
-              padding-left: 25px
-              background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
-
-              &.to_go
-                background-position: 12px 3px
-              &.wait_invite
-                background-position: 4px -17px
-              &.comments
-                background-position: 5px -36px
-              &.likes
-                background-position: 12px -57px
-              &.visits
-                background-position: 6px -77px
-              &.minimal_age
-                background: none
-                padding-left: 18px
+              display: inline-block
+              text-align: center
+              width: 56px
 
           &:hover
             .ribbon
@@ -141,25 +126,6 @@
           .first_line
             bottom: 20px
 
-          .first_line,
-          .second_line
-
-            span
-              &.to_go
-                background-position: 12px 6px
-                margin-left: 44px
-              &.wait_invite
-                background-position: 4px -14px
-              &.comments
-                background-position: 5px -33px
-              &.likes
-                background-position: 12px -54px
-              &.visits
-                background-position: 6px -74px
-              &.minimal_age
-                background: none
-                padding-left: 18px
-
         &.webcam
           width: 180px
           height: 320px
@@ -201,39 +167,84 @@
               height: 64px
               background: transparent image_url('public/webcam_play.png') no-repeat center center
 
-  .reviews-block
-    border: 1px solid #ccc
-    float: right
-    height: 306px
-    margin: 0 10px 20px 10px
-    padding: 12px
-
-    &.full
-      width: 1180px
-
-    &.half
-      width: 554px
-
-    .title
-      font-size: 14px
-      line-height: 24px
-      margin: 0 0 10px 0
-      text-align: center
-
-    .details
-      +clearfix
-      color: #999
+  .item
+    &.afisha-block
+      border: 1px solid #ccc
       float: right
-      font-size: 12px
+      height: 378px
+      margin: 0 10px 20px 10px
 
-    .date
-      color: #999
-      float: left
-      font-size: 11px
-      line-height: 16px
+      &.one-third
+        height: 682px
+        width: 378px
 
-    .annotation
-      clear: both
-      font-size: 14px
-      line-height: 20px
-      padding: 5px 0 0 0
+      .afisha_item
+        .title
+          font-size: 14px
+          line-height: 40px
+          text-align: center
+          width: 378px
+
+        .image
+          height: 540px
+
+          .has_items_for_sale
+            width: 390px
+
+          .for_sale
+            left: 126px
+
+          .first_line
+            bottom: 20px
+
+            span
+              font-size: 14px
+              width: 72px
+
+        .place
+          font-size: 14px
+          margin: 25px 0 5px 0
+
+        .human_when
+          font-size: 14px
+          margin: 5px 0 15px 0
+
+    &.reviews-block
+      border: 1px solid #ccc
+      float: right
+      height: 306px
+      margin: 0 10px 20px 10px
+      padding: 12px
+
+      &.full
+        width: 1154px
+
+      &.half
+        width: 554px
+
+      &.one-third
+        width: 354px
+
+      .title
+        font-size: 12px
+        line-height: 20px
+        margin: 0 0 10px 0
+        text-align: center
+
+      .details
+        +clearfix
+        color: #999
+        float: right
+        font-size: 12px
+
+      .date
+        color: #999
+        float: left
+        font-size: 11px
+        line-height: 16px
+
+      .annotation
+        clear: both
+        font-size: 12px
+        line-height: 20px
+        padding: 5px 0 0 0
