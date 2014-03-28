@@ -91,7 +91,7 @@ main_page_afisha:
       title: 'Реклама на футболе'
       image: 'http://storage.znaigorod.ru/files/80822/756-1129/forma_football.jpg'
       link: 'http://www.forma.sibr.ru/football.phtml?p=football&fl=19'
-      width: 180
+      width: 178
       height: 320
 
 main_page_discounts:
