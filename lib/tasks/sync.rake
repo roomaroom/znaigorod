@@ -93,7 +93,7 @@ class MovieSyncer
         message = I18n.localize(Time.now, :format => :short) + " " + text
         Airbrake.notify(Exception.new(message))
       end
-      if similar_movies.any?
+      if similar_movies.many?
         text = "Нашел больше одной афиши для фильма '#{title}': [#{place}]"
         puts text
         message = I18n.localize(Time.now, :format => :short) + " " + text
