@@ -32,12 +32,12 @@ afisha:
       width: 178
       height: 320
 
-    '1.5':
-      from: '2014-03-26 23:00'
-      to: '2014-12-31 23:00'
-      content_type: 'review'
-      review_slug: 'kak-interesno-provesti-vesennie-kanikuly-v-tomske'
-      replaced_count: 2
+    #'1.5':
+      #from: '2014-03-26 23:00'
+      #to: '2014-12-31 23:00'
+      #content_type: 'review'
+      #review_slug: 'kak-interesno-provesti-vesennie-kanikuly-v-tomske'
+      #replaced_count: 2
 
 discount:
   places:
