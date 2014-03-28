@@ -40,6 +40,14 @@ class String
     Russian.translit(self).underscore.gsub(/\s+|\//, "_")
   end
 
+  def is_json?
+    begin
+      !!JSON.parse(self)
+    rescue
+      false
+    end
+  end
+
   alias_method_chain :gilensize, :html_safe
 
 end
