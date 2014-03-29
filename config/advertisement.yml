@@ -2,10 +2,10 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-03-28 10:00'
-      to: '2014-03-29 11:30'
+      from: '2014-03-29 10:00'
+      to: '2014-04-04 21:00'
       content_type: 'afisha'
-      afisha_slug: 'bal-romantika-proshlyh-vekov'
+      afisha_slug: 'yumarafon-s-detmi-leytenanta-shmidta'
       replaced_count: 4
 
     '1.1':
