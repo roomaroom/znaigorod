@@ -57,10 +57,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-03-25 11:30'
-      to: '2014-03-27 11:30'
+      from: '2014-03-31 12:10'
+      to: '2014-04-04 12:10'
       content_type: 'afisha'
-      afisha_slug: 'vystavka-obrazovanie-za-rubezhom-2014'
+      afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
       replaced_count: 1
 
     '1.1':
