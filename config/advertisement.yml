@@ -10,7 +10,7 @@ afisha:
 
     '1.1':
       from: '2014-03-31 15:00'
-      to: '2014-04-01 15:00'
+      to: '2014-04-29 15:00'
       content_type: 'afisha'
       afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
       replaced_count: 1
