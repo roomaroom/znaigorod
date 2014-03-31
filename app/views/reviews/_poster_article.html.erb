@@ -1,2 +1,5 @@
 <%= link_to image_tag(review.annotation_image(width, height), :size => "#{width}x#{height}"), review_path(review) %>
-<%= review.content_for_index %>
+
+<div class="text">
+  <%= review.content_for_index %>
+</div>
