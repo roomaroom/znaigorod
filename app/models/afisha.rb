@@ -27,20 +27,21 @@ class Afisha < ActiveRecord::Base
 
   has_many :all_images,            :as => :attachable, :class_name => 'Attachment', :conditions => { :type => %w[GalleryImage GallerySocialImage] }
 
-  has_many :comments,              :dependent => :destroy, :as => :commentable
-  has_many :discounts,             :dependent => :destroy
-  has_many :gallery_files,         :dependent => :destroy, :as => :attachable
-  has_many :gallery_images,        :dependent => :destroy, :as => :attachable
-  has_many :gallery_social_images, :dependent => :destroy, :as => :attachable
-  has_many :invitations,           :dependent => :destroy, :as => :inviteable
-  has_many :messages,              :dependent => :destroy, :as => :messageable
-  has_many :page_visits,           :dependent => :destroy, :as => :page_visitable
-  has_many :ponominalu_tickets,    :dependent => :destroy, :order => 'id'
-  has_many :showings,              :dependent => :destroy, :order => :starts_at
-  has_many :tickets,               :dependent => :destroy
-  has_many :versions,              :dependent => :destroy, :as => :versionable, :order => 'id ASC'
-  has_many :visits,                :dependent => :destroy, :as => :visitable
-  has_many :votes,                 :dependent => :destroy, :as => :voteable
+  has_many :comments,                 :dependent => :destroy, :as => :commentable
+  has_many :discounts,                :dependent => :destroy
+  has_many :gallery_files,            :dependent => :destroy, :as => :attachable
+  has_many :gallery_images,           :dependent => :destroy, :as => :attachable
+  has_many :gallery_social_images,    :dependent => :destroy, :as => :attachable
+  has_many :invitations,              :dependent => :destroy, :as => :inviteable
+  has_many :messages,                 :dependent => :destroy, :as => :messageable
+  has_many :page_visits,              :dependent => :destroy, :as => :page_visitable
+  has_many :ponominalu_tickets,       :dependent => :destroy, :order => 'id'
+  has_many :promote_afisha_payments,                          :as => :paymentable
+  has_many :showings,                 :dependent => :destroy, :order => :starts_at
+  has_many :tickets,                  :dependent => :destroy
+  has_many :versions,                 :dependent => :destroy, :as => :versionable, :order => 'id ASC'
+  has_many :visits,                   :dependent => :destroy, :as => :visitable
+  has_many :votes,                    :dependent => :destroy, :as => :voteable
 
   has_many :addresses,     :through => :organizations, :uniq => true, :source => :address
   has_many :copies,        :through => :tickets
