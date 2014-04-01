@@ -84,6 +84,8 @@
             <%= simple_form_for @afisha.promote_afisha_payments.build, :url => my_afisha_promote_afisha_payments_index_path(@afisha) do |f| %>
               <%= f.button :submit, 'Поднять', :class => 'button' %>
             <% end %>
+
+            <p><%= "Поднято: #{l(@afisha.promoted_at, :format => :long)}" if @afisha.promoted_at? %></p>
           </div>
         <% else %>
           <div class="cell dashed_border arrow_box">
