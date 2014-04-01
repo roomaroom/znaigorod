@@ -1,6 +1,7 @@
 class PromoteAfishaPayment < Payment
   def approve!
     super
+
     promote_afisha
   end
 
@@ -8,10 +9,13 @@ class PromoteAfishaPayment < Payment
 
   private
 
+  def payment_system
+    :robokassa
+  end
+
   alias :afisha :paymentable
 
   def promote_afisha
-    afisha.promoted_at = Time.zone.now
-    afisha.showings.map(&:index!)
+    afisha.update_attributes! :promoted_at => Time.zone.now
   end
 end

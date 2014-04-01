@@ -62,7 +62,7 @@ Znaigorod::Application.routes.draw do
 
       resources :showings
 
-      resources :promote_afisha_payments, :only => [:new, :create]
+      resources :promote_afisha_payments, :only => :create
 
       resources :bets, :only => :create do
         resources :bet_payments, :only => [:new, :create]
