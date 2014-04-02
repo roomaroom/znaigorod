@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140402051801) do
+ActiveRecord::Schema.define(:version => 20140402081443) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -694,6 +694,14 @@ ActiveRecord::Schema.define(:version => 20140402051801) do
   end
 
   add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
+
+  create_table "promotion_places", :force => true do |t|
+    t.integer  "promotion_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "promotion_places", ["promotion_id"], :name => "index_promotion_places_on_promotion_id"
 
   create_table "promotions", :force => true do |t|
     t.string   "url"

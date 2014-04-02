@@ -30,9 +30,12 @@ Znaigorod::Application.routes.draw do
     resources :attachments, :only => [:edit, :update]
     resources :comments,  :only => [:index, :destroy]
     resources :page_metas
-    resources :promotions
     resources :search,    :only => :index
     resources :sessions,  :only => [:new, :create, :destroy]
+
+    resources :promotions, :shallow => true do
+      resources :promotion_places, :except => [:index, :show]
+    end
 
     resources :afisha, :except => [:index, :show], :controller => 'afishas' do
       get ':by_state' => 'afishas#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Afisha.state_machine.states.map(&:name).join('|')}/ }
