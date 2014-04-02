@@ -1,0 +1,13 @@
+<h3>Promotions</h3>
+
+<ul>
+  <% @promotions.each do |promotion| %>
+    <li>
+      <%= link_to promotion, manage_promotion_path(promotion) %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to 'New Promotion', new_manage_promotion_path %>
+</div>
