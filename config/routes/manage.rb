@@ -34,7 +34,9 @@ Znaigorod::Application.routes.draw do
     resources :sessions,  :only => [:new, :create, :destroy]
 
     resources :promotions, :shallow => true do
-      resources :promotion_places, :except => [:index, :show]
+      resources :promotion_places, :except => [:index, :show] do
+        resources :place_items, :except => [:index, :show]
+      end
     end
 
     resources :afisha, :except => [:index, :show], :controller => 'afishas' do

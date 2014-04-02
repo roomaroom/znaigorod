@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140402081443) do
+ActiveRecord::Schema.define(:version => 20140402084241) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -630,6 +630,15 @@ ActiveRecord::Schema.define(:version => 20140402081443) do
   add_index "payments", ["paymentable_type"], :name => "index_payments_on_paymentable_type"
   add_index "payments", ["type"], :name => "index_payments_on_type"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
+
+  create_table "place_items", :force => true do |t|
+    t.integer  "promotion_place_id"
+    t.string   "url"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "place_items", ["promotion_place_id"], :name => "index_place_items_on_promotion_place_id"
 
   create_table "places", :force => true do |t|
     t.integer  "placeable_id"
