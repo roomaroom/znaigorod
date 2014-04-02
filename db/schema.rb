@@ -634,6 +634,8 @@ ActiveRecord::Schema.define(:version => 20140402084241) do
   create_table "place_items", :force => true do |t|
     t.integer  "promotion_place_id"
     t.string   "url"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

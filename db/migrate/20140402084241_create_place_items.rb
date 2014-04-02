@@ -3,6 +3,8 @@ class CreatePlaceItems < ActiveRecord::Migration
     create_table :place_items do |t|
       t.references :promotion_place
       t.string :url
+      t.datetime :starts_at
+      t.datetime :ends_at
 
       t.timestamps
     end

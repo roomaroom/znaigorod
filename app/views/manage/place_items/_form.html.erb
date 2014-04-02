@@ -1,4 +1,6 @@
 <%= simple_form_for [:manage, @promotion_place, @place_item] do |f| %>
   <%= f.input :url %>
+  <%= f.input :starts_at, :as => :datetime_picker %>
+  <%= f.input :ends_at, :as => :datetime_picker %>
   <%= f.button :submit %>
 <% end %>
