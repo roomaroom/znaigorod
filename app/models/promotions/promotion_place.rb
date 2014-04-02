@@ -3,7 +3,15 @@ class PromotionPlace < ActiveRecord::Base
 
   has_many :place_items, :dependent => :destroy
 
-  def place_items_sample(n = 1)
-    place_items.available.to_a.sample(n)
+  def random_place_item
+    place_items.available.to_a.sample
+  end
+
+  def html
+    "<div>hello from PromotionPlace</div>"
+  end
+
+  def position
+    [1, 2, 3].sample
   end
 end
