@@ -20,6 +20,10 @@ class BetPayment < Payment
 
   private
 
+  def payment_system
+    :robokassa
+  end
+
   def set_amount
     self.amount = paymentable.amount
   end
