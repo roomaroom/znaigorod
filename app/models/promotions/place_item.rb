@@ -1,4 +1,6 @@
 class PlaceItem < ActiveRecord::Base
+  alias_attribute :to_s, :url
+
   attr_accessible :url, :starts_at, :ends_at
 
   belongs_to :promotion_place
@@ -8,10 +10,4 @@ class PlaceItem < ActiveRecord::Base
   validates :url, :presence => true
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
-
-  normalize_attribute(:url) { |value| value.gsub(/^\//, '') }
-
-  def to_s
-    "/#{url}"
-  end
 end
