@@ -94,5 +94,7 @@ Znaigorod::Application.routes.draw do
 
   match "/auth/:provider/callback" => "manage/sessions#create"
 
+  post '/promotions' => 'promotions#show'
+
   root :to => 'main_page#show'
 end

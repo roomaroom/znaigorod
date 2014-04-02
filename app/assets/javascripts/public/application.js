@@ -6,6 +6,7 @@
  * = require jquery-ui/jquery.ui.datepicker-ru.js
  * = require jquery-ui/jquery-ui-timepicker-addon.js
  * = require jquery-ui/jquery-ui-timepicker-ru.js
+ * = require ./promotions
  * = require sugar
  * = require infinitescroll.min
  * = require isotope.min

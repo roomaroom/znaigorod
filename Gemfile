@@ -57,6 +57,7 @@ group :default do
   gem 'progress_bar'
   gem 'rack-utf8_sanitizer'
   gem 'rails'
+  gem 'rest-client'
   gem 'roadie'
   gem 'russian'
   gem 'sanitize'

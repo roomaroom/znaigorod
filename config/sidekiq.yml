@@ -1,14 +1,15 @@
 ---
-:concurrency: 5
+:concurrency: 6
 :queues:
   - [critical, 2]
   - [default, 2]
   - [mailer, 1]
+  - [promotion, 1]
 
 production:
   :concurrency: 55
   :queues:
     - [critical, 20]
-    - [default, 25]
+    - [default, 10]
     - [mailer, 5]
-
+    - [promotion, 20]
