@@ -25,6 +25,8 @@ class AfishasController < ApplicationController
       }
 
       format.promotion do
+        presenter = AfishaPresenter.new(:without_advertisement => true, :per_page => 5)
+
         render :partial => 'promotions/afisha', :formats => [:html], :collection => presenter.decorated_collection, :as => :decorated_afisha
       end
     end
@@ -42,7 +44,7 @@ class AfishasController < ApplicationController
       format.html
 
       format.promotion do
-        render :partial => 'promotions/afisha', :formats => [:html], :collection => [@afisha], :as => :decorated_afisha
+        render :partial => 'promotions/afisha', :formats => [:html], :locals => { :decorated_afisha => @afisha }
       end
     end
   end
