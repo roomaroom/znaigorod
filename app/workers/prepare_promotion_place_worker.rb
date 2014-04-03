@@ -17,6 +17,7 @@ class PreparePromotionPlaceWorker
           :secret => Settings['faye.secret'].to_s
       }
     }
+
     RestClient.post("#{Settings['faye.url']}/faye", params.to_json, :content_type => :json, :accept => :json)
   end
 end
