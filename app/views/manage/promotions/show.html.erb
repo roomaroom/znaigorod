@@ -1,33 +1,38 @@
-<h3>Promotion for <%= @promotion %></h3>
+<h3>
+  Реклама для страницы <%= @promotion %>
+  <%= link_to "Править", edit_manage_promotion_path(@promotion), :class => 'button' %>
+</h3>
 
-<h4>Places</h4>
+<h4>Рекламные места</h4>
+
+<div>
+  <%= link_to 'Добавить рекламное место', new_manage_promotion_promotion_place_path(@promotion), :class => 'button' %>
+</div>
 
 <ul>
   <% @promotion.promotion_places.each do |promotion_place| %>
     <li>
-      <h5><%= "Place ##{promotion_place.id}" %></h5>
+      <h5><%= "Место (id #{promotion_place.id})" %></h5>
+      <h5><%= "Позиции" %></h5>
 
       <ul>
         <% promotion_place.place_items.each do |place_item| %>
           <li>
             <%= place_item %>
-            <%= link_to 'Edit', [:edit, :manage, place_item] %>
-            <%= link_to 'Delete', [:manage, place_item], :confirm => 'Are you sure?', :method => :delete %>
+            <%= link_to 'Править', [:edit, :manage, place_item] %>
+            <%= link_to 'Удалить', [:manage, place_item], :confirm => 'Are you sure?', :method => :delete %>
           </li>
         <% end %>
       </ul>
 
       <div>
-        <%= link_to 'New Item', new_manage_promotion_place_place_item_path(promotion_place) %>
+        <%= link_to 'Добавить позицию', new_manage_promotion_place_place_item_path(promotion_place), :class => :button %>
       </div>
     </li>
   <% end %>
 </ul>
 
-<div>
-  <%= link_to 'New Place', new_manage_promotion_promotion_place_path(@promotion) %>
-</div>
 
 <div>
-  <%= link_to 'Back to Promotions', manage_promotions_path %>
+  <%= link_to 'К списку', manage_promotions_path %>
 </div>
