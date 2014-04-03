@@ -741,6 +741,19 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "recreation_centers", :force => true do |t|
+    t.integer  "organization_id"
+    t.string   "title"
+    t.text     "category"
+    t.text     "description"
+    t.text     "feature"
+    t.text     "offer"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "recreation_centers", ["organization_id"], :name => "index_recreation_centers_on_organization_id"
+
   create_table "reservations", :force => true do |t|
     t.integer  "reserveable_id"
     t.string   "reserveable_type"
