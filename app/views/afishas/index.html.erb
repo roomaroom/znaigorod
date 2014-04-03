@@ -10,15 +10,8 @@
   <% end %>
 <% end %>
 
-<div class='presentation_filters afisha'>
-  <div class='present_by'>
-    <p>Вид:</p>
-    <ul>
-      <li class='selected'><a href='#' class='poster'>Постеры</a></li>
-      <li><a href='#' class='list'>Список</a></li>
-    </ul>
-  </div>
-  <div class='filter_header'>
+<div class="left">
+  <div class="title">
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% elsif @presenter.categories_filter.selected.empty? %>
@@ -43,26 +36,35 @@
   </div>
   <!--/noindex-->
 
+  <%= render :partial => 'afishas/presentation_filters' %>
+
+  <% if false %>
+    <div class="afisha-paginator afisha_list">
+      <% if @presenter.collection.any? %>
+        <ul class='posters js-isotoped-content <%= @presenter.view %>' data-item-width="200">
+          <%= render :partial => @presenter.partial, locals: { :afishas => nil } %>
+        </ul>
+      <% else %>
+        <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+      <% end %>
+    </div>
+  <% end %>
+>>>>>>> Initial new afisha list
 </div>
 
-<div class="afisha-paginator afisha_list">
-  <% if @presenter.collection.any? %>
-    <ul class='posters js-isotoped-content <%= @presenter.view %>' data-item-width="200">
-      <%= render :partial => @presenter.partial, locals: { :afishas => nil } %>
-    </ul>
-  <% else %>
-    <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-  <% end %>
+<div class="right">
 </div>
 
 <%= paginate @presenter.paginated_collection %>
 
-<% if page_meta %>
-  <div class='introduction'>
-    <%= page_meta.html_introduction %>
-  </div>
-<% elsif !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
-  <div class='introduction'>
-    <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
-  </div>
+<% if false %>
+  <% if page_meta %>
+    <div class='introduction'>
+      <%= page_meta.html_introduction %>
+    </div>
+  <% elsif !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
+    <div class='introduction'>
+      <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
+    </div>
+  <% end %>
 <% end %>
