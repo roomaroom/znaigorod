@@ -15,10 +15,17 @@ class OrganizationsController < ApplicationController
 
         render partial: 'organizations/organizations_posters', layout: false and return if request.xhr?
       end
+
       format.json do
         searcher = HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => 10)
 
         render :json => searcher.results
+      end
+
+      format.promotion do
+        presenter = OrganizationsCatalogPresenter.new(:per_page => 5)
+
+        render :partial => 'promotions/organization', :formats => [:html], :collection => presenter.collection, :as => :decorated_organization
       end
     end
   end
@@ -50,7 +57,16 @@ class OrganizationsController < ApplicationController
     @coupon_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'coupon', :order_by => 'random', :page => params[:page])
 
     render partial: @afisha_presenter.partial, locals: {afishas: @afisha_presenter.decorated_collection}, layout: false and return if request.xhr?
-    render layout: "organization_layouts/#{@organization.subdomain}" if @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
+
+    respond_to do |format|
+      format.html  do
+        render layout: "organization_layouts/#{@organization.subdomain}" if @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
+      end
+
+      format.promotion do
+        render :partial => 'promotions/organization', :formats => [:html], :locals => { :decorated_organization => @organization }
+      end
+    end
   end
 
   def photogallery
