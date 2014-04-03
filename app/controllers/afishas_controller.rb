@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class AfishasController < ApplicationController
+  respond_to :html, :rss, :promotion
+
   def index
     cookie = cookies['_znaigorod_afisha_list_settings'].to_s
     settings_from_cookie = {}
@@ -21,6 +23,10 @@ class AfishasController < ApplicationController
         @presenter = AfishaPresenter.new(:without_advertisement => true)
         render :layout => false
       }
+
+      format.promotion do
+        render :partial => 'promotions/afisha', :formats => [:html], :collection => presenter.decorated_collection, :as => :decorated_afisha
+      end
     end
   end
 
@@ -34,6 +40,10 @@ class AfishasController < ApplicationController
 
     respond_to do |format|
       format.html
+
+      format.promotion do
+        render :partial => 'promotions/afisha', :formats => [:html], :collection => [@afisha], :as => :decorated_afisha
+      end
     end
   end
 end

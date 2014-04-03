@@ -8,7 +8,7 @@ class PromotionPlace < ActiveRecord::Base
   end
 
   def html
-    "<div>hello from PromotionPlace</div>"
+    random_place_item.html
   end
 
   def position

@@ -10,4 +10,14 @@ class PlaceItem < ActiveRecord::Base
   validates :url, :presence => true
   validates :starts_at, :presence => true
   validates :ends_at, :presence => true
+
+  def html
+    HTTParty.get request_url
+  end
+
+  private
+
+  def request_url
+    "#{Settings['app.url']}#{url}.promotion"
+  end
 end
