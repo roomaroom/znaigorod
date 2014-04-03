@@ -16,4 +16,5 @@ class Values
 
   delegate *Organization.available_suborganization_kinds, to: :values
   delegate :invitation, to: :values
+  delegate :room, to: :values
 end
