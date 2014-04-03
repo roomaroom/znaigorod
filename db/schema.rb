@@ -809,6 +809,18 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
 
   add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
 
+  create_table "rooms", :force => true do |t|
+    t.integer  "context_id"
+    t.string   "context_type"
+    t.string   "title"
+    t.integer  "capacity"
+    t.integer  "rooms_count"
+    t.text     "description"
+    t.text     "feature"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "salon_centers", :force => true do |t|
     t.text     "category"
     t.text     "description"

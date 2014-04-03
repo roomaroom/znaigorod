@@ -1,0 +1,31 @@
+<div class="room_info">
+  <h1><%= @room.title.present? ? @room.title : "Без названия" %> (<%= @room.context.organization.title %>)</h1>
+
+  <div class="columns_wrapper">
+
+    <div class="column">
+
+      <p class="actions">
+        <%= link_to 'Назад', manage_organization_path(@room.context.organization) %>
+        <%= link_to t('edit'), [:edit, :manage, @room.context.organization, @room.context.class.name.underscore.to_sym, @room], :class => 'edit_link' %>
+        <%= link_to t('delete'), [:manage, @room.context.organization, @room.context.class.name.underscore.to_sym, @room], :method => :delete, :confirm => 'Вы уверены?', :class => 'delete_link' %>
+      </p>
+
+      <div class="details">
+        <% %w[capacity roms_count feature description].each do |attribute| %>
+          <% if resource.respond_to?(attribute) %>
+            <div>
+              <span class="label"><%= resource.class.human_attribute_name(attribute) %></span>
+              <% if resource.send(attribute).present? %>
+                <span class="value"><%= resource.send(attribute) %></span>
+              <% else %>
+                <span class="blank">Не указано</span>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<fieldset>
+  <legend>Залы</legend>
+  <ul>
+    <% item.rooms.each do |room| %>
+      <li>
+        <%= link_to (room.title.present? ? room.title : "Без названия"), [:manage, @organization, item.class.name.underscore.to_sym, room] %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Добавить номер/дом/квартиру', [:new, :manage, item.organization, item.class.name.underscore.to_sym] %>
+</fieldset>

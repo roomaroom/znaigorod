@@ -1,0 +1,8 @@
+<%= simple_form_for [:manage, @organization, context_type, resource], :html => { :novalidate => true } do |f| %>
+  <%= f.input :title %>
+  <%= f.input :capacity %>
+  <%= f.input :rooms_count %>
+  <%= f.input :feature_list, :as => :check_boxes, :collection => f.object.available_features, :checked => f.object.features %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end %>

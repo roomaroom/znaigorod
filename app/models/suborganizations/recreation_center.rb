@@ -20,6 +20,8 @@ class RecreationCenter < ActiveRecord::Base
   has_many :gallery_images, :as => :attachable, :dependent => :destroy
   # similar code --->
 
+  has_many :rooms, :as => :context, :dependent => :destroy
+
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :category, :default_value => Values.instance.hotel.categories

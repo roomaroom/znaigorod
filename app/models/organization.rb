@@ -38,7 +38,6 @@ class Organization < ActiveRecord::Base
   has_many :slave_organizations, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
   has_many :social_links,        :dependent => :destroy
   has_many :visits,              :dependent => :destroy, :as => :visitable
-  has_many :visits,              :dependent => :destroy, :as => :visitable
   has_many :votes,               :dependent => :destroy, :as => :voteable
 
   has_many :afisha,            :through => :showings, :uniq => true
@@ -289,6 +288,10 @@ class Organization < ActiveRecord::Base
 
   def services
     Service.where :id => suborganizations.select{ |s| s.respond_to?(:services) }.flat_map(&:service_ids)
+  end
+
+  def rooms
+    Room.where :id => suborganizations.select{ |s| s.respond_to?(:rooms) }.flat_map(&:room_ids)
   end
 
   def priority_suborganization

@@ -1,3 +1,6 @@
 <div class="type">
   <%= render partial: 'manage/organizations/suborganization', locals: { suborganization: hotel } %>
+  <div class="hotel_info">
+    <%= render :partial => 'manage/rooms/short_list', locals: { :item => hotel} %>
+  </div>
 </div>
