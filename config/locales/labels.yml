@@ -35,6 +35,7 @@ ru:
   edit_culture_suborganization: Редактировать информацию о культурном
   edit_entertainment_suborganization: Редактировать информацию о развлекательном
   edit_hotel_suborganization: Редактировать информацию о отеле
+  edit_recreation_center_suborganization: Редактировать информацию о базе отдыха/загородном доме
   edit_meal_suborganization: Редактировать информацию о заведении общественного питания
   edit_salon_center_suborganization: Редактировать информацию о салоне красоты
   edit_sauna_suborganization: Редактировать информацию о сауне
@@ -62,6 +63,7 @@ ru:
   new_culture_suborganization: Добавить информацию о культурном
   new_entertainment_suborganization: Добавить информацию о развлекательном
   new_hotel_suborganization: Добавить информацию о отеле
+  new_recreation_center_suborganization: Добавить информацию о базе отдыха/загородном доме
   new_meal_suborganization: Добавить информацию о заведении общественного питания
   new_salon_center_suborganization: Добавить информацию о салоне красоты
   new_sauna_suborganization: Добавить информацию о сауне

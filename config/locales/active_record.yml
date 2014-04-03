@@ -37,6 +37,7 @@ ru:
       car_wash:                           Автомойки
       car_service_center:                 Автосервис
       hotel:                              Гостиницы
+      recreation_center:                              Загородные дома и базы отдыха
       travel:                             Туристическое агентство
       creation:                           Творчество
       culture:                            Культура
@@ -443,6 +444,9 @@ ru:
         <<: *common_attributes
 
       hotel:
+        <<: *common_attributes
+
+      recreation_center:
         <<: *common_attributes
 
       travel:

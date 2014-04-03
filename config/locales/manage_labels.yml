@@ -28,6 +28,7 @@ ru:
     add_car_wash: Добавление автомойки
     add_car_service_center: Добавление автосервиса
     add_hotel: Добавление гостиницы
+    add_recreation_center: Добавление базы отдыха
     add_travel: Добавление туристического агентства
     add_salon_center: Добавление салона красоты
     edit_afisha: Редактирование информации о событии
@@ -57,6 +58,7 @@ ru:
     edit_car_wash: Редактирование автомойки
     edit_car_service_center: Редактирование автосервиса
     edit_hotel: Редактирование гостиницы
+    edit_recreation_center: Редактирование базы отдыха
     edit_travel: Редактирование туристического агентства
     edit_salon_center: Редактирование салона красоты
 
