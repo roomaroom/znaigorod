@@ -2,14 +2,10 @@
 
 <h4>Places</h4>
 
-<div>
-  <%= link_to 'New Place', new_manage_promotion_promotion_place_path(@promotion) %>
-</div>
-
 <ul>
-  <% @promotion.promotion_places.each_with_index do |promotion_place, index| %>
+  <% @promotion.promotion_places.each do |promotion_place| %>
     <li>
-      <h5><%= "Place ##{index + 1}" %></h5>
+      <h5><%= "Place ##{promotion_place.id}" %></h5>
 
       <ul>
         <% promotion_place.place_items.each do |place_item| %>
@@ -27,6 +23,10 @@
     </li>
   <% end %>
 </ul>
+
+<div>
+  <%= link_to 'New Place', new_manage_promotion_promotion_place_path(@promotion) %>
+</div>
 
 <div>
   <%= link_to 'Back to Promotions', manage_promotions_path %>

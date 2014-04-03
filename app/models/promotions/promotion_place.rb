@@ -1,4 +1,6 @@
 class PromotionPlace < ActiveRecord::Base
+  after_create :set_position
+
   belongs_to :promotion
 
   has_many :place_items, :dependent => :destroy
@@ -11,7 +13,11 @@ class PromotionPlace < ActiveRecord::Base
     random_place_item.html
   end
 
-  def position
-    [1, 2, 3].sample
+  private
+
+  def set_position
+    self.position = promotion.promotion_places.count
+
+    save
   end
 end

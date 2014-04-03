@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140402084241) do
+ActiveRecord::Schema.define(:version => 20140403075543) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -710,6 +710,7 @@ ActiveRecord::Schema.define(:version => 20140402084241) do
     t.integer  "promotion_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "position"
   end
 
   add_index "promotion_places", ["promotion_id"], :name => "index_promotion_places_on_promotion_id"
