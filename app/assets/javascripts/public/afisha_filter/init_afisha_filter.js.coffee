@@ -68,8 +68,8 @@
     cal.datepicker('setDate', current_date.toLocaleFormat('%Y-%m-%d'))
 
   cal.css
-    'top': wrapper.position().top
-    'left': wrapper.position().left
+    'top': wrapper.offset().top
+    'left': wrapper.offset().left
     'width': wrapper.outerWidth()
     'height': wrapper.outerHeight()
 
