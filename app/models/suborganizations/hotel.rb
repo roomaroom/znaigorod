@@ -14,14 +14,12 @@ class Hotel < ActiveRecord::Base
   # OPTIMIZE: <--- similar code
   attr_accessor :vfs_path
   attr_accessible :vfs_path
+
   def vfs_path
     "#{organization.vfs_path}/#{self.class.name.underscore}"
   end
-  has_many :gallery_images, :as => :attachable, :dependent => :destroy
 
-  def sunspot_index
-    index
-  end
+  has_many :gallery_images, :as => :attachable, :dependent => :destroy
   # similar code --->
 
   include PresentsAsCheckboxes
