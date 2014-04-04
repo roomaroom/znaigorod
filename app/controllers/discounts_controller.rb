@@ -4,20 +4,25 @@ class DiscountsController < ApplicationController
   actions :show
 
   def index
-    @presenter = DiscountsPresenter.new(params.merge(:with_advertisement => true))
-    @discounts = @presenter.decorated_collection
-
-    render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
 
     respond_to do |format|
-      format.html
+      format.html {
+        @presenter = DiscountsPresenter.new(params.merge(:with_advertisement => true))
+        @discounts = @presenter.decorated_collection
 
-      format.rss { render :layout => false }
+        render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
+
+      }
+
+      format.rss {
+        @presenter = DiscountsPresenter.new(:per_page => 15)
+        render :layout => false
+      }
 
       format.promotion do
         presenter = DiscountsPresenter.new(:per_page => 5)
 
-        render :partial => 'promotions/discount', :formats => [:html], :collection => presenter.decorated_collection, :as => :decorated_discount
+        render :partial => 'promotions/discounts', :formats => [:html], :presenter => presenter
       end
     end
   end

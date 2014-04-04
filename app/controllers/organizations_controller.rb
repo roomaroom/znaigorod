@@ -25,7 +25,7 @@ class OrganizationsController < ApplicationController
       format.promotion do
         presenter = OrganizationsCatalogPresenter.new(:per_page => 5)
 
-        render :partial => 'promotions/organization', :formats => [:html], :collection => presenter.collection, :as => :decorated_organization
+        render :partial => 'promotions/organizations', :formats => [:html], :presenter => presenter
       end
     end
   end
@@ -36,30 +36,29 @@ class OrganizationsController < ApplicationController
     else
       @organization = Organization.find_by_subdomain(request.subdomain)
     end
-    @organization.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
-
     @organization = OrganizationDecorator.decorate @organization
-    @visits = @organization.visits.page(1)
-
-    case @organization.priority_suborganization_kind
-    when 'sauna'
-      @presenter = SaunaHallsPresenter.new
-    else
-      klass = "#{@organization.priority_suborganization_kind.pluralize}_presenter".classify.constantize
-      @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)])
-    end
-    cookie = cookies['_znaigorod_afisha_list_settings'].to_s
-    settings_from_cookie = {}
-    settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
-    @afisha_presenter = AfishaPresenter.new(organization_ids: [@organization.id], order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
-    @discount_presenter = DiscountsPresenter.new(organization_id: @organization.id, :type => 'discount', order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
-    @certificate_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'certificate', :order_by => 'random', :page => params[:page])
-    @coupon_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'coupon', :order_by => 'random', :page => params[:page])
-
-    render partial: @afisha_presenter.partial, locals: {afishas: @afisha_presenter.decorated_collection}, layout: false and return if request.xhr?
 
     respond_to do |format|
       format.html  do
+        @organization.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+        @visits = @organization.visits.page(1)
+
+        case @organization.priority_suborganization_kind
+        when 'sauna'
+          @presenter = SaunaHallsPresenter.new
+        else
+          klass = "#{@organization.priority_suborganization_kind.pluralize}_presenter".classify.constantize
+          @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)])
+        end
+        cookie = cookies['_znaigorod_afisha_list_settings'].to_s
+        settings_from_cookie = {}
+        settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
+        @afisha_presenter = AfishaPresenter.new(organization_ids: [@organization.id], order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
+        @discount_presenter = DiscountsPresenter.new(organization_id: @organization.id, :type => 'discount', order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
+        @certificate_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'certificate', :order_by => 'random', :page => params[:page])
+        @coupon_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'coupon', :order_by => 'random', :page => params[:page])
+
+        render partial: @afisha_presenter.partial, locals: {afishas: @afisha_presenter.decorated_collection}, layout: false and return if request.xhr?
         render layout: "organization_layouts/#{@organization.subdomain}" if @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 

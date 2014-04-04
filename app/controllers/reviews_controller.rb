@@ -11,11 +11,18 @@ class ReviewsController < ApplicationController
 
   def show
     @review = ReviewDecorator.new Review.published.find(params[:id])
-    @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
+    respond_to do |format|
+      format.html {
+        @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
 
-    @images = Kaminari.paginate_array(@review.images).page(params[:page]).per(30)
-    render :partial => 'reviews/gallery', :layout => false and return if request.xhr?
+        @images = Kaminari.paginate_array(@review.images).page(params[:page]).per(30)
+        render :partial => 'reviews/gallery', :layout => false and return if request.xhr?
 
-    @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+        @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+      }
+      format.promotion {
+        render :partial => 'promotions/review', :formats => [:html], :locals => { :decorated_review => @review }
+      }
+    end
   end
 end
