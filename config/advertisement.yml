@@ -32,6 +32,15 @@ afisha:
       width: 178
       height: 320
 
+    '1.7':
+      from: '2014-04-04 14:40'
+      to: '2014-04-11 14:40'
+      content_type: 'banner'
+      title: ['Рулим в Томске!']
+      image: ['http://storage.znaigorod.ru/files/117389/178-320/rulim.png']
+      link: ['http://znaigorod.ru/reviews/rulim-v-tomske']
+      width: 178
+      height: 320
     #'1.6':
       #from: '2014-03-28 17:00'
       #to: '2014-12-31 17:00'
