@@ -724,6 +724,7 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
     t.string   "type"
     t.integer  "context_id"
     t.string   "context_type"
+    t.string   "day_kind"
   end
 
   add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
