@@ -13,7 +13,7 @@ class Service < ActiveRecord::Base
 
   alias_attribute :to_s, :title
 
-  has_many :prices, dependent: :destroy
+  has_many :prices, :as => :context, :class_name => 'ServicePrice', dependent: :destroy
   accepts_nested_attributes_for :prices, allow_destroy: true
 
   delegate :index, to: :context, prefix: true

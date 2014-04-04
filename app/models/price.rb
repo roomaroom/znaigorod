@@ -1,23 +1,9 @@
 # encoding: utf-8
 
 class Price < ActiveRecord::Base
-  extend Enumerize
-
-  attr_accessible :kind, :value, :max_value, :count, :period, :description
-
-  belongs_to :service
-
-  enumerize :kind, in: [:single, :multiple, :certificate], predicates: true
-
-  validates_presence_of :kind, :value
-  validates_presence_of :count, :period, :if => :multiple?
-  validates_presence_of :count, :if => :certificate?
+  belongs_to :context, :polymorphic => true
 
   default_scope order('value ASC')
-
-  def to_s
-    "#{I18n.t("price_kind.#{service.kind}", count: count || 1)}"
-  end
 
   def price_value
     if self.max_value?

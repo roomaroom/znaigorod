@@ -717,11 +717,13 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
     t.integer  "value"
     t.integer  "count"
     t.string   "period"
-    t.integer  "service_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "description"
     t.integer  "max_value"
+    t.string   "type"
+    t.integer  "context_id"
+    t.string   "context_type"
   end
 
   add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
