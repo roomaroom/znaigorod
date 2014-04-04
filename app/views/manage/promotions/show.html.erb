@@ -3,16 +3,19 @@
   <%= link_to "Править", edit_manage_promotion_path(@promotion), :class => 'button' %>
 </h3>
 
-<h4>Рекламные места</h4>
-
-<div>
+<h4>
+  Рекламные места
   <%= link_to 'Добавить рекламное место', new_manage_promotion_promotion_place_path(@promotion), :class => 'button' %>
-</div>
+</h4>
 
 <ul>
   <% @promotion.promotion_places.each do |promotion_place| %>
     <li>
-      <h5><%= "Место (id #{promotion_place.id})" %></h5>
+      <h5>
+        <%= "Место (id #{promotion_place.id})" %>
+        <%= link_to 'Удалить', [:manage, promotion_place], :confirm => 'Вы уверены?', :method => :delete %>
+      </h5>
+
       <h5><%= "Позиции" %></h5>
 
       <ul>
@@ -20,7 +23,7 @@
           <li>
             <%= place_item %>
             <%= link_to 'Править', [:edit, :manage, place_item] %>
-            <%= link_to 'Удалить', [:manage, place_item], :confirm => 'Are you sure?', :method => :delete %>
+            <%= link_to 'Удалить', [:manage, place_item], :confirm => 'Вы уверены?', :method => :delete %>
           </li>
         <% end %>
       </ul>
