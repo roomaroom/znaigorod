@@ -1,3 +1,73 @@
 .promotions
   .place
 
+    .place-header
+      background: #ccc
+      color: #222
+      font-size: 14px
+      line-height: 30px
+      margin: 0 0 0 -20px
+      padding: 0 0 0 20px
+      position: relative
+
+      &:before
+        content: ""
+        width: 0
+        height: 0
+        position: absolute
+        left: 0
+        bottom: -10px
+        border-width: 5px 5px
+        border-style: solid
+        border-color: #999 #999 transparent transparent
+
+      .place-title
+
+      .place-counter
+        background: #fff
+        color: #06c
+        float: right
+        font-size: 11px
+        line-height: 22px
+        padding: 0 5px
+        position: relative
+        right: 4px
+        top: 4px
+
+        &:after
+          right: 100%
+          top: 11px
+          border: solid transparent
+          content: ""
+          height: 0
+          width: 0
+          position: absolute
+          pointer-events: none
+          border-color: rgba(0, 0, 0, 0)
+          border-right-color: #fff
+          border-width: 11px
+          margin-top: -11px
+
+    .place-content
+      ul
+        margin: 20px 0
+        li
+          +clearfix
+          margin: 0 0 15px 0
+
+          &:last-child
+            margin: 0
+
+          .image
+            border: 1px solid #d0d0d0
+            float: left
+            height: 50px
+            margin: 0 10px 0 0
+            position: relative
+            width: 50px
+
+          .title
+            font-size: 12px
+
+
+

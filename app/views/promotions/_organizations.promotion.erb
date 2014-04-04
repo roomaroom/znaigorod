@@ -1,11 +1,32 @@
 <div class="place-header">
-  <div class="title">%title%</div>
+  <span class="place-title">
+    %title%
+  </span>
+  <span class="place-counter">
+    <%= link_to organizations_path do %>
+      все <%= presenter.total_count %>
+    <% end %>
+  </span>
 </div>
 
-<div class="place-content">
-  <% presenter.collection.each do |item| %>
-    <div class="title">
-      <%= item.title %>
-    </div>
-  <% end %>
+<div class="place-content organizations">
+  <ul>
+    <% presenter.collection.each do |item| %>
+      <li>
+        <div class='image'>
+          <%= link_to organization_path(item) do %>
+            <% if item.logotype_url? %>
+              <%= image_tag resized_image_url(item.poster_url, 50, 50), :size => '50x50', :alt => item.title.text_gilensize %>
+            <% else %>
+              <span class='stub_poster <%= item.priority_suborganization_kind %>'></span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class='clearfix'>
+          <div class='title'><%= link_to item.title.text_gilensize, organization_path(item) %></div>
+          <%= content_tag :div, item.truncated_address_link, :class => 'places' if item.truncated_address_link.present? %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
