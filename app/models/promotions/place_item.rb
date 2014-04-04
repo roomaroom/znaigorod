@@ -39,7 +39,11 @@ class PlaceItem < ActiveRecord::Base
     @encoded_response ||= parsed_response.force_encoding('utf-8')
   end
 
+  def title_pattern
+    '%title%'
+  end
+
   def set_title_for(html)
-    html.gsub '_title_', title
+    html.gsub title_pattern, title
   end
 end
