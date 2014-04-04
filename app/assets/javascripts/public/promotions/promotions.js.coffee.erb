@@ -10,5 +10,8 @@ $ ->
   push_server = new Faye.Client('<%= "#{Settings['faye.url']}/faye" %>')
   subscribe = push_server.subscribe "/promotions/#{channel}", (data) ->
     console.log data
+
+    $('.promotions .organizations').html(data.html)
+
   subscribe.then ->
     $.post('/promotions', { 'url': window.location.pathname, 'channel': channel })
