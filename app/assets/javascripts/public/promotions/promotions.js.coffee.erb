@@ -11,7 +11,7 @@ $ ->
   subscribe = push_server.subscribe "/promotions/#{channel}", (data) ->
     console.log data
 
-    $("#place_#{data.position}").html(data.html)
+    $("#place-#{data.position}").html(data.html)
 
   subscribe.then ->
     $.post('/promotions', { 'url': window.location.pathname, 'channel': channel })
