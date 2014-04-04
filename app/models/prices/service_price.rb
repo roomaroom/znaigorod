@@ -1,6 +1,4 @@
 class ServicePrice < Price
-  extend Enumerize
-
   attr_accessible :kind, :value, :max_value, :count, :period, :description
 
   enumerize :kind, in: [:single, :multiple, :certificate], predicates: true

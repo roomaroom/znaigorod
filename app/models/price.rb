@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Price < ActiveRecord::Base
+  extend Enumerize
+
   belongs_to :context, :polymorphic => true
 
   default_scope order('value ASC')
