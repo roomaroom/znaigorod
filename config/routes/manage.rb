@@ -109,6 +109,12 @@ Znaigorod::Application.routes.draw do
         resources :rooms, :except => :index
       end
 
+      resources :rooms, :except => [] do
+        resources :gallery_images, :only => [:new, :create, :destroy, :edit, :update] do
+          delete 'destroy_file', :on => :member, :as => :destroy_file
+        end
+      end
+
       resources :sauna_halls, :only => [] do
         resources :gallery_images, :only => [:new, :create, :destroy, :edit, :update] do
           delete 'destroy_file', :on => :member, :as => :destroy_file

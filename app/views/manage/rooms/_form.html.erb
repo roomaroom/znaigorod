@@ -4,6 +4,7 @@
   <%= f.input :rooms_count %>
   <%= f.input :feature_list, :as => :check_boxes, :collection => f.object.available_features, :checked => f.object.features %>
   <%= f.input :description %>
+  <%= render :partial => 'virtual_tour_form_fields', :locals => { :f => f } %>
   <div>
     <%= f.simple_fields_for :prices do |pf| %>
       <%= pf.input :day_kind, :as => :select %>
