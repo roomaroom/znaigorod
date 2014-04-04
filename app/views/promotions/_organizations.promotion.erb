@@ -24,7 +24,8 @@
         </div>
         <div class='clearfix'>
           <div class='title'><%= link_to item.title.text_gilensize, organization_path(item) %></div>
-          <%= content_tag :div, item.truncated_address_link, :class => 'places' if item.truncated_address_link.present? %>
+          <span class="fa fa-map-marker fa-orange inline-block"></span>
+          <%= content_tag :div, item.truncated_address_link, :class => 'places inline-block' if item.truncated_address_link.present? %>
         </div>
       </li>
     <% end %>

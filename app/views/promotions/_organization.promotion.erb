@@ -1,7 +1,21 @@
 <div class="place-header">
-  %title%
+  <span class="place-title">
+    %title%
+  </span>
 </div>
 
-<div class="place-content">
-  <%= decorated_organization.title.html_safe %>
+<div class="place-content organization">
+  <div class="image">
+    <%= link_to organization_path(decorated_organization) do %>
+      <% if decorated_organization.logotype_url? %>
+        <%= image_tag resized_image_url(decorated_organization.poster_url, 194, 194), :size => '194x194', :alt => decorated_organization.title.text_gilensize %>
+      <% else %>
+        <span class='stub_poster <%= decorated_organization.priority_suborganization_kind %>'></span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class='title'><%= link_to decorated_organization.title.text_gilensize, organization_path(decorated_organization) %></div>
+  <span class="fa fa-map-marker fa-orange inline-block"></span>
+  <%= content_tag :div, decorated_organization.truncated_address_link, :class => 'places inline-block' if decorated_organization.truncated_address_link.present? %>
 </div>
