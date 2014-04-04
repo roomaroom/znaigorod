@@ -37,7 +37,7 @@ ru:
       car_wash:                           Автомойки
       car_service_center:                 Автосервис
       hotel:                              Гостиницы
-      recreation_center:                              Загородные дома и базы отдыха
+      recreation_center:                  Загородные дома и базы отдыха
       travel:                             Туристическое агентство
       creation:                           Творчество
       culture:                            Культура
@@ -68,6 +68,8 @@ ru:
         article:                          Все обзоры
         photo:                            Все фотообзоры
         video:                            Все видеообзоры
+
+      room:                               Номера/квартиры/загородные дома
 
 
     attributes:
@@ -449,6 +451,11 @@ ru:
       recreation_center:
         <<: *common_attributes
 
+      room:
+        <<: *common_attributes
+        capacity:      Вместимость
+        rooms_count:   Количество комнат
+
       travel:
         <<: *common_attributes
 
@@ -477,6 +484,7 @@ ru:
         period:     Срок
         value:      Минимальная цена
         max_value:  Максимальная цена
+        day_kind:   День недели
 
       ticket:
         description:        Описание

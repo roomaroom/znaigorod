@@ -105,11 +105,21 @@ ru:
         visiting:              посещение
         washing:               автомобильная мойка
 
-    price:
+    service_price:
       kind:
         certificate:           Подарочный сертификат
         single:                Разовая
         multiple:              Абонемент
+
+    daily_price:
+      day_kind:
+        monday:                Понедельник
+        tuesday:               Вторник
+        wednesday:             Среда
+        thursday:              Четверг
+        friday:                Пятница
+        saturday:              Суббота
+        sunday:                Воскресенье
 
     copy:
       state:
