@@ -1,0 +1,29 @@
+<div class="place-header">
+  <span class="place-title">
+    %title%
+  </span>
+  <span class="place-counter">
+    <%= link_to discounts_path do %>
+      все <%#= presenter %>
+    <% end %>
+  </span>
+</div>
+
+<div class="place-content discounts">
+  <ul>
+    <% presenter.collection.each do |item| %>
+      <li>
+        <div class='image'>
+        <%= link_to image_tag(resized_image_url(item.poster_url, 67, 50),
+                              :size => '67x50',
+                              :title => item.title.text_gilensize,
+                              :alt => item.title.text_gilensize),
+                              discount_path(item) %>
+        </div>
+        <div class='clearfix'>
+          <div class='title'><%= link_to item.title.text_gilensize, discount_path(item) %></div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
