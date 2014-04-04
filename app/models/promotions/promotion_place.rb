@@ -6,11 +6,11 @@ class PromotionPlace < ActiveRecord::Base
   has_many :place_items, :dependent => :destroy
 
   def random_place_item
-    place_items.available.to_a.sample
+    @random_place_item ||= place_items.available.to_a.sample
   end
 
   def html
-    random_place_item.html
+    random_place_item.try(:html)
   end
 
   private

@@ -12,6 +12,8 @@ class PlaceItem < ActiveRecord::Base
   validates :ends_at, :presence => true
 
   def html
+    return nil unless request_success?
+
     set_title_for(encoded_response)
   end
 
@@ -22,11 +24,19 @@ class PlaceItem < ActiveRecord::Base
   end
 
   def response
-    HTTParty.get(request_url).parsed_response
+    @response ||= HTTParty.get(request_url)
+  end
+
+  def request_success?
+    response.code == 200
+  end
+
+  def parsed_response
+    @parsed_response ||= response.parsed_response
   end
 
   def encoded_response
-    response.force_encoding('utf-8')
+    @encoded_response ||= parsed_response.force_encoding('utf-8')
   end
 
   def set_title_for(html)
