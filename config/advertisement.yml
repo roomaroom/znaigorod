@@ -9,10 +9,10 @@ afisha:
       replaced_count: 4
 
     '1.1':
-      from: '2014-03-31 15:00'
-      to: '2014-03-29 15:00'
+      from: '2014-04-04 12:00'
+      to: '2014-04-09 12:00'
       content_type: 'afisha'
-      afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
+      afisha_slug: 'vedicheskiy-vzglyad-glubina-i-garmonichnost'
       replaced_count: 1
 
     '1.2':
