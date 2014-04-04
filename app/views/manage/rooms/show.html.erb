@@ -15,7 +15,7 @@
         <% %w[capacity rooms_count feature description].each do |attribute| %>
           <% if resource.respond_to?(attribute) %>
             <div>
-              <span class="label"><%= resource.class.human_attribute_name(attribute) %></span>
+              <span class="label"><%= resource.class.human_attribute_name(attribute) %>:</span>
               <% if resource.send(attribute).present? %>
                 <span class="value"><%= resource.send(attribute) %></span>
               <% else %>
@@ -27,10 +27,11 @@
       </div>
 
       <div class="prices_list">
+        <h4>Цены по дням недели:</h4>
         <ul class="prices">
           <% @room.prices.each do |price| %>
             <li>
-              <span class='day_kind'><%= price.day_kind_text %></span>
+              <span class='day_kind label'><%= price.day_kind_text %>:</span>
               <span class='price'><%= price.price_value %></span>
             </li>
           <% end %>
