@@ -1,5 +1,7 @@
 class BannersController < ApplicationController
-  def index
-    @widget = Widgets::Webcam.new(params[:widget])
+  respond_to :promotion
+
+  def show
+    @banner = Banner.find(params[:id])
   end
 end

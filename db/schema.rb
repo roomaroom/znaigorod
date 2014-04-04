@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403075543) do
+ActiveRecord::Schema.define(:version => 20140403092943) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -153,6 +153,20 @@ ActiveRecord::Schema.define(:version => 20140403075543) do
     t.text     "file_url"
     t.string   "file_image_url"
     t.integer  "position"
+  end
+
+  create_table "banners", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "image_url"
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "bets", :force => true do |t|

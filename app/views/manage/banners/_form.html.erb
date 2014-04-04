@@ -1,0 +1,11 @@
+<%= simple_form_for [:manage, @banner] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :url %>
+  <%= f.input :image %>
+  <%= f.input :width %>
+  <%= f.input :height %>
+  <div class="buttons">
+    <%= f.submit 'Сохранить' %>
+    <%= link_to 'Отмена', :back %>
+  </div>
+<% end %>

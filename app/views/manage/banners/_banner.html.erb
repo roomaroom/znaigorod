@@ -1,0 +1,8 @@
+<li>
+  <p>Ссылка на баннер: /banners/<%= banner.id %></p>
+  <%= link_to banner.url, :title => banner.title, :alt => banner.title, :target => '_blank' do %>
+    <%= image_tag resized_image_url(banner.image_url, banner.width, banner.height), :alt => banner.title, :title => banner.title, :width => banner.width, :height => banner.height %>
+  <% end %>
+  <%= link_to 'Редактировать баннер', edit_manage_banner_path(banner) %>
+  <%= link_to 'Удалить', manage_banner_path(banner), :method => :delete, :confirm => 'Вы точно хотите удалить это баннер?' %>
+</li>

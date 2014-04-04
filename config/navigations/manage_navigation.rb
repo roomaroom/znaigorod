@@ -4,6 +4,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :page_metas, 'Мета страниц', manage_page_metas_path
+    primary.item :banners, 'Баннеры',         manage_banners_path
 
     primary.item :users, 'Пользователи', manage_admin_users_path,
       :highlights_on => ->(){ controller_name == 'users' || resource_class.try(:superclass) == User },

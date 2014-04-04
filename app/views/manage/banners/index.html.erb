@@ -1,0 +1,9 @@
+<h3>Баннеры</h3>
+<%= link_to 'Добавить баннер', new_manage_banner_path %>
+<ul>
+  <% if collection.any? %>
+    <%= render collection %>
+  <% else %>
+    <div class='empty'>Нет ни одного баннера</div>
+  <% end %>
+</ul>

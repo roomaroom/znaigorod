@@ -70,6 +70,11 @@ ru:
 
 
     attributes:
+      banner:
+        title:                            Название баннера
+        image:                            Картинка для баннера
+        url:                              Куда ведет баннер
+
       common_attributes: &common_attributes
         description: Описание
         category: Категория
