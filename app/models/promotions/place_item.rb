@@ -1,7 +1,7 @@
 class PlaceItem < ActiveRecord::Base
   alias_attribute :to_s, :url
 
-  attr_accessible :url, :starts_at, :ends_at
+  attr_accessible :url, :starts_at, :ends_at, :title
 
   belongs_to :promotion_place
 

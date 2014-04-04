@@ -1,6 +1,7 @@
 <%= simple_form_for @place_item,
   :url => @place_item.new_record? ? [:manage, @promotion_place, @place_item] : [:manage, @place_item] do |f| %>
   <%= f.input :url %>
+  <%= f.input :title %>
   <%= f.input :starts_at, :as => :datetime_picker %>
   <%= f.input :ends_at, :as => :datetime_picker %>
   <%= f.button :submit %>
