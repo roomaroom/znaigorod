@@ -13,15 +13,29 @@ class DiscountsController < ApplicationController
       format.html
 
       format.rss { render :layout => false }
+
+      format.promotion do
+        presenter = DiscountsPresenter.new(:per_page => 5)
+
+        render :partial => 'promotions/discount', :formats => [:html], :collection => presenter.decorated_collection, :as => :decorated_discount
+      end
     end
   end
 
   def show
-    show! {
-      @discount = DiscountDecorator.new(@discount)
-      @presenter = DiscountsPresenter.new(params.merge(:kind => @discount.kind.map(&:value).first, :type => @discount.model.type_for_solr))
-      @discount.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
-      @members = @discount.members.page(1).per(3)
-    }
+    show! do |format|
+      format.html do
+        @discount = DiscountDecorator.new(@discount)
+        @presenter = DiscountsPresenter.new(params.merge(:kind => @discount.kind.map(&:value).first, :type => @discount.model.type_for_solr))
+        @discount.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+        @members = @discount.members.page(1).per(3)
+      end
+
+      format.promotion do
+        discount = DiscountDecorator.new(@discount)
+
+        render :partial => 'promotions/discount', :formats => [:html], :locals => { :decorated_discount => discount }
+      end
+    end
   end
 end

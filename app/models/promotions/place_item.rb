@@ -12,7 +12,7 @@ class PlaceItem < ActiveRecord::Base
   validates :ends_at, :presence => true
 
   def html
-    HTTParty.get request_url
+    HTTParty.get(request_url).parsed_response.force_encoding('utf-8')
   end
 
   private
