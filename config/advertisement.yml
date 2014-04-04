@@ -26,9 +26,9 @@ afisha:
       from: '2014-03-21 16:00'
       to: '2015-03-21 16:00'
       content_type: 'banner'
-      title: ['Школа по грудному вскармливанию', 'Массаж теплыми камнями. Увеличение количества грудного молока и улучшение его оттока, мышечная релаксация для мамы']
-      image: ['http://storage.znaigorod.ru/files/110860/180-320/shkola_mam.jpg', 'http://storage.znaigorod.ru/files/116264/180-304/stoun.jpg']
-      link: ['http://profilaktika.tomsk.ru/?p=2333', 'http://profilaktika.tomsk.ru/?p=8748']
+      title: ['Школа по грудному вскармливанию', '7 апреля – Всемирный день здоровья']
+      image: ['http://storage.znaigorod.ru/files/110860/180-320/shkola_mam.jpg', 'http://storage.znaigorod.ru/files/117262/180-304/den-zdoroviya.jpg']
+      link: ['http://profilaktika.tomsk.ru/?p=2333', 'http://profilaktika.tomsk.ru/?p=9249']
       width: 178
       height: 320
 
