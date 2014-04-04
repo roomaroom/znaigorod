@@ -15,12 +15,12 @@ class Manage::RoomsController < Manage::ApplicationController
 
   protected
 
-  def collection
-    @rooms = @rooms.where(context_type: context_type.classify)
+  def resource_url
+    [:manage, @organization, context_type.to_sym, @room]
   end
 
-  def smart_collection_url
-    [:manage, @organization, resource.context.class.name.underscore]
+  def collection
+    @rooms = @rooms.where(context_type: context_type.classify)
   end
 
   def context_type
