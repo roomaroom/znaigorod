@@ -23,7 +23,7 @@ class OrganizationsController < ApplicationController
       end
 
       format.promotion do
-        presenter = OrganizationsCatalogPresenter.new(:per_page => 5)
+        presenter = OrganizationsCatalogPresenter.new(params.merge(:per_page => 5))
 
         render :partial => 'promotions/organizations', :formats => [:html], :presenter => presenter
       end

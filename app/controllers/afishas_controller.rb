@@ -26,7 +26,7 @@ class AfishasController < ApplicationController
       }
 
       format.promotion do
-        presenter = AfishaPresenter.new(:without_advertisement => true, :per_page => 5)
+        presenter = AfishaPresenter.new(params.merge(:without_advertisement => true, :per_page => 5))
 
         render :partial => 'promotions/afishas', :formats => [:html], :presenter => presenter
       end
