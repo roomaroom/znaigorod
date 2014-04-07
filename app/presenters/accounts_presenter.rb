@@ -55,6 +55,7 @@ class AccountsPresenter
     attr_accessor :category, :available_values
 
     def initialize(category)
+      category = category.try(:from_russian_to_param)
       @available_values = Inviteables.instance.transliterated_category_titles
       @category = @available_values.keys.include?(category) ? category : nil
     end

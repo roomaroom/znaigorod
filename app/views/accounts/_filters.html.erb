@@ -36,7 +36,7 @@
         <li class='title'>
           <div class='text'>Ищут компанию:</div>
           <div class='with_avatar'>
-            <%= hidden_field_tag 'with_avatar_link', accounts_path(@presenter.searcher_parameters(:with_avatar => @presenter.with_avatar ? nil : true)) %>
+            <%= hidden_field_tag 'with_avatar_link', polymorphic_url([:accounts, @presenter.category_filter.category], :with_avatar => @presenter.with_avatar ? nil : true) %>
             <%= check_box_tag 'with_avatar', 'with_avatar', params[:with_avatar] %>
             <%= label_tag 'with_avatar', 'Только с фото' %>
           </div>
@@ -45,7 +45,7 @@
         <% @presenter.categories_links.take(5).each do |link| %>
           <% more_is_selected = false if link[:selected] %>
           <li class='<%= link[:klass] %><%= ' selected' if link[:selected] %>'>
-            <%= link_to send("accounts_#{link[:klass]}_path") do %>
+            <%= link_to send("accounts_#{link[:klass]}_path", link[:parameters].slice(:with_avatar)) do %>
               <span class='name'><%= link[:title] %></span>
               <span class='count'><%= link[:count] %></span>
             <% end %>
