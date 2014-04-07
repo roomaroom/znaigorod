@@ -5,19 +5,21 @@ class AccountsController < ApplicationController
   has_scope :page, :default => 1
 
   def index
-    format.html {
-      cookie = cookies['_znaigorod_accounts_list_settings'].to_s
-      settings_from_cookie = {}
-      settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
+    respond_to do |format|
+      format.html {
+        cookie = cookies['_znaigorod_accounts_list_settings'].to_s
+        settings_from_cookie = {}
+        settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
 
-      @presenter = AccountsPresenter.new(settings_from_cookie.merge(params))
-      render partial: 'accounts/account_posters', layout: false and return if request.xhr?
-    }
+        @presenter = AccountsPresenter.new(settings_from_cookie.merge(params))
+        render partial: 'accounts/account_posters', layout: false and return if request.xhr?
+      }
 
-    format.promotion {
-      presenter = AccountsPresenter.new(params)
-      render :partial => 'promotions/accounts', :formats => [:html], :presenter => presenter
-    }
+      format.promotion {
+        presenter = AccountsPresenter.new(params)
+        render :partial => 'promotions/accounts', :formats => [:html], :presenter => presenter
+      }
+    end
   end
 
   def show
