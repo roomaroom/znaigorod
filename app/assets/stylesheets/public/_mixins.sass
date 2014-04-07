@@ -226,6 +226,35 @@ $desktop_default_width: 1200px
     border-style: solid
     border-color: #0065cd transparent transparent #0065cd
 
+=as_green_ribbon
+  color: #fff
+  text-align: center
+  background-color: #009999
+  padding: 4px 0
+  z-index: 1
+
+  &:before
+    content: ''
+    width: 0
+    height: 0
+    position: absolute
+    left: 0
+    bottom: -10px
+    border-width: 5px 3px
+    border-style: solid
+    border-color: #006666 #006666 transparent transparent
+
+  &:after
+    content: ''
+    width: 0
+    height: 0
+    position: absolute
+    right: 0
+    bottom: -10px
+    border-width: 5px 3px
+    border-style: solid
+    border-color: #006666 transparent transparent #006666
+
 /* стрелочки */
 =left-arrow($arrow-color: #009bdb, $background: #ececec, $text-color: #fff)
   background: $arrow-color

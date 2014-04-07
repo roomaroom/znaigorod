@@ -38,18 +38,15 @@
 
   <%= render :partial => 'afishas/presentation_filters' %>
 
-  <% if false %>
-    <div class="afisha-paginator afisha_list">
-      <% if @presenter.collection.any? %>
-        <ul class='posters js-isotoped-content <%= @presenter.view %>' data-item-width="200">
-          <%= render :partial => @presenter.partial, locals: { :afishas => nil } %>
-        </ul>
-      <% else %>
-        <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-      <% end %>
-    </div>
-  <% end %>
->>>>>>> Initial new afisha list
+  <div class="afisha-paginator">
+    <% if @presenter.collection.any? %>
+      <ul class='posters js-isotoped-content <%= @presenter.view %>' data-item-width="220">
+        <%= render :partial => @presenter.partial, :locals => { :afishas => nil } %>
+      </ul>
+    <% else %>
+      <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+    <% end %>
+  </div>
 </div>
 
 <div class="afisha_right">

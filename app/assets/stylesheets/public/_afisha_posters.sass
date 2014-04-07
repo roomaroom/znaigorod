@@ -4,14 +4,14 @@
     border-right: 1px solid #e5e5e5
     float: left
     min-height: 1000px
-    padding: 0 45px 0 0
+    padding: 0 40px 0 5px
     width: 880px
 
     .title
       border-bottom: 1px solid #e5e5e5
       font-size: 22px
       line-height: 40px
-      margin: 30px 30px 0 0
+      margin: 30px 0 0 0
 
   .afisha_right
     float: left
@@ -20,6 +20,9 @@
 
 .content .afisha_list, .content .afisha_main_page_list
 
+.afisha-paginator
+  clear: both
+
   .posters
     padding: 0 0 100px 0
     position: relative
@@ -27,244 +30,94 @@
     .item
       border: 1px solid #ccc
       float: left
-      height: 320px
-      margin: 0 10px 20px 10px
-      width: 178px
-
-      .afisha_item
-        margin: 0 auto
-
-        .title
-          height: 38px
-          width: 178px
-          display: table-cell
-          text-align: center
-          vertical-align: middle
-          padding: 0 3px
-
-        .image
-          height: 240px
-          position: relative
-
-          .has_items_for_sale
-            width: 190px
-            position: absolute
-            top: 0
-            left: -6px
-            +as_blue_ribbon
-
-          .ribbon
-            position: absolute
-            left: 0
-            bottom: 0
-            color: #fff
-            background-color: #f60
-            padding: 2px 8px 3px
-
-          .for_sale
-            +button-style
-            display: none
-            position: absolute
-            top: 50px
-            left: 29px
-            font-size: 12px
-            padding: 2px 15.5px 3px
-            &:active
-              padding: 3px 15.5px 2px
-
-            &.ponominalu
-              background: none
-              border: none
-              left: 0
-
-          .details
-            color: #999
-            font-size: 12px
-
-          .first_line
-            bottom: 35px
-
-          .second_line
-            bottom: 10px
-
-          .first_line,
-          .second_line
-            display: none
-            left: 0
-            position: absolute
-            width: 100%
-
-            span
-              cursor: help
-              display: inline-block
-              text-align: center
-              width: 56px
-
-          &:hover
-            .ribbon
-              display: none
-            img:not(.link)
-              +opacity(0.15)
-            .for_sale,
-            .first_line,
-            .second_line
-              display: block
-
-        .place
-          text-align: center
-          margin: 3px 0 0 0
-
-        .human_when
-          text-align: center
-          margin: 2px 0 3px 0
-
-        &.webcam
-          width: 180px
-          height: 320px
-          border: none
-
-          .webcam_place
-            height: 40px
-            width: 180px
-            display: table-cell
-            text-align: center
-            vertical-align: middle
-            background: transparent image_url('public/webcam_bg.png') no-repeat -10px -13px
-            padding-top: 5px
-
-          .image
-            height: 274px
-            +clearfix
-            img
-              height: 274px
-
-            .wide_image
-              margin-left: -153px
-
-            .bg
-              top: 0
-              left: 0
-              position: absolute
-              display: block
-              width: 180px
-              height: 274px
-              background: transparent image_url('public/webcam_bg.png') no-repeat -10px -37px
-
-            .play
-              top: 90px
-              left: 57px
-              position: absolute
-              display: block
-              width: 64px
-              height: 64px
-              background: transparent image_url('public/webcam_play.png') no-repeat center center
-
-  .item
-    &.afisha-block
-      border: 1px solid #ccc
-      float: right
-      height: 378px
-      margin: 0 10px 20px 10px
-
-      &.one-third
-        height: 662px
-        width: 378px
-
-      .afisha_item
-        .title
-          font-size: 14px
-          line-height: 40px
-          text-align: center
-          width: 378px
-
-        .image
-          height: 540px
-
-          .has_items_for_sale
-            width: 390px
-
-          .for_sale
-            left: 126px
-
-          .first_line
-            bottom: 20px
-
-            span
-              font-size: 14px
-              width: 72px
-
-        .place
-          font-size: 14px
-          margin: 15px 0 5px 0
-
-        .human_when
-          font-size: 14px
-          margin: 5px 0 15px 0
-
-    &.reviews-block
-      border: 1px solid #ccc
-      float: right
-      height: 296px
-      margin: 0 10px 20px 10px
-      padding: 12px
-
-      &.full
-        width: 1154px
-
-      &.half
-        width: 554px
-
-      &.one-third
-        width: 354px
+      height: 352px
+      width: 198px
+      margin: 0 0 25px 0
 
       .title
-        font-size: 12px
-        line-height: 20px
-        margin: 0 0 10px 0
-        text-align: center
-
-      .details
-        +clearfix
-        color: #999
-        float: right
-        font-size: 12px
-
-      .date
-        color: #999
-        float: left
+        border-bottom: 1px dashed #ccc
+        display: table-cell
         font-size: 11px
-        line-height: 16px
+        height: 44px
+        line-height: 18px
+        margin: 0
+        min-height: 45px
+        text-align: center
+        vertical-align: middle
+        width: 200px
 
-      .annotation
-        clear: both
-        font-size: 12px
-        line-height: 16px
-        padding: 5px 0 0 0
+      .image
+        height: 260px
+        margin: 2px 0 0 2px
+        position: relative
+        width: 194
 
-        .text
-          display: none
-
-        .images
-          margin: 0 auto
-          height: 240px
-          position: relative
-
-        .counter
-          +border-radius(5px)
-          background-color: rgba(0, 0, 0, 0.5)
-          bottom: 10px
-          color: #fff
-          padding: 7px
+        .has_items_for_sale
+          +as_green_ribbon
+          left: -9px
           position: absolute
-          right: 10px
+          top: -3px
+          width: 212px
 
-        li
-          float: left
-          height: 80px
-          margin: 0
-          padding: 0
-          width: 118px
+        .ribbon
+          position: absolute
+          left: 0
+          bottom: 0
+          color: #fff
+          background-color: #f60
+          padding: 2px 8px 3px
 
-        li:first-child
-          height: 160px
-          width: 236px
+        .for_sale
+          +button-style
+          display: none
+          position: absolute
+          top: 50px
+          left: 29px
+          font-size: 12px
+          padding: 2px 15.5px 3px
+          &:active
+            padding: 3px 15.5px 2px
+
+          &.ponominalu
+            background: none
+            border: none
+            left: 0
+
+        .details
+          color: #999
+          font-size: 12px
+
+        .first_line
+          bottom: 35px
+
+        .second_line
+          bottom: 10px
+
+        .first_line,
+        .second_line
+          display: none
+          left: 0
+          position: absolute
+          width: 100%
+
+          span
+            cursor: help
+            display: inline-block
+            text-align: center
+            width: 56px
+
+        &:hover
+          .ribbon
+            display: none
+          img:not(.link)
+            +opacity(0.15)
+          .for_sale,
+          .first_line,
+          .second_line
+            display: block
+
+      .place
+        margin: 5px 10px 0 10px
+
+      .human_when
+        margin: 2px 10px 3px 10px
