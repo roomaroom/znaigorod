@@ -94,8 +94,8 @@ main_page_afisha:
       replaced_count: 1
 
     '1.5':
-      from: '2014-03-01 14:00'
-      to: '2014-04-01 00:00'
+      from: '2014-04-01 14:00'
+      to: '2014-05-01 00:00'
       content_type: 'banner'
       title: 'Реклама на футболе'
       image: 'http://storage.znaigorod.ru/files/80822/756-1129/forma_football.jpg'
