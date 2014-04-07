@@ -3,5 +3,7 @@ class DailyPrice < Price
 
   validates_presence_of :value
 
-  enumerize :day_kind, :in => [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
+  scope :ordered, order('day_kind')
+
+  enumerize :day_kind, :in => [1,2,3,4,5,6,7]
 end
