@@ -1,3 +1,7 @@
-<div><%= link_to @banner.url, :title => @banner.title, :alt => @banner.title, :target => '_blank' do %>
-<%= image_tag resized_image_url(@banner.image_url, @banner.width, @banner.height), :alt => @banner.title, :title => @banner.title, :width => @banner.width, :height => @banner.height %>
-<% end %></div>
+<div class="place-content banner">
+  <div class="image">
+    <%= link_to @banner.url, :title => @banner.title, :alt => @banner.title, :target => '_blank' do %>
+      <%= image_tag resized_image_url(@banner.image_url, @banner.width, @banner.height), :alt => @banner.title, :title => @banner.title, :width => @banner.width, :height => @banner.height %>
+    <% end %>
+  </div>
+</div>
