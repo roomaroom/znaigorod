@@ -43,6 +43,6 @@
     </script>
   </div>
 
-  <%= render 'manage/services/services' %>
+  <%= render 'manage/services/services' unless (resource.is_a?(Hotel) || resource.is_a?(RecreationCenter)) %>
   <%= render 'manage/menus/menus' if resource.is_a?(Meal) %>
 </div>
