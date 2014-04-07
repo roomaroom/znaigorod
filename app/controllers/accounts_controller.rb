@@ -17,7 +17,8 @@ class AccountsController < ApplicationController
 
       format.promotion {
         presenter = AccountsPresenter.new(params)
-        render :partial => 'promotions/accounts', :formats => [:html], :presenter => presenter
+
+        render :partial => 'promotions/accounts', :locals => { :presenter => presenter }
       }
     end
   end
