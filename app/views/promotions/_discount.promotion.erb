@@ -17,6 +17,6 @@
 
   <div class='title'><%= link_to decorated_discount.title.text_gilensize, discount_path(decorated_discount) %></div>
   <div class="info">
-    <%= render :partial => "discounts/#{decorated_discount.model.class.name.underscore}_info", :locals => { :discount => decorated_discount.model }, :formats => [:html] %>
+    <%= decorated_discount.human_info.html_safe %>
   </div>
 </div>
