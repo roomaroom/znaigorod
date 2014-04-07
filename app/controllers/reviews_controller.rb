@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
         @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
       }
       format.promotion {
-        render :partial => 'promotions/review', :formats => [:html], :locals => { :decorated_review => @review }
+        render :partial => 'promotions/review', :locals => { :decorated_review => @review }
       }
     end
   end
