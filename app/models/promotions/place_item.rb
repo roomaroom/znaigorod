@@ -28,7 +28,9 @@ class PlaceItem < ActiveRecord::Base
   private
 
   def request_url
-    "#{Settings['app.url']}#{url}.promotion"
+    path, query = url.split('?')
+
+    URI.escape "#{Settings['app.url']}#{path}.promotion?#{query}"
   end
 
   def response
