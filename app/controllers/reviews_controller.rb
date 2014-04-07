@@ -13,7 +13,8 @@ class ReviewsController < ApplicationController
 
       format.promotion {
         presenter = ReviewsPresenter.new(params.merge(:per_page => 5))
-        render :partial => 'promotions/reviews', :formats => [:html], :presenter => presenter
+
+        render :partial => 'promotions/reviews', :locals => { :presenter => presenter }
       }
     end
   end

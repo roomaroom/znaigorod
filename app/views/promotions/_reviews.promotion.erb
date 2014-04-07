@@ -1,0 +1,25 @@
+<div class="place-header">
+  <span class="place-title">
+    %title%
+  </span>
+  <span class="place-counter">
+    <%= link_to reviews_path do %>
+      все <%#= presenter %>
+    <% end %>
+  </span>
+</div>
+
+<div class="place-content reviews">
+  <ul>
+    <% presenter.decorated_collection.each do |item| %>
+      <li>
+        <div class='image'>
+          <%= link_to image_tag(item.annotation_image(88, 50), :size => "88x50"), review_path(item) %>
+        </div>
+        <div class='title'>
+          <%= link_to truncate(item.title.text_gilensize, :length => 35), review_path(item), :title => item.title.text_gilensize %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -19,11 +19,11 @@ class DiscountsController < ApplicationController
         render :layout => false
       }
 
-      format.promotion do
-        presenter = DiscountsPresenter.new(params.merge(:per_page => 5))
+      format.promotion {
+        presenter = DiscountsPresenter.new(:per_page => 5)
 
         render :partial => 'promotions/discounts', :locals => { :presenter => presenter }
-      end
+      }
     end
   end
 
