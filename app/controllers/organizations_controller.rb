@@ -7,26 +7,26 @@ class OrganizationsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html do
+      format.html {
         cookie = cookies['_znaigorod_organization_list_settings'].to_s
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = OrganizationsCatalogPresenter.new(settings_from_cookie.merge(params))
 
         render partial: 'organizations/organizations_posters', layout: false and return if request.xhr?
-      end
+      }
 
-      format.json do
+      format.json {
         searcher = HasSearcher.searcher(:manage_organization, params).paginate(:page => params[:page], :per_page => 10)
 
         render :json => searcher.results
-      end
+      }
 
-      format.promotion do
+      format.promotion {
         presenter = OrganizationsCatalogPresenter.new(params.merge(:per_page => 5))
 
         render :partial => 'promotions/organizations', :locals => { :presenter => presenter }
-      end
+      }
     end
   end
 
