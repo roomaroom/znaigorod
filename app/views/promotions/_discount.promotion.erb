@@ -1,3 +1,22 @@
-<div>
-  <%= decorated_discount.title %>
+<div class="place-header">
+  <span class="place-title">
+    %title%
+  </span>
+</div>
+
+<div class="place-content discount">
+  <div class="image">
+    <%= link_to discount_path(decorated_discount) do %>
+      <% if decorated_discount.poster_url? %>
+        <%= image_tag resized_image_url(decorated_discount.poster_url, 194, 144), :size => '194x144', :alt => decorated_discount.title.text_gilensize %>
+      <% else %>
+        <%= image_tag('public/stub_poster.png', :size => '194x144', :alt => :poster) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class='title'><%= link_to decorated_discount.title.text_gilensize, discount_path(decorated_discount) %></div>
+  <div class="info">
+    <%= render :partial => "discounts/#{decorated_discount.model.class.name.underscore}_info", :locals => { :discount => decorated_discount.model }, :formats => [:html] %>
+  </div>
 </div>

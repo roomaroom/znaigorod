@@ -1,5 +1,6 @@
 .promotions
   .place
+    margin: 0 0 15px 0
 
     .place-header
       background: #ccc
@@ -52,7 +53,8 @@
       font-size: 12px
 
       ul
-        margin: 20px 0
+        margin: 20px 10px
+
         li
           +clearfix
           margin: 0 0 15px 0
@@ -108,6 +110,13 @@
           position: relative
           width: 67px
 
+        .info
+          margin: 0 0 0 79px
+          color: #f60
+
+          strong
+            font-weight: normal
+
       &.discount
         font-size: 12px
         line-height: 18px
@@ -115,12 +124,23 @@
         text-align: center
 
         .image
-          height: 164px
+          height: 144px
           margin: 0 auto
           width: 194px
 
         .title
           margin: 5px 0 0 0
+
+        .info
+          .profit
+            color: #f60
+
+          strong
+            font-weight: normal
+
+          em
+            color: #f60
+            font-style: normal
 
 
 

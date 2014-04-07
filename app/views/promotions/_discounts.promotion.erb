@@ -20,8 +20,11 @@
                               :alt => item.title.text_gilensize),
                               discount_path(item) %>
         </div>
-        <div class='clearfix'>
-          <div class='title'><%= link_to item.title.text_gilensize, discount_path(item) %></div>
+        <div class='title'>
+          <%= link_to truncate(item.title.text_gilensize, :length => 35), discount_path(item), :title => item.title.text_gilensize %>
+        </div>
+        <div class="info">
+          <%= render :partial => "discounts/#{item.class.name.underscore}_info", :locals => { :discount => item }, :formats => [:html] %>
         </div>
       </li>
     <% end %>

@@ -39,7 +39,7 @@ class DiscountsController < ApplicationController
       format.promotion do
         discount = DiscountDecorator.new(@discount)
 
-        render :partial => 'promotions/discount', :formats => [:html], :locals => { :decorated_discount => discount }
+        render :partial => 'promotions/discount', :locals => { :decorated_discount => discount }
       end
     end
   end
