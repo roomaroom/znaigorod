@@ -41,4 +41,21 @@ module ManageHelper
       end
     end
   end
+
+  def date_info_for_place_item(place_item)
+    content = 'с '
+    content << l(place_item.starts_at)
+    content << ' по '
+    content << l(place_item.ends_at)
+    content << " (#{time_ago_to_close(place_item)})"
+    content.html_safe
+  end
+
+  def time_ago_to_close(place_item)
+    if Time.zone.now > place_item.ends_at
+      "<span class='warn'>закончилось #{time_ago_in_words place_item.ends_at} назад</span>".html_safe
+    else
+      "<span class='norm'>осталось #{time_ago_in_words place_item.ends_at}</span>".html_safe
+    end
+  end
 end

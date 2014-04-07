@@ -1,6 +1,8 @@
 <%= simple_form_for [:manage, @promotion] do |f| %>
   <%= f.input :url %>
-  <%= f.button :submit, 'Сохранить', :class => 'button' %>
-  или
-  <%= link_to 'Отмена', @promotion.new_record? ? [:manage, :promotions] : [:manage, @promotion] %>
+  <div class="buttons">
+    <%= f.submit 'Сохранить', :class => 'button' %>
+    <%= link_to 'Отмена', :back %>
+    <%= link_to 'Удалить', manage_promotion_path(@promotion), :method => :delete, :confirm => 'Вы точно хотите удалить?', :class => 'warn' if @promotion.persisted? %>
+  </div>
 <% end %>

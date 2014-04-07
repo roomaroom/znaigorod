@@ -70,10 +70,17 @@ ru:
 
 
     attributes:
+      place_item:
+        url:                              Откуда брать контент
+        title:                            Заголовок
+        starts_at:                        Показывать с
+        ends_at:                          Показывать до
       banner:
         title:                            Название баннера
         image:                            Картинка для баннера
         url:                              Куда ведет баннер
+        width:                            Ширина (не больше 240px)
+        height:                           Высота
 
       common_attributes: &common_attributes
         description: Описание

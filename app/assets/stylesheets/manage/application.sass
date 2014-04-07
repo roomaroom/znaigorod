@@ -649,3 +649,76 @@ table
 
   .phone
     width: 140px
+
+.warn
+  color: red
+
+.norm
+  color: green
+
+.promotion_table
+  width: 100%
+
+  th
+    padding: 10px
+
+  thead
+    th
+      border-bottom: 1px solid #777
+      text-align: center
+
+  tbody
+    td
+      border: 1px solid #ddd
+      padding: 0 10px
+
+    tr
+      &:hover
+        background: #f1f1f1
+
+  .empty
+    text-align: center
+
+  .place_item
+    background: rgba(#19a3f1, 0.1)
+    padding: 5px
+    margin: 10px 0
+
+.promotions_chooser
+
+  .head_wrapper
+    +clearfix
+    border-bottom: 1px solid #777
+    width: 940px
+
+  .head
+    float: left
+    height: 25px
+    line-height: 25px
+    padding: 10px
+    width: 100px
+
+  .row
+    +clearfix
+    width: 940px
+
+    &:hover
+      background: #f1f1f1
+
+      .checkbox
+        color: #f1f1f1
+
+  .item, .checkbox
+    float: left
+    padding: 10px
+    width: 100px
+
+
+  .checkbox
+    color: #fff
+
+    input
+      margin: 0 0 0 35px
+
+  .blank, .promotion_url
+    width: 200px

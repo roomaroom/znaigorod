@@ -1,15 +1,17 @@
 class PlaceItem < ActiveRecord::Base
   alias_attribute :to_s, :url
 
-  attr_accessible :url, :starts_at, :ends_at, :title
+  attr_accessible :url, :starts_at, :ends_at, :title, :promotion_place_ids
 
-  belongs_to :promotion_place
+  has_and_belongs_to_many :promotion_places
+  has_many :promotions, :through => :promotion_places
 
   scope :available, -> { where 'starts_at <= :now AND ends_at >= :now', { :now => Time.zone.now } }
 
-  validates :url, :presence => true
+  validates :title,     :presence => true
+  validates :url,       :presence => true
   validates :starts_at, :presence => true
-  validates :ends_at, :presence => true
+  validates :ends_at,   :presence => true
 
   def html
     return nil unless request_success?

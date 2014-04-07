@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140404044949) do
+ActiveRecord::Schema.define(:version => 20140404074317) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -656,6 +656,11 @@ ActiveRecord::Schema.define(:version => 20140404044949) do
   end
 
   add_index "place_items", ["promotion_place_id"], :name => "index_place_items_on_promotion_place_id"
+
+  create_table "place_items_promotion_places", :force => true do |t|
+    t.integer "place_item_id"
+    t.integer "promotion_place_id"
+  end
 
   create_table "places", :force => true do |t|
     t.integer  "placeable_id"

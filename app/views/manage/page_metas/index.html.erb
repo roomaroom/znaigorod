@@ -1,8 +1,6 @@
-<h3>Мета-описания страниц</h3>
+<%= link_to "Добавить страницу", new_manage_page_meta_path, :class => 'button floatr' %>
 
-<div class="new_link">
-  <%= link_to "Добавить", new_manage_page_meta_path, :class => 'new_resource' %>
-</div>
+<h3>Мета-описания страниц</h3>
 
 <%= form_tag manage_page_metas_path, :method => :get, :class => 'search_ticket_infos' do %>
   <%= text_field_tag 'q', params[:q] %>

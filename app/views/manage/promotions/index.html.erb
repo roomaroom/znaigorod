@@ -1,13 +1,37 @@
-<h3>Страницы с рекламой</h3>
+<%= link_to 'Добавить страницу', new_manage_promotion_path, :class => 'button floatr' %>
 
-<ul class="collection">
+<h3>Рекламные места</h3>
+
+<table class='promotion_table'>
+  <thead>
+    <tr>
+      <th></th>
+      <% 6.times do |i| %>
+        <th>Позиция&nbsp;<%= i+1 %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
   <% @promotions.each do |promotion| %>
-    <li>
-      <%= link_to promotion, manage_promotion_path(promotion) %>
-    </li>
+    <tr>
+      <td>
+        <%= link_to promotion, edit_manage_promotion_path(promotion) %>
+      </td>
+      <% promotion.promotion_places.each do |place| %>
+        <td>
+          <% if place.place_items.any? %>
+            <% place.place_items.each do |item| %>
+              <div class='place_item'>
+                <%= link_to item.title, edit_manage_place_item_path(item), :title => "Данные берутся с #{item.url}" %>
+                <%= time_ago_to_close(item) %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="empty">&mdash;</div>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
   <% end %>
-</ul>
-
-<div>
-  <%= link_to 'Добавить страницу', new_manage_promotion_path, :class => 'button' %>
-</div>
+  </tbody>
+</table>

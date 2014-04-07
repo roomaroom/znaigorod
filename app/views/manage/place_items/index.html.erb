@@ -1,0 +1,12 @@
+<%= link_to 'Добавить элемент', new_manage_place_item_path, :class => 'button floatr' %>
+
+<h3>Продвигаемые элементы</h3>
+
+<ul class='collection'>
+  <% @place_items.each do |place_item| %>
+    <li>
+      <%= link_to place_item.title, edit_manage_place_item_path(place_item) %>
+      <%= date_info_for_place_item(place_item) %>
+    </li>
+  <% end %>
+</ul>

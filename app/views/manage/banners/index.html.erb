@@ -1,6 +1,8 @@
+<%= link_to 'Добавить баннер', new_manage_banner_path, :class => 'button floatr' %>
+
 <h3>Баннеры</h3>
-<%= link_to 'Добавить баннер', new_manage_banner_path %>
-<ul>
+
+<ul class='collection'>
   <% if collection.any? %>
     <%= render collection %>
   <% else %>

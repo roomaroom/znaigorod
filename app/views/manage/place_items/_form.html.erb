@@ -4,5 +4,28 @@
   <%= f.input :title %>
   <%= f.input :starts_at, :as => :datetime_picker %>
   <%= f.input :ends_at, :as => :datetime_picker %>
-  <%= f.button :submit %>
+
+  <div class="promotions_chooser">
+    <div class="head_wrapper">
+      <div class="blank head"></div>
+
+      <% PromotionPlace.maximum(:position).times do |i| %>
+        <div class='head'>Позиция&nbsp;<%= i+1 %></div>
+      <% end %>
+    </div>
+
+    <% Promotion.ordered.each do |promotion| %>
+      <div class="row">
+        <div class="promotion_url item"><%= promotion.url %></div>
+
+        <%= f.association :promotion_places, :as => :check_boxes, :collection => promotion.promotion_places, :label => false %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="buttons">
+    <%= f.submit 'Сохранить' %>
+    <%= link_to 'Отмена', :back %>
+    <%= link_to 'Удалить', manage_place_item_path(@place_item), :class => 'warn', :method => :delete, :confirm => 'Вы точно хотите удалить?' if @place_item.persisted? %>
+  </div>
 <% end %>
