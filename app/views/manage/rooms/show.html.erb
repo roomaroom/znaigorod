@@ -29,7 +29,7 @@
       <div class="prices_list">
         <h4>Цены по дням недели:</h4>
         <ul class="prices">
-          <% @room.prices.each do |price| %>
+          <% @room.prices.ordered.each do |price| %>
             <li>
               <span class='day_kind label'><%= price.day_kind_text %>:</span>
               <span class='price'><%= price.price_value %></span>
