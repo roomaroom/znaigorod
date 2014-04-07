@@ -3,8 +3,8 @@
     %title%
   </span>
   <span class="place-counter">
-    <%= link_to discounts_path do %>
-      все <%#= presenter %>
+    <%= link_to presenter.current_link do %>
+      все <%= presenter.total_count %>
     <% end %>
   </span>
 </div>
