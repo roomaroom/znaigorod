@@ -2,11 +2,24 @@
 
 <h3>Продвигаемые элементы</h3>
 
+<%= simple_form_for :search, :method => :get do |f| %>
+  <%= f.input :q, :label => false, :wrapper_html => { :class => 'floatl' }, :input_html => { :value => params[:search].try(:[], :q) || ''}, :autofocus => true %>
+  <div class="buttons">
+    <%= f.submit 'Искать' %>
+  </div>
+<% end %>
+
 <ul class='collection'>
-  <% @place_items.each do |place_item| %>
-    <li>
-      <%= link_to place_item.title, edit_manage_place_item_path(place_item) %>
-      <%= date_info_for_place_item(place_item) %>
-    </li>
+  <% if collection.any? %>
+    <% collection.each do |place_item| %>
+      <li>
+        <%= link_to place_item.title, edit_manage_place_item_path(place_item) %>
+        <%= date_info_for_place_item(place_item) %>
+      </li>
+    <% end %>
+  <% else %>
+    <div class='empty'>Нет ни одного элемента</div>
   <% end %>
 </ul>
+
+<%= paginate collection %>

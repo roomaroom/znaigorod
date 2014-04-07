@@ -13,6 +13,12 @@ class PlaceItem < ActiveRecord::Base
   validates :starts_at, :presence => true
   validates :ends_at,   :presence => true
 
+  searchable do
+    text :title
+    text :url
+    time :updated_at
+  end
+
   def html
     return nil unless request_success?
 

@@ -4,4 +4,10 @@ class Banner < ActiveRecord::Base
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
   validates_presence_of :title, :url, :image, :width, :height
+
+  searchable do
+    text :title
+    text :url
+    time :updated_at
+  end
 end

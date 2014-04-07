@@ -2,6 +2,13 @@
 
 <h3>Баннеры</h3>
 
+<%= simple_form_for :search, :method => :get do |f| %>
+  <%= f.input :q, :label => false, :wrapper_html => { :class => 'floatl' }, :input_html => { :value => params[:search].try(:[], :q) || ''}, :autofocus => true %>
+  <div class="buttons">
+    <%= f.submit 'Искать' %>
+  </div>
+<% end %>
+
 <ul class='collection'>
   <% if collection.any? %>
     <%= render collection %>
@@ -9,3 +16,5 @@
     <div class='empty'>Нет ни одного баннера</div>
   <% end %>
 </ul>
+
+<%= paginate collection %>
