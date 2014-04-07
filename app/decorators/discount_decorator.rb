@@ -30,6 +30,16 @@ class DiscountDecorator < ApplicationDecorator
     h.content_tag :p, h.content_tag(:span, human_when, :class => :when)
   end
 
+  def human_info
+    if discount.is_a?(OfferedDiscount)
+      'Предложение цены'
+    elsif sale?
+      'Акция'
+    else
+      "Скидка " + h.content_tag(:span, "#{discount.discount}%", :class => :profit)
+    end
+  end
+
   def human_when
     unless actual?
       return "Было: #{I18n.l(ends_at, :format => '%e.%m.%Y')}".squish
