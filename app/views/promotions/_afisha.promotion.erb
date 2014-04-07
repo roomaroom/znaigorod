@@ -1,3 +1,20 @@
-<div class="item">
-  <%= decorated_afisha.title.html_safe %>
+<div class="place-header">
+  <span class="place-title">
+    %title%
+  </span>
+</div>
+
+<div class="place-content afisha">
+  <div class="image">
+    <%= link_to afisha_show_path(decorated_afisha) do %>
+      <% if decorated_afisha.poster_url? %>
+        <%= image_tag resized_image_url(decorated_afisha.poster_url, 194, 260), :size => '194x260', :alt => decorated_afisha.title.text_gilensize %>
+      <% else %>
+        <%= image_tag('public/stub_poster.png', :size => '194x260', :alt => :poster) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class='title'><%= link_to decorated_afisha.title.text_gilensize, afisha_show_path(decorated_afisha) %></div>
+  <div class='closest'><%= decorated_afisha.when_with_price %></div>
 </div>

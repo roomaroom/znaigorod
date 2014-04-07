@@ -46,7 +46,7 @@ class AfishasController < ApplicationController
       }
 
       format.promotion do
-        render :partial => 'promotions/afisha', :formats => [:html], :locals => { :decorated_afisha => @afisha }
+        render :partial => 'promotions/afisha', :locals => { :decorated_afisha => @afisha }
       end
     end
   end
