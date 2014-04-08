@@ -18,7 +18,6 @@ class AfishaPresenter
                 :view,
                 :hide_categories,
                 :has_tickets,
-                :advertisement, :without_advertisement,
                 :for_mobile_api
 
   def initialize(args)
@@ -29,7 +28,6 @@ class AfishaPresenter
     @page     ||= 1
     @per_page   = per_page.to_i.zero? ? 18 : per_page.to_i
     @view       = 'posters'
-    @advertisement = Advertisement.new(list: 'afisha', page: @page)
 
     initialize_filters
   end
@@ -63,12 +61,6 @@ class AfishaPresenter
     end
   end
 
-  def with_advertisement?
-    return false if without_advertisement
-
-    !@organizations_filter.used? && !for_mobile_api
-  end
-
   def kind
     @kind ||= categories_filter.selected.first.try(:pluralize) || 'afisha'
   end
@@ -85,9 +77,6 @@ class AfishaPresenter
 
         list << AfishaDecorator.new(afisha, ShowingDecorator.decorate(showings))
       end
-      advertisement.places_at(page).each do |adv|
-        list.insert(adv.position, adv)
-      end if with_advertisement?
     end
   end
 
@@ -217,7 +206,6 @@ class AfishaPresenter
       params[:from]             = time_filter.from           if time_filter.from.present?
       params[:to]               = time_filter.to             if time_filter.to.present?
       params[:has_tickets]      = true                       if has_tickets
-      params[:without]          = advertisement.afishas.flat_map(&:showings) if advertisement.afishas.any? && with_advertisement?
 
       params[:location] = Hashie::Mash.new(lat: geo_filter.lat, lon: geo_filter.lon, radius: geo_filter.radius) if geo_filter.used?
     end

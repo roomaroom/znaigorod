@@ -21,12 +21,12 @@ class AfishasController < ApplicationController
       }
 
       format.rss {
-        @presenter = AfishaPresenter.new(:without_advertisement => true)
+        @presenter = AfishaPresenter.new()
         render :layout => false
       }
 
       format.promotion {
-        presenter = AfishaPresenter.new(:without_advertisement => true, :per_page => 3)
+        presenter = AfishaPresenter.new(:per_page => 3)
 
         render :partial => 'promotions/afishas', :locals => { :presenter => presenter }
       }
