@@ -2,7 +2,7 @@ class MainPageController < ApplicationController
   def show
     advertisement = Advertisement.new(list: 'main_page_afisha')
     @afisha_list          = AfishaPresenter.new(:per_page => 6, :without_advertisement => true, :order_by => 'creation').decorated_collection
-    advertisement.places_at(1).each do |adv|
+    advertisement.places_at(1).compact.each do |adv|
       @afisha_list[adv.position] = adv
     end
     @afisha_filter   = AfishaPresenter.new(:has_tickets => false)
@@ -12,7 +12,7 @@ class MainPageController < ApplicationController
     @offered_discount = DiscountsPresenter.new(:type => 'offered_discount', :per_page => 2, :order_by => 'random').decorated_collection
     @discounts       = [@certificates, @offered_discount].flatten.shuffle
     advertisement = Advertisement.new(list: 'main_page_discounts')
-    advertisement.places_at(1).each do |adv|
+    advertisement.places_at(1).compact.each do |adv|
       @discounts[adv.position] = adv
     end
 
