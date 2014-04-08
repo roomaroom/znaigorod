@@ -19,6 +19,8 @@
     <% else %>
       <h1><%= t("meta.#{@presenter.categories_filter.selected.first.pluralize}.page_header") %></h1>
     <% end %>
+
+    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
 
   <!--noindex-->
