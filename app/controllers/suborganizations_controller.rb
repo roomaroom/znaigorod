@@ -1,9 +1,10 @@
 class SuborganizationsController < ApplicationController
   def index
+    kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
+    klass = "#{kind.pluralize}_presenter".classify.constantize
+
     respond_to do |format|
       format.html {
-        kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
-        klass = "#{kind.pluralize}_presenter".classify.constantize
         cookie = cookies['_znaigorod_organization_list_settings'].to_s
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
@@ -13,7 +14,7 @@ class SuborganizationsController < ApplicationController
       }
 
       format.promotion {
-        presenter = OrganizationsCatalogPresenter.new(params.merge(:per_page => 5))
+        presenter = klass.new(params.merge(:per_page => 5))
 
         render :partial => 'promotions/organizations', :locals => { :presenter => presenter }
       }
