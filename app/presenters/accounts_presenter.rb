@@ -188,18 +188,6 @@ class AccountsPresenter
     searcher.total_count
   end
 
-  # TODO: переделать весь этот презентер
-  class TmpClass
-    include Rails.application.routes.url_helpers
-  end
-
-  def current_link
-    TmpClass.new.polymorphic_path([:accounts, category_filter.category].compact, { :order_by => order_by_filter.order_by,
-                                                                                   :acts_as => acts_as_filter.acts_as,
-                                                                                   :with_avatar => with_avatar }
-                                 )
-  end
-
   private
 
   def initialize_filters

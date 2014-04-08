@@ -185,10 +185,6 @@ class DiscountsPresenter
     searcher.results
   end
 
-  def current_link
-    Parameters.instance.path
-  end
-
   def total_count
     searcher.total_count
   end
