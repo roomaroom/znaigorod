@@ -11,7 +11,7 @@
 
 <div class="place-content organizations">
   <ul>
-    <% presenter.collection.each do |item| %>
+    <% @collection.each do |item| %>
       <li>
         <div class='image'>
           <%= link_to organization_path(item) do %>
