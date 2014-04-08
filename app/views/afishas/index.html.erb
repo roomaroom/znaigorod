@@ -40,20 +40,24 @@
 
   <div class="afisha-paginator">
     <% if @presenter.collection.any? %>
-      <ul class='posters js-isotoped-content <%= @presenter.view %>' data-item-width="220">
-        <%= render :partial => @presenter.partial, :locals => { :afishas => nil } %>
+      <ul class='posters js-isotoped-content js-paginable-list' data-item-width="220">
+        <%= render :partial => 'afishas/afisha_posters' %>
       </ul>
     <% else %>
       <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
     <% end %>
   </div>
+
+  <% unless @presenter.collection.last_page? %>
+    <div class="pagination">
+      <%= link_to_next_page @presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg' %>
+    </div>
+  <% end %>
 </div>
 
 <div class="afisha_right">
   <%= render :partial => 'afishas/promotions' %>
 </div>
-
-<%= paginate @presenter.paginated_collection %>
 
 <% if false %>
   <% if page_meta %>
