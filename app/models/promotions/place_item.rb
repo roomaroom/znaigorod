@@ -22,8 +22,8 @@ class PlaceItem < ActiveRecord::Base
   def html
     return nil unless request_success?
 
-    set_title_for(encoded_response)
-    set_url_for(encoded_response)
+    set_title
+    set_url
   end
 
   private
@@ -54,15 +54,19 @@ class PlaceItem < ActiveRecord::Base
     '%title%'
   end
 
-  def set_title_for(html)
-    html.gsub title_pattern, title
+  def set_title
+    encoded_response.gsub! title_pattern, title
+
+    encoded_response
   end
 
   def url_pattern
     '%item_url%'
   end
 
-  def set_url_for(html)
-    html.gsub url_pattern, url
+  def set_url
+    encoded_response.gsub! url_pattern, url
+
+    encoded_response
   end
 end
