@@ -6,9 +6,9 @@
       background: #ccc
       color: #222
       font-size: 14px
-      line-height: 30px
+      line-height: 22px
       margin: 0 0 0 -10px
-      padding: 0 0 0 10px
+      padding: 4px 4px 4px 10px
       position: relative
 
       &:before
@@ -23,8 +23,13 @@
         border-color: #999 #999 transparent transparent
 
       .place-title
+        +inline-block
+
+        &.with-counter
+          width: 180px
 
       .place-counter
+        +inline-block
         background: #fff
         color: #06c
         float: right
@@ -32,8 +37,8 @@
         line-height: 22px
         padding: 0 5px
         position: relative
-        right: 4px
-        top: 4px
+        right: 0px
+        top: 0px
 
         &:after
           right: 100%
