@@ -12,14 +12,22 @@
   if $('.afishas_index').length
     page = 2
 
-    $('.js-next-page').on 'ajax:success', (evt, response, status, xhr) ->
+    paginator = $('.js-next-page')
+
+    paginator.on 'ajax:beforeSend', (xhr, settings) ->
+      return false if $(this).hasClass('disabled')
+
+      $(this).addClass('disabled').html('Загружаю...')
+
+    paginator.on 'ajax:success', (evt, response, status, xhr) ->
       if $(response).length
         elms = $(response)
         $container.append(elms).isotope( 'appended', elms)
 
-        paginator = $('.js-next-page')
         url = paginator.attr('href').replace(/page=\d+/, "") + 'page=' + (page += 1)
         paginator.attr('href', url)
+
+        paginator.removeClass('disabled').html('Еще события')
 
       else
         $('.pagination').remove()
