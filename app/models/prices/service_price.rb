@@ -8,6 +8,6 @@ class ServicePrice < Price
   validates_presence_of :count, :if => :certificate?
 
   def to_s
-    "#{I18n.t("price_kind.#{service.kind}", count: count || 1)}"
+    "#{I18n.t("price_kind.#{kind}", count: count || 1)}"
   end
 end
