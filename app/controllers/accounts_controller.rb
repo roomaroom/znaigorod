@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
       }
 
       format.promotion {
-        presenter = AccountsPresenter.new(params)
+        presenter = AccountsPresenter.new(params.merge(:per_page => 12))
 
         render :partial => 'promotions/accounts', :locals => { :presenter => presenter }
       }
