@@ -5,12 +5,9 @@ uuid = ->
     v.toString 16
 
 $ ->
-  return #Dont forget about it
   channel = uuid()
   push_server = new Faye.Client('<%= "#{Settings['faye.url']}/faye" %>')
   subscribe = push_server.subscribe "/promotions/#{channel}", (data) ->
-    console.log data
-
     $("#place-#{data.position}").html(data.html)
 
   subscribe.then ->
