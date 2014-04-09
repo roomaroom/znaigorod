@@ -208,6 +208,10 @@ class ReviewsPresenter
     searcher.results
   end
 
+  def total_count
+    searcher.total_count
+  end
+
   def with_advertisement?
     with_advertisement
   end
