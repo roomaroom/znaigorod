@@ -26,7 +26,7 @@ class AfishaPresenter
     self.for_mobile_api ||= false
 
     @page     ||= 1
-    @per_page   = per_page.to_i.zero? ? 18 : per_page.to_i
+    @per_page   = per_page.to_i.zero? ? 12 : per_page.to_i
     @view       = 'posters'
 
     initialize_filters
