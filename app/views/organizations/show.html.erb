@@ -202,6 +202,7 @@
       </div>
     <% end %>
 
+<% if false %>
     <% if @afisha_presenter.collection.any? %>
       <div class='suborganization_info afisha_details'>
         <div class='title'>Афиша</div>
@@ -233,6 +234,7 @@
         </div>
       </div>
     <% end %>
+<% end %>
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization } if @organization.ability_to_comment? %>
   </div>
