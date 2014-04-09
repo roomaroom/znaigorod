@@ -25,7 +25,7 @@ class ReviewDecorator < ApplicationDecorator
 
   def annotation_image(width, height)
     if review.poster_url?
-      h.resized_image_url(review.poster_url, width, height)
+      h.resized_image_url(review.poster_url, width, height, :crop => nil)
     elsif review.poster_image_url?
       h.resized_image_url(review.poster_image_url, width, height)
     elsif review.gallery_images.any?
