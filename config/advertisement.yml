@@ -66,10 +66,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-03-31 12:10'
-      to: '2014-04-04 12:10'
+      from: '2014-04-09 15:30'
+      to: '2014-04-10 15:30'
       content_type: 'afisha'
-      afisha_slug: 'letnie-kanikuly-dlya-shkolnikov'
+      afisha_slug: 'besplatnyy-urok-po-parnym-balnym-tantsam-dlya-semeynyh-par-30'
       replaced_count: 1
 
     '1.1':
