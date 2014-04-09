@@ -2,10 +2,10 @@ afisha:
   places:
 
     '1.0':
-      from: '2014-03-29 10:00'
-      to: '2014-04-04 21:00'
+      from: '2014-04-09 11:00'
+      to: '2014-04-11 11:00'
       content_type: 'afisha'
-      afisha_slug: 'yumarafon-s-detmi-leytenanta-shmidta'
+      afisha_slug: '5-ya-vystavka-yarmarka-vashi-lichnye-finansy'
       replaced_count: 4
 
     '1.1':
