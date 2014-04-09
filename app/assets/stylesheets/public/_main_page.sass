@@ -11,6 +11,9 @@
     line-height: 33px
     margin-left: 10px
 
+  .filters_wrapper
+    border: 0px
+
   .filter_header
     float: left
     margin: 0 0 10px 0
@@ -74,3 +77,102 @@
 .webcams_main_page_list
   .filter_header
     margin: 0 0 20px 0
+
+.afisha_main_page_list
+  .posters
+    padding: 0 0 100px 0
+    position: relative
+
+    .item
+      border: 1px solid #ccc
+      float: left
+      height: 320px
+      margin: 0 10px 20px 10px
+      width: 178px
+
+      .afisha_item
+        margin: 0 auto
+
+        .title
+          height: 38px
+          width: 178px
+          display: table-cell
+          text-align: center
+          vertical-align: middle
+          padding: 0 3px
+
+        .image
+          height: 240px
+          position: relative
+
+          .has_items_for_sale
+            width: 190px
+            position: absolute
+            top: 0
+            left: -6px
+            +as_blue_ribbon
+
+          .ribbon
+            position: absolute
+            left: 0
+            bottom: 0
+            color: #fff
+            background-color: #f60
+            padding: 2px 8px 3px
+
+          .for_sale
+            +button-style
+            display: none
+            position: absolute
+            top: 50px
+            left: 29px
+            font-size: 12px
+            padding: 2px 15.5px 3px
+            &:active
+              padding: 3px 15.5px 2px
+
+            &.ponominalu
+              background: none
+              border: none
+              left: 0
+
+          .details
+            color: #999
+            font-size: 12px
+
+          .first_line
+            bottom: 35px
+
+          .second_line
+            bottom: 10px
+
+          .first_line,
+          .second_line
+            display: none
+            left: 0
+            position: absolute
+            width: 100%
+
+            span
+              cursor: help
+              display: inline-block
+              text-align: center
+              width: 56px
+
+          &:hover
+            .ribbon
+              display: none
+            img:not(.link)
+              +opacity(0.15)
+            .for_sale,
+            .first_line,
+            .second_line
+              display: block
+
+        .place
+          text-align: center
+          margin: 3px 0 0 0
+
+        .human_when
+          text-align: center
+          margin: 2px 0 3px 0
