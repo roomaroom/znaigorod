@@ -21,7 +21,7 @@ class AfishasController < ApplicationController
       }
 
       format.rss {
-        @presenter = AfishaPresenter.new()
+        @presenter = AfishaPresenter.new({})
         render :layout => false
       }
 
