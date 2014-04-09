@@ -30,7 +30,7 @@
   <div class="afisha-paginator">
     <% if @presenter.collection.any? %>
       <ul class='posters js-isotoped-content js-paginable-list' data-item-width="220">
-        <%= render :partial => 'afishas/afisha_posters' %>
+        <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @presenter.decorated_collection } %>
       </ul>
     <% else %>
       <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
