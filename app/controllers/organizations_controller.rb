@@ -25,6 +25,8 @@ class OrganizationsController < ApplicationController
       format.promotion {
         presenter = OrganizationsCatalogPresenter.new(params.merge(:per_page => 5))
 
+        @collection = OrganizationDecorator.decorate(presenter.collection.map(&:organization))
+
         render :partial => 'promotions/organizations', :locals => { :presenter => presenter }
       }
     end
