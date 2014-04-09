@@ -24,7 +24,7 @@
   <div class="details">
     <div class="suborganization_kinds">
       <% organization.suborganizations.each do |suborganization| %>
-        <%= link_to suborganization.class.model_name.human, crm_organizations_path('search[suborganizations]' => suborganization.class.model_name.underscore) %>
+        <%= link_to suborganization.class.model_name.human, crm_organizations_path('search[suborganizations]' => suborganization.class.model_name.underscore) if suborganization.present? %>
       <% end %>
     </div>
     <div class="categories">

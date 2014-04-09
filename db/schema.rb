@@ -646,16 +646,13 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
 
   create_table "place_items", :force => true do |t|
-    t.integer  "promotion_place_id"
     t.string   "url"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "title"
   end
-
-  add_index "place_items", ["promotion_place_id"], :name => "index_place_items_on_promotion_place_id"
 
   create_table "place_items_promotion_places", :force => true do |t|
     t.integer "place_item_id"
@@ -726,8 +723,6 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
     t.string   "context_type"
     t.string   "day_kind"
   end
-
-  add_index "prices", ["service_id"], :name => "index_prices_on_service_id"
 
   create_table "promotion_places", :force => true do |t|
     t.integer  "promotion_id"
