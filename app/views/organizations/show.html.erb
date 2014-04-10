@@ -205,15 +205,14 @@
     <% if @afisha_presenter.collection.any? %>
       <div class='suborganization_info afisha_details afisha_main_page_list'>
         <div class='title'>Афиша</div>
-          <ul class='posters'>
-            <% @afisha_presenter.decorated_collection.each do |afisha| %>
-              <li class='item'>
-                <%= render partial: 'main_page/afisha_poster', :locals => {:afisha => afisha} %>
-              </li>
-            <% end %>
-          </ul>
-          <%= paginate @afisha_presenter.paginated_collection %>
-        </div>
+        <ul class='posters'>
+          <% @afisha_presenter.decorated_collection.each do |afisha| %>
+            <li class='item'>
+              <%= render partial: 'main_page/afisha_poster', :locals => {:afisha => afisha} %>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @afisha_presenter.paginated_collection %>
       </div>
     <% end %>
 
