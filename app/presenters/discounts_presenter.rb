@@ -86,11 +86,11 @@ class DiscountsPresenter
     end
 
     def available
-      HasSearcher.searcher(:discounts).facet(:kind).rows.map(&:value)
+      @available ||= HasSearcher.searcher(:discounts).facet(:kind).rows.map(&:value)
     end
 
     def links
-      [all_link] + kind_links
+      @links ||= [all_link] + kind_links
     end
 
     def more?
