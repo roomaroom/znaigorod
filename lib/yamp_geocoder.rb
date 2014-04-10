@@ -3,30 +3,30 @@
 require 'curb'
 
 class YampGeocoder
-  def self.get_coordinates(street, house, address_string = nil)
-    address = ["город Томск", "Томская область", street, house].join(', ')
-    address =  ["город Томск", "Томская область", address_string].join(', ') if address_string.present?
-
+  def self.get_coordinates(options)
+    options = {:city => 'город Томск'}.merge(options)
+    address = [options[:city], "Томская область", options[:street], options[:house]].join(', ')
+    address =  [options[:city], "Томская область", options[:address_string]].join(', ') if options[:address_string].present?
     parameters = { geocode: address, format: :json, results: 1 }
     result = [nil, nil]
 
     c = Curl::Easy.new("http://geocode-maps.yandex.ru/1.x/?#{parameters.to_query}") do |curl|
       curl.on_success do |easy|
-      response = JSON.parse(easy.body_str)['response']['GeoObjectCollection']['featureMember'].first['GeoObject']
-      result = response['Point']['pos'].split(' ')
-      returned_house = response['name'].split(', ').last
-      if returned_house.squish.eql?(house.squish)
-        result << '200'
-      else
-        result << '404'
+        response = JSON.parse(easy.body_str)['response']['GeoObjectCollection']['featureMember'].first['GeoObject']
+        result = response['Point']['pos'].split(' ')
+        returned_house = response['name'].split(', ').last
+        if returned_house.squish.eql?(options[:house].squish)
+          result << '200'
+        else
+          result << '404'
+        end
+        result << response['name']
+        result << response['description']
       end
-      result << response['name']
-      result << response['description']
-    end
     end
 
     begin
-      c.perform if street.present?
+      c.perform if options[:street].present?
     rescue
       return { response_code: 500 }
     end

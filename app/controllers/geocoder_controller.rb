@@ -6,7 +6,7 @@ class GeocoderController < ApplicationController
   end
 
   def get_yamp_coordinates
-    render :json => YampGeocoder.get_coordinates(params[:street], params[:house]) and return
+    render :json => YampGeocoder.get_coordinates({ :street => params[:street], :house => params[:house] }) and return
   end
 
   def get_yamp_house_photo
