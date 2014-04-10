@@ -16,7 +16,7 @@
         <div class='image'>
           <%= link_to organization_path(item) do %>
             <% if item.logotype_url? %>
-              <%= image_tag resized_image_url(item.poster_url, 50, 50), :size => '50x50', :alt => item.title.text_gilensize %>
+              <%= image_tag resized_image_url(item.poster_url, 50, 50, :watermark => false), :size => '50x50', :alt => item.title.text_gilensize %>
             <% else %>
               <span class='stub_poster <%= item.priority_suborganization_kind %>'></span>
             <% end %>
