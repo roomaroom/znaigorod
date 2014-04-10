@@ -1,5 +1,5 @@
 @initIsotopedContent = ->
-  list = $('.posters')
+  list = $('.js-isotoped-content')
 
   columnWidth = list.data('item-width')
 
@@ -9,7 +9,7 @@
       columnWidth: columnWidth
 
   # пагинация по нажатию на кнопку для афиш
-  if $('.afishas_index').length
+  if $('.js-paginable-list').length
     page = 2
 
     paginator = $('.js-next-page')

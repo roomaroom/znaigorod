@@ -192,7 +192,7 @@
           </div>
         </div>
 
-        <div class="discounts_list">
+        <div class="discounts_list pagination_none">
           <ul class="posters">
             <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
           </ul>
@@ -203,16 +203,17 @@
     <% end %>
 
     <% if @afisha_presenter.collection.any? %>
-      <div class='suborganization_info afisha_details afisha_main_page_list'>
+      <div class='suborganization_info afisha-paginator'>
         <div class='title'>Афиша</div>
-        <ul class='posters'>
-          <% @afisha_presenter.decorated_collection.each do |afisha| %>
-            <li class='item'>
-              <%= render partial: 'main_page/afisha_poster', :locals => {:afisha => afisha} %>
-            </li>
-          <% end %>
+        <ul class='posters js-isotoped-content js-paginable-list' data-item-width="220">
+          <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @afisha_presenter.decorated_collection } %>
         </ul>
-        <%= paginate @afisha_presenter.paginated_collection %>
+      </div>
+    <% end %>
+
+    <% unless @afisha_presenter.collection.last_page? %>
+      <div class="pagination">
+        <%= link_to_next_page @presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg' %>
       </div>
     <% end %>
 
