@@ -13,7 +13,7 @@
 
   <%= afisha.poster_with_link(194, 260) %>
 
-  <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere?  %>
+  <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
 
   <% if afisha.has_available_tickets? %>
     <% if afisha.has_tickets_for_sale? %>
@@ -43,6 +43,8 @@
 <div class='title'>
   <%= afisha.truncated_title_link(38, separator: '') %>
 </div>
+
+<%= content_tag(:span, '', :class => 'arrow-up') if afisha.highlighted? %>
 
 <div class='place'>
   <%= afisha.afisha_place(25, nil) %>

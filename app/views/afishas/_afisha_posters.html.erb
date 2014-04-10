@@ -1,5 +1,5 @@
 <% afishas.each do |afisha| %>
-  <li class="item">
+  <li class="item<%= ' highlighted' if afisha.highlighted? %>">
     <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
   </li>
 <% end %>

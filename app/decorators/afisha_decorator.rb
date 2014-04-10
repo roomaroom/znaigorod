@@ -217,4 +217,8 @@ class AfishaDecorator < ApplicationDecorator
     h.content_tag(:span, '', :class => 'event_label facebook') if /facebook/.match(vk_event_url)
     h.content_tag(:span, '', :class => 'event_label vk') if /vk/.match(vk_event_url)
   end
+
+  def highlighted?
+    promoted_at? && (promoted_at + 1.day > Time.zone.now)
+  end
 end
