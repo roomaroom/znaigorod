@@ -3,7 +3,10 @@
     <div class='logo'><a href='/'><%= t('meta.default.title') %></a></div>
     <div class='tomsk'>Томск</div>
 
-    <a href='/webcams' target='_blank' class='webcams'></a>
+    <a href='/webcams' title='Веб камеры Томска' target='_blank' class='webcams'>
+      Веб камеры
+      <span class="webcam-icon"></span>
+    </a>
 
     <div class='dashboard'>
       <% if user_signed_in? %>

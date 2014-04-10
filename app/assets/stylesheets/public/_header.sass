@@ -35,12 +35,46 @@
           text-decoration: none
 
     .webcams
-      background: transparent image_url('public/webcams.png') no-repeat center center
+      background: #009999
+      color: #fff
       height: 26px
-      left: 155px
+      left: 168px
+      line-height: 26px
+      padding: 0 0 0 10px
       position: absolute
       top: -4px
-      width: 147px
+      width: 120px
+
+      &:after, &:before
+        right: 100%
+        top: 50%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+
+      &:after
+        border-color: rgba(0, 153, 153, 0)
+        border-right-color: #009999
+        border-width: 13px
+        margin-top: -13px
+
+      &:before
+        border-color: rgba(9, 153, 9, 0)
+        border-right-color: 009999
+        border-width: 14px
+        margin-top: -14px
+
+      .webcam-icon
+        background: transparent image_url('public/webcam-icon.png') no-repeat center center
+        height: 16px
+        position: absolute
+        right: 7px
+        top: 4px
+        width: 34px
+
 
     .dashboard
       font-size: 12px
