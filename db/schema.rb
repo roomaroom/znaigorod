@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140404074317) do
+ActiveRecord::Schema.define(:version => 20140410034114) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20140404074317) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "office"
+    t.string   "region"
+    t.string   "city"
   end
 
   add_index "addresses", ["organization_id"], :name => "index_addresses_on_organization_id"

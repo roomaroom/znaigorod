@@ -1,11 +1,14 @@
 # encoding: utf-8
 
 class Address < ActiveRecord::Base
-  attr_accessible :house, :latitude, :longitude, :street, :office
+  attr_accessible :house, :latitude, :longitude, :street, :office, :region, :city
 
   belongs_to :organization
 
   validates_presence_of :street, :house
+
+  default_value_for :region, 'Томская область'
+  default_value_for :city,   'Томск'
 
   def to_s
     return "" if street.blank? && house.blank?
