@@ -2,6 +2,7 @@
   form = $('.edit_organization, .new_organization')
   $map = $('#map')
   map = $map.draw_organization_map()
+  city_field = $('#organization_address_attributes_city')
   street_field = $('#organization_address_attributes_street')
   house_field = $('#organization_address_attributes_house')
   latitude_field = $('#organization_address_attributes_latitude')
@@ -12,7 +13,7 @@
       url: "/yamp_geocoder"
       async: false
       dataType: "json"
-      data: "street=#{street_field.val()}&house=#{house_field.val()}"
+      data: "city=#{city_field.val()}&street=#{street_field.val()}&house=#{house_field.val()}"
       success:  (json, textStatus, jqXHR) ->
         if json.response_code == '500'
           alert "Cервис временно не доступен"
@@ -32,8 +33,6 @@
 
 $.fn.draw_organization_map = () ->
   $map = $(this)
-  street_field = $('#organization_address_attributes_street')
-  house_field = $('#organization_address_attributes_house')
   latitude_field = $('#organization_address_attributes_latitude')
   longitude_field = $('#organization_address_attributes_longitude')
   latitude = latitude_field.val() || '56.488611121111'
