@@ -84,7 +84,7 @@ class ReviewsPresenter
     end
 
     def links
-      [all_link] + category_links
+      @links ||= [all_link] + category_links
     end
 
     def more?
