@@ -21,9 +21,9 @@ class AfishaDecorator < ApplicationDecorator
 
   def truncated_title_link(length, options = { separator: ' ', anchor: nil })
     if afisha.title.length > length
-      h.link_to(afisha.title.text_gilensize.truncated(length, options[:separator]), h.afisha_show_path(afisha, anchor: options[:anchor]), :title => afisha.title)
+      h.link_to(afisha.title.truncated(length, options[:separator]), h.afisha_show_path(afisha, anchor: options[:anchor]), :title => afisha.title)
     else
-      h.link_to(afisha.title.text_gilensize, h.afisha_show_path(afisha, anchor: options[:anchor]))
+      h.link_to(afisha.title, h.afisha_show_path(afisha, anchor: options[:anchor]))
     end
   end
 
