@@ -155,7 +155,10 @@ ActiveRecord::Schema.define(:version => 20140410034114) do
     t.text     "file_url"
     t.string   "file_image_url"
     t.integer  "position"
+    t.integer  "user_id"
   end
+
+  add_index "attachments", ["user_id"], :name => "index_attachments_on_user_id"
 
   create_table "banners", :force => true do |t|
     t.string   "title"

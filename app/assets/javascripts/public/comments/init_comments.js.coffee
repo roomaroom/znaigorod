@@ -1,5 +1,36 @@
-@init_comments = () ->
+add_uploaded_image = (image) ->
+  uploaded_list = $('.uploaded_list', '.comments_images_wrapper')
+  hidden_input = $("<input class='comments_image_#{image.id}' type='hidden' name='comment[comments_images_attributes][][id]' value='#{image.id}' data-preview='#{image.url}'>").appendTo(uploaded_list.closest('form'))
+  uploaded_list
+    .append("
+      <div class='comments_image' id='comments_image_#{image.id}'>
+        <img src='#{image.thumbnailUrl}' width='#{image.width}' height='#{image.height}' title='#{image.name}'>
+        <a href='#{image.deleteUrl}' data-method='delete' data-remote='true' rel='nofollow' data-confirm='Вы точно хотите удалить эту картинку?'>Удалить</a>
+      </div>
+    ")
+    .on 'ajax:success', (evt, response) ->
+      comments_image = $(evt.target).closest('.comments_image')
+      $('.'+comments_image.attr('id')).remove()
+      comments_image.remove()
+      false
 
+init_gallery_images = ->
+  $('.comments_images_wrapper').fileupload
+    acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i
+    dataType:         'json'
+    maxFileSize:      10000000
+    url:              '/comments_images'
+    done:             (evt, data) ->
+      for file in  data.result.files
+        add_uploaded_image file
+    submit:           (evt, data) ->
+      uploaded_files_count = $('.uploaded_list .comments_image', '.comments_images_wrapper').length
+      if (uploaded_files_count+data.originalFiles.length) > 5
+        alert 'Слишком много картинок! Вы можете загрузить не больше 5 картинок!'
+        throw 'Too many pics'
+        false
+
+@init_comments = () ->
   hash_answer = () ->
     $(window).load ->
       if window.location.hash.match(/#answer_/)
@@ -109,6 +140,8 @@
 
     cancel_handler()
     init_auth()
+
+    init_gallery_images()
 
   restore_comment()
 

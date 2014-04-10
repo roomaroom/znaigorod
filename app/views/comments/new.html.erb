@@ -16,9 +16,16 @@
                     alt: resource.name, class: :avatar) %>
       <span class="profile_link"><%= resource.name %></span>
     <% end %>
-    <%= simple_form_for [association_chain, @comment].flatten, :url => polymorphic_url([association_chain, @comment].flatten), :html => { :remote => true } do |f| %>
+    <%= simple_form_for [association_chain, @comment].flatten, :url => polymorphic_url([association_chain, @comment].flatten), :html => { :remote => true, :novalidate => false } do |f| %>
       <%= f.input :parent_id, :as => :hidden %>
-      <%= f.input :body, :as => :text, :label => false, :placeholder => 'Текст вашего комментария...' %>
+      <%= f.input :body, :as => :text, :label => false, :placeholder => 'Текст вашего комментария...', :input_html => { :required => 'required' } %>
+      <div class='comments_images_wrapper empty'>
+        <span class='choose_file_link'>
+          <span class='title'>Нажмите сюда чтобы загрузить картинку</span>
+          <input id="fileupload" type="file" name="comments_image" multiple>
+        </span>
+        <div class="uploaded_list"></div>
+      </div>
       <div class="buttons">
         <%= f.submit "Отправить" %>
         <%= link_to 'Отмена', '#', :class => 'cancel' %>

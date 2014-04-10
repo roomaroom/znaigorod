@@ -33,6 +33,7 @@ Znaigorod::Application.routes.draw do
 
   resources :invitations
   resources :banners, :only => [:show]
+  resources :comments_images, :only => [:create, :destroy]
 
   resources :afisha, :only => [], :controller => 'afishas' do
     resources :comments, :only => [:new, :show, :create]

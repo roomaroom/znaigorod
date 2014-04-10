@@ -7,20 +7,12 @@ class Attachment < ActiveRecord::Base
 
   default_scope :order => 'position, id'
 
-  before_create :set_description
-
   def partial_for_render_object
     "#{self.class.name.underscore.pluralize}/#{self.class.name.underscore}"
   end
 
   def to_s
     description? ? description.truncate(30) : 'Без описания'
-  end
-
-  private
-
-  def set_description
-    self.description ||= File.basename(file_file_name, '.*').titleize
   end
 end
 

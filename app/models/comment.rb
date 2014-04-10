@@ -1,18 +1,23 @@
 # encoding: utf-8
 
 class Comment < ActiveRecord::Base
-  attr_accessible :ancestry, :body, :parent_id
+  attr_accessible :ancestry, :body, :parent_id, :comments_images_attributes
 
   belongs_to :user
-  has_one :account, through: :user
+  has_one    :account,     :through => :user
   belongs_to :commentable, :polymorphic => true
 
   has_ancestry
-  has_many :votes, :as => :voteable, :dependent => :destroy
-  has_many :messages, :as => :messageable, :dependent => :destroy
-  has_one :feed, :as => :feedable, :dependent => :destroy
+  has_many  :votes,           :as => :voteable,    :dependent => :destroy
+  has_many  :messages,        :as => :messageable, :dependent => :destroy
+  has_one   :feed,            :as => :feedable,    :dependent => :destroy
+  has_many  :comments_images, :as => :attachable,  :dependent => :destroy
 
-  scope :rendereable,      -> { where(:commentable_type => ['Afisha', 'Organization']) }
+  accepts_nested_attributes_for :comments_images
+
+  scope :rendereable,  -> { where(:commentable_type => ['Afisha', 'Organization']) }
+
+  validate :validate_comments_images
 
   def child
     Comment.where(:ancestry => self.id.to_s)
@@ -39,11 +44,13 @@ class Comment < ActiveRecord::Base
   end
 
   private
-
     def authenticated_user
       errors.add :body, 'Комментарии могут оставлять только зарегистрированные пользователи' if user.nil?
     end
 
+    def validate_comments_images
+      errors.add(:comments_images, 'Можно загрузить не больше 5 картинок') if comments_images.size > 5
+    end
 end
 
 # == Schema Information

@@ -6,8 +6,7 @@
  * = require jquery-ui/jquery.ui.datepicker-ru.js
  * = require jquery-ui/jquery-ui-timepicker-addon.js
  * = require jquery-ui/jquery-ui-timepicker-ru.js
- * = require jquery-fileupload/basic
- * = require jquery-fileupload/vendor/tmpl
+ * = require jquery.fileupload
  * = require ajax_delete
  * = require attachment_description
  * = require modal_dialog

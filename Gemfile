@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 group :assets do
   gem 'jcrop-rails'
-  gem 'jquery-fileupload-rails'
+  gem 'jquery.fileupload-rails'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier'
 end

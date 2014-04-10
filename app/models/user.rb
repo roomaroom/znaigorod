@@ -6,14 +6,15 @@ class User < ActiveRecord::Base
   devise :trackable, :omniauthable, :rememberable,
     omniauth_providers: [:vkontakte, :google_oauth2, :yandex, :facebook, :twitter, :odnoklassniki, :mailru]
 
-  has_many :afisha,         uniq: true
-  has_many :showings,       through: :afisha
-  has_many :activities,     dependent: :destroy
-  has_many :comments,       order: 'comments.created_at DESC'
+  has_many :afisha,          uniq: true
+  has_many :showings,        through: :afisha
+  has_many :activities,      dependent: :destroy
+  has_many :comments,        order: 'comments.created_at DESC'
+  has_many :comments_images, :dependent => :destroy, :conditions => { :attachable_type => 'Comment' }
   has_many :organizations
-  has_many :roles,          dependent: :destroy
-  has_many :votes,          dependent: :destroy
-  has_many :visits,         dependent: :destroy
+  has_many :roles,           dependent: :destroy
+  has_many :votes,           dependent: :destroy
+  has_many :visits,          dependent: :destroy
   has_many :page_visits
   has_many :payments
   has_many :events, :class_name => 'Afisha'
