@@ -1,4 +1,4 @@
-<% collection.each do |account| %>
+<% @collection.each do |account| %>
   <li>
   <div class="item">
     <div class="title">
@@ -6,7 +6,8 @@
     </div>
 
     <div class="image">
-      <%= link_to image_tag(resized_image_url(account.avatar.url, 178, 178), size: '178x178', title: account, alt: account), account_path(account) %>
+      <%= account.image_with_link(178, 178) %>
+
       <% if account.last_visit_at? %>
         <a href="<%= account_path(account) %>">
           <span class='last_visit'>

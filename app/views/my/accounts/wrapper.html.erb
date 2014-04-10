@@ -3,7 +3,7 @@
   <div class="left_wrapper">
     <div class="left">
       <div class="image">
-        <%= image_tag(resized_image_url(current_user.account.avatar.url, 200, 200), size: '200x200', alt: current_user.account.title) %>
+        <%= image_tag(resized_image_url(current_user.account.avatar.url, 200, 200, :watermark => false), size: '200x200', alt: current_user.account.title) %>
         <%= link_to "Изменить фото", my_gallery_images_path() %>
       </div>
       <div class="properties">

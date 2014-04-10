@@ -11,8 +11,16 @@ class AccountDecorator < ApplicationDecorator
     h.account_url(account)
   end
 
-  def image
-    h.resized_image_url(account.avatar.url, 88, 88)
+  def image(width, height)
+    h.image_tag(h.resized_image_url(account.avatar.url, width, height, { :crop => '!', :orientation => 'n', :watermark => false }),
+                                    :size => "#{width}x#{height}", :alt => account.title, :title => account.title)
+  end
+
+  def image_with_link(width, height)
+    h.link_to h.account_path(account) do
+      h.image_tag(h.resized_image_url(account.avatar.url, width, height, { :crop => '!', :orientation => 'n', :watermark => false }),
+                                      :size => "#{width}x#{height}", :alt => account.title, :title => account.title)
+    end
   end
 
   def buddies

@@ -16,7 +16,7 @@
 
     <div class="left">
       <div class="image">
-        <%= image_tag(resized_image_url(@account.avatar.url, 200, 200), size: '200x200', title: @account.title, alt: @account.title) %>
+        <%= @account.image(200, 200) %>
       </div>
 
       <div class="social_actions">

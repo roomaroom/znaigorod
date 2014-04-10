@@ -166,6 +166,10 @@ class AccountsPresenter
     searcher.results
   end
 
+  def decorated_collection
+    @decorated_collection ||= AccountDecorator.decorate(collection)
+  end
+
   def page_title
     if gender_filter.used?
       I18n.t("meta.account.#{gender_filter.gender}.title")

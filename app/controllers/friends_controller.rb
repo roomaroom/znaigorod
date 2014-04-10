@@ -13,8 +13,9 @@ class FriendsController < ApplicationController
       @presenter = AccountsPresenter.new(params)
       @account = AccountDecorator.new Account.find(params[:account_id])
       @friends = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(params[:page]).per(15)
+      @collection = AccountDecorator.decorate(@friends)
 
-      render partial: 'friends/account_friends', :locals => { :collection => @friends }, layout: false and return if request.xhr?
+      render partial: 'friends/account_friends', :locals => { :collection => @collection }, layout: false and return if request.xhr?
     }
   end
 
@@ -28,6 +29,8 @@ class FriendsController < ApplicationController
   private
 
   def collection
-    @accounts = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(params[:page]).per(5)
+    accounts = Kaminari.paginate_array(@account.friends.approved.map(&:friendable)).page(params[:page]).per(5)
+
+    @collection ||= AccountDecorator.decorate(accounts)
   end
 end
