@@ -27,7 +27,7 @@
     <div class='content'>
       <% %w[all draft published].each do |state| %>
         <div id='<%= state %>' class='list'>
-          <div class='afisha_list'>
+          <div class='afisha_main_page_list'>
             <% if @events.any? %>
               <ul class='posters'>
                 <% unless state == 'all' %>

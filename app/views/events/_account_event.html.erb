@@ -1,46 +1,46 @@
-<li>
-<div class='item' id="ad_<%= afisha.id %>">
+<li class="item">
+  <div class="afisha_item" id="ad_<%= afisha.id %>">
 
-  <div class='title'>
-    <% if afisha.title.present? %>
-      <% if afisha.title.length > 22 %>
-        <%= link_to(afisha.title.text_gilensize.truncated(22, ''), my_afisha_show_path(afisha), :title => afisha.title)  %>
-      <% else %>
-        <%= link_to(afisha.title.text_gilensize, my_afisha_show_path(afisha)) %>
+    <div class='title'>
+      <% if afisha.title.present? %>
+        <% if afisha.title.length > 22 %>
+          <%= link_to(afisha.title.text_gilensize.truncated(22, ''), my_afisha_show_path(afisha), :title => afisha.title)  %>
+        <% else %>
+          <%= link_to(afisha.title.text_gilensize, my_afisha_show_path(afisha)) %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-  <div class='image'>
-    <% if afisha.has_tickets_for_sale? %>
-      <% if afisha.max_tickets_discount > 0 %>
-        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
-          Скидка на билеты <%= afisha.max_tickets_discount %>%
-        </div>
-      <% else %>
-        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
-          Есть билеты в продаже
-        </div>
+    <div class='image'>
+      <% if afisha.has_tickets_for_sale? %>
+        <% if afisha.max_tickets_discount > 0 %>
+          <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
+            Скидка на билеты <%= afisha.max_tickets_discount %>%
+          </div>
+        <% else %>
+          <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
+            Есть билеты в продаже
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <%=
-      link_to my_afisha_show_path(afisha) do
-        if afisha.poster_url.present?
-          image_tag(resized_image_url(afisha.poster_url, 178, 240, { crop: '!', orientation: 'n' }), size: "#{178}x#{240}", alt: afisha.title)
-        else
-          image_tag('public/stub_poster.png', size: '178x240', alt: :poster)
+      <%=
+        link_to my_afisha_show_path(afisha) do
+          if afisha.poster_url.present?
+            image_tag(resized_image_url(afisha.poster_url, 178, 240, { crop: '!', orientation: 'n' }), size: "#{178}x#{240}", alt: afisha.title)
+          else
+            image_tag('public/stub_poster.png', size: '178x240', alt: :poster)
+          end
         end
-      end
-    %>
+      %>
 
-    <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
-  </div>
-  <div class="badges">
-    <%= link_to "", edit_my_afisha_path(afisha), class: 'edit_button show_tipsy', title: "Редактировать" %>
+      <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
+    </div>
+    <div class="badges">
+      <%= link_to "", edit_my_afisha_path(afisha), class: 'edit_button show_tipsy', title: "Редактировать" %>
 
-    <% if afisha.draft? %>
-      <%= link_to "", my_afisha_path(afisha), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash show_tipsy', title: "Удалить" %>
-    <% end %>
+      <% if afisha.draft? %>
+        <%= link_to "", my_afisha_path(afisha), method: :delete, class: :destroy, remote: true, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления', class: 'trash show_tipsy', title: "Удалить" %>
+      <% end %>
+    </div>
   </div>
-</div>
 </li>
