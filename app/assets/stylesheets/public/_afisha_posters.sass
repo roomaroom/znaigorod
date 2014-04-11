@@ -156,6 +156,27 @@
             border: none
             left: 0
 
+        .promote_afisha_wrapper
+          bottom: 60px
+          display: none
+          left: 27px
+          position: absolute
+
+          input
+            background: #f93 image_url('public/arrow-up-white.png') no-repeat 10px center
+            border: 1px solid #ee8924
+            color: #fff
+            height: 28px
+            margin: 0
+            padding: 0 0 0 9px
+            width: 140px
+
+            &:hover
+              background: #f60 image_url('public/arrow-up-white.png') no-repeat 10px center
+              border-color: #f60
+              margin: 0
+              padding: 0 0 0 9px
+
         .details
           color: #999
           font-size: 12px
@@ -186,7 +207,8 @@
             +opacity(0.15)
           .for_sale,
           .first_line,
-          .second_line
+          .second_line,
+          .promote_afisha_wrapper
             display: block
 
       .arrow-up

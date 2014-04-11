@@ -25,6 +25,12 @@
     <% end %>
   <% end %>
 
+  <div class="promote_afisha_wrapper">
+    <%= simple_form_for afisha.promote_afisha_payments.build, :url => my_afisha_promote_afisha_payments_index_path(afisha) do |f| %>
+      <%= f.button :submit, 'Поднять афишу' %>
+    <% end %>
+  </div>
+
   <%= link_to afisha_show_path(afisha), class: :details do %>
     <span class='first_line'>
       <span class='show_tipsy fa fa-users' title='Участники'> <%= afisha.visits.count %></span>
