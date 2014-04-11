@@ -39,7 +39,7 @@ class SaunaHallDecorator < ApplicationDecorator
       end
       content << h.content_tag(:li, ("#{days}: " + timely_content.squish.gsub(/;$/, '')).html_safe)
     end
-    h.content_tag(:div, "<span class='show_more_schedule'>расписание</span>".html_safe, class: "work_schedule") + h.content_tag(:ul, content.html_safe, class: :more_schedule).html_safe
+    h.content_tag(:div, "<span class='show_more_schedule js-ul-toggler'>расписание</span>".html_safe, class: "work_schedule") + h.content_tag(:ul, content.html_safe, class: 'js-ul-toggleable more_schedule').html_safe
   end
 
   def htmlise_capacity_on_show
