@@ -16,7 +16,7 @@ class AfishaObserver < ActiveRecord::Observer
   end
 
   def after_to_draft(afisha, transition)
-    afisha.delay.reindex_showings
+    afisha.reindex_showings
 
     if afisha.user.present?
       NotificationMessage.delay(:queue => 'critical').create(
