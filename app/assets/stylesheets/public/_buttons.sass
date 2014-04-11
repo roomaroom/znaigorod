@@ -1,3 +1,4 @@
+// старые кнопки с градиентом
 .btn
   cursor: pointer
   font-size: 12px
@@ -12,41 +13,71 @@
   &:active
     padding: 2px 8px 1px
 
-.btn-block
-  display: block
+  &.btn-block
+    display: block
 
-.btn-sm
+  &.btn-lg
+    padding: 5px 10px
+    font-size: 14px
+    line-height: 18px
 
-.btn-lg
-  padding: 5px 10px
-  font-size: 14px
-  line-height: 18px
+    &:active
+      padding: 6px 10px 4px
 
-  &:active
-    padding: 6px 10px 4px
+  &.btn-grey
+    background-color: #e9e9e9
+    +background(linear-gradient(top, #fff, #e9e9e9))
+    border: 1px solid #ccc
+    color: #222
 
-.btn-grey
-  background-color: #e9e9e9
-  +background(linear-gradient(top, #fff, #e9e9e9))
-  border: 1px solid #ccc
-  color: #222
+    &:hover
+      background-color: #ff7f1a
 
-  &:hover
-    background-color: #ff7f1a
+    &:active
+      background-color: #ff7f1a
 
-  &:active
-    background-color: #ff7f1a
+  &.btn-orange
+    background: #f93
+    +background(linear-gradient(top, #f93, #f60))
+    border: 1px solid #f60
+    color: #fff
 
-.btn-orange
-  background: #f93
-  +background(linear-gradient(top, #f93, #f60))
-  border: 1px solid #f60
+    &:hover
+      +text-shadow(#f60 1px 1px 1px)
+      background-color: #f93
+
+    &:active
+      background-color: #ff7f1a
+      +background(linear-gradient(top, #f60, #f93))
+
+//новые кнопки с flat-дизайном
+
+.flat-btn
+  +inline-block
   color: #fff
+  font-size: 12px
+  height: 26px
+  line-height: 26px
+  margin: 0
+  padding: 0
+  text-align: center
 
-  &:hover
-    +text-shadow(#f60 1px 1px 1px)
-    background-color: #f93
+  &:active, &:hover
+    outline: none
+    text-decoration: none
 
-  &:active
-    background-color: #ff7f1a
-    +background(linear-gradient(top, #f60, #f93))
+  &.btn-green
+    background: #00bb84
+    border: 1px solid #00ad7a
+
+    &:active, &:hover
+      background: #00ad7a
+      border-color: #00ad7a
+
+  &.btn-orange
+    background: #f93
+    border: 1px solid #ee8924
+
+    &:active, &:hover
+      background: #f60
+      border-color: #f60
