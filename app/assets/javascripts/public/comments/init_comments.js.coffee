@@ -14,7 +14,7 @@ add_uploaded_image = (image) ->
       comments_image.remove()
       false
 
-init_gallery_images = ->
+init_comments_images = ->
   $('.comments_images_wrapper').fileupload
     acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i
     dataType:         'json'
@@ -47,7 +47,7 @@ init_gallery_images = ->
       false
 
   show_link = () ->
-    $('.new_answer:hidden, .new_comment:hidden', '.comments').show()
+    $('.new_answer:hidden', '.comments').show()
 
   remove_comment_form = () ->
     remove_highlight()
@@ -70,7 +70,6 @@ init_gallery_images = ->
   $.fn.new_comment = (response) ->
     remove_comment_form()
     $(this).hide().siblings('ul').append(response)
-    scroll()
     $(this).siblings('ul').trigger('added_form')
 
   $.fn.new_answer = (response) ->
@@ -84,29 +83,9 @@ init_gallery_images = ->
     if !$(response).find('form').length
       remove_highlight()
       show_link()
+      $('.comments .new_comment').click()
 
     $("#email_request_form").dialog('open')
-
-  restore_comment = () ->
-    unless (typeof(window.localStorage) == 'undefined')
-      id = window.localStorage.getItem('comment_id')
-      body = window.localStorage.getItem('comment_body')
-      if id
-        if id.match(/new_comment/)
-          link = $('.new_comment')
-          link.click()
-          target = link.siblings('ul')
-          target.on 'added_form', ->
-            target.find('li.comment_form textarea').val(body)
-            target.off 'added_form'
-        else
-          target = $('#'+id)
-          $('.new_answer:first', target).click()
-          target.on 'added_form', ->
-            target.children('ul').find('li.comment_form textarea').val(body)
-            target.off 'added_form'
-
-        window.localStorage.clear()
 
   $(".ajaxed").on "ajax:success", (evt, response, status, jqXHR) ->
     target = $(evt.target)
@@ -140,9 +119,6 @@ init_gallery_images = ->
 
     cancel_handler()
     init_auth()
+    init_comments_images()
 
-    init_gallery_images()
-
-  restore_comment()
-
-  true
+  $('.comments .new_comment').click()
