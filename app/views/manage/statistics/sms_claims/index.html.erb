@@ -20,7 +20,7 @@
         <td><%= sms_claim.phone %></td>
         <td>
           <%= link_to sms_claim.claimed.organization_title, [:crm, sms_claim.claimed.organization]  %>
-          (<%= number_to_currency sms_claim.claimed.reservation.balance %>)
+          (<%= number_to_currency sms_claim.claimed.reservation.try(:balance) %>)
         </td>
         <td><%= sms_claim.details %></td>
         <td>
