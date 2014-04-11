@@ -12,6 +12,8 @@
       photo: true
       previous: 'предыдущая'
       returnFocus: false
+      title: ->
+        $(this).attr('title') || $('img', this).attr('alt') || '&nbsp;'
 
     true
 

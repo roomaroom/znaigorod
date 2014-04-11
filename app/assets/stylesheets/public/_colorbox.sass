@@ -67,13 +67,12 @@
  *  ordered & tabbed in a way that represents the nesting of the generated HTML.
 
 #cboxOverlay
-  background-color: #666
   +opacity(0.5)
+  background-color: #666
 
 #colorbox
-  outline: 0
   +box-shadow(#555 0 0 5px)
-  +border-radius(4px)
+  outline: 0
 
 #cboxContent
   background-color: #fff
@@ -86,35 +85,37 @@
   border: 1px solid #ccc
 
 #cboxLoadedContent
-  border: 10px solid #fff
-  background-color: #fff
+  background: #fff
+  border: 5px solid #fff
+  margin: 0 0 30px 0
 
 #cboxTitle
-  position: absolute
-  top: 10px
-  left: 0
-  width: 100%
+  background: #fff
+  bottom: 6px
   color: #333
   font-size: 12px
-  text-align: center
-  background-color: #fff
-  +opacity(0.8)
-  padding: 5px 0
+  left: 10px
+  line-height: 24px
+  max-width: 78%
+  overflow: hidden
+  position: absolute
+  text-overflow: ellipsis
+  vertical-align: top
+  white-space: nowrap
 
 #cboxCurrent
-  position: absolute
-  bottom: 10px
-  right: 0
-  width: 100%
-  color: #333
+  background: #f60
+  bottom: 7px
+  color: #fff
   font-size: 11px
-  text-align: center
-  background-color: #fff
-  +opacity(0.8)
   padding: 3px 0
+  position: absolute
+  right: 5px
+  text-align: center
+  width: 70px
 
 #cboxLoadingGraphic
-  background: transparent image_url('public/colorbox_loading.gif') no-repeat center center
+  background: #fff image_url('public/colorbox_loading.gif') no-repeat center center
 
 /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles
 
@@ -132,50 +133,46 @@
   outline: 0
 
 #cboxSlideshow
-  position: absolute
-  top: -20px
-  right: 90px
   color: #fff
+  position: absolute
+  right: 90px
+  top: -20px
 
 #cboxPrevious
-  position: absolute
-  top: 50%
-  left: 10px
-  margin-top: -32px
-  background: #f60 image_url('public/colorbox_controls.png') no-repeat 5px 18px
   +opacity(0.3)
-  width: 28px
+  background: #f60 image_url('public/colorbox_controls.png') no-repeat 5px 18px
   height: 65px
+  left: 5px
+  margin-top: -32px
+  position: absolute
   text-indent: -9999px
+  top: 50%
+  width: 28px
 
   &:hover
     +opacity(0.8)
 
 #cboxNext
-  position: absolute
-  top: 50%
-  right: 10px
-  margin-top: -32px
-  background: #f60 image_url('public/colorbox_controls.png') no-repeat -168px 18px
   +opacity(0.3)
-  width: 28px
+  background: #f60 image_url('public/colorbox_controls.png') no-repeat -168px 18px
   height: 65px
+  margin-top: -32px
+  position: absolute
+  right: 5px
   text-indent: -9999px
+  top: 50%
+  width: 28px
 
   &:hover
     +opacity(0.8)
 
 #cboxClose
-  position: absolute
-  top: 10px
-  right: 10px
-  width: 28px
-  height: 28px
-  display: block
+  background: #fff image_url('public/colorbox_controls.png') no-repeat -466px -3px
   color: #fff
-  background: #f60 image_url('public/colorbox_controls.png') no-repeat -332px -1px
-  +opacity(0.5)
+  display: block
+  height: 25px
+  position: absolute
+  right: 5px
   text-indent: -9999px
-
-  &:hover
-    +opacity(0.8)
+  top: 5px
+  width: 25px
