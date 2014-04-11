@@ -68,7 +68,7 @@
                   </div>
                   <div class='ticket_for_sale'><%= t 'copy.for_sale', count: ticket.copies_for_sale.count %></div>
                   <div class='buy_ticket'>
-                    <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link, :rel => :nofollow %>
+                    <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), :class => 'payment_link flat-btn btn-green', :rel => :nofollow %>
                   </div>
                 <% else %>
                   <div class='has_items_for_sale'>
@@ -81,7 +81,7 @@
                   </div>
                   <div class='ticket_for_sale'><%= t 'copy.for_sale', count: ticket.copies_for_sale.count %></div>
                   <div class='buy_ticket'>
-                    <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), class: :payment_link, :rel => :nofollow %>
+                    <%= link_to 'Купить', new_ticket_copy_payment_path(ticket), :class => 'payment_link flat-btn btn-green', :rel => :nofollow %>
                   </div>
                 <% end %>
               </div>
