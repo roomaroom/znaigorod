@@ -47,6 +47,7 @@ $ ->
   init_review_gallery() if $('.js-gallery, .review_show').length
   handleReviewGallerySort() if $('.js-gallery').length
   init_schedule_toggle() if $('.organization_show .show_more_schedule').length
+  initUlToggle() if $('.js-ul-toggler')
   init_photogallery() if $('.photogallery ul li').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
@@ -91,6 +92,7 @@ $ ->
 
   handleWorkAddition() if $('.new_work', '.upload_work_wrapper').length
   handleBanners() if $('.banners_wrapper').length
+
 
   true
 

@@ -22,3 +22,13 @@
   , 10
 
   true
+
+@initUlToggle = ->
+  $('.js-ul-toggler').click ->
+    link = $(this)
+    target = $(this).next('.js-ul-toggleable')
+    target.toggle()
+
+    target.css
+      top: link.position().top + link.outerHeight(true, true) / 2 - target.outerHeight(true, true) / 2
+      left: link.position().left + link.outerWidth(true, true) + 10

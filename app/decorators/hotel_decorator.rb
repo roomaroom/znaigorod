@@ -19,5 +19,9 @@ class HotelDecorator < SuborganizationDecorator
     content = htmlise_offers_on_show.to_s + htmlise_features_on_show.to_s
     h.content_tag(:ul, content.html_safe, class: :offers_and_features) if content. present?
   end
+
+  def decorated_rooms
+    RoomDecorator.decorate rooms
+  end
 end
 

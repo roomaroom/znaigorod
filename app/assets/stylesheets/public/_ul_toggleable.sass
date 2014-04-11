@@ -1,0 +1,39 @@
+.ul-toggler
+  border-bottom: 1px dashed
+
+  &:hover
+    border: none
+    cursor: pointer
+
+.ul-toggleable
+  display: none
+  position: absolute
+  font-size: 11px
+  +border-radius
+  background-color: #fff
+  +box-shadow(#555 0 0 3px)
+  padding: 5px 8px
+
+  &:after,
+  &:before
+    right: 100%
+    border: solid transparent
+    content: " "
+    height: 0
+    width: 0
+    position: absolute
+    pointer-events: none
+
+  &:after
+    border-color: rgba(255, 255, 255, 0)
+    border-right-color: #fff
+    border-width: 5px
+    top: 50%
+    margin-top: -5px
+
+  &:before
+    border-color: rgba(204, 204, 204, 0)
+    border-right-color: #ccc
+    border-width: 6px
+    top: 50%
+    margin-top: -6px
