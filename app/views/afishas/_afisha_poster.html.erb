@@ -44,7 +44,7 @@
   <%= afisha.truncated_title_link(35, separator: nil) %>
 </div>
 
-<%= content_tag(:span, '', :class => 'arrow-up') if afisha.highlighted? %>
+<%= content_tag(:span, '', :class => 'arrow-up show_tipsy', :title => 'Автор хочет обратить внимание на эту афишу') if afisha.highlighted? %>
 
 <div class='place'>
   <%= afisha.afisha_place(25, nil) %>
