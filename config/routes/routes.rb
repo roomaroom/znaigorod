@@ -39,6 +39,7 @@ Znaigorod::Application.routes.draw do
     resources :visits, :only => [:index, :create, :show, :destroy]
 
     resources :invitations
+    resources :promote_afisha_payments, :only => :create
 
     get 'liked'        => 'votes#liked',         :as => :liked
     get 'photogallery' => 'afisha#photogallery', :as => :photogallery

@@ -1,4 +1,6 @@
-class My::PromoteAfishaPaymentsController < My::ApplicationController
+class PromoteAfishaPaymentsController < ApplicationController
+  inherit_resources
+
   actions :create
 
   belongs_to :afisha

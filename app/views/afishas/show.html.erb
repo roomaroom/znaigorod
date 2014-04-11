@@ -27,13 +27,7 @@
       <% end %>
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
 
-      <div class="promote_afisha_wrapper">
-        <%= link_to 'Поднять афишу',
-                    my_afisha_promote_afisha_payments_index_path(@afisha),
-                    :method => :post,
-                    :target => '_blank',
-                    :class => 'flat-btn btn-orange' %>
-      </div>
+      <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
     </div>
 
     <% if @afisha.allow_auction? %>

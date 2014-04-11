@@ -82,9 +82,8 @@
         <% if @afisha.published? %>
           <div class="cell dashed_border arrow_box">
             Можно поднять и выделить афишу в списке за <strong>100 руб.</strong>
-            <%= simple_form_for @afisha.promote_afisha_payments.build, :url => my_afisha_promote_afisha_payments_index_path(@afisha) do |f| %>
-              <%= f.button :submit, 'Поднять', :class => 'button' %>
-            <% end %>
+
+            <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
 
             <p><%= "Поднято: #{l(@afisha.promoted_at, :format => :long)}" if @afisha.promoted_at? %></p>
           </div>
