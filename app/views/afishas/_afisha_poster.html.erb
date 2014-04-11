@@ -26,9 +26,7 @@
   <% end %>
 
   <div class="promote_afisha_wrapper">
-    <%= simple_form_for afisha.promote_afisha_payments.build, :url => my_afisha_promote_afisha_payments_index_path(afisha) do |f| %>
-      <%= f.button :submit, 'Поднять афишу' %>
-    <% end %>
+    <%= link_to 'Поднять афишу', my_afisha_promote_afisha_payments_index_path(afisha), :method => :post, :target => '_blank' %>
   </div>
 
   <%= link_to afisha_show_path(afisha), class: :details do %>
