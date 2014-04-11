@@ -154,7 +154,7 @@ class OrganizationDecorator < ApplicationDecorator
         content = "Работает ежедневно #{schedule_time(from[0], to[0])}"
       end
     else
-      content = "Сегодня <span class='show_more_schedule js-ul-toggler'>#{schedule_time(schedule.from, schedule.to)}</span>".html_safe
+      content = "Сегодня <span class='ul-toggler js-ul-toggler'>#{schedule_time(schedule.from, schedule.to)}</span>".html_safe
       hash_schedule = {}
       schedules.each do |schedule|
         daily_schedule = schedule_time(schedule.from, schedule.to)
@@ -165,7 +165,7 @@ class OrganizationDecorator < ApplicationDecorator
       hash_schedule.each do |daily_scheule, days|
         more_schedule << h.content_tag(:li, "<span class='days'>#{schedule_day_names(days)}:</span> <span class='hours'>#{daily_scheule}</span>".html_safe)
       end
-      more_schedule = h.content_tag(:ul, more_schedule.html_safe, class: 'more_schedule js-ul-toggleable')
+      more_schedule = h.content_tag(:ul, more_schedule.html_safe, class: 'js-ul-toggleable ul-toggleable')
     end
     h.content_tag(:div, content, :class => "schedule_wrapper work_schedule #{open_closed(schedule.from, schedule.to)}") + more_schedule
   end
