@@ -24,7 +24,7 @@
         </td>
         <td><%= sms_claim.details %></td>
         <td>
-          <% if sms_claim.reservation  %>
+          <% if sms_claim.claimed.reservation  %>
             <%= simple_form_for [:manage, :statistics, sms_claim.claimed.reservation] do |f| %>
               <%= hidden_field_tag :page, params[:page] if params[:page].present? %>
               <%= f.submit "Вернуть #{number_to_currency(Settings['sms_claim.price'])}" %>
