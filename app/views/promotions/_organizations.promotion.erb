@@ -1,6 +1,8 @@
 <div class="place-header">
   <span class="place-title with-counter">
-    %title%
+    <%= link_to '%item_url%' do %>
+      %title%
+    <% end %>
   </span>
   <span class="place-counter">
     <%= link_to '%item_url%' do %>
