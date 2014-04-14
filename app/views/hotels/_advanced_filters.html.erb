@@ -1,0 +1,66 @@
+<div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
+  <div class='introduction'>
+    <%= t('meta.hotels.introduction').as_html %>
+  </div>
+
+  <%= form_tag hotels_path, :method => :get do %>
+    <%= hidden_field_tag :order_by, @presenter.order_by %>
+
+    <div class='filter used' id='amount'>
+      <div class='filter_label wide'>Цена</div>
+      <div class='filter_inputs'>
+        <div class='input'>
+          <%= label_tag :price_min, 'от' %>
+          <%= text_field_tag :price_min, :class => 'min' %>
+        </div>
+        <div class='input'>
+          <%= label_tag :price_max, 'до' %>
+          <%= text_field_tag :price_max, :class => 'max' %>
+        </div>
+      </div>
+      <div class='filter_input_label'>руб./час</div>
+
+      <div class='filter_slider_wrapper amount'>
+        <div class='filter_slider' data-range='true' data-min='1000<%#= @presenter.price.available.minimum %>' data-max='8000<%#= @presenter.price.available.maximum %>' data-step='50'></div>
+      </div>
+    </div>
+
+    <div class='filter used' id='capacity_filter'>
+      <div class='filter_label wide'>Вместительность</div>
+      <div class='filter_inputs'>
+        <div class="input">
+          <%= label_tag :capacity, 'от' %>
+          <%= text_field_tag :capacity, :class => 'max' %>
+        </div>
+      </div>
+      <div class='filter_input_label'>человек</div>
+
+      <div class='filter_slider_wrapper capacity'>
+        <div class="filter_slider" data-range='max' data-min='1<%#= @presenter.capacity_hash.available.minimum %>' data-max='10<%#= @presenter.capacity_hash.available.maximum %>' data-step='1'></div>
+      </div>
+    </div>
+
+    <div class='filter used' id='rooms_count_filter'>
+      <div class='filter_label wide'>Количество комнат</div>
+      <div class='filter_inputs'>
+        <div class="input">
+          <%= label_tag :rooms_count, 'от' %>
+          <%= text_field_tag :rooms_count, :class => 'max' %>
+        </div>
+      </div>
+
+      <div class='filter_slider_wrapper rooms_count'>
+        <div class="filter_slider" data-range='max' data-min='1<%#= @presenter.capacity_hash.available.minimum %>' data-max='5<%#= @presenter.capacity_hash.available.maximum %>' data-step='1'></div>
+      </div>
+    </div>
+
+    <div class='submit_action'>
+      <div class='submit_wrapper'>
+        <input type='submit' value='Применить фильтр' class='submit' />
+      </div>
+      <div class='clear_wrapper'>
+        <%= link_to 'Очистить', '#' %>
+      </div>
+    </div>
+  <% end %>
+</div>

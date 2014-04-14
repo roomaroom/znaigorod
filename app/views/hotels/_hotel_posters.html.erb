@@ -31,15 +31,11 @@
     </div>
 
     <ul class='rooms'>
-      <% if organization.hotel.rooms.any? %>
         <% organization.hotel.rooms.each do |room| %>
           <li>
             <%= render :partial => 'room', :locals => { :room => RoomDecorator.decorate(room) } %>
           </li>
         <% end %>
-      <% else %>
-        <li><span>Нет информации о свободных номерах</span></li>
-      <% end %>
     </ul>
   </li>
 <% end %>
