@@ -1,208 +1,241 @@
 .comments
-  font-size: 12px
-  margin-bottom: 10px
-
-  .auth_info_message
-    font-size: 14px
-    font-style: italic
-    margin: 30px 0 0 0
-    text-align: center
-
   h3
-    font-size: 18px
-
-  h4
-    font-size: 12px
-    line-height: 1.6
+    background: #e8e8e8
+    font-size: 16px
+    height: 24px
+    line-height: 24px
+    margin: 15px 0
+    padding: 0 0 0 10px
 
   ul
-    li
-      margin-top: 10px
+    ul
+      margin: 0 0 0 25px
 
-      ul
-        margin-left: 10px
-
-    .comment_item
+  .comment_item
+    .comment_wrapper
+      margin: 0 0 20px 0
 
       .avatar
         float: left
+        margin: 0 10px 10px 0
 
-        img
-          display: block
-          width: 35px
-          height: 35px
-          +border-radius
-
-      .user_info
-        line-height: 19px
-        margin: 0 0 5px 45px
-
-        .date
-          color: #999
-
-      .body
-        margin-left: 45px
-        line-height: 19px
-
-      .comment_wrapper
-        &:hover, &.active
-          background: #eef4f7
-
-  a.new_comment
-    display: none !important
-
-  .comment_form
-    margin-top: 10px
-    position: relative
-    z-index: 1
-
-    img.avatar
-      display: block
-      float: left
-      width: 35px
-      height: 35px
-      +border-radius
-
-    .profile_link
-      +inline-block
-      margin: 0 0 5px 10px
-      font-size: 12px
-
-    form
-      +clearfix
-      margin: 0 0 0 45px
-
-    .error
-      color: #F5160A
-      display: block
-      font-size: 11px
-      margin: 18px 0 0 0
-      position: absolute
-      right: 0
-
-    div.text
-      border: 1px solid #ccc
-      margin-bottom: 10px
-      padding: 5px
-
-    textarea
-      font-family: 'Verdana', 'Tahoma', sans-serif
-      font-size: 12px
-      width: 100%
-      height: 60px
-      outline: none
-      resize: none
-      border: none
-      margin: 0
-
-    .buttons
-      input
-        font-family: 'Verdana', 'Tahoma', sans-serif
-        font-size: 12px
-        cursor: pointer
-        +inline-block
-        font-size: 12px
-        margin: 0 10px 0 0
-        border: 1px solid #ccc
-        background-color: #e8e8e8
-        +background(linear-gradient(top, #ffffff, #cfcfcf))
-        padding: 5px 15px
-        &:hover
-          +background(linear-gradient(top, #fff, #ddd))
-        &:active
-          +background(linear-gradient(top, #ddd, #fff))
-          padding: 6px 15px 4px
-
-      a
-        +inline-block
-
-  .social_signin_links
-    +clearfix
-    margin: 10px 0 0
-    text-align: center
-
-    li
-      +inline-block
-      margin-right: 15px
-
-      &:last-child
-        margin-right: 0
-
-      a
-        display: block
-        text-indent: -9999px
-        height: 33px
-        width: 33px
-
-      &.vkontakte a
-        background: image_url('social_icons.png') no-repeat 0 0
-
-      &.yandex a
-        background: image_url('social_icons.png') no-repeat -33px 0
-
-      &.facebook a
-        background: image_url('social_icons.png') no-repeat -66px 0
-
-      &.twitter a
-        background: image_url('social_icons.png') no-repeat -99px 0
-
-      &.google a
-        background: image_url('social_icons.png') no-repeat -132px 0
-
-      &.mail_ru a
-        background: image_url('social_icons.png') no-repeat -165px 0
-
-      &.odnoklassniki a
-        background: image_url('social_icons.png') no-repeat -198px 0
-
-.comments_images_wrapper
-  +min-height(25px)
-  border: 3px dashed #bbb
-  padding: 3px
-
-  .uploaded_list
-    +clearfix
-
-    .comments_image
-      float: left
-      position: relative
-      margin: 3px 3px 0 0
-      width: 100px
-
-      &:hover
         a
           display: block
 
-      a
-        background: rgba(#aaa, 0.8)
-        display: none
-        left: 0
-        position: absolute
-        right: 0
-        text-align: center
-        top: 0
+          img
+            display: block
+            height: 35px
+            width: 35px
 
-  .choose_file_link
-    display: block
-    position: relative
+      .user_info
+        height: 22px
+        line-height: 12px
+        margin: 0 0 0 45px
 
-    input
-      +opacity(0)
-      bottom: 0
-      left: 0
-      margin: 0
-      padding: 0
-      position: absolute
-      right: 0
-      top: 0
+        .date
+          color: #9a9a9a
 
-      &:hover
-        cursor: pointer
+        .votes_wrapper
+          display: block
+          height: 22px
+          line-height: 22px
 
-  &.empty
-    .choose_file_link
-      color: #777
-      font-size: 20px
-      height: 24px
-      line-height: 24px
-      text-align: center
+          &:hover
+            cursor: pointer
+
+            .user_like
+              border-color: #ff6600 !important
+
+            .change_vote
+              background-color: #ff6600 !important
+              background-position: -21px 0 !important
+
+          .like_wrapper
+            .like_box
+              +box-shadow(none)
+              right: 56px
+              margin-top: -50px
+              opacity: 1
+              z-index: 5
+
+              &:after
+                border-color: transparent transparent transparent #e8e8e8
+                border-style: solid
+                border-width: 8px 0 0 8px
+                content: ''
+                height: 0px
+                position: absolute
+                right: -6px
+                bottom: 0px
+                width: 0px
+
+              &:before
+                border-color: transparent transparent transparent #cccccc
+                border-style: solid
+                border-width: 8px 0 0 8px
+                content: ''
+                height: 0px
+                position: absolute
+                right: -8px
+                bottom: -1px
+                width: 0px
+
+              div
+                line-height: 12px
+                margin: 0 0 7px 0
+
+              a
+                display: block
+                float: left
+                margin: 0 3px 0 0
+
+                img
+                  display: block
+                  height: 24px
+                  width: 24px
+
+            .votes_counter
+              border-right: 1px solid #cdcdcd
+              border-left: 1px solid #cdcdcd
+              border-top: 1px solid #cdcdcd
+              float: right
+              margin: 0
+              padding: 0 7px
+
+            .user_like
+              border-top: 1px solid #cdcdcd
+              border-left: 1px solid #cdcdcd
+              border-right: 1px solid #cdcdcd
+              position: relative
+              left: 1px
+
+              .change_vote
+                background: image_url('comment_sprite.png') 0 0 no-repeat
+                display: block
+                height: 21px
+                text-indent: -9999px
+                width: 21px
+
+      .body
+        background: #fff
+        border: 1px solid #cdcdcd
+        margin: 0 0 0 45px
+        padding: 10px 15px
+        position: relative
+        line-height: 24px
+
+        &:after
+          border-color: transparent #fff transparent transparent
+          border-style: solid
+          border-width: 0 17px 17px 0
+          content: ''
+          display: block
+          height: 0px
+          position: absolute
+          top: 22px
+          left: -15px
+          width: 0px
+
+        &:before
+          border-color: transparent #cdcdcd transparent transparent
+          border-style: solid
+          border-width: 0 17px 17px 0
+          content: ''
+          display: block
+          height: 0px
+          position: absolute
+          top: 21px
+          left: -17px
+          width: 0px
+
+  .comment_form
+    a
+      float: left
+      margin: 0 10px 10px 0
+
+      .avatar
+        display: block
+        height: 35px
+        width: 35px
+
+    .profile_link
+      display: block
+      float: none
+      height: 22px
+      line-height: 12px
+      margin: 0 0 0 45px
+
+    form
+      div.text
+        height: 100px
+        position: relative
+
+        textarea
+          background: #fff
+          border: 1px solid #cdcdcd
+          box-sizing: border-box
+          display: block
+          font-size: 12px
+          height: 100px
+          left: 0
+          line-height: 24px
+          margin: 0 0 0 45px
+          outline: none
+          overflow: auto
+          padding: 10px 15px
+          position: absolute
+          resize: none
+          right: 0
+
+        &:after
+          border-color: transparent #fff transparent transparent
+          border-style: solid
+          border-width: 0 17px 17px 0
+          content: ''
+          display: block
+          height: 0px
+          position: absolute
+          top: 22px
+          left: 30px
+          width: 0px
+
+        &:before
+          border-color: transparent #cdcdcd transparent transparent
+          border-style: solid
+          border-width: 0 17px 17px 0
+          content: ''
+          display: block
+          height: 0px
+          position: absolute
+          top: 21px
+          left: 28px
+          width: 0px
+
+      .comments_images_wrapper
+        background: seagreen
+
+        .choose_file_link
+          color: #777
+          display: block
+          font-size: 20px
+          height: 24px
+          line-height: 24px
+          position: relative
+          text-align: center
+
+          input
+            +opacity(0)
+            bottom: 0
+            left: 0
+            margin: 0
+            padding: 0
+            position: absolute
+            right: 0
+            top: 0
+
+            &:hover
+              cursor: pointer
+
+      .buttons
+        a
+          float: none

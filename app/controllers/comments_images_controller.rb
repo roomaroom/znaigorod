@@ -7,10 +7,10 @@ class CommentsImagesController < ApplicationController
         {
           :id           => @comments_image.id,
           :name         => @comments_image.file_file_name,
-          :width        => 100,
+          :width        => 130,
           :height       => 100,
           :url          => view_context.resized_image_url(@comments_image.file_url, 1920, 1080),
-          :thumbnailUrl => view_context.resized_image_url(@comments_image.file_url, 100, 100),
+          :thumbnailUrl => view_context.resized_image_url(@comments_image.file_url, 130, 100),
           :deleteUrl    => "/comments_images/#{@comments_image.id}",
         }
       ]
