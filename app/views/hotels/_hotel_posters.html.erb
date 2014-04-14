@@ -1,4 +1,4 @@
-<% @presenter.decorated_organizations.each do |organization| %>
+<% @presenter.decorated_collection.each do |organization| %>
   <li class='hotel_item <%= cycle('item_1', 'item_2', 'item_3', :name => 'hotel_item') %>'>
     <div class='info'>
       <div class='title'><%= organization.truncated_title_link %> </div>

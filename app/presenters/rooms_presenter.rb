@@ -1,4 +1,7 @@
 class RoomsPresenter
+  class CapacityFilter < Struct.new(:capacity)
+  end
+
   include ActiveAttr::MassAssignment
   include OrganizationsPresenter
 
@@ -13,12 +16,26 @@ class RoomsPresenter
     normalize_arguments
   end
 
+  def empty?
+    context_id_group.total.zero?
+  end
+
+  def decorated_collection
+    OrganizationDecorator.decorate organizations
+  end
+
+  def paginatable_collection
+    context_id_groups
+  end
+
+  private
+
   def normalize_arguments
     @categories ||= []
   end
 
   def search
-    Room.search do
+    @search ||= Room.search(:include => { :context => :organization }) do
       group :context_id
 
       with :categories, categories if categories.any?
@@ -26,8 +43,16 @@ class RoomsPresenter
     end
   end
 
+  def context_id_group
+    search.group(:context_id)
+  end
+
+  def context_id_groups
+    context_id_group.groups
+  end
+
   def hotel_ids
-    search.group(:context_id).groups.map(&:value)
+    context_id_groups.map(&:value)
   end
 
   def hotels
@@ -35,18 +60,11 @@ class RoomsPresenter
   end
 
   def collection
-    hotels
+    organizations
   end
 
-  def empty?
-    search.total.zero?
-  end
 
   def organizations
     hotels.map(&:organization)
-  end
-
-  def decorated_organizations
-    OrganizationDecorator.decorate organizations
   end
 end

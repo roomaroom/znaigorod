@@ -31,6 +31,9 @@ Znaigorod::Application.routes.draw do
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
   resources :hotels, :only => :index
+  Values.instance.hotel.categories.map(&:mb_chars).map(&:downcase).map(&:to_s).each do |category|
+    get "/hotels/#{category.from_russian_to_param}" => 'hotels#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
+  end
 
   Organization.available_suborganization_kinds.each do |kind|
     resources kind.pluralize, :only => [] do
