@@ -30,6 +30,8 @@ Znaigorod::Application.routes.draw do
   get '/meals' => redirect('/kafe_tomska')
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
+  resources :hotels, :only => :index
+
   Organization.available_suborganization_kinds.each do |kind|
     resources kind.pluralize, :only => [] do
       resources :sms_claims, :only => [:new, :create]
