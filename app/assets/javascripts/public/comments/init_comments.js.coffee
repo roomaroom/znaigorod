@@ -1,3 +1,8 @@
+valid = (form) ->
+  textarea = $('textarea', form).val()
+  return false if textarea.length < 1 || /^\s*$/.test(textarea)
+  true
+
 add_uploaded_image = (image) ->
   uploaded_list = $('.uploaded_list', '.comments_images_wrapper')
   hidden_input = $("<input class='comments_image_#{image.id}' type='hidden' name='comment[comments_images_attributes][][id]' value='#{image.id}' data-preview='#{image.url}'>").appendTo(uploaded_list.closest('form'))
@@ -87,7 +92,13 @@ init_comments_images = ->
 
     $("#email_request_form").dialog('open')
 
-  $(".ajaxed").on "ajax:success", (evt, response, status, jqXHR) ->
+  $(".ajaxed").on 'ajax:beforeSend', (evt, xhr, settings) ->
+    $this = $(evt.target)
+    if $this.is('form') && $this.hasClass('new_comment')
+      unless valid($this)
+        alert('Комментарий не может быть пустым')
+        xhr.abort()
+  .on "ajax:success", (evt, response, status, jqXHR) ->
     target = $(evt.target)
 
     if $('.social_signin_links', $(response)).length
