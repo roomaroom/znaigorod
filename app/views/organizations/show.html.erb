@@ -205,15 +205,9 @@
     <% if @afisha_presenter.collection.any? %>
       <div class='suborganization_info afisha-paginator'>
         <div class='title'>Афиша</div>
-        <ul class='posters js-isotoped-content js-paginable-list' data-item-width="220">
-          <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @afisha_presenter.decorated_collection } %>
+        <ul class='posters js-paginable-list' data-item-width="220">
+          <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @afisha_presenter.decorated_collection, :presenter => @afisha_presenter } %>
         </ul>
-      </div>
-    <% end %>
-
-    <% unless @afisha_presenter.collection.last_page? %>
-      <div class="pagination">
-        <%= link_to_next_page @afisha_presenter.collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg' %>
       </div>
     <% end %>
 

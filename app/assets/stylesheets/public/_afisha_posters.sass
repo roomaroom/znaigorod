@@ -1,10 +1,12 @@
 .afishas_index
   margin: 0
 
-  .pagination
-    margin: 0 0 0 10px
-    padding: 0 0 20px 0
-    width: 860px
+  li.pagination
+    border: none !important
+    height: 30px !important
+    margin: 0 8px !important
+    padding: 0 0 20px 0 !important
+    width: 860px !important
 
     a
       &.disabled
@@ -91,17 +93,21 @@
 
 .afisha-paginator
   clear: both
-  min-height: 380px
 
   .posters
     position: relative
 
     .item
+      +inline-block
+      +transition(all 750ms ease-out)
       border: 1px solid #ccc
       height: 352px
-      margin: 0 10px 25px 10px
+      margin: 0 8px 25px 8px
       position: relative
       width: 198px
+
+      &.fresh
+        +opacity(0)
 
       &.highlighted
         border: 1px solid #f60

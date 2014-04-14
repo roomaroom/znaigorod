@@ -60,7 +60,7 @@ class OrganizationsController < ApplicationController
         @certificate_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'certificate', :order_by => 'random', :page => params[:page])
         @coupon_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'coupon', :order_by => 'random', :page => params[:page])
 
-        render partial: @afisha_presenter.partial, locals: { afishas: @afisha_presenter.decorated_collection }, layout: false and return if request.xhr?
+        render partial: @afisha_presenter.partial, locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter }, layout: false and return if request.xhr?
         render layout: "organization_layouts/#{@organization.subdomain}" if @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 

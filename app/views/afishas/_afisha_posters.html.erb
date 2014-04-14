@@ -1,5 +1,12 @@
 <% afishas.each do |afisha| %>
-  <li class="item<%= ' highlighted' if afisha.highlighted? %>">
+  <li class="item fresh<%= ' highlighted' if afisha.highlighted? %>">
     <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
   </li>
 <% end %>
+
+<% unless presenter.collection.last_page? %>
+  <li class="item pagination">
+    <%= link_to_next_page presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+  </li>
+<% end %>
+
