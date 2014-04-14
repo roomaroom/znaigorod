@@ -15,4 +15,16 @@ class Room < ActiveRecord::Base
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :feature
+
+  searchable do
+    string :categories, :multiple => true
+    string :context_id
+    string :context_type
+  end
+
+  private
+
+  def categories
+    context.categories.map(&:mb_chars).map(&:downcase).map(&:to_s)
+  end
 end
