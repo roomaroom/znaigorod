@@ -1,5 +1,5 @@
 <div class='organizations_list'>
-  <% if @organizations.any? %>
+  <% unless @presenter.empty? %>
     <ul class='hotel_posters'>
       <%= render :partial => 'hotel_posters' %>
     </ul>

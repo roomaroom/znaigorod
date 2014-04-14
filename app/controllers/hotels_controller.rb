@@ -1,5 +1,5 @@
 class HotelsController <  ApplicationController
   def index
-    @presenter = HotelsPresenter.new
+    @presenter = RoomsPresenter.new(params)
   end
 end
