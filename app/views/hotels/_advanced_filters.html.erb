@@ -11,17 +11,17 @@
       <div class='filter_inputs'>
         <div class='input'>
           <%= label_tag :price_min, 'от' %>
-          <%= text_field_tag :price_min, :class => 'min' %>
+          <%= text_field_tag :price_min, @presenter.price_min, :class => 'min' %>
         </div>
         <div class='input'>
           <%= label_tag :price_max, 'до' %>
-          <%= text_field_tag :price_max, :class => 'max' %>
+          <%= text_field_tag :price_max, @presenter.price_max, :class => 'max' %>
         </div>
       </div>
       <div class='filter_input_label'>руб./час</div>
 
       <div class='filter_slider_wrapper amount'>
-        <div class='filter_slider' data-range='true' data-min='1000<%#= @presenter.price.available.minimum %>' data-max='8000<%#= @presenter.price.available.maximum %>' data-step='50'></div>
+        <div class='filter_slider' data-range='true' data-min='<%= @presenter.available_price_min %>' data-max='<%= @presenter.available_price_max %>' data-step='50'></div>
       </div>
     </div>
 
@@ -30,13 +30,13 @@
       <div class='filter_inputs'>
         <div class="input">
           <%= label_tag :capacity, 'от' %>
-          <%= text_field_tag :capacity, :class => 'max' %>
+          <%= text_field_tag :capacity, @presenter.capacity, :class => 'max' %>
         </div>
       </div>
       <div class='filter_input_label'>человек</div>
 
       <div class='filter_slider_wrapper capacity'>
-        <div class="filter_slider" data-range='max' data-min='1<%#= @presenter.capacity_hash.available.minimum %>' data-max='10<%#= @presenter.capacity_hash.available.maximum %>' data-step='1'></div>
+        <div class="filter_slider" data-range='max' data-min='<%= @presenter.capacity_min %>' data-max='<%= @presenter.capacity_max %>' data-step='1'></div>
       </div>
     </div>
 
@@ -44,13 +44,13 @@
       <div class='filter_label wide'>Количество комнат</div>
       <div class='filter_inputs'>
         <div class="input">
-          <%= label_tag :rooms_count, 'от' %>
-          <%= text_field_tag :rooms_count, :class => 'max' %>
+          <%= label_tag :rooms, 'от' %>
+          <%= text_field_tag :rooms, @presenter.rooms, :class => 'max' %>
         </div>
       </div>
 
       <div class='filter_slider_wrapper rooms_count'>
-        <div class="filter_slider" data-range='max' data-min='1<%#= @presenter.capacity_hash.available.minimum %>' data-max='5<%#= @presenter.capacity_hash.available.maximum %>' data-step='1'></div>
+        <div class="filter_slider" data-range='max' data-min='<%= @presenter.rooms_min %>' data-max='<%= @presenter.rooms_max %>' data-step='1'></div>
       </div>
     </div>
 
