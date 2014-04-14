@@ -54,6 +54,44 @@
       </div>
     </div>
 
+    <div class='filter hide' id='hotel_features'>
+      <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
+      <div class='filter_label'>Особенности гостиницы</div>
+      <div class='filter_checkboxes'>
+        <% %w(Автостоянка Завтрак Обед).each do |feature_title, index| %>
+          <div class='checkbox'>
+            <%= check_box_tag 'features[]', feature_title, :id => "feature_#{index}" %>
+            <%= label_tag "feature_#{index}", feature_title.gsub(/^(.)/){$1.mb_chars.capitalize} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='filter hide' id='room_features'>
+      <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
+      <div class='filter_label'>Особенности номера</div>
+      <div class='filter_checkboxes'>
+        <% %w(Телевизор Кондиционер Окно).each do |feature_title, index| %>
+          <div class='checkbox'>
+            <%= check_box_tag 'features[]', feature_title, :id => "feature_#{index}" %>
+            <%= label_tag "feature_#{index}", feature_title.gsub(/^(.)/){$1.mb_chars.capitalize} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='criteria_list'>
+      <div class='criteria_label'>Добавить критерии:</div>
+      <ul>
+        <li>
+          <%= link_to 'Особенности гостиницы', '#', :class => 'hotel_features'  %>
+        </li>
+        <li>
+          <%= link_to 'Особенности номера', '#', :class => 'room_features'  %>
+        </li>
+      </ul>
+    </div>
+
     <div class='submit_action'>
       <div class='submit_wrapper'>
         <input type='submit' value='Применить фильтр' class='submit' />
