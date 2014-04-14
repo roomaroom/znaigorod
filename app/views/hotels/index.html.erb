@@ -1,3 +1,29 @@
+<div class='presentation_filters hotel'>
+  <div class='filter_header'>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% elsif @presenter.page_header.blank? %>
+      <%= t('meta.organizations.page_header') %>
+    <% else %>
+      <%= @presenter.page_header %>
+    <% end %>
+  </div>
+
+  <!--noindex-->
+  <div class='order_by'>
+    <p>Сортировать по:</p>
+    <ul>
+      <% @presenter.sortings_links.each do |sortings_link| %>
+        <li<%= " class=selected" if sortings_link[:selected] %>>
+          <%= link_to sortings_link[:title],
+            send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!--/noindex-->
+</div>
+
 <div class='organizations_list'>
   <% unless @presenter.empty? %>
     <ul class='hotel_posters'>
