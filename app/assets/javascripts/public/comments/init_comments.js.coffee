@@ -49,6 +49,7 @@ init_comments_images = ->
     $('.cancel', '.comments').on 'click', ->
       remove_comment_form()
       show_link()
+      $('.comments .new_comment').click()
       false
 
   show_link = () ->
