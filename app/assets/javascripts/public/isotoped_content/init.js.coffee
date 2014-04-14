@@ -24,7 +24,7 @@
         elms = $(response)
         $container.append(elms).isotope( 'appended', elms)
 
-        url = paginator.attr('href').replace(/page=\d+/, "") + 'page=' + (page += 1)
+        url = paginator.attr('href').replace(/page=\d/, "page=#{page += 1}")
         paginator.attr('href', url)
 
         paginator.removeClass('disabled').html('Еще события')

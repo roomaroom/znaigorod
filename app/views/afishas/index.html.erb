@@ -39,7 +39,7 @@
 
   <% unless @presenter.collection.last_page? %>
     <div class="pagination">
-      <%= link_to_next_page @presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg' %>
+      <%= link_to_next_page @presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
     </div>
   <% end %>
 
