@@ -35,10 +35,16 @@ class RoomDecorator < ApplicationDecorator
     room.prices.map {|p| [p.value, p.max_value]}.uniq
   end
 
-  def average_price
-    min_price = room.prices.first.value
-    max_price = different_prices? ? different_prices.last.max : 0
+  def min_price
+    p 'min'
+    p room.prices.map { |p| p.value }.min
+  end
 
+  def max_price
+    different_prices.last.compact.max || 0
+  end
+
+  def average_price
     css_class = 'price_value'
     css_class << ' js-ul-toggler ul-toggler' if different_prices?
 

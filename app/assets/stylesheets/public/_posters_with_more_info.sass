@@ -1,6 +1,7 @@
 .content .organizations_list
 
-  .sauna_posters
+  .sauna_posters,
+  .hotel_posters
     +clearfix
 
     > li
@@ -9,7 +10,8 @@
       &.clear_left
         clear: left
 
-      &.sauna_item
+      &.sauna_item,
+      &.hotel_item
         width: 378px
         border: 1px solid #ccc
         margin: 0 10px 20px 10px
@@ -137,7 +139,8 @@
         .phone
           margin-bottom: 3px
 
-      .sauna_halls
+      .sauna_halls,
+      .rooms
         float: left
         width: 199px
         height: 244px
@@ -148,12 +151,14 @@
           &.non_suitable
             +opacity(0.5)
 
-        .hall_title
+        .hall_title,
+        .room_title
           color: #fff
           background-color: #999
           padding: 2px 8px 3px
 
-        .hall_details
+        .hall_details,
+        .room_details
           margin: 5px 8px
 
           span
