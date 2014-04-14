@@ -10,6 +10,8 @@ class Room < ActiveRecord::Base
 
   accepts_nested_attributes_for :prices, :allow_destroy => true
 
+  validates_presence_of :capacity, :feature
+
   include PresentsAsCheckboxes
 
   presents_as_checkboxes :feature
