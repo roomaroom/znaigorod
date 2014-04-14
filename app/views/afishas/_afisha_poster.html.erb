@@ -25,7 +25,9 @@
     <% end %>
   <% end %>
 
-  <%= render :partial => 'afishas/promote', :locals => { :afisha => afisha } %>
+  <div class="promote_afisha_wrapper">
+    <%= render :partial => 'afishas/promote_button', :locals => { :afisha => afisha } %>
+  </div>
 
   <%= link_to afisha_show_path(afisha), class: :details do %>
     <span class='first_line'>

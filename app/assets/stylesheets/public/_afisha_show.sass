@@ -156,30 +156,22 @@
     width: 210px
 
     .image
+      border: 1px solid #ccc
+      font-size: 12px
+      height: 269px
+      margin-bottom: 10px
+      padding: 4px
       position: relative
       text-align: center
-      font-size: 12px
       width: 200px
-      border: 1px solid #ccc
-      padding: 4px
-      margin-bottom: 10px
 
       .ribbon
-        position: absolute
-        left: 4px
-        bottom: 37px
+        background: #f60
+        bottom: 4px
         color: #fff
-        background-color: #f60
+        left: 4px
         padding: 2px 8px 3px
-
-      .promote_afisha_wrapper
-        a
-          background: #f93 image_url('public/arrow-up-white.png') no-repeat 13px center
-          width: 158px
-
-          &:hover
-            background: #f60 image_url('public/arrow-up-white.png') no-repeat 13px center
-            border-color: #f60
+        position: absolute
 
     @import 'certificates_left_list'
 
@@ -305,6 +297,24 @@
 
         .ymaps-copyrights-pane
           display: none
+
+    .promote_afisha_wrapper
+      padding: 10px
+      border-bottom: 1px solid #ccc
+
+      .info
+        text-align: center
+        margin: 0 0 10px 0
+
+      a
+        background: #f93 image_url('public/arrow-up-white.png') no-repeat 13px center
+        display: block
+        margin: 0 auto
+        width: 158px
+
+        &:hover
+          background: #f60 image_url('public/arrow-up-white.png') no-repeat 13px center
+          border-color: #f60
 
     .more_like_this, .auction
       border-bottom: 1px solid #ccc

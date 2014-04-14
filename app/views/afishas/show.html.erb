@@ -26,8 +26,6 @@
         <%= image_tag('public/stub_poster.png', size: '200x269', alt: :poster) %>
       <% end %>
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
-
-      <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
     </div>
 
     <% if @afisha.allow_auction? %>
@@ -147,6 +145,8 @@
           </div>
         </div>
       <% end %>
+
+      <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
 
       <% if @afisha.similar_afisha.present? %>
         <div class='more_like_this'>
