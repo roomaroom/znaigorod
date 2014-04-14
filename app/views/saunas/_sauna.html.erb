@@ -18,7 +18,7 @@
     <div class='sauna_hall_info'>
       <div class='sauna_hall_header'>
 
-        <div class='left'>
+        <div class='left with-toggleable'>
           <div class='title'>
             <% if sauna_hall.title.length > 20 %>
               <%= content_tag :span, truncate(sauna_hall.title, :length => 20), :title => sauna_hall.title %>

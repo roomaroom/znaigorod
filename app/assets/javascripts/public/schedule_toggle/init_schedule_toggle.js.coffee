@@ -2,8 +2,7 @@
   $('.js-ul-toggler').click ->
 
     link = $(this)
-    target = $(this).closest('.left, .organization_content').find('.js-ul-toggleable')
-
+    target = $(this).closest('.with-toggleable').find('.js-ul-toggleable')
 
     target.toggle()
     target.addClass('need_close_by_click')

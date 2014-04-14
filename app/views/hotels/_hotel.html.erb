@@ -18,7 +18,7 @@
     <div class='room_info'>
       <div class='room_header'>
 
-        <div class='left'>
+        <div class='left with-toggleable'>
           <div class='title'>
             <% if room.title.length > 20 %>
               <%= content_tag :span, truncate(room.title, :length => 20), :title => room.title %>

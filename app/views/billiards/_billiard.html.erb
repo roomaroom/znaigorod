@@ -21,7 +21,7 @@
           <div class='title'><%= kind %></div>
           <div class='pools'>
             <% pool_tables.each do |pool_table| %>
-              <div class='pool_details'>
+              <div class='pool_details with-toggleable'>
                 <span class='count'><%= pool_table.count %> x</span>
                 <span class='size'><%= pool_table.ft %></span>
                 <span class='price'><%= pool_table.price %></span>
