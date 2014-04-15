@@ -4,7 +4,6 @@ class RoomDecorator < ApplicationDecorator
   decorates :room
 
   def title
-    room.title? ? room.title : "Основной номер"
     if room.title?
       room.title
     else
@@ -63,7 +62,7 @@ class RoomDecorator < ApplicationDecorator
     I18n.t('rooms.count', :count => room.rooms_count)
   end
 
-  def dafault_capacity_value
+  def default_capacity_value
     "спальных мест: #{room.capacity}"
   end
 
