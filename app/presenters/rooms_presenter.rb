@@ -194,7 +194,7 @@ class RoomsPresenter
   end
 
   def organizations_without_rooms
-    suborganization_class.search(:include => :organization) { with :with_rooms, false }.results.map(&:organization)
+    OrganizationDecorator.decorate suborganization_class.search(:include => :organization) { with :with_rooms, false }.results.map(&:organization)
   end
 
   def last_page?
