@@ -26,8 +26,8 @@
 
 <div class='organizations_list'>
   <% unless @presenter.empty? %>
-    <ul class='hotel_posters'>
-      <%= render :partial => 'recreation_center_posters' %>
+    <ul class='housing_posters'>
+      <%= render :partial => 'housings/housing_posters', :locals => { :housing => :recreation_center } %>
     </ul>
   <% else %>
     <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>

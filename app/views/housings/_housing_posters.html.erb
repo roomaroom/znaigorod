@@ -1,5 +1,5 @@
 <% @presenter.decorated_collection.each do |organization| %>
-  <li class='hotel_item <%= cycle('item_1', 'item_2', 'item_3', :name => 'hotel_item') %>'>
+  <li class='housing_item <%= cycle('item_1', 'item_2', 'item_3', :name => 'housing_item') %>'>
     <div class='info'>
       <div class='title'><%= organization.truncated_title_link %> </div>
       <div class='image'>
@@ -31,7 +31,7 @@
     </div>
 
     <ul class='rooms'>
-        <% organization.hotel.rooms.each do |room| %>
+        <% organization.send(housing).rooms.each do |room| %>
           <li>
             <%= render :partial => 'room', :locals => { :room => RoomDecorator.decorate(room) } %>
           </li>
@@ -40,9 +40,9 @@
   </li>
 <% end %>
 
-<% @organizations.each_with_index do |org, index| %>
-  <% organization = OrganizationDecorator.decorate(org) %>
-    <li class='hotel_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', 'item_5', 'item_6', :name => 'hotel_short_item') %><%= ' clear_left' if index.zero? %>'>
+<% if @presenter.last_page? %>
+  <% @presenter.organizations_without_rooms.each_with_index do |organization, index| %>
+    <li class='housing_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', 'item_5', 'item_6', :name => 'housing_short_item') %><%= ' clear_left' if index.zero? %>'>
       <div class='info'>
         <div class='title'><%= organization.truncated_title_link %> </div>
         <hr />
@@ -52,4 +52,5 @@
         </div>
       </div>
     </li>
+  <% end %>
 <% end %>

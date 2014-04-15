@@ -1,8 +1,4 @@
 <div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
-  <div class='introduction'>
-    <%= t('meta.hotels.introduction').as_html %>
-  </div>
-
   <%= form_tag recreation_centers_path, :method => :get do %>
     <%= hidden_field_tag :order_by, @presenter.order_by %>
 
