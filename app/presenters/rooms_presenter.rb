@@ -107,7 +107,7 @@ class RoomsPresenter
     private
 
     def available_room_features
-      %w[foo bar baz qux]
+      Values.instance.room.features
     end
   end
 
@@ -135,7 +135,7 @@ class RoomsPresenter
     private
 
     def available_hotel_features
-      %w[ololo pysh rialni]
+      Values.instance.hotel.features
     end
   end
 
