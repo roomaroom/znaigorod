@@ -33,7 +33,7 @@ class Room < ActiveRecord::Base
   end
 
   def price_max
-    prices.pluck(:max_value).max
+    prices.pluck(:max_value).compact.max
   end
 
   private
