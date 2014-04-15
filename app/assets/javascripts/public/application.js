@@ -19,6 +19,7 @@
  * = require tagit
  * = require jcrop
  * = require jquery.fileupload
+ * = require tmpl.min
  * = require autosuggest_handler
  * = require datetime_picker
  * = require file_upload

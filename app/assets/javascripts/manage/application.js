@@ -17,6 +17,7 @@
  * = require jcrop
  * = require markitup
  * = require tagit
+ * = require tmpl.min
  * = require public/discount_map
  * = require ./info_plugin
  * = require ./choose_file
