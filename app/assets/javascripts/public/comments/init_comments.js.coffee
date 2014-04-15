@@ -91,6 +91,9 @@ init_comments_images = ->
       show_link()
       $('.comments .new_comment').click()
 
+      # фотогалерея для новых комментариев с картинками
+      init_photogallery() if $('.photogallery').length
+
     $("#email_request_form").dialog('open')
 
   $(".ajaxed").on 'ajax:beforeSend', (evt, xhr, settings) ->

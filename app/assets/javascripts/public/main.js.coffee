@@ -47,7 +47,7 @@ $ ->
   init_review_gallery() if $('.js-gallery, .review_show').length
   handleReviewGallerySort() if $('.js-gallery').length
   initUlToggle() if $('.js-ul-toggler')
-  init_photogallery() if $('.photogallery ul li').length
+  init_photogallery() if $('.photogallery').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   initAfishaPagination() if $('.afisha-paginator').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length

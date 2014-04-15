@@ -1,1 +1,7 @@
-<%= image_tag resized_image_url(comments_image.file_url, 130, 100), :width => 130, :height => 100, :title => comments_image.file_file_name, 'data-preview' => resized_image_url(comments_image.file_url, 1920, 1080) %>
+<%= link_to comments_image.file_url, :data => { :rel => "comments_gallery_#{comments_image.attachable.id}" } do %>
+  <%= image_tag resized_image_url(comments_image.file_url, 130, 100),
+                :width => 130,
+                :height => 100,
+                :title => comments_image.file_file_name,
+                :rel => "comments_gallery_#{comments_image.attachable.id}" %>
+<% end %>
