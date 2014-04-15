@@ -60,7 +60,6 @@
           right: 0
           width: 40px !important
 
-
     .introduction
       background: #cef2f2
       color: #222
@@ -128,7 +127,7 @@
         height: 260px
         margin: 2px 0 0 2px
         position: relative
-        width: 194
+        width: 194px
 
         .has_items_for_sale
           +as_green_ribbon
@@ -194,28 +193,25 @@
           color: #999
           font-size: 12px
 
-        .first_line
-          bottom: 35px
-          padding: 0 10px
-          width: 173px
-
-        .second_line
-          bottom: 10px
-          padding: 0 10px
-          width: 173px
-
         .first_line,
         .second_line
           display: none
           left: 0
+          padding: 0 10px
           position: absolute
-          width: 100%
+          width: 175px
 
           span
             cursor: help
             display: inline-block
             text-align: center
-            width: 56px
+            width: 55px
+
+        .first_line
+          bottom: 35px
+
+        .second_line
+          bottom: 10px
 
         &:hover
           .ribbon

@@ -2,14 +2,14 @@
   <% if @review.afisha_id? %>
     <div class="afisha_list pagination_none">
       <ul class='posters'>
-        <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(@review.afisha)] } %>
+        <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(@review.afisha) ], :presenter => AfishaPresenter.new(:page => 1, :per_page => 1) } %>
       </ul>
     </div>
   <% else %>
     <div class='organizations_list pagination_none'>
       <ul class='posters'>
         <li>
-          <%= render partial: 'organizations/suborganization', locals: { suborganization: OrganizationDecorator.new(@review.organization) } %>
+          <%= render :partial => 'organizations/suborganization', :locals => { :suborganization => OrganizationDecorator.new(@review.organization) } %>
         </li>
       </ul>
     </div>
