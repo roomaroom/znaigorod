@@ -25,9 +25,11 @@
     <% end %>
   <% end %>
 
-  <div class="promote_afisha_wrapper">
-    <%= render :partial => 'afishas/promote_button', :locals => { :afisha => afisha } %>
-  </div>
+  <% if afisha.user == current_user %>
+    <div class="promote_afisha_wrapper">
+      <%= render :partial => 'afishas/promote_button', :locals => { :afisha => afisha } %>
+    </div>
+  <% end %>
 
   <%= link_to afisha_show_path(afisha), class: :details do %>
     <span class='first_line'>
