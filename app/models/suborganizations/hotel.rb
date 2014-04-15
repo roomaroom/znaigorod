@@ -37,6 +37,10 @@ class Hotel < ActiveRecord::Base
 
   alias_method :sunspot_index, :index
   include SmsClaims
+
+  def with_rooms?
+    rooms.any?
+  end
 end
 
 # == Schema Information

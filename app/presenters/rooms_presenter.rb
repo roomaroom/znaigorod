@@ -193,6 +193,10 @@ class RoomsPresenter
     features_filter.css_class
   end
 
+  def organizations_without_rooms
+    suborganization_class.search(:include => :organization) { with :with_rooms, false }.results.map(&:organization)
+  end
+
   private
 
   def normalize_arguments
@@ -237,20 +241,16 @@ class RoomsPresenter
     context_id_groups.map(&:value)
   end
 
-  def hotels
-    Hotel.where(:id => context_ids).includes(:organization)
+  def suborganization_class
+    context_type == :hotel ? Hotel : RecreationCenter
   end
 
-  def recreation_centers
-    RecreationCenter.where(:id => context_ids).includes(:organization)
-  end
-
-  def contexts
-    context_type == :hotel ? hotels : recreation_centers
+  def suborganizations
+    suborganization_class.where(:id => context_ids).includes(:organization)
   end
 
   def organizations
-    contexts.map(&:organization)
+    suborganizations.map(&:organization)
   end
 
   def collection
