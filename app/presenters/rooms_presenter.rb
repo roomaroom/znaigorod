@@ -63,10 +63,80 @@ class RoomsPresenter
     end
   end
 
-  class HotelFeaturesFilter < Struct.new(:hotel_features)
+  class HotelFeaturesFilter
+    attr_accessor :hotel_features
+
+    def initialize(hotel_features)
+      @hotel_features = hotel_features
+    end
   end
 
-  class RoomFeatures < Struct.new(:room_features)
+  class Feature
+    attr_accessor :title
+
+    def initialize(title, selected)
+      @title, @selected = title, selected
+    end
+
+    def selected?
+      @selected
+    end
+  end
+
+  class RoomFeaturesFilter
+    attr_accessor :room_features
+
+    def initialize(room_features)
+      @room_features = room_features || []
+    end
+
+    def room_features
+      available_room_features.map do |title|
+        Feature.new title, @room_features.include?(title)
+      end
+    end
+
+    def used?
+      room_features.delete_if(&:blank?).any?
+    end
+
+    def css_class
+      used? ? 'used' : 'not_used'
+    end
+
+    private
+
+    def available_room_features
+      %w[foo bar baz qux]
+    end
+  end
+
+  class HotelFeaturesFilter
+    attr_accessor :hotel_features
+
+    def initialize(hotel_features)
+      @hotel_features = hotel_features || []
+    end
+
+    def hotel_features
+      available_hotel_features.map do |title|
+        Feature.new title, @hotel_features.include?(title)
+      end
+    end
+
+    def used?
+      hotel_features.delete_if(&:blank?).any?
+    end
+
+    def css_class
+      used? ? 'used' : 'not_used'
+    end
+
+    private
+
+    def available_hotel_features
+      %w[ololo pysh rialni]
+    end
   end
 
   include ActiveAttr::MassAssignment
@@ -78,6 +148,8 @@ class RoomsPresenter
                 :price_min, :price_max,
                 :capacity,
                 :rooms,
+                :room_features,
+                :hotel_features,
                 :lat, :lon, :radius
 
   def initialize(args = {})
@@ -101,6 +173,16 @@ class RoomsPresenter
   delegate :price_min, :price_max, :available_price_min, :available_price_max, :to => :price_filter
   delegate :capacity, :capacity_min, :capacity_max, :to => :capacity_filter
   delegate :rooms, :rooms_min, :rooms_max, :to => :rooms_filter
+  delegate :room_features, :to => :room_features_filter
+  delegate :hotel_features, :to => :hotel_features_filter
+
+  def room_features_filter_css_class
+    room_features_filter.css_class
+  end
+
+  def hotel_features_filter_css_class
+    room_features_filter.css_class
+  end
 
   private
 
@@ -151,5 +233,13 @@ class RoomsPresenter
 
   def rooms_filter
     @rooms_filter ||= RoomsFilter.new(@rooms)
+  end
+
+  def room_features_filter
+    @room_features_filter = RoomFeaturesFilter.new(@room_features)
+  end
+
+  def hotel_features_filter
+    @hotel_features_filter = HotelFeaturesFilter.new(@hotel_features)
   end
 end

@@ -54,27 +54,27 @@
       </div>
     </div>
 
-    <div class='filter hide' id='hotel_features'>
+    <div class="filter <%= @presenter.hotel_features_filter_css_class %>" id='hotel_features'>
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности гостиницы</div>
       <div class='filter_checkboxes'>
-        <% %w(Автостоянка Завтрак Обед).each do |feature_title, index| %>
+        <% @presenter.hotel_features.each do |feature, index| %>
           <div class='checkbox'>
-            <%= check_box_tag 'features[]', feature_title, :id => "feature_#{index}" %>
-            <%= label_tag "feature_#{index}", feature_title.gsub(/^(.)/){$1.mb_chars.capitalize} %>
+            <%= check_box_tag 'hotel_features[]', feature.title, feature.selected?, :id => "hotel_feature_#{index}" %>
+            <%= label_tag "hotel_feature_#{index}", feature.title %>
           </div>
         <% end %>
       </div>
     </div>
 
-    <div class='filter hide' id='room_features'>
+    <div class="filter <%= @presenter.room_features_filter_css_class %>" id='room_features'>
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности номера</div>
       <div class='filter_checkboxes'>
-        <% %w(Телевизор Кондиционер Окно).each do |feature_title, index| %>
+        <% @presenter.room_features.each do |feature, index| %>
           <div class='checkbox'>
-            <%= check_box_tag 'features[]', feature_title, :id => "feature_#{index}" %>
-            <%= label_tag "feature_#{index}", feature_title.gsub(/^(.)/){$1.mb_chars.capitalize} %>
+            <%= check_box_tag 'room_features[]', feature.title, feature.selected?, :id => "room_feature_#{index}" %>
+            <%= label_tag "room_feature_#{index}", feature.title %>
           </div>
         <% end %>
       </div>

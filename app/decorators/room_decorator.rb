@@ -36,8 +36,7 @@ class RoomDecorator < ApplicationDecorator
   end
 
   def min_price
-    p 'min'
-    p room.prices.map { |p| p.value }.min
+    room.prices.map { |p| p.value }.min
   end
 
   def max_price
