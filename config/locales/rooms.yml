@@ -13,3 +13,10 @@
       few:   "%{count} комнаты"
       many:  "%{count} комнат"
       other: "%{count} комнаты"
+
+    housing:
+      bazy_otdyha:     Основной номер
+      zagorodnye_doma: Загородный дом
+      gostinitsy:      Основной номер
+      hostely:         Основной номер
+      apartamenty:     Апартаменты

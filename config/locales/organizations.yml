@@ -98,3 +98,10 @@ ru:
       features: Особенности
       offers: Предложения
       cuisines: Кухня
+
+  housing:
+    bazy_otdyha:     База отдыха
+    zagorodnye_doma: Загородный дом
+    gostinitsy:      Гостиница
+    hostely:         Хостел
+    apartamenty:     Апартаменты
