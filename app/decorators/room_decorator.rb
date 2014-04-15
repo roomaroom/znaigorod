@@ -7,18 +7,7 @@ class RoomDecorator < ApplicationDecorator
     if room.title?
       room.title
     else
-      case room.context.category
-      when 'Гостиницы'
-        'Основной номер'
-      when 'Хостелы'
-        'Основной номер'
-      when 'Квартиры'
-        'Квартира'
-      when 'Базы отдыха'
-        'Основной номер'
-      when 'Загородные дома'
-        'Загородный дом'
-      end
+      I18n.t("rooms.housing.#{context.category.from_russian_to_param}")
     end
   end
 
