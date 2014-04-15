@@ -39,3 +39,17 @@
     </ul>
   </li>
 <% end %>
+
+<% @organizations.each_with_index do |org, index| %>
+  <% organization = OrganizationDecorator.decorate(org) %>
+    <li class='hotel_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', 'item_5', 'item_6', :name => 'hotel_short_item') %><%= ' clear_left' if index.zero? %>'>
+      <div class='info'>
+        <div class='title'><%= organization.truncated_title_link %> </div>
+        <hr />
+        <%= content_tag :div, organization.truncated_address_link, :class => :address if organization.truncated_address_link.present? %>
+        <div class='phone'>
+          <%= organization.decorated_phones %>
+        </div>
+      </div>
+    </li>
+<% end %>
