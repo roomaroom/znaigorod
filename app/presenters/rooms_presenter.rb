@@ -156,7 +156,8 @@ class RoomsPresenter
                 :rooms,
                 :room_features,
                 :features,
-                :lat, :lon, :radius
+                :lat, :lon, :radius,
+                :page, :per_page
 
   def initialize(context_type, args = {})
     @context_type = context_type
@@ -192,7 +193,7 @@ class RoomsPresenter
     features_filter.css_class
   end
 
-  #private
+  private
 
   def normalize_arguments
     @context_type = ([:hotel, :recreation_center] & [@context_type.to_sym]).first
@@ -202,6 +203,8 @@ class RoomsPresenter
     @categories ||= []
     @room_features ||= []
     @features ||= []
+    @page ||= 1
+    @per_page ||= 18
   end
 
   def search
@@ -212,6 +215,8 @@ class RoomsPresenter
         with(:price_min).greater_than_or_equal_to(price_min) if price_min.present?
         with(:price_max).less_than_or_equal_to(price_max)    if price_max.present?
       end
+
+      paginate :page => page, :per_page => per_page
 
       with :categories,    categories                             if categories.any?
       with :features,      features_filter.selected_features      if features_filter.used?
