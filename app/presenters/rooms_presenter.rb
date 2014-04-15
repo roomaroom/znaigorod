@@ -205,6 +205,14 @@ class RoomsPresenter
 
   private
 
+  def kind
+    context_type.to_s
+  end
+
+  def pluralized_kind
+    context_type.to_s.pluralize
+  end
+
   def normalize_arguments
     @context_type = ([:hotel, :recreation_center] & [@context_type.to_sym]).first
 
