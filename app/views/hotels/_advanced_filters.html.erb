@@ -54,11 +54,11 @@
       </div>
     </div>
 
-    <div class="filter <%= @presenter.hotel_features_filter_css_class %>" id='hotel_features'>
+    <div class="filter <%= @presenter.features_filter_css_class %>" id='hotel_features'>
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности гостиницы</div>
       <div class='filter_checkboxes'>
-        <% @presenter.hotel_features.each_with_index do |feature, index| %>
+        <% @presenter.features.each_with_index do |feature, index| %>
           <div class='checkbox'>
             <%= check_box_tag 'hotel_features[]', feature.title, feature.selected?, :id => "hotel_feature_#{index}" %>
             <%= label_tag "hotel_feature_#{index}", feature.title %>

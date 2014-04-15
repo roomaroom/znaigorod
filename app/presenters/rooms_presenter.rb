@@ -19,7 +19,7 @@ class RoomsPresenter
     end
 
     def available_price_max
-      10000
+      DailyPrice.where(:context_type => 'Room').map { |d| [d.value, d.max_value] }.flatten.compact.max
     end
   end
 
@@ -39,7 +39,7 @@ class RoomsPresenter
     end
 
     def capacity_max
-      100
+      Room.pluck(:capacity).max
     end
   end
 
@@ -59,15 +59,7 @@ class RoomsPresenter
     end
 
     def rooms_max
-      100
-    end
-  end
-
-  class HotelFeaturesFilter
-    attr_accessor :hotel_features
-
-    def initialize(hotel_features)
-      @hotel_features = hotel_features
+      Room.pluck(:rooms_count).max
     end
   end
 
@@ -96,6 +88,10 @@ class RoomsPresenter
       end
     end
 
+    def selected_features
+      room_features.select(&:selected?)
+    end
+
     def used?
       @room_features.delete_if(&:blank?).any?
     end
@@ -111,21 +107,26 @@ class RoomsPresenter
     end
   end
 
-  class HotelFeaturesFilter
-    attr_accessor :hotel_features
+  class FeaturesFilter
+    attr_accessor :features, :context_type
 
-    def initialize(hotel_features)
-      @hotel_features = hotel_features || []
+    def initialize(context_type, features)
+      @context_type = context_type
+      @features = features || []
     end
 
-    def hotel_features
-      available_hotel_features.map do |title|
-        Feature.new title, @hotel_features.include?(title)
+    def features
+      available_features.map do |title|
+        Feature.new title, @features.include?(title)
       end
     end
 
+    def selected_features
+      features.select(&:selected?)
+    end
+
     def used?
-      @hotel_features.delete_if(&:blank?).any?
+      @features.delete_if(&:blank?).any?
     end
 
     def css_class
@@ -134,8 +135,12 @@ class RoomsPresenter
 
     private
 
-    def available_hotel_features
-      Values.instance.hotel.features.map(&:mb_chars).map(&:downcase).map(&:to_s)
+    def values_instance_data
+      Values.instance.public_send context_type
+    end
+
+    def available_features
+      values_instance_data.features.map(&:mb_chars).map(&:downcase).map(&:to_s)
     end
   end
 
@@ -144,15 +149,18 @@ class RoomsPresenter
 
   acts_as_organizations_presenter kind: :hotel, filters: [:categories]
 
-  attr_accessor :categories,
+  attr_accessor :context_type,
+                :categories,
                 :price_min, :price_max,
                 :capacity,
                 :rooms,
                 :room_features,
-                :hotel_features,
+                :features,
                 :lat, :lon, :radius
 
-  def initialize(args = {})
+  def initialize(context_type, args = {})
+    @context_type = context_type
+
     super(args)
 
     normalize_arguments
@@ -171,31 +179,44 @@ class RoomsPresenter
   end
 
   delegate :price_min, :price_max, :available_price_min, :available_price_max, :to => :price_filter
-  delegate :capacity, :capacity_min, :capacity_max, :to => :capacity_filter
-  delegate :rooms, :rooms_min, :rooms_max, :to => :rooms_filter
-  delegate :room_features, :to => :room_features_filter
-  delegate :hotel_features, :to => :hotel_features_filter
+  delegate :capacity, :capacity_min, :capacity_max,                            :to => :capacity_filter
+  delegate :rooms, :rooms_min, :rooms_max,                                     :to => :rooms_filter
+  delegate :room_features,                                                     :to => :room_features_filter
+  delegate :features,                                                          :to => :features_filter
 
   def room_features_filter_css_class
     room_features_filter.css_class
   end
 
-  def hotel_features_filter_css_class
-    room_features_filter.css_class
+  def features_filter_css_class
+    features_filter.css_class
   end
 
-  private
+  #private
 
   def normalize_arguments
+    @context_type = ([:hotel, :recreation_center] & [@context_type.to_sym]).first
+
+    raise "Unknown context type" unless @context_type
+
     @categories ||= []
+    @room_features ||= []
+    @features ||= []
   end
 
   def search
     @search ||= Room.search(:include => { :context => :organization }) do
       group :context_id
 
-      with :categories, categories if categories.any?
-      with :context_type, 'Hotel'
+      any_of do
+        with(:price_min).greater_than_or_equal_to(price_min) if price_min.present?
+        with(:price_max).less_than_or_equal_to(price_max)    if price_max.present?
+      end
+
+      with :categories,    categories                             if categories.any?
+      with :features,      features_filter.selected_features      if features_filter.used?
+      with :context_type,  context_type
+      with :room_features, room_features_filter.selected_features if room_features_filter.used?
     end
   end
 
@@ -207,20 +228,28 @@ class RoomsPresenter
     context_id_group.groups
   end
 
-  def hotel_ids
+  def context_ids
     context_id_groups.map(&:value)
   end
 
   def hotels
-    Hotel.where(:id => hotel_ids).includes(:organization)
+    Hotel.where(:id => context_ids).includes(:organization)
   end
 
-  def collection
-    organizations
+  def recreation_centers
+    RecreationCenter.where(:id => context_ids).includes(:organization)
+  end
+
+  def contexts
+    context_type == :hotel ? hotels : recreation_centers
   end
 
   def organizations
-    hotels.map(&:organization)
+    contexts.map(&:organization)
+  end
+
+  def collection
+    @collection ||= organizations
   end
 
   def price_filter
@@ -236,10 +265,10 @@ class RoomsPresenter
   end
 
   def room_features_filter
-    @room_features_filter = RoomFeaturesFilter.new(@room_features)
+    @room_features_filter ||= RoomFeaturesFilter.new(@room_features)
   end
 
-  def hotel_features_filter
-    @hotel_features_filter = HotelFeaturesFilter.new(@hotel_features)
+  def features_filter
+    @features_filter ||= FeaturesFilter.new(context_type, @features)
   end
 end

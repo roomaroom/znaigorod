@@ -17,11 +17,23 @@ class Room < ActiveRecord::Base
   presents_as_checkboxes :feature
 
   searchable do
-    string :categories,       :multiple => true
-    string :context_features, :multiple => true
+    integer :price_min
+    integer :price_max
+
+    string :categories,    :multiple => true
     string :context_id
-    string :context_type
-    string :room_features,    :multiple => true
+    string :room_features, :multiple => true
+
+    string(:context_type)                { context_type.underscore }
+    string(:features, :multiple => true) { context_features }
+  end
+
+  def price_min
+    prices.pluck(:value).min
+  end
+
+  def price_max
+    prices.pluck(:max_value).max
   end
 
   private
@@ -30,7 +42,7 @@ class Room < ActiveRecord::Base
     context.categories.map(&:mb_chars).map(&:downcase).map(&:to_s)
   end
 
-  def room_featutes
+  def room_features
     features.map(&:mb_chars).map(&:downcase).map(&:to_s)
   end
 
