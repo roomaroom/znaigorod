@@ -1,0 +1,7 @@
+<%= content_tag :div, room.title, :class => 'room_title' if room.title.present? %>
+<div class='room_details'>
+  <p>
+    <%= content_tag :span, room.humanize_price(room.min_price, room.max_price) %>
+    <%= room.human_capacity %>
+  </p>
+</div>
