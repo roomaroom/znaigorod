@@ -58,7 +58,7 @@
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности гостиницы</div>
       <div class='filter_checkboxes'>
-        <% @presenter.hotel_features.each do |feature, index| %>
+        <% @presenter.hotel_features.each_with_index do |feature, index| %>
           <div class='checkbox'>
             <%= check_box_tag 'hotel_features[]', feature.title, feature.selected?, :id => "hotel_feature_#{index}" %>
             <%= label_tag "hotel_feature_#{index}", feature.title %>
@@ -71,7 +71,7 @@
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности номера</div>
       <div class='filter_checkboxes'>
-        <% @presenter.room_features.each do |feature, index| %>
+        <% @presenter.room_features.each_with_index do |feature, index| %>
           <div class='checkbox'>
             <%= check_box_tag 'room_features[]', feature.title, feature.selected?, :id => "room_feature_#{index}" %>
             <%= label_tag "room_feature_#{index}", feature.title %>

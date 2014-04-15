@@ -97,17 +97,17 @@ class RoomsPresenter
     end
 
     def used?
-      room_features.delete_if(&:blank?).any?
+      @room_features.delete_if(&:blank?).any?
     end
 
     def css_class
-      used? ? 'used' : 'not_used'
+      used? ? 'show' : 'hide'
     end
 
     private
 
     def available_room_features
-      Values.instance.room.features
+      Values.instance.room.features.map(&:mb_chars).map(&:downcase).map(&:to_s)
     end
   end
 
@@ -125,17 +125,17 @@ class RoomsPresenter
     end
 
     def used?
-      hotel_features.delete_if(&:blank?).any?
+      @hotel_features.delete_if(&:blank?).any?
     end
 
     def css_class
-      used? ? 'used' : 'not_used'
+      used? ? 'show' : 'hide'
     end
 
     private
 
     def available_hotel_features
-      Values.instance.hotel.features
+      Values.instance.hotel.features.map(&:mb_chars).map(&:downcase).map(&:to_s)
     end
   end
 
