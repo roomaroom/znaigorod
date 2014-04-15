@@ -197,6 +197,12 @@ class RoomsPresenter
     suborganization_class.search(:include => :organization) { with :with_rooms, false }.results.map(&:organization)
   end
 
+  def last_page?
+    total_pages = context_id_groups.total_pages
+
+    total_pages.zero? ?  true : total_pages == page.to_i
+  end
+
   private
 
   def normalize_arguments
