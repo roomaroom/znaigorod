@@ -16,7 +16,7 @@
     padding: 5px
 
 // uniq_design -->
-=uniq_design($main_gradient_top_color, $main_gradient_bottom_color, $content_gradient_top_color, $content_gradient_bottom_color, $sidebar_background, $sidebar_gradient_top_color, $sidebar_gradient_bottom_color, $border_color, $link_color, $text_color)
+=uniq_design($main_gradient_top_color, $main_gradient_bottom_color, $content_gradient_top_color, $content_gradient_bottom_color, $sidebar_background, $sidebar_gradient_top_color, $sidebar_gradient_bottom_color, $border_color, $link_color, $text_color, $title_color)
   background: $main_gradient_top_color
   +background(linear-gradient(top, $main_gradient_top_color, $main_gradient_bottom_color))
 
@@ -67,7 +67,7 @@
 
           .suborganization_info
             .title
-              background: #e07171
+              background: $title_color
 
             strong
               color: #fed64f
@@ -77,6 +77,9 @@
 
         .comments
           +override_comments
+
+          h3
+            background-color: $title_color
 
           .date
             color: #fff !important
@@ -91,15 +94,13 @@
 // <-- uniq_design
 
 =override_comments
-  .comment_form
-    div.text
-      border: none !important
-      padding: 0
-
   .comment_item
     .comment_wrapper
       &:hover, &.active
         background: none
+
+      p
+        color: #222
 
       .votes_wrapper
         .like_box
@@ -186,7 +187,6 @@
           .jcarousel-item a
             background-color: #1c272b
 
-
         .suborganization_info
           > .title
             background-color: #1c272b
@@ -196,6 +196,10 @@
 
         .comments
           +override_comments
+
+          h3
+            background-color: #1c272b
+            color: #fff
 
       .right
         .wrapper
@@ -257,6 +261,9 @@
 
           .comments
             +override_comments
+
+            h3
+              background: #ffd9b5
 
         .right
           .wrapper
@@ -326,9 +333,8 @@
           .comments
             +override_comments
 
-            textarea
-              border: 1px solid #e3686b
-              width: 680px
+            h3
+              background: #efaba2
 
         .right
           .wrapper
@@ -393,9 +399,8 @@
           .comments
             +override_comments
 
-            textarea
-              border: 1px solid #ccc
-              width: 680px
+            h3
+              background: #b6e1f4
 
         .right
           .wrapper
@@ -479,9 +484,9 @@
           .comments
             +override_comments
 
-            textarea
-              border: 1px solid #b12c25
-              width: 680px
+            h3
+              background: rgba(177,44,37,0.5)
+              color: #fff
 
         .right
           .wrapper
@@ -580,6 +585,9 @@
 
         .comments
           +override_comments
+
+          h3
+            background: #a3bdde
 
         .right
           .wrapper
@@ -719,6 +727,10 @@
             .title
               background: #e4d8cc
 
+          .comments
+            h3
+              background: #e4d8cc
+
           .share_and_likes
             border-bottom: 1px solid #bfa284
 
@@ -827,7 +839,7 @@
             +background(linear-gradient(top, rgba(108,48,38, 0.1), rgba(148,65,51, 0.5)))
 
 .sibbliny_content_wrapper
-  +uniq_design(#c2224e, #fed54f, #fff, #fff, #e07879, #eaa481, #ed9d6f, #d12345, #cf2344, #fff)
+  +uniq_design(#c2224e, #fed54f, #fff, #fff, #e07879, #eaa481, #ed9d6f, #d12345, #cf2344, #fff, #e07171)
 
   .sibbliny_logo
     background: transparent image_url('public/sibbliny/logo.png') no-repeat center center
@@ -845,7 +857,7 @@
       padding: 0 0 285px 0
 
 .shisha_content_wrapper
-  +uniq_design(#1f1a17, #c43e40, #1a1515, #a83535, #512221, #3a1d1c, #862e2e, #b03535, #2c70c1, #fff)
+  +uniq_design(#1f1a17, #c43e40, #1a1515, #a83535, #512221, #3a1d1c, #862e2e, #b03535, #2c70c1, #fff, #e07171)
 
   .shisha_logo
     background: transparent image_url('public/shisha/logo.png') no-repeat center center
@@ -854,7 +866,7 @@
     width: 1200px
 
 .u_brodyachey_sobaki_content_wrapper
-  +uniq_design(#e4d4bb, #e4d4bb, #fff, #fff, #ede5d7, rgba(237,229,215, .5), rgba(219,198,181, .5), #ac7c5e, #06c, #000)
+  +uniq_design(#e4d4bb, #e4d4bb, #fff, #fff, #ede5d7, rgba(237,229,215, .5), rgba(219,198,181, .5), #ac7c5e, #06c, #000, #e5d5c5)
 
   background: #e4d4bb image_url('public/u_brodyachey_sobaki/background.png') no-repeat center center
 
@@ -875,7 +887,7 @@
               background: rgba(219,198,181, .5)
 
 .strekoza_content_wrapper
-  +uniq_design(#141213, #574e53, #252324, #635a5f, #5e555a, #3e393d, #8a8486, #3f3a3e, #0066cc, #fff)
+  +uniq_design(#141213, #574e53, #252324, #635a5f, #5e555a, #3e393d, #8a8486, #3f3a3e, #0066cc, #fff, #544c50)
 
   .strekoza_logo
     background: transparent image_url('public/strekoza/logo.png') no-repeat center center
