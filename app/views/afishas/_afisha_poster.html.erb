@@ -18,6 +18,8 @@
   <% if afisha.has_available_tickets? %>
     <% if afisha.has_tickets_for_sale? %>
       <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
+    <% elsif afisha.actual? && afisha.bkz_link.present? %>
+      <%= link_to 'Купить билет', afisha.bkz_link, class: :for_sale, :target => '_blank' %>
     <% elsif afisha.has_available_ponominalu_tickets? %>
       <%= link_to afisha.ponominalu_tickets.available.first.link, :target => '_blank', :class => 'for_sale ponominalu' do %>
         <%= image_tag 'public/ponominalu_button.png', :size => '150x30', :class => 'link' %>

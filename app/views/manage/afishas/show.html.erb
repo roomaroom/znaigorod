@@ -73,6 +73,15 @@
       <%= link_to 'Добавить билет Ponominalu', new_manage_afisha_ponominalu_ticket_path(resource), :class => 'button' %>
     </h3>
 
+    <div>
+      <span class="label">URL на мероприятие в БКЗ:</span>
+      <% if resource.bkz_link.present? %>
+        <span class="value"><%= link_to resource.bkz_link, resource.bkz_link, :target => '_blank' %></span>
+      <% else %>
+        <span class="blank">Не указано</span>
+      <% end %>
+    </div>
+
     <table>
       <thead>
         <tr>

@@ -194,6 +194,7 @@ ru:
         vk_aid: Код альбома события ВКонтакте
         vk_event_url: Страница события в соц. сети
         yandex_fotki_url: URL альбома из Фотки.Яндекс
+        bkz_link: URL на мероприятие в БКЗ
 
       afisha_schedule:
         ends_at: Время окончания

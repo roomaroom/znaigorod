@@ -20,7 +20,7 @@ class Afisha < ActiveRecord::Base
                   :distribution_starts_on, :distribution_ends_on,
                   :original_title, :trailer_code, :vk_aid, :yandex_fotki_url, :constant,
                   :age_min, :age_max, :state_event, :state, :user_id, :kind, :vk_event_url,
-                  :fb_likes, :odn_likes, :vkontakte_likes, :poster_vk_id,
+                  :fb_likes, :odn_likes, :vkontakte_likes, :poster_vk_id, :bkz_link,
                   :promoted_at
 
   belongs_to :user
@@ -268,7 +268,7 @@ class Afisha < ActiveRecord::Base
   end
 
   def has_available_tickets?
-    has_tickets_for_sale? || has_available_ponominalu_tickets?
+    has_tickets_for_sale? || has_available_ponominalu_tickets? || bkz_link.present?
   end
 
   def max_tickets_discount

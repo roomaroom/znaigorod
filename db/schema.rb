@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140410034114) do
+ActiveRecord::Schema.define(:version => 20140416082031) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20140410034114) do
     t.boolean  "allow_auction"
     t.string   "poster_vk_id"
     t.datetime "promoted_at"
+    t.text     "bkz_link"
   end
 
   add_index "afisha", ["slug"], :name => "index_affiches_on_slug", :unique => true
