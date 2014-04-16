@@ -145,7 +145,7 @@ class AfishaDecorator < ApplicationDecorator
   end
 
   def viewable_showings?
-    return false if (afisha.other? || afisha.sportsevent?) && afisha_distribution?
+    #return false if afisha.affiche_schedule
     afisha_actual? && other_showings.any?
   end
 
@@ -164,7 +164,7 @@ class AfishaDecorator < ApplicationDecorator
   end
 
   def scheduled_showings?
-    afisha.affiche_schedule && afisha_distribution? && (afisha.exhibition? || afisha.masterclass?)
+    afisha.affiche_schedule
   end
 
   def schedule
