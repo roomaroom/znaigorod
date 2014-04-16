@@ -40,7 +40,7 @@ class RoomDecorator < ApplicationDecorator
 
   def price_table
     content = ""
-    room.prices.each do |price|
+    room.prices.ordered.each do |price|
       timely_content = " <span>#{price.price_value} руб.</span>; ".html_safe
       content << h.content_tag(:li, ("#{price.day_kind_text}: " + timely_content.squish.gsub(/;$/, '')).html_safe)
     end
