@@ -36,6 +36,9 @@ Znaigorod::Application.routes.draw do
   end
 
   resources :recreation_centers, :only => :index
+  Values.instance.recreation_center.categories.map(&:mb_chars).map(&:downcase).map(&:to_s).each do |category|
+    get "/recreation_centers/#{category.from_russian_to_param}" => 'recreation_centers#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
+  end
 
   Organization.available_suborganization_kinds.each do |kind|
     resources kind.pluralize, :only => [] do
