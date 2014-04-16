@@ -240,6 +240,8 @@ class RoomsPresenter
       with :features,      features_filter.selected_features      if features_filter.used?
       with :context_type,  context_type
       with :room_features, room_features_filter.selected_features if room_features_filter.used?
+      with(:capacity).greater_than_or_equal_to(capacity_filter.capacity)
+      with(:rooms_count).greater_than_or_equal_to(rooms_filter.rooms)
     end
   end
 

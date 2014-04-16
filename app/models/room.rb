@@ -19,6 +19,8 @@ class Room < ActiveRecord::Base
   searchable do
     integer :price_min
     integer :price_max
+    integer :capacity
+    integer :rooms_count
 
     string :categories,    :multiple => true
     string :context_id
