@@ -194,7 +194,16 @@ class RoomsPresenter
   end
 
   def organizations_without_rooms
-    OrganizationDecorator.decorate suborganization_class.search(:include => :organization) { with :with_rooms, false }.results.map(&:organization)
+    @organizations_without_rooms ||= begin
+                                      search = suborganization_class.search(:include => :organization) do
+                                        paginate :page => 1, :per_page => 500
+
+                                        with :with_rooms, false
+                                        with "#{context_type}_category", categories if categories.any?
+                                      end
+
+                                      OrganizationDecorator.decorate(search.results.map(&:organization))
+                                     end
   end
 
   def last_page?
