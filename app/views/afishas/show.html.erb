@@ -117,11 +117,11 @@
         <li>
           <div class="wrapper">
             <div class='has_items_for_sale without_discount'>
-              Купить билет
+              <%= @afisha.title %>
             </div>
 
             <div class="buy_ticket">
-              <%= link_to 'Купить', @afisha.bkz_link, :class => 'flat-btn bkz-link', :rel => :nofollow, :target => '_blank' %>
+              <%= link_to 'Купить билет', @afisha.bkz_link, :class => 'flat-btn bkz-link', :rel => :nofollow, :target => '_blank' %>
             </div>
           </div>
         </li>
