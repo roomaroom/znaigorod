@@ -85,31 +85,41 @@ $main_menu_margin_top: 50px
           > ul
             display: block
 
-      #main_menu_organizations > ul
+      #main_menu_organizations
+        ul
+          width: 229px
 
-        > li
-          position: static
+          > li
+            position: static
 
-          &:hover
+            &:hover
 
-            > a
-              position: relative
+              > a
+                position: relative
 
-              &:before
-                content: ''
-                position: absolute
-                top: 0
-                right: -12px
-                display: block
-                float: right
-                width: 7px
-                height: 24px
-                background: #e8e8e8 image_url('public/expand_menu_arrow.png') no-repeat left center
-                z-index: 10
+                &:before
+                  content: ''
+                  position: absolute
+                  top: 0
+                  right: -12px
+                  display: block
+                  float: right
+                  width: 7px
+                  height: 24px
+                  background: #e8e8e8 image_url('public/expand_menu_arrow.png') no-repeat left center
+                  z-index: 10
 
-          > ul
-            top: 2px
-            left: 176px
+            &.recreation_center
+              ul
+                top: 167px
+
+            &.hotel
+              ul
+                top: 132px
+
+            > ul
+              top: 2px
+              left: 229px
 
       #main_menu_more
         width: 8%

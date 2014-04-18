@@ -15,7 +15,7 @@ SimpleNavigation::Configuration.run do |navigation|
       organization.noindex = true
 
       Organization.suborganization_kinds_for_navigation.drop(1).each do |suborganization_kind|
-        organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path") do |category|
+        organization.item suborganization_kind, I18n.t("organization.kind.#{suborganization_kind}"), send("#{suborganization_kind.pluralize}_path"), :class => suborganization_kind  do |category|
           "#{suborganization_kind.pluralize}_presenter".camelize.constantize.new.categories_links.each do |link|
             category.item "#{suborganization_kind}_#{link[:klass]}", link[:title], send(link[:url]), :link => { :rel => :nofollow }
           end
