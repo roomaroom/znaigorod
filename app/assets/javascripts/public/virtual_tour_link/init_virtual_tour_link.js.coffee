@@ -1,7 +1,7 @@
 @init_virtual_tour_link = () ->
   block = $('.organization_show .virtual_tour_link').click (event) ->
     box_width = '760px'
-    box_height = '700px'
+    box_height = '720px'
     data = "<h1>#{$('.organization_show .center h1:first').text()}</h1>"
     data += "
       <div id='krpano'>
@@ -10,9 +10,10 @@
       </div>
       <div class='ad'>
         <a href='http://tomsk.3dtour.me/' class='3dtourme' rel='nofollow' target='_blank'>
-          <img alt='Изготовление и размещение виртуальных туров' height='69' src='/assets/public/3dtour.png' width='740' />
+          <img alt='Изготовление и размещение виртуальных туров' height='69' src='/assets/public/3dtour.png' width='750' />
         </a>
       </div>"
+
     $.colorbox
       height: box_height
       html: data
@@ -21,6 +22,10 @@
       returnFocus: false
       onComplete: () ->
         init_swfkrpano()
+
+        # хак для банера 3Dtour.me
+        $('#cboxWrapper').css('height', '685px')
+
         true
 
     false
