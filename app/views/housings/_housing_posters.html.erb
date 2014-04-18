@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <ul class='rooms'>
+    <ul class='rooms sauna_halls'>
         <% organization.send(housing).rooms.each do |room| %>
           <li>
             <%= render :partial => 'room', :locals => { :room => RoomDecorator.decorate(room) } %>
