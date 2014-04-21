@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <ul class='sauna_halls'>
+    <ul class='sauna_halls need_scrolling'>
       <% organization.sauna.ordered_sauna_halls.each do |sauna_hall| %>
         <li<%= ' class=non_suitable' unless @presenter.sauna_hall_ids.include?(sauna_hall.id) %>>
           <%= render :partial => 'sauna_hall', :locals => { :sauna_hall => sauna_hall } %>

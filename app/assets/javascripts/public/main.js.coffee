@@ -41,7 +41,7 @@ $ ->
   init_organization_jump_to_afisha() if $('.organization_show').length
   init_more_categories_menu() if $('.filters .more_link').length
   init_sauna_advanced_filter() if $('.filters_wrapper .advanced_filters_toggler').length
-  init_sauna_halls_scroll() if $('.organizations_list .sauna_halls').length
+  init_sauna_halls_scroll() if $('.organizations_list .need_scrolling').length
   init_iconize_info() if $('.organization_show .show_description_link').length
   init_virtual_tour_link() if $('.organization_show .virtual_tour_link').length
   init_review_gallery() if $('.js-gallery, .review_show').length

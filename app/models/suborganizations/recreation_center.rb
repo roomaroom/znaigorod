@@ -20,6 +20,7 @@ class RecreationCenter < ActiveRecord::Base
   # similar code --->
 
   has_many :rooms, :as => :context, :dependent => :destroy
+  has_many :prices, :through => :rooms
 
   include PresentsAsCheckboxes
 
@@ -35,6 +36,10 @@ class RecreationCenter < ActiveRecord::Base
 
   alias_method :sunspot_index, :index
   include SmsClaims
+
+  def ordered_rooms
+    prices.includes(:context).map(&:context).uniq
+  end
 
   def with_rooms?
     rooms.any?

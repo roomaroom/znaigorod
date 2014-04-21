@@ -30,10 +30,10 @@
       </div>
     </div>
 
-    <ul class='rooms sauna_halls'>
-        <% organization.send(housing).rooms.each do |room| %>
+    <ul class='rooms need_scrolling'>
+        <% organization.send(housing).ordered_rooms.each do |room| %>
           <li>
-            <%= render :partial => 'room', :locals => { :room => RoomDecorator.decorate(room) } %>
+            <%= render :partial => 'rooms/room', :locals => { :room => RoomDecorator.decorate(room) } %>
           </li>
         <% end %>
     </ul>
