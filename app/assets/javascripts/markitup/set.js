@@ -14,8 +14,8 @@ mySettings = {
   previewParserPath: '',
   onShiftEnter: { keepDefault: false, replaceWith: '\n\n' },
   markupSet: [
+    { name: 'Заголовок 2', key: '2', openWith: 'h2(!(([![Class]!]))!). ', placeHolder: 'Текст заголовка...', className: 'header_2_button' },
     { name: 'Заголовок 3', key: '3', openWith: 'h3(!(([![Class]!]))!). ', placeHolder: 'Текст заголовка...', className: 'header_3_button' },
-    { name: 'Заголовок 4', key: '4', openWith: 'h4(!(([![Class]!]))!). ', placeHolder: 'Текст заголовка...', className: 'header_4_button' },
     { separator: '-' },
     { name: 'Важно', key: 'B', closeWith: '*', openWith: '*', className: 'strong_button' },
     { name: 'Курсив', key: 'I', closeWith: '_', openWith: '_', className: 'italic_button' },
