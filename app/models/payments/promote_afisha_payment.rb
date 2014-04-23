@@ -21,6 +21,8 @@ class PromoteAfishaPayment < Payment
   end
 
   def create_notification_message
-    NotificationMessage.delay(:queue => 'critical').create(:account => user.account, :kind => :afisha_promoted, :messageable => afisha)
+    if user
+      NotificationMessage.delay(:queue => 'critical').create(:account => user.account, :kind => :afisha_promoted, :messageable => afisha)
+    end
   end
 end
