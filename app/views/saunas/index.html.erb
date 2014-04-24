@@ -3,6 +3,9 @@
 <% content_for :page_title, t('meta.saunas.title') %>
 <% content_for :meta_keywords, t('meta.saunas.keywords') %>
 <% content_for :meta_description, t('meta.saunas.description') %>
+<% content_for :extra_meta do %>
+  <%= render :partial => 'commons/page_meta_og' %>
+<% end if page_meta %>
 
 <div class='presentation_filters sauna'>
   <div class='present_by'>

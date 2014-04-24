@@ -1,3 +1,7 @@
+<% content_for :extra_meta do %>
+  <%= render :partial => 'commons/page_meta_og' %>
+<% end if page_meta %>
+
 <div class='presentation_filters hotel'>
   <div class='filter_header'>
     <% if page_meta %>
@@ -29,3 +33,9 @@
     <%= render :partial => 'housings/housing_posters', :locals => { :housing => :recreation_center } %>
   </ul>
 </div>
+
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
+  </div>
+<% end %>
