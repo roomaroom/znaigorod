@@ -86,6 +86,7 @@ class MovieSyncer
       title.gsub!('Экстремистки. Combat Girls субтитры!', 'Экстремистки. Combat Girls (С субтитрами!)')
       title.gsub!('Окно в лето субтитры!', 'Окно в лето (С субтитрами!)')
       title.gsub!('Семейка вампиров субтитры!', 'Семейка вампиров (С субтитрами!)')
+      title.gsub!('Газгольдер: Фильм', 'Газгольдер')
       Afisha.find_by_title(title) || find_similar_movie_by(title)
     end
 
