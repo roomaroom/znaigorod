@@ -26,15 +26,12 @@
       margin: 10px 0 10px 0
 
       .copies_count
-        background: transparent url(/assets/public/discount_copies.png) no-repeat
+        background: transparent url(/assets/public/discount_copies.png) no-repeat 10px 0
         color: #555
         display: block
         font-size: 11px
-        margin: 0 0 5px 0
-        padding-left: 18px
-        position: absolute
-        right: 5px
-        top: 8px
+        padding: 0 0 0 18px
+        line-height: 20px
 
       .copies
         +background(linear-gradient(top, #fff, #e8e8e8))
@@ -45,7 +42,6 @@
 
         h2
           font-size: 14px
-
 
   .payment
     border: 1px solid #f60
@@ -88,6 +84,14 @@
             top: 45%
             width: 90%
 
+        &.gift
+          strong
+            font-weight: bold
+
+          .profit
+            color: #f60
+            display: inline
+            font-weight: bold
 
     .payment_link,
     a
