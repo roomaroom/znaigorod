@@ -159,7 +159,7 @@ namespace :sync do
           bar.increment!
         end
         puts "Импорт информации от #{date}"
-        MovieSyncer.new(:place => 'GOODWIN CINEMA, кинотетр', :movies => movies).sync
+        MovieSyncer.new(:place => 'GOODWIN CINEMA, кинотеатр', :movies => movies).sync
       else
         Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра 'GOODWIN'")
       end
@@ -282,7 +282,7 @@ namespace :sync do
 end
 
 task :sync => ['sync:goodwin', 'sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
-  organiation_ids = Organization.where(:title => ['GOODWIN CINEMA, кинотетр', '"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
+  organiation_ids = Organization.where(:title => ['GOODWIN CINEMA, кинотеатр', '"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
   bad_showings = Showing.where(:afisha_id => MovieSyncer.finded_movies.map(&:id).uniq).where(:organization_id => organiation_ids).where('starts_at > ?', MovieSyncer.now).where('updated_at <> ?', MovieSyncer.now)
   bad_showings.destroy_all
 end
