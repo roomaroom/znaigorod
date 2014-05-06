@@ -6,6 +6,16 @@ require 'timecop'
 require 'rack'
 require 'airbrake'
 
+class String
+  def is_json?
+    begin
+      !!JSON.parse(self)
+    rescue
+      false
+    end
+  end
+end
+
 class MovieSyncer
   attr_accessor :movies, :place
 
@@ -120,9 +130,42 @@ class MovieSyncer
       end
       similar_cinematheatre.first
     end
+
 end
 
 namespace :sync do
+
+  desc "Sync movie seances from http://goodwincinema.ru"
+  task :goodwin => :environment do
+    [0, 1, 2].each do |day_offset|
+      date = I18n.l(Time.zone.now + day_offset.day, :format => '%d.%m.%Y')
+      url = "http://goodwincinema.ru/schedule/?ajax=1&date=#{date}"
+      response = Curl.get(url).body_str
+      if response.is_json?
+        json = JSON.parse(response.force_encoding('cp1251').encode('utf-8', undef: :replace))
+        movies = {}
+        bar = ProgressBar.new(json['films'].count)
+        json['films'].each do |movie|
+          title = movie['title'].gsub(',&nbsp;', '').gsub(/\(2D|\(3D/, '').gsub(/\d+\+\)/, '').squish
+          movies[title] ||= []
+          movie['halls'].each do |hash|
+            hash['sessions'].each do |session|
+              time = session['time']
+              starts_at = Time.zone.parse("#{date} #{time}")
+              price_min = session['price']
+              movies[title] << {:starts_at => starts_at, :price_min => price_min, :price_max => price_min }
+            end
+          end
+          bar.increment!
+        end
+        puts "Импорт информации от #{date}"
+        MovieSyncer.new(:place => 'GOODWIN CINEMA, кинотетр', :movies => movies).sync
+      else
+        Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра 'GOODWIN'")
+      end
+    end
+  end
+
   desc "Sync movie seances from http://fakel.tomsknet.ru"
   task :fakel => :environment do
     page = Nokogiri::HTML(Curl.get('http://fakel.tomsknet.ru/film_timetable.html').body_str)
@@ -238,8 +281,8 @@ namespace :sync do
   end
 end
 
-task :sync => ['sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
-  organiation_ids = Organization.where(:title => ['"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
+task :sync => ['sync:goodwin', 'sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
+  organiation_ids = Organization.where(:title => ['GOODWIN CINEMA, кинотетр', '"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
   bad_showings = Showing.where(:afisha_id => MovieSyncer.finded_movies.map(&:id).uniq).where(:organization_id => organiation_ids).where('starts_at > ?', MovieSyncer.now).where('updated_at <> ?', MovieSyncer.now)
   bad_showings.destroy_all
 end
