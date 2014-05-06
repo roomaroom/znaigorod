@@ -97,6 +97,7 @@ class MovieSyncer
       title.gsub!('Окно в лето субтитры!', 'Окно в лето (С субтитрами!)')
       title.gsub!('Семейка вампиров субтитры!', 'Семейка вампиров (С субтитрами!)')
       title.gsub!('Газгольдер: Фильм', 'Газгольдер')
+      title.gsub!('Новый Человек-паук. Высокое напряжение', 'Новый Человек-паук: Высокое напряжение')
       Afisha.find_by_title(title) || find_similar_movie_by(title)
     end
 
@@ -137,6 +138,7 @@ namespace :sync do
 
   desc "Sync movie seances from http://goodwincinema.ru"
   task :goodwin => :environment do
+    puts 'GOODWIN: парсинг'
     [0, 1, 2].each do |day_offset|
       date = I18n.l(Time.zone.now + day_offset.day, :format => '%d.%m.%Y')
       url = "http://goodwincinema.ru/schedule/?ajax=1&date=#{date}"
@@ -166,28 +168,28 @@ namespace :sync do
     end
   end
 
-  desc "Sync movie seances from http://fakel.tomsknet.ru"
+  desc "Sync movie seances from http://fakel.net.ru"
   task :fakel => :environment do
-    page = Nokogiri::HTML(Curl.get('http://fakel.tomsknet.ru/film_timetable.html').body_str)
+    url = 'http://fakel.net.ru/cinema/schedule'
+    page = Nokogiri::HTML(Curl.get(url).body_str)
     puts 'Факел: парсинг'
     movies = {}
-    day_nodes = page.css('table tr:nth-child(2) td:nth-child(3) table table')
+    day_nodes = page.css('.av_tab_section')
     bar = ProgressBar.new(day_nodes.count)
     day_nodes.each do |day_node|
       rows = day_node.css('tr').to_a
-      date = rows.shift.text.match(/((\d{2})\.(\d{2})\.(\d{4}))/)[1]
+      date = day_node.css('div.tab').text.match(/((\d{2})\.(\d{2})\.(\d{4}))/)[1]
       rows.each do |seance|
         columns = seance.css('td').map(&:text)
         time = columns[0].match(/((\d{2}):(\d{2}))/)[1]
         starts_at  =  Time.zone.parse("#{date} #{time}")
-        title = columns[1].gsub('(обычный формат)', '')
+        title = columns[1].gsub(/2D|3D/, '').gsub(/\d+\+\)/, '').squish
         price_min = columns[2].to_i
         movies[title] ||= []
         movies[title] << {starts_at: starts_at, price_min: price_min, price_max: price_min }
       end
       bar.increment!
     end
-
     MovieSyncer.new(:place => '"Fакел", развлекательный комплекс', :movies => movies).sync
   end
 
