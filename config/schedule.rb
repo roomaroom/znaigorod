@@ -33,6 +33,10 @@ every :day, :at => '7:25 am' do
   rake 'sync:kinomir'
 end
 
+every :day, :at => '7:30 am' do
+  rake 'sync:goodwin'
+end
+
 every 6.hours do
   rake 'sitemap:refresh refresh_sitemaps'
   rake 'social_likes'
