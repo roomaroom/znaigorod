@@ -82,7 +82,7 @@
             background-color: $title_color
 
           .date
-            color: #fff !important
+            color: $text_color !important
 
         .right
           .wrapper
@@ -928,3 +928,17 @@
   .comments > h3
     color: #fff
 
+
+.volna_content_wrapper
+  +uniq_design(transparent, transparent, rgba(255,255,255, .5), #fff, #aae0fb, #d0edfb, #c0e9fb, #56c4f9, #06c, #222, #56c4f9)
+  +background(image_url('public/volna/logo.png') no-repeat center 0, linear-gradient(top, #56c4f9, #fff))
+  margin: 0 auto
+
+  .volna_logo
+    height: 110px
+
+  .suborganization_info > .title
+    color: #fff
+
+  .comments > h3
+    color: #fff
