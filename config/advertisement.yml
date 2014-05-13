@@ -66,10 +66,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-04-09 15:30'
-      to: '2014-04-10 15:30'
+      from: '2014-05-13 15:30'
+      to: '2014-05-23 18:00'
       content_type: 'afisha'
-      afisha_slug: 'besplatnyy-urok-po-parnym-balnym-tantsam-dlya-semeynyh-par-30'
+      afisha_slug: 'gothic-industrial-party-kontsert-zaboynoy-elektronschiny-v-rokote'
       replaced_count: 1
 
     '1.1':
