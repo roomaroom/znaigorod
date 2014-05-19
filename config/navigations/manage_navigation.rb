@@ -3,11 +3,12 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
-    primary.item :adv_and_seo,     'Реклама и SEO', '#', :highlights_on => ->() { ['page_metas', 'banners', 'place_items'].include?(controller_name) } do |secondary|
-      secondary.item :banners,     'Баннеры',                manage_banners_path
-      secondary.item :page_metas,  'Мета-описания страниц',           manage_page_metas_path
-      secondary.item :place_items, 'Продвигаемые элементы',  manage_place_items_path
-      secondary.item :promotions,  'Рекламные места',        manage_promotions_path
+    primary.item :adv_and_seo,           'Реклама и SEO', '#', :highlights_on => ->() { ['page_metas', 'banners', 'place_items'].include?(controller_name) } do |secondary|
+      secondary.item :banners,           'Баннеры',               manage_banners_path
+      secondary.item :page_metas,        'Мета-описания страниц', manage_page_metas_path
+      secondary.item :place_items,       'Продвигаемые элементы', manage_place_items_path
+      secondary.item :promotions,        'Рекламные места',       manage_promotions_path
+      secondary.item :main_page_reviews, 'Обзоры на главной',     manage_main_page_reviews_path
     end
 
     primary.item :users, 'Пользователи', manage_admin_users_path,

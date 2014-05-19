@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416082031) do
+ActiveRecord::Schema.define(:version => 20140519032018) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -447,6 +447,16 @@ ActiveRecord::Schema.define(:version => 20140416082031) do
 
   add_index "invitations", ["inviteable_id"], :name => "index_invitations_on_inviteable_id"
   add_index "invitations", ["invited_id"], :name => "index_invitations_on_invited_id"
+
+  create_table "main_page_reviews", :force => true do |t|
+    t.integer  "review_id"
+    t.integer  "position"
+    t.datetime "expires_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "main_page_reviews", ["review_id"], :name => "index_main_page_reviews_on_review_id"
 
   create_table "meals", :force => true do |t|
     t.text     "category"
