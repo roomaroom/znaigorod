@@ -22,7 +22,8 @@ $ ->
   init_contest() if $('#contest_og_image').length
   initMyReviews() if $('.review_form').length
   initPromoteAfisha() if $('.promoted_link').length
-  initEditAttachmentDescription() if ('.js-gallery .js-edit-attachment-description').length
+  initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length
+  mainPageReviewsAutocomplete() if $('.js-main_page_reviews_autocomplete').length
 
 $(window).load ->
   init_organization_map() if $('.edit_organization, .new_organization').length

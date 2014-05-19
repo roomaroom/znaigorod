@@ -1,14 +1,22 @@
 <h3>Обзоры на главной странице</h3>
 
-<ul>
+<ul class="main_page_reviews">
   <% @main_page_reviews.each do |main_page_review| %>
     <li>
       <% if main_page_review.review %>
         <% decorated_review = ReviewDecorator.new(main_page_review.review) %>
-          <%= link_to decorated_review.title %>
-          <%= image_tag(decorated_review.annotation_image(100, 100), :size => "100x100") %>
-          <%= link_to 'Закрепить другой обзор', edit_manage_main_page_review_path(main_page_review) %>
-          <%= link_to 'Освободить место', '#' %>
+          <div class="image">
+            <%= image_tag(decorated_review.annotation_image(100, 100), :size => "100x100") %>
+          </div>
+
+          <div>
+            <%= link_to decorated_review.title %>
+          </div>
+
+          <div>
+            <%= link_to 'Закрепить другой обзор', edit_manage_main_page_review_path(main_page_review) %>
+            <%= link_to 'Освободить место', '#' %>
+          </div>
       <% else %>
 
       <% end %>

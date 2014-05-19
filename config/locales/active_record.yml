@@ -302,6 +302,9 @@ ru:
         <<: *common_attributes
         url: Ссылка
 
+      main_page_review:
+        expires_at: Действительно до
+
       culture:
         <<: *common_attributes
 

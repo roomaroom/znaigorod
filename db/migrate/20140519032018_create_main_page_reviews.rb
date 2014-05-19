@@ -1,6 +1,6 @@
 class CreateMainPageReviews < ActiveRecord::Migration
   def create_main_page_review_records
-    4.times { MainPageReview.create! }
+    (1..4).each { |i| MainPageReview.create! :position => i }
   end
 
   def change

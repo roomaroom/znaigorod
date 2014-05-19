@@ -35,6 +35,7 @@
  * = require ./accounts_for_lottery
  * = require ./offers
  * = require ./promote_afisha
+ * = require ./main_page_reviews
  * = require ../public/my_reviews
  * = require ./main
  */
