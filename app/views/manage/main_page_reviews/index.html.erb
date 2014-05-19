@@ -14,11 +14,18 @@
           </div>
 
           <div>
-            <%= link_to 'Закрепить другой обзор', edit_manage_main_page_review_path(main_page_review) %>
-            <%= link_to 'Освободить место', '#' %>
+            Действителен до <%= l main_page_review.expires_at, :format => :long %>
+          </div>
+
+          <div>
+            <%= link_to 'Выбрать другой обзор', edit_manage_main_page_review_path(main_page_review) %>
+            <%= link_to 'Освободить место', manage_main_page_review_path(main_page_review, 'main_page_review[review_id]' => ''), :method => :put %>
           </div>
       <% else %>
-
+        <div>
+          Обзор не выбран
+          <%= link_to 'Выбрать обзор', edit_manage_main_page_review_path(main_page_review) %>
+        </div>
       <% end %>
     </li>
   <% end %>
