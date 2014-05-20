@@ -28,7 +28,13 @@ class PlaceItem < ActiveRecord::Base
 
   private
 
+  def absolute_url?
+    url.include? 'http://'
+  end
+
   def request_url
+    return URI.escape(url) if absolute_url?
+
     path, query = url.split('?')
 
     URI.escape "#{Settings['app.url']}#{path}.promotion?#{query}"
