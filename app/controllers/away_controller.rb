@@ -1,5 +1,7 @@
 class AwayController < ActionController::Base
   def go
-    redirect_to params[:to] || root_path
+    path = request.fullpath.try :gsub, '/away?to=', ''
+
+    redirect_to path || root_path
   end
 end
