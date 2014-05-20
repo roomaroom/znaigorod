@@ -10,4 +10,8 @@ class MainPageReview < ActiveRecord::Base
   scope :used, -> { actual.with_reviews.ordered }
 
   validates :expires_at, :presence => true
+
+  def self.latest_reviews
+    Review.published.order('created_at DESC').where('id NOT IN (?)', used.pluck(:id)).limit(3)
+  end
 end
