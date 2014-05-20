@@ -7,5 +7,7 @@ class MainPageReview < ActiveRecord::Base
   scope :actual, -> { where 'expires_at > ?', Time.zone.now }
   scope :with_reviews, -> { where 'review_id IS NOT NULL' }
 
+  scope :used, -> { actual.with_reviews.ordered }
+
   validates :expires_at, :presence => true
 end

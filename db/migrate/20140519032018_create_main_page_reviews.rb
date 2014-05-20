@@ -1,6 +1,9 @@
 class CreateMainPageReviews < ActiveRecord::Migration
   def create_main_page_review_records
-    (1..4).each { |i| MainPageReview.create! :position => i }
+    (1..4).each do |i|
+      main_page_review = MainPageReview.new(:position => i)
+      main_page_review.save :validate => false
+    end
   end
 
   def change
