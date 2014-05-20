@@ -74,6 +74,94 @@
           margin: 0 10px
           width: 1180px
 
+.reviews_main_page
+  +clearfix
+  margin: 10px
+
+  h1
+    font-size: 22px
+    line-height: 33px
+    margin-bottom: 10px
+
+  .left
+    float: left
+    width: 860px
+    height: 255px
+    position: relative
+    border-top: 1px solid #ccc
+    border-bottom: 1px solid #ccc
+    margin-right: 50px
+    padding: 10px 0
+
+    .reviews
+
+      li
+        position: absolute
+        top: 11px
+        left: 0
+        display: none
+        +clearfix
+
+        &:first-child
+          display: block
+
+      .image
+        float: left
+
+      .stats
+        color: #989898
+        font-size: 12px
+        float: right
+        margin-top: 10px
+
+        span
+          margin-left: 5px
+
+      .categories,
+      .title,
+      .text
+        margin-left: 420px
+
+      .categories
+        color: #989898
+        font-size: 12px
+        margin-top: 10px
+        margin-bottom: 10px
+
+        .date
+          display: inline
+
+      .title
+        font-size: 18px
+        margin-bottom: 10px
+
+      .text
+        font-size: 14px
+
+    .reviews_toggler
+      position: absolute
+      left: 420px
+      bottom: 7px
+
+      li
+        +inline-block
+        margin-right: 2px
+
+        img
+          cursor: pointer
+          +opacity(0.5)
+
+          &.selected
+            cursor: default
+            +opacity(1)
+
+          &:hover
+            +opacity(1)
+
+  .right
+    float: left
+    width: 270px
+
 .webcams_main_page_list
   .filter_header
     margin: 0 0 20px 0

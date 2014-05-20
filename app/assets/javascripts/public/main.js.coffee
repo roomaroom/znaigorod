@@ -20,7 +20,8 @@ $ ->
   init_additional_info()
   init_login()
   init_back_to_top()
-  init_afisha_extend() if $('.afisha_show .photogallery')
+  init_afisha_extend() if $('.afisha_show .photogallery').length
+  init_main_page_reviews() if $('.reviews_main_page .reviews_toggler').length
   init_afisha_extend() if $('.afisha_show .trailer')
   init_afisha_filter() if $('.filters .by_date .daily').length
   init_social_actions() if $('.afisha_show').length
