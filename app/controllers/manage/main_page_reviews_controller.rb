@@ -6,7 +6,7 @@ class Manage::MainPageReviewsController < Manage::ApplicationController
   def index
     @main_page_reviews = MainPageReview.ordered
 
-    search = Review.search { fulltext params[:term] }
+    search = Review.search { fulltext params[:term]; with :state, :published }
     reviews = search.results
 
     respond_to do |format|

@@ -12,6 +12,13 @@ class MainPageReview < ActiveRecord::Base
   validates :expires_at, :presence => true
 
   def self.latest_reviews
-    Review.published.order('created_at DESC').where('id NOT IN (?)', used.pluck(:id)).limit(3)
+    search = Review.search do
+      order_by :created_at, :desc
+      paginate :page => 1, :per_page => 3
+      with :state, :published
+      without used.map(&:review)
+    end
+
+    search.results
   end
 end
