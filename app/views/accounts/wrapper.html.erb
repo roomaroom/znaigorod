@@ -46,7 +46,7 @@
             <%= content_tag :li, "Возраст: #{@account.age}" if @account.birthday? %>
             <%= content_tag :li, "Пол: #{@account.gender.text.mb_chars.downcase}" unless @account.gender == 'undefined' %>
 
-            <% if @account.link_to_social.present? && current_user.is_admin?  %>
+            <% if @account.link_to_social.present? && current_user && current_user.is_admin?  %>
               <li>
                 <%= link_to('Профиль в социальной сети', @account.link_to_social, :rel => 'nofollow', :target => '_blank') %>
                 <%= link_to @account.link_to_social, :rel => 'nofollow', :target => '_blank' do %>
