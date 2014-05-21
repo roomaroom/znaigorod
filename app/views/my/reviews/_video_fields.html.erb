@@ -22,9 +22,7 @@
   </div>
 </div>
 
-<%= f.input :content,
-  :input_html => { :id => 'html', :class => 'description with-preview', :maxlength => 140, :placeholder => 'Коротко опишите добавляемое видео' },
-  :label => 'Описание' %>
+<%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup with-preview' }  %>
 
 <%= content_for :review_preview do %>
   <div class="preview_wrapper">
