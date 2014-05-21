@@ -61,6 +61,7 @@ class Review < ActiveRecord::Base
 
   has_croped_poster min_width: 353, min_height: 199, :default_url => 'public/post_poster_stub.jpg'
 
+  normalize_attribute :title, :with => [:strip, :squish]
   normalize_attribute :categories, :with => :blank_array
 
   searchable do
