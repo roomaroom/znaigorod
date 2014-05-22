@@ -234,6 +234,113 @@
           font-size: 12px
           +inline-block
 
+.news_main_page
+  border-bottom: 1px solid #ccc
+  margin: 10px 10px 20px
+
+  h1
+    font-size: 22px
+    line-height: 33px
+    margin-bottom: 10px
+
+  table
+    width: 100%
+    font-size: 14px
+    margin-bottom: 10px
+
+    th, td
+      text-align: center
+      padding: 7px 5px
+
+      &:first-child
+        padding-left: 0
+
+      &:last-child
+        padding-right: 0
+
+    .left
+      width: 76%
+      text-align: left
+
+      span
+        float: left
+
+      p
+        margin-left: 25px
+
+    .rating
+      width: 4%
+
+    thead
+      .vkontakt
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/vk.png') no-repeat center center
+        margin: 0 auto
+
+      .facebook
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/fb.png') no-repeat center center
+        margin: 0 auto
+
+      .twitter
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/twitter.png') no-repeat center center
+        margin: 0 auto
+
+      .likes
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/like.png') no-repeat center center
+        margin: 0 auto
+
+      .comments
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/comment.png') no-repeat center center
+        margin: 0 auto
+
+      .rating
+        display: block
+        width: 24px
+        height: 24px
+        background: transparent image_url('public/news/rating.png') no-repeat center center
+        margin: 0 auto
+
+      .timestamp
+        font-size: 12px
+
+        ul
+          display: inline
+
+        span,
+        li
+          float: none
+          +inline-block
+
+        li
+          border-right: 1px solid #ccc
+          margin-left: 8px
+          line-height: 21px
+          padding-right: 12px
+
+          &:last-child
+            border-right: none
+
+          &.selected
+            font-size: 18px
+
+            a
+              color: inherit
+              text-decoration: none
+
 .webcams_main_page_list
   .filter_header
     margin: 0 0 20px 0
