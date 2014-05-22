@@ -1,7 +1,5 @@
 class MainPageController < ApplicationController
 
-  caches_action :show, :expires_in => 10.minutes
-
   def show
     advertisement = Advertisement.new(list: 'main_page_afisha')
     @afisha_list          = AfishaPresenter.new(:per_page => 6, :without_advertisement => true, :order_by => 'creation').decorated_collection
