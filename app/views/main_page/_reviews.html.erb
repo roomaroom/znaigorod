@@ -32,7 +32,6 @@
         <% if @decorated_reviews.count > 1 %>
           <ul class='reviews_toggler'>
             <% @decorated_reviews.each_with_index do |decorated_review, index| %>
-              <% puts "'#{decorated_review.title.squish}'" %>
               <li><%= image_tag decorated_review.annotation_image(90, 50),
                 :size => '90x50',
                 :alt => decorated_review.title.squish.text_gilensize,
