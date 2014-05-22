@@ -3,15 +3,15 @@
     <h2><%= link_to t('meta.discount.page_header'), discounts_path %></h2>
   </div>
 
-  <div class="by_type">
-    <ul>
-      <% @discount_filter.type_filter.links.each do |link| %>
-        <li><%= link_to link.title, link.path %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% cache('main_page_discounts', :expires_in => 10.minutes) do %>
+    <div class="by_type">
+      <ul>
+        <% @discount_filter.type_filter.links.each do |link| %>
+          <li><%= link_to link.title, link.path %></li>
+        <% end %>
+      </ul>
+    </div>
 
-  <% cache('main_page_discounts_filters', :expires_in => 10.minutes) do %>
     <div class="filters_wrapper">
       <div class="filters discount">
         <div class="by_kind">
@@ -28,11 +28,12 @@
         </div>
       </div>
     </div>
+
+    <ul class="posters">
+      <% @discounts.each do |discount| %>
+        <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220', :@height => '164' } %>
+      <% end %>
+    </ul>
   <% end %>
 
-  <ul class="posters">
-    <% @discounts.each do |discount| %>
-      <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220', :@height => '164' } %>
-    <% end %>
-  </ul>
 </div>

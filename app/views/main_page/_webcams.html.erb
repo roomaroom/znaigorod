@@ -3,9 +3,12 @@
     <h2><%= link_to t('meta.webcams.page_header'), webcams_path %></h2>
   </div>
 
-  <ul class="posters">
-    <% @webcams.each do |webcam| %>
-      <li><%= render :partial => 'webcams/webcam_poster', :locals => { :webcam => webcam } %></li>
-    <% end %>
-  </ul>
+  <% cache('main_page_webcams', :expires_in => 10.minutes) do %>
+    <ul class="posters">
+      <% @webcams.each do |webcam| %>
+        <li><%= render :partial => 'webcams/webcam_poster', :locals => { :webcam => webcam } %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
 </div>

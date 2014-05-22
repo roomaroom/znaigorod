@@ -23,4 +23,5 @@ class MainPageController < ApplicationController
 
     @decorated_reviews = MainPageReview.used.map { |m| ReviewDecorator.new m.review }
   end
+
 end

@@ -9,7 +9,7 @@
     </ul>
   </div>
 
-  <% cache('main_page_afishas_filters', :expires_in => 10.minutes) do %>
+  <% cache('main_page_afishas', :expires_in => 10.minutes) do %>
     <div class="filters_wrapper">
       <div class="filters afisha">
         <div class="by_kind">
@@ -26,13 +26,14 @@
         </div>
       </div>
     </div>
+
+    <ul class="posters">
+      <% @afisha_list.each do |afisha| %>
+        <li class="item">
+          <%= render partial: (afisha.is_a?(AfishaDecorator) ? 'main_page/afisha_poster' : afisha.partial), :locals => { :afisha => afisha } %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
-  <ul class="posters">
-    <% @afisha_list.each do |afisha| %>
-      <li class="item">
-        <%= render partial: (afisha.is_a?(AfishaDecorator) ? 'main_page/afisha_poster' : afisha.partial), :locals => { :afisha => afisha } %>
-      </li>
-    <% end %>
-  </ul>
 </div>

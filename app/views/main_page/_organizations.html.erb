@@ -9,7 +9,7 @@
     </ul>
   </div>
 
-  <% cache('main_page_organizations_filters', :expires_in => 10.minutes) do %>
+  <% cache('main_page_organizations', :expires_in => 10.minutes) do %>
     <div class="filters_wrapper">
       <div class="filters organization">
         <div class="by_categories">
@@ -26,11 +26,12 @@
         </div>
       </div>
     </div>
+
+    <ul class="posters">
+      <% @organizations.random_collection.each do |organization| %>
+        <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization } %></li>
+      <% end %>
+    </ul>
   <% end %>
 
-  <ul class="posters">
-    <% @organizations.random_collection.each do |organization| %>
-      <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization } %></li>
-    <% end %>
-  </ul>
 </div>

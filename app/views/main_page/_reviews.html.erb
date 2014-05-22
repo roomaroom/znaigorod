@@ -1,64 +1,69 @@
 <% if @decorated_reviews.any? %>
   <div class='reviews_main_page'>
     <h1><%= link_to 'Томск. Обзоры, блоги, мнения', reviews_path %></h1>
-    <div class='left'>
-      <ul class='reviews'>
-        <% @decorated_reviews.each do |decorated_review| %>
-          <li class='review_<%= decorated_review.id %>'>
-            <div class='image'>
-              <%= link_to image_tag(decorated_review.annotation_image(400, 253), :size => '400x253', :alt => decorated_review.title.squish.text_gilensize), decorated_review %>
-            </div>
-            <div class='stats'>
-              <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= decorated_review.comments.count %></span>
-              <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= decorated_review.likes_count %></span>
-              <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= decorated_review.page_visits.count %></span>
-            </div>
-            <div class='categories'>
-              <%= decorated_review.categories.map{ |category| link_to category.text, "/reviews/#{decorated_review.useful_type}/#{category.value}" }.join(', ').html_safe %>
-              &ndash;
-              <%= decorated_review.date %>
-            </div>
-            <div class='title'>
-              <%= link_to decorated_review.title.as_html, decorated_review %>
-            </div>
-            <div class="text">
-              <%= decorated_review.content_for_index %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-      <% if @decorated_reviews.count > 1 %>
-        <ul class='reviews_toggler'>
-          <% @decorated_reviews.each_with_index do |decorated_review, index| %>
-            <% puts "'#{decorated_review.title.squish}'" %>
-            <li><%= image_tag decorated_review.annotation_image(90, 50),
-              :size => '90x50',
-              :alt => decorated_review.title.squish.text_gilensize,
-              :title => decorated_review.title.squish.text_gilensize,
-              :class => index == 0 ? "selected review_#{decorated_review.id}" : "review_#{decorated_review.id}" %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class='right'>
-      <div class='last_reviews_header'>
-        <span class='title'><%= link_to t('meta.reviews.page_header'), reviews_path %></span>
-        <span class='counter'><%= link_to "все #{MainPageReview.latest_reviews.total_count}", reviews_path %></span>
-      </div>
-      <div class='last_reviews_content'>
-        <ul>
-          <% MainPageReview.latest_reviews.map { |review| ReviewDecorator.new review }.each do |decorated_review| %>
-            <li>
+
+    <% cache('main_page_reviews', :expires_in => 10.minutes) do %>
+      <div class='left'>
+        <ul class='reviews'>
+          <% @decorated_reviews.each do |decorated_review| %>
+            <li class='review_<%= decorated_review.id %>'>
               <div class='image'>
-                <%= link_to image_tag(decorated_review.annotation_image(88, 50), :size => '88x50', :alt => decorated_review.title.text_gilensize), decorated_review %>
+                <%= link_to image_tag(decorated_review.annotation_image(400, 253), :size => '400x253', :alt => decorated_review.title.squish.text_gilensize), decorated_review %>
+              </div>
+              <div class='stats'>
+                <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= decorated_review.comments.count %></span>
+                <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= decorated_review.likes_count %></span>
+                <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= decorated_review.page_visits.count %></span>
+              </div>
+              <div class='categories'>
+                <%= decorated_review.categories.map{ |category| link_to category.text, "/reviews/#{decorated_review.useful_type}/#{category.value}" }.join(', ').html_safe %>
+                &ndash;
+                <%= decorated_review.date %>
               </div>
               <div class='title'>
-                <%= link_to truncate(decorated_review.title.text_gilensize, :length => 35), decorated_review, :title => decorated_review.title.text_gilensize %>
+                <%= link_to decorated_review.truncated_title_link(70), decorated_review %>
+              </div>
+              <div class="text">
+                <%= decorated_review.content_for_index %>
               </div>
             </li>
           <% end %>
         </ul>
+        <% if @decorated_reviews.count > 1 %>
+          <ul class='reviews_toggler'>
+            <% @decorated_reviews.each_with_index do |decorated_review, index| %>
+              <% puts "'#{decorated_review.title.squish}'" %>
+              <li><%= image_tag decorated_review.annotation_image(90, 50),
+                :size => '90x50',
+                :alt => decorated_review.title.squish.text_gilensize,
+                :title => decorated_review.title.squish.text_gilensize,
+                :class => index == 0 ? "selected review_#{decorated_review.id}" : "review_#{decorated_review.id}" %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
-    </div>
+
+      <div class='right'>
+        <div class='last_reviews_header'>
+          <span class='title'><%= link_to t('meta.reviews.page_header'), reviews_path %></span>
+          <span class='counter'><%= link_to "все #{MainPageReview.latest_reviews.total_count}", reviews_path %></span>
+        </div>
+        <div class='last_reviews_content'>
+          <ul>
+            <% MainPageReview.latest_reviews.map { |review| ReviewDecorator.new review }.each do |decorated_review| %>
+              <li>
+                <div class='image'>
+                  <%= link_to image_tag(decorated_review.annotation_image(88, 50), :size => '88x50', :alt => decorated_review.title.text_gilensize), decorated_review %>
+                </div>
+                <div class='title'>
+                  <%= link_to truncate(decorated_review.title.text_gilensize, :length => 35), decorated_review, :title => decorated_review.title.text_gilensize %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 <% end %>
