@@ -11,6 +11,12 @@ class ReviewsController < ApplicationController
         render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' }, :layout => false and return if request.xhr?
       }
 
+      format.rss do
+        @presenter = ReviewsPresenter.new(params)
+
+        render :layout => false
+      end
+
       format.promotion {
         presenter = ReviewsPresenter.new(params.merge(:per_page => 5))
 
