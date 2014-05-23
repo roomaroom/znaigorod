@@ -227,11 +227,12 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mainsms_api (0.0.2)
+    mainsms_api (0.0.6)
       active_attr (~> 0.7)
-      activesupport (~> 3.1)
-      hashie (~> 2.0.5)
+      activesupport (>= 3, < 5)
+      hashie (~> 2.0)
       httparty (~> 0.10)
+      signed_parameters
     method_source (0.8.2)
     mime-types (1.25.1)
     mock_redis (0.11.0)
@@ -411,6 +412,8 @@ GEM
       json
       redis (>= 3.0.4)
       redis-namespace
+    signed_parameters (0.0.4)
+      activesupport (>= 2.2.1)
     simple-navigation (3.11.0)
       activesupport (>= 2.3.2)
     simple_form (2.1.1)
