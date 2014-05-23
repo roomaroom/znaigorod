@@ -52,6 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
       more.noindex = true
 
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }, :link => { :rel => :nofollow }
+      more.item :news_of_tomsk, 'Новости Томска', 'http://news.znaigorod.ru', :link => { :rel => :nofollow }
       more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { controller_name == 'webcams' }, :link => { :rel => :nofollow }
       more.item :contests, 'Конкурсы', contests_path, highlights_on: -> { %w[contests works].include? controller_name }, :link => { :rel => :nofollow }
       more.item :services, 'Реклама', services_path, highlights_on: -> { controller_name == 'cooperation' }, :link => { :rel => :nofollow }
