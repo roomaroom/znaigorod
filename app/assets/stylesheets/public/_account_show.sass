@@ -839,6 +839,10 @@
         .title
           height: 20px
 
+        .trash,
+        .edit_button
+          margin-top: 0
+
     .posts_list
       li
         width: 315px
@@ -867,7 +871,6 @@
       float: right
       height: 11px
       margin-right: 10px
-      margin-top: 15px
       width: 18px
 
       &:hover
@@ -878,10 +881,14 @@
       float: right
       height: 11px
       width: 18px
-      margin-top: 15px
 
       &:hover
         background-position: -30px -9px
+
+    .afisha_item
+      .trash,
+      .edit_button
+        margin-top: 15px
 
     .accounts_list
       .badges
@@ -889,7 +896,6 @@
           float: left
           margin-left: 10px
           margin-top: 2px
-
 
       .posters
         +clearfix
@@ -900,6 +906,10 @@
           width: 180px
           &:nth-child(5n)
             margin-right: 0
+
+          .trash,
+          .edit_button
+            margin-top: 4px
 
     .photogallery
       margin: 15px 0 15px 5px
