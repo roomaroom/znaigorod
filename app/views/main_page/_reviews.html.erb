@@ -1,5 +1,5 @@
 <% if @decorated_reviews.any? %>
-  <div class='reviews_main_page<%= ' with_panda' if Time.zone.now > DateTime.parse('2014-06-01T04:00:00+07:00') %>'>
+  <div class='reviews_main_page<%= ' with_panda' if Time.zone.now > DateTime.parse('2014-06-02T04:00:00+07:00') %>'>
     <h1><%= link_to 'Томск. Обзоры, блоги, мнения', reviews_path %></h1>
 
     <% cache('main_page_reviews', :expires_in => 10.minutes) do %>
