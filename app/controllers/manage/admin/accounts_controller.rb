@@ -9,6 +9,8 @@ class Manage::Admin::AccountsController < Manage::ApplicationController
     search = Account.search do
       keywords params[:q]
 
+      order_by :created_at, :desc
+
       paginate paginate_options.merge(:per_page => 20)
     end
 
