@@ -1,0 +1,7 @@
+<h1><%= @account %></h1>
+
+<%= simple_form_for [:manage, :admin, @account] do |f| %>
+  <%= f.input :badge, :as => :check_boxes %>
+
+  <%= f.submit 'Применить' %>
+<% end %>

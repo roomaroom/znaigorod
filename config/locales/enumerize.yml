@@ -34,8 +34,8 @@ ru:
         published: Опубликовано
 
     account:
-      bagde:
-        photo: Фото корреспондент
+      badge:
+        photo_correspondent: Фото корреспондент
 
       gender:
         undefined: Не указан

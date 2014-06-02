@@ -141,6 +141,8 @@ Znaigorod::Application.routes.draw do
     end
 
     namespace :admin do
+      resources :accounts, :only => [:index, :edit, :update]
+
       resources :users
       post "users/mass_update" => 'users#mass_update', :as => 'user/mass_update'
     end

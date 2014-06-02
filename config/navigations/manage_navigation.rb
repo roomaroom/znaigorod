@@ -13,7 +13,9 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :users, 'Пользователи', manage_admin_users_path,
       :highlights_on => ->(){ controller_name == 'users' || resource_class.try(:superclass) == User },
-      :if => -> { can?(:manage, User) }
+      :if => -> { can?(:manage, User) } do |users|
+      users.item :accounts, 'Бейджи', manage_admin_accounts_path
+    end
 
     primary.item :organisations, 'Заведения', manage_organizations_path,
       :highlights_on => ->(){ (controller_name == 'organizations' || resource_class.try(:superclass) == Organization) && namespace != 'crm'},

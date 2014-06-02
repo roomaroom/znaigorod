@@ -1,0 +1,13 @@
+<%= form_tag manage_admin_accounts_path, method: :get do %>
+  <%= text_field_tag :q %>
+
+  <%= submit_tag 'Поиск' %>
+<% end %>
+
+<ul>
+  <% @accounts.each do |account| %>
+    <li><%= link_to account, edit_manage_admin_account_path(account) %></li>
+  <% end %>
+</ul>
+
+<%= paginate @accounts %>
