@@ -8,6 +8,7 @@
       <span class="webcam-icon"></span>
     </a>
 
+    <!--noindex-->
     <div class='dashboard'>
       <% if user_signed_in? %>
         <p class='user'>
@@ -23,13 +24,13 @@
         </p>
         <p class='private'><%= link_to('Личный кабинет', my_root_path) %></p>
         <p class='messages'>
-        <% if current_user.account.private_messages.unread.any? %>
-          <%= link_to "+#{current_user.account.messages.unread.count}", my_dialogs_path, class: :new, title: 'Есть новые соощения' %>
-        <% elsif current_user.account.notification_messages.unread.any? %>
-          <%= link_to "+#{current_user.account.messages.unread.count}", my_notification_messages_path, class: :new, title: 'Есть новые соощения' %>
-        <% else %>
-          <%= link_to current_user.account.messages.count, my_root_path, class: :empty, title: 'Нет новых соощений' %>
-        <% end %>
+          <% if current_user.account.private_messages.unread.any? %>
+            <%= link_to "+#{current_user.account.messages.unread.count}", my_dialogs_path, class: :new, title: 'Есть новые соощения' %>
+          <% elsif current_user.account.notification_messages.unread.any? %>
+            <%= link_to "+#{current_user.account.messages.unread.count}", my_notification_messages_path, class: :new, title: 'Есть новые соощения' %>
+          <% else %>
+            <%= link_to current_user.account.messages.count, my_root_path, class: :empty, title: 'Нет новых соощений' %>
+          <% end %>
         </p>
       <% else %>
         <%= link_to 'Добавить обзор', add_my_reviews_path, class: :my_new_action %>
@@ -39,6 +40,8 @@
         <%= render :partial => 'commons/social_auth' %>
       <% end %>
     </div>
+    <!--/noindex-->
+
     <%= render :partial => 'commons/public_menu' %>
   </div>
 </div>
