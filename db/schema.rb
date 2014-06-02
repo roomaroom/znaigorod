@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140519032018) do
+ActiveRecord::Schema.define(:version => 20140602004918) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20140519032018) do
     t.text     "avatar_url"
     t.date     "birthday"
     t.datetime "last_visit_at"
+    t.text     "badge"
   end
 
   create_table "activities", :force => true do |t|

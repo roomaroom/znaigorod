@@ -10,7 +10,7 @@ class Account < ActiveRecord::Base
   alias_attribute :file_url, :avatar_url
   alias_attribute :to_s,     :title
 
-  attr_accessible :avatar, :birthday, :email,
+  attr_accessible :avatar, :birthday, :email, :bagde,
                   :first_name, :gender, :last_name, :patronymic,
                   :rating, :nickname, :location,
                   :account_settings_attributes,
@@ -66,6 +66,7 @@ class Account < ActiveRecord::Base
   scope :with_site_digest,        -> { includes(:account_settings).where('account_settings.site_digest = ?', true) }
   scope :with_statistics_digest,  -> { includes(:account_settings).where('account_settings.statistics_digest = ?', true) }
 
+  enumerize :badge, :in => [:photo]
   enumerize :gender, :in => [:undefined, :male, :female], :default => :undefined, :predicates => true
 
   normalize_attribute :email, :with => [:strip, :blank]
