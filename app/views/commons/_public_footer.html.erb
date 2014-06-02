@@ -68,6 +68,12 @@
         <span class='inline_block' id='tbec'><script type='text/javascript'>setTimeout('var tbex=document.createElement("SCRIPT");tbex.type="text/javascript";tbex.src="http://c.tbex.ru/z/a!8831!znaigorod.ru!c.js?rev=2"+String.fromCharCode(38)+"rnd="+(new Date().getTime());(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(tbex)',1)</script></span><noscript><img src='http://c.tbex.ru/z/a!8831!znaigorod.ru!c.gif' alt='TBE' /></noscript>
         <!-- /TBE informer -->
 
+        <% if controller_name == 'main_page' %>
+          <a title="Продвижение сайтов" target="_blank" href="http://sozdanie-saitov.tomsk.ru/Prodvizhenie-saytov">
+            <%= image_tag('bbb/sozdanie-saitov.jpg', :height => 33, :width => 66, :alt => "продвижение сайтов томск") %>
+          </a>
+        <% end %>
+
         <!-- begin of Top100 code -->
         <script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2976341"></script>
         <noscript>
@@ -75,11 +81,6 @@
         </noscript>
         <!-- end of Top100 code -->
 
-      <% end %>
-      <% if controller_name == 'main_page' %>
-        <a title="Продвижение сайтов" target="_blank" href="http://sozdanie-saitov.tomsk.ru/Prodvizhenie-saytov">
-          <%= image_tag('bbb/sozdanie-saitov.jpg', :height => 33, :width => 66, :alt => "продвижение сайтов томск") %>
-        </a>
       <% end %>
     </div>
   </div>
