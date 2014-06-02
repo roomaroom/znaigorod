@@ -7,7 +7,7 @@
         <ul class='reviews'>
           <% @decorated_reviews.each do |decorated_review| %>
             <li class='review_<%= decorated_review.id %>'>
-              <div class='image'>
+              <div class='image_without_colorbox'>
                 <%= link_to image_tag(decorated_review.annotation_image(400, 253), :size => '400x253', :alt => decorated_review.title.squish.text_gilensize), decorated_review %>
               </div>
               <div class='stats'>
