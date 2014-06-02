@@ -5,6 +5,9 @@ class Organization < ActiveRecord::Base
   include VkUpload
   include MakePageVisit
 
+  # NOTE: можно будет выпилить после переделывания связки между орг-ями и афишами на многие-ко-многим
+  include Reviews::Flush
+
   extend FriendlyId
 
   attr_accessible :address_attributes, :description, :email, :halls_attributes,

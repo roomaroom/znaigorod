@@ -14,6 +14,9 @@ class Afisha < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
+  # NOTE: можно будет выпилить после переделывания связки между орг-ями и афишами на многие-ко-многим
+  include Reviews::Flush
+
   attr_accessible :description, :poster_url, :image_url, :showings_attributes,
                   :tag, :title, :vfs_path, :affiche_schedule_attributes,
                   :images_attributes, :attachments_attributes,
