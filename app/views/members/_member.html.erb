@@ -1,9 +1,7 @@
 <li>
-  <div class="avatar">
-    <%= link_to account do %>
-      <%= image_tag resized_image_url(account.avatar.url, 35, 35), :size => '35x35', :alt => account %>
-    <% end%>
-  </div>
+  <%= render :partial => 'accounts/avatar',
+    :locals => { :account => account, :width => 35, :height => 35, :title => account } %>
+
   <div class="details">
     <%= link_to(account, account, :class => :name) %>
   </div>

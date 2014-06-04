@@ -2,23 +2,17 @@
   <%= time_ago_in_words(feed_friend.created_at) %> назад
 </div>
 <% if current_user.present? && current_user.account.id == feed_friend.feedable.account_id %>
-  <div class='avatar'>
-    <%= link_to feed_friend.feedable.friendable do %>
-      <%= image_tag(resized_image_url(feed_friend.feedable.friendable.avatar.url, 100, 100),
-                    :size => '100x100', :alt => feed_friend.feedable.friendable.title) %>
-    <% end %>
-  </div>
+  <%= render :partial => 'accounts/avatar',
+    :locals => { :account => feed_friend.feedable.friendable, :width => 100, :height => 100, :title => feed_friend.feedable.friendable } %>
+
   <div class='details'>
     &nbsp;<%= link_to(feed_friend.feedable.friendable.title, feed_friend.feedable.friendable) %>
     <span>&nbsp;<%= t "account.added_to_friends.#{feed_friend.feedable.friendable.gender}" %></span>
   </div>
 <% else %>
-  <div class='avatar'>
-    <%= link_to feed_friend.feedable.account do %>
-      <%= image_tag(resized_image_url(feed_friend.feedable.account.avatar.url, 100, 100),
-                    :size => '100x100', :alt => feed_friend.feedable.account.title) %>
-    <% end %>
-  </div>
+  <%= render :partial => 'accounts/avatar',
+    :locals => { :account => feed_friend.feedable.account, :width => 100, :height => 100, :title => feed_friend.feedable.account } %>
+
   <div class='details'>
     &nbsp;<%= link_to(feed_friend.feedable.account.title, feed_friend.feedable.account) %>
     <span>&nbsp; <%= t "account.added_a_friend.#{feed_friend.feedable.account.gender}" %> </span>

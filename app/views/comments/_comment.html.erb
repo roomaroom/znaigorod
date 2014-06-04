@@ -1,10 +1,9 @@
 <li class='comment_item' id='comment_<%= comment.id %>'>
   <div class='comment_wrapper'>
-    <div class="avatar">
-      <%= link_to comment.account do %>
-        <%= image_tag(resized_image_url(comment.avatar.url, 35, 35), size: '35x35', title: comment.name, alt: comment.name) %>
-      <% end %>
-    </div>
+
+    <%= render :partial => 'accounts/avatar',
+      :locals => { :account => comment.account, :width => 35, :height => 35, :title => comment.account } %>
+
     <div class="user_info">
       <%= link_to comment.name, comment.account, :target => '_blank', :class => 'profile_link' %>,
       <span class="date">

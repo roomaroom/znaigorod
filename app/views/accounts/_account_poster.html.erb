@@ -4,7 +4,10 @@
   </div>
 
   <div class="image">
-    <%= link_to image_tag(resized_image_url(account.avatar.url, 178, 178), size: '178x178', title: account, alt: account), account_path(account) %>
+    <%#= link_to image_tag(resized_image_url(account.avatar.url, 178, 178), size: '178x178', title: account, alt: account), account_path(account) %>
+
+    <%= render :partial => 'accounts/avatar',
+      :locals => { :account => account, :width => 178, :height => 178, :title => account.title } %>
 
     <% if account.last_visit_at? %>
       <a href="<%= account_path(account) %>">

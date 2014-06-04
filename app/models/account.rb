@@ -67,7 +67,7 @@ class Account < ActiveRecord::Base
   scope :with_statistics_digest,  -> { includes(:account_settings).where('account_settings.statistics_digest = ?', true) }
 
   serialize :badge, Array
-  enumerize :badge, :in => [:photo_correspondent], :multiple => true
+  enumerize :badge, :in => [:photo_correspondent], :multiple => true, :predicates => true
   enumerize :gender, :in => [:undefined, :male, :female], :default => :undefined, :predicates => true
 
   normalize_attribute :email, :with => [:strip, :blank]

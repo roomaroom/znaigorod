@@ -1,11 +1,9 @@
 <ul class='avatars'>
   <% @visits.each do |visit| %>
     <li>
-      <div class="avatar">
-        <%= link_to visit.user.account do %>
-          <%= image_tag resized_image_url(visit.user.account.avatar.url, 35, 35), :size => '35x35', :alt => visit.user.account %>
-        <% end%>
-      </div>
+      <%= render :partial => 'accounts/avatar',
+        :locals => { :account => visit.user.account, :width => 35, :height => 35, :title => visit.user.account } %>
+
       <div class="details">
         <%= link_to(visit.user.account, visit.user.account, :class => :name) %>
         <div class="wanted">

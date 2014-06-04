@@ -1,0 +1,11 @@
+<% size = width.to_i > 100 ? 'big' : 'small' %>
+
+<div class="avatar-wrapper">
+  <%= link_to account do %>
+    <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title %>
+
+    <% if account.photo_correspondent? %>
+      <span class='badge badge-<%= size %> badge-photo-correspondent' title="<%= Hash[Account.badge.options].invert['photo_correspondent'] %>"></span>
+    <% end %>
+  <% end %>
+</div>

@@ -16,8 +16,10 @@
 
     <div class="left">
       <div class="image">
-        <%= @account.image(200, 200) %>
+        <%= render :partial => 'accounts/avatar',
+          :locals => { :account => @account, :width => 200, :height => 200, :title => @account } %>
       </div>
+
 
       <div class="social_actions">
         <% if current_user.nil? || (current_user.account != @account.model) %>
