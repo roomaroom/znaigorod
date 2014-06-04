@@ -1,3 +1,6 @@
+@disableAvatarWrapperLinkClick = ->
+  $('.avatar-wrapper a').click -> false
+
 @init_poster = () ->
   poster = $('.content .left .image a img')
   return true if poster.hasClass('stub')

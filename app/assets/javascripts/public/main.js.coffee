@@ -94,6 +94,7 @@ $ ->
   handleWorkAddition() if $('.new_work', '.upload_work_wrapper').length
   handleBanners() if $('.banners_wrapper').length
 
+  disableAvatarWrapperLinkClick() if $('.avatar-wrapper').length
 
   true
 
