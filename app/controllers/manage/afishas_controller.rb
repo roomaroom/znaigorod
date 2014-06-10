@@ -144,7 +144,7 @@ class Manage::AfishasController < Manage::ApplicationController
   def russian_date_convert(str)
     day, month, year = str.split(' ')
     I18n.t('date.common_month_names').compact.each_with_index do |item, index|
-      month = index + 1 if item == month
+      month = index + 1 if item == month.mb_chars.downcase
     end
     I18n.l(DateTime.parse([year, month, day].join('-')))
   end
