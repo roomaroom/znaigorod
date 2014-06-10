@@ -88,7 +88,7 @@ class Manage::AfishasController < Manage::ApplicationController
     description += "|премьера (мир)|#{movie.premiere_world}|\n" if movie.premiere_world.present?
     description += "|премьера (РФ)|#{movie.premiere_ru}|\n" if movie.premiere_ru.present?
     description += "|возраст|#{movie.minimal_age}|\n" if movie.minimal_age.present?
-    description += "|время|#{movie.duration}|\n"
+    description += "|время|#{movie.duration}|\n" if movie.duration.present?
     description += "|в главных ролях|#{movie.actors.join(', ')}|\n\n"
     description += movie.description
     hash = {}
