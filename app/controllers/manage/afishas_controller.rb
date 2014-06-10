@@ -64,7 +64,9 @@ class Manage::AfishasController < Manage::ApplicationController
   def movies_from_kinopoisk
     render :text => 'title param not present!', :layout => false, :status => 500 and return if params[:title].blank?
     require 'kinopoisk_parser'
-    results = Kinopoisk::Search.new params[:title]
+    results = Rails.cache.fetch("movies_from_kinopoisk_#{params[:title].gsub(/\s+/, '_')}", :expires_in => 1.day) do
+      Kinopoisk::Search.new params[:title]
+    end
     @movies = results.movies.map{ |movie| { movie.id => movie.title } }
     render :layout => false
   end
@@ -72,7 +74,9 @@ class Manage::AfishasController < Manage::ApplicationController
   def movie_info_from_kinopoisk
     render :text => 'movie id param not present!', :layout => false, :status => 500 and return if params[:movie_id].blank?
     require 'kinopoisk_parser'
-    movie = Kinopoisk::Movie.new(params[:movie_id].to_i)
+    movie = Rails.cache.fetch("movie_info_from_kinopoisk_#{params[:movie_id]}", :expires_in => 1.day) do
+      Kinopoisk::Movie.new(params[:movie_id].to_i)
+    end
     description = ""
     description += "|год|#{movie.year}|\n"
     description += "|страна|#{movie.countries.join(', ')}|\n"
@@ -144,7 +148,7 @@ class Manage::AfishasController < Manage::ApplicationController
   def russian_date_convert(str)
     day, month, year = str.split(' ')
     I18n.t('date.common_month_names').compact.each_with_index do |item, index|
-      month = index + 1 if item == month.mb_chars.downcase
+      month = index + 1 and return if item == month.mb_chars.downcase
     end
     I18n.l(DateTime.parse([year, month, day].join('-')))
   end
