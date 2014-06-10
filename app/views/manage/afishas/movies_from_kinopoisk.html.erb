@@ -1,0 +1,6 @@
+<ul class='movies'>
+  <li>Загрузить информацию о фильме:</li>
+  <% @movies.each do |movie| %>
+    <li><%= link_to movie.values.join, manage_movie_info_from_kinopoisk_path(movie.keys.join) %></li>
+  <% end %>
+</ul>

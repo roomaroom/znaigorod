@@ -40,7 +40,8 @@ group :default do
   gem 'inherited_resources',        '1.4.1'
   gem 'jquery-rails',               '2.0.3'
   gem 'kaminari'
-  gem 'koala', "~> 1.7.0rc1"
+  gem 'kinopoisk_parser',           :require => false
+  gem 'koala',                      '~> 1.7.0rc1'
   gem 'mainsms_api'
   gem 'nested_form'
   gem 'omniauth-facebook'
@@ -51,8 +52,8 @@ group :default do
   gem 'omniauth-vkontakte',         '~> 1.3'
   gem 'omniauth-yandex'
   gem 'openteam-commons'
-  gem 'paperclip-elvfs'
   gem 'paperclip'
+  gem 'paperclip-elvfs'
   gem 'pg'
   gem 'progress_bar'
   gem 'rack-utf8_sanitizer'

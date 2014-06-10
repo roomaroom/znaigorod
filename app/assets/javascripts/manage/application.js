@@ -36,6 +36,7 @@
  * = require ./offers
  * = require ./promote_afisha
  * = require ./main_page_reviews
+ * = require ./kinopoisk
  * = require ../public/my_reviews
  * = require ./main
  */

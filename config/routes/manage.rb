@@ -49,6 +49,7 @@ Znaigorod::Application.routes.draw do
 
       delete 'destroy_image', :on => :member, :as => :destroy_image
 
+
       resources :ponominalu_tickets
 
       resources :gallery_files,  :except => [:index, :show] do
@@ -64,6 +65,9 @@ Znaigorod::Application.routes.draw do
 
     get "/afisha" => "afishas#index", :as => :afisha_index, :controller => 'afishas'
     get "/afisha/:id" => "afishas#show", :as => :afisha_show, :controller => 'afishas'
+
+    get '/movies_from_kinopoisk' => 'afishas#movies_from_kinopoisk', :as => :movies_from_kinopoisk
+    get '/movie_info_from_kinopoisk/:movie_id' => 'afishas#movie_info_from_kinopoisk', :as => :movie_info_from_kinopoisk
 
     resources :contests do
       resources :works, :except => [:index, :show]

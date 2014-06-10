@@ -61,6 +61,47 @@ class Manage::AfishasController < Manage::ApplicationController
     }
   end
 
+  def movies_from_kinopoisk
+    render :text => 'title param not present!', :layout => false, :status => 500 and return if params[:title].blank?
+    require 'kinopoisk_parser'
+    results = Kinopoisk::Search.new params[:title]
+    @movies = results.movies.map{ |movie| { movie.id => movie.title } }
+    render :layout => false
+  end
+
+  def movie_info_from_kinopoisk
+    render :text => 'movie id param not present!', :layout => false, :status => 500 and return if params[:movie_id].blank?
+    require 'kinopoisk_parser'
+    movie = Kinopoisk::Movie.new(params[:movie_id].to_i)
+    description = ""
+    description += "|год|#{movie.year}|\n"
+    description += "|страна|#{movie.countries.join(', ')}|\n"
+    description += "|слоган|#{movie.slogan}|\n" if movie.slogan.gsub('-', '').present?
+    description += "|режиссер|#{movie.directors.join(', ')}|\n" if movie.directors.delete_if{|v| v == '-'}.compact.any?
+    description += "|сценарий|#{movie.writers.join(', ')}|\n" if movie.writers.delete_if{|v| v == '-'}.compact.any?
+    description += "|продюсер|#{movie.producers.join(', ')}|\n" if movie.producers.delete_if{|v| v == '-'}.compact.any?
+    description += "|оператор|#{movie.operators.join(', ')}|\n" if movie.operators.delete_if{|v| v == '-'}.compact.any?
+    description += "|композитор|#{movie.composers.join(', ')}|\n" if movie.composers.delete_if{|v| v == '-'}.compact.any?
+    description += "|художник|#{movie.art_directors.join(', ')}|\n" if movie.art_directors.delete_if{|v| v == '-'}.compact.any?
+    description += "|монтаж|#{movie.editors.join(', ')}|\n" if movie.editors.delete_if{|v| v == '-'}.compact.any?
+    description += "|жанр|#{movie.genres.join(', ')}|\n" if movie.genres.delete_if{|v| v == '-'}.compact.any?
+    description += "|премьера (мир)|#{movie.premiere_world}|\n" if movie.premiere_world.present?
+    description += "|премьера (РФ)|#{movie.premiere_ru}|\n" if movie.premiere_ru.present?
+    description += "|возраст|#{movie.minimal_age}|\n" if movie.minimal_age.present?
+    description += "|время|#{movie.duration}|\n"
+    description += "|в главных ролях|#{movie.actors.join(', ')}|\n\n"
+    description += movie.description
+    hash = {}
+    hash.merge!({ :title => movie.title })
+    hash.merge!({ :original_title => movie.title_en })
+    hash.merge!({ :poster => movie.poster_big })
+    hash.merge!({ :description => description })
+    hash.merge!({ :tags => "кино, #{movie.genres.join(', ')}" })
+    hash.merge!({ :premiere => russian_date_convert(movie.premiere_ru) }) if movie.premiere_ru.present?
+    hash.merge!({ :minimal_age => movie.minimal_age.scan(/\d+/).join })
+    render :json => hash.to_json
+  end
+
   protected
 
   def collection
@@ -98,5 +139,13 @@ class Manage::AfishasController < Manage::ApplicationController
     old_build_resource.tap do |object|
       object.user = current_user
     end
+  end
+
+  def russian_date_convert(str)
+    day, month, year = str.split(' ')
+    I18n.t('date.common_month_names').compact.each_with_index do |item, index|
+      month = index + 1 if item == month
+    end
+    I18n.l(DateTime.parse([year, month, day].join('-')))
   end
 end

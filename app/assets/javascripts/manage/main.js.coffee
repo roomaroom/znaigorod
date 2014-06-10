@@ -24,6 +24,7 @@ $ ->
   initPromoteAfisha() if $('.promoted_link').length
   initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length
   mainPageReviewsAutocomplete() if $('.js-main_page_reviews_autocomplete').length
+  init_kinopoisk() if $('form.new_afisha, form.edit_afisha')
 
 $(window).load ->
   init_organization_map() if $('.edit_organization, .new_organization').length

@@ -67,6 +67,27 @@
       +clearfix
       margin: 0 0 15px 0
 
+      &.hidden
+        display: none
+
+      &.kinopoisk_links
+        margin-left: 185px
+
+        a
+          +inline-block
+
+          &.busy
+            color: #999
+
+            &:hover
+              color: #999
+
+            &:after
+              content: '...'
+
+        .has_error
+          color: #FF0000
+
       .error
         color: #FF0000
         display: block
