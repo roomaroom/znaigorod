@@ -89,8 +89,8 @@ class Manage::AfishasController < Manage::ApplicationController
     description += "|художник|#{movie.art_directors.join(', ')}|\n" if movie.art_directors.delete_if{|v| v == '-'}.compact.any?
     description += "|монтаж|#{movie.editors.join(', ')}|\n" if movie.editors.delete_if{|v| v == '-'}.compact.any?
     description += "|жанр|#{movie.genres.join(', ')}|\n" if movie.genres.delete_if{|v| v == '-'}.compact.any?
-    description += "|премьера (мир)|#{movie.premiere_world}|\n" if movie.premiere_world.present?
-    description += "|премьера (РФ)|#{movie.premiere_ru}|\n" if movie.premiere_ru.present?
+    description += "|премьера (мир)|#{movie.premiere_world.gsub(/3D\z/, '')}|\n" if movie.premiere_world.present?
+    description += "|премьера (РФ)|#{movie.premiere_ru.gsub(/3D\z/, '')}|\n" if movie.premiere_ru.present?
     description += "|возраст|#{movie.minimal_age}|\n" if movie.minimal_age.present?
     description += "|время|#{movie.duration}|\n" if movie.duration.present?
     description += "|в главных ролях|#{movie.actors.join(', ')}|\n\n"
@@ -101,7 +101,7 @@ class Manage::AfishasController < Manage::ApplicationController
     hash.merge!({ :poster => movie.poster_big })
     hash.merge!({ :description => description })
     hash.merge!({ :tags => "кино, #{movie.genres.join(', ')}" })
-    hash.merge!({ :premiere => russian_date_convert(movie.premiere_ru) }) if movie.premiere_ru.present?
+    hash.merge!({ :premiere => russian_date_convert(movie.premiere_ru.gsub(/3D\z/, '')) }) if movie.premiere_ru.present?
     hash.merge!({ :minimal_age => movie.minimal_age.scan(/\d+/).join })
     render :json => hash.to_json
   end
