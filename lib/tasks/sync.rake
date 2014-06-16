@@ -139,7 +139,7 @@ namespace :sync do
 
   desc "Sync movie seances from http://goodwincinema.ru"
   task :goodwin => :environment do
-    puts 'GOODWIN: парсинг'
+    puts 'Goodwin cinema: парсинг'
     [0, 1, 2].each do |day_offset|
       date = I18n.l(Time.zone.now + day_offset.day, :format => '%d.%m.%Y')
       url = "http://goodwincinema.ru/schedule/?ajax=1&date=#{date}"
@@ -162,9 +162,9 @@ namespace :sync do
           bar.increment!
         end
         puts "Импорт информации от #{date}"
-        MovieSyncer.new(:place => 'GOODWIN CINEMA, кинотеатр', :movies => movies).sync
+        MovieSyncer.new(:place => 'Goodwin cinema, кинотеатр', :movies => movies).sync
       else
-        Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра 'GOODWIN'")
+        Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра 'Goodwin cinema'")
       end
     end
   end
@@ -285,7 +285,7 @@ namespace :sync do
 end
 
 task :sync => ['sync:goodwin', 'sync:fakel', 'sync:kinomax', 'sync:kinomir'] do
-  organiation_ids = Organization.where(:title => ['GOODWIN CINEMA, кинотеатр', '"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
+  organiation_ids = Organization.where(:title => ['Goodwin cinema, кинотеатр', '"Fакел", развлекательный комплекс', 'Киномакс, кинотеатр', 'Киномир, кинотеатр']).map(&:id)
   bad_showings = Showing.where(:afisha_id => MovieSyncer.finded_movies.map(&:id).uniq).where(:organization_id => organiation_ids).where('starts_at > ?', MovieSyncer.now).where('updated_at <> ?', MovieSyncer.now)
   bad_showings.destroy_all
 end
