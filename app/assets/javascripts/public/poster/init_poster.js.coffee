@@ -4,7 +4,7 @@
 @init_poster = () ->
   poster = $('.content .left .image a img')
   return true if poster.hasClass('stub')
-  return true if poster.parents().find('.avatar-wrapper')
+  return true if poster.parents().find('.avatar-wrapper').length
 
   poster.each (index, item) ->
     $(item).closest('a').colorbox
