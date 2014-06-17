@@ -4,6 +4,16 @@ Znaigorod::Application.routes.draw do
   mount Affiches::API => '/'
   mount Mobile::API => '/'
 
+  get '/afisha_tomsk_segodnya' => 'afishas#index', :as => :afisha_today, :defaults => { :period => 'today' }, :constraints => { :period => 'today' }
+  get '/afisha',
+    :constraints => -> (req) { req.query_parameters['period'] == 'today' },
+    :to => redirect { |path_params, req|
+      params = req.query_parameters.dup
+      params.delete('period')
+
+      params.any? ? "/afisha_tomsk_segodnya?#{params.to_query}" : '/afisha_tomsk_segodnya'
+    }
+
   get "/afisha/bilety" => 'afishas#index', :as => :afisha_with_tickets_index, :defaults => {:has_tickets => true}
 
   resources :afisha, :only => :show, :controller => 'afishas' do
@@ -34,7 +44,6 @@ Znaigorod::Application.routes.draw do
     :constraints => lambda {|request| request.fullpath !~ /^\/afisha\/bilety/ }
 
   get '/affiches', :to => redirect('/afisha')
-
 
   Afisha.kind.values.map(&:pluralize).each do |kind|
     get "/#{kind}",

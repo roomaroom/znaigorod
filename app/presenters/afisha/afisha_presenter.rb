@@ -53,6 +53,7 @@ class AfishaPresenter
       str << "_index_path"
     end
   end
+
   def direct_url
     "".tap do |str|
       str << "#{(categories_filter.selected.first.try(:pluralize) || 'afisha')}"
@@ -129,14 +130,17 @@ class AfishaPresenter
   def periods_links
     @periods_links ||= [].tap { |array|
       @period_filter.available_period_values.each do |period_value|
+        link_url = period_value == 'today' ? 'afisha_today_path' : url
+
         array << {
           title: (@period_filter.daily? && period_value == 'daily') ? I18n.l(@period_filter.date, format: '%d %B').gsub(/^0/, '') : I18n.t("afisha_periods.#{period_value}"),
-          url: url,
+          url: link_url,
           class: period_value,
           parameters: url_parameters(period: period_value),
           selected: period_value == @period_filter.period
         }
       end
+
       array.insert(0, {
           title: 'Все',
           url: url,
@@ -151,9 +155,11 @@ class AfishaPresenter
   def sortings_links
     @sortings_links ||= [].tap { |array|
       @sorting_filter.available_sortings_values.each do |sorting_value|
+        link_url = @period_filter.today? ? 'afisha_today_path' : url
+
         array << {
           title: I18n.t("afisha.sort.#{sorting_value}"),
-          url: url,
+          url: link_url,
           parameters: url_parameters(order_by: sorting_value),
           selected: @sorting_filter.order_by == sorting_value
         }
