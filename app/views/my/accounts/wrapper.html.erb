@@ -3,7 +3,9 @@
   <div class="left_wrapper">
     <div class="left">
       <div class="image">
-        <%= image_tag(resized_image_url(current_user.account.avatar.url, 200, 200, :watermark => false), size: '200x200', alt: current_user.account.title) %>
+        <%= render :partial => 'accounts/avatar',
+          :locals => { :account => @account, :width => 200, :height => 200, :title => @account.title, :url => '#', :clickable => false } %>
+
         <%= link_to "Изменить фото", my_gallery_images_path() %>
       </div>
       <div class="properties">

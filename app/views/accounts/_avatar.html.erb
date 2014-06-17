@@ -1,6 +1,8 @@
 <% size = width.to_i > 100 ? 'big' : 'small' %>
 
-<div class="avatar-wrapper">
+<% clickable_class = local_assigns[:clickable] == false ? 'non-clickable-avatar js-non-clickable-avatar' : '' %>
+
+<div class="avatar-wrapper <%= clickable_class %>">
   <% url = local_assigns[:url] ? url : account %>
 
   <%= link_to url do %>

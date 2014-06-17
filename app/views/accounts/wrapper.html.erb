@@ -15,9 +15,9 @@
   <div class="left_wrapper">
 
     <div class="left">
-      <div class="image">
+      <div class="image account-avatar">
         <%= render :partial => 'accounts/avatar',
-          :locals => { :account => @account, :width => 200, :height => 200, :title => @account.title, :url => '#' } %>
+          :locals => { :account => @account, :width => 200, :height => 200, :title => @account.title, :url => '#', :clickable => false } %>
       </div>
 
       <div class="social_actions">
