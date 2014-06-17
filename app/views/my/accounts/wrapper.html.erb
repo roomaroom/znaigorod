@@ -4,7 +4,7 @@
     <div class="left">
       <div class="image">
         <%= render :partial => 'accounts/avatar',
-          :locals => { :account => @account, :width => 200, :height => 200, :title => @account.title, :url => '#', :clickable => false } %>
+          :locals => { :account => current_user.account, :width => 200, :height => 200, :title => current_user.account.title, :url => '#', :clickable => false } %>
 
         <%= link_to "Изменить фото", my_gallery_images_path() %>
       </div>
