@@ -49,6 +49,12 @@
   <% if @presenter.collection.any? %>
     <ul class='posters'>
       <%= render :partial => 'organizations/organizations_posters' %>
+
+      <% if @presenter.paginated_collection.current_page == 1 %>
+        <li class="google-ads-item">
+          <%= render :partial => 'commons/ads_by_google' %>
+        </li>
+      <% end %>
     </ul>
   <% else %>
     <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
@@ -56,6 +62,7 @@
 </div>
 
 <%= paginate @presenter.paginated_collection %>
+
 
 <% if page_meta %>
   <div class='introduction'>
