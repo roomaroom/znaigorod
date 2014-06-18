@@ -67,7 +67,7 @@ class Manage::AfishasController < Manage::ApplicationController
     results = Rails.cache.fetch("movies_from_kinopoisk_#{params[:title].gsub(/\s+/, '_')}", :expires_in => 1.day) do
       Kinopoisk::Search.new params[:title]
     end
-    @movies = results.movies.map{ |movie| { movie.id => movie.title } }
+    @movies = results.movies.map{ |movie| { movie.id => "#{movie.title} [#{movie.year}]" } }
     render :layout => false
   end
 
