@@ -267,7 +267,7 @@ module OrganizationsPresenter
 
   private
 
-  def searcher(per_page_count = per_page)
+  def searcher(per_page_count = @per_page)
     @searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page_count)
       s.send("order_by_#{order_by}")
