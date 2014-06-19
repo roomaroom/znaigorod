@@ -11,7 +11,7 @@
 
   <% if current_user.present? && current_user.account_id == review.account_id %>
     <div class='type'>
-      <%= t "account.rated.#{feed_vote_review_article.feedable.account.gender}" %> обзор
+      нравится обзор
     </div>
   <% else %>
     <div class='avatar'>
