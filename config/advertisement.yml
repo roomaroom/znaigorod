@@ -111,11 +111,11 @@ main_page_discounts:
       content_type: 'discount'
       discount_slug: 'podbor-sauny-po-vashemu-zhelaniyu'
       replaced_count: 1
-    '1.2':
-      from: '2014-02-13 14:30'
-      to: '2014-02-14 14:30'
+    '1.1':
+      from: '2014-06-19 18:30'
+      to: '2014-06-20 18:30'
       content_type: 'discount'
-      discount_slug: 'rozygrysh-abonementov-na-mesyats-besplatnyh-zanyatiy-v-fitnes-tsentre-i-podarochnyh-sertifikatov'
+      discount_slug: 'skidka-na-prokat-velosipedov'
       replaced_count: 1
     '1.3':
       from: '2014-01-15 12:30'
