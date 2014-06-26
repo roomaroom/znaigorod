@@ -59,6 +59,10 @@ class Review < ActiveRecord::Base
 
   friendly_id :title, :use => :slugged
 
+  def normalize_friendly_id(string)
+    I18n.l(created_at, :format => '%Y-%m') + '/' + super
+  end
+
   has_croped_poster min_width: 353, min_height: 199, :default_url => 'public/post_poster_stub.jpg'
 
   normalize_attribute :title, :with => [:strip, :squish]

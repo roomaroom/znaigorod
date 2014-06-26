@@ -1,7 +1,4 @@
 class ReviewsController < ApplicationController
-  inherit_resources
-  actions :index, :show
-
   def index
     respond_to do |format|
       format.html {
@@ -26,7 +23,19 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = ReviewDecorator.new Review.published.find(params[:id])
+    # /reviews/:year-:month/:id support
+    review = Review.published.find_by_slug(params[:id])
+
+    unless review
+      review = Review.published.find_by_old_slug(params[:id])
+
+      redirect_to review_path(review) and return if review
+
+      raise ActiveRecord::RecordNotFound
+    end
+
+    @review = ReviewDecorator.new(review)
+
     respond_to do |format|
       format.html {
         @presenter = ReviewsPresenter.new(params.merge(:category => @review.categories.map(&:value).first, :type => @review.useful_type))
@@ -36,6 +45,7 @@ class ReviewsController < ApplicationController
 
         @review.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
       }
+
       format.promotion {
         render :partial => 'promotions/review', :locals => { :decorated_review => @review }
       }

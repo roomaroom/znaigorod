@@ -76,6 +76,19 @@ Znaigorod::Application.routes.draw do
     end
   end
 
+  # /reviews/:year-:month/:id support
+  ([Review.name.underscore] + Review.descendant_names).map(&:pluralize).each do |type|
+    get  "/#{type}/*review_id/comments/new" => 'comments#new'
+    get  "/#{type}/*review_id/comments/:id" => 'comments#show'
+
+    post "/#{type}/*review_id/comments" => 'comments#create'
+
+    get  "/#{type}/*id" => 'reviews#show', :as => type.singularize
+
+    put "/#{type}/*review_id/change_vote" => 'votes#change_vote'
+  end
+
+
   # /reviews/[auto|beauty|sport|...]
   Review.categories.values.each do |category|
     get "reviews/#{category}" => 'reviews#index', :constraints => { :category => category }, :defaults => { :category => category }
