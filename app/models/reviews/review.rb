@@ -79,6 +79,7 @@ class Review < ActiveRecord::Base
 
     string :state
     string(:category, :multiple => true) { categories.map(&:value) }
+    string(:search_kind) { 'review' }
     string(:type) { useful_type }
 
     text :content,        :boost => 0.1 * 1.2

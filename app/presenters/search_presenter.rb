@@ -71,7 +71,7 @@ class KindFilter
   end
 
   def self.available_kind_values
-    %w[all afisha organization discount post account address]
+    %w[all afisha organization discount review account address]
   end
 
   def available_kind_values
