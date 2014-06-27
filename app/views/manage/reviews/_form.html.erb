@@ -4,7 +4,7 @@
 
 <%= simple_form_for @review,
   :as => :review,
-  :url => manage_review_path(@review),
+  :url => manage_review_path(@review.id),
   :html => { :class => "my_review_form default_simple_form review_#{@review.useful_type}_form" } do |f| %>
 
   <%= hidden_field_tag :type, @review.useful_type %>
