@@ -18,7 +18,7 @@ class My::ReviewsController < My::ApplicationController
   def update
     update! do |success, failure|
       success.html {
-        redirect_to params[:crop] ? poster_edit_my_review_path(resource) : my_review_path(resource)
+        redirect_to params[:crop] ? poster_edit_my_review_path(resource.id) : my_review_path(resource.id)
       }
 
       failure.html {
@@ -35,11 +35,11 @@ class My::ReviewsController < My::ApplicationController
 
   def download_album
     download_album! do
-      redirect_to my_review_path(@review) and return if params[:album_url].blank?
+      redirect_to my_review_path(@review.id) and return if params[:album_url].blank?
 
       @review.download_album(params[:album_url])
 
-      redirect_to images_add_my_review_path(@review) and return
+      redirect_to images_add_my_review_path(@review.id) and return
     end
   end
 
@@ -47,14 +47,14 @@ class My::ReviewsController < My::ApplicationController
     @review = current_user.account.reviews.draft.find(params[:id])
     @review.to_published!
 
-    redirect_to review_path(@review), :notice => "Обзор «#{@review.title}» опубликован."
+    redirect_to review_path(@review.id), :notice => "Обзор «#{@review.title}» опубликован."
   end
 
   def send_to_draft
     @review = current_user.account.reviews.published.find(params[:id])
     @review.to_draft!
 
-    redirect_to my_review_path(@review), :notice => "Обзор «#{@review.title}» возвращен в черновики."
+    redirect_to my_review_path(@review.id), :notice => "Обзор «#{@review.title}» возвращен в черновики."
   end
 
   def available_linked_with
@@ -95,7 +95,7 @@ class My::ReviewsController < My::ApplicationController
 
   def resource_url
     @review.is_a?(ReviewPhoto) ?
-      images_add_my_review_path(@review) :
-      my_review_path(@review)
+      images_add_my_review_path(@review.id) :
+      my_review_path(@review.id)
   end
 end

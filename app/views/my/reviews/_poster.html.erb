@@ -1,5 +1,5 @@
 <div class="title">
-  <%= link_to review.title, my_review_path(review) %>
+  <%= link_to review.title, my_review_path(review.id) %>
 </div>
 
 <div class="details">
@@ -15,7 +15,7 @@
 </div>
 
 <div class="actions">
-  <%= link_to '', my_review_path(review), :class => 'show_tipsy icon-edit', :title => 'Редактировать' %>
-  <%= link_to '', my_review_path(review), :class => 'show_tipsy icon-trash', :method => :delete, :title => 'Удалить',
+  <%= link_to '', my_review_path(review.id), :class => 'show_tipsy icon-edit', :title => 'Редактировать' %>
+  <%= link_to '', my_review_path(review.id), :class => 'show_tipsy icon-trash', :method => :delete, :title => 'Удалить',
     :confirm => 'Вы уверены? Обзор будет удален без возможности восстановления' %>
 </div>

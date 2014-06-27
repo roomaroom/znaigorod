@@ -4,7 +4,12 @@
       <%= image_tag resized_image_url(image.file_url, 230, 172), :size => '230x172', :alt => image.description %>
     <% end %>
     <div>
-      <%= link_to '', [:my, review, image], :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить' %>
+      <% if review.is_a?(ReviewDecorator) %>
+        <%= link_to '', send("my_#{review.model.class.name.underscore}_#{image.class.name.underscore}_path", review.id, image), :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить' %>
+      <% else %>
+        <%= link_to '', send("my_#{review.class.name.underscore}_#{image.class.name.underscore}_path", review.id, image), :method => :delete, :remote => true, :class => 'ajax_delete icon-trash show_tipsy', :title => 'Удалить' %>
+      <% end %>
+
       <%= link_to image.to_s, edit_my_attachment_path(image),
         :remote => true,
         :class => 'attachment-description js-edit-attachment-description',
