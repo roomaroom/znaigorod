@@ -1,0 +1,6 @@
+<%= simple_form_for @webanketa, :url => @webanketa.new_record? ? manage_review_webanketas_path(@review.id) : manage_review_webanketa_path(@review.id, @webanketa)  do |f| %>
+  <%= f.input :text %>
+  <%= f.input :expires_at, :as => :datetime_picker %>
+
+  <%= f.submit 'Сохранить' %>
+<% end %>

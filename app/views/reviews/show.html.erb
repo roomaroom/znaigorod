@@ -26,6 +26,8 @@
 
   <%= render :partial => 'review', :locals => { :review => @review } %>
 
+  <%= render @review.webanketas.actual %>
+
   <% content_for :zg_like_with_vk_share do %>
     <!-- ZG Like -->
     <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @review } %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140626052712) do
+ActiveRecord::Schema.define(:version => 20140626092636) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1218,6 +1218,17 @@ ActiveRecord::Schema.define(:version => 20140626052712) do
 
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
   add_index "votes", ["voteable_id"], :name => "index_votes_on_voteable_id"
+
+  create_table "webanketas", :force => true do |t|
+    t.text     "text"
+    t.datetime "expires_at"
+    t.integer  "context_id"
+    t.string   "context_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "webanketas", ["context_id"], :name => "index_webanketas_on_context_id"
 
   create_table "webcams", :force => true do |t|
     t.string   "kind"

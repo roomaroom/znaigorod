@@ -37,6 +37,8 @@ class Review < ActiveRecord::Base
   has_many :messages,              :as => :messageable,    :dependent => :destroy
   has_many :page_visits,           :as => :page_visitable, :dependent => :destroy
   has_many :votes,                 :as => :voteable,       :dependent => :destroy
+  has_many :webanketas,            :as => :context,        :dependent => :destroy
+
   has_many :users,                 :through => :account
 
   has_one  :feed, :as => :feedable, :dependent => :destroy

@@ -17,6 +17,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'afisha',        'afisha'
   inflect.irregular 'sms',           'smses'
+  inflect.irregular 'webanketa',     'webanketas'
 
   inflect.singular 'address',        'address'
   inflect.singular 'afisha',         'afisha'

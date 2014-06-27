@@ -1,0 +1,15 @@
+<div>
+  Текст
+  <p>
+    <%= @webanketa.text %>
+  </p>
+</div>
+
+<div>
+  Истекает
+  <%= l @webanketa.expires_at %>
+</div>
+
+<%= link_to 'К обзору', manage_review_path(@review.id) %>
+<%= link_to 'Править', edit_manage_review_webanketa_path(@review.id, @webanketa) %>
+<%= link_to 'Удалить', manage_review_webanketa_path(@review.id, @webanketa), :method => :delete, :confirm => 'Вы уверены?' %>

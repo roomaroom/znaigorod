@@ -42,7 +42,9 @@ Znaigorod::Application.routes.draw do
       resources :gallery_images, :except => [:index, :show] do
         delete 'destroy_file', :on => :member, :as => :destroy_file
       end
+
       resources :gallery_social_images, :only => [:edit, :update, :destroy]
+      resources :webanketas, :except => :index
 
       get 'poster/edit' => 'reviews#edit_poster',       :on => :member
       get 'images/add'  => 'reviews#add_images',        :on => :member
@@ -53,8 +55,9 @@ Znaigorod::Application.routes.draw do
     # TODO: Used at app/views/manage/gallery_images/_gallery_image.html.erb:5
     Review.descendant_names.each do |name|
       resources name, :only => :show do
-        resources :gallery_images, :only => :destroy
+        resources :gallery_images,        :only => :destroy
         resources :gallery_social_images, :only => [:edit, :update, :destroy]
+        resources :webanketas,            :except => :index
       end
     end
   end
