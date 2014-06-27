@@ -1,7 +1,7 @@
 <li>
-  <strong>Заголовок и описание</strong> можно <%= link_to 'отредактировать', edit_my_review_path(@review) %>.
+  <strong>Заголовок и описание</strong> можно <%= link_to 'отредактировать', edit_my_review_path(@review.id) %>.
 </li>
 <li>
   В качестве <strong>постера</strong> для используется кадр из видео.
-  Также можно <%= link_to 'изменить постер', poster_edit_my_review_path(@review) %>.
+  Также можно <%= link_to 'изменить постер', poster_edit_my_review_path(@review.id) %>.
 </li>

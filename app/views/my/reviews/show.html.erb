@@ -6,34 +6,34 @@
       <div class="to_right">
         <% if @review.draft? %>
           <% if @review.ready_for_publication? %>
-            <%= link_to t('my.send_to_public'), publish_my_review_path(@review), :method => :put, :class => 'btn btn-orange btn-lg change_state',
+            <%= link_to t('my.send_to_public'), publish_my_review_path(@review.id), :method => :put, :class => 'btn btn-orange btn-lg change_state',
               :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
           <% else %>
             <%= link_to t('my.send_to_public'), '#', :class => 'btn btn-grey btn-lg change_state disabled', :disabled => :disabled %>
           <% end %>
 
-          <%= link_to poster_edit_my_review_path(@review), :class => 'button change_poster', :title => 'Изменить постер' do %>
+          <%= link_to poster_edit_my_review_path(@review.id), :class => 'button change_poster', :title => 'Изменить постер' do %>
             <span></span>
           <% end %>
 
-          <%= link_to edit_my_review_path(@review), :class => 'button change_post', :title => 'Редактировать пост' do %>
+          <%= link_to edit_my_review_path(@review.id), :class => 'button change_post', :title => 'Редактировать пост' do %>
             <span></span>
           <% end %>
 
-          <%= link_to my_review_path(@review), :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
+          <%= link_to my_review_path(@review.id), :method => :delete, :class => 'button remove_post', :title => 'Удалить пост',
             :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' do %>
             <span></span>
           <% end %>
 
         <% else %>
-          <%= link_to 'В черновики', draft_my_review_path(@review), :method => :put, :class => 'button change_state',
+          <%= link_to 'В черновики', draft_my_review_path(@review.id), :method => :put, :class => 'button change_state',
             :confirm => 'Вы уверены? После подтверждения обзор будет недоступен пользователям сайта!' %>
 
           <%= link_to '#', :class => 'button change_poster', :title => 'Изменить постер' do %>
             <span></span>
           <% end %>
 
-          <%= link_to edit_my_review_path(@review), :class => 'button change_post', :title => 'Редактировать пост' do %>
+          <%= link_to edit_my_review_path(@review.id), :class => 'button change_post', :title => 'Редактировать пост' do %>
             <span></span>
           <% end %>
         <% end %>
