@@ -16,7 +16,7 @@ class Manage::ReviewsController < Manage::ApplicationController
   def update
     update! do |success, failure|
       success.html {
-        redirect_to params[:crop] ? poster_edit_manage_review_path(resource) : manage_review_path(resource)
+        redirect_to params[:crop] ? poster_edit_manage_review_path(resource.id) : manage_review_path(resource.id)
       }
 
       failure.html {
@@ -28,14 +28,14 @@ class Manage::ReviewsController < Manage::ApplicationController
   def send_to_published
     send_to_published!{
       @review.to_published!
-      redirect_to manage_review_path(@review), :notice => "Обзор «#{@review.title}» опубликован." and return
+      redirect_to manage_review_path(@review.id), :notice => "Обзор «#{@review.title}» опубликован." and return
     }
   end
 
   def send_to_draft
     send_to_draft!{
       @review.to_draft!
-      redirect_to manage_review_path(@review), :notice => "Обзор «#{@review.title}» возвращен в черновики." and return
+      redirect_to manage_review_path(@review.id), :notice => "Обзор «#{@review.title}» возвращен в черновики." and return
     }
   end
 
