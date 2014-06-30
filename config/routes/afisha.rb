@@ -99,4 +99,5 @@ Znaigorod::Application.routes.draw do
 
     get 'newyears' => 'afishas#index', :as => "newyears_index", :defaults => { :categories => ['newyear'], :hide_categories => true }
     get 'newyears/bilety', :to => redirect('/afisha/bilety')
+    post 'similar_afishas' => 'similar_afishas#index', :as => 'similar_afishas'
 end

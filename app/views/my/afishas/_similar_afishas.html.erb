@@ -1,0 +1,16 @@
+<h1>Обратите внимание! Возможно такая запись уже существует</h1>
+
+<ul>
+  <% @afishas.each do |afisha| %>
+    <li>
+      <div class="similar_afisha_wrapper">
+        <div class="similar_afisha_image">
+          <%= afisha.poster_with_link(194, 260) %>
+        </div>
+        <div class="similar_afisha_link">
+          <%= afisha.truncated_title_link(20) %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

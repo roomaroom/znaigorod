@@ -1,6 +1,8 @@
 HasSearcher.create_searcher :showings do
   models :showing
 
+  keywords :q
+
   # facets
   scope :facets do
     facet(:tags, limit: 500, sort: :index)
