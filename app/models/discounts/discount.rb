@@ -166,6 +166,14 @@ class Discount < ActiveRecord::Base
   def free?
     price? ? price.zero? : true
   end
+
+  def can_be_deleted?
+    return false if copies.where('copies.state IN (?)', [:reserved, :sold]).any?
+
+    return false if Time.zone.now > created_at + 3.hours
+
+    false
+  end
 end
 
 # == Schema Information

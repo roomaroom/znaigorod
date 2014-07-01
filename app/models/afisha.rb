@@ -361,9 +361,9 @@ class Afisha < ActiveRecord::Base
   end
 
   def can_be_deleted?
-    return false if Time.zone.now > created_at + 3.hours
-
     return false if tickets.joins(:copies).where('copies.state IN (?)', [:reserved, :sold]).any?
+
+    return false if Time.zone.now > created_at + 3.hours
 
     true
   end
