@@ -63,7 +63,9 @@ class Ability
       end
 
       can [:destroy, :send_to_published], Afisha do |afisha|
-        afisha.draft? && afisha.user == user
+        afisha.draft? &&
+          afisha.user == user &&
+          afisha.can_be_deleted?
       end
 
       can [:send_to_draft], Afisha do |afisha|

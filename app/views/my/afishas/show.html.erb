@@ -59,7 +59,10 @@
               <% else %>
                 <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
               <% end %>
-              <%= link_to t('my.destroy'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' %>
+
+              <% if @afisha.can_be_deleted? %>
+                <%= link_to t('my.destroy'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' %>
+              <% end %>
             <% end %>
           <% else %>
             <h2><%= t("enumerize.afisha.state.#{@afisha.state}") %></h2>

@@ -360,6 +360,16 @@ class Afisha < ActiveRecord::Base
     self.versions.create!(:body => self.changes.to_json(:except => ignore_fields))
   end
 
+  def can_be_deleted?
+    return false if Time.zone.now > created_at + 3.hours
+
+    return false if ponominalu_tickets.any?
+
+    return false if tickets.any?
+
+    true
+  end
+
   # >>>>>>>>>>>> Poster to VK >>>>>>>>>>>
   def check_poster_changed?
     version = JSON.parse(self.versions.last.body) if self.versions.any?
