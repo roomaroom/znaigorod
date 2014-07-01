@@ -42,6 +42,6 @@
     <% end %>
   </div>
 
-  <div class='place'><%= afisha.afisha_place(23, nil) %></div>
+  <div class='place'><%= afisha.afisha_place(:length => 23, :separator => nil) %></div>
   <div class='human_when'><%= afisha.human_when ? afisha.human_when : "&nbsp;".html_safe %></div>
 </div>

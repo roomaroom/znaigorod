@@ -19,7 +19,7 @@ module Affiches
           AfishaDecorator.new(model).human_price.gsub(/\u00AD+/,'')
       end
 
-      expose(:place) { |model, options| AfishaDecorator.new(model).afisha_place(256, ' ', false) }
+      expose(:place) { |model, options| AfishaDecorator.new(model).afisha_place(:length => 256, :separator => ' ', :only_path => false) }
     end
   end
 

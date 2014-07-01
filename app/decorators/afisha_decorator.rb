@@ -19,16 +19,19 @@ class AfishaDecorator < ApplicationDecorator
     tags
   end
 
-  def truncated_title_link(length, options = { separator: ' ', anchor: nil })
+  def truncated_title_link(length, options = {})
+    separator = options.delete(:separator) || ' '
+    anchor = options.delete(:anchor)
+
     if afisha.title.length > length
-      h.link_to(afisha.title.truncated(length, options[:separator]), h.afisha_show_path(afisha, anchor: options[:anchor]), :title => afisha.title)
+      h.link_to(afisha.title.truncated(length, separator), h.afisha_show_path(afisha, anchor: anchor), options.merge(:title => afisha.title))
     else
-      h.link_to(afisha.title, h.afisha_show_path(afisha, anchor: options[:anchor]))
+      h.link_to(afisha.title, h.afisha_show_path(afisha, anchor: anchor), options)
     end
   end
 
-  def poster_with_link(width, height)
-    h.link_to h.afisha_show_path(afisha) do
+  def poster_with_link(width, height, options = {})
+    h.link_to h.afisha_show_path(afisha), options do
       if afisha.poster_url.present?
         h.image_tag(h.resized_image_url(afisha.poster_url, width, height, { crop: '!', orientation: 'n' }), size: "#{width}x#{height}", alt: afisha.title)
       else
@@ -37,7 +40,13 @@ class AfishaDecorator < ApplicationDecorator
     end
   end
 
-  def afisha_place(length = 45, separator = ' ', only_path = true)
+  def afisha_place(options = {})
+    length = options.delete(:length) || 45
+    separator = options.delete(:separator) || ' '
+
+    only_path_value = options.delete(:only_path)
+    only_path = only_path_value.nil? ? true : only_path_value
+
     max_lenght = length
     place_output = ""
     places.each_with_index do |place, index|
@@ -47,7 +56,7 @@ class AfishaDecorator < ApplicationDecorator
       place_title = place_title.truncate(max_lenght, :separator => separator)
       max_lenght -= place_title.size
       if place.organization
-        place_output += h.link_to place_title.text_gilensize, h.organization_path(place.organization, :only_path => only_path), :title => place_link_title.text_gilensize
+        place_output += h.link_to(place_title.text_gilensize, h.organization_path(place.organization, :only_path => only_path), options.merge(:title => place_link_title.text_gilensize))
       else
         place_output += place_link_title.blank? ? place_title.text_gilensize : h.content_tag(:abbr, place_title.text_gilensize, :title => place_link_title.text_gilensize)
       end

@@ -257,17 +257,103 @@
 
   .similar_afishas
     position: absolute
-    top: 50%
-    right: 20%
+    top: 25%
+    right: 24%
     z-index: 9999
-    height: 400px
-    width: 580px
-    border: 1px solid black
+    min-height: 500px
+    width: 480px
+    border: 2px solid #ccc
     display: none
 
-    .similar_afisha_wrapper
-      width: 50%
-      display: inline-block
+    &:after, &:before
+      right: 100%
+      top: 28%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      pointer-events: none
+
+    &:after
+      border-color: rgba(136, 183, 213, 0)
+      border-right-color: white
+      border-width: 30px
+      margin-top: -30px
+
+    &:before
+      border-color: rgba(194, 225, 245, 0)
+      border-right-color: #ccc
+      border-width: 33px
+      margin-top: -33px
+
+    p
+      text-align: center
+      font-size: 15px
+      margin: 10px 0 10px 0
+
+    .bottom_info
+      .confirm
+        font-size: 15px
+        margin: -10px 0 10px
+
+      .buttons
+        button
+          border: 0px
+          padding: 7px
+          width: 70px
+          cursor: pointer
+
+      .yes
+        background-color: #FF9B23
+        margin-right: 7px
+
+        &:hover
+          background-color: #FF6600
+      .no
+        background-color: #E9E9E9
+
+        &:hover
+          background-color: #CDCDCD
+
+    .item
+      +inline-block
+      +transition(all 750ms ease-out)
+      border: 1px solid #ccc
+      height: 352px
+      margin: 0 8px 25px 8px
+      position: relative
+      width: 198px
+
+
+      .image
+        height: 260px
+        margin: 2px 0 0 2px
+        position: relative
+        width: 194px
+
+      .title
+        border-bottom: 1px dashed #ccc
+        display: table-cell
+        font-size: 11px
+        height: 44px
+        line-height: 18px
+        margin: 0
+        min-height: 45px
+        padding: 0 10px
+        vertical-align: middle
+        width: 200px
+
+
+      .place
+        font-size: 11px
+        margin: 5px 10px 0 10px
+        max-height: 16px
+
+      .human_when
+        font-size: 11px
+        margin: 2px 10px 3px 10px
+
 
   /* form styles */
 
