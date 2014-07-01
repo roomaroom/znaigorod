@@ -1,7 +1,9 @@
 HasSearcher.create_searcher :showings do
   models :showing
 
-  keywords :q
+  keywords :q do
+    fields :afisha_title
+  end
 
   # facets
   scope :facets do
