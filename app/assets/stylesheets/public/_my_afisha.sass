@@ -256,10 +256,8 @@
     float: left
 
   .similar_afishas
-    position: absolute
-    top: 25%
-    right: 24%
-    z-index: 9999
+    position: relative
+    float: left
     min-height: 500px
     width: 480px
     border: 2px solid #ccc
@@ -267,7 +265,7 @@
 
     &:after, &:before
       right: 100%
-      top: 28%
+      top: 32%
       border: solid transparent
       content: " "
       height: 0
@@ -298,10 +296,9 @@
         margin: -10px 0 10px
 
       .buttons
-        button
+        button, a
           border: 0px
-          padding: 7px
-          width: 70px
+          padding: 10px 25px 10px 25px
           cursor: pointer
 
       .yes
@@ -312,6 +309,8 @@
           background-color: #FF6600
       .no
         background-color: #E9E9E9
+        text-decoration: none
+        color: black
 
         &:hover
           background-color: #CDCDCD

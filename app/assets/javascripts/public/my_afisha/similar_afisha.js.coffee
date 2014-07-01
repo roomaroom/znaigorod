@@ -14,3 +14,8 @@ $ ->
         else
           $('.similar_afishas').hide()
           $('.preview').show()
+
+
+  $('body').on 'click', '.yes', ->
+    $('.preview').show()
+    $('.similar_afishas').hide()
