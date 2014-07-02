@@ -47,7 +47,7 @@ class My::ReviewsController < My::ApplicationController
     @review = current_user.account.reviews.draft.find(params[:id])
     @review.to_published!
 
-    redirect_to review_path(@review.id), :notice => "Обзор «#{@review.title}» опубликован."
+    redirect_to review_path(@review.slug), :notice => "Обзор «#{@review.title}» опубликован."
   end
 
   def send_to_draft
