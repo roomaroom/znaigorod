@@ -39,6 +39,12 @@ class Review < ActiveRecord::Base
   has_many :votes,                 :as => :voteable,       :dependent => :destroy
   has_many :webanketas,            :as => :context,        :dependent => :destroy
 
+  # Relations
+  has_many :relations, :as => :master, :dependent => :destroy
+  has_many :afishas,       :through => :relations, :source => :slave, :source_type => Afisha
+  has_many :organizations, :through => :relations, :source => :slave, :source_type => Organization
+  has_many :reviews,       :through => :relations, :source => :slave, :source_type => Review
+
   has_many :users,                 :through => :account
 
   has_one  :feed, :as => :feedable, :dependent => :destroy
