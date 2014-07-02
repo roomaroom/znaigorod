@@ -110,7 +110,7 @@ class Ability
       can [:help, :new, :create, :index], Discount if user.persisted?
 
       can [:show, :edit, :update, :destroy, :poster], Discount do |discount|
-        discount.account == user.account
+        discount.account == user.account && discount.can_be_deleted?
       end
 
       can :send_to_published, Discount do |discount|

@@ -51,6 +51,10 @@
         <% end %>
       </div>
     </div>
+  <% else %>
+    <div class="publication-warning afisha">
+      <%= link_to t('my.send_to_draft'), draft_my_afisha_path(@afisha), :method => :put, :class => 'flat-btn btn-orange btn-lg floatr', :confirm => 'Вы уверены? После подтверждения афиша будет недоступна пользователям сайта!' %>
+    </div>
   <% end %>
 
     <div class='left'>
@@ -67,8 +71,6 @@
         <% end %>
         <%= link_to 'изменить', edit_step_my_afisha_path(@afisha, step: :second) if can? :edit, @afisha %>
       </div>
-
-
     </div>
 
     <div class='right'>
