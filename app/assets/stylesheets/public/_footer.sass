@@ -1,4 +1,4 @@
-$font-size: 14px
+$font-size: 12px
 .footer_wrapper
   +clearfix
   background-color: #e8e8e8
@@ -6,6 +6,7 @@ $font-size: 14px
 
   .footer
     +liquid-size($desktop_min_width, $desktop_max_width)
+    +fixed-size
     +clearfix
     margin-top: 10px
     margin-bottom: 10px
@@ -13,11 +14,13 @@ $font-size: 14px
 
     .menu
       height: 400px
-      width: 100%
+      +liquid-size($desktop_min_width, $desktop_max_width)
+      +fixed-size
+      +clearfix
 
       > ul
         float: left
-        width: 75%
+        width: 100%
 
         > li
           position: relative
@@ -25,7 +28,7 @@ $font-size: 14px
           width: 16%
 
           > a
-            font-size: 14px
+            font-size: 12px
             font-weight: bold
             color: black
             text-transform: uppercase
@@ -59,7 +62,7 @@ $font-size: 14px
       li
         a
           font-weight: bold
-          font-size: 14px
+          font-size: 12px
           text-transform: uppercase
 
   .our_social_link
@@ -117,7 +120,7 @@ $font-size: 14px
 
   .vk-widget
     float: right
-    height: 275px
-    width: 330px
-    margin-top: -279px
+    height: 230px
+    width: 265px
+    margin-top: -320px
     border: 1px solid #424242
