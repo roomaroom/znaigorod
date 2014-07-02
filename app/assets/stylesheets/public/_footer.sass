@@ -1,3 +1,4 @@
+$font-size: 15px
 .footer_wrapper
   +clearfix
   background-color: #e8e8e8
@@ -5,65 +6,114 @@
 
   .footer
     +liquid-size($desktop_min_width, $desktop_max_width)
-    +fixed-size
     +clearfix
     margin-top: 10px
     margin-bottom: 10px
 
-    .contacts
-      float: right
-      margin-right: 10px
-      width: 440px
 
-      h5
-        font-size: 14px
-        margin-bottom: 5px
+    .menu
+      height: 400px
+      width: 100%
 
-    .our_social_link
-      float: left
-      +clearfix
-      margin-left: 10px
-      margin-bottom: 10px
+      > ul
+        float: left
+        width: 100%
 
-      h5
-        font-size: 14px
+        > li
+          position: relative
+          float: left
+          width: 16%
+
+          > a
+            font-size: 17px
+            font-weight: bold
+            color: black
+            text-transform: uppercase
+
+          > ul
+            margin-top: 15px
+
+            > li
+              a
+                font-weight: normal
+                font-size: 15px
+                color: black
+
+              > ul
+                display: none
+
+  #main_menu_recreation_center, #main_menu_news_of_tomsk
+    display: none
+
+  .disabled
+    display: none
+
+  #main_menu_more
+    width: 20%
+    margin-top: -10px
+    ul
+      li
+        a
+          font-weight: bold
+          font-size: 17px
+          text-transform: uppercase
+
+  .our_social_link
+    float: left
+    +clearfix
+    margin-bottom: 10px
+
+    h5
+      font-size: 14px
+      +inline-block
+      margin-right: 5px
+
+    ul
+      +inline-block
+
+      li
         +inline-block
+        width: 16px
+        height: 16px
         margin-right: 5px
 
-      ul
-        +inline-block
-
-        li
-          +inline-block
+        a
+          display: block
           width: 16px
           height: 16px
-          margin-right: 5px
+          text-indent: -9999em
+          font-size: $font-size
+          background: transparent image_url('public/our_social_link.png') no-repeat 0 0
 
-          a
-            display: block
-            width: 16px
-            height: 16px
-            text-indent: -9999em
-            background: transparent image_url('public/our_social_link.png') no-repeat 0 0
+        &.vk a
+          background-position: 0 0
+        &.fb a
+          background-position: -16px 0
+        &.odnoklassniki a
+          background-position: -32px 0
+        &.twitter a
+          background-position: -48px 0
 
-          &.vk a
-            background-position: 0 0
-          &.fb a
-            background-position: -16px 0
-          &.odnoklassniki a
-            background-position: -32px 0
-          &.twitter a
-            background-position: -48px 0
+  .contacts
+    +clearfix
+    font-size: $font-size
+    float: left
 
-    .counters
-      float: left
-      clear: left
-      margin-left: 10px
+  .counters
+    float: left
+    margin-top: -10px
+    margin-left: 70px
 
-      a, img
-        +inline-block
-        margin-right: 5px
+    a, img
+      +inline-block
+      margin-right: 5px
 
-      .rambler_counter, .allbest_counter
-        border: 0
+    .rambler_counter, .allbest_counter
+      border: 0
 
+  .vk-widget
+    float: right
+    height: 275px
+    width: 330px
+    margin-top: -279px
+    border: 1px solid #424242
