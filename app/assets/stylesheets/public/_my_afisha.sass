@@ -171,58 +171,6 @@
     border: 1px solid #ccc
     margin: 0 0 10px 0
 
-  .left .public_action
-    +background(linear-gradient(top, #ffffff, #e8e8e8))
-    padding: 10px
-
-    h4
-      font-size: 12px
-
-    p
-      margin: 10px 0
-
-    .requirements
-      margin-bottom: 10px
-
-      li
-        padding: 0 0 0 20px
-        margin-bottom: 5px
-
-        &.enabled
-          background: image_url('public/afisha_step_filled.png') no-repeat left center
-          font-weight: bold
-
-        &.disabled
-          background: image_url('public/afisha_step_unfilled.png') no-repeat 3px center
-
-    a.enabled,
-    a.disabled
-      font-size: 12px
-      +inline-block
-      +button_style
-      padding: 3px 15px 4px
-
-      &:active
-        padding: 4px 15px 3px
-
-    a.disabled
-      cursor: default
-      +background(linear-gradient(top, #ccc, #999))
-      border-color: #999
-
-      &:hover
-        +background(linear-gradient(top, #ccc, #999))
-        +text-shadow(none)
-
-      &:active
-        +background(linear-gradient(top, #ccc, #999))
-        +text-shadow(none)
-        padding: 3px 15px 4px
-
-    a.destroy
-      +inline-block
-      margin-left: 5px
-
   .afisha_show
     .left
       .image
@@ -713,12 +661,41 @@
 .publication-warning
   +clearfix
   background: #feebda
-  margin: 15px 0 0 0
   padding: 10px 15px
 
-  h2, a
-    +inline-block
+  &.afisha
+    margin: 0 0 15px 0
+
+  &.review
+    margin: 15px 0 0 0
+
+    h2, a
+      +inline-block
 
   h2
     margin: 0 !important
+    font-size: 16px !important
     line-height: 34px
+
+  .requirements
+    margin: 0
+    float: left
+
+    li
+      font-size: 13px
+      line-height: 24px
+
+      &.enabled
+
+        span
+          font-weight: bold
+
+        .fa:before
+          color: #029896
+
+      &.not-enabled
+        .fa:before
+          color: #fe6600
+
+  .actions
+    margin: 64px 0 0 0

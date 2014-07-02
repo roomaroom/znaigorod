@@ -12,6 +12,47 @@
 
   <div class='afisha_show'>
 
+  <% if @afisha.draft? %>
+    <div class="publication-warning afisha">
+      <h2>Для того, чтобы опубликовать созданное мероприятие, необходимо заполнить следующие поля:</h2>
+
+      <ul class="requirements">
+        <%= content_tag(:li, content_tag(:span, ' Название заполнено', :class => 'fa fa-check'), :class => 'enabled') if @afisha.title? %>
+        <%= content_tag(:li, content_tag(:span, ' Описание заполнено', :class => 'fa fa-check'), :class => 'enabled') if @afisha.description? %>
+
+        <% if @afisha.poster_url.present? %>
+          <%= content_tag(:li, content_tag(:span, ' Постер добавлен', :class => 'fa fa-check'), :class => 'enabled') %>
+        <% else %>
+          <li class="not-enabled">
+            <span class="fa fa-times"> Нет постера</span>
+            <%= link_to ' Добавить постер', edit_step_my_afisha_path(@afisha, :step => :second) if can? :edit, @afisha %>
+          </li>
+        <% end %>
+
+        <% if @afisha.showings.any? %>
+          <%= content_tag(:li, content_tag(:span, ' Время проведения заполнено', :class => 'fa fa-check'), :class => 'enabled') %>
+        <% else %>
+          <li class="not-enabled">
+            <span class="fa fa-times"> Время проведения неизвестно</span>
+            <%= link_to 'Добавить', new_my_afisha_showing_path(@afisha) if can? :new, @afisha.showings.new %></li>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="actions floatr">
+        <% if can? :send_to_published, @afisha %>
+          <%= link_to t('my.destroy'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' if @afisha.can_be_deleted? %>
+
+          <% if @afisha.ready_for_publication? %>
+            <%= link_to t('my.send_to_public'), publish_my_afisha_path(@afisha), :method => :put, :class => 'flat-btn btn-orange btn-lg', :confirm => 'Вы уверены? После публикации афишу, она будет доступна всем пользователям сайта!' %>
+          <% else %>
+            <%= link_to t('my.send_to_public'), 'javascript: void(0)', :class => 'flat-btn btn-disabled btn-lg' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
     <div class='left'>
       <div class='image'>
         <% if @afisha.poster_url.present? %>
@@ -27,51 +68,7 @@
         <%= link_to 'изменить', edit_step_my_afisha_path(@afisha, step: :second) if can? :edit, @afisha %>
       </div>
 
-      <div class='wrapper'>
 
-        <div class="public_action">
-          <% if @afisha.draft? %>
-            <h2>Публикация мероприятия</h2>
-            <p>Для того, чтобы опубликовать созданное мероприятие, необходимо заполнить следующие поля:</p>
-            <ul class='requirements'>
-              <li class='<%= @afisha.title? ? 'enabled' : 'disabled' %>'>Название заполнено</li>
-              <li class='<%= @afisha.description? ? 'enabled' : 'disabled' %>'>Описание заполнено</li>
-              <% if @afisha.poster_url.present? %>
-                <li class='enabled'>Постер добавлен</li>
-              <% else %>
-                <li class='disabled'>Нет постера</li>
-                <li><%= link_to 'изменить', edit_step_my_afisha_path(@afisha, step: :second) if can? :edit, @afisha %></li>
-              <% end %>
-              <% if @afisha.showings.any? %>
-                <li class='enabled'>
-                  Время проведения заполнено
-                </li>
-              <% else %>
-                <li class='disabled'>Время проведения неизвестно</li>
-                <li><%= link_to 'добавить сеанс', new_my_afisha_showing_path(@afisha) if can? :new, @afisha.showings.new %></li>
-              <% end %>
-            </ul>
-
-            <% if can? :send_to_published, @afisha %>
-
-              <% if @afisha.ready_for_publication? %>
-                <%= link_to t('my.send_to_public'), publish_my_afisha_path(@afisha), method: :put, class: 'enabled', confirm: 'Вы уверены? После публикации афишу, она будет доступна всем пользователям сайта!' %>
-              <% else %>
-                <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
-              <% end %>
-
-              <% if @afisha.can_be_deleted? %>
-                <%= link_to t('my.destroy'), my_afisha_path(@afisha), method: :delete, class: :destroy, confirm: 'Вы уверены? Афиша будет удалена без возможности восстановления' %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <h2><%= t("enumerize.afisha.state.#{@afisha.state}") %></h2>
-            <%= content_tag :p, link_to('Посмотреть в публичном виде', afisha_show_path(@afisha), target: '_blank') %>
-            <%= link_to t('my.send_to_draft'), draft_my_afisha_path(@afisha), method: :put, confirm: 'Вы уверены? После подтверждения афиша будет недоступна пользователям сайта!' %>
-          <% end %>
-        </div>
-
-      </div>
     </div>
 
     <div class='right'>

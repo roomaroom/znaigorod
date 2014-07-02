@@ -2,7 +2,7 @@
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <% if @review.draft? %>
-    <div class="publication-warning">
+    <div class="publication-warning review">
       <h2>Ваш обзор еще не размещен на сайте. Чтобы он появился, нажмите кнопку опубликовать.</h2>
       <%= link_to t('my.send_to_public'), publish_my_review_path(@review.id), :method => :put, :class => 'flat-btn btn-orange btn-lg floatr',
         :confirm => 'Вы уверены? После публикации обзор будет доступен всем пользователям сайта!' %>
