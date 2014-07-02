@@ -172,7 +172,7 @@ class Discount < ActiveRecord::Base
 
     return false if published?
 
-    false
+    true
   end
 end
 

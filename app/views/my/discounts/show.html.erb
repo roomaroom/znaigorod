@@ -1,6 +1,42 @@
 <% content_for :my_content do %>
 
   <div class="discount_show">
+
+    <div class="publication-warning discount">
+      <% if @discount.draft? %>
+        <h2>Для того, чтобы опубликовать скидку, необходимо заполнить следующие поля:</h2>
+
+        <ul class="requirements">
+          <%= content_tag(:li, content_tag(:span, ' Название заполнено', :class => 'fa fa-check'), :class => 'enabled') if @discount.title? %>
+          <%= content_tag(:li, content_tag(:span, ' Описание заполнено', :class => 'fa fa-check'), :class => 'enabled') if @discount.description? %>
+
+          <% if @discount.poster_url.present? %>
+            <%= content_tag(:li, content_tag(:span, ' Постер добавлен', :class => 'fa fa-check'), :class => 'enabled') %>
+          <% else %>
+            <li class="not-enabled">
+              <span class="fa fa-times"> Нет постера</span>
+              <%= link_to 'изменить', poster_my_discount_path(@discount)  %>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="actions floatr">
+          <%= link_to t('my.destroy'), my_discount_path(@discount), :method => :delete, :class => :destroy,
+            :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' if @discount.can_be_deleted? %>
+
+          <% if @discount.ready_for_publication? %>
+            <%= link_to t('my.send_to_public'), publish_my_discount_path(@discount), :method => :put, :class => 'flat-btn btn-orange btn-lg',
+              :confirm => 'Вы уверены? После публикации скидки, она будет доступна всем пользователям сайта!' %>
+          <% else %>
+            <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'flat-btn btn-disabled btn-lg' %>
+          <% end %>
+        </div>
+      <% else %>
+        <%= link_to t('my.send_to_draft'), draft_my_discount_path(@discount), :method => :put, :class => 'flat-btn btn-orange btn-lg floatr',
+          :confirm => 'Вы уверены? После подтверждения информация о скидке будет недоступна пользователям сайта!' %>
+      <% end %>
+    </div>
+
     <div class="left">
       <div class="image">
         <% if @discount.poster_url? %>
@@ -17,36 +53,6 @@
 
       <div class="wrapper">
         <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount && @discount.copies.any? %>
-
-        <div class="public_action">
-          <% if @discount.draft? %>
-            <h2>Публикация скидки</h2>
-            <p>Для того, чтобы опубликовать скидку, необходимо заполнить следующие поля:</p>
-            <ul class='requirements'>
-              <li class='<%= @discount.title? ? 'enabled' : 'disabled' %>'>Название</li>
-              <li class='<%= @discount.description? ? 'enabled' : 'disabled' %>'>Описание</li>
-              <li class='<%= @discount.poster_image_url? ? 'enabled' : 'disabled' %>'>Постер</li>
-            </ul>
-
-            <% if can? :send_to_published, @discount %>
-              <% if @discount.ready_for_publication? %>
-                <%= link_to t('my.send_to_public'), publish_my_discount_path(@discount), :method => :put, :class => 'enabled',
-                    :confirm => 'Вы уверены? После публикации скидки, она будет доступна всем пользователям сайта!' %>
-              <% else %>
-                <%= link_to t('my.send_to_public'), 'javascript: void(0)', class: 'disabled' %>
-              <% end %>
-              <%= link_to t('my.destroy'), my_discount_path(@discount), :method => :delete, :class => :destroy,
-                  :confirm => 'Вы уверены? Информация будет удалена без возможности восстановления!' %>
-            <% end %>
-
-          <% else %>
-            <h2><%= t("activerecord.state_machines.state.states.#{@discount.state}") %></h2>
-            <%= content_tag :p, link_to('Посмотреть в публичном виде', discount_path(@discount), target: '_blank') %>
-            <%= link_to t('my.send_to_draft'), draft_my_discount_path(@discount), :method => :put,
-                :confirm => 'Вы уверены? После подтверждения информация о скидке будет недоступна пользователям сайта!' %>
-          <% end %>
-
-        </div>
       </div>
     </div>
 
