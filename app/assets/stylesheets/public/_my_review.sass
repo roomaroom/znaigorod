@@ -371,6 +371,42 @@
         margin-bottom: 10px
         padding: 10px
 
+  .left, .right
+    .separator
+      +clearfix
+      color: #999
+      font-size: 13px
+      line-height: 14px
+      margin: 22px 0
+      position: relative
+      text-align: center
+
+      &:before, &:after
+        display: block
+        content: ''
+        border: 1px dashed #999
+        position: absolute
+        top: 8px
+
+      &:before
+        left: 0px
+        width: 180px
+
+      &:after
+        right: 80px
+        width: 170px
+
+  .right
+    .separator
+      &:before, &:after
+        width: 45px
+
+      &:before
+        left: 0px
+
+      &:after
+        right: 0px
+
 .my_reviews_add
   .info_wrapper
     +background(linear-gradient(top, #fff, #e8e8e8))
@@ -541,3 +577,4 @@
 
     &:hover, &:focus
       color: #f60
+

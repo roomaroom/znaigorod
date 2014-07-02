@@ -17,3 +17,32 @@
 
   &:hover
     background-position: -30px -9px
+
+//новые кнопки с flat-дизайном
+
+.icon-flat
+  +inline-block
+
+  &.icon-poster
+    background: image_url('public/edit_icons_sprite.png') no-repeat 0 0
+    height: 15px
+    width: 24px
+
+    &:hover
+      background-position: 0 -25px
+
+  &.icon-pencil
+    background: image_url('public/edit_icons_sprite.png') no-repeat -41px 0
+    height: 15px
+    width: 14px
+
+    &:hover
+      background-position: -41px -25px
+
+  &.icon-delete
+    background: image_url('public/edit_icons_sprite.png') no-repeat -74px 0
+    height: 15px
+    width: 24px
+
+    &:hover
+      background-position: -74px -25px
