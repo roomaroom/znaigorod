@@ -43,7 +43,7 @@ SimpleNavigation::Configuration.run do |navigation|
       account.noindex = true
 
       Inviteables.instance.categories.keys.each do |item|
-        account.item Russian::translit(item).gsub(/\s|\//, '_'), item, send("accounts_#{(transliterate(item))}_path"), :link => { :rel => :nofollow }
+        account.item Russian::translit(item).gsub(/\s|\//, '_'), item.mb_chars.capitalize, send("accounts_#{(transliterate(item))}_path"), :link => { :rel => :nofollow }
       end
     end
 
