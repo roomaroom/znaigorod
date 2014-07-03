@@ -17,15 +17,16 @@
       <div class="contacts">
         Реклама на сайте <%= t('services.phone') %>, <%= mail_to 'office@znaigorod.ru' %>
     </div>
-    <div class='counters'>
-      <!-- Yandex.Metrika informer -->
-      <img src="//bs.yandex.ru/informer/14923525/3_0_0099DBFF_0099DBFF_1_pageviews"
-      style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:14923525,lang:'ru'});return false}catch(e){}"/>
-      <!-- /Yandex.Metrika informer -->
+    <% if Rails.env.production? %>
+      <div class='counters'>
+        <!-- Yandex.Metrika informer -->
+        <img src="//bs.yandex.ru/informer/14923525/3_0_0099DBFF_0099DBFF_1_pageviews"
+        style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:14923525,lang:'ru'});return false}catch(e){}"/>
+        <!-- /Yandex.Metrika informer -->
 
-      <!--LiveInternet counter-->
-      <script type="text/javascript">
-        <!--
+        <!--LiveInternet counter-->
+        <script type="text/javascript">
+          <!--
           document.write("<img src='//counter.yadro.ru/hit?t15.6;r"+
               escape(document.referrer)+((typeof(screen)=="undefined")?"":
                 ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
@@ -35,12 +36,12 @@
               " часа, посетителей за 24 часа и за сегодня' "+
               "border='0' width='88' height='31'>")
               //-->
-      </script>
-      <!--/LiveInternet-->
+        </script>
+        <!--/LiveInternet-->
 
-      <!-- Rating@Mail.ru counter -->
-      <script type="text/javascript">//<![CDATA[
-        var _tmr = _tmr || [];
+        <!-- Rating@Mail.ru counter -->
+        <script type="text/javascript">//<![CDATA[
+          var _tmr = _tmr || [];
           _tmr.push({id: "2440744", type: "pageView", start: (new Date()).getTime()});
           (function (d, w) {
             var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
@@ -49,35 +50,36 @@
             if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
           })(document, window);
           //]]>
-      </script>
-      <noscript>
-        <div style="position:absolute;left:-10000px;">
-          <img src="//top-fwz1.mail.ru/counter?id=2440744;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
-        </div>
-      </noscript>
-      <!-- //Rating@Mail.ru counter -->
+        </script>
+        <noscript>
+          <div style="position:absolute;left:-10000px;">
+            <img src="//top-fwz1.mail.ru/counter?id=2440744;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
+          </div>
+        </noscript>
+        <!-- //Rating@Mail.ru counter -->
 
-      <!-- Rating@Mail.ru logo -->
-      <img src="//top-fwz1.mail.ru/counter?id=2440744;t=502;l=1" style="border:0;" height="31" width="88" alt="Рейтинг@Mail.ru" />
-      <!-- //Rating@Mail.ru logo -->
+        <!-- Rating@Mail.ru logo -->
+        <img src="//top-fwz1.mail.ru/counter?id=2440744;t=502;l=1" style="border:0;" height="31" width="88" alt="Рейтинг@Mail.ru" />
+        <!-- //Rating@Mail.ru logo -->
 
-      <!-- TBE informer -->
-      <span class='inline_block' id='tbec'><script type='text/javascript'>setTimeout('var tbex=document.createElement("SCRIPT");tbex.type="text/javascript";tbex.src="http://c.tbex.ru/z/a!8831!znaigorod.ru!c.js?rev=2"+String.fromCharCode(38)+"rnd="+(new Date().getTime());(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(tbex)',1)</script></span><noscript><img src='http://c.tbex.ru/z/a!8831!znaigorod.ru!c.gif' alt='TBE' /></noscript>
-      <!-- /TBE informer -->
+        <!-- TBE informer -->
+        <span class='inline_block' id='tbec'><script type='text/javascript'>setTimeout('var tbex=document.createElement("SCRIPT");tbex.type="text/javascript";tbex.src="http://c.tbex.ru/z/a!8831!znaigorod.ru!c.js?rev=2"+String.fromCharCode(38)+"rnd="+(new Date().getTime());(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(tbex)',1)</script></span><noscript><img src='http://c.tbex.ru/z/a!8831!znaigorod.ru!c.gif' alt='TBE' /></noscript>
+        <!-- /TBE informer -->
 
-      <% if controller_name == 'main_page' %>
-        <a title="Продвижение сайтов" target="_blank" href="http://sozdanie-saitov.tomsk.ru/Prodvizhenie-saytov">
-          <%= image_tag('bbb/sozdanie-saitov.jpg', :height => 33, :width => 66, :alt => "продвижение сайтов томск") %>
-        </a>
-      <% end %>
+        <% if controller_name == 'main_page' %>
+          <a title="Продвижение сайтов" target="_blank" href="http://sozdanie-saitov.tomsk.ru/Prodvizhenie-saytov">
+            <%= image_tag('bbb/sozdanie-saitov.jpg', :height => 33, :width => 66, :alt => "продвижение сайтов томск") %>
+          </a>
+        <% end %>
 
-      <!-- begin of Top100 code -->
-      <script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2976341"></script>
-      <noscript>
-        <img src="http://counter.rambler.ru/top100.cnt?2976341" alt="Rambler's Top100" class="rambler_counter" />
-      </noscript>
-      <!-- end of Top100 code -->
-    </div>
+        <!-- begin of Top100 code -->
+        <script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2976341"></script>
+        <noscript>
+          <img src="http://counter.rambler.ru/top100.cnt?2976341" alt="Rambler's Top100" class="rambler_counter" />
+        </noscript>
+        <!-- end of Top100 code -->
+      </div>
+    <% end %>
     <div style='clear: both'></div>
   </div>
 </div>
