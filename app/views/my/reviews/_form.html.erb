@@ -2,7 +2,7 @@
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
-<%= simple_form_for @review,
+<%= simple_nested_form_for @review,
   :as => :review,
   :url => @review.new_record? ? my_reviews_path : my_review_path(@review.id),
   :html => { :class => "my_review_form default_simple_form review_#{@review.useful_type}_form" } do |f| %>
@@ -28,13 +28,25 @@
       :data => { 'autocomplete-source' => linked_with_available_my_reviews_path, :target => '#review_link_with_value', :reset => '#review_link_with_reset' },
       :placeholder => 'Введите название заведения или мероприятия' } %>
 
-  <% if @review.linked? %>
-    <div class="input link_with_wrapper">
-      <%= label_tag 'Это пост связан с' %>
-      <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
-      <%= render :partial => 'reviews/link_with' %>
-    </div>
+  <% if false %>
+    <% if @review.linked? %>
+      <div class="input link_with_wrapper">
+        <%= label_tag 'Это пост связан с' %>
+        <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
+        <%= render :partial => 'reviews/link_with' %>
+      </div>
+    <% end %>
   <% end %>
+
+  <%= f.fields_for :relations do |relation_form| %>
+    <% if relation_form.object.new_record? %>
+      <%= relation_form.input :slave_url %>
+    <% else %>
+      <%= relation_form.object.slave.title %>
+    <% end %>
+    <%= relation_form.link_to_remove '-' %>
+  <% end %>
+  <%= f.link_to_add '+', :relations %>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>

@@ -45,6 +45,9 @@ class Review < ActiveRecord::Base
   has_many :organizations, :through => :relations, :source => :slave, :source_type => Organization
   has_many :reviews,       :through => :relations, :source => :slave, :source_type => Review
 
+  attr_accessible :relations_attributes
+  accepts_nested_attributes_for :relations, :reject_if => :all_blank, :allow_destroy => true
+
   has_many :users,                 :through => :account
 
   has_one  :feed, :as => :feedable, :dependent => :destroy
