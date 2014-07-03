@@ -21,6 +21,7 @@ $font-size: 12px
       > ul
         float: left
         width: 100%
+        padding-left: 15px
 
         > li
           position: relative
@@ -42,6 +43,21 @@ $font-size: 12px
                 font-size: 12px
                 color: black
                 text-decoration: none
+
+                &:before
+                  display: block
+                  content: " "
+                  float: left
+                  width: 0
+                  height: 0
+                  border-color: transparent
+                  border-style: solid
+                  border-width: 5px 0 5px 5px
+                  border-left-color: transparent
+                  margin: 5px 0 0 -15px
+
+                &:hover:before
+                  border-left-color: #F98E4F
 
                 &:hover
                   color: #F98E4F
