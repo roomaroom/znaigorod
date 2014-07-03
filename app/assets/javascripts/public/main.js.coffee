@@ -50,7 +50,7 @@ $ ->
   initUlToggle() if $('.js-ul-toggler')
   init_photogallery() if $('.photogallery').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
-  initAfishaPagination() if $('.afisha-paginator').length
+  initButtonPagination() if $('.afisha-paginator').length or $('.organization_pagination').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
   init_discounts_account_tabs() if $('#discounts_filter').length
   init_account_extend() if $('.account_show').length

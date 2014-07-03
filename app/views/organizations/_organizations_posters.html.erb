@@ -3,3 +3,10 @@
     <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization } %>
   </li>
 <% end %>
+
+<% unless @presenter.collection.last_page? %>
+  <li class="item pagination">
+    <%= link_to_next_page @presenter.paginated_collection, 'Еще события', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+  </li>
+<% end %>
+

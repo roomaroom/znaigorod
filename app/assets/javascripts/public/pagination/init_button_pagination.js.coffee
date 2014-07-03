@@ -18,7 +18,7 @@ next_page_handler = () ->
     ), 250
 
 
-@initAfishaPagination = ->
+@initButtonPagination = ->
   fresh_animation_handler()
 
   $('.js-next-page').live 'click', ->

@@ -10,15 +10,7 @@
     <%= vk_meta(@presenter.pluralized_kind, (send @presenter.collection_direct_url), 'znaigorod_logo.png') %>
   <% end %>
 <% end %>
-
-<div class='presentation_filters organization'>
-  <div class='present_by'>
-    <p>Вид:</p>
-    <ul>
-      <li class='selected'><a href='#' class='poster'>Постеры</a></li>
-      <li><a href='#' class='list'>Список</a></li>
-    </ul>
-  </div>
+<div class="organization_left">
   <div class='filter_header'>
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
@@ -29,40 +21,47 @@
     <% end %>
   </div>
 
-  <!--noindex-->
-  <div class='order_by'>
-    <p>Сортировать по:</p>
-    <ul>
-      <% @presenter.sortings_links.each do |sortings_link| %>
-        <li<%= " class=selected" if sortings_link[:selected] %>>
-          <%= link_to sortings_link[:title],
-            send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-        </li>
-      <% end %>
-    </ul>
+  <div class="filter_and_share">
+    <div class='presentation_filters organization'>
+
+      <!--noindex-->
+      <div class='order_by'>
+        <p>Сортировать по:</p>
+        <ul>
+          <% @presenter.sortings_links.each do |sortings_link| %>
+            <li<%= " class=selected" if sortings_link[:selected] %>>
+              <%= link_to sortings_link[:title],
+                send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <!--/noindex-->
+
+    </div>
+
+    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
-  <!--/noindex-->
 
+  <div class='organization_pagination'>
+    <% if @presenter.collection.any? %>
+      <ul class='posters js-paginable-list' data-item-width="220">
+        <%= render :partial => 'organizations/organizations_posters' %>
+        <% if @presenter.paginated_collection.current_page == 1 %>
+          <li class="google-ads-item">
+            <%= render :partial => 'commons/ads_by_google' %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+    <% end %>
+  </div>
 </div>
 
-<div class='organizations_list'>
-  <% if @presenter.collection.any? %>
-    <ul class='posters'>
-      <%= render :partial => 'organizations/organizations_posters' %>
-
-      <% if @presenter.paginated_collection.current_page == 1 %>
-        <li class="google-ads-item">
-          <%= render :partial => 'commons/ads_by_google' %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-  <% end %>
+<div class="organization_right">
+  РЕКЛАМА!!11
 </div>
-
-<%= paginate @presenter.paginated_collection %>
-
 
 <% if page_meta %>
   <div class='introduction'>
@@ -73,3 +72,28 @@
     <%= t("meta.#{@presenter.selected_category}.introduction").as_html %>
   </div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

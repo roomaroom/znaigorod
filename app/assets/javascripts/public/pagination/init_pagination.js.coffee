@@ -6,7 +6,6 @@
   list_url = window.location.pathname
   list = $(
     '.content_wrapper .discounts_list:not(.pagination_none) > ul,' +
-    '.content_wrapper .organizations_list:not(.pagination_none) > ul,' +
     '.content_wrapper .search_results ul.items_list,' +
     '.content_wrapper .tickets_list,' +
     '.content_wrapper .accounts_list ul,' +
