@@ -20,6 +20,9 @@
     .organization_pagination
       clear: both
 
+      .fresh
+        +opacity(0)
+
       .posters
         +clearfix
 
@@ -143,6 +146,17 @@
             .phone
               margin-bottom: 3px
 
+
+    li.pagination
+      border: none !important
+      height: 30px !important
+      margin: 0 8px !important
+      padding: 0 0 20px 0 !important
+      width: 830px !important
+
+      a
+        &.disabled
+          color: #999
 
   .organization_right
     border-left: 1px solid #e5e5e5
