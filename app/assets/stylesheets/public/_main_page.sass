@@ -454,3 +454,128 @@
         .human_when
           text-align: center
           margin: 2px 0 3px 0
+
+.organizations_main_page_list
+  .posters
+    +clearfix
+
+    li
+      float: left
+      margin: 0 10px 20px 10px
+
+      .info
+        width: 178px
+        text-align: center
+        border: 1px solid #ccc
+
+        .title
+          @extend .nobr
+          margin: 5px
+
+        .image
+          width: 178px
+          height: 178px
+          position: relative
+          margin-bottom: 3px
+
+          .sms_claimable
+            width: 190px
+            position: absolute
+            top: 0
+            left: -6px
+            +as_blue_ribbon
+
+          .sms_claim_link
+            display: block
+            width: 130px
+            height: auto
+            top: 50px
+            left: 15px
+            +button-style
+            z-index: 0
+
+          a
+            display: block
+            position: absolute
+            top: 0
+            left: 0
+            width: 178px
+            height: 178px
+
+            .stub_poster
+              display: block
+              width: 178px
+              height: 178px
+              background: transparent image_url('public/organization_stub_poster_kind.png') no-repeat top left
+
+              &.billiard
+                background-position: -195px -6px
+
+              &.car_sales_center
+                background-position: -5px -196px
+
+              &.car_wash
+                background-position: -5px -196px
+
+              &.creation
+                background-position: -765px -6px
+
+              &.culture
+                background-position: -385px -6px
+
+              &.entertainment
+                background-position: -195px -6px
+
+              &.meal
+                background-position: -5px -6px
+
+              &.salon_center
+                background-position: -195px -196px
+
+              &.sauna
+                background-position: -385px -196px
+
+              &.sport
+                background-position: -575px -6px
+
+          .details
+            color: #999
+            font-size: 12px
+
+          .first_line
+            bottom: 35px
+
+          .second_line
+            bottom: 10px
+
+          .first_line,
+          .second_line
+            display: none
+            width: 100%
+            position: absolute
+            left: 0
+
+            span
+              cursor: help
+              display: inline-block
+              text-align: center
+              width: 54px
+
+          &:hover
+            .sms_claim_link
+              z-index: 1
+            .stub_poster
+              +opacity(0.15)
+            img
+              +opacity(0.15)
+            .for_sale,
+            .first_line,
+            .second_line
+              display: block
+
+        .place
+          margin-bottom: 3px
+
+        .phone
+          margin-bottom: 3px
+

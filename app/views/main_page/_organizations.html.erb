@@ -29,7 +29,7 @@
 
     <ul class="posters">
       <% @organizations.random_collection.each do |organization| %>
-        <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization } %></li>
+        <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization, width: 178, height: 178 } %></li>
       <% end %>
     </ul>
   <% end %>
