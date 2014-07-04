@@ -1,1 +1,7 @@
-<%= render :partial => 'reviews/poster', :locals => { :review => ReviewDecorator.new(slave), :height => 200, :width => 200 } %></li>
+<div class="reviews-paginator">
+  <ul class="posters">
+    <li class="item tiny">
+      <%= render :partial => 'reviews/poster', :locals => { :review => ReviewDecorator.new(slave), :height => 200, :width => 200 } %>
+    </li>
+  </ul>
+</div>
