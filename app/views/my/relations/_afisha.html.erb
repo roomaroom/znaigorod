@@ -1,0 +1,5 @@
+<div class="afisha_list pagination_none">
+  <ul class='posters'>
+    <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => [AfishaDecorator.new(slave) ], :presenter => AfishaPresenter.new(:page => 1, :per_page => 1) } %>
+  </ul>
+</div>

@@ -1,0 +1,7 @@
+<div class='organizations_list pagination_none'>
+  <ul class='posters'>
+    <li>
+      <%= render :partial => 'organizations/suborganization', :locals => { :suborganization => OrganizationDecorator.new(slave) } %>
+    </li>
+  </ul>
+</div>

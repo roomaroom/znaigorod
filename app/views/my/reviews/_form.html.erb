@@ -28,21 +28,15 @@
       :data => { 'autocomplete-source' => linked_with_available_my_reviews_path, :target => '#review_link_with_value', :reset => '#review_link_with_reset' },
       :placeholder => 'Введите название заведения или мероприятия' } %>
 
-  <% if false %>
-    <% if @review.linked? %>
-      <div class="input link_with_wrapper">
-        <%= label_tag 'Это пост связан с' %>
-        <%= link_to 'Изменить', '#', :class => 'link_with_change' %>
-        <%= render :partial => 'reviews/link_with' %>
-      </div>
-    <% end %>
-  <% end %>
-
   <%= f.fields_for :relations do |relation_form| %>
     <% if relation_form.object.new_record? %>
       <%= relation_form.input :slave_url %>
     <% else %>
-      <%= relation_form.object.slave.title %>
+      <div class="link_with_wrapper">
+        <div class="link_with_content">
+          <%= render :partial => "my/relations/#{relation_form.object.slave.class.name.underscore}", :locals => { :slave => relation_form.object.slave } %>
+        </div>
+      </div>
     <% end %>
     <%= relation_form.link_to_remove '-' %>
   <% end %>

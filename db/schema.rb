@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140626092636) do
+ActiveRecord::Schema.define(:version => 20140702033116) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -768,6 +768,18 @@ ActiveRecord::Schema.define(:version => 20140626092636) do
   end
 
   add_index "recreation_centers", ["organization_id"], :name => "index_recreation_centers_on_organization_id"
+
+  create_table "relations", :force => true do |t|
+    t.integer  "master_id"
+    t.string   "master_type"
+    t.integer  "slave_id"
+    t.string   "slave_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "relations", ["master_id"], :name => "index_relations_on_master_id"
+  add_index "relations", ["slave_id"], :name => "index_relations_on_slave_id"
 
   create_table "reservations", :force => true do |t|
     t.integer  "reserveable_id"
