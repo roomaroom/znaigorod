@@ -11,6 +11,7 @@ next_page_handler = () ->
     $('.pagination').remove()
 
     $('.js-paginable-list').append(response)
+    init_sauna_halls_scroll() if $('.need_scrolling').length
 
     setTimeout (->
       fresh_animation_handler()

@@ -6,7 +6,6 @@
   list_url = window.location.pathname
   list = $(
     '.content_wrapper .discounts_list:not(.pagination_none) > ul,' +
-    '.content_wrapper .organizations_list:not(.pagination_none) > ul,' +
     '.content_wrapper .search_results ul.items_list,' +
     '.content_wrapper .tickets_list,' +
     '.content_wrapper .accounts_list ul,' +
@@ -74,7 +73,6 @@
           init_payment() if $('.content_wrapper .tickets_list li').length && data.length
           init_sms_claims() if $('.content_wrapper .sms_claims li').length && data.length
           init_payment() if $('.feeds .feed').length
-          init_sauna_halls_scroll() if $('.content_wrapper .organizations_list > ul .sauna_halls').length
           init_review_gallery() if $('.reviews_show .js-gallery').length
           process_change_message_status() if $('#notifications').length
           true
