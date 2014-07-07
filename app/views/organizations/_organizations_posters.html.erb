@@ -6,7 +6,7 @@
 
 <% unless @presenter.collection.last_page? %>
   <li class="item pagination">
-    <%= link_to_next_page @presenter.paginated_collection, 'Еще организации', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+    <%= link_to_next_page @presenter.paginated_collection, "Еще организации (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
   </li>
 <% end %>
 

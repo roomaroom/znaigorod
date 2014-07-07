@@ -12,7 +12,6 @@ class OrganizationsController < ApplicationController
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = OrganizationsCatalogPresenter.new(settings_from_cookie.merge(params))
-
         render partial: 'organizations/organizations_posters', layout: false and return if request.xhr?
       }
 

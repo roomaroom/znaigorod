@@ -232,6 +232,10 @@ module OrganizationsPresenter
     searcher.total
   end
 
+  def current_count
+    collection.total_count-(@page.to_i*@per_page)
+  end
+
   def geo_filter
     @geo_filter ||= Hashie::Mash.new.tap { |h|
       h[:lat] = lat

@@ -12,7 +12,6 @@ class AfishasController < ApplicationController
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
 
         @presenter = AfishaPresenter.new(settings_from_cookie.merge(params))
-
         if request.xhr?
           if params[:page]
             render partial: @presenter.partial, :locals => { :afishas => @presenter.decorated_collection, :presenter => @presenter }, :layout => false and return

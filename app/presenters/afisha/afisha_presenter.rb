@@ -89,6 +89,10 @@ class AfishaPresenter
     searcher.group(:afisha_id_str).total
   end
 
+  def current_count
+    total_count - (@page.to_i * @per_page)
+  end
+
   def view_list?
     view == 'list'
   end
