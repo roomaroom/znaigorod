@@ -9,7 +9,7 @@
     <div class='organizations_list pagination_none'>
       <ul class='posters'>
         <li>
-          <%= render :partial => 'organizations/suborganization', :locals => { :suborganization => OrganizationDecorator.new(@review.organization) } %>
+          <%= render :partial => 'organizations/suborganization', :locals => { :suborganization => OrganizationDecorator.new(@review.organization), :height => "178", :width => "178" } %>
         </li>
       </ul>
     </div>
