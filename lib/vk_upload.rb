@@ -50,7 +50,7 @@ module VkUpload
     begin
       album_id = vk_album_id(client)
       up_serv = client.photos.get_upload_server(aid: album_id, group_id: Settings[:vk][:group_id])
-      file = Tempfile.new([self.slug,'.jpg'])
+      file = Tempfile.new([self.slug.gsub('/','-'),'.jpg'])
       file.binmode
       file.write Curl.get(image_url).body_str
       upload = VkontakteApi.upload(url: up_serv.upload_url, photo: [file.path, 'image/jpeg'])
