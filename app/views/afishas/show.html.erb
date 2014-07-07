@@ -275,6 +275,13 @@
       </div>
     <% end %>
 
+    <div class='suborganization_info related-reviews'>
+      <div class='title'>Обзоры</div>
+      <ul class='posters js-isotoped-content' data-item-width="220">
+        <%= render :partial => 'reviews/posters', :locals => { :collection => @review_presenter.decorated_collection, :height => '120', :width => '184' } %>
+      </ul>
+    </div>
+
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @afisha } %>
 
   </div>
