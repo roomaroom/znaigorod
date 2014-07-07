@@ -1,41 +1,50 @@
 <% content_for :extra_meta do %>
   <%= render :partial => 'commons/page_meta_og' %>
-<% end if page_meta %>
-
-<div class='presentation_filters hotel'>
-  <div class='filter_header'>
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.page_header.blank? %>
-      <%= t('meta.organizations.page_header') %>
-    <% else %>
-      <%= @presenter.page_header %>
-    <% end %>
-  </div>
-
-  <!--noindex-->
-  <div class='order_by'>
-    <p>Сортировать по:</p>
-    <ul>
-      <% @presenter.sortings_links.each do |sortings_link| %>
-        <li<%= " class=selected" if sortings_link[:selected] %>>
-          <%= link_to sortings_link[:title],
-            send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-        </li>
+  <% end if page_meta %>
+  <div class="organization_left">
+    <div class='filter_header'>
+      <% if page_meta %>
+        <h1><%= page_meta.header.squish.html_safe %></h1>
+      <% elsif @presenter.page_header.blank? %>
+        <%= t('meta.organizations.page_header') %>
+      <% else %>
+        <%= @presenter.page_header %>
       <% end %>
-    </ul>
-  </div>
-  <!--/noindex-->
-</div>
+    </div>
 
-<div class='organizations_list'>
-  <ul class='housing_posters'>
-    <%= render :partial => 'housings/housing_posters', :locals => { :housing => :recreation_center } %>
-  </ul>
-</div>
+    <div class="filter_and_share">
 
-<% if page_meta %>
-  <div class='introduction'>
-    <%= page_meta.html_introduction %>
+      <div class='presentation_filters hotels'>
+        <!--noindex-->
+        <div class='order_by'>
+          <p>Сортировать по:</p>
+          <ul>
+            <% @presenter.sortings_links.each do |sortings_link| %>
+              <li<%= " class=selected" if sortings_link[:selected] %>>
+                <%= link_to sortings_link[:title],
+                  send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!--/noindex-->
+      </div>
+      <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
+    </div>
+
+    <div class='button_pagination'>
+      <ul class='housing_posters js-paginable-list'>
+        <%= render :partial => 'housings/housing_posters', :locals => { :housing => :recreation_center } %>
+      </ul>
+    </div>
   </div>
-<% end %>
+
+  <div class="organization_right">
+    <%= render :partial => 'commons/promotions' %>
+  </div>
+
+  <% if page_meta %>
+    <div class='introduction'>
+      <%= page_meta.html_introduction %>
+    </div>
+  <% end %>

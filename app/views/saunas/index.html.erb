@@ -5,63 +5,62 @@
 <% content_for :meta_description, t('meta.saunas.description') %>
 <% content_for :extra_meta do %>
   <%= render :partial => 'commons/page_meta_og' %>
-<% end if page_meta %>
+  <% end if page_meta %>
 
-<div class='presentation_filters sauna'>
-  <div class='present_by'>
-    <p>Вид:</p>
-    <ul>
-      <li class='selected'><a href='#' class='poster'>Постеры</a></li>
-      <li><a href='#' class='list'>Список</a></li>
-    </ul>
-  </div>
-  <div class='filter_header'>
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.page_header.blank? %>
-      <%= t('meta.organizations.page_header') %>
-    <% else %>
-      <%= @presenter.page_header %>
-    <% end %>
-  </div>
-
-  <!--noindex-->
-  <div class='order_by'>
-    <p>Сортировать по:</p>
-    <ul>
-      <% @presenter.sortings_links.each do |sortings_link| %>
-        <li<%= " class=selected" if sortings_link[:selected] %>>
-          <%= link_to sortings_link[:title],
-            send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-        </li>
+  <div class="organization_left">
+    <div class='filter_header'>
+      <% if page_meta %>
+        <h1><%= page_meta.header.squish.html_safe %></h1>
+      <% elsif @presenter.page_header.blank? %>
+        <%= t('meta.organizations.page_header') %>
+      <% else %>
+        <%= @presenter.page_header %>
       <% end %>
-    </ul>
+    </div>
+
+    <div class="filter_and_share">
+
+      <div class='presentation_filters sauna'>
+        <!--noindex-->
+        <div class='order_by'>
+          <p>Сортировать по:</p>
+          <ul>
+            <% @presenter.sortings_links.each do |sortings_link| %>
+              <li<%= " class=selected" if sortings_link[:selected] %>>
+                <%= link_to sortings_link[:title],
+                  send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!--/noindex-->
+      </div>
+      <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
+    </div>
+
+    <div class='button_pagination'>
+      <% if @presenter.saunas.any? %>
+        <ul class='sauna_posters js-paginable-list'>
+          <%= render :partial => 'sauna_posters' %>
+        </ul>
+      <% else %>
+        <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>
+      <% end %>
+    </div>
   </div>
-  <!--/noindex-->
 
-</div>
+  <% category = @presenter.categories_links.select{|c| c[:selected]}.first[:klass] %>
 
-<div class='organizations_list'>
-  <% if @presenter.saunas.any? %>
-    <ul class='sauna_posters'>
-      <%= render :partial => 'sweets' %>
-      <%= render :partial => 'sauna_posters' %>
-    </ul>
-  <% else %>
-    <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>
+  <div class="organization_right">
+    <%= render :partial => 'commons/promotions' %>
+  </div>
+
+  <% if page_meta %>
+    <div class='introduction'>
+      <%= page_meta.html_introduction %>
+    </div>
+  <% elsif t("meta.#{category}.introduction", default: '').present? %>
+    <div class='introduction'>
+      <%= t("meta.#{category}.introduction").as_html %>
+    </div>
   <% end %>
-</div>
-
-<%= paginate @presenter.paginatable_collection %>
-
-<% category = @presenter.categories_links.select{|c| c[:selected]}.first[:klass] %>
-
-<% if page_meta %>
-  <div class='introduction'>
-    <%= page_meta.html_introduction %>
-  </div>
-<% elsif t("meta.#{category}.introduction", default: '').present? %>
-  <div class='introduction'>
-    <%= t("meta.#{category}.introduction").as_html %>
-  </div>
-<% end %>

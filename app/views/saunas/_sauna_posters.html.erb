@@ -1,5 +1,5 @@
 <% @presenter.organizations.each do |organization| %>
-  <li class='sauna_item <%= cycle('item_1', 'item_2', 'item_3', :name => 'sauna_item') %>'>
+  <li class='sauna_item <%= cycle('item_1', 'item_2', :name => 'sauna_item') %>'>
     <div class='info'>
       <div class='title'><%= organization.truncated_title_link %> </div>
       <div class='image'>
@@ -49,7 +49,7 @@
 
 <% if @presenter.last_page? %>
   <% @presenter.organization_for_saunas_without_halls.each_with_index do |organization, index| %>
-    <li class='sauna_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', 'item_5', 'item_6', :name => 'sauna_short_item') %><%= ' clear_left' if index.zero? %>'>
+    <li class='sauna_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', :name => 'sauna_short_item') %><%= ' clear_left' if index.zero? %>'>
       <div class='info'>
         <div class='title'><%= organization.truncated_title_link %> </div>
         <hr />
@@ -60,4 +60,10 @@
       </div>
     </li>
   <% end %>
+<% end %>
+
+<% unless @presenter.last_page? %>
+  <li class="item pagination">
+    <%= link_to_next_page @presenter.paginated_collection, 'Еще организации', :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+  </li>
 <% end %>
