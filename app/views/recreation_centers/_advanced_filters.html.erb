@@ -54,10 +54,23 @@
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности</div>
       <div class='filter_checkboxes'>
-        <% @presenter.features.each do |feature, index| %>
+        <% @presenter.features.each_with_index do |feature, index| %>
           <div class='checkbox'>
             <%= check_box_tag 'features[]', feature.title, feature.selected?, :id => "feature_#{index}" %>
             <%= label_tag "feature_#{index}", feature.title %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="filter <%= @presenter.offers_filter_css_class %>" id='offers'>
+      <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
+      <div class='filter_label'>Предложения</div>
+      <div class='filter_checkboxes'>
+        <% @presenter.offers.each_with_index do |offer, index| %>
+          <div class='checkbox'>
+            <%= check_box_tag 'offers[]', offer.title, offer.selected?, :id => "offer_#{index}" %>
+            <%= label_tag "offer_#{index}", offer.title %>
           </div>
         <% end %>
       </div>
@@ -67,7 +80,7 @@
       <%= link_to 'убрать', '#', :class => 'remove_filter_link' %>
       <div class='filter_label'>Особенности номера</div>
       <div class='filter_checkboxes'>
-        <% @presenter.room_features.each do |feature, index| %>
+        <% @presenter.room_features.each_with_index do |feature, index| %>
           <div class='checkbox'>
             <%= check_box_tag 'room_features[]', feature.title, feature.selected?, :id => "room_feature_#{index}" %>
             <%= label_tag "room_feature_#{index}", feature.title %>
@@ -79,12 +92,9 @@
     <div class='criteria_list'>
       <div class='criteria_label'>Добавить критерии:</div>
       <ul>
-        <li>
-          <%= link_to 'Особенности', '#', :class => 'features' %>
-        </li>
-        <li>
-          <%= link_to 'Особенности номера', '#', :class => 'room_features'  %>
-        </li>
+        <li><%= link_to 'Особенности', '#', :class => 'features' %></li>
+        <li><%= link_to 'Предложения', '#', :class => 'offers' %></li>
+        <li><%= link_to 'Особенности номера', '#', :class => 'room_features' %></li>
       </ul>
     </div>
 
