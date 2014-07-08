@@ -579,3 +579,169 @@
         .phone
           margin-bottom: 3px
 
+.discounts_main_page_list
+  float: left
+  margin: 0
+  width: 100%
+
+  .posters
+    +clearfix
+
+    li
+      float: left
+      margin: 0 10px 20px 10px
+      width: 220px
+
+      .item
+        border: 1px solid #ccc
+        height: 250px
+        margin: 0 auto
+        padding: 1px 0 1px 0
+        width: 220px
+
+        .title
+          display: table-cell
+          height: 38px
+          padding: 0 3px
+          text-align: center
+          vertical-align: middle
+          width: 220px
+
+        .image
+          +clearfix
+          height: 164px
+          position: relative
+          width: 220px
+
+          .origin_url
+            position: absolute
+            left: 0
+            top: 0
+            color: #fff
+            background-color: #009bdb
+            padding: 3px 8px 3px
+
+          .for_sale
+            +button-style
+            display: none
+            font-size: 12px
+            left: 58px
+            padding: 2px 15.5px 3px
+            margin: 0 auto
+            position: absolute
+            text-align: center
+            top: 50px
+            width: 75px
+
+            &.offer_price
+              left: 11px
+              width: 165px
+
+            &:active
+              padding: 3px 15.5px 2px
+
+          .details
+            color: #999
+
+          .first_line
+            bottom: 7px
+
+          .first_line
+            display: none
+            font-size: 12px
+            left: 0
+            position: absolute
+            width: 100%
+
+            span
+              cursor: help
+              text-align: center
+              width: 52px
+
+          &:hover
+            .origin_url
+              display: none
+
+            img
+              +opacity(0.15)
+
+            .first_line,
+            .for_sale
+              display: block
+
+        .info
+          +clearfix
+          letter-spacing: 0px
+          height: 30px
+
+          span
+            color: #f60
+            font-weight: bold
+            line-height: 30px
+            font-size: 12px
+
+          strong
+            margin: 0 0 0 10px
+            font-size: 12px
+
+          em
+            font-size: 12px
+
+          .origin_price
+            +left-arrow(#ececec, #fff, #000)
+            margin: 0 0 0 10px
+
+            &:after
+              +rotate(-10deg)
+              border-top: 1px solid #000
+              content: ""
+              left: 18px
+              position: absolute
+              right: 0
+              top: 50%
+              width: 70%
+
+            em
+              font-style: normal
+              padding: 8px 0
+
+          .profit
+            font-size: 12px
+
+          .price
+            +left-arrow(#009bdb, #ececec, #fff)
+
+            em
+              font-style: normal
+              padding: 8px 0
+
+          .discount
+            text-align: center
+
+          .coupon
+            .price
+              +left-arrow(#009bdb, #fff, #fff)
+
+          .certificate
+            float: right
+
+            span
+              +inline-block
+
+            &.gift
+              float: none
+              text-align: center
+
+          .affiliated_coupon
+            .price
+              +left-arrow(#009bdb, #fff, #fff)
+
+          .sale
+            text-align: center
+
+            span
+              color: #222
+
+        .place
+          margin: 3px 0 0 0
+          text-align: center
