@@ -40,6 +40,7 @@
       <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
     </ul>
   </div>
+  <%= paginate @presenter.collection %>
 </div>
 
 <div class="organization_right">
