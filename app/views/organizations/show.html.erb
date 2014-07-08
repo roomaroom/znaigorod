@@ -191,11 +191,12 @@
             </ul>
           </div>
         </div>
-
-        <div class="discounts_list pagination_none">
-          <ul class="posters">
-            <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
-          </ul>
+        <div class="discounts_wrapper">
+          <div class="discounts_list pagination_none">
+            <ul class="posters">
+              <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
+            </ul>
+          </div>
         </div>
 
         <%= paginate @discount_presenter.collection %>

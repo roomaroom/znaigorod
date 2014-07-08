@@ -17,355 +17,355 @@
       .likes
         margin: 15px 0 15px 0
 
-    .button_pagination
-      clear: both
+.button_pagination
+  clear: both
 
-      .fresh
-        +opacity(0)
+  .fresh
+    +opacity(0)
 
-      .sauna_posters,
-      .housing_posters
-        +clearfix
+  .sauna_posters,
+  .housing_posters
+    +clearfix
 
-        > li
-          float: left
+    > li
+      float: left
 
-          &.clear_left
-            clear: left
+      &.clear_left
+        clear: left
 
-          &.sauna_item,
-          &.housing_item
-            width: 378px
-            border: 1px solid #ccc
-            margin: 0 50px 20px 10px
+      &.sauna_item,
+      &.housing_item
+        width: 378px
+        border: 1px solid #ccc
+        margin: 0 50px 20px 10px
 
-            .info
-              border-right: 1px dashed #ccc
+        .info
+          border-right: 1px dashed #ccc
 
-          &.sauna_short_item,
-          &.housing_short_item
+      &.sauna_short_item,
+      &.housing_short_item
+        width: 178px
+        border: 1px solid #ccc
+        margin: 0 23px 20px 10px
+
+        hr
+          border: none
+          border-top: 1px dashed #ccc
+          margin: 0 0 3px 0
+
+        &.item_1
+          clear: left
+
+        &.item_6
+          margin-right: 0
+
+      .info
+        float: left
+        width: 178px
+        text-align: center
+
+        .title
+          @extend .nobr
+          margin: 5px
+
+        .image
+          width: 178px
+          height: 178px
+          position: relative
+          margin-bottom: 3px
+
+          .sms_claimable
+            width: 190px
+            position: absolute
+            top: 0
+            left: -6px
+            +as_blue_ribbon
+
+          a
+            display: block
+            position: absolute
+            top: 0
+            left: 0
             width: 178px
-            border: 1px solid #ccc
-            margin: 0 23px 20px 10px
+            height: 178px
 
-            hr
-              border: none
-              border-top: 1px dashed #ccc
-              margin: 0 0 3px 0
-
-            &.item_1
-              clear: left
-
-            &.item_6
-              margin-right: 0
-
-          .info
-            float: left
-            width: 178px
-            text-align: center
-
-            .title
-              @extend .nobr
-              margin: 5px
-
-            .image
+            .stub_poster
+              display: block
               width: 178px
               height: 178px
-              position: relative
-              margin-bottom: 3px
+              background: transparent image_url('public/organization_stub_poster_kind.png') no-repeat top left
 
-              .sms_claimable
-                width: 190px
-                position: absolute
-                top: 0
-                left: -6px
-                +as_blue_ribbon
+              &.sauna
+                background-position: -385px -196px
 
-              a
-                display: block
-                position: absolute
-                top: 0
-                left: 0
-                width: 178px
-                height: 178px
+          .sms_claim_link
+            display: block
+            width: 130px
+            height: auto
+            top: 50px
+            left: 15px
+            +button-style
+            z-index: 0
 
-                .stub_poster
-                  display: block
-                  width: 178px
-                  height: 178px
-                  background: transparent image_url('public/organization_stub_poster_kind.png') no-repeat top left
+          .details
+            color: #000
+            text-align: left
 
-                  &.sauna
-                    background-position: -385px -196px
+          .first_line
+            bottom: 35px
 
-              .sms_claim_link
-                display: block
-                width: 130px
-                height: auto
-                top: 50px
-                left: 15px
-                +button-style
-                z-index: 0
+          .second_line
+            bottom: 10px
 
-              .details
-                color: #000
-                text-align: left
+          .first_line,
+          .second_line
+            display: none
+            width: 100%
+            position: absolute
+            left: 0
 
-              .first_line
-                bottom: 35px
+            span
+              display: block
+              float: left
+              width: 34px
+              padding-left: 25px
+              background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
 
-              .second_line
-                bottom: 10px
+              &.to_go
+                background-position: 12px 3px
+              &.wait_invite
+                background-position: 4px -17px
+              &.comments
+                background-position: 5px -36px
+              &.likes
+                background-position: 12px -57px
+              &.visits
+                background-position: 6px -77px
+              &.minimal_age
+                background: none
+                padding-left: 18px
 
-              .first_line,
-              .second_line
-                display: none
-                width: 100%
-                position: absolute
-                left: 0
+          &:hover
+            .sms_claim_link
+              z-index: 1
+            .stub_poster
+              +opacity(0.15)
+            img
+              +opacity(0.15)
+            .for_sale,
+            .first_line,
+            .second_line
+              display: block
 
-                span
-                  display: block
-                  float: left
-                  width: 34px
-                  padding-left: 25px
-                  background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
+        .place
+          margin-bottom: 3px
 
-                  &.to_go
-                    background-position: 12px 3px
-                  &.wait_invite
-                    background-position: 4px -17px
-                  &.comments
-                    background-position: 5px -36px
-                  &.likes
-                    background-position: 12px -57px
-                  &.visits
-                    background-position: 6px -77px
-                  &.minimal_age
-                    background: none
-                    padding-left: 18px
+        .phone
+          margin-bottom: 3px
 
-              &:hover
-                .sms_claim_link
-                  z-index: 1
-                .stub_poster
-                  +opacity(0.15)
-                img
-                  +opacity(0.15)
-                .for_sale,
-                .first_line,
-                .second_line
-                  display: block
+      .sauna_halls,
+      .rooms
+        float: left
+        width: 199px
+        height: 244px
 
-            .place
-              margin-bottom: 3px
+        li
+          +clearfix
 
-            .phone
-              margin-bottom: 3px
+          &.non_suitable
+            +opacity(0.5)
 
-          .sauna_halls,
-          .rooms
-            float: left
-            width: 199px
-            height: 244px
+        .hall_title,
+        .room_title
+          color: #fff
+          background-color: #999
+          padding: 2px 8px 3px
 
-            li
-              +clearfix
+        .hall_details,
+        .room_details
+          margin: 5px 8px
 
-              &.non_suitable
-                +opacity(0.5)
+          span
+            color: #f60
 
-            .hall_title,
-            .room_title
-              color: #fff
-              background-color: #999
-              padding: 2px 8px 3px
+      &.sweets
+        +clearfix
+        border: 1px solid #ccc
+        height: 510px
+        margin: 0 10px 20px 10px
+        width: 378px
 
-            .hall_details,
-            .room_details
-              margin: 5px 8px
+        ul
+          list-style: none
 
-              span
-                color: #f60
+        li
+          +inline-block
+          margin: 0px -4px 0px 0px
 
-          &.sweets
-            +clearfix
-            border: 1px solid #ccc
-            height: 510px
-            margin: 0 10px 20px 10px
+          .left_border
+            border-left: 1px solid #ccc
+
+          a
+            width: auto
+            height: auto
+            margin: 0px
+
+          .footer_button
+            border-bottom: 1px solid #ccc
+            height: 62px
             width: 378px
 
-            ul
-              list-style: none
+        .organization
+          height: 115px
+          padding: 10px 15px 10px 15px
+          width: 348px
+
+          h3
+            font-size: 18px
+
+          .title
+            padding-top: 3px
+            font-size: 12px
+          .body
+            padding-top: 3px
+
+        #Previous
+          background: image_url('public/colorbox_controls.png') no-repeat 5px 18px
+          height: 65px
+          margin-top: -32px
+          position: absolute
+          text-indent: -9999px
+          width: 28px
+
+
+        #Next
+          background: image_url('public/colorbox_controls.png') no-repeat -168px 18px
+          height: 65px
+          margin-left: 350px
+          margin-top: -32px
+          position: absolute
+          text-indent: -9999px
+          width: 28px
+
+        #Previous, #Next
+          border: 0
+          outline: none
+          overflow: visible
+          margin-top: -400px
+
+        #Previous:active, #Next:active
+          outline: 0
+
+        .inactive
+          +opacity(0.3)
+          background-color: #e8e8e8 !important
+          cursor: default
+          &:hover
+            +opacity(0.3)
+
+        .active
+          +opacity(0.3)
+          background-color: #f60 !important
+          cursor: pointer
+          &:hover
+            +opacity(0.8)
+
+
+
+        .profit
+          color: #f60
+          font-weight: bold
+
+        .discounts_count
+          background-color: #e8e8e8
+          height: 30px
+          margin-top: -228px
+          position: absolute
+          width: 378px
+          z-index: 1
+          text-align: center
+
+          ul.counter
+            display: inline-block
+            height: 25px
+            margin: 5px 0 0 0
 
             li
-              +inline-block
-              margin: 0px -4px 0px 0px
+              margin: 0
 
-              .left_border
-                border-left: 1px solid #ccc
+              .circle
+                +border-radius(50%)
+                background-color: #ccc
+                float: left
+                height: 13px
+                margin: 0px 2px 0px 2px
+                padding: 0px
+                position: relative
+                width: 13px
 
-              a
-                width: auto
-                height: auto
-                margin: 0px
+              .selected
+                background-color: #f60
 
-              .footer_button
-                border-bottom: 1px solid #ccc
-                height: 62px
-                width: 378px
+        .image
+          height: 282px
+          padding-bottom: 30px
 
-            .organization
-              height: 115px
-              padding: 10px 15px 10px 15px
-              width: 348px
+          a
+            width: 378px
+            height: 286px
+            margin: 0px
+            img
+              +opacity(1)
 
-              h3
-                font-size: 18px
+        .two_columns
+          float: left
+          position: relative
+          width: 188px
 
-              .title
-                padding-top: 3px
-                font-size: 12px
-              .body
-                padding-top: 3px
+        .columns
+          float: left
+          position: relative
+          width: 125px
 
-            #Previous
-              background: image_url('public/colorbox_controls.png') no-repeat 5px 18px
-              height: 65px
-              margin-top: -32px
-              position: absolute
-              text-indent: -9999px
-              width: 28px
-
-
-            #Next
-              background: image_url('public/colorbox_controls.png') no-repeat -168px 18px
-              height: 65px
-              margin-left: 350px
-              margin-top: -32px
-              position: absolute
-              text-indent: -9999px
-              width: 28px
-
-            #Previous, #Next
-              border: 0
-              outline: none
-              overflow: visible
-              margin-top: -400px
-
-            #Previous:active, #Next:active
-              outline: 0
-
-            .inactive
-              +opacity(0.3)
-              background-color: #e8e8e8 !important
-              cursor: default
-              &:hover
-                +opacity(0.3)
-
-            .active
-              +opacity(0.3)
-              background-color: #f60 !important
-              cursor: pointer
-              &:hover
-                +opacity(0.8)
+          .certificate_count, .certificate_price
+            text-align: left
+            width: 115px
+            font-size: 12px
 
 
-
-            .profit
+            .price
               color: #f60
               font-weight: bold
 
-            .discounts_count
-              background-color: #e8e8e8
-              height: 30px
-              margin-top: -228px
-              position: absolute
-              width: 378px
-              z-index: 1
-              text-align: center
+            .new_price
+              font-size: 14px
+              color: #f60
+              font-weight: bold
 
-              ul.counter
-                display: inline-block
-                height: 25px
-                margin: 5px 0 0 0
+            .origin_price
+              text-decoration: line-through
 
-                li
-                  margin: 0
+        .footer
+          text-align: center
 
-                  .circle
-                    +border-radius(50%)
-                    background-color: #ccc
-                    float: left
-                    height: 13px
-                    margin: 0px 2px 0px 2px
-                    padding: 0px
-                    position: relative
-                    width: 13px
+          a
+            line-height: 62px
 
-                  .selected
-                    background-color: #f60
+          .my_price
+            +button-style
+            font-size: 16px
+            padding: 10px
 
-            .image
-              height: 282px
-              padding-bottom: 30px
+          .my_price:active
+            padding: 10px
 
-              a
-                width: 378px
-                height: 286px
-                margin: 0px
-                img
-                  +opacity(1)
+          .buy
+            +button-style
+            font-size: 16px
+            padding: 10px 20px 10px 20px
 
-            .two_columns
-              float: left
-              position: relative
-              width: 188px
-
-            .columns
-              float: left
-              position: relative
-              width: 125px
-
-              .certificate_count, .certificate_price
-                text-align: left
-                width: 115px
-                font-size: 12px
-
-
-                .price
-                  color: #f60
-                  font-weight: bold
-
-                .new_price
-                  font-size: 14px
-                  color: #f60
-                  font-weight: bold
-
-                .origin_price
-                  text-decoration: line-through
-
-            .footer
-              text-align: center
-
-              a
-                line-height: 62px
-
-              .my_price
-                +button-style
-                font-size: 16px
-                padding: 10px
-
-              .my_price:active
-                padding: 10px
-
-              .buy
-                +button-style
-                font-size: 16px
-                padding: 10px 20px 10px 20px
-
-              .buy:active
-                padding: 10px 20px 10px 20px
+          .buy:active
+            padding: 10px 20px 10px 20px
 
 
   .organization_right

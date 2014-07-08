@@ -2,10 +2,12 @@
   <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '198', :@height => '164' } %>
 <% end %>
 
-<% unless @presenter.collection.last_page? %>
-  <li class="item pagination">
-    <%= link_to_next_page @presenter.collection, "Еще организации (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
-  </li>
+<% unless controller_name == 'organizations' %>
+  <% unless @presenter.collection.last_page? %>
+    <li class="item pagination">
+      <%= link_to_next_page @presenter.collection, "Еще организации (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+    </li>
+  <% end %>
 <% end %>
 
 <% if @presenter.collection.current_page == 1 %>
