@@ -203,7 +203,7 @@
     <% end %>
 
     <% if @afisha_presenter.collection.any? %>
-      <div class='suborganization_info afisha-paginator'>
+      <div class='suborganization_info button_pagination'>
         <div class='title'>Афиша</div>
         <ul class='posters js-paginable-list' data-item-width="220">
           <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @afisha_presenter.decorated_collection, :presenter => @afisha_presenter } %>
