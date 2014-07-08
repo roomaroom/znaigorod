@@ -172,6 +172,7 @@ class SaunaHallsPresenter
   def paginatable_collection
     search_with_groups.group(:sauna_id).groups
   end
+  alias :paginated_collection :paginatable_collection
 
   def saunas
     search_with_groups.group(:sauna_id).groups.map(&:value).map { |sauna_id|

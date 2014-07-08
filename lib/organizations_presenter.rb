@@ -233,7 +233,7 @@ module OrganizationsPresenter
   end
 
   def current_count
-    collection.total_count-(@page.to_i*@per_page)
+    paginated_collection.total_count - (@page.to_i * @per_page)
   end
 
   def geo_filter
