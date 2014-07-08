@@ -1,4 +1,4 @@
-$ ->
+@init_similar_afishas = () ->
   $('#afisha_title').focusout ->
     $.ajax
       type: 'post'
