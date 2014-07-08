@@ -63,7 +63,7 @@ class RoomsPresenter
     end
   end
 
-  class Feature
+  class FilterItem
     attr_accessor :title
 
     def initialize(title, selected)
@@ -84,7 +84,7 @@ class RoomsPresenter
 
     def room_features
       available_room_features.map do |title|
-        Feature.new title, @room_features.include?(title)
+        FilterItem.new title, @room_features.include?(title)
       end
     end
 
@@ -117,7 +117,7 @@ class RoomsPresenter
 
     def features
       available_features.map do |title|
-        Feature.new title, @features.include?(title)
+        FilterItem.new title, @features.include?(title)
       end
     end
 
@@ -144,6 +144,43 @@ class RoomsPresenter
     end
   end
 
+  class OffersFilter
+    attr_accessor :offers, :context_type
+
+    def initialize(context_type, offers)
+      @context_type = context_type
+      @offers = offers || []
+    end
+
+    def offers
+      available_offers.map do |title|
+        FilterItem.new title, @offers.include?(title)
+      end
+    end
+
+    def selected_offers
+      offers.select(&:selected?)
+    end
+
+    def used?
+      @offers.delete_if(&:blank?).any?
+    end
+
+    def css_class
+      used? ? 'show' : 'hide'
+    end
+
+    private
+
+    def values_instance_data
+      Values.instance.public_send context_type
+    end
+
+    def available_offers
+      values_instance_data.offers.map(&:mb_chars).map(&:downcase).map(&:to_s)
+    end
+  end
+
   include ActiveAttr::MassAssignment
   include OrganizationsPresenter
 
@@ -156,6 +193,7 @@ class RoomsPresenter
                 :rooms,
                 :room_features,
                 :features,
+                :offers,
                 :lat, :lon, :radius,
                 :page, :per_page
 
@@ -184,6 +222,7 @@ class RoomsPresenter
   delegate :rooms, :rooms_min, :rooms_max,                                     :to => :rooms_filter
   delegate :room_features,                                                     :to => :room_features_filter
   delegate :features,                                                          :to => :features_filter
+  delegate :offers,                                                            :to => :offers_filter
 
   def room_features_filter_css_class
     room_features_filter.css_class
@@ -191,6 +230,10 @@ class RoomsPresenter
 
   def features_filter_css_class
     features_filter.css_class
+  end
+
+  def offers_filter_css_class
+    offers_filter.css_class
   end
 
   def organizations_without_rooms
@@ -230,6 +273,7 @@ class RoomsPresenter
     @categories ||= []
     @room_features ||= []
     @features ||= []
+    @offers ||= []
     @page ||= 1
     @per_page ||= 10
   end
@@ -245,12 +289,15 @@ class RoomsPresenter
 
       paginate :page => page, :per_page => per_page
 
-      with :categories,    categories                             if categories.any?
-      with :features,      features_filter.selected_features      if features_filter.used?
       with :context_type,  context_type
-      with :room_features, room_features_filter.selected_features if room_features_filter.used?
+
       with(:capacity).greater_than_or_equal_to(capacity_filter.capacity)
       with(:rooms_count).greater_than_or_equal_to(rooms_filter.rooms)
+
+      with :categories,    categories                                          if categories.any?
+      with :features,      features_filter.selected_features.map(&:title)      if features_filter.used?
+      with :offers,        offers_filter.selected_offers.map(&:title)          if offers_filter.used?
+      with :room_features, room_features_filter.selected_features.map(&:title) if room_features_filter.used?
     end
   end
 
@@ -300,5 +347,9 @@ class RoomsPresenter
 
   def features_filter
     @features_filter ||= FeaturesFilter.new(context_type, @features)
+  end
+
+  def offers_filter
+    @offers_filter ||= OffersFilter.new(context_type, @offers)
   end
 end

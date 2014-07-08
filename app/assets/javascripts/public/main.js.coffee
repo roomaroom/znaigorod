@@ -95,6 +95,8 @@ $ ->
   handleBanners() if $('.banners_wrapper').length
 
   disableAvatarWrapperLinkClick() if $('.avatar-wrapper').length
+  init_similar_afishas() if $('#afisha_title').length
+
 
   true
 

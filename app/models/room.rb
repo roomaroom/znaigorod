@@ -28,6 +28,7 @@ class Room < ActiveRecord::Base
 
     string(:context_type)                { context_type.underscore }
     string(:features, :multiple => true) { context_features }
+    string(:offers,   :multiple => true) { context_offers }
   end
 
   def price_min
@@ -50,5 +51,9 @@ class Room < ActiveRecord::Base
 
   def context_features
     context.features.map(&:mb_chars).map(&:downcase).map(&:to_s)
+  end
+
+  def context_offers
+    context.offers.map(&:mb_chars).map(&:downcase).map(&:to_s)
   end
 end
