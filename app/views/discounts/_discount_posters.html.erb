@@ -1,5 +1,5 @@
 <% @discounts.each do |discount| %>
-  <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220', :@height => '164' } %>
+  <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '200', :@height => '164' } %>
 <% end %>
 
 <% if @presenter.collection.current_page == 1 %>

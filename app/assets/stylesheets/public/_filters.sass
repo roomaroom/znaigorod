@@ -61,14 +61,20 @@
   .filter_header
     font-size: 20px
 
-.presentation_filters.afisha, .presentation_filters.organization, .presentation_filters.sauna, .presentation_filters.hotels
-  float: left
-  margin: 10px 0 15px 0
+.presentation_filters
+  &.afisha,
+  &.organization,
+  &.sauna,
+  &.hotels,
+  &.discounts,
+  &.reviews
+    float: left
+    margin: 10px 0 15px 0
 
-  .order_by
-    ul
-      li
-        margin: 0
+    .order_by
+      ul
+        li
+          margin: 0
 
-        a
-          +border-radius(0)
+          a
+            +border-radius(0)
