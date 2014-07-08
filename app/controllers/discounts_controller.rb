@@ -7,7 +7,7 @@ class DiscountsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        @presenter = DiscountsPresenter.new(params.merge(:with_advertisement => true))
+        @presenter = DiscountsPresenter.new(params)
         @discounts = @presenter.decorated_collection
 
         render partial: 'discounts/discount_posters', layout: false and return if request.xhr?

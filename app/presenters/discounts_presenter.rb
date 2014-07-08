@@ -163,8 +163,7 @@ class DiscountsPresenter
   end
 
   attr_accessor :type, :kind, :organization_id,
-                :order_by, :page, :per_page, :q,
-                :advertisement, :with_advertisement
+                :order_by, :page, :per_page, :q
 
   attr_reader :type_filter, :kind_filter, :order_by_filter
 
@@ -174,11 +173,6 @@ class DiscountsPresenter
     normalize_args
     store_parameters
     initialize_filters
-    initialize_advertisement
-  end
-
-  def initialize_advertisement
-    @advertisement = Advertisement.new(list: 'discount', page: @page)
   end
 
   def collection
@@ -189,20 +183,12 @@ class DiscountsPresenter
     searcher.total_count
   end
 
-  def with_advertisement?
-    with_advertisement
+  def current_count
+    total_count-(@page.to_i*@per_page)
   end
 
   def decorated_collection
-    @decorated_collection ||= begin
-                                list = collection.map { |item| DiscountDecorator.decorate item }
-
-                                advertisement.places_at(page).each do |ad|
-                                  list.insert(ad.position, ad)
-                                end if with_advertisement?
-
-                                list
-                              end
+    @decorated_collection ||= collection.map { |item| DiscountDecorator.decorate item }
   end
 
   def page_title
@@ -221,7 +207,7 @@ class DiscountsPresenter
 
   def normalize_args
     @page     ||= 1
-    @per_page ||= per_page.to_i.zero? ? 15 : per_page.to_i
+    @per_page ||= per_page.to_i.zero? ? 20 : per_page.to_i
   end
 
   def store_parameters
@@ -240,7 +226,6 @@ class DiscountsPresenter
       params[:kind]             = kind_filter.selected
       params[:organization_ids] = [Parameters.instance.organization_id] if Parameters.instance.organization_id?
       params[:q]                = q if q.present?
-      params[:without]          = advertisement.discounts if with_advertisement?
     end
   end
 

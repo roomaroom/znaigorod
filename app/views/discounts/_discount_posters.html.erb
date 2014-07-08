@@ -2,8 +2,15 @@
   <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '200', :@height => '164' } %>
 <% end %>
 
+<% unless @presenter.collection.last_page? %>
+  <li class="item pagination">
+    <%= link_to_next_page @presenter.collection, "Еще организации (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+  </li>
+<% end %>
+
 <% if @presenter.collection.current_page == 1 %>
   <li class="google-ads-item">
     <%= render :partial => 'commons/ads_by_google' %>
   </li>
 <% end %>
+
