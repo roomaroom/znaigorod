@@ -1,412 +1,530 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif)
 
-.reviews_index, .my_reviews_show
-  padding: 10px
-
-  .posters
-    padding: 0 0 100px 0
-    position: relative
-
-    li.item
-      border: 1px solid #ccc
-      float: left
-      margin: 10px 6px
-      padding: 12px
-      width: 354px
-
-      .title
-        font-size: 18px
-        line-height: 25px
-        margin: 0 0 10px 0
-        text-align: center
-
-      .date, .details
-        margin: 0 0 5px 0
-
-      .details
-        +clearfix
-        color: #999
-        float: right
-        font-size: 12px
-
-        span
-          margin: 0 0 0 5px
-
-      .date
-        color: #999
-        float: left
-        font-size: 11px
-        line-height: 16px
-
-      .annotation
-        clear: both
-        font-size: 14px
-        line-height: 20px
-        padding: 5px 0 0 0
-
-        .images
-          margin: 0 auto
-          height: 240px
-          position: relative
-
-        .counter
-          +border-radius(5px)
-          background-color: rgba(0, 0, 0, 0.5)
-          bottom: 10px
-          color: #fff
-          padding: 7px
-          position: absolute
-          right: 10px
-
-        li
-          float: left
-          height: 80px
-          margin: 0
-          padding: 0
-          width: 118px
-
-        .js-video-preview
-          position: relative
-
-          &:hover
-            &:after
-              opacity: 1
-
-          &:after
-            background: image_url('public/youtube.png')
-            content: ''
-            display: block
-            height: 32px
-            left: 50%
-            margin-left: -16px
-            margin-top: -100px
-            opacity: 0.5
-            position: absolute
-            top: 50%
-            width: 32px
-
-        li:first-child
-          height: 160px
-          width: 236px
-
-.reviews_show
-  padding: 0px !important
-
-  .pagination
-    display: none
-
-  .left
-    +clearfix
+.content
+  .reviews_left
+    border-right: 1px solid #e5e5e5
     float: left
-    font-size: 16px
-    line-height: 28px
-    margin: 0
-    padding: 0
-    text-align: justify
-    width: 900px
+    padding: 0 40px 25px 5px
+    width: 880px
 
-    .actions
-      float: right
-      font-size: 14px
-      margin: 0 0 0 25px
-
-  h1
-    font-family: 'PT Serif', 'Times New Roman' serif
-    font-size: 26px
-    line-height: 36px
-    margin: 0 0 10px
-
-  .details
-    +clearfix
-    color: #999
-    float: right
-    font-size: 13px
-
-    span
-      margin: 0 0 0 5px
-
-  .date
-    color: #777
-    font-family: 'PT Serif', 'Times New Roman' serif
-    font-size: 14px
-    line-height: 14px
-
-  .description
-    font-family: 'PT Serif', 'Times New Roman' serif
-    margin: 10px 0
-
-    h2
+    .filter_header
+      +clearfix
+      border-bottom: 1px solid #e5e5e5
       font-size: 22px
-      line-height: 38px
-      margin: 10px 0
-      padding: 0
+      line-height: 40px
+      margin: 30px 0 0 0
 
-    h3, h4
-      background: none
-      font-size: 20px
-      line-height: 30px
-      margin: 0
-      padding: 0
+    .filter_and_share
+      +likes
+      .likes
+        margin: 15px 0 15px 0
 
-    p
-      font-size: 18px
-      line-height: 28px
-      margin: 0 0 15px 0
+    .button_pagination
+      clear: both
 
-    ol
-      list-style: inside decimal
+      .fresh
+        +opacity(0)
 
-    ul
-      list-style: inside disc
+      .reviews_posters
+        padding: 0 0 100px 0
+        position: relative
 
-    ol, ul
-      margin: 0 0 15px 0
+        li.item
+          border: 1px solid #ccc
+          float: left
+          margin: 10px 6px
+          padding: 12px
+          width: 354px
 
-      li
-        margin: 0 0 0 15px
+          .title
+            font-size: 18px
+            line-height: 25px
+            margin: 0 0 10px 0
+            text-align: center
 
-    strong
-      font-weight: bold
+          .date, .details
+            margin: 0 0 5px 0
 
-    em
-      font-weight: italic
+          .details
+            +clearfix
+            color: #999
+            float: right
+            font-size: 12px
 
-    img
-      border: 1px solid #bbb
-      display: block
-      height: auto
-      margin: 15px auto
-      padding: 1px
-      max-width: 700px
+            span
+              margin: 0 0 0 5px
 
-    iframe
-      display: block
-      margin: 15px auto
-      width: 700px
+          .date
+            color: #999
+            float: left
+            font-size: 11px
+            line-height: 16px
 
-    a
-      text-decoration: underline
+          .annotation
+            clear: both
+            font-size: 14px
+            line-height: 20px
+            padding: 5px 0 0 0
 
-      &:hover
-        text-decoration: none
-
-      strong
-        font-weight: normal
-
-  .author
-    font-size: 12px
-
-  .tags
-    li
-      +border-radius(3px)
-      +inline-block
-      background-color: #e8e8e8
-      color: #999
-      font-size: 11px
-      line-height: 14px
-      margin: 0
-      padding: 2px 5px
-
-  .share_and_likes
-    +share_and_likes
-
-  .right
-    float: right
-    width: 240px
-
-    h2
-      font-size: 14px
-      line-height: 21px
-      margin: 0 0 5px 0
-      text-align: center
-
-    .link_with_content
-      margin: 0 0 20px 0
-      text-align: center
-
-      .afisha_list
-        ul.posters
-          li
-            border: 1px solid #ccc
-            height: 352px
-            margin: 0 20px
-            position: relative
-            width: 198px
-            padding: 0
-
-            &.highlighted
-              border: 1px solid #f60
-
-            .title
-              border-bottom: 1px dashed #ccc
-              display: table-cell
-              font-size: 11px
-              height: 36px
-              line-height: 18px
-              margin: 0
-              min-height: 45px
-              padding: 0 10px
-              text-align: left
-              vertical-align: middle
-              width: 200px
-
-            .image
-              height: 260px
-              margin: 2px 0 0 2px
+            .images
+              margin: 0 auto
+              height: 240px
               position: relative
-              width: 194px
 
-              .has_items_for_sale
-                +as_green_ribbon
-                left: -9px
-                position: absolute
-                top: -3px
-                width: 212px
+            .counter
+              +border-radius(5px)
+              background-color: rgba(0, 0, 0, 0.5)
+              bottom: 10px
+              color: #fff
+              padding: 7px
+              position: absolute
+              right: 10px
 
-              .ribbon
-                position: absolute
-                left: 0
-                bottom: 0
-                color: #fff
-                background-color: #f60
-                padding: 2px 8px 3px
+            li
+              float: left
+              height: 80px
+              margin: 0
+              padding: 0
+              width: 118px
 
-              .for_sale
-                background: #00bb84
-                border: 1px solid #00ad7a
-                color: #fff
-                display: none
-                font-size: 12px
-                height: 28px
-                left: 27px
-                line-height: 28px
-                margin: 0
-                padding: 0
-                position: absolute
-                text-align: center
-                top: 40px
-                width: 140px
-
-                &:active, &:hover
-                  background: #00ad7a
-                  border-color: #00ad7a
-                  text-decoration: none
-
-                &.ponominalu
-                  background: none
-                  border: none
-                  left: 24px
-
-              .details
-                color: #999
-                font-size: 12px
-
-                .first_line,
-                .second_line
-                  display: none
-                  left: 0
-                  margin: 0
-                  padding: 0 10px
-                  position: absolute
-                  width: 175px
-
-                  span
-                    cursor: help
-                    display: inline-block
-                    margin: 0
-                    text-align: center
-                    width: 55px
-
-                .first_line
-                  bottom: 35px
-
-                .second_line
-                  bottom: 10px
+            .js-video-preview
+              position: relative
 
               &:hover
-                .ribbon
-                  display: none
-                img:not(.link)
-                  +opacity(0.15)
-                .for_sale,
-                .first_line,
-                .second_line,
-                .promote_afisha_wrapper
-                  display: block
+                &:after
+                  opacity: 1
 
-          .place
-            font-size: 11px
-            margin: 5px 10px 0 10px
-            text-align: left
+              &:after
+                background: image_url('public/youtube.png')
+                content: ''
+                display: block
+                height: 32px
+                left: 50%
+                margin-left: -16px
+                margin-top: -100px
+                opacity: 0.5
+                position: absolute
+                top: 50%
+                width: 32px
 
-          .human_when
-            font-size: 11px
-            margin: 2px 10px 3px 10px
-            text-align: left
+            li:first-child
+              height: 160px
+              width: 236px
 
-      .organizations_list
-        ul.posters
-          li
-            float: none
+  //.reviews_index, .my_reviews_show
+    //padding: 10px
 
-            .title
-              font-size: 12px
+    //.posters
+      //padding: 0 0 100px 0
+      //position: relative
 
-            .first_line,
-            .second_line
-              margin: 0
-              display: none
+      //li.item
+        //border: 1px solid #ccc
+        //float: left
+        //margin: 10px 6px
+        //padding: 12px
+        //width: 354px
 
-              span
-                margin: 0
-                width: 50px
+        //.title
+          //font-size: 18px
+          //line-height: 25px
+          //margin: 0 0 10px 0
+          //text-align: center
 
-      .info
-        margin: 0 auto
+        //.date, .details
+          //margin: 0 0 5px 0
 
-    .posters
-      li.item
-        border: 1px solid #ccc
-        margin: 5px 0 20px 0
-        padding: 12px
+        //.details
+          //+clearfix
+          //color: #999
+          //float: right
+          //font-size: 12px
 
-        &.tiny
-          width: 214px
+          //span
+            //margin: 0 0 0 5px
 
-      .title
-        font-size: 14px
-        line-height: 18px
-        margin: 0 0 10px 0
-        text-align: center
+        //.date
+          //color: #999
+          //float: left
+          //font-size: 11px
+          //line-height: 16px
 
-      .date, .details
-        font-size: 10px
-        margin: 0 0 5px 0
+        //.annotation
+          //clear: both
+          //font-size: 14px
+          //line-height: 20px
+          //padding: 5px 0 0 0
 
-        .comments, .likes, .visits
-          font-size: 10px
+          //.images
+            //margin: 0 auto
+            //height: 240px
+            //position: relative
 
-      .annotation
-        clear: both
+          //.counter
+            //+border-radius(5px)
+            //background-color: rgba(0, 0, 0, 0.5)
+            //bottom: 10px
+            //color: #fff
+            //padding: 7px
+            //position: absolute
+            //right: 10px
 
-        .images
-          height: 122px
-          margin: 0 auto
-          position: relative
+          //li
+            //float: left
+            //height: 80px
+            //margin: 0
+            //padding: 0
+            //width: 118px
 
-        .counter
-          bottom: 5px
-          color: #fff
-          position: absolute
-          right: 5px
+          //.js-video-preview
+            //position: relative
 
-        li
-          float: left
-          height: 41px
-          margin: 0
-          padding: 0
-          width: 71px
+            //&:hover
+              //&:after
+                //opacity: 1
 
-        li:first-child
-          height: 82px
-          width: 142px
+            //&:after
+              //background: image_url('public/youtube.png')
+              //content: ''
+              //display: block
+              //height: 32px
+              //left: 50%
+              //margin-left: -16px
+              //margin-top: -100px
+              //opacity: 0.5
+              //position: absolute
+              //top: 50%
+              //width: 32px
+
+          //li:first-child
+            //height: 160px
+            //width: 236px
+
+  //.reviews_show
+    //padding: 0px !important
+
+    //.pagination
+      //display: none
+
+    //.left
+      //+clearfix
+      //float: left
+      //font-size: 16px
+      //line-height: 28px
+      //margin: 0
+      //padding: 0
+      //text-align: justify
+      //width: 900px
+
+      //.actions
+        //float: right
+        //font-size: 14px
+        //margin: 0 0 0 25px
+
+    //h1
+      //font-family: 'PT Serif', 'Times New Roman' serif
+      //font-size: 26px
+      //line-height: 36px
+      //margin: 0 0 10px
+
+    //.details
+      //+clearfix
+      //color: #999
+      //float: right
+      //font-size: 13px
+
+      //span
+        //margin: 0 0 0 5px
+
+    //.date
+      //color: #777
+      //font-family: 'PT Serif', 'Times New Roman' serif
+      //font-size: 14px
+      //line-height: 14px
+
+    //.description
+      //font-family: 'PT Serif', 'Times New Roman' serif
+      //margin: 10px 0
+
+      //h2
+        //font-size: 22px
+        //line-height: 38px
+        //margin: 10px 0
+        //padding: 0
+
+      //h3, h4
+        //background: none
+        //font-size: 20px
+        //line-height: 30px
+        //margin: 0
+        //padding: 0
+
+      //p
+        //font-size: 18px
+        //line-height: 28px
+        //margin: 0 0 15px 0
+
+      //ol
+        //list-style: inside decimal
+
+      //ul
+        //list-style: inside disc
+
+      //ol, ul
+        //margin: 0 0 15px 0
+
+        //li
+          //margin: 0 0 0 15px
+
+      //strong
+        //font-weight: bold
+
+      //em
+        //font-weight: italic
+
+      //img
+        //border: 1px solid #bbb
+        //display: block
+        //height: auto
+        //margin: 15px auto
+        //padding: 1px
+        //max-width: 700px
+
+      //iframe
+        //display: block
+        //margin: 15px auto
+        //width: 700px
+
+      //a
+        //text-decoration: underline
+
+        //&:hover
+          //text-decoration: none
+
+        //strong
+          //font-weight: normal
+
+    //.author
+      //font-size: 12px
+
+    //.tags
+      //li
+        //+border-radius(3px)
+        //+inline-block
+        //background-color: #e8e8e8
+        //color: #999
+        //font-size: 11px
+        //line-height: 14px
+        //margin: 0
+        //padding: 2px 5px
+
+    //.share_and_likes
+      //+share_and_likes
+
+    //.right
+      //float: right
+      //width: 240px
+
+      //h2
+        //font-size: 14px
+        //line-height: 21px
+        //margin: 0 0 5px 0
+        //text-align: center
+
+      //.link_with_content
+        //margin: 0 0 20px 0
+        //text-align: center
+
+        //.afisha_list
+          //ul.posters
+            //li
+              //border: 1px solid #ccc
+              //height: 352px
+              //margin: 0 20px
+              //position: relative
+              //width: 198px
+              //padding: 0
+
+              //&.highlighted
+                //border: 1px solid #f60
+
+              //.title
+                //border-bottom: 1px dashed #ccc
+                //display: table-cell
+                //font-size: 11px
+                //height: 36px
+                //line-height: 18px
+                //margin: 0
+                //min-height: 45px
+                //padding: 0 10px
+                //text-align: left
+                //vertical-align: middle
+                //width: 200px
+
+              //.image
+                //height: 260px
+                //margin: 2px 0 0 2px
+                //position: relative
+                //width: 194px
+
+                //.has_items_for_sale
+                  //+as_green_ribbon
+                  //left: -9px
+                  //position: absolute
+                  //top: -3px
+                  //width: 212px
+
+                //.ribbon
+                  //position: absolute
+                  //left: 0
+                  //bottom: 0
+                  //color: #fff
+                  //background-color: #f60
+                  //padding: 2px 8px 3px
+
+                //.for_sale
+                  //background: #00bb84
+                  //border: 1px solid #00ad7a
+                  //color: #fff
+                  //display: none
+                  //font-size: 12px
+                  //height: 28px
+                  //left: 27px
+                  //line-height: 28px
+                  //margin: 0
+                  //padding: 0
+                  //position: absolute
+                  //text-align: center
+                  //top: 40px
+                  //width: 140px
+
+                  //&:active, &:hover
+                    //background: #00ad7a
+                    //border-color: #00ad7a
+                    //text-decoration: none
+
+                  //&.ponominalu
+                    //background: none
+                    //border: none
+                    //left: 24px
+
+                //.details
+                  //color: #999
+                  //font-size: 12px
+
+                  //.first_line,
+                  //.second_line
+                    //display: none
+                    //left: 0
+                    //margin: 0
+                    //padding: 0 10px
+                    //position: absolute
+                    //width: 175px
+
+                    //span
+                      //cursor: help
+                      //display: inline-block
+                      //margin: 0
+                      //text-align: center
+                      //width: 55px
+
+                  //.first_line
+                    //bottom: 35px
+
+                  //.second_line
+                    //bottom: 10px
+
+                //&:hover
+                  //.ribbon
+                    //display: none
+                  //img:not(.link)
+                    //+opacity(0.15)
+                  //.for_sale,
+                  //.first_line,
+                  //.second_line,
+                  //.promote_afisha_wrapper
+                    //display: block
+
+            //.place
+              //font-size: 11px
+              //margin: 5px 10px 0 10px
+              //text-align: left
+
+            //.human_when
+              //font-size: 11px
+              //margin: 2px 10px 3px 10px
+              //text-align: left
+
+        //.organizations_list
+          //ul.posters
+            //li
+              //float: none
+
+              //.title
+                //font-size: 12px
+
+              //.first_line,
+              //.second_line
+                //margin: 0
+                //display: none
+
+                //span
+                  //margin: 0
+                  //width: 50px
+
+        //.info
+          //margin: 0 auto
+
+      //.posters
+        //li.item
+          //border: 1px solid #ccc
+          //margin: 5px 0 20px 0
+          //padding: 12px
+
+          //&.tiny
+            //width: 214px
+
+        //.title
+          //font-size: 14px
+          //line-height: 18px
+          //margin: 0 0 10px 0
+          //text-align: center
+
+        //.date, .details
+          //font-size: 10px
+          //margin: 0 0 5px 0
+
+          //.comments, .likes, .visits
+            //font-size: 10px
+
+        //.annotation
+          //clear: both
+
+          //.images
+            //height: 122px
+            //margin: 0 auto
+            //position: relative
+
+          //.counter
+            //bottom: 5px
+            //color: #fff
+            //position: absolute
+            //right: 5px
+
+          //li
+            //float: left
+            //height: 41px
+            //margin: 0
+            //padding: 0
+            //width: 71px
+
+          //li:first-child
+            //height: 82px
+            //width: 142px
+
+  .organization_right
+    border-left: 1px solid #e5e5e5
+    float: left
+    margin: 0 0 0 -1px
+    padding: 10px 0
+    width: 262px

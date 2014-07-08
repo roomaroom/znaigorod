@@ -212,6 +212,10 @@ class ReviewsPresenter
     searcher.total_count
   end
 
+  def current_count
+    total_count - (@page * @per_page)
+  end
+
   def with_advertisement?
     with_advertisement
   end
@@ -246,7 +250,7 @@ class ReviewsPresenter
 
   def normalize_args
     @page     ||= 1
-    @per_page ||= per_page.to_i.zero? ? 15 : per_page.to_i
+    @per_page ||= per_page.to_i.zero? ? 10 : per_page.to_i
     @only_tomsk ||= @only_tomsk.present? ? true : nil
   end
 

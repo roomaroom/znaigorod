@@ -1,3 +1,7 @@
 <% collection.each do |review|%>
-  <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => height, :width => width } %></li>
+  <li class="item fresh"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => height, :width => width } %></li>
 <% end %>
+
+  <li class="item pagination">
+    <%= link_to_next_page collection, "Еще организации ()", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+  </li>
