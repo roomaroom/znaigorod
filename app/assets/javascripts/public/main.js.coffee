@@ -52,7 +52,7 @@ $ ->
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   initButtonPagination() if $('.button_pagination').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
-  init_discounts_account_tabs() if $('#discounts_filter').length
+  init_discounts_account_tabs() if $('#discounts_filter').length || $('#reviews_filter').length
   init_account_extend() if $('.account_show').length
   init_account_social_actions() if $('.account_show, .accounts_list').length
   init_account_filter_with_avatar() if $('.filters_wrapper .account #with_avatar').length

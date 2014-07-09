@@ -34,7 +34,7 @@
     $("##{id}").each ()->
       $(this).closest('li').remove()
 
-    $('#events_filter .ui-state-default a, #discounts_filter .ui-state-default a').each (index, elem) ->
+    $('#events_filter .ui-state-default a, #discounts_filter .ui-state-default a, #reviews_filter .ui-state-default a').each (index, elem) ->
       switch elem.href.split('/').last()
         when '#all' then elem.innerHTML = "Все (#{data.all})"
         when '#draft' then elem.innerHTML = "Черновики (#{data.draft})"
