@@ -1,4 +1,5 @@
 .content
+
   .organization_left
     border-right: 1px solid #e5e5e5
     float: left
@@ -17,154 +18,154 @@
       .likes
         margin: 15px 0 15px 0
 
-    .button_pagination
-      clear: both
-
-      .fresh
-        +opacity(0)
-
-      .organization_posters
-        +clearfix
-
-        li
-          +transition(all 750ms ease-out)
-          float: left
-          margin: 0 10px 20px 10px
-
-          .info
-            width: 190px
-            text-align: center
-            border: 1px solid #ccc
-
-            .title
-              @extend .nobr
-              margin: 5px
-
-            .image
-              width: 190px
-              height: 190px
-              position: relative
-              margin-bottom: 3px
-
-              .sms_claimable
-                width: 202px
-                position: absolute
-                top: 0
-                left: -6px
-                +as_blue_ribbon
-
-              .sms_claim_link
-                display: block
-                width: 130px
-                height: auto
-                top: 50px
-                left: 20px
-                +button-style
-                z-index: 0
-
-              a
-                display: block
-                position: absolute
-                top: 0
-                left: 0
-                width: 190px
-                height: 190px
-
-                .stub_poster
-                  display: block
-                  width: 190px
-                  height: 190px
-                  background: transparent image_url('public/organization_stub_poster_kind_big.png') no-repeat top left
-
-                  &.billiard
-                    background-position: -207px -7px
-
-                  &.car_sales_center
-                    background-position: -7px -207px
-
-                  &.car_wash
-                    background-position: -7px -207px
-
-                  &.creation
-                    background-position: -807px -7px
-
-                  &.culture
-                    background-position: -407px -7px
-
-                  &.entertainment
-                    background-position: -207px -7px
-
-                  &.meal
-                    background-position: -7px -7px
-
-                  &.salon_center
-                    background-position: -207px -207px
-
-                  &.sauna
-                    background-position: -407px -207px
-
-                  &.sport
-                    background-position: -607px -7px
-
-              .details
-                color: #999
-                font-size: 12px
-
-              .first_line
-                bottom: 35px
-
-              .second_line
-                bottom: 10px
-
-              .first_line,
-              .second_line
-                display: none
-                width: 100%
-                position: absolute
-                left: 0
-
-                span
-                  cursor: help
-                  display: inline-block
-                  text-align: center
-                  width: 54px
-
-              &:hover
-                .sms_claim_link
-                  z-index: 1
-                .stub_poster
-                  +opacity(0.15)
-                img
-                  +opacity(0.15)
-                .for_sale,
-                .first_line,
-                .second_line
-                  display: block
-
-            .place
-              margin-bottom: 3px
-
-            .phone
-              margin-bottom: 3px
-
-
-    li.pagination
-      border: none !important
-      height: 30px !important
-      margin: 0 8px !important
-      padding: 0 0 20px 0 !important
-      width: 830px !important
-
-      a
-        &.disabled
-          color: #999
-
   .organization_right
     border-left: 1px solid #e5e5e5
     float: left
     margin: 0 0 0 -1px
     padding: 10px 0
     width: 262px
+
+.organization_content
+  clear: both
+
+  .fresh
+    +opacity(0)
+
+  .posters
+    +clearfix
+
+    li
+      +transition(all 750ms ease-out)
+      float: left
+      margin: 0 10px 20px 10px
+
+      .info
+        width: 190px
+        text-align: center
+        border: 1px solid #ccc
+
+        .title
+          @extend .nobr
+          margin: 5px
+
+        .image
+          //width: 190px
+          height: 190px
+          position: relative
+          margin-bottom: 3px
+
+          .sms_claimable
+            width: 202px
+            position: absolute
+            top: 0
+            left: -6px
+            +as_blue_ribbon
+
+          .sms_claim_link
+            display: block
+            width: 130px
+            height: auto
+            top: 50px
+            left: 20px
+            +button-style
+            z-index: 0
+
+          a
+            display: block
+            position: absolute
+            top: 0
+            left: 0
+            width: 190px
+            height: 190px
+
+            .stub_poster
+              display: block
+              //width: 190px
+              //height: 190px
+              background: transparent image_url('public/organization_stub_poster_kind_big.png') no-repeat top left
+
+              &.billiard
+                background-position: -207px -7px
+
+              &.car_sales_center
+                background-position: -7px -207px
+
+              &.car_wash
+                background-position: -7px -207px
+
+              &.creation
+                background-position: -807px -7px
+
+              &.culture
+                background-position: -407px -7px
+
+              &.entertainment
+                background-position: -207px -7px
+
+              &.meal
+                background-position: -7px -7px
+
+              &.salon_center
+                background-position: -207px -207px
+
+              &.sauna
+                background-position: -407px -207px
+
+              &.sport
+                background-position: -607px -7px
+
+          .details
+            color: #999
+            font-size: 12px
+
+          .first_line
+            bottom: 35px
+
+          .second_line
+            bottom: 10px
+
+          .first_line,
+          .second_line
+            display: none
+            width: 100%
+            position: absolute
+            left: 0
+
+            span
+              cursor: help
+              display: inline-block
+              text-align: center
+              width: 54px
+
+          &:hover
+            .sms_claim_link
+              z-index: 1
+            .stub_poster
+              +opacity(0.15)
+            img
+              +opacity(0.15)
+            .for_sale,
+            .first_line,
+            .second_line
+              display: block
+
+        .place
+          margin-bottom: 3px
+
+        .phone
+          margin-bottom: 3px
+
+
+li.pagination
+  border: none !important
+  height: 30px !important
+  margin: 0 8px !important
+  padding: 0 0 20px 0 !important
+  width: 830px !important
+
+  a
+    &.disabled
+      color: #999
 
 .google-ads-item
   display: none

@@ -1,4 +1,4 @@
-<div class="organizations_main_page_list">
+<div class="organizations_main_page_list organization_content">
   <div class="filter_header">
     <h2><%= link_to t('meta.organizations.page_header'), organizations_path %></h2>
   </div>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <ul class="posters">
+    <ul class="posters tiny">
       <% @organizations.random_collection.each do |organization| %>
         <li><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => organization, width: 178, height: 178 } %></li>
       <% end %>
