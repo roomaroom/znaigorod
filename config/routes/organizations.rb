@@ -27,7 +27,7 @@ Znaigorod::Application.routes.draw do
   }
   resources :saunas, :only => :index
   get '/saunas/sauny', :to => redirect('/saunas')
-  get '/meals' => redirect('/kafe_tomska')
+  get '/meals' => redirect { |params, request| "/kafe_tomska?#{request.params.to_query}" }
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
   resources :hotels, :only => :index
