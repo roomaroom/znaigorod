@@ -65,7 +65,7 @@
           <div class="map"
             data-latitude="<%= @discount.places.first.latitude %>"
             data-longitude="<%= @discount.places.first.longitude %>"
-            data-hint="<%= @discount.places.first.organization_id? ? @discount.places.first.organization.title : @discount.places.first.address %>"
+            data-hint="<%= @discount.places.first.organization_id? ? @discount.places.first.try(:organization).try(:title) : @discount.places.first.address %>"
             <%= "data-id=#{@discount.places.first.organization_id}" if @discount.places.first.organization %>>
           </div>
         </div>
