@@ -14,7 +14,7 @@ class SaunaHallsPresenter
                 :baths, :features, :pool,
                 :lat, :lon, :radius,
                 :order_by, :direction,
-                :params, :page,
+                :params, :page, :per_page,
                 :categories
 
   alias :pool_features  :pool
@@ -38,6 +38,9 @@ class SaunaHallsPresenter
     self.lat    = self.lat.blank? ? nil : self.lat
     self.lon    = self.lon.blank? ? nil : self.lon
     self.radius = self.radius.blank? ? nil : self.radius
+
+    self.per_page = 10
+
     self.page     ||= 1
   end
 
@@ -172,7 +175,6 @@ class SaunaHallsPresenter
   def paginatable_collection
     search_with_groups.group(:sauna_id).groups
   end
-  alias :paginated_collection :paginatable_collection
 
   def saunas
     search_with_groups.group(:sauna_id).groups.map(&:value).map { |sauna_id|
