@@ -11,7 +11,7 @@
 <% end %>
 
 <div class="afisha_left">
-  <div class="title">
+  <div class="filter_header">
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% elsif @presenter.categories_filter.selected.empty? %>
@@ -19,15 +19,18 @@
     <% else %>
       <h1><%= t("meta.#{@presenter.categories_filter.selected.first.pluralize}.page_header") %></h1>
     <% end %>
+  </div>
 
+  <div class="filter_and_share">
+    <div class='presentation_filters afisha'>
+      <!--noindex-->
+      <%= render :partial => 'commons/presentation_filters' %>
+      <!--/noindex-->
+    </div>
     <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
 
-  <!--noindex-->
-  <%= render :partial => 'afishas/presentation_filters' %>
-  <!--/noindex-->
-
-  <div class="button_pagination">
+  <div class="afisha_content js-button-pagination">
     <% if @presenter.collection.any? %>
       <ul class='posters js-paginable-list' data-item-width="220">
         <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @presenter.decorated_collection, :presenter => @presenter } %>

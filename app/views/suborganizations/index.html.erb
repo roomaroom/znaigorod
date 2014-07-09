@@ -25,17 +25,7 @@
   <div class="filter_and_share">
     <div class='presentation_filters organization'>
       <!--noindex-->
-      <div class='order_by'>
-        <p>Сортировать по:</p>
-        <ul>
-          <% @presenter.sortings_links.each do |sortings_link| %>
-            <li<%= " class=selected" if sortings_link[:selected] %>>
-              <%= link_to sortings_link[:title],
-                send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <%= render :partial => 'commons/presentation_filters' %>
       <!--/noindex-->
     </div>
     <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
