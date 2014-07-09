@@ -40,7 +40,7 @@
   </li>
 <% end %>
 
-<% if @presenter.last_page? && @presenter.decorated_collection.any? %>
+<% if @presenter.last_page? %>
   <% @presenter.organizations_without_rooms.each_with_index do |organization, index| %>
     <li class='housing_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', :name => 'housing_short_item') %><%= ' clear_left' if index.zero? %>'>
       <div class='info'>
