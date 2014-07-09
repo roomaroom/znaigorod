@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <ul class="posters">
+    <ul class="posters tiny">
       <% @discounts.each do |discount| %>
         <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '220', :@height => '164' } %>
       <% end %>

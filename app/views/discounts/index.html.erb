@@ -40,8 +40,8 @@
     <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
 
-  <div class="button_pagination">
-    <ul class="discount_posters js-paginable-list">
+  <div class="discount_content js-button-pagination">
+    <ul class="posters js-paginable-list">
       <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @presenter.collection } %>
     </ul>
   </div>
