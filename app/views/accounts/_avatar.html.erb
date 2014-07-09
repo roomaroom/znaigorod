@@ -1,15 +1,21 @@
-<% size = width.to_i > 100 ? 'big' : 'small' %>
+<% if avatar %>
+  <% size = width.to_i > 100 ? 'big' : 'small' %>
 
-<% clickable_class = local_assigns[:clickable] == false ? 'non-clickable-avatar js-non-clickable-avatar' : '' %>
+  <% clickable_class = local_assigns[:clickable] == false ? 'non-clickable-avatar js-non-clickable-avatar' : '' %>
 
-<div class="avatar-wrapper <%= clickable_class %>">
-  <% url = local_assigns[:url] ? url : account %>
+  <div class="avatar-wrapper <%= clickable_class %>">
+    <% url = local_assigns[:url] ? url : account %>
 
-  <%= link_to url do %>
-    <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title %>
+    <%= link_to url do %>
+      <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title %>
 
-    <% if account.photo_correspondent? %>
-      <span class='badge badge-<%= size %> badge-photo-correspondent show_tipsy' title="<%= Hash[Account.badge.options].invert['photo_correspondent'] %>"></span>
+      <% if account.photo_correspondent? %>
+        <span class='badge badge-<%= size %> badge-photo-correspondent show_tipsy' title="<%= Hash[Account.badge.options].invert['photo_correspondent'] %>"></span>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <div class="avatar-wrapper <%= clickable_class %>">
+    <%= image_tag "#{Settings['storage.url']}/files/44242/200-200/default_undefined_avatar.png", :size => '35x35' %>
+  </div>
+<% end %>
