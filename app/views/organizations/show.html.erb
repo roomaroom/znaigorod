@@ -103,7 +103,7 @@
   </div>
 
   <div class='center'>
-    <div class='organization_content with-toggleable'>
+    <div class='suborganization_content with-toggleable'>
       <% if current_user && (current_user.is_organizations_editor? || current_user.is_admin?) %>
         <%= link_to 'изменить', manage_organization_path(@organization), :class => :icon_edit %>
       <% end %>
@@ -192,13 +192,11 @@
           </div>
         </div>
 
-        <div class="discounts_wrapper">
-          <div class="discounts_list pagination_none">
+          <div class="discount_content pagination_none">
             <ul class="posters">
               <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
             </ul>
           </div>
-        </div>
 
         <%= paginate @discount_presenter.collection %>
       </div>
