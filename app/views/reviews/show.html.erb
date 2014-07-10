@@ -15,7 +15,7 @@
   <%= @review.twitter_cards_meta %>
 <% end %>
 
-<div class="left">
+<div class="left margin">
   <div class="actions">
     <% if current_user && current_user.account == @review.account %>
       <%= link_to ' изменить', my_review_path(@review.id), :class => 'fa fa-pencil' if can? :edit, @review %>
