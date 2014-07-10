@@ -32,33 +32,46 @@
     +opacity(0)
 
   .posters
-    +clearfix
+    overflow: visible
 
     li
       +transition(all 750ms ease-out)
       float: left
-      margin: 0 10px 20px 10px
+      margin: 0 25px 20px 0px
+
+      &:nth-child(4n)
+        margin-right: 0px
 
       .info
-        width: 190px
+        width: 198px
+        height: 285px
         text-align: center
         border: 1px solid #ccc
 
         .title
-          @extend .nobr
-          margin: 5px
+          border-bottom: 1px dashed #ccc
+          display: table-cell
+          font-size: 11px
+          height: 44px
+          line-height: 18px
+          margin: 0
+          min-height: 45px
+          padding: 0 10px
+          vertical-align: middle
+          width: 198px
+          text-align: left
 
         .image
           height: 190px
           position: relative
-          margin-bottom: 3px
+          margin: 2px 2px 3px 2px
 
           .sms_claimable
-            width: 202px
+            width: 211px
             position: absolute
-            top: 0
-            left: -6px
-            +as_blue_ribbon
+            top: -5px
+            left: -9px
+            +as_green_ribbon
 
           .sms_claim_link
             display: block
@@ -68,6 +81,7 @@
             left: 20px
             +button-style
             z-index: 0
+            padding: 5px 10px 5px
 
           a
             display: block
@@ -148,17 +162,21 @@
 
         .place
           margin-bottom: 3px
+          padding-top: 7px
 
         .phone
           margin-bottom: 3px
 
+        .place, .phone
+          text-align: left
+          padding-left: 8px
 
   li.pagination
     border: none !important
     height: 30px !important
     margin: 0 8px !important
     padding: 0 0 20px 0 !important
-    width: 830px !important
+    width: 850px !important
 
     a
       &.disabled
@@ -166,4 +184,3 @@
 
 .google-ads-item
   display: none
-

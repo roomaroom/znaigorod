@@ -48,10 +48,6 @@ $desktop_default_width: 1200px
 =button-style($image: false)
   color: #fff
   background-color: #ff7f1a
-  @if $image
-    +background($image, linear-gradient(top, #f93, #f60))
-  @else
-    +background(linear-gradient(top, #f93, #f60))
   border: 1px solid #f60
   padding: 1px 8px 2px
   &:hover
@@ -256,7 +252,7 @@ $desktop_default_width: 1200px
     border-color: #006666 transparent transparent #006666
 
 /* стрелочки */
-=left-arrow($arrow-color: #009bdb, $background: #ececec, $text-color: #fff)
+=left-arrow($arrow-color: #099, $background: #ececec, $text-color: #fff)
   background: $arrow-color
   color: $text-color
   float: right

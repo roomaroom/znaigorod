@@ -1,5 +1,4 @@
 <div class='info'>
-  <div class='title'><%= suborganization.truncated_title_link %> </div>
   <div class='image'>
     <% if suborganization.is_a?(OrganizationDecorator) %>
       <% if suborganization.sms_claimable? %>
@@ -41,6 +40,9 @@
       </span>
     <% end %>
   </div>
+
+  <div class='title'><%= suborganization.truncated_title_link %> </div>
+
   <div class="place">
     <%= suborganization.truncated_address_link.present? ? suborganization.truncated_address_link : "&nbsp;".html_safe %>
   </div>
