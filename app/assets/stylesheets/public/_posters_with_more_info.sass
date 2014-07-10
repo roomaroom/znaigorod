@@ -45,12 +45,17 @@
 
       &.sauna_item,
       &.housing_item
-        width: 378px
+        width: 418px
+        height: 285px
         border: 1px solid #ccc
-        margin: 0 50px 20px 10px
+        margin: 0 20px 20px 10px
+
+        &:nth-child(2n)
+          margin-right: 0
 
         .info
           border-right: 1px dashed #ccc
+          height: 285px
 
       &.sauna_short_item,
       &.housing_short_item
@@ -75,8 +80,17 @@
         text-align: center
 
         .title
-          @extend .nobr
-          margin: 5px
+          border-bottom: 1px dashed #ccc
+          display: table-cell
+          font-size: 11px
+          height: 44px
+          line-height: 18px
+          margin: 0
+          min-height: 45px
+          padding: 0 10px
+          vertical-align: middle
+          width: 200px
+          text-align: left
 
         .image
           width: 178px
@@ -85,11 +99,15 @@
           margin-bottom: 3px
 
           .sms_claimable
-            width: 190px
+            width: 185px
             position: absolute
             top: 0
             left: -6px
-            +as_blue_ribbon
+            +as_green_ribbon
+            padding: 2.5px 0
+
+            &:after
+              border-color: transparent
 
           a
             display: block
@@ -167,16 +185,22 @@
             .second_line
               display: block
 
-        .place
+        .address
           margin-bottom: 3px
+          padding-left: 10px
+          padding-top: 10px
 
         .phone
           margin-bottom: 3px
+          padding-left: 5px
+
+        .address, .phone
+          text-align: left
 
       .sauna_halls,
       .rooms
         float: left
-        width: 199px
+        width: 239px
         height: 244px
 
         li

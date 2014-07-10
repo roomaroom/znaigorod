@@ -457,17 +457,25 @@
 
 .organizations_main_page_list
   .posters, .posters.tiny
-    +clearfix
+    padding-left: 5px
+
     li
+      &:nth-child(4n)
+        margin-right: 19px
+
+      margin: 0 19px 20px 0
       .info
         width: 178px
         .title
         .image
           width: 178px
           height: 178px
+          margin: 0
+
 
           .sms_claimable
             width: 190px
+            left: -6px
 
           .sms_claim_link
             left: 15px

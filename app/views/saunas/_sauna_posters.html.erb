@@ -1,7 +1,6 @@
 <% @presenter.organizations.each do |organization| %>
   <li class='sauna_item <%= cycle('item_1', 'item_2', :name => 'sauna_item') %>'>
     <div class='info'>
-      <div class='title'><%= organization.truncated_title_link %> </div>
       <div class='image'>
         <% if organization.sauna.sms_claimable? %>
           <div class='sms_claimable'>
@@ -29,9 +28,13 @@
           </span>
         <% end %>
       </div>
+
+      <div class='title'><%= organization.truncated_title_link %> </div>
+
       <div class='address'>
         <%= organization.truncated_address_link.present? ? organization.truncated_address_link : "&nbsp;".html_safe %>
       </div>
+
       <div class='phone'>
         <%= organization.decorated_phones %>
       </div>
