@@ -3,7 +3,7 @@ class PromotionWorker
   sidekiq_options :queue => :promotion
 
   def perform(url, channel)
-    smart_promotion = PromotionFinder.new
+    smart_promotion = PromotionFinder.new(url)
     promotion = smart_promotion.promotion
 
     promotion.promotion_places.each do |place|
