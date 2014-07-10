@@ -175,6 +175,11 @@ class SaunaHallsPresenter
   def paginatable_collection
     search_with_groups.group(:sauna_id).groups
   end
+  alias :paginated_collection :paginatable_collection
+
+  def current_count
+    HasSearcher.searcher(:saunas).hits.total_count - (page.to_i * per_page)
+  end
 
   def saunas
     search_with_groups.group(:sauna_id).groups.map(&:value).map { |sauna_id|
