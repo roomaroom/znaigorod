@@ -14,9 +14,11 @@ module EmailDigestHelper
 
   def path_for_email(obj, anchor = nil )
     obj = obj.model if obj.class.name.underscore.match(/decorator/)
-    method = "#{obj.class.name.underscore}_path"
-    method = "discount_path" if %[Discount Coupon Certificate OfferedDiscount AffiliatedCoupon].include?(obj.class.name)
 
+    method = "#{obj.class.name.underscore}_path"
+
+    method = "discount_path"    if %[Discount Coupon Certificate OfferedDiscount AffiliatedCoupon].include?(obj.class.name)
+    method = "afisha_show_path" if obj.is_a?(Afisha)
 
     send(method,
          obj,
