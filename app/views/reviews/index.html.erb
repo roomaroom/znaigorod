@@ -41,14 +41,15 @@
     </ul>
   </div>
   <%= paginate @presenter.collection %>
+
+  <% if page_meta %>
+    <div class="introduction green">
+      <%= page_meta.html_introduction %>
+    </div>
+  <% end %>
 </div>
 
 <div class="organization_right">
   <%= render :partial => 'commons/promotions' %>
 </div>
 
-<% if page_meta %>
-  <div class="introduction">
-    <%= page_meta.html_introduction %>
-  </div>
-<% end %>

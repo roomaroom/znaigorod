@@ -43,11 +43,11 @@
   <%= render :partial => 'commons/ads_by_google' %>
 
   <% if page_meta %>
-    <div class='introduction'>
+    <div class='introduction green'>
       <%= page_meta.html_introduction %>
     </div>
   <% elsif !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
-    <div class='introduction'>
+    <div class='introduction green'>
       <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
     </div>
   <% end %>

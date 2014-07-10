@@ -45,16 +45,17 @@
       <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @presenter.collection } %>
     </ul>
   </div>
+
+  <div class='introduction green'>
+    <% if page_meta %>
+      <%= page_meta.html_introduction %>
+    <% else %>
+      <%= t("meta.discount.introduction").as_html %>
+    <% end %>
+  </div>
 </div>
 
 <div class="discount_right">
   <%= render :partial => 'commons/promotions' %>
 </div>
 
-<div class='introduction'>
-  <% if page_meta %>
-    <%= page_meta.html_introduction %>
-  <% else %>
-    <%= t("meta.discount.introduction").as_html %>
-  <% end %>
-</div>
