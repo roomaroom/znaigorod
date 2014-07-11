@@ -60,7 +60,7 @@
           height: 164px
           position: relative
           width: 198px
-          margin-left: 1px
+          margin: 0 1px 0 1px
 
           .origin_url
             position: absolute
@@ -174,7 +174,26 @@
               +left-arrow(#099, #fff, #fff)
 
           .certificate
+            position: relative
             float: right
+            right: 53px
+
+            .price
+              position: absolute
+              right: -59px
+              z-index: 1
+
+              &:after
+                content: ''
+                width: 0
+                height: 0
+                position: absolute
+                right: 0
+                bottom: -10px
+                border-width: 5px 3px
+                border-style: solid
+                border-color: #006666 transparent transparent #006666
+
 
             span
               +inline-block
