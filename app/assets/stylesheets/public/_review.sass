@@ -1,115 +1,107 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Serif)
 
-.content
-  .reviews_left
-    border-right: 1px solid #e5e5e5
-    float: left
-    padding: 0 40px 25px 5px
-    width: 880px
+.reviews_index, .my_reviews_show
+  padding: 10px
 
-    .filter_header
-      +clearfix
-      border-bottom: 1px solid #e5e5e5
-      font-size: 22px
-      line-height: 40px
-      margin: 30px 0 0 0
+.reviews-paginator
+  .posters
+    padding: 0 0 100px 0
+    position: relative
 
-    .filter_and_share
-      +likes
-      .likes
-        margin: 15px 0 15px 0
+    li.item
+      border: 1px solid #ccc
+      float: left
+      margin: 10px 6px
+      padding: 12px
+      width: 354px
 
-    .button_pagination
-      clear: both
+      &.tiny
+        width: 214px
 
-      .fresh
-        +opacity(0)
+        .title
+          font-size: 14px
 
-      .reviews_posters
-        padding: 0 0 100px 0
-        position: relative
+        .text
+          +clearfix
+          max-width: 200px
+          text-overflow: ellipsis
+          vertical-align: top
+          white-space: nowrap
 
-        li.item
-          border: 1px solid #ccc
+      .title
+        font-size: 18px
+        line-height: 25px
+        margin: 0 0 10px 0
+        text-align: center
+
+      .date, .details
+        margin: 0 0 5px 0
+
+      .details
+        +clearfix
+        color: #999
+        float: right
+        font-size: 12px
+
+        span
+          margin: 0 0 0 5px
+
+      .date
+        color: #999
+        float: left
+        font-size: 11px
+        line-height: 16px
+
+      .annotation
+        clear: both
+        font-size: 14px
+        line-height: 20px
+        padding: 5px 0 0 0
+
+        .images
+          margin: 0 auto
+          height: 240px
+          position: relative
+
+        .counter
+          +border-radius(5px)
+          background-color: rgba(0, 0, 0, 0.5)
+          bottom: 10px
+          color: #fff
+          padding: 7px
+          position: absolute
+          right: 10px
+
+        li
           float: left
-          margin: 10px 6px
-          padding: 12px
-          width: 354px
+          height: 80px
+          margin: 0
+          padding: 0
+          width: 118px
 
-          .title
-            font-size: 18px
-            line-height: 25px
-            margin: 0 0 10px 0
-            text-align: center
+        .js-video-preview
+          position: relative
 
-          .date, .details
-            margin: 0 0 5px 0
+          &:hover
+            &:after
+              opacity: 1
 
-          .details
-            +clearfix
-            color: #999
-            float: right
-            font-size: 12px
+          &:after
+            background: image_url('public/youtube.png')
+            content: ''
+            display: block
+            height: 32px
+            left: 50%
+            margin-left: -16px
+            margin-top: -100px
+            opacity: 0.5
+            position: absolute
+            top: 50%
+            width: 32px
 
-            span
-              margin: 0 0 0 5px
-
-          .date
-            color: #999
-            float: left
-            font-size: 11px
-            line-height: 16px
-
-          .annotation
-            clear: both
-            font-size: 14px
-            line-height: 20px
-            padding: 5px 0 0 0
-
-            .images
-              margin: 0 auto
-              height: 240px
-              position: relative
-
-            .counter
-              +border-radius(5px)
-              background-color: rgba(0, 0, 0, 0.5)
-              bottom: 10px
-              color: #fff
-              padding: 7px
-              position: absolute
-              right: 10px
-
-            li
-              float: left
-              height: 80px
-              margin: 0
-              padding: 0
-              width: 118px
-
-            .js-video-preview
-              position: relative
-
-              &:hover
-                &:after
-                  opacity: 1
-
-              &:after
-                background: image_url('public/youtube.png')
-                content: ''
-                display: block
-                height: 32px
-                left: 50%
-                margin-left: -16px
-                margin-top: -100px
-                opacity: 0.5
-                position: absolute
-                top: 50%
-                width: 32px
-
-            li:first-child
-              height: 160px
-              width: 236px
+        li:first-child
+          height: 160px
+          width: 236px
 
 .reviews_show
   padding: 0px !important
@@ -126,9 +118,6 @@
     padding: 0
     text-align: justify
     width: 900px
-
-    &.margin
-      margin-top: 30px
 
     .actions
       float: right
@@ -436,9 +425,72 @@
           height: 82px
           width: 142px
 
-  .organization_right
-    border-left: 1px solid #e5e5e5
-    float: left
-    margin: 0 0 0 -1px
-    padding: 10px 0
-    width: 262px
+.suborganization_info
+  +clearfix
+  margin: 15px 0
+
+  &.related-reviews
+    .title
+      font-size: 14px
+      background-color: #e8e8e8
+      padding: 1px 10px 2px
+      margin-bottom: 10px
+
+      &:first-letter
+        text-transform: capitalize
+
+    .posters
+      margin: 0 39px 0 39px
+
+      li.item
+        border: 1px solid #ccc
+        margin: 5px 10px 20px 0
+        padding: 12px
+        width: 184px
+        float: left
+
+      .title
+        font-size: 14px
+        line-height: 18px
+        margin: 0 0 10px 0
+        text-align: center
+        background-color: white !important
+
+      .date, .details
+        font-size: 10px
+        margin: 0 0 5px 0
+
+      .details
+        float: right
+        color: #999
+
+      .date
+        color: #777
+
+        .comments, .likes, .visits
+          font-size: 10px
+
+      .annotation
+        clear: both
+
+        .images
+          height: 122px
+          margin: 0 auto
+          position: relative
+
+        .counter
+          bottom: 5px
+          color: #fff
+          position: absolute
+          right: 5px
+
+        li
+          float: left
+          height: 41px
+          margin: 0
+          padding: 0
+          width: 71px
+
+        li:first-child
+          height: 82px
+          width: 142px

@@ -8,7 +8,7 @@
   <% end %>
 <% end %>
 
-<div class="reviews_left">
+<div class="presentation_filters reviews">
   <div class="filter_header">
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
@@ -17,39 +17,31 @@
     <% end %>
   </div>
 
-  <div class="filter_and_share">
-    <div class="presentation_filters reviews">
-      <!--noindex-->
-      <div class="order_by">
-        <p>Сортировать по:</p>
-        <ul>
-          <% @presenter.order_by_filter.links.each do |link| %>
-            <li class="<%= link.klass %>">
-              <%= link_to link.title, link.path %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <!--/noindex-->
-    </div>
-    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
-  </div>
-
-  <div class="button_pagination">
-    <ul class="reviews_posters js-paginable-list js-isotoped-content" data-item-width="440">
-      <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
+  <!--noindex-->
+  <div class="order_by">
+    <p>Сортировать по:</p>
+    <ul>
+      <% @presenter.order_by_filter.links.each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.title, link.path %>
+        </li>
+      <% end %>
     </ul>
   </div>
-  <%= paginate @presenter.collection %>
+  <!--/noindex-->
 
-  <% if page_meta %>
-    <div class="introduction green">
-      <%= page_meta.html_introduction %>
-    </div>
-  <% end %>
 </div>
 
-<div class="organization_right">
-  <%= render :partial => 'commons/promotions' %>
+<div class="reviews-paginator">
+  <ul class="posters js-isotoped-content" data-item-width="392">
+    <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
+  </ul>
 </div>
 
+<%= paginate @presenter.collection %>
+
+<% if page_meta %>
+  <div class="introduction">
+    <%= page_meta.html_introduction %>
+  </div>
+<% end %>
