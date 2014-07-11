@@ -38,16 +38,20 @@
 
       .item
         border: 1px solid #ccc
-        height: 250px
+        height: 278px
         margin: 0 auto
         padding: 1px 0 1px 0
 
 
         .title
+          border-bottom: 1px dashed #ccc
           display: table-cell
-          height: 38px
-          padding: 0 3px
-          text-align: center
+          font-size: 11px
+          height: 44px
+          line-height: 18px
+          margin: 0
+          min-height: 45px
+          padding: 0 10px
           vertical-align: middle
           width: 200px
 
@@ -55,7 +59,8 @@
           +clearfix
           height: 164px
           position: relative
-          width: 200px
+          width: 198px
+          margin-left: 1px
 
           .origin_url
             position: absolute
@@ -117,6 +122,7 @@
           +clearfix
           letter-spacing: 0px
           height: 30px
+          margin-top: -1px
 
           span
             color: #f60
@@ -155,6 +161,7 @@
           .price
             +left-arrow(#099, #ececec, #fff)
 
+
             em
               font-style: normal
               padding: 8px 0
@@ -187,8 +194,8 @@
               color: #222
 
         .place
-          margin: 3px 0 0 0
-          text-align: center
+          margin: 13px 0 0 8px
+          text-align: left
 
       &.pagination
         width: 860px
