@@ -11,7 +11,7 @@ class OrganizationDecorator < ApplicationDecorator
     organization.title.text_gilensize
   end
 
-  def truncated_title_link(width = 25)
+  def truncated_title_link(width = 40)
     if organization.title.length > width
       h.link_to h.truncate(organization.title, length: width).text_gilensize, organization_url, title: title
     else
