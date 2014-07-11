@@ -5,7 +5,8 @@ uuid = ->
     v.toString 16
 
 $ ->
-  return false
+  return false if Rails.env.development?
+
   return if 'undefined' == typeof(Faye)
   channel = uuid()
   push_server = new Faye.Client('<%= "#{Settings['faye.url']}/faye" %>')
