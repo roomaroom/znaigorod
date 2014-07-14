@@ -250,7 +250,7 @@ class ReviewsPresenter
 
   def normalize_args
     @page     ||= 1
-    @per_page ||= per_page.to_i.zero? ? 10 : per_page.to_i
+    @per_page ||= per_page.to_i.zero? ? 12 : per_page.to_i
     @only_tomsk ||= @only_tomsk.present? ? true : nil
   end
 
