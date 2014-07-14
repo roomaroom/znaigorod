@@ -5,6 +5,9 @@ class My::ReviewsController < My::ApplicationController
 
   custom_actions :resource => [:add_images, :download_album, :edit_poster, :send_to_published, :send_to_draft, :sort_images]
 
+  def new
+    @related_afishas = Afisha.limit(6)
+  end
   def index
     render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '156', :width => '280' }, :layout => false and return if request.xhr?
   end

@@ -1,4 +1,14 @@
 <% @related_organizations.each do |organization| %>
-  <p> <%= link_to organization.title, organization_url(organization) %> </p>
-  <%= image_tag organization.logotype_url, size: "100x100"  %>
+  <li class='poster'>
+    <div class="image">
+      <%= image_tag organization.logotype_url, size: "66x66"  %>
+    </div>
+    <div class="details">
+      <%= link_to organization.title, organization_url(organization) %>
+      <div>
+        <%= button_tag "Добавить", type: 'button', class: "js-button-add-related-item add_button", remote: true %>
+      </div>
+      <%= hidden_field_tag "hidden_id","organization_#{organization.id}" %>
+    </div>
+  </li>
 <% end %>

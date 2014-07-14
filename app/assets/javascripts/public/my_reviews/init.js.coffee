@@ -161,11 +161,30 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
-  $.ajax
-    type: 'get'
-    url: '/my/related_afishas'
-    sucess: (response) ->
-      $('.posters').append(response)
+  $('body').on 'click', '.js-button-add-related-item', ->
+    url = $(this).closest('.details').find('a')
+    item_id = $(this).closest('.details').find('#hidden_id').val()
+    $('.sticky_elements').append('<div class="element">
+                                  <a href="' + url.attr('href') + '">' + url.text()  + '</a>
+                                  <a href="#"><span class="del_icon"></span></a>
+                                  <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_test">
+                                </div>')
+
+    url = $('.type_select option:selected').val()
+    $.ajax
+      type: 'get'
+      url: url
+
+
+# ajax loading
+  $('.type_select').change ->
+    url = $('.type_select option:selected').val()
+    $.ajax
+      type: 'get'
+      url: url
+      success: (response) ->
+        $('.posters').empty()
+        $('.posters').append(response)
 
 @initMyReviews = ->
   initMarkitup()

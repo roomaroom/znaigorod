@@ -5,7 +5,7 @@
 <%= simple_nested_form_for @review,
   :as => :review,
   :url => @review.new_record? ? my_reviews_path : my_review_path(@review.id),
-  :html => { :class => "my_review_form default_simple_form review_#{@review.useful_type}_form" } do |f| %>
+  :html => { :class => 'my_review_form default_simple_form review_#{@review.useful_type}_form' } do |f| %>
 
   <%= hidden_field_tag :type, @review.useful_type %>
 
@@ -23,45 +23,33 @@
   <%= f.input :link_with_reset, :as => :hidden %>
 
 
-  <div class="relations">
+  <div class='relations'>
     <p>Этот пост связан с</p>
 
-    <div class="sticky_elements">
-      <div class="element">
-        <%= link_to "1111111123", "#" %> <a href="#"><span class='del_icon'></span></a>
-      </div>
-      <div class="element">
-        <%= link_to "123", "#" %> <span class='del_icon'></span>
-      </div>
-    </div>
+    <div class='sticky_elements'></div>
 
-    <div style="clear: both"></div>
+    <div style='clear: both'></div>
 
-    <div class="select_and_search">
-      <select class='type_select' >
-        <option>1</option>
-        <option>1</option>
-        <option>1</option>
-        <option>1</option>
-      </select>
+    <div class='select_and_search'>
+      <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'], ['Обзор', '/my/related_reviews']], 'Афиша'), { class: 'type_select' }  %>
 
-      <button class='sbm'></button>
-      <input type="search" class='search' />
+      <button class='sbm' data-remote=true></button>
+      <%= text_field_tag :search, '', { class: 'search' } %>
 
     </div>
 
-    <div style="clear: both"></div>
+    <div style='clear: both'></div>
 
-    <div class="results">
-      <div class="posters">
+    <div class='results'>
+      <ul class='posters'>
         <%= render :partial => 'my/related_items/afishas' %>
-      </div>
+      </ul>
     </div>
   </div>
 
-  <div style="clear: both"></div>
+  <div style='clear: both'></div>
 
-  <div class="submit">
+  <div class='submit'>
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
     <%= link_to 'Отмена', :back %>
   </div>

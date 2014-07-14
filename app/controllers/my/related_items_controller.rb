@@ -21,6 +21,8 @@ class My::RelatedItemsController < ApplicationController
     }
 
     @related_organizations = searcher.results
+
+    render :partial => 'my/related_items/organizations' if request.xhr?
   end
 
   def reviews
@@ -29,6 +31,8 @@ class My::RelatedItemsController < ApplicationController
       s.paginate(page: page, per_page: per_page)
     }
     @related_reviews = searcher.results
+
+    render :partial => 'my/related_items/reviews' if request.xhr?
   end
 
   private
