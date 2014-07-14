@@ -22,16 +22,17 @@
   <%= f.input :link_with_value, :as => :hidden %>
   <%= f.input :link_with_reset, :as => :hidden %>
 
-  <p>Этот пост связан с</p>
 
   <div class="relations">
 
+    <p>Этот пост связан с</p>
+
     <div class="sticky_elements">
       <div class="element">
-        <%= link_to "111111111111111111111111111123", "#" %> <span class='del_icon'>X</span>
+        <%= link_to "1111111123", "#" %> <a href="#"><span class='del_icon'></span></a>
       </div>
       <div class="element">
-        <%= link_to "123", "#" %> <span class='del_icon'>X</span>
+        <%= link_to "123", "#" %> <span class='del_icon'></span>
       </div>
     </div>
 
@@ -45,7 +46,9 @@
         <option>1</option>
       </select>
 
+      <button class='sbm'></button>
       <input type="search" class='search' />
+
     </div>
 
     <div style="clear: both"></div>
