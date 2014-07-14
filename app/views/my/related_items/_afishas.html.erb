@@ -1,0 +1,6 @@
+<% @related_afishas.each do |afisha| %>
+  <div class="poster">
+    <p> <%= link_to afisha.title, afisha_show_path(afisha) %> </p>
+    <%= image_tag afisha.poster_url, size: "100x100"  %>
+  </div>
+<% end %>

@@ -10,6 +10,8 @@ class My::RelatedItemsController < ApplicationController
 
     afisha_ids = searcher.group(:afisha_id_str).groups.map(&:value)
     @related_afishas = Afisha.where(id: afisha_ids)
+
+    render :partial => 'my/related_items/afishas' if request.xhr?
   end
 
   def organizations
