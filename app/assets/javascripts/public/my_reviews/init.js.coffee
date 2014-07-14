@@ -161,30 +161,44 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
+  getRelatedItems = ->
+    relatedItems=[]
+    $('.hidden_ids').each ->
+      relatedItems.push $(this).val()
+    relatedItems
+
+  getAjaxUrl = ->
+    ajax_url = $('.type_select option:selected').val()
+
+  performAjax = ->
+    $.ajax
+      type: 'get'
+      url: getAjaxUrl()
+      data:
+        relatedItemsIds: getRelatedItems()
+      success: (response) ->
+        $('.posters').empty()
+        $('.posters').append(response)
+    false
+
+  $('body').on 'click', '.del_icon', ->
+    ajax_url = $('.type_select option:selected').val()
+    $(this).closest(".element").remove()
+    performAjax()
+
   $('body').on 'click', '.js-button-add-related-item', ->
     url = $(this).closest('.details').find('a')
     item_id = $(this).closest('.details').find('#hidden_id').val()
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
-                                  <a href="#"><span class="del_icon"></span></a>
-                                  <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_test">
+                                  <span class="del_icon"></span>
+                                  <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
-    url = $('.type_select option:selected').val()
-    $.ajax
-      type: 'get'
-      url: url
+    performAjax()
 
-
-# ajax loading
   $('.type_select').change ->
-    url = $('.type_select option:selected').val()
-    $.ajax
-      type: 'get'
-      url: url
-      success: (response) ->
-        $('.posters').empty()
-        $('.posters').append(response)
+    performAjax()
 
 @initMyReviews = ->
   initMarkitup()

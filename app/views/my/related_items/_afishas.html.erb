@@ -6,7 +6,11 @@
     <div class="details">
       <%= link_to afisha.title, afisha_show_path(afisha) %>
       <div>
-        <%= button_tag "Добавить", type: 'button', class: "js-button-add-related-item add_button", remote: true %>
+        <% if @related_items.include? afisha.id %>
+          <%= button_tag "Уже добавлено", type: 'button', class: "js-button-add-related-item add_button", remote: true, disabled: true %>
+        <% else %>
+          <%= button_tag "Добавить", type: 'button', class: "js-button-add-related-item add_button", remote: true %>
+        <% end %>
       </div>
       <%= hidden_field_tag "hidden_id","afisha_#{afisha.id}" %>
     </div>
