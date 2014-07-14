@@ -1,0 +1,4 @@
+<% @related_organizations.each do |organization| %>
+  <p> <%= link_to organization.title, organization_url(organization) %> </p>
+  <%= image_tag organization.logotype_url, size: "100x100"  %>
+<% end %>

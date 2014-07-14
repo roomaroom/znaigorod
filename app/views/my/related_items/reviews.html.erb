@@ -1,0 +1,4 @@
+<% @related_reviews.each do |review| %>
+  <p> <%= link_to review.title, review_path(review) %> </p>
+  <%= image_tag review.poster_image_url, size: "100x100"  %>
+<% end %>
