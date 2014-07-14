@@ -571,6 +571,59 @@
     .js-video-help-content
       display: none
 
+
+  .relations
+    width: 550px
+
+    .sticky_elements
+      .element
+        +inline-block
+        background-color: #EAEAEA
+        padding: 8px
+        min-width: 80px
+        text-align: center
+        +border-radius(5px)
+        float: left
+        margin-right: 15px
+
+      .del_icon
+        margin-right: -5px
+
+    .select_and_search
+      margin-top: 20px
+
+      .type_select, .search
+        +inline-block
+        padding: 4px
+
+      .type_select
+        float: left
+        width: 200px
+
+      .search
+        float: right
+        width: 330px
+
+    .results
+      height: 300px
+      border-top: 1px solid #ccc
+      border-bottom: 1px solid #ccc
+      margin-top: 10px
+      overflow-y: scroll
+
+      .posters
+        margin-top: 15px
+
+        .poster
+          float: left
+
+          .image
+            //height: x
+            //width: x
+
+          .info
+
+
 .video_help_dialog
   .youtube_help, .vimeo_help
     float: left

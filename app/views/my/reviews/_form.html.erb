@@ -22,25 +22,44 @@
   <%= f.input :link_with_value, :as => :hidden %>
   <%= f.input :link_with_reset, :as => :hidden %>
 
-  <%= f.input :link_with_title,
-    :wrapper_html => { :class => @review.linked? ? :linked : :not_linked },
-    :input_html => {
-      :data => { 'autocomplete-source' => linked_with_available_my_reviews_path, :target => '#review_link_with_value', :reset => '#review_link_with_reset' },
-      :placeholder => 'Введите название заведения или мероприятия' } %>
+  <p>Этот пост связан с</p>
 
-  <%= f.fields_for :relations do |relation_form| %>
-    <% if relation_form.object.new_record? %>
-      <%= relation_form.input :slave_url %>
-    <% else %>
-      <div class="link_with_wrapper">
-        <div class="link_with_content">
-          <%= render :partial => "my/relations/#{relation_form.object.slave.class.name.underscore}", :locals => { :slave => relation_form.object.slave } %>
+  <div class="relations">
+
+    <div class="sticky_elements">
+      <div class="element">
+        <%= link_to "111111111111111111111111111123", "#" %> <span class='del_icon'>X</span>
+      </div>
+      <div class="element">
+        <%= link_to "123", "#" %> <span class='del_icon'>X</span>
+      </div>
+    </div>
+
+    <div style="clear: both"></div>
+
+    <div class="select_and_search">
+      <select class='type_select' >
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+      </select>
+
+      <input type="search" class='search' />
+    </div>
+
+    <div style="clear: both"></div>
+
+    <div class="results">
+      <div class="posters">
+        <div class="poster">
+          dsadsadas
         </div>
       </div>
-    <% end %>
-    <%= relation_form.link_to_remove '-' %>
-  <% end %>
-  <%= f.link_to_add '+', :relations %>
+    </div>
+  </div>
+
+  <div style="clear: both"></div>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
