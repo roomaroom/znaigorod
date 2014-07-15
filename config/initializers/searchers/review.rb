@@ -1,6 +1,10 @@
 HasSearcher.create_searcher :reviews do
   models :review
 
+  keywords :q do
+    fields :title
+  end
+
   property :type
   property :category
 

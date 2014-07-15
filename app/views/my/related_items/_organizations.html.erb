@@ -7,7 +7,7 @@
       <%= link_to organization.title, organization_url(organization) %>
       <div>
         <% if @related_items.include? organization.id %>
-          <%= button_tag "Уже добавлено", type: 'button', class: "js-button-add-related-item add_button", remote: true, disabled: true %>
+          <%= button_tag "Добавлено", type: 'button', class: "js-button-add-related-item add_button", remote: true, disabled: true %>
         <% else %>
           <%= button_tag "Добавить", type: 'button', class: "js-button-add-related-item add_button", remote: true %>
         <% end %>

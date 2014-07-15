@@ -4,10 +4,10 @@
       <%= image_tag review.poster_image_url, size: "88x50"  %>
     </div>
     <div class="details">
-      <%= link_to review.title.truncate(40), review_path(review) %>
+      <%= link_to review.title.truncate(30), review_path(review) %>
       <div>
         <% if @related_items.include? review.id %>
-          <%= button_tag "Уже добавлено", type: 'button', class: "js-button-add-related-item add_button", remote: true, disabled: true %>
+          <%= button_tag "Добавлено", type: 'button', class: "js-button-add-related-item add_button", remote: true, disabled: true %>
         <% else %>
           <%= button_tag "Добавить", type: 'button', class: "js-button-add-related-item add_button", remote: true %>
         <% end %>

@@ -170,19 +170,22 @@ loadRelatedAfishas = ->
   getAjaxUrl = ->
     ajax_url = $('.type_select option:selected').val()
 
+  getSearchParam = ->
+    searchParam = $('.related_search').val()
+
   performAjax = ->
     $.ajax
       type: 'get'
       url: getAjaxUrl()
       data:
         relatedItemsIds: getRelatedItems()
+        search_param:getSearchParam()
       success: (response) ->
         $('.posters').empty()
         $('.posters').append(response)
     false
 
   $('body').on 'click', '.del_icon', ->
-    ajax_url = $('.type_select option:selected').val()
     $(this).closest(".element").remove()
     performAjax()
 
@@ -198,6 +201,12 @@ loadRelatedAfishas = ->
     performAjax()
 
   $('.type_select').change ->
+    performAjax()
+
+  $('.sbm').click ->
+    performAjax()
+
+  $('.related_search').keyup ->
     performAjax()
 
 @initMyReviews = ->

@@ -583,13 +583,18 @@
         +inline-block
         background-color: #EAEAEA
         padding: 8px
-        min-width: 80px
         text-align: center
         border: 1px solid #ccc
         +border-radius(4px)
         float: left
         margin-right: 15px
         margin-bottom: 10px
+        min-width: 80px
+        max-width: 250px
+
+        a
+          float: left
+          margin-right: 5px
 
       .del_icon
         margin-right: -5px
@@ -599,11 +604,12 @@
         display: block
         float: right
         margin-top: 3px
+        cursor: pointer
 
     .select_and_search
       margin-top: 20px
 
-      .type_select, .search
+      .type_select, .related_search
         +inline-block
         padding: 4px
         border: 1px solid #ccc
@@ -619,7 +625,7 @@
         background: image_url('public/down_arrow.jpg') no-repeat right
         border: 1px solid #ccc
 
-      .search
+      .related_search
         float: right
         width: 294px
         height: 17px

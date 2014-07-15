@@ -1,7 +1,7 @@
 class My::RelatedItemsController < ApplicationController
 
   def afishas
-    searcher = HasSearcher.searcher(:showings).tap { |s|
+    searcher = HasSearcher.searcher(:showings, :q => search_param).tap { |s|
       s.paginate(page: page, per_page: per_page)
       s.groups
       s.send("order_by_creation")
@@ -16,7 +16,7 @@ class My::RelatedItemsController < ApplicationController
   end
 
   def organizations
-    searcher = HasSearcher.searcher(:organizations).tap { |s|
+    searcher = HasSearcher.searcher(:organizations, :q => search_param).tap { |s|
       s.send("order_by_rating")
       s.paginate(page: page, per_page: per_page)
     }
@@ -28,7 +28,7 @@ class My::RelatedItemsController < ApplicationController
   end
 
   def reviews
-    searcher = HasSearcher.searcher(:reviews).tap { |s|
+    searcher = HasSearcher.searcher(:reviews, :q => search_param).tap { |s|
       s.send("order_by_creation")
       s.paginate(page: page, per_page: per_page)
     }
@@ -49,6 +49,10 @@ class My::RelatedItemsController < ApplicationController
       end
     end
     arr
+  end
+
+  def search_param
+    params[:search_param]
   end
 
   def per_page
