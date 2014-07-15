@@ -26,7 +26,13 @@
   <div class='relations'>
     <p>Этот пост связан с</p>
 
-    <div class='sticky_elements'></div>
+    <div class='sticky_elements'>
+      <% @review.relations.each do |item| %>
+        <div class="element">
+          <%= link_to item.slave.title, "#" %>
+        </div>
+      <% end %>
+    </div>
 
     <div style='clear: both'></div>
 

@@ -5,9 +5,6 @@ class Organization < ActiveRecord::Base
   include VkUpload
   include MakePageVisit
 
-  # NOTE: можно будет выпилить после переделывания связки между орг-ями и афишами на многие-ко-многим
-  include Reviews::Flush
-
   extend FriendlyId
 
   attr_accessible :address_attributes, :description, :email, :halls_attributes,
@@ -48,6 +45,9 @@ class Organization < ActiveRecord::Base
   has_many :discounts,         :through => :places, :source => :placeable, :source_type => 'Discount'
   has_many :offered_discounts, :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'OfferedDiscount' }
   has_many :sauna_halls,       :through => :sauna
+
+  has_many :relations, :as => :slave
+  has_many :reviews, :through => :relations, :source => :master, :source_type => Review
 
   has_one :address,             :dependent => :destroy
   has_one :organization_stand,  :dependent => :destroy

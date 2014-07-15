@@ -10,9 +10,9 @@ class My::RelatedItemsController < ApplicationController
 
     afisha_ids = searcher.group(:afisha_id_str).groups.map(&:value)
     @related_afishas = Afisha.where(id: afisha_ids)
-    @a = AfishaPresenter.new(@related_afishas)
     @related_items = relatedItems("afisha")
 
+    @a = AfishaPresenter.new(@related_afishas)
     render :partial => 'my/related_items/afishas' if request.xhr?
   end
 
@@ -43,12 +43,10 @@ class My::RelatedItemsController < ApplicationController
   private
   def relatedItems(itemName)
     arr = Array.new
-    unless params[:relatedItemsIds].nil?
-      params[:relatedItemsIds].each do |item|
-        splited_item = item.split("_")
-        arr << splited_item[1].to_i if eql_str(itemName, splited_item[0])
-      end
-    end
+    params[:relatedItemsIds].each do |item|
+      type, id = item.split("_")
+      arr << id.to_i if eql_str(itemName, type)
+    end unless params[:relatedItemsIds].nil?
     arr
   end
 

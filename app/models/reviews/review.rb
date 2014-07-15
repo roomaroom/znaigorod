@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :link_with_title, :link_with_value, :link_with_reset
+  attr_accessor :link_with_title, :link_with_value, :link_with_reset, :related_items
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
@@ -20,10 +20,12 @@ class Review < ActiveRecord::Base
   before_save :store_cached_content_for_index
   before_save :store_cached_content_for_show
 
+  after_create :parse_related_items
+
   attr_accessible :content, :title, :tag, :categories,
     :link_with_title, :link_with_value, :link_with_reset,
     :allow_external_links,
-    :only_tomsk
+    :only_tomsk, :related_items
 
   belongs_to :account
   belongs_to :afisha
@@ -69,6 +71,18 @@ class Review < ActiveRecord::Base
     :predicates => true
 
   friendly_id :title, :use => :slugged
+
+  def parse_related_items
+    related_items.each do |item|
+      slave_type, slave_id = item.split("_")
+
+      relation = relations.new
+      relation.slave_type = slave_type.classify
+      relation.slave_id = slave_id
+
+      relation.save
+    end
+  end
 
   def normalize_friendly_id(string)
     I18n.l(created_at, :format => '%Y-%m') + '/' + super
