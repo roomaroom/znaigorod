@@ -21,7 +21,7 @@
   )
 
   # отключаем пагинацию для обзоров при просмотре в /my
-  return true if $('.my_reviews_show').length
+  return true if $('.my_reviews_show, .my_reviews_edit, .my_reviews_update').length
 
   first_item = $('li:first', list)
   return true unless first_item.length

@@ -207,9 +207,11 @@ loadRelatedAfishas = ->
     performAjax()
 
   $('.sbm').click ->
+    $('.posters').empty()
     performAjax()
 
   $('.related_search').keyup ->
+    $('.posters').empty()
     performAjax()
 
 
