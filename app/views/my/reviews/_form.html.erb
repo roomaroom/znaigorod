@@ -19,17 +19,15 @@
   <%= f.input :tag, :as => :string,
     :input_html => { :data => { 'autocomplete-source' => tags_available_my_reviews_path } } %>
 
-  <%= f.input :link_with_value, :as => :hidden %>
-  <%= f.input :link_with_reset, :as => :hidden %>
-
-
   <div class='relations'>
     <p>Этот пост связан с</p>
 
     <div class='sticky_elements'>
       <% @review.relations.each do |item| %>
         <div class="element">
-          <%= link_to item.slave.title, "#" %>
+          <%= link_to item.slave.title, item.slave.is_a?(Afisha) ? afisha_show_path(item.slave) : item.slave, :target => '_blank' %>
+          <span class="del_icon"></span>
+          <%= hidden_field_tag "review[related_items][]","#{item.slave_type.underscore}_#{item.slave_id}", class: "hidden_ids" %>
         </div>
       <% end %>
     </div>
