@@ -161,12 +161,14 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
+
+  # on page load get afishas
   $.ajax
     type: 'get'
     url: '/my/related_afishas'
     success: (response) ->
-      $('.posters').empty()
       $('.posters').append(response)
+      initInfiniteScroll()
 
   getRelatedItems = ->
     relatedItems=[]
@@ -186,9 +188,8 @@ loadRelatedAfishas = ->
       url: getAjaxUrl()
       data:
         relatedItemsIds: getRelatedItems()
-        search_param:getSearchParam()
+        search_param: getSearchParam()
       success: (response) ->
-        $('.posters').empty()
         $('.posters').append(response)
     false
 
@@ -199,15 +200,17 @@ loadRelatedAfishas = ->
   $('body').on 'click', '.js-button-add-related-item', ->
     url = $(this).closest('.details').find('a')
     item_id = $(this).closest('.details').find('#hidden_id').val()
+    $(this).disabled()
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
                                   <span class="del_icon"></span>
                                   <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
-    performAjax()
+    #performAjax()
 
   $('.type_select').change ->
+    $('.posters').empty()
     performAjax()
 
   $('.sbm').click ->
@@ -215,6 +218,22 @@ loadRelatedAfishas = ->
 
   $('.related_search').keyup ->
     performAjax()
+
+
+initInfiniteScroll = ->
+  $('.posters').infinitescroll
+    behavior: 'local'
+    binder: $('.posters')
+    debug: false
+    itemSelector: ".poster"
+    maxPage: $('nav.pagination').data('count')
+    navSelector: "nav.pagination"
+    nextSelector: "nav.pagination span.next a"
+    #pixelsFromNavToBottom: ($(document).height() - $('.results').scrollTop() - $(window).height()) - $('.results').height()
+    bufferPx: 340
+    loading:
+      finishedMsg: '<em>Поздравляем, вы достигли конца интернета!</em>'
+      msgText: '<em>Загрузка следущей страницы</em>'
 
 @initMyReviews = ->
   initMarkitup()

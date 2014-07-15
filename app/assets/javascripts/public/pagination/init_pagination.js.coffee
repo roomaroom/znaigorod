@@ -14,7 +14,6 @@
     '.content_wrapper .reviews_show .gallery,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
     '.content_wrapper .contest .works ul,' +
-    '.relations .results > ul,' +
     '.feeds > ul, ' +
     '#notifications > ul, ' +
     '#invites > ul, ' +

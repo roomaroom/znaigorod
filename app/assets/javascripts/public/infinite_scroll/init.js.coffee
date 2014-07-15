@@ -5,6 +5,7 @@
   if option == 'update'
     list.infinitescroll('destroy')
     list.data('infinitescroll', null)
+
   list.infinitescroll
     behavior: 'local'
     binder: list

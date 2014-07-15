@@ -57,7 +57,7 @@ class My::RelatedItemsController < ApplicationController
   end
 
   def per_page
-    6
+    12
   end
 
   def page
