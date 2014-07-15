@@ -624,13 +624,14 @@
         overflow: hidden
         background: image_url('public/down_arrow.jpg') no-repeat right
         border: 1px solid #ccc
+        cursor: pointer
 
       .related_search
         float: right
         width: 294px
         height: 17px
         margin-top: 2px
-        border-right: 0
+        border-right: 1px solid #ccc
 
       .sbm
         width: 30px
@@ -644,6 +645,13 @@
         +border-bottom-right-radius
         float: right
         border: 1px solid #ccc
+        cursor: pointer
+
+        &:hover
+          background-position: center -58px
+
+        &:active
+          background-position: center -57px
 
     .results
       height: 300px
