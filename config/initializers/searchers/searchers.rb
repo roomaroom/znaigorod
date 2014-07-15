@@ -28,6 +28,7 @@ HasSearcher.create_searcher :organizations do
   end
 
   property :status
+  property :state
   property :sms_claimable
 
   property :location do |search|

@@ -131,6 +131,19 @@ HasSearcher.create_searcher :showings do
   end
 end
 
+HasSearcher.create_searcher :afishas do
+  models :afisha
+
+  keywords :q do
+    fields :title
+  end
+
+  scope do
+    order_by :created_at, :desc
+    with :state, :published
+  end
+end
+
 HasSearcher.create_searcher :similar_afisha do
   models :afisha
 

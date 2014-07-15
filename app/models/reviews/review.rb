@@ -109,6 +109,8 @@ class Review < ActiveRecord::Base
     text :description_ru, :boost => 0.1, :more_like_this => true, :stored => true
     text :title,          :boost => 1.0, :more_like_this => true, :stored => true
 
+    text :title,          :as => :term_text
+
     time :created_at, :trie => true
   end
 

@@ -139,6 +139,8 @@ class Afisha < ActiveRecord::Base
   alias_attribute :rating, :total_rating
 
   searchable do
+    boolean :has_images, :using => :has_images?
+
     float :rating
 
     float :age_min
@@ -163,8 +165,6 @@ class Afisha < ActiveRecord::Base
     text :address_ru,           :boost => 0.3
     text :description,          :boost => 0.1 * 1.2                                               do text_description end
     text :description_ru,       :boost => 0.1,                                  :stored => true   do text_description end
-
-    boolean :has_images, :using => :has_images?
 
     time :last_showing_time,  :trie => true
     date :created_at

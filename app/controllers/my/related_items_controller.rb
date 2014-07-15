@@ -1,26 +1,18 @@
 class My::RelatedItemsController < ApplicationController
-
   def afishas
-    searcher = HasSearcher.searcher(:showings, :q => search_param).tap { |s|
-      s.paginate(page: page, per_page: per_page)
-      s.groups
-      s.send("order_by_creation")
-      s.actual
-    }
+    searcher = HasSearcher.searcher(:afishas, :q => search_param, :state => 'published')
+      .paginate(:page => page, :per_page => per_page)
 
-    afisha_ids = searcher.group(:afisha_id_str).groups.map(&:value)
-    @related_afishas = Afisha.where(id: afisha_ids)
+    @related_afishas = searcher.results
     @related_items = relatedItems("afisha")
 
-    @a = AfishaPresenter.new(@related_afishas)
     render :partial => 'my/related_items/afishas' if request.xhr?
   end
 
   def organizations
-    searcher = HasSearcher.searcher(:organizations, :q => search_param).tap { |s|
-      s.send("order_by_rating")
-      s.paginate(page: page, per_page: per_page)
-    }
+    searcher = HasSearcher.searcher(:organizations, :q => search_param, :state => 'published')
+      .order_by_rating
+      .paginate(page: page, per_page: per_page)
 
     @related_items = relatedItems("organization")
     @related_organizations = searcher.results
@@ -29,10 +21,9 @@ class My::RelatedItemsController < ApplicationController
   end
 
   def reviews
-    searcher = HasSearcher.searcher(:reviews, :q => search_param).tap { |s|
-      s.send("order_by_creation")
-      s.paginate(page: page, per_page: per_page)
-    }
+    searcher = HasSearcher.searcher(:reviews, :q => search_param, :state => 'published')
+      .order_by_creation
+      .paginate(page: page, per_page: per_page)
 
     @related_items=relatedItems("review")
     @related_reviews = searcher.results
@@ -42,12 +33,15 @@ class My::RelatedItemsController < ApplicationController
 
   private
   def relatedItems(itemName)
-    arr = Array.new
-    params[:relatedItemsIds].each do |item|
+    return [] unless params[:relatedItemsIds]
+
+    params[:relatedItemsIds].inject([]) { |array, item|
       type, id = item.split("_")
-      arr << id.to_i if eql_str(itemName, type)
-    end unless params[:relatedItemsIds].nil?
-    arr
+
+      array << id.to_i if itemName == type
+
+      array
+    }
   end
 
   def search_param
@@ -60,11 +54,5 @@ class My::RelatedItemsController < ApplicationController
 
   def page
     params[:page]
-  end
-
-  def eql_str(str1,str2)
-    condition = str1 <=> str2
-    return true if condition == 0
-    false
   end
 end

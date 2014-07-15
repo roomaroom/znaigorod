@@ -229,8 +229,8 @@ initInfiniteScroll = ->
     nextSelector: "nav.pagination span.next a"
     bufferPx: 340
     loading:
-      finishedMsg: '<em>Поздравляем, вы достигли конца интернета!</em>'
-      msgText: '<em>Загрузка следущей страницы</em>'
+      finishedMsg: ''
+      msgText: ''
 
 @initMyReviews = ->
   initMarkitup()
