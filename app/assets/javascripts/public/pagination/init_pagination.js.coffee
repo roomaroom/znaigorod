@@ -3,7 +3,9 @@
   $('body nav.pagination').css
     'height': '0'
     'visibility': 'hidden'
+
   list_url = window.location.pathname
+
   list = $(
     '.content_wrapper .discounts_list:not(.pagination_none) > ul,' +
     '.content_wrapper .search_results ul.items_list,' +
@@ -12,6 +14,7 @@
     '.content_wrapper .reviews_show .gallery,' +
     '.content_wrapper .organization_show .afisha_list ul,' +
     '.content_wrapper .contest .works ul,' +
+    '.relations .results > ul,' +
     '.feeds > ul, ' +
     '#notifications > ul, ' +
     '#invites > ul, ' +

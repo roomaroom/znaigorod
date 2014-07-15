@@ -9,6 +9,7 @@ class My::ReviewsController < My::ApplicationController
     @related_afishas = Afisha.limit(6)
     @related_items = Array.new
   end
+
   def index
     render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '156', :width => '280' }, :layout => false and return if request.xhr?
   end

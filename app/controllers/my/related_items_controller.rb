@@ -10,7 +10,8 @@ class My::RelatedItemsController < ApplicationController
 
     afisha_ids = searcher.group(:afisha_id_str).groups.map(&:value)
     @related_afishas = Afisha.where(id: afisha_ids)
-    @related_items=relatedItems("afisha")
+    @a = AfishaPresenter.new(@related_afishas)
+    @related_items = relatedItems("afisha")
 
     render :partial => 'my/related_items/afishas' if request.xhr?
   end
@@ -21,7 +22,7 @@ class My::RelatedItemsController < ApplicationController
       s.paginate(page: page, per_page: per_page)
     }
 
-    @related_items=relatedItems("organization")
+    @related_items = relatedItems("organization")
     @related_organizations = searcher.results
 
     render :partial => 'my/related_items/organizations' if request.xhr?
@@ -41,7 +42,7 @@ class My::RelatedItemsController < ApplicationController
 
   private
   def relatedItems(itemName)
-    arr=Array.new
+    arr = Array.new
     unless params[:relatedItemsIds].nil?
       params[:relatedItemsIds].each do |item|
         splited_item = item.split("_")

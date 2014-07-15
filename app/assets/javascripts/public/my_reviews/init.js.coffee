@@ -161,6 +161,13 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
+  $.ajax
+    type: 'get'
+    url: '/my/related_afishas'
+    success: (response) ->
+      $('.posters').empty()
+      $('.posters').append(response)
+
   getRelatedItems = ->
     relatedItems=[]
     $('.hidden_ids').each ->
