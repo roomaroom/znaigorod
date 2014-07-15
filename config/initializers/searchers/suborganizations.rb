@@ -18,10 +18,6 @@ Organization.basic_suborganization_kinds.each do |kind|
       models kind.to_sym
     end
 
-    keywords :q do
-      fields :title
-    end
-
     klasses.each do |klass|
       klass.facets.map { |facet| "#{kind}_#{facet}" }.each do |field|
         property field do |search|
@@ -37,7 +33,6 @@ Organization.basic_suborganization_kinds.each do |kind|
         end
       end
     end
-
 
     property :sms_claimable
 

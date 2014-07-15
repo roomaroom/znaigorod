@@ -22,6 +22,11 @@ end
 
 HasSearcher.create_searcher :organizations do
   models :organization
+
+  keywords :q do
+    fields :title
+  end
+
   property :status
   property :sms_claimable
 

@@ -161,15 +161,6 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
-
-  # on page load get afishas
-  $.ajax
-    type: 'get'
-    url: '/my/related_afishas'
-    success: (response) ->
-      $('.posters').append(response)
-      initInfiniteScroll()
-
   getRelatedItems = ->
     relatedItems=[]
     $('.hidden_ids').each ->
@@ -193,6 +184,8 @@ loadRelatedAfishas = ->
         $('.posters').append(response)
     false
 
+  performAjax()
+
   $('body').on 'click', '.del_icon', ->
     $(this).closest(".element").remove()
     performAjax()
@@ -204,7 +197,7 @@ loadRelatedAfishas = ->
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
                                   <span class="del_icon"></span>
-                                  <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
+                                  <input name="related_items[]" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
     #performAjax()
