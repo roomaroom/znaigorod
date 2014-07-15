@@ -942,3 +942,29 @@
 
   .comments > h3
     color: #fff
+
+.impuls_content_wrapper
+  +uniq_design(#fff, #f69db9, rgba(255,255,255, .5), #facedd, #fff, #fff0f5, #e6d4ea, #9ea5e9, #06c, #222, #ded5f0)
+
+  .impuls_logo
+    background: transparent image_url('public/impuls/logo.jpg') no-repeat center 0
+    height: 120px
+    margin: 0 auto
+    width: 1280px
+
+  .content_wrapper
+    margin: -10px auto 0 auto
+
+    .suborganization_info,
+    .room_info
+
+      .left
+        > .title
+          background: #7478e6 !important
+
+          &:after
+            border-left-color: #7478e6 !important
+
+      .room_header, .sauna_hall_header
+        background: #ded5f0 !important
+
