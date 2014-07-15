@@ -184,23 +184,19 @@ loadRelatedAfishas = ->
         $('.posters').append(response)
     false
 
-  performAjax()
-
-  $('body').on 'click', '.del_icon', ->
-    $(this).closest(".element").remove()
-    performAjax()
-
   $('body').on 'click', '.js-button-add-related-item', ->
     url = $(this).closest('.details').find('a')
     item_id = $(this).closest('.details').find('#hidden_id').val()
-    $(this).disabled()
+    $(this).prop('disabled', true).text('Добавлено')
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
                                   <span class="del_icon"></span>
                                   <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
-    #performAjax()
+  $('body').on 'click', '.del_icon', ->
+    console.log $('input[value="'+$(this).parent().find('.hidden_ids').val()+'"]').closest('div').find('button').prop('disabled', false).text('Добавить')
+    $(this).closest(".element").remove()
 
   $('.type_select').change ->
     $('.posters').empty()
@@ -222,7 +218,6 @@ initInfiniteScroll = ->
     maxPage: $('nav.pagination').data('count')
     navSelector: "nav.pagination"
     nextSelector: "nav.pagination span.next a"
-    #pixelsFromNavToBottom: ($(document).height() - $('.results').scrollTop() - $(window).height()) - $('.results').height()
     bufferPx: 340
     loading:
       finishedMsg: '<em>Поздравляем, вы достигли конца интернета!</em>'
