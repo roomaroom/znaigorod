@@ -195,7 +195,7 @@ loadRelatedAfishas = ->
                                 </div>')
 
   $('body').on 'click', '.del_icon', ->
-    console.log $('input[value="'+$(this).parent().find('.hidden_ids').val()+'"]').closest('div').find('button').prop('disabled', false).text('Добавить')
+    $('input[value="'+$(this).parent().find('.hidden_ids').val()+'"]').closest('div').find('button').prop('disabled', false).text('Добавить')
     $(this).closest(".element").remove()
 
   $('.type_select').change ->
