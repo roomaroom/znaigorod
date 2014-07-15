@@ -161,6 +161,7 @@ handleEighteenPlus = ->
   label.addClass('eighteen_plus').append(' <div class="info show_tipsy fa fa-info-circle" title="Обзоры из категории «18+» не показываются на списке обзоров и в общем поиске по сайту."></div>')
 
 loadRelatedAfishas = ->
+  need_empty = false
 
   getRelatedItems = ->
     relatedItems=[]
@@ -182,10 +183,12 @@ loadRelatedAfishas = ->
         relatedItemsIds: getRelatedItems()
         search_param: getSearchParam()
       success: (response) ->
+        $('.posters').empty() if need_empty
         $('.posters').append(response)
         initInfiniteScroll()
     false
 
+  # on page load
   performAjax()
 
   $('body').on 'click', '.js-button-add-related-item', ->
@@ -203,15 +206,15 @@ loadRelatedAfishas = ->
     $(this).closest(".element").remove()
 
   $('.type_select').change ->
-    $('.posters').empty()
+    need_empty = true
     performAjax()
 
   $('.sbm').click ->
-    $('.posters').empty()
+    need_empty = true
     performAjax()
 
   $('.related_search').keyup ->
-    $('.posters').empty()
+    need_empty = true
     performAjax()
 
 

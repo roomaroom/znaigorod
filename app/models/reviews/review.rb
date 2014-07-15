@@ -20,7 +20,7 @@ class Review < ActiveRecord::Base
   before_save :store_cached_content_for_index
   before_save :store_cached_content_for_show
 
-  after_create :parse_related_items
+  after_save :parse_related_items
 
   attr_accessible :content, :title, :tag, :categories,
     :link_with_title, :link_with_value, :link_with_reset,
