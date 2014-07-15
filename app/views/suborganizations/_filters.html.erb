@@ -44,7 +44,9 @@
       </ul>
     </div>
 
-    <%= yield :advanced_filters %>
+    <% if controller_name != 'organizations' && action_name == 'index'%>
+      <%= render :partial => 'advanced_filters' %>
+    <% end %>
   </div>
 
   <% if @presenter.categories_links.count > 8 %>
@@ -60,7 +62,7 @@
     </ul>
   <% end %>
 
-  <% if content_for?(:advanced_filters) %>
+  <% if controller_name != 'organizations' && action_name == 'index'%>
     <div class='advanced_filters_toggler'>
       <% if params[:utf8].present? %>
         <a href='#'>&uarr; Расширенный поиск</a>
@@ -69,5 +71,4 @@
       <% end %>
     </div>
   <% end %>
-
 </div>
