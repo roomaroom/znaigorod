@@ -73,6 +73,8 @@ class Review < ActiveRecord::Base
   friendly_id :title, :use => :slugged
 
   def parse_related_items
+    relations.destroy_all
+
     related_items.each do |item|
       slave_type, slave_id = item.split("_")
 
