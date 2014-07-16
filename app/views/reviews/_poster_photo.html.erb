@@ -4,6 +4,8 @@
       <%= review.annotation_gallery(185, 104) %>
     <% elsif controller_path == 'reviews' && action_name == 'show' %>
       <%= review.annotation_gallery(142, 80) %>
+    <% elsif controller_path == 'afishas' || controller_path == 'organizations' && action_name == 'show' %>
+      <%= review.annotation_gallery(120, 80) %>
     <% else %>
       <%= review.annotation_gallery %>
     <% end %>
