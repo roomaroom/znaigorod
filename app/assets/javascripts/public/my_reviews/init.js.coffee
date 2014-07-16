@@ -226,7 +226,8 @@ initInfiniteScroll = ->
     maxPage: $('nav.pagination').data('count')
     navSelector: "nav.pagination"
     nextSelector: "nav.pagination span.next a"
-    bufferPx: 340
+    pixelsFromNavToBottom: ($(document).height() - $('.posters').scrollTop() - $(window).height()) - $('.posters').height()
+    bufferPx: 500
     loading:
       finishedMsg: ''
       msgText: ''
