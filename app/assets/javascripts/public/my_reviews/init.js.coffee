@@ -180,7 +180,7 @@ loadRelatedAfishas = ->
       type: 'get'
       url: getAjaxUrl()
       data:
-        relatedItemsIds: getRelatedItems()
+        related_items_ids: getRelatedItems()
         search_param: getSearchParam()
       success: (response) ->
         $('.posters').empty() if need_empty
@@ -216,7 +216,6 @@ loadRelatedAfishas = ->
   $('.related_search').keyup ->
     need_empty = true
     performAjax()
-
 
 initInfiniteScroll = ->
   $('.posters').infinitescroll
