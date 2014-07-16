@@ -57,10 +57,6 @@ class Organization < ActiveRecord::Base
 
   default_value_for :total_rating, 0
 
-  def reviews
-    Review.limit(10)
-  end
-
   def update_slave_organization_statuses
     slave_organizations.update_all :status => status
   end
