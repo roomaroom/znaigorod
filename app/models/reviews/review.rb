@@ -27,6 +27,8 @@ class Review < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :contest
+  belongs_to :afisha
+  belongs_to :organization
 
   has_many :all_images,            :as => :attachable, :class_name => 'Attachment', :conditions => { :type => %w[GalleryImage GallerySocialImage] }
   has_many :comments,              :as => :commentable,    :dependent => :destroy
