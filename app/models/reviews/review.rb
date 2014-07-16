@@ -8,13 +8,12 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :link_with_title, :link_with_value, :link_with_reset, :related_items
+  attr_accessor :related_items
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
   alias_attribute :description_ru, :content
 
-  before_save :handle_link_with_value
   before_save :set_poster
 
   before_save :store_cached_content_for_index
@@ -23,7 +22,6 @@ class Review < ActiveRecord::Base
   after_save :parse_related_items
 
   attr_accessible :content, :title, :tag, :categories,
-    :link_with_title, :link_with_value, :link_with_reset,
     :allow_external_links,
     :only_tomsk, :related_items
 
@@ -38,19 +36,14 @@ class Review < ActiveRecord::Base
   has_many :gallery_social_images, :as => :attachable,     :dependent => :destroy
   has_many :messages,              :as => :messageable,    :dependent => :destroy
   has_many :page_visits,           :as => :page_visitable, :dependent => :destroy
+  has_many :relations,             :as => :master,         :dependent => :destroy
   has_many :votes,                 :as => :voteable,       :dependent => :destroy
   has_many :webanketas,            :as => :context,        :dependent => :destroy
 
-  # Relations
-  has_many :relations, :as => :master, :dependent => :destroy
   has_many :afishas,       :through => :relations, :source => :slave, :source_type => Afisha
   has_many :organizations, :through => :relations, :source => :slave, :source_type => Organization
   has_many :reviews,       :through => :relations, :source => :slave, :source_type => Review
-
-  attr_accessible :relations_attributes
-  accepts_nested_attributes_for :relations, :reject_if => :all_blank, :allow_destroy => true
-
-  has_many :users,                 :through => :account
+  has_many :users,         :through => :account
 
   has_one  :feed, :as => :feedable, :dependent => :destroy
 
@@ -72,21 +65,6 @@ class Review < ActiveRecord::Base
 
   friendly_id :title, :use => :slugged
 
-  def parse_related_items
-    relations.destroy_all
-
-    return true unless related_items
-
-    related_items.each do |item|
-      slave_type, slave_id = item.split("_")
-
-      relation = relations.new
-      relation.slave_type = slave_type.classify
-      relation.slave_id = slave_id
-
-      relation.save
-    end
-  end
 
   def normalize_friendly_id(string)
     I18n.l(created_at, :format => '%Y-%m') + '/' + super
@@ -140,10 +118,6 @@ class Review < ActiveRecord::Base
     true
   end
 
-  def linked?
-    !!(afisha_id || organization_id)
-  end
-
   def update_rating
     update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
@@ -166,30 +140,19 @@ class Review < ActiveRecord::Base
     true
   end
 
-  def handle_link_with_value
-    if link_with_reset == 'true'
-      self.afisha_id = self.organization_id = self.contest_id = nil
-      return true
-    end
+  def parse_related_items
+    relations.destroy_all
 
-    return true if link_with_value.blank?
+    return true unless related_items
 
-    class_name, id = link_with_value.split('_')
+    related_items.each do |item|
+      slave_type, slave_id = item.split("_")
 
-    return false unless Reviews::LinkWith.available_types.include?(class_name)
+      relation = relations.new
+      relation.slave_type = slave_type.classify
+      relation.slave_id = slave_id
 
-    object = class_name.classify.constantize.find(id)
-
-    self.afisha_id = self.organization_id = self.contest_id = nil
-
-    case object
-    when Afisha
-      self.afisha = object
-      self.organization = object.organizations.first
-    when Organization
-      self.organization = object
-    when Contest
-      self.contest = object
+      relation.save
     end
   end
 

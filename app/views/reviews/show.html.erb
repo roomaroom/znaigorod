@@ -50,11 +50,6 @@
 </div>
 
 <div class="right">
-  <% if @review.linked? %>
-    <h2>Этот обзор связан с:</h2>
-    <%= render 'link_with' %>
-  <% end %>
-
   <h2>Похожие обзоры:</h2>
   <ul class="similar posters">
     <% @review.decorated_similar.each do |review| %>

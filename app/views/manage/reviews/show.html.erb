@@ -14,11 +14,4 @@
 
     <%= render @review.webanketas.actual %>
   </div>
-
-  <div class="right">
-    <% if @review.linked? %>
-      <h2>Этот обзор связан с:</h2>
-      <%= render 'reviews/link_with' %>
-    <% end %>
-  </div>
 </div>

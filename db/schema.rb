@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140702033116) do
+ActiveRecord::Schema.define(:version => 20140716051613) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -806,8 +806,6 @@ ActiveRecord::Schema.define(:version => 20140702033116) do
     t.text     "categories"
     t.string   "state"
     t.integer  "account_id"
-    t.integer  "afisha_id"
-    t.integer  "organization_id"
     t.boolean  "allow_external_links"
     t.text     "video_url"
     t.text     "poster_image_url"
@@ -824,9 +822,6 @@ ActiveRecord::Schema.define(:version => 20140702033116) do
     t.integer  "contest_id"
     t.string   "old_slug"
   end
-
-  add_index "reviews", ["afisha_id"], :name => "index_reviews_on_afisha_id"
-  add_index "reviews", ["organization_id"], :name => "index_reviews_on_organization_id"
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
