@@ -75,6 +75,8 @@ class Review < ActiveRecord::Base
   def parse_related_items
     relations.destroy_all
 
+    return true unless related_items
+
     related_items.each do |item|
       slave_type, slave_id = item.split("_")
 
