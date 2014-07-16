@@ -96,6 +96,10 @@ class Review < ActiveRecord::Base
     time :created_at, :trie => true
   end
 
+  def likes_count
+    self.votes.liked.count
+  end
+
   def self.descendant_names
     descendants.map(&:name).map(&:underscore)
   end

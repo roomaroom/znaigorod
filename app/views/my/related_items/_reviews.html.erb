@@ -1,7 +1,8 @@
 <% @related_reviews.each do |review| %>
   <li class='poster'>
     <div class="image">
-      <%= image_tag review.poster_image_url, size: "88x50"  %>
+      <% poster_url = review.poster_image_url || review.all_images.first.file_url %>
+      <%= image_tag poster_url, size: "88x50"  %>
     </div>
     <div class="details">
       <%= link_to review.title.truncate(30), review_path(review), :target => '_blank' %>
