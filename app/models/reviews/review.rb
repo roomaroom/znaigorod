@@ -26,9 +26,7 @@ class Review < ActiveRecord::Base
     :only_tomsk, :related_items
 
   belongs_to :account
-  belongs_to :afisha
   belongs_to :contest
-  belongs_to :organization
 
   has_many :all_images,            :as => :attachable, :class_name => 'Attachment', :conditions => { :type => %w[GalleryImage GallerySocialImage] }
   has_many :comments,              :as => :commentable,    :dependent => :destroy
