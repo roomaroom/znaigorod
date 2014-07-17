@@ -30,13 +30,13 @@ Znaigorod::Application.routes.draw do
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
   get '/recreation_centers' => 'hotels#index',
-    #:defaults => {:categories => ["базы отдыха"] },
-    #:constraints => {:categories => ["базы отдыха"] },
-    :as => :hotels_bazy_otdyha
+    :defaults => {:categories => ["базы отдыха"] },
+    :constraints => {:categories => ["базы отдыха"] },
+    :as => :hotels_bazy_otdyhas
 
   resources :hotels, :only => :index
   Values.instance.hotel.categories.map(&:mb_chars).map(&:downcase).map(&:to_s).each do |category|
-    get "/hotels/#{category.from_russian_to_param}" => 'hotels#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
+    get "/hotels/#{category.from_russian_to_param.pluralize}" => 'hotels#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
   end
 
   Organization.available_suborganization_kinds.each do |kind|
@@ -62,9 +62,8 @@ Znaigorod::Application.routes.draw do
 
       # short categories urls
       begin
-        #HasSearcher.searcher(kind.pluralize.to_sym).facet("#{kind}_category").rows.map do |row|
         Values.instance.send(kind).categories.each do |category|
-          next if kind == 'sauna'
+          next if kind == 'sauna' || kind == 'hotel'
           if kind == 'meal' || kind == 'sport'
             get "/#{kind.pluralize}/#{category.from_russian_to_param}",
             :to => redirect("/#{category.from_russian_to_param}")
