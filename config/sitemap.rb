@@ -26,7 +26,7 @@ SitemapGenerator::Sitemap.create do
 
   # Просмотр афиш
   Afisha.actual.each do |afisha|
-    add send("#{afisha.class.name.downcase}_path", afisha),
+    add send('afisha_show_path', afisha),
       :changefreq => 'weekly',
       :priority => afisha_priority(afisha),
       :lastmod => afisha.updated_at
