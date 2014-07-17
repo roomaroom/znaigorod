@@ -260,6 +260,9 @@ ru:
       image:
         <<: *common_attributes
 
+      shop:
+        <<: *common_attributes
+
       attachment:
         <<: *common_attributes
         file: Выберите файл

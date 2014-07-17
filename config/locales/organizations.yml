@@ -31,6 +31,7 @@ ru:
       car_sales_center: Авто
       car_wash: Автомойки
       car_service_center: Автосервис
+      shop: Магазины
     all:
       meal: Все заведения питания
       entertainment: Все развлекательные заведения
@@ -53,6 +54,7 @@ ru:
       car_sales_center: Автосалоны
       car_wash: Автомойки
       car_service_center: Автосервис
+      shop: Магазины
     singularize_title:
       organization: Заведение города
       meal: Заведение общественного питания
@@ -68,6 +70,7 @@ ru:
       car_sales_center: Автосалоны
       car_wash: Автомойки
       car_service_center: Автосервис
+      shop: Магазин
     filters:
       category: Категории
       cuisine: Кухня

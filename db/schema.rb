@@ -1061,6 +1061,20 @@ ActiveRecord::Schema.define(:version => 20140717034618) do
     t.integer  "min_value"
   end
 
+  create_table "shops", :force => true do |t|
+    t.integer  "organization_id"
+    t.text     "category"
+    t.text     "feature"
+    t.text     "offer"
+    t.string   "payment"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "shops", ["organization_id"], :name => "index_shops_on_organization_id"
+
   create_table "showings", :force => true do |t|
     t.integer  "afisha_id"
     t.string   "place"
