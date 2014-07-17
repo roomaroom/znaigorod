@@ -53,34 +53,7 @@
   <h2>Обзор связан с:</h2>
   <ul class="related posters">
     <% @review.relations.each do |relation| %>
-      <li class="item tiny">
-        <div class="title">
-          <%= link_to relation.slave.title.truncate(60), relation.slave.is_a?(Afisha) ? afisha_show_path(relation.slave) : relation.slave %>
-        </div>
-
-        <div class="details">
-          <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= relation.slave.comments.count %></span>
-          <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= relation.slave.likes_count %></span>
-          <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= relation.slave.page_visits.count %></span>
-        </div>
-
-        <div class="date">
-          <%= I18n.l(relation.slave.updated_at, :format => "%d %B %Y") %>
-        </div>
-
-        <div class="annotation">
-          <% if relation.slave.is_a?(Afisha) %>
-            <%= link_to (image_tag relation.slave.poster_url, {size: "214x260"}), afisha_show_path(relation.slave) %>
-          <% elsif relation.slave.is_a?(Organization) %>
-            <%= link_to (image_tag relation.slave.logotype_url, {size: "214x190"}), organization_url(relation.slave)  %>
-          <% elsif relation.slave.is_a?(Review) %>
-            <% poster_url = relation.slave.poster_image_url || relation.slave.all_images.first.file_url %>
-            <%= link_to (image_tag poster_url, {size: "214x190"}), organization_url(relation.slave)  %>
-            <div class="text">
-                <%= relation.slave.cached_content_for_index %>
-            </div>
-          <% end %>
-        </div>
+      <li class="item tiny"><%= render :partial => 'reviews/related_poster', :locals => {:item => relation.slave} %>
       </li>
     <% end %>
   </ul>
