@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 Znaigorod::Application.routes.draw do
-
   resources :organizations, :only => [:index, :show] do
     get :in_bounding_box, :on => :collection
     get :details_for_balloon, :on => :member
@@ -30,14 +29,14 @@ Znaigorod::Application.routes.draw do
   get '/meals' => redirect { |params, request| "/kafe_tomska?#{request.params.to_query}" }
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
+  get '/recreation_centers' => 'hotels#index',
+    #:defaults => {:categories => ["базы отдыха"] },
+    #:constraints => {:categories => ["базы отдыха"] },
+    :as => :hotels_bazy_otdyha
+
   resources :hotels, :only => :index
   Values.instance.hotel.categories.map(&:mb_chars).map(&:downcase).map(&:to_s).each do |category|
     get "/hotels/#{category.from_russian_to_param}" => 'hotels#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
-  end
-
-  resources :recreation_centers, :only => :index
-  Values.instance.recreation_center.categories.map(&:mb_chars).map(&:downcase).map(&:to_s).each do |category|
-    get "/recreation_centers/#{category.from_russian_to_param}" => 'recreation_centers#index', :defaults => { :categories => [category] }, :constraints => { :categories => [category] }
   end
 
   Organization.available_suborganization_kinds.each do |kind|

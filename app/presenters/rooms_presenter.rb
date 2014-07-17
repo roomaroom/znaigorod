@@ -314,7 +314,7 @@ class RoomsPresenter
   end
 
   def suborganization_class
-    context_type == :hotel ? Hotel : RecreationCenter
+    Hotel
   end
 
   def suborganizations

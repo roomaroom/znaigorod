@@ -44,7 +44,7 @@ module SearchWithFacets
         } if klass == CarSalesCenter
 
         boolean(:with_sauna_halls) { self.with_sauna_halls? } if klass == Sauna
-        boolean(:with_rooms) { self.with_rooms? }             if klass == Hotel || klass == RecreationCenter
+        boolean(:with_rooms) { self.with_rooms? }             if klass == Hotel
       end
     end
   end
