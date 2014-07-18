@@ -25,8 +25,17 @@
     padding: 10px 0
     width: 262px
 
-.organization_content, .organizations_main_page_list
+.organization_content, .organizations_main_page_list, .situated_items
   clear: both
+
+  &.situated_items
+    clear: none
+
+    .place
+      display: none
+
+    .phone
+      margin-top: 14px
 
   .fresh
     +opacity(0)

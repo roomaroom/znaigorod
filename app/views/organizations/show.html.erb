@@ -220,6 +220,20 @@
       </div>
     <% end %>
 
+    <% if @situated_items %>
+      <div class='suborganization_info situated_items'>
+        <% @situated_items.each do |key, value| %>
+          <div class='title'><%= key %></div>
+          <ul class='posters'>
+            <% value.each do |item| %>
+              <li class="item"><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => item, :height => '194', :width => '190' } %></li>
+            <% end %>
+            <div style="clear: both"></div>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization } if @organization.ability_to_comment? %>
   </div>
 </div>

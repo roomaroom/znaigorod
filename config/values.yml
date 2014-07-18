@@ -525,6 +525,8 @@ sauna:
 shop:
   categories:
     - торговые центры
+    - категория 1
+    - категория 2
 
 sport:
   categories:
