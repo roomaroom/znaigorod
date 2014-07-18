@@ -31,6 +31,14 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def add
+    @presenter = OrganizationsCatalogPresenter.new(params)
+  end
+
+  def send_mail
+    @presenter = OrganizationsCatalogPresenter.new(params)
+  end
+
   def show
     if request.subdomain.blank? || !Organization.exists?(:subdomain => request.subdomain)
       @organization = Organization.find(params[:id])

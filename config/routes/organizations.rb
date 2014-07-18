@@ -8,6 +8,9 @@ Znaigorod::Application.routes.draw do
     put 'destroy_visits' => 'visits#destroy_visits', :as => :destroy_visits
     get 'liked' => 'votes#liked', :as => :liked
 
+    get 'add', :on => :collection
+    post 'send_mail', :on => :collection
+
     resources :comments, :only => [:new, :create, :show]
     resources :visits
 
