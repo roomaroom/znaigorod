@@ -1,7 +1,7 @@
 <% @related_organizations.each do |organization| %>
   <li class='poster'>
     <div class="image">
-      <%= image_tag organization.logotype_url, size: "66x66"  %>
+      <%= image_tag organization.logotype_url.blank? ? 'public/default_image.png' : organization.logotype_url, size: "66x66"  %>
     </div>
     <div class="details">
       <%= link_to organization.title.truncate(25), organization_url(organization), :target => '_blank' %>
