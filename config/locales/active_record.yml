@@ -293,6 +293,7 @@ ru:
         organization: Родительская организация
         organization_id: Родительская организация
         primary_organization_id: Родительская организация
+        situated_at: Расположено в
         payment: Способы оплаты
         phone: Телефоны
         priority_suborganization_kind: Приоритетная подорганизация

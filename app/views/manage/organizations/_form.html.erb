@@ -10,6 +10,7 @@
 
   <%= f.input :title %>
   <%= f.input :primary_organization_id, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.primary_organization_id  %>
+  <%= f.input :situated_at, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.situated_at  %>
   <%= f.input :comment %>
   <%= f.input :description %>
   <%= f.input :phone %>
