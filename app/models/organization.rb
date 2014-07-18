@@ -19,26 +19,28 @@ class Organization < ActiveRecord::Base
 
   attr_accessible :primary_organization_id, :balance_delta
 
-  belongs_to :manager, :class_name => 'User', :foreign_key => 'user_id'
+  belongs_to :manager,              :class_name => 'User',         :foreign_key => 'user_id'
   belongs_to :organization
+  belongs_to :placement,            :class_name => 'Organization', :foreign_key => 'situated_at'
   belongs_to :primary_organization, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
 
-  has_many :activities,          :dependent => :destroy
-  has_many :comments,            :dependent => :destroy, :as => :commentable
-  has_many :contacts,            :dependent => :destroy
-  has_many :gallery_files,       :dependent => :destroy, :as => :attachable
-  has_many :gallery_images,      :dependent => :destroy, :as => :attachable
-  has_many :halls,               :dependent => :destroy
-  has_many :invitations,         :dependent => :destroy, :as => :inviteable
+  has_many :activities,             :dependent => :destroy
+  has_many :comments,               :dependent => :destroy, :as => :commentable
+  has_many :contacts,               :dependent => :destroy
+  has_many :gallery_files,          :dependent => :destroy, :as => :attachable
+  has_many :gallery_images,         :dependent => :destroy, :as => :attachable
+  has_many :halls,                  :dependent => :destroy
+  has_many :invitations,            :dependent => :destroy, :as => :inviteable
   has_many :organizations
-  has_many :page_visits,         :dependent => :destroy, :as => :page_visitable
+  has_many :page_visits,            :dependent => :destroy, :as => :page_visitable
   has_many :places
-  has_many :schedules,           :dependent => :destroy
-  has_many :showings,            :dependent => :destroy
-  has_many :slave_organizations, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
-  has_many :social_links,        :dependent => :destroy
-  has_many :visits,              :dependent => :destroy, :as => :visitable
-  has_many :votes,               :dependent => :destroy, :as => :voteable
+  has_many :schedules,              :dependent => :destroy
+  has_many :showings,               :dependent => :destroy
+  has_many :situated_organizations, :class_name => 'Organization', :foreign_key => 'situated_at'
+  has_many :slave_organizations,    :class_name => 'Organization', :foreign_key => 'primary_organization_id'
+  has_many :social_links,           :dependent => :destroy
+  has_many :visits,                 :dependent => :destroy, :as => :visitable
+  has_many :votes,                  :dependent => :destroy, :as => :voteable
 
   has_many :afisha,            :through => :showings, :uniq => true
   has_many :certificates,      :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'Certificate' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717034618) do
+ActiveRecord::Schema.define(:version => 20140718034956) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -591,6 +591,7 @@ ActiveRecord::Schema.define(:version => 20140717034618) do
     t.integer  "fb_likes"
     t.integer  "odn_likes"
     t.string   "poster_vk_id"
+    t.integer  "situated_at"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
@@ -755,19 +756,6 @@ ActiveRecord::Schema.define(:version => 20140717034618) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "recreation_centers", :force => true do |t|
-    t.integer  "organization_id"
-    t.string   "title"
-    t.text     "category"
-    t.text     "description"
-    t.text     "feature"
-    t.text     "offer"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "recreation_centers", ["organization_id"], :name => "index_recreation_centers_on_organization_id"
 
   create_table "relations", :force => true do |t|
     t.integer  "master_id"
