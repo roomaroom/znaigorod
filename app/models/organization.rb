@@ -87,7 +87,7 @@ class Organization < ActiveRecord::Base
   ### Payments ===>
 
   def self.suborganization_kinds_for_navigation
-    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter, Hotel, Shop].map(&:name).map(&:underscore)
+    [Organization, Meal, Entertainment, CarSalesCenter, Culture, Sport, Creation, SalonCenter, Hotel].map(&:name).map(&:underscore)
   end
 
   def self.available_suborganization_kinds
@@ -203,6 +203,10 @@ class Organization < ActiveRecord::Base
 
   def visit_for(user)
     visits.find_by_user_id(user)
+  end
+
+  def grouped_situated_organizations
+    @grouped_situated_organizations ||= situated_organizations.group_by { |o| o.priority_suborganization.categories.first }
   end
 
   def invitations_and_visits_grouped_by_account

@@ -54,14 +54,17 @@ class OrganizationsController < ApplicationController
         cookie = cookies['_znaigorod_afisha_list_settings'].to_s
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
-        @afisha_presenter = AfishaPresenter.new(organization_ids: [@organization.id], order_by: 'starts_at', page: params[:page], :per_page => 9)
-        @discount_presenter = DiscountsPresenter.new(organization_id: @organization.id, :type => 'discount', order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
-        @certificate_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'certificate', :order_by => 'random', :page => params[:page])
-        @coupon_presenter = DiscountsPresenter.new(:organization_id => @organization.id, :type => 'coupon', :order_by => 'random', :page => params[:page])
+        organization_ids = [@organization.id, @organization.situated_organization_ids].flatten
+        @afisha_presenter = AfishaPresenter.new(organization_ids: organization_ids, order_by: 'starts_at', page: params[:page], :per_page => 9)
+        @discount_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'discount', order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
+        @certificate_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'certificate', :order_by => 'random', :page => params[:page])
+        @coupon_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'coupon', :order_by => 'random', :page => params[:page])
         @reviews = ReviewDecorator.decorate(@organization.reviews.published)
-        @situated_items = situated_items
 
-        render partial: @afisha_presenter.partial, locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter }, layout: false and return if request.xhr?
+        render partial: @afisha_presenter.partial,
+          locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter },
+          layout: false and return if request.xhr?
+
         render layout: "organization_layouts/#{@organization.subdomain}" if @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 
@@ -73,15 +76,6 @@ class OrganizationsController < ApplicationController
 
   def photogallery
     @organization = OrganizationDecorator.find(params[:id])
-  end
-
-  def situated_items
-    items = Hash.new { |h, k| h[k] = [] }
-    @organization.situated_organizations.each do |organization|
-      category = organization.category.split(",").first
-      items[category] << OrganizationDecorator.decorate(organization)
-    end
-    items
   end
 
   def affiche

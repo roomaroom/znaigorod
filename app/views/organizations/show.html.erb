@@ -171,34 +171,11 @@
     <% if @discount_presenter.collection.any? %>
       <div class="suborganization_info discount_details">
         <div class="title">Скидки</div>
-        <div class="presentation_filters discount">
-          <div class="present_by">
-            <p>Вид:</p>
-            <ul>
-              <li class="selected"><a href="#" class="poster">Постеры</a></li>
-              <li><a href="#" class="list">Список</a></li>
-            </ul>
-          </div>
-
-          <div class="order_by">
-            <p>Сортировать по:</p>
-            <ul>
-              <% @discount_presenter.order_by_filter.links.each do |link| %>
-                <li class="<%= link.klass %>">
-                  <%= link_to link.title, organization_path(@organization, :params => link.params) %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
+        <div class="discount_content pagination_none">
+          <ul class="posters">
+            <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
+          </ul>
         </div>
-
-          <div class="discount_content pagination_none">
-            <ul class="posters">
-              <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } %>
-            </ul>
-          </div>
-
-        <%= paginate @discount_presenter.collection %>
       </div>
     <% end %>
 
@@ -220,13 +197,16 @@
       </div>
     <% end %>
 
-    <% if @situated_items %>
+    <% if @organization.grouped_situated_organizations.any? %>
       <div class='suborganization_info situated_items'>
-        <% @situated_items.each do |key, value| %>
-          <div class='title'><%= key %></div>
+        <% @organization.grouped_situated_organizations.each do |category, organizations| %>
+          <div class='title'><%= category %></div>
           <ul class='posters'>
-            <% value.each do |item| %>
-              <li class="item"><%= render :partial => 'organizations/suborganization', :locals => { :suborganization => item, :height => '194', :width => '190' } %></li>
+            <% organizations.each do |item| %>
+              <li class="item">
+                <%= render :partial => 'organizations/suborganization',
+                  :locals => { :suborganization => OrganizationDecorator.new(item), :height => '194', :width => '190' } %>
+              </li>
             <% end %>
             <div style="clear: both"></div>
           </ul>
