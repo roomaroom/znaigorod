@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :related_items
+  attr_accessor :related_items, :keep_related_items
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
@@ -22,8 +22,8 @@ class Review < ActiveRecord::Base
   after_save :parse_related_items
 
   attr_accessible :content, :title, :tag, :categories,
-    :allow_external_links,
-    :only_tomsk, :related_items
+    :allow_external_links, :only_tomsk,
+    :related_items, :keep_related_items
 
   belongs_to :account
   belongs_to :contest
@@ -123,7 +123,8 @@ class Review < ActiveRecord::Base
   end
 
   def update_rating
-    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
+    update_attributes :rating => 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count,
+      :keep_related_items => true
   end
 
   def has_poster?
@@ -145,7 +146,7 @@ class Review < ActiveRecord::Base
   end
 
   def parse_related_items
-    relations.destroy_all
+    relations.destroy_all unless keep_related_items
 
     return true unless related_items
 
