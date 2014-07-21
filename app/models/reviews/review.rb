@@ -123,8 +123,9 @@ class Review < ActiveRecord::Base
   end
 
   def update_rating
-    update_attributes :rating => 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count,
-      :keep_related_items => true
+    self.keep_related_items = true
+
+    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
 
   def has_poster?
