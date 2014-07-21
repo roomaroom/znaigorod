@@ -4,17 +4,26 @@
   <%= form_tag send_mail_organizations_path, :class => 'default_simple_form add_organization' do %>
 
     <div class="input">
-      <label for="title">Название:</label>
+      <label for="title">
+        Название
+        <abbr class="title" title="обязятельное поле">*</abbr>
+      </label>
       <%= text_area_tag :title %>
     </div>
 
     <div class="input">
-      <label for="address">Адрес:</label>
+      <label for="address">
+        Адрес
+        <abbr class="title" title="обязятельное поле">*</abbr>
+      </label>
       <%= text_area_tag :address %>
     </div>
 
     <div class="input">
-      <label for="phone">Контактный телефон:</label>
+      <label for="phone">
+        Контактный телефон
+        <abbr class="title" title="обязятельное поле">*</abbr>
+      </label>
       <%= text_area_tag :phone %>
     </div>
 
