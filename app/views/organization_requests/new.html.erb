@@ -1,0 +1,14 @@
+<div class="default_styles">
+  <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
+
+  <h3>Предоставление информации о заведении</h3>
+
+  <%= simple_form_for @request, url: '/organizations/send_mail', :html => { class: 'default_simple_form add_organization' } do |f| %>
+    <%= f.input :title, :label => 'Название', :as => :text %>
+    <%= f.input :address, :label => 'Адрес', :as => :text %>
+    <%= f.input :phone, :label => 'Контактный телефон', :as => :text %>
+    <%= f.submit 'Отправить', :class => 'submit btn btn-orange' %>
+  <% end %>
+</div>

@@ -1,15 +1,15 @@
 # encoding: utf-8
 
 Znaigorod::Application.routes.draw do
+  get 'organizations/add' => "organization_requests#new"
+  post 'organizations/send_mail'=> "organization_requests#send_mail"
+
   resources :organizations, :only => [:index, :show] do
     get :in_bounding_box, :on => :collection
     get :details_for_balloon, :on => :member
     put 'change_vote' => 'votes#change_vote', :as => :change_vote
     put 'destroy_visits' => 'visits#destroy_visits', :as => :destroy_visits
     get 'liked' => 'votes#liked', :as => :liked
-
-    get 'add', :on => :collection
-    post 'send_mail', :on => :collection
 
     resources :comments, :only => [:new, :create, :show]
     resources :visits
