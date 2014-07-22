@@ -1,5 +1,7 @@
 <p>
   <span>Автор:</span>
 
-  <%= link_to(account.title, account) %>
+  <%= account.nil? ?
+    link_to('ЗнайГород (Афиша Томска)', AwayLink.to('http://vk.com/znaigorod'), :target => '_blank', :rel => 'nofollow') :
+    link_to(account.title, account) %>
 </p>
