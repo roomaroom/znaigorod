@@ -39,6 +39,11 @@ Znaigorod::Application.routes.draw do
 
     resources :main_page_reviews, :except => [:new, :create, :show, :destroy]
 
+    resources :reviews do
+      get ':by_category' =>'reviews#index', :on => :collection, :as => :by_category, :constraints => {:by_category => /#{Review.categories.values.map(&:value).join('|')}/}
+      get ':by_state' => 'reviews#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Review.state_machine.states.map(&:name).join('|')}/ }
+    end
+
     resources :afisha, :except => [:index, :show], :controller => 'afishas' do
       get ':by_state' => 'afishas#index', :on => :collection, :as => :by_state, :constraints => { :by_state => /#{Afisha.state_machine.states.map(&:name).join('|')}/ }
       get ':by_kind' => 'afishas#index', :on => :collection, :as => :by_kind, :constraints => { :by_kind => /#{Afisha.kind.values.map(&:pluralize).join('|')}/ }

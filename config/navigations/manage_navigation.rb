@@ -51,7 +51,12 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :reviews, 'Обзоры', manage_reviews_path,
       :highlights_on => ->(){ resource_class == Review },
-      :if => -> { can?(:manage, Review) }
+      :if => -> { can?(:manage, Review) } do |review_item|
+        Review.categories.options.each do |title, option|
+          review_item.item option, title, by_category_manage_reviews_path(option)
+        end
+        review_item.item 'draft', "Черновики (#{Review.draft.count})", by_state_manage_reviews_path(:draft)
+      end
 
     primary.item :payments, 'Вебкамеры', manage_webcams_path
 

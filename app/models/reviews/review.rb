@@ -60,11 +60,9 @@ class Review < ActiveRecord::Base
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :eighteen_plus, :culture, :accidents, :animals, :informative, :creation, :cafe, :other, :abiturient],
-    :multiple => true,
-    :predicates => true
+    :multiple => true
 
   friendly_id :title, :use => :slugged
-
 
   def normalize_friendly_id(string)
     I18n.l(created_at, :format => '%Y-%m') + '/' + super

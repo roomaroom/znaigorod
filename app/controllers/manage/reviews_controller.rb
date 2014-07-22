@@ -45,6 +45,8 @@ class Manage::ReviewsController < Manage::ApplicationController
     @collection = Review.search {
       keywords params[:q]
       order_by :created_at, :desc
+      with :category, params[:by_category] if params[:by_category].present?
+      with :state, params[:by_state] if params[:by_state].present?
       paginate paginate_options.merge(:per_page => per_page)
     }.results
   end
