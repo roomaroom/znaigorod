@@ -60,7 +60,8 @@ class Review < ActiveRecord::Base
 
   enumerize :categories,
     :in => [:auto, :sport, :entertainment, :humor, :family, :eighteen_plus, :culture, :accidents, :animals, :informative, :creation, :cafe, :other, :abiturient],
-    :multiple => true
+    :multiple => true,
+    :predicates => true
 
   friendly_id :title, :use => :slugged
 
