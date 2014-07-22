@@ -20,7 +20,7 @@ class Activity < ActiveRecord::Base
   end
 
   extend Enumerize
-  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh
+  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor], default: :fresh
   enumerize :state, in: [:planned, :completed], default: :planned, predicates: { prefix: true }
   enumerize :kind, in: [:phone, :email, :repeated_phone, :meeting, :meeting_contract, :meeting_payment]
 
