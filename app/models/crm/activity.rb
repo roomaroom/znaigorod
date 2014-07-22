@@ -8,6 +8,7 @@ class Activity < ActiveRecord::Base
   belongs_to :contact
   validates_presence_of :title, :state, :status, :activity_at, :manager, :kind
   after_save :set_organization_status, if: :state_completed?
+  after_save :handle_debtors, if: :state_completed?
   default_scope order('activity_at desc')
 
   searchable do
@@ -20,7 +21,7 @@ class Activity < ActiveRecord::Base
   end
 
   extend Enumerize
-  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor], default: :fresh
+  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor], default: :fresh, predicates: { prefix: true }
   enumerize :state, in: [:planned, :completed], default: :planned, predicates: { prefix: true }
   enumerize :kind, in: [:phone, :email, :repeated_phone, :meeting, :meeting_contract, :meeting_payment]
 
@@ -29,6 +30,26 @@ class Activity < ActiveRecord::Base
 
   def activity_date
     activity_at.to_date
+  end
+
+  def handle_debtors
+    if status_debtor?
+      (organization.sauna.try(:sauna_hall_ids) || []).each do |id|
+        Sunspot.remove_by_id SaunaHall, id
+      end
+
+      (organization.hotel.try(:room_ids) || []).each do |id|
+        Sunspot.remove_by_id Room, id
+      end
+    else
+      (organization.sauna.try(:sauna_halls) || []).each do |record|
+        record.index!
+      end
+
+      (organization.hotel.try(:room) || []).each do |record|
+        record.index!
+      end
+    end
   end
 
   private
