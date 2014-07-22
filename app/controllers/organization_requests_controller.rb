@@ -1,6 +1,6 @@
 class OrganizationRequestsController < ApplicationController
   def new
-    @request=AddOrganizationRequest.new
+    @request = AddOrganizationRequest.new
   end
 
   def send_mail

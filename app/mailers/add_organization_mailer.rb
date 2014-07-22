@@ -1,3 +1,5 @@
+require 'add_organization_request'
+
 class AddOrganizationMailer < ActionMailer::Base
   default :from => Settings['mail']['from']
 
