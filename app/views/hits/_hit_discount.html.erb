@@ -2,6 +2,7 @@
 <%= link_to hit.title, hit.show_url, :class => :title %>
 
 <div class="info">
+  <%= hit.result_decorator.when_with_price %>
   <div class='excerpt'><%= hit.excerpt %></div>
   <%= content_tag :div, hit.result_decorator.human_place, :class => 'places' %>
 </div>
