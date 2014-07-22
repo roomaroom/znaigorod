@@ -1,63 +1,65 @@
-<div class='suborganization_info sauna'>
+<% unless @organization.status.debtor? %>
+  <div class='suborganization_info sauna'>
 
-  <div class='title'><%= sauna.title.text_gilensize %></div>
+    <div class='title'><%= sauna.title.text_gilensize %></div>
 
-  <%= sauna.characteristics_on_show %>
+    <%= sauna.characteristics_on_show %>
 
-  <%= content_tag :div, sauna.description.as_html, :class => :description if sauna.description.present? %>
+    <%= content_tag :div, sauna.description.as_html, :class => :description if sauna.description.present? %>
 
-  <% if sauna.has_photogallery? %>
-    <div class='photogallery'>
-      <ul>
-        <%= render sauna.gallery_images, :rel => "sauna_gallery_#{sauna.id}" %>
-      </ul>
-    </div>
-  <% end %>
+    <% if sauna.has_photogallery? %>
+      <div class='photogallery'>
+        <ul>
+          <%= render sauna.gallery_images, :rel => "sauna_gallery_#{sauna.id}" %>
+        </ul>
+      </div>
+    <% end %>
 
-  <% sauna.decorated_halls.each_with_index do |sauna_hall| %>
-    <div class='sauna_hall_info'>
-      <div class='sauna_hall_header'>
+    <% sauna.decorated_halls.each_with_index do |sauna_hall| %>
+      <div class='sauna_hall_info'>
+        <div class='sauna_hall_header'>
 
-        <div class='left with-toggleable'>
-          <div class='title'>
-            <% if sauna_hall.title.length > 20 %>
-              <%= content_tag :span, truncate(sauna_hall.title, :length => 17), :title => sauna_hall.title %>
-            <% else %>
-              <%= sauna_hall.title %>
-            <% end %>
+          <div class='left with-toggleable'>
+            <div class='title'>
+              <% if sauna_hall.title.length > 20 %>
+                <%= content_tag :span, truncate(sauna_hall.title, :length => 17), :title => sauna_hall.title %>
+              <% else %>
+                <%= sauna_hall.title %>
+              <% end %>
+            </div>
+            <%= sauna_hall.price %>,
+            <div class='capacity'><%= sauna_hall.sauna_hall_capacity.default %> чел.</div>
+            <%= sauna_hall.schedule %>
           </div>
-          <%= sauna_hall.price %>,
-          <div class='capacity'><%= sauna_hall.sauna_hall_capacity.default %> чел.</div>
-          <%= sauna_hall.schedule %>
+
+          <div class='right'>
+            <%= sauna_hall.htmlise_capacity_on_show %>
+            <%= link_to '3D-тур', '#', :class => 'virtual_tour_link', 'data-link' => sauna_hall.virtual_tour_link, :title => '3D-тур' if sauna_hall.virtual_tour.link? %>
+          </div>
+
         </div>
 
-        <div class='right'>
-          <%= sauna_hall.htmlise_capacity_on_show %>
-          <%= link_to '3D-тур', '#', :class => 'virtual_tour_link', 'data-link' => sauna_hall.virtual_tour_link, :title => '3D-тур' if sauna_hall.virtual_tour.link? %>
+        <div class='sauna_hall_details'>
+          <%= sauna_hall.htmlise_bath_on_show %>
+          <%= sauna_hall.htmlise_pool_on_show %>
+          <%= sauna_hall.htmlise_entertainment_on_show %>
         </div>
 
+        <% if sauna_hall.description.present? %>
+          <div class='description'>
+            <%= sauna_hall.description.as_html %>
+          </div>
+        <% end %>
+
+        <% if sauna_hall.has_photogallery? %>
+          <div class='photogallery'>
+            <ul>
+              <%= render sauna_hall.gallery_images, :rel => "sauna_hall_gallery_#{sauna_hall.id}" %>
+            </ul>
+          </div>
+        <% end %>
       </div>
+    <% end %>
 
-      <div class='sauna_hall_details'>
-        <%= sauna_hall.htmlise_bath_on_show %>
-        <%= sauna_hall.htmlise_pool_on_show %>
-        <%= sauna_hall.htmlise_entertainment_on_show %>
-      </div>
-
-      <% if sauna_hall.description.present? %>
-        <div class='description'>
-          <%= sauna_hall.description.as_html %>
-        </div>
-      <% end %>
-
-      <% if sauna_hall.has_photogallery? %>
-        <div class='photogallery'>
-          <ul>
-            <%= render sauna_hall.gallery_images, :rel => "sauna_hall_gallery_#{sauna_hall.id}" %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-</div>
+  </div>
+<% end %>

@@ -50,17 +50,19 @@
 
   <div class='right'>
     <div class='wrapper'>
-      <% if @organization.has_tour? %>
-        <div class='virtual_tour'>
-          <%= link_to('#', :class => :virtual_tour_link, :'data-link' => @organization.virtual_tour.link, title: '3D-тур') do %>
-            <% if @organization.virtual_tour.attachment_url? %>
-              <%= image_tag resized_image_url(@organization.virtual_tour.attachment_url, 196, 150), :size => '196x150' %>
-              <span>3D<br />тур</span>
-            <% else %>
-              <%= image_tag 'public/virtual_tour_link.png', :size => '196x150', :alt => '3D тур' %>
+      <% unless @organization.status.debtor? %>
+        <% if @organization.has_tour? %>
+          <div class='virtual_tour'>
+            <%= link_to('#', :class => :virtual_tour_link, :'data-link' => @organization.virtual_tour.link, title: '3D-тур') do %>
+              <% if @organization.virtual_tour.attachment_url? %>
+                <%= image_tag resized_image_url(@organization.virtual_tour.attachment_url, 196, 150), :size => '196x150' %>
+                <span>3D<br />тур</span>
+              <% else %>
+                <%= image_tag 'public/virtual_tour_link.png', :size => '196x150', :alt => '3D тур' %>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
 
       <% if @organization.address && @organization.address.latitude.present? && @organization.address.longitude.present? %>
@@ -127,22 +129,25 @@
           <% end %>
         </ul>
       <% end %>
+      <% unless @organization.status.debtor?  %>
 
-      <% if @organization.description.present? %>
-        <div class='description'>
-          <%= @organization.description_html %>
-        </div>
-      <% end %>
+        <% if @organization.description.present? %>
+          <div class='description'>
+            <%= @organization.description_html %>
+          </div>
+        <% end %>
 
 
-      <% if @organization.has_photogallery? %>
-        <div class='photogallery'>
-          <ul>
-            <% @organization.gallery_images.each do |image| %>
-              <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "organization_gallery_#{@organization.id}" } %>
-            <% end %>
-          </ul>
-        </div>
+        <% if @organization.has_photogallery? %>
+          <div class='photogallery'>
+            <ul>
+              <% @organization.gallery_images.each do |image| %>
+                <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "organization_gallery_#{@organization.id}" } %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
       <% end %>
 
       <div class='share_and_likes'>

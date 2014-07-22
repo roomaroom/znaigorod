@@ -1,67 +1,69 @@
-<div class='suborganization_info housing'>
+<% unless @organization.status.debtor? %>
+  <div class='suborganization_info housing'>
 
-  <div class='title'><%= house.human_title.text_gilensize %></div>
+    <div class='title'><%= house.human_title.text_gilensize %></div>
 
-  <%= house.htmlise_offers_and_features_on_show %>
+    <%= house.htmlise_offers_and_features_on_show %>
 
-  <%= content_tag :div, house.description.as_html, :class => :description if house.description.present? %>
+    <%= content_tag :div, house.description.as_html, :class => :description if house.description.present? %>
 
-  <% if house.has_photogallery? %>
-    <div class='photogallery'>
-      <ul>
-        <%= render house.gallery_images, :rel => "housing_gallery_#{house.id}" %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% house.decorated_rooms.each do |room| %>
-    <div class='room_info'>
-      <div class='room_header'>
-
-        <div class='left with-toggleable'>
-          <div class='title'>
-            <% if room.title.length > 20 %>
-              <%= content_tag :span, truncate(room.title, :length => 20), :title => room.title %>
-            <% else %>
-              <%= room.title %>
-            <% end %>
-          </div>
-
-          <div>
-            <%= room.average_price %>
-            <%= room.price_table if room.different_prices? %>
-          </div>
-
-          <div class='capacity'>
-            <%= room.human_capacity %>,
-            <%= room.human_rooms_count %>
-          </div>
-        </div>
-
-        <div class='right'>
-          <%= link_to '3D-тур', '#', :class => 'virtual_tour_link', 'data-link' => room.virtual_tour_link, :title => '3D-тур' if room.virtual_tour.link? %>
-        </div>
-
+    <% if house.has_photogallery? %>
+      <div class='photogallery'>
+        <ul>
+          <%= render house.gallery_images, :rel => "housing_gallery_#{house.id}" %>
+        </ul>
       </div>
+    <% end %>
 
-      <ul class="offers_and_features">
-        <%= room.htmlise_features_on_show %>
-      </ul>
+    <% house.decorated_rooms.each do |room| %>
+      <div class='room_info'>
+        <div class='room_header'>
 
-      <% if room.description.present? %>
-        <div class='description'>
-          <%= room.description.as_html %>
+          <div class='left with-toggleable'>
+            <div class='title'>
+              <% if room.title.length > 20 %>
+                <%= content_tag :span, truncate(room.title, :length => 20), :title => room.title %>
+              <% else %>
+                <%= room.title %>
+              <% end %>
+            </div>
+
+            <div>
+              <%= room.average_price %>
+              <%= room.price_table if room.different_prices? %>
+            </div>
+
+            <div class='capacity'>
+              <%= room.human_capacity %>,
+              <%= room.human_rooms_count %>
+            </div>
+          </div>
+
+          <div class='right'>
+            <%= link_to '3D-тур', '#', :class => 'virtual_tour_link', 'data-link' => room.virtual_tour_link, :title => '3D-тур' if room.virtual_tour.link? %>
+          </div>
+
         </div>
-      <% end %>
 
-      <% if room.has_photogallery? %>
-        <div class='photogallery'>
-          <ul>
-            <%= render room.gallery_images, :rel => "room_gallery_#{room.id}" %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+        <ul class="offers_and_features">
+          <%= room.htmlise_features_on_show %>
+        </ul>
 
-</div>
+        <% if room.description.present? %>
+          <div class='description'>
+            <%= room.description.as_html %>
+          </div>
+        <% end %>
+
+        <% if room.has_photogallery? %>
+          <div class='photogallery'>
+            <ul>
+              <%= render room.gallery_images, :rel => "room_gallery_#{room.id}" %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+<% end %>
