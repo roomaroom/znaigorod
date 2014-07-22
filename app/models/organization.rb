@@ -56,7 +56,7 @@ class Organization < ActiveRecord::Base
   has_one :organization_stand,  :dependent => :destroy
 
   extend Enumerize
-  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation], default: :fresh, predicates: true
+  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor], default: :fresh, predicates: true
 
   default_value_for :total_rating, 0
 
