@@ -219,6 +219,7 @@ ru:
         constant: Постоянная скидка
         discount: Размер скидки
         description: Описание акции
+        address: Название организации
         discounted_price: Цена со скидкой
         ends_at: Дата окончания
         kind: Категория (можно несколько)

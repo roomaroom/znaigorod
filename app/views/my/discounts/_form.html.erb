@@ -14,7 +14,7 @@
       <% if resource.poster_url? %>
         <%= link_to image_tag(resized_image_url(resource.poster_url, 200, 149), :size => '200x149', :title => resource.title, :alt => resource.title), resource.poster_url %>
       <% else %>
-        <%= image_tag 'public/stub_poster.png', size: '200x149' %>
+        <%= image_tag 'public/default_preview.jpg', size: '200x149' %>
       <% end %>
     </div>
     <div class="title"></div>
