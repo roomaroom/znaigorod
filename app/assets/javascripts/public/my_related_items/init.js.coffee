@@ -36,7 +36,7 @@
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
                                   <span class="del_icon"></span>
-                                  <input name="review[related_items][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
+                                  <input name="discount[places_attributes][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
   $('body').on 'click', '.del_icon', ->

@@ -7,6 +7,8 @@ class Discount < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
+  attr_accessor :places_attributes
+
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :constant, :sale,
                   :places_attributes
@@ -32,11 +34,10 @@ class Discount < ActiveRecord::Base
   validates_presence_of :discount,            :unless => :sale?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
-  accepts_nested_attributes_for :places, :allow_destroy => true
-
   delegate :build, :empty?, :to => :places, :prefix => true
   after_initialize :places_build, :if => [:new_record?, :places_empty?]
   after_save :reindex_organizations
+  after_save :parse_places_attributes
   after_destroy :reindex_organizations
 
   scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
@@ -80,6 +81,22 @@ class Discount < ActiveRecord::Base
     text :title_ru,       :boost => 1.0, :more_like_this => true
 
     time :ends_at, :trie => true
+  end
+
+  def parse_places_attributes
+    p places_attributes
+    places_attributes.each do |place|
+      place_type, place_id = item.split("_")
+      organization = Organization.find(place_id)
+
+      new_place = places.new
+      new_place.organization = organization
+      new_place.latitude = organization.latitude
+      new_place.longitude = organization.longitude
+      new_place.address = organization.address.street
+
+      new_place.save
+    end
   end
 
   def self.classes_subtree
@@ -213,5 +230,3 @@ end
 #  placeholder               :text
 #  afisha_id                 :integer
 #  external_id               :string(255)
-#
-
