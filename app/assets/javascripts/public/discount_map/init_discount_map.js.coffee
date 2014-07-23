@@ -24,7 +24,7 @@ handle_afisha_select = ->
     init_autosuggest_handler()
 
   store_coordinates_handler = (link, coordinates) ->
-    $('.autosuggest_organization_id', $(link).parent()).val('').change()
+    #$('.autosuggest_organization_id', $(link).parent()).val('').change()
     $('.autosuggest_organization_latitude', $(link).parent()).val(coordinates[0]).change()
     $('.autosuggest_organization_longitude', $(link).parent()).val(coordinates[1]).change()
 
@@ -47,7 +47,7 @@ handle_afisha_select = ->
 
   $.fn.add_click_handler = () ->
     $this = $(this)
-    $this.change_organization_id_handler()
+    #$this.change_organization_id_handler()
 
     $this.click ->
       if $('.map_wrapper').length

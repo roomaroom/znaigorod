@@ -7,11 +7,11 @@ class Discount < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :places_attributes
+  attr_accessor :place_attributes
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :constant, :sale,
-                  :places_attributes
+                  :place_attributes
 
   belongs_to :account
   belongs_to :afisha
@@ -37,7 +37,7 @@ class Discount < ActiveRecord::Base
   #delegate :build, :empty?, :to => :places, :prefix => true
   #after_initialize :places_build, :if => [:new_record?, :places_empty?]
   after_save :reindex_organizations
-  after_save :parse_places_attributes
+  after_save :parse_place_attributes
   after_destroy :reindex_organizations
 
   scope :actual, -> { where "ends_at > ? OR constant = ?", Time.zone.now, true }
@@ -83,18 +83,24 @@ class Discount < ActiveRecord::Base
     time :ends_at, :trie => true
   end
 
-  def parse_places_attributes
-    p places_attributes
-    places_attributes.each do |place|
-      place_type, place_id = place.split("_")
-      organization = Organization.find(place_id)
+  def parse_place_attributes
+    places.destroy_all
+    if place_attributes[:organization_ids]
+      place_attributes[:organization_ids].each do |place|
+        p "77"*80
+        place_type, place_id = place.split("_")
+        organization = Organization.find(place_id)
 
+        new_place = places.new
+        new_place.organization = organization
+        new_place.save
+      end
+    else
+      p "55"*80
       new_place = places.new
-      new_place.organization = organization
-      new_place.latitude = organization.latitude
-      new_place.longitude = organization.longitude
-      new_place.address = organization.address.street
-
+      new_place.address = place_attributes[:address]
+      new_place.latitude = place_attributes[:latitude]
+      new_place.longitude = place_attributes[:longitude]
       new_place.save
     end
   end

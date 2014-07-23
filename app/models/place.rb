@@ -4,7 +4,7 @@ class Place < ActiveRecord::Base
   belongs_to :organization
   belongs_to :placeable, :polymorphic => true
 
-  validates_presence_of :address, :latitude, :longitude, :unless => :organization_id?
+  validates_presence_of :address, :latitude, :longitude, unless: :organization_id?
 
   delegate :sunspot_index, :to => :placeable, :prefix => true
   after_save    :placeable_sunspot_index
