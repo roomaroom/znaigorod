@@ -1,6 +1,47 @@
 <%= simple_nested_form_for [:my, resource] do |f| %>
   <%= f.input :kind, :as => :check_boxes %>
-  <%= f.input :title, :input_html => { :class => 'preview_title wide_input' } %>
+  <div class='input string required discount_title'>
+    <div class='label_with_link large'>
+      <%= f.label :title, class: 'label_examples'  %>
+      <%= link_to 'примеры', '#', class: 'examples' %>
+    </div>
+    <%= f.input_field :title, :class => 'preview_title wide_input' %>
+  </div>
+
+  <div class='relations'>
+    <p>Организация</p>
+
+    <div class='sticky_elements'></div>
+
+    <div style='clear: both'></div>
+
+    <div class='select_and_search'>
+      <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+      <%= text_field_tag :search, '', { class: 'related_search discounts' } %>
+    </div>
+
+    <div style='clear: both'></div>
+
+    <div class='results infinite_list'>
+      <ul class='posters'></ul>
+    </div>
+    <%= link_to 'Нет в списке?', '#', :remote => true, :class => 'js-toggle-forms btn btn-dashed' %>
+  </div>
+
+
+  <div style='clear: both'></div>
+
+  <div class='organization_wrapper'>
+    <%= f.input :address, :input_html => { :class => 'autosuggest' } %>
+    <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
+    <%= link_to 'Выбор организаций', '#', :remote => true, :class => 'js-toggle-forms btn btn-dashed' %>
+  </div>
+
+  <div class="discount_type">
+    <%= f.input :discount, :wrapper_html => { :class => 'toggle' } %>
+    <%= f.input :sale, :input_html => { :class => 'switch_box' } %>
+  </div>
+
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
   <div class="period">
@@ -11,24 +52,7 @@
     </div>
   </div>
 
-  <div class="discount_type">
-    <%= f.input :sale, :input_html => { :class => 'switch_box' } %>
-    <div class="switch_wrapper">
-      <%= f.input :discount, :wrapper_html => { :class => 'toggle' } %>
-    </div>
-  </div>
 
-  <div class="organization_wrapper">
-    <%= f.simple_fields_for :places do |pf| %>
-      <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id' } %>
-      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude' } %>
-      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude' } %>
-      <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
-      <%= link_to 'Указать координаты', '#', :class => 'choose_coordinates' %>
-      <%= pf.link_to_remove 'Удалить' %>
-    <% end %>
-    <%= f.link_to_add 'Добавить место проведения', :places, :onclick => 'setTimeout(function() { init_discount_map() }, 100)' %>
-  </div>
 
   <div class="submit">
     <%= f.submit 'Сохранить', :class => 'button' %>

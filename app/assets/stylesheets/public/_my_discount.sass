@@ -1,7 +1,38 @@
 .my_discounts_help
   padding: 10px
 
+.show_help
+  cursor: pointer
+
 .content .my_wrapper
+
+  h1
+    border-bottom: 1px solid #ccc
+
+  .red_star
+    color: #F12716
+    cursor: help
+    font-size: 20px
+
+  .text_help
+    color: #B5B2B9
+
+  .label_with_link
+    +inline-block
+    width: 550px
+    &.discounts
+      float: left
+      width: 93%
+
+    .label_examples
+      float: left
+
+    .examples
+      &.no_margin
+        margin: 0 !important
+
+      margin-top: 12px
+      float: right
 
   .form_wrapper
 
@@ -30,21 +61,26 @@
         input
           width: 160px
 
+      .discount_sale
+        background-color: #EBEBEB
+        padding: 5px
+
       .boolean
         float: left
-        padding: 15px 0 0 10px
         position: relative
         width: 300px
 
         .control-label
           left: 30px
           position: absolute
-          top: 0
+          top: 16px
           width: 270px
 
         input
           outline: none
           width: 34px
+          margin-top: 20px
+          margin-left: 4px
 
       .switch_wrapper
         +clearfix
@@ -59,6 +95,7 @@
       +clearfix
       position: relative
       width: 675px
+      display: none
 
       .fields
         +clearfix

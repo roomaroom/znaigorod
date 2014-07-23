@@ -96,6 +96,8 @@ $ ->
 
   disableAvatarWrapperLinkClick() if $('.avatar-wrapper').length
   init_similar_afishas() if $('#afisha_title').length
+  loadRelatedAfishas() if $('.relations').length
+  initMyDiscount() if $('.js-toggle-forms').length
 
 
   true

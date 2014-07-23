@@ -6,9 +6,9 @@
   <% if content_for?(:help) %>
     <h1>
       <%= t("my.#{resource.class.name.underscore}.title") %>: общая информация
-      <%= link_to 'помощь', '#', :class => 'show_help' %>
+      <%= image_tag 'markitup/help.png', :class => 'show_help' %>
     </h1>
-
+    <span class='red_star'>*</span> <span class='text_help'> - поля, обязательные для заполнения</span>
     <div class='help_wrapper'>
       <div class='help'>
         <%= yield :help %>
