@@ -32,9 +32,14 @@
   <div style='clear: both'></div>
 
   <div class='organization_wrapper'>
-    <%= f.input :address, :input_html => { :class => 'autosuggest' } %>
+    <%= f.simple_fields_for :places do |pf| %>
+      <%= pf.input :organization_id, :as => :hidden, :input_html => { :class => 'autosuggest_organization_id'  } %>
+      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude'  } %>
+      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude'  } %>
+      <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+      <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
+    <% end %>
     <%= link_to 'Выбор организаций', '#', :remote => true, :class => 'js-toggle-forms' %>
-    <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
   </div>
 
   <div class="discount_type">
