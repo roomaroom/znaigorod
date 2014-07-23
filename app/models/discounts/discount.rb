@@ -34,8 +34,8 @@ class Discount < ActiveRecord::Base
   validates_presence_of :discount,            :unless => :sale?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
-  delegate :build, :empty?, :to => :places, :prefix => true
-  after_initialize :places_build, :if => [:new_record?, :places_empty?]
+  #delegate :build, :empty?, :to => :places, :prefix => true
+  #after_initialize :places_build, :if => [:new_record?, :places_empty?]
   after_save :reindex_organizations
   after_save :parse_places_attributes
   after_destroy :reindex_organizations
@@ -86,7 +86,7 @@ class Discount < ActiveRecord::Base
   def parse_places_attributes
     p places_attributes
     places_attributes.each do |place|
-      place_type, place_id = item.split("_")
+      place_type, place_id = place.split("_")
       organization = Organization.find(place_id)
 
       new_place = places.new
