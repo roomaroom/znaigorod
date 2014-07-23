@@ -39,17 +39,17 @@
 
   <div class="discount_type">
     <%= f.input :discount, :wrapper_html => { :class => 'toggle' } %>
+    <%= select_tag :discount_type, options_for_select(['%', 'руб'], '%'), class: 'select_type' %>
     <%= f.input :sale, :input_html => { :class => 'switch_box' } %>
   </div>
 
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
+  <h2>Продолжительность акции</h2>
   <div class="period">
+    <%= f.input :starts_at, :label => false, :placeholder => 'Дата начала', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
+    <%= f.input :ends_at, :label => false, :placeholder => 'Дата окончания', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
     <%= f.input :constant, :input_html => { :class => 'switch_box' } %>
-    <div class="switch_wrapper">
-      <%= f.input :starts_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
-      <%= f.input :ends_at, :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
-    </div>
   </div>
 
 

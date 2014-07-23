@@ -55,32 +55,65 @@
       +clearfix
       margin: 0 0 15px 0
 
+      input
+        &:focus
+          border: 1px solid #D4A04E
+
       .input
         float: left
 
         input
           width: 160px
 
-      .discount_sale
+      .discount_sale, .discount_constant
         background-color: #EBEBEB
-        padding: 5px
+
+      .discount_sale
+        margin-left: 10px
+        margin-top: 24px
+
+      .select_type
+        +border-radius(3px)
+        -moz-appearance: none
+        -webkit-appearance: none
+        appearance: none
+        background: image_url('public/down_arrow.jpg') no-repeat right
+        border: 1px solid #ccc
+        cursor: pointer
+        float: left
+        height: 28px
+        margin-left: 7px
+        margin-top: 26px
+        overflow: hidden
+        width: 50px
 
       .boolean
         float: left
-        position: relative
         width: 300px
 
         .control-label
-          left: 30px
-          position: absolute
-          top: 16px
-          width: 270px
+          float: right
+          margin-top: 4px
+          width: 266px
+
+      #discount_starts_at
+        margin-right: 10px
+
+      .discount_constant
+        width: 174px
+        margin-left: 10px
+
+        .control-label
+          width: 134px
+
+        .checkbox
+          margin: 0
 
         input
+          float: left
+          margin-top: 8px
           outline: none
           width: 34px
-          margin-top: 20px
-          margin-left: 4px
 
       .switch_wrapper
         +clearfix

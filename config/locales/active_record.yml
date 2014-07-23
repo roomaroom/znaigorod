@@ -216,8 +216,9 @@ ru:
       discount:
         <<: *common_attributes
         title: Название акции
-        constant: Является постоянной скидкой
-        discount: Скидка
+        constant: Постоянная скидка
+        discount: Размер скидки
+        description: Описание акции
         discounted_price: Цена со скидкой
         ends_at: Дата окончания
         kind: Категория (можно несколько)
