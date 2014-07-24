@@ -6,7 +6,6 @@
   init_preview_map() if $('form.my_afisha_showings .my_afisha_map').length
   init_autosuggest_handler() if $('.autosuggest').length
   init_afisha_help() if $('.help').length
-  init_discount_switch() if $('.switch_wrapper').length
 
   true
 
@@ -194,24 +193,5 @@ init_afisha_help = ->
         $('.help_examples').show()
     else
       $('.help').hide()
-
-    false
-
-init_discount_switch = () ->
-  $('.switch_box').on 'change', ->
-
-    wrapper = $(this).parent().parent().siblings('.switch_wrapper')
-    input = $('input', wrapper)
-
-    if $(this).is(':checked')
-      wrapper.addClass('disabled')
-      input.val('')
-      input.datepicker('disable')
-      input.attr('disabled','disabled')
-
-    else
-      wrapper.removeClass('disabled')
-      input.datepicker('enable')
-      input.removeAttr('disabled')
 
     false

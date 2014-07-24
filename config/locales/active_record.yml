@@ -233,11 +233,11 @@ ru:
         type: Тип скидки
 
       certificate:
-        constant: Является бессрочным сертификатом
+        constant: Бессрочный сертификат
         price: Цена сертификата
 
       coupon:
-        constant: Является бессрочным купоном
+        constant: Бессрочный купон
         price: Цена купона
 
       offered_discount:

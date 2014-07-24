@@ -1,4 +1,6 @@
 @initMyDiscount = ->
+  init_discount_switch() if $('.switch_box').length
+
   $('.js-toggle-forms').click ->
     $('.organization_wrapper').toggle('slow')
 
@@ -12,22 +14,30 @@
       true
     true
 
-  $('#discount_sale').change ->
-    if $('#discount_discount:enabled').length
-      $('#discount_discount').prop('disabled', true)
-      $('.select_type').prop('disabled', true)
-    else
-      $('#discount_discount').prop('disabled', false)
-      $('.select_type').prop('disabled', false)
-
-
-  $('#discount_constant').change ->
-    if $('#discount_ends_at:enabled').length
-      $('#discount_ends_at').prop('disabled', true)
-      $('#discount_starts_at').prop('disabled', true)
-    else
-      $('#discount_ends_at').prop('disabled', false)
-      $('#discount_starts_at').prop('disabled', false)
-
   $('.js-examples').click ->
     $('.help_examples').show()
+
+
+init_discount_switch = () ->
+  $('.switch_box').on 'change', ->
+
+    if $(this).parent().closest('.period').length
+      wrapper = $(this).parent().closest('.period')
+    else
+      wrapper = $(this).parent().closest('.discount_type')
+
+    input = $('input[type="text"]', wrapper)
+    input_numeric = $('input[type="number"]', wrapper)
+    select = $('select', wrapper)
+
+
+    if $(this).is(':checked')
+      input.prop('disabled', true)
+      input_numeric.prop('disabled', true)
+      select.prop('disabled', true)
+    else
+      input.prop('disabled', false)
+      input_numeric.prop('disabled', false)
+      select.prop('disabled', false)
+
+    false

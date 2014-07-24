@@ -1,66 +1,5 @@
 <%= simple_nested_form_for [:my, resource] do |f| %>
-  <%= f.input :kind, :as => :check_boxes %>
-  <div class='input string required discount_title'>
-    <div class='label_with_link large'>
-      <%= f.label :title, class: 'label_examples'  %>
-      <%= link_to 'примеры', '#', class: 'js-examples examples' %>
-      <div class="help_wrapper">
-        <div class="help help_examples">
-          <p>Например:
-            <ul>
-              <li>Финальная распродажа</li>
-              <li>Летние скидки</li>
-              <li>Распродажа старой коллекции</li>
-              и т.д
-            </ul>
-          </p>
-        </div>
-      </div>
-    </div>
-    <%= f.input_field :title, :class => 'preview_title wide_input' %>
-  </div>
-
-  <div class='relations'>
-    <p>Организация</p>
-
-    <div class='sticky_elements'>
-      <% @discount.places.where('organization_id IS NOT NULL').each do |place| %>
-        <div class="element">
-          <%= link_to place.organization.title.truncate(30), place.organization, :target => '_blank' %>
-          <span class="del_icon"></span>
-          <%= hidden_field_tag "discount[place_attributes][organization_ids][]","organization_#{place.organization_id}", class: "hidden_ids" %>
-        </div>
-      <% end %>
-    </div>
-
-    <div style='clear: both'></div>
-
-    <div class='select_and_search'>
-      <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
-      <%= text_field_tag :search, '', { class: 'related_search discounts' } %>
-    </div>
-
-    <div style='clear: both'></div>
-
-    <div class='results infinite_list'>
-      <ul class='posters'></ul>
-    </div>
-    <%= link_to 'Нет в списке?', 'javascript:void(0)', :class => 'js-toggle-forms js-not-in-list' %>
-    <input type="hidden" value="discount[place_attributes][organization_ids][]" class="params_name">
-  </div>
-
-
-  <div style='clear: both'></div>
-
-  <div class='organization_wrapper'>
-    <%= f.simple_fields_for :place_attributes do |pf| %>
-      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude'  } %>
-      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude'  } %>
-      <%= pf.input :address, required: false, label: "Адрес проведения", :input_html => { :class => 'autosuggest' } %>
-      <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
-    <% end %>
-  </div>
-
+  <%= render :partial => 'common_form', :locals => { :f => f } %>
   <div class="discount_type">
     <%= f.input :discount, :wrapper_html => { :class => 'toggle' } %>
     <%= f.input :discount_type, :label => false, :input_html => { class: 'select_type' }, :selected => 'percentages' %>
@@ -69,10 +8,10 @@
 
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
-  <h2>Продолжительность акции<span class='red_star'>*</span></h2>
+  <h2>продолжительность акции &nbsp; <span class='red_star'>*</span></h2>
   <div class="period">
-    <%= f.input :starts_at, :label => false, :placeholder => 'Дата начала', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
-    <%= f.input :ends_at, :label => false, :placeholder => 'Дата окончания', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
+    <%= f.input :starts_at, :label => false, :placeholder => 'дата начала', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
+    <%= f.input :ends_at, :label => false, :placeholder => 'дата окончания', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
     <%= f.input :constant, :input_html => { :class => 'switch_box' } %>
   </div>
 

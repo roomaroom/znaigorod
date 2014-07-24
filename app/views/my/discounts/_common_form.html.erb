@@ -1,0 +1,55 @@
+<%= f.input :kind, :as => :check_boxes %>
+<div class='input string required discount_title'>
+  <div class='label_with_link large'>
+    <%= f.label :title, class: 'label_examples'  %>
+    <%= link_to 'примеры', '#', class: 'js-examples examples' %>
+    <div class="help_wrapper">
+      <div class="help help_examples">
+        <p>например:
+          <ul>
+            <li>финальная распродажа</li>
+            <li>летние скидки</li>
+            <li>распродажа старой коллекции</li>
+            и т.д
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%= f.input_field :title, :class => 'preview_title wide_input' %>
+</div>
+
+<div class='relations'>
+  <p>Организация</p>
+
+  <div class='sticky_elements'>
+  </div>
+
+  <div style='clear: both'></div>
+
+  <div class='select_and_search'>
+    <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+    <%= text_field_tag :search, '', { class: 'related_search discounts' } %>
+  </div>
+
+  <div style='clear: both'></div>
+
+  <div class='results infinite_list'>
+    <ul class='posters'></ul>
+  </div>
+  <%= link_to 'нет в списке?', 'javascript:void(0)', :class => 'js-toggle-forms js-not-in-list' %>
+  <input type="hidden" value="discount[place_attributes][organization_ids][]" class="params_name">
+</div>
+
+
+<div style='clear: both'></div>
+
+<div class='organization_wrapper'>
+  <%= f.simple_fields_for :place_attributes do |pf| %>
+    <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude'  } %>
+    <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude'  } %>
+    <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+    <%= link_to 'указать местоположение на карте', '#', :class => 'choose_coordinates' %>
+  <% end %>
+</div>
+
