@@ -23,6 +23,13 @@
   <p>Организация</p>
 
   <div class='sticky_elements'>
+    <% discount.places.where('organization_id IS NOT NULL').each do |place| %>
+      <div class="element">
+        <%= link_to place.organization.title.truncate(30), place.organization, :target => '_blank' %>
+        <span class="del_icon"></span>
+        <%= hidden_field_tag "discount[place_attributes][organization_ids][]","organization_#{place.organization_id}", class: "hidden_ids" %>
+      </div>
+    <% end %>
   </div>
 
   <div style='clear: both'></div>
