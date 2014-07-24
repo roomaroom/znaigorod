@@ -38,5 +38,7 @@
  * = require ./main_page_reviews
  * = require ./kinopoisk
  * = require ../public/my_reviews
+ * = require ../public/my_related_items
+ * = require ../public/my_discount
  * = require ./main
  */

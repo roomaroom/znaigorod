@@ -25,6 +25,8 @@ $ ->
   initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length
   mainPageReviewsAutocomplete() if $('.js-main_page_reviews_autocomplete').length
   init_kinopoisk() if $('form.new_afisha, form.edit_afisha')
+  loadRelatedAfishas() if $('.relations').length
+  initMyDiscount() if $('.js-toggle-forms').length
 
 $(window).load ->
   init_organization_map() if $('.edit_organization, .new_organization').length

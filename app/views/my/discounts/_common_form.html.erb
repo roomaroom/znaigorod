@@ -54,7 +54,7 @@
   <%= f.simple_fields_for :place_attributes do |pf| %>
     <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude'  } %>
     <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude'  } %>
-    <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
+    <%= pf.input :address, label: "Адрес", :input_html => { :class => 'autosuggest' } %>
     <%= link_to 'указать местоположение на карте', '#', :class => 'choose_coordinates' %>
   <% end %>
 </div>
