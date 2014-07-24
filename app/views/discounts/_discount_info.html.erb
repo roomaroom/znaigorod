@@ -5,6 +5,6 @@
 <% else %>
   <div class="<%= discount.class.name.underscore %>">
     <strong>Скидка по акции</strong>
-    <span class="profit"><%= discount.discount %>%</span>
+    <span class="profit"><%= discount.discount %> <%= discount.discount_type.text %></span>
   </div>
 <% end %>

@@ -11,7 +11,7 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :constant, :sale,
-                  :place_attributes
+                  :place_attributes, :discount_type
 
   belongs_to :account
   belongs_to :afisha
@@ -34,8 +34,6 @@ class Discount < ActiveRecord::Base
   validates_presence_of :discount,            :unless => :sale?
   validates_presence_of :starts_at, :ends_at, :unless => :constant?
 
-  #delegate :build, :empty?, :to => :places, :prefix => true
-  #after_initialize :places_build, :if => [:new_record?, :places_empty?]
   after_save :reindex_organizations
   after_save :parse_place_attributes
   after_destroy :reindex_organizations
@@ -50,6 +48,8 @@ class Discount < ActiveRecord::Base
   enumerize :kind, :in => [:auto, :cafe, :entertainment, :beauty, :technique, :wear, :birthday, :travel, :home, :children, :other],
                    :multiple => true,
                    :predicates => true
+
+  enumerize :discount_type, :in =>[:rubles, :percentages]
 
   normalize_attribute :kind, :with => :blank_array
 
@@ -84,24 +84,23 @@ class Discount < ActiveRecord::Base
   end
 
   def parse_place_attributes
-    places.destroy_all
-    if place_attributes[:organization_ids]
-      place_attributes[:organization_ids].each do |place|
-        p "77"*80
-        place_type, place_id = place.split("_")
-        organization = Organization.find(place_id)
+    if place_attributes
+      if place_attributes[:organization_ids]
+        places.destroy_all
+        place_attributes[:organization_ids].each do |place|
+          place_type, place_id = place.split("_")
 
+          new_place = places.new
+          new_place.organization_id = place_id
+          new_place.save
+        end
+      else
         new_place = places.new
-        new_place.organization = organization
+        new_place.address = place_attributes[:address]
+        new_place.latitude = place_attributes[:latitude]
+        new_place.longitude = place_attributes[:longitude]
         new_place.save
       end
-    else
-      p "55"*80
-      new_place = places.new
-      new_place.address = place_attributes[:address]
-      new_place.latitude = place_attributes[:latitude]
-      new_place.longitude = place_attributes[:longitude]
-      new_place.save
     end
   end
 

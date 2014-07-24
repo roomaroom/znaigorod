@@ -32,11 +32,12 @@
   $('body').on 'click', '.js-button-add-related-item', ->
     url = $(this).closest('.details').find('a')
     item_id = $(this).closest('.details').find('#hidden_id').val()
+    params_name = $('.relations').find('.params_name').val()
     $(this).prop('disabled', true).text('Добавлено')
     $('.sticky_elements').append('<div class="element">
                                   <a href="' + url.attr('href') + '">' + url.text()  + '</a>
                                   <span class="del_icon"></span>
-                                  <input name="discount[place_attributes][organization_ids][]" type="hidden" value="' + item_id  + '" class="hidden_ids">
+                                  <input name="'+params_name+'" type="hidden" value="' + item_id  + '" class="hidden_ids">
                                 </div>')
 
   $('body').on 'click', '.del_icon', ->
