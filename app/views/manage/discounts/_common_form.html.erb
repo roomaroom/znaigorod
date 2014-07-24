@@ -1,0 +1,39 @@
+<%= f.input :title %>
+
+<div class='relations'>
+  <p>Организация</p>
+  <div class='sticky_elements'>
+    <% resource.places.where('organization_id IS NOT NULL').each do |place| %>
+      <div class="element">
+        <%= link_to place.organization.title.truncate(30), place.organization, :target => '_blank' %>
+        <span class="del_icon"></span>
+        <%= hidden_field_tag "discount[place_attributes][organization_ids][]","organization_#{place.organization_id}", class: "hidden_ids" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div style='clear: both'></div>
+
+  <div class='select_and_search'>
+    <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+    <%= text_field_tag :search, '', { class: 'related_search discounts' } %>
+  </div>
+
+  <div style='clear: both'></div>
+
+  <div class='results infinite_list'>
+    <ul class='posters'></ul>
+  </div>
+  <%= link_to 'нет в списке?', 'javascript:void(0)', :class => 'js-toggle-forms js-not-in-list' %>
+  <input type="hidden" value="<%= resource.class.name.underscore %>[place_attributes][organization_ids][]" class="params_name">
+  <div style='clear: both'></div>
+
+  <div class='organization_wrapper'>
+    <%= f.simple_fields_for :place_attributes do |pf| %>
+      <%= pf.input :latitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_latitude'  } %>
+      <%= pf.input :longitude, :as => :hidden, :input_html => { :class => 'autosuggest_organization_longitude'  } %>
+      <%= pf.input :address, label: "Адрес", :input_html => { :class => 'autosuggest' } %>
+      <%= link_to 'указать местоположение на карте', '#', :class => 'choose_coordinates' %>
+    <% end %>
+  </div>
+</div>
