@@ -21,7 +21,6 @@
 
 <div class='relations'>
   <p>Организация</p>
-
   <div class='sticky_elements'>
     <% discount.places.where('organization_id IS NOT NULL').each do |place| %>
       <div class="element">
@@ -45,7 +44,7 @@
     <ul class='posters'></ul>
   </div>
   <%= link_to 'нет в списке?', 'javascript:void(0)', :class => 'js-toggle-forms js-not-in-list' %>
-  <input type="hidden" value="discount[place_attributes][organization_ids][]" class="params_name">
+  <input type="hidden" value="<%= discount.class.name.underscore %>[place_attributes][organization_ids][]" class="params_name">
 </div>
 
 
