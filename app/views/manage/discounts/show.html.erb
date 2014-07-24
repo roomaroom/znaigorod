@@ -25,6 +25,7 @@
       <span class="label">Организация или место:</span>
       <% if resource.places.any? %>
         <span class="value"><%= resource.places.pluck(:address).uniq.join(', ') %></span>
+        <span class="value"><%= resource.places.map{|place| place.organization.title}.join(', ') %></span>
       <% else %>
         <span class="blank">Не указано</span>
       <% end %>
