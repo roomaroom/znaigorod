@@ -1,5 +1,5 @@
 <%= simple_nested_form_for [:my, resource] do |f| %>
-  <%= render :partial => 'my/discounts/common_form', :locals => { :f => f, :discount => @cerificate } %>
+  <%= render :partial => 'my/discounts/common_form', :locals => { :f => f, :discount => @certificate } %>
 
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
