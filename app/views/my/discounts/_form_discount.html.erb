@@ -8,7 +8,7 @@
 
   <%= f.input :description, :required => true, :input_html => { :id => :markitup_description } %>
 
-  <h2>продолжительность акции &nbsp; <span class='red_star'>*</span></h2>
+  <h3>Продолжительность акции </h3>
   <div class="period">
     <%= f.input :starts_at, :label => false, :placeholder => 'дата начала', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
     <%= f.input :ends_at, :label => false, :placeholder => 'дата окончания', :as => :date_picker, :wrapper_html => { :class => 'toggle' } %>
