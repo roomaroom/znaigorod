@@ -45,6 +45,9 @@ handle_afisha_select = ->
         coordinates = [data.latitude, data.longitude]
         store_coordinates_handler($this, coordinates)
 
+  $('body').on 'click', '.js-map-close', ->
+    $('.map_wrapper').dialog('close')
+
   $.fn.add_click_handler = () ->
     $this = $(this)
     #$this.change_organization_id_handler()
@@ -54,6 +57,8 @@ handle_afisha_select = ->
         container = $('.map_wrapper')
       else
         container = $('<div class="map_wrapper" style="width:640px; height: 480px;" />').appendTo('body').hide()
+
+      container.append("<button class='btn btn-orange js-map-close' style='position: absolute; bottom: 10px; z-index: 99'>Сохранить</button>")
 
       unless $('.autosuggest_organization_latitude', $this.parent()).val().length
         $this.get_coordinates_handler()
