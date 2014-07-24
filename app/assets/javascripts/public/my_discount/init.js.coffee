@@ -1,8 +1,16 @@
 @initMyDiscount = ->
   $('.js-toggle-forms').click ->
-    $('.relations').toggle()
-    $('.organization_wrapper').toggle()
+    $('.organization_wrapper').toggle('slow')
 
+    if $('.relations *:disabled').length
+      $('.relations *').prop('disabled', false)
+      $('.js-not-in-list').text('Нет в списке?')
+      true
+    else
+      $('.relations *').prop('disabled', true)
+      $('.js-not-in-list').text('Список')
+      true
+    true
 
   $('#discount_sale').change ->
     if $('#discount_discount:enabled').length
@@ -21,5 +29,5 @@
       $('#discount_ends_at').prop('disabled', false)
       $('#discount_starts_at').prop('disabled', false)
 
-  $('.examples').click ->
+  $('.js-examples').click ->
     $('.help_examples').show()

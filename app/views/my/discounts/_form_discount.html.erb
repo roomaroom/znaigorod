@@ -3,7 +3,7 @@
   <div class='input string required discount_title'>
     <div class='label_with_link large'>
       <%= f.label :title, class: 'label_examples'  %>
-      <%= link_to 'примеры', '#', class: 'examples' %>
+      <%= link_to 'примеры', '#', class: 'js-examples examples' %>
       <div class="help_wrapper">
         <div class="help help_examples">
           <p>Например:
@@ -37,7 +37,7 @@
     <div class='results infinite_list'>
       <ul class='posters'></ul>
     </div>
-    <%= link_to 'Нет в списке?', '#', :remote => true, :class => 'js-toggle-forms' %>
+    <%= link_to 'Нет в списке?', 'javascript:void(0)', :remote => true, :class => 'js-toggle-forms js-not-in-list' %>
   </div>
 
 
@@ -50,7 +50,6 @@
       <%= pf.input :address, :input_html => { :class => 'autosuggest' } %>
       <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
     <% end %>
-    <%= link_to 'Выбор организаций', '#', :remote => true, :class => 'js-toggle-forms' %>
   </div>
 
   <div class="discount_type">
