@@ -84,23 +84,25 @@ class Discount < ActiveRecord::Base
   end
 
   def parse_place_attributes
-    if place_attributes
-      if place_attributes[:organization_ids]
-        places.destroy_all
-        place_attributes[:organization_ids].each do |place|
-          place_type, place_id = place.split("_")
+    return true unless place_attributes
 
-          new_place = places.new
-          new_place.organization_id = place_id
-          new_place.save
-        end
-      else
+    places.destroy_all
+
+    if place_attributes[:organization_ids]
+      place_attributes[:organization_ids].each do |place|
+        place_type, place_id = place.split("_")
         new_place = places.new
-        new_place.address = place_attributes[:address]
-        new_place.latitude = place_attributes[:latitude]
-        new_place.longitude = place_attributes[:longitude]
+        new_place.organization_id = place_id
         new_place.save
       end
+    end
+
+    if place_attributes[:address].present?
+      new_place = places.new
+      new_place.address = place_attributes[:address]
+      new_place.latitude = place_attributes[:latitude]
+      new_place.longitude = place_attributes[:longitude]
+      new_place.save
     end
   end
 
