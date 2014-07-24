@@ -7,6 +7,7 @@
  * = require jquery-ui/jquery-ui-timepicker-addon.js
  * = require jquery-ui/jquery-ui-timepicker-ru.js
  * = require jquery.fileupload
+ * = require infinitescroll.min
  * = require ajax_delete
  * = require attachment_description
  * = require modal_dialog
