@@ -46,7 +46,7 @@ class Activity < ActiveRecord::Base
         record.index!
       end
 
-      (organization.hotel.try(:room) || []).each do |record|
+      (organization.hotel.try(:rooms) || []).each do |record|
         record.index!
       end
     end
