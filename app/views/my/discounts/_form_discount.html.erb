@@ -4,6 +4,18 @@
     <div class='label_with_link large'>
       <%= f.label :title, class: 'label_examples'  %>
       <%= link_to 'примеры', '#', class: 'examples' %>
+      <div class="help_wrapper">
+        <div class="help help_examples">
+          <p>Например:
+            <ul>
+              <li>Финальная распродажа</li>
+              <li>Летние скидки</li>
+              <li>Распродажа старой коллекции</li>
+              и т.д
+            </ul>
+          </p>
+        </div>
+      </div>
     </div>
     <%= f.input_field :title, :class => 'preview_title wide_input' %>
   </div>

@@ -181,10 +181,20 @@ init_afisha_help = ->
   left = $('.show_help').position().left - 190
   $('.help').css('left', left).prepend('<a class="close" title="закрыть" href="#">X</a>')
   $('.show_help').click ->
-    $('.help').toggle()
+    $('.help').show()
+    $('.help_examples').hide()
     false
+
   $('.help .close').click ->
-    $('.help').toggle()
+    if $('.help:visible').size() == 2
+      if $(this).parent().hasClass('help_examples')
+        $('.help_examples').hide()
+      else
+        $('.help').hide()
+        $('.help_examples').show()
+    else
+      $('.help').hide()
+
     false
 
 init_discount_switch = () ->
