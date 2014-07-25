@@ -10,6 +10,8 @@
       <%= link_to "Редактировать", [:edit, :manage, gallery_image.attachable.organization, gallery_image.attachable, gallery_image] %>
     <% elsif gallery_image.attachable.is_a?(Room) %>
       <%= link_to "Удалить", [:manage, gallery_image.attachable.context.organization, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
+    <% elsif gallery_image.attachable.is_a?(Review) %>
+      <%= link_to "Удалить", send("manage_#{gallery_image.attachable.class.name.underscore}_gallery_image_path", gallery_image.attachable.id, gallery_image), :method => :delete, :remote => true, :class => 'ajax_delete'  %>
     <% else %>
       <%= link_to "Удалить", [:manage, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
     <% end %>
