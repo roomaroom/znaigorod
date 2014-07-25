@@ -4,14 +4,6 @@
   $('.js-toggle-forms').click ->
     $('.organization_wrapper').toggle('slow')
 
-    if $('.relations *:disabled').length
-      $('.relations *').prop('disabled', false)
-      $('.js-not-in-list').text('Нет в списке?')
-      true
-    else
-      $('.relations *').prop('disabled', true)
-      $('.js-not-in-list').text('Список')
-      true
     true
 
   $('.js-examples').click ->
