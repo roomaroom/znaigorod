@@ -72,9 +72,10 @@
     </div>
   <% end %>
 
-  <div class="more_wrapper_toggler add_organization without_help">
-    <%= link_to 'Добавить организацию', '/organizations/add', :class => 'button' %>
-  </div>
-
+  <% unless action_name == 'show' %>
+    <div class="more_wrapper_toggler add_organization without_help">
+      <%= link_to 'Добавить организацию', '/organizations/add', :class => 'button' %>
+    </div>
+  <% end %>
 
 </div>
