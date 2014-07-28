@@ -24,4 +24,11 @@
 
 <%= render :partial => 'my/afishas/textile_syntax' %>
 
-<%= yield(:question_pquestion) %>
+<div class="preview_wrapper">
+  <h1>Предварительный просмотр</h1>
+  <div class="reviews_show">
+    <%= render :partial => 'my/reviews/review', :locals => { :review => ReviewDecorator.new(@question) } %>
+  </div>
+</div>
+
+<div class="loader"></div>

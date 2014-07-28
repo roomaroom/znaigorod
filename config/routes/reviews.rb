@@ -36,7 +36,9 @@ Znaigorod::Application.routes.draw do
       end
     end
 
-    resources :questions
+    resources :questions do
+      post :preview, :on => :collection
+    end
   end
 
   namespace :manage do

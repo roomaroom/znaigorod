@@ -83,6 +83,7 @@ $ ->
   init_contest_agreement() if $('.upload_work_wrapper').length
   init_auth_for_contest() if $('.new_work_wrapper').length
   initMyReviews() if $('.review_form').length
+  initMyQuestions() if $('.questions_form').length
   initReviewVideoPreview() if $('.reviews_index').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length

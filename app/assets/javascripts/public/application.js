@@ -102,6 +102,7 @@
  * = require ./offer_price
  * = require ./sweets_carousel
  * = require ./my_reviews
+ * = require ./my_questions
  * = require ./my_related_items
  * = require ./my_discount
  * = require ./review_video_preview
