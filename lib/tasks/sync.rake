@@ -150,7 +150,7 @@ namespace :sync do
         movies = {}
         bar = ProgressBar.new(json['films'].count)
         json['films'].each do |movie|
-          title = movie['title'].gsub(',&nbsp;', '').gsub(/\(2D|\(3D/, '').gsub(/\d+\+\)/, '').squish
+          title = movie['title'].gsub(',&nbsp;', '').gsub(/\(2D|\(3D/, '').gsub(/\d+\+\)/, '').gsub(/\s+\(\z/, '').squish
           movies[title] ||= []
           movie['halls'].each do |hash|
             hash['sessions'].each do |session|
