@@ -1,22 +1,20 @@
-class ReviewsPresenter
+class QuestionsPresenter
   include ActiveAttr::MassAssignment
 
   class Parameters
     include Rails.application.routes.url_helpers
     include Singleton
 
-    attr_accessor :type, :category, :order_by, :only_tomsk
+    attr_accessor :category, :order_by, :type
 
     def params
-      { :type => type, :category => category, :order_by => order_by, :only_tomsk => only_tomsk }
+      { :type => 'question', :category => category, :order_by => order_by }
     end
 
-    def path(type: self.type, category: self.category, order_by: self.order_by, only_tomsk: self.only_tomsk)
-      return reviews_path(:order_by => order_by, :only_tomsk => only_tomsk) if type.blank? && category.blank?
+    def path(category: self.category, order_by: self.order_by)
+      return questions_path if category.blank?
 
-      path = [type, category].compact.join('_')
-
-      send "reviews_#{path}_path", :order_by => order_by, :only_tomsk => only_tomsk
+      send "questions_#{category}_path"
     end
   end
 
@@ -30,52 +28,14 @@ class ReviewsPresenter
     end
   end
 
-  class TypeFilter
-    attr_accessor :type
-
-    def initialize
-      @type = Parameters.instance.type
-    end
-
-    def available
-      { nil => 'Все', 'article' => 'Обзоры', 'photo' => 'Фотообзоры', 'video' => 'Видеообзоры' }
-    end
-
-    def selected
-      available.keys.compact.include?(type) ? type : available.keys.first
-    end
-
-    def links
-      [all_link] + type_links
-    end
-
-    private
-
-    def all_link
-      Hashie::Mash.new(
-        :title => 'Все',
-        :klass => ''.tap { |s| s << ' selected' if nil == selected },
-        :path => Parameters.instance.path(type: nil, category: nil)
-      )
-    end
-
-    def type_links
-      available.except(nil).map do |value, title|
-        Hashie::Mash.new(
-          :title => title,
-          :klass => value.dup.tap { |s| s << ' selected' if value == selected },
-          :path => Parameters.instance.path(type: value)
-        )
-      end
-    end
-  end
-
   class CategoryFilter
     attr_accessor :category
 
     alias :selected :category
 
     def initialize
+      p '='*80
+      p Parameters.instance.category
       @category = Parameters.instance.category
     end
 
@@ -160,35 +120,10 @@ class ReviewsPresenter
     end
   end
 
-  class OnlyTomskFilter
-    attr_accessor :only_tomsk
-
-    def initialize
-      @only_tomsk = Parameters.instance.only_tomsk
-    end
-
-    def selected?
-      only_tomsk
-    end
-
-    def value_for_path
-      selected? ? nil : true
-    end
-
-    def link
-      Hashie::Mash.new(
-        :title => 'Только Томск',
-        :klass => selected? ? 'only-tomsk selected': 'only-tomsk',
-        :path => Parameters.instance.path(only_tomsk: value_for_path)
-      )
-    end
-  end
-
   attr_accessor :type, :category,
-                :order_by, :page, :per_page,
-                :only_tomsk
+                :order_by, :page, :per_page
 
-  attr_reader :type_filter, :category_filter, :order_by_filter, :only_tomsk_filter
+  attr_reader :category_filter, :order_by_filter
 
   def initialize(args)
     super(args)
@@ -231,24 +166,21 @@ class ReviewsPresenter
   def normalize_args
     @page     ||= 1
     @per_page ||= per_page.to_i.zero? ? 12 : per_page.to_i
-    @only_tomsk ||= @only_tomsk.present? ? true : nil
   end
 
   def store_parameters
-    %w(type category order_by only_tomsk).each { |p| Parameters.instance.send "#{p}=", send(p) }
+    %w(category order_by).each { |p| Parameters.instance.send "#{p}=", send(p) }
   end
 
   def initialize_filters
-    @type_filter       ||= TypeFilter.new
     @category_filter   ||= CategoryFilter.new
     @order_by_filter   ||= OrderByFilter.new
-    @only_tomsk_filter ||= OnlyTomskFilter.new
   end
 
 
   def searcher_params
     @searcher_params ||= {}.tap do |params|
-      params[:type]             = type_filter.selected
+      params[:type]             = 'question'
       params[:category]         = category_filter.selected
     end
   end
@@ -256,9 +188,6 @@ class ReviewsPresenter
   def searcher
     @searcher ||= HasSearcher.searcher(:reviews, searcher_params).tap { |s|
       order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
-
-      s.without_eighteen_plus unless category_filter.eighteen_plus?
-      s.only_tomsk            if     only_tomsk_filter.selected?
 
       s.paginate page: page, per_page: per_page
     }

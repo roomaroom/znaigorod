@@ -106,6 +106,9 @@ Znaigorod::Application.routes.draw do
     put 'change_vote' => 'votes#change_vote', :as => :change_vote
   end
 
+  Question.categories.values.each do |category|
+    get "/questions/#{category}" => 'questions#index', :defaults => { :category => category }, :constraints => { :category => category }
+  end
   resources :questions, :only => [:index, :show]
 
   # legacy

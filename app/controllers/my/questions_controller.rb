@@ -10,4 +10,10 @@ class My::QuestionsController < My::ApplicationController
 
     render :partial => "my/reviews/review", :locals => { :review => ReviewDecorator.new(@question) }
   end
+
+  protected
+
+  def begin_of_association_chain
+    current_user.account
+  end
 end

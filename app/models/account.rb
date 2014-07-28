@@ -22,6 +22,7 @@ class Account < ActiveRecord::Base
   has_many :gallery_images,       :dependent => :destroy, :as => :attachable
   has_many :invitations,          :dependent => :destroy
   has_many :members,              :dependent => :destroy
+  has_many :questions,            :dependent => :destroy
   has_many :received_invitations, :dependent => :destroy, :class_name => 'Invitation', :foreign_key => :invited_id
   has_many :reviews,              :dependent => :destroy, :order => 'updated_at DESC'
   has_many :users,                :dependent => :destroy, :order => 'id ASC'
