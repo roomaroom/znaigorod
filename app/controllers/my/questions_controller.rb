@@ -8,6 +8,6 @@ class My::QuestionsController < My::ApplicationController
       question.account = current_user.account
     end
 
-    render :partial => "my/reviews/review", :locals => { :review => QuestionDecorator.new(@question) }
+    render :partial => "my/reviews/review", :locals => { :review => ReviewDecorator.new(@question) }
   end
 end

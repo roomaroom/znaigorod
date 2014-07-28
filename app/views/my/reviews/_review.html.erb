@@ -10,7 +10,10 @@
 <div class="description">
   <%= review.raw_content_for_show %>
 
+  <%= review.date %>
+
   <ul class="gallery close js-gallery">
+    <% #render :partial => 'my/reviews/gallery', :locals => { :review => @review } %>
   </ul>
 </div>
 
