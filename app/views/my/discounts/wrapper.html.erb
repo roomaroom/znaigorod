@@ -4,7 +4,7 @@
   <%= render_navigation context: 'my', :renderer => :breadcrumbs %>
 
   <% if content_for?(:help) %>
-    <h1>
+    <h1 class='discount'>
       <%= t("my.#{resource.class.name.underscore}.title") %>: общая информация
       <%= image_tag 'markitup/help.png', :class => 'show_help' %>
     </h1>
