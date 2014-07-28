@@ -1,0 +1,27 @@
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
+
+<%= simple_nested_form_for @question,
+  :as => :question,
+  :url => @question.new_record? ? my_questions_path : my_question_path(@question.id),
+  :html => { :class => "my_review_form default_simple_form review_article_form" } do |f| %>
+
+
+  <%= f.input :categories, :as => :check_boxes %>
+  <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
+
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup with-preview' }  %>
+  <%= f.input :tag, :as => :string,
+    :input_html => { :data => { 'autocomplete-source' => tags_available_my_reviews_path } } %>
+
+
+  <div class='submit'>
+    <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
+    <%= link_to 'Отмена', :back %>
+  </div>
+<% end %>
+
+<%= render :partial => 'my/afishas/textile_syntax' %>
+
+<%= yield(:question_pquestion) %>

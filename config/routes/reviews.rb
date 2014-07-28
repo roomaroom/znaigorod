@@ -35,6 +35,8 @@ Znaigorod::Application.routes.draw do
         resources :gallery_social_images, :only => :destroy
       end
     end
+
+    resources :questions
   end
 
   namespace :manage do
@@ -101,6 +103,8 @@ Znaigorod::Application.routes.draw do
 
     put 'change_vote' => 'votes#change_vote', :as => :change_vote
   end
+
+  resources :questions, :only => [:index, :show]
 
   # legacy
   get 'posts'              => redirect('/reviews')

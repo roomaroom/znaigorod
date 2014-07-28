@@ -63,11 +63,13 @@ ru:
       review_article:                     обзор
       review_photo:                       фотообзор
       review_video:                       видеообзор
+      question:                           вопросы
 
       review:
         article:                          Все обзоры
         photo:                            Все фотообзоры
         video:                            Все видеообзоры
+        question:                         Все вопросы
 
       room:                               Номера/квартиры/загородные дома
 

@@ -100,7 +100,7 @@ class Review < ActiveRecord::Base
   end
 
   def self.descendant_names
-    descendants.map(&:name).map(&:underscore)
+    descendants.map(&:name).map(&:underscore) - ['question']
   end
 
   def self.descendant_names_without_prefix

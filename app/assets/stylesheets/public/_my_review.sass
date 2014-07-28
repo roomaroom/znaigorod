@@ -5,10 +5,10 @@
 
 .my_reviews_new, .my_reviews_edit, .my_reviews_update,
 .my_reviews_add, .my_reviews_show, .my_reviews_create,
-.my_reviews_add_images, .my_reviews_edit_poster
+.my_reviews_add_images, .my_reviews_edit_poster, .my_questions_new
   padding: 10px 20px
 
-.my_reviews_new, .my_reviews_create, .my_reviews_edit, .my_reviews_update, .my_reviews_add_images
+.my_reviews_new, .my_reviews_create, .my_reviews_edit, .my_reviews_update, .my_reviews_add_images, .my_questions_new
   h1
     font-size: 22px
     margin-bottom: 10px
@@ -28,7 +28,7 @@
       outline: none
       resize: none
 
-      &#review_title, &.description
+      &#review_title, &#question_title, &.description
         height: 51px
 
       &.markItUpEditor
@@ -395,7 +395,7 @@
     width: 335px
 
 
-.my_reviews_new, .my_reviews_edit, .my_reviews_update, .my_reviews_create
+.my_reviews_new, .my_reviews_edit, .my_reviews_update, .my_reviews_create, .my_questions_new
   .video_url_wrapper
     position: relative
 

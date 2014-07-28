@@ -1,0 +1,47 @@
+<% content_for :page_title, @presenter.page_title %>
+<% content_for :meta_keywords, @presenter.meta_keywords %>
+<% content_for :meta_description, @presenter.meta_description %>
+
+<% if page_meta %>
+  <% content_for :extra_meta do %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% end %>
+<% end %>
+
+<div class="presentation_filters reviews">
+  <div class="filter_header">
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% else %>
+      <h1><%= t('meta.reviews.page_header') %></h1>
+    <% end %>
+  </div>
+
+  <!--noindex-->
+  <div class="order_by">
+    <p>Сортировать по:</p>
+    <ul>
+      <% @presenter.order_by_filter.links.each do |link| %>
+        <li class="<%= link.klass %>">
+          <%= link_to link.title, link.path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!--/noindex-->
+
+</div>
+
+<div class="reviews-paginator">
+  <ul class="posters js-isotoped-content" data-item-width="392">
+    <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
+  </ul>
+</div>
+
+<%= paginate @presenter.collection %>
+
+<% if page_meta %>
+  <div class="introduction">
+    <%= page_meta.html_introduction %>
+  </div>
+<% end %>
