@@ -158,6 +158,37 @@ ru:
         sport:         Спорт
         abiturient:    Абитуриенту
 
+    question:
+      categories:
+        children:         Все о детях
+        interesting:      Это интересно
+        auto:             Авто/Мото/Вело
+        accidents:        Происшествия
+        crash:            Аварии и ДТП
+        animal:           Зверье мое
+        cookery:          Кулинарные страсти
+        eighteen_plus:    18+
+        humor:            Юмор
+        hi_tech:          Hi-tech
+        leisure:          Досуг и отдых
+        family:           Семья
+        lifehack:         Лайфхак
+        economy:          Экономим
+        complaints_book:  Жалобная книга
+        spirituality:     Эзотерика
+        help:             Помогите!
+        sex:              М+Ж
+        creativity:       Творчество и развитие
+        handmade:         Хендмейд
+        boiling:          Накипело
+        good_news:        Хорошие новости
+        health:           Будь здоров!
+        sport:            Спорт
+        policy:           Политика и власть
+        studies:          Учеба
+        abiturient:       Абитуриенту
+        advertisement:    Реклама
+
     notification_message:
       kind:
         new_comment: оставил новый комментарий
