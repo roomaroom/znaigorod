@@ -80,7 +80,8 @@ class ReviewsPresenter
     end
 
     def available
-      @available ||= HasSearcher.searcher(:reviews).facet(:category).rows.map(&:value)
+      #@available ||= HasSearcher.searcher(:s).facet(:category).rows.map(&:value)
+      @available ||= Review.categories.values
     end
 
     def links
@@ -257,6 +258,7 @@ class ReviewsPresenter
     @searcher ||= HasSearcher.searcher(:reviews, searcher_params).tap { |s|
       order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
 
+      s.without_questions
       s.without_eighteen_plus unless category_filter.eighteen_plus?
       s.only_tomsk            if     only_tomsk_filter.selected?
 

@@ -40,7 +40,8 @@ class QuestionsPresenter
     end
 
     def available
-      @available ||= HasSearcher.searcher(:reviews).facet(:category).rows.map(&:value)
+      #@available ||= HasSearcher.searcher(:reviews).facet(:category).rows.map(&:value)
+      @available ||= Question.categories.values
     end
 
     def links

@@ -143,23 +143,6 @@ ru:
 
     review:
       categories:
-        accidents:     Происшествия
-        animals:       Животные
-        auto:          Авто
-        cafe:          Кафе и рестораны
-        creation:      Творчество и развитие
-        culture:       Культура
-        eighteen_plus: 18+
-        entertainment: Досуг и отдых
-        family:        Семья, дом, дети
-        humor:         Юмор
-        informative:   Познавательно
-        other:         Другое
-        sport:         Спорт
-        abiturient:    Абитуриенту
-
-    question:
-      categories:
         children:         Все о детях
         interesting:      Это интересно
         auto:             Авто/Мото/Вело
