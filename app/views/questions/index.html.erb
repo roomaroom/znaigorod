@@ -25,7 +25,7 @@
     <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
 
-  <div class='question_content js-button-pagination'>
+  <div class='question_content_wrapper js-button-pagination'>
     <% if @presenter.collection.any? %>
       <ul class='posters js-paginable-list' data-item-width="220">
         <%= render :partial => 'list', :locals => { :collection => @presenter.collection  } %>
