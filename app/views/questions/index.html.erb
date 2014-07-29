@@ -1,0 +1,41 @@
+<div class="question_left">
+  <div class='filter_header'>
+    <% if page_meta %>
+      <h1><%= page_meta.header.squish.html_safe %></h1>
+    <% else %>
+      <h1><%= t('meta.reviews.page_header') %></h1>
+    <% end %>
+  </div>
+
+  <div class="filter_and_share">
+    <div class='presentation_filters question'>
+      <!--noindex-->
+      <div class="order_by">
+        <p>Сортировать по:</p>
+        <ul>
+          <% @presenter.order_by_filter.links.each do |link| %>
+            <li class="<%= link.klass %>">
+              <%= link_to link.title, link.path %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <!--/noindex-->
+    </div>
+    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
+  </div>
+
+  <div class='question_content js-button-pagination'>
+    <% if @presenter.collection.any? %>
+      <ul class='posters js-paginable-list' data-item-width="220">
+        <%= render :partial => 'list', :locals => { :collection => @presenter.collection  } %>
+      </ul>
+    <% else %>
+      <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="question_right">
+  <%= render :partial => 'commons/promotions' %>
+</div>

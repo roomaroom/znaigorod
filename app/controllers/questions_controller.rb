@@ -4,5 +4,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @presenter = QuestionsPresenter.new(params)
   end
 end

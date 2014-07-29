@@ -4,6 +4,7 @@
 <% content_for :meta_keywords, @presenter.meta_keywords %>
 <% content_for :meta_description, @presenter.meta_description %>
 <% content_for :extra_meta do %>
+
   <% if page_meta %>
     <%= render :partial => 'commons/page_meta_og' %>
   <% else %>
@@ -63,28 +64,3 @@
     <%= t("meta.#{@presenter.selected_category}.introduction").as_html %>
   </div>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
