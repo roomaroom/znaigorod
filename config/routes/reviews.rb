@@ -109,7 +109,11 @@ Znaigorod::Application.routes.draw do
   Question.categories.values.each do |category|
     get "/questions/#{category}" => 'questions#index', :defaults => { :category => category }, :constraints => { :category => category }
   end
-  resources :questions, :only => [:index, :show]
+
+  resources :questions, :only => [:index, :show] do
+    resources :comments, :only => [:new, :show, :create]
+    put 'change_vote' => 'votes#change_vote', :as => :change_vote
+  end
 
   # legacy
   get 'posts'              => redirect('/reviews')

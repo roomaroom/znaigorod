@@ -12,9 +12,9 @@ class QuestionsPresenter
     end
 
     def path(category: self.category, order_by: self.order_by)
-      return questions_path if category.blank?
+      return questions_path(:order_by => order_by) if category.blank?
 
-      send "questions_#{category}_path"
+      send "questions_#{category}_path", :order_by => order_by
     end
   end
 
@@ -34,8 +34,6 @@ class QuestionsPresenter
     alias :selected :category
 
     def initialize
-      p '='*80
-      p Parameters.instance.category
       @category = Parameters.instance.category
     end
 
@@ -97,15 +95,11 @@ class QuestionsPresenter
     end
 
     def available
-      { 'creation' => 'Новизне', 'rating' => 'Рейтингу', 'commented' => 'Количеству комментариев' }
+      { 'creation' => 'Новизне', 'rating' => 'Рейтингу', 'commented' => 'Количеству ответов' }
     end
 
     def selected
       available.keys.compact.include?(order_by) ? order_by : available.keys.first
-    end
-
-    def random?
-      order_by == 'random'
     end
 
     def links
@@ -187,7 +181,7 @@ class QuestionsPresenter
 
   def searcher
     @searcher ||= HasSearcher.searcher(:reviews, searcher_params).tap { |s|
-      order_by_filter.random? ? s.order_by(:random) : s.send("order_by_#{order_by_filter.selected}")
+      s.send("order_by_#{order_by_filter.selected}")
 
       s.paginate page: page, per_page: per_page
     }

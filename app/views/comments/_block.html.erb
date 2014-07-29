@@ -1,5 +1,9 @@
 <div class="comments ajaxed ajaxed_voteable">
-  <h3>Комментарии</h3>
+  <% if parent_obj.type == 'Question' %>
+    <h3>Ответы</h3>
+  <% else %>
+    <h3>Комментарии</h3>
+  <% end %>
 
   <ul>
     <% parent_obj.comments.roots.order('created_at ASC').each do |comment| %>

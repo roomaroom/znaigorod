@@ -1,0 +1,38 @@
+<div class="left margin">
+  <div class="actions">
+    <% if current_user && current_user.account == @question.account %>
+      <%= link_to ' изменить', my_review_path(@question.id), :class => 'fa fa-pencil' if can? :edit, @question %>
+    <% else %>
+      <%= link_to ' изменить', edit_manage_review_path(@question.id), :class => 'fa fa-pencil' if can? :edit, @question %>
+    <% end %>
+  </div>
+
+  <%= render :partial => 'question', :locals => { :question => @question } %>
+
+  <%= render @question.webanketas.actual %>
+
+  <% content_for :zg_like_with_vk_share do %>
+    <!-- ZG Like -->
+    <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @question } %>
+    <!-- / ZG Like -->
+  <% end %>
+
+  <div class="share_and_likes ajaxed_voteable">
+    <%= render :partial => 'commons/share_and_like_this', :locals => { :url => review_url(@question) } %>
+  </div>
+
+  <% if @question.tag %>
+    <ul class="tags">
+      <% @question.tags.each do |item| %>
+        <li><%= item %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @question } %>
+
+</div>
+
+<div class="right">
+
+</div>

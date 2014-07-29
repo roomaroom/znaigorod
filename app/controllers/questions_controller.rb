@@ -5,5 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @presenter = QuestionsPresenter.new(params)
+    question = Question.find(params[:id])
+    @question = ReviewDecorator.new(question)
   end
 end

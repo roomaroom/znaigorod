@@ -28,10 +28,12 @@
       </div>
       <%= link_to 'Ответить', question_path(item.id), :class => 'answer_link' %>
     </div>
+
     <div class="right">
       <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= item.comments.count %></span>
       <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= item.likes_count %></span>
       <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= item.page_visits.count %></span>
     </div>
+
   </li>
 <% end %>

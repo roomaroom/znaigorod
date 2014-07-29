@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
   belongs_to :offered_discount,  :polymorphic => true, :optional => true
   belongs_to :organization,      :polymorphic => true, :optional => true
   belongs_to :review,            :polymorphic => true, :optional => true
+  belongs_to :question,          :polymorphic => true, :optional => true
   belongs_to :review_article,    :polymorphic => true, :optional => true
   belongs_to :review_photo,      :polymorphic => true, :optional => true
   belongs_to :review_video,      :polymorphic => true, :optional => true
