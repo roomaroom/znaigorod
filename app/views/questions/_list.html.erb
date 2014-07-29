@@ -11,8 +11,8 @@
         </div>
 
         <div class="other_details">
-          <%= link_to item.account.nickname, '#' %>
-          <%= item.created_at %>
+          <%= link_to item.account.title, '#' %>
+          <%= I18n.l(item.created_at, :format => "%d %B %Y, %H:%M") %>
           <span>
             в категориях:
             <% item.categories.values.each do |category| %>
