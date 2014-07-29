@@ -21,18 +21,23 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => review_url(@question) } %>
   </div>
 
-  <% if @question.tag %>
-    <ul class="tags">
-      <% @question.tags.each do |item| %>
-        <li><%= item %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <div class='info'>
+    <% @question.categories.values.each do |category| %>
+      <%= link_to category.text, send("questions_#{category.value}_path") %>
+      &nbsp;
+    <% end %>
+
+    <div class='details'>
+      <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= @question.comments.count %></span>
+      <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= @question.likes_count %></span>
+      <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= @question.page_visits.count %></span>
+    </div>
+  </div>
+
+  <div style='clear: both'></div>
 
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @question } %>
 
 </div>
-
-<div class="right">
-
-</div>
+ <!-- TODO -->
+<div class="right"></div>
