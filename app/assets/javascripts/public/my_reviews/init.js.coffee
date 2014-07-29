@@ -1,4 +1,4 @@
-clone = (obj) ->
+@clone = (obj) ->
   return obj  if obj is null or typeof (obj) isnt "object"
 
   temp = new obj.constructor()
@@ -39,7 +39,7 @@ beforeImageInsert = (h) ->
       message = data.jqXHR.responseText
       $('.message_wrapper').text(message).show().delay(5000).slideUp('slow')
 
-markItUpSettings = ->
+@markItUpSettings = ->
   settings = clone(mySettings)
 
   settings.afterInsert = (h) ->
@@ -71,7 +71,7 @@ markItUpSettings = ->
 
   settings
 
-tagitFor = (element) ->
+@tagitFor = (element) ->
   options = {
     allowSpaces:              true
     caseSensitive:            false
@@ -96,7 +96,7 @@ handleImageButtonClick = ->
 initTagit = ->
   tagitFor $('#review_tag')
 
-delay = (->
+@delay = (->
   timer = 0
   (callback, ms) ->
     clearTimeout timer
