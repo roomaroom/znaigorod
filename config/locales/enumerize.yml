@@ -145,23 +145,23 @@ ru:
       categories:
         children:         Все о детях
         interesting:      Это интересно
-        auto:             Авто/Мото/Вело
+        auto:             Авто/мото/вело
         accidents:        Происшествия
         crash:            Аварии и ДТП
-        animal:           Зверье мое
+        animals:          Животные
         cookery:          Кулинарные страсти
         eighteen_plus:    18+
         humor:            Юмор
         hi_tech:          Hi-tech
-        leisure:          Досуг и отдых
+        entertainment:    Досуг и отдых
         family:           Семья
         lifehack:         Лайфхак
         economy:          Экономим
         complaints_book:  Жалобная книга
         spirituality:     Эзотерика
         help:             Помогите!
-        sex:              М+Ж
-        creativity:       Творчество и развитие
+        men_and_women:    М+Ж
+        creation:         Творчество и развитие
         handmade:         Хендмейд
         boiling:          Накипело
         good_news:        Хорошие новости
@@ -170,7 +170,8 @@ ru:
         policy:           Политика и власть
         studies:          Учеба
         abiturient:       Абитуриенту
-        advertisement:    Реклама
+        commercial:       Реклама
+        other:            Другое
 
     notification_message:
       kind:

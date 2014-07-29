@@ -80,8 +80,7 @@ class ReviewsPresenter
     end
 
     def available
-      #@available ||= HasSearcher.searcher(:s).facet(:category).rows.map(&:value)
-      @available ||= Review.categories.values
+      @available ||= HasSearcher.searcher(:reviews).facet(:category).rows.map(&:value)
     end
 
     def links
