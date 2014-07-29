@@ -11,12 +11,12 @@
         </div>
 
         <div class="other_details">
-          <%= link_to item.account.title, '#' %>
+          <%= link_to item.account.title, item.account %>
           <%= I18n.l(item.created_at, :format => "%d %B %Y, %H:%M") %>
           <span>
             в категориях:
             <% item.categories.values.each do |category| %>
-              <%= link_to category.text, '#' %>
+              <%= link_to category.text, send("questions_#{category.value}_path") %>
               &nbsp;
             <% end %>
         </span>
