@@ -1,5 +1,9 @@
 class OfferedDiscount < Discount
-  attr_accessible :placeholder, :afisha_id
+  attr_accessor :places_attributes
+
+  attr_accessible :placeholder, :afisha_id, :place_attributes
+
+  accepts_nested_attributes_for :places, :allow_destroy => true
 
   # disable validation
   def sale?
