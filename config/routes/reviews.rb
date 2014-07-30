@@ -36,7 +36,7 @@ Znaigorod::Application.routes.draw do
       end
     end
 
-    resources :questions do
+    resources :questions, except: :show do
       post :preview, :on => :collection
     end
   end

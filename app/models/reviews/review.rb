@@ -52,6 +52,7 @@ class Review < ActiveRecord::Base
   scope :by_state,  ->(state) { where :state => state }
   scope :draft,     -> { where :state => :draft }
   scope :published, -> { where :state => :published }
+  scope :without_questions, ->{where "type != 'Question'"}
 
   validates_presence_of :title, :tag, :categories
 

@@ -1,0 +1,39 @@
+<% collection.each do |item| %>
+  <li class='item'>
+    <div class="left">
+      <div class="avatar">
+        <%= image_tag item.account.avatar.url, :size => '35x35' %>
+      </div>
+
+      <div class="details">
+        <div class="title">
+          <%= link_to item.title, question_path(item.id) %>
+        </div>
+
+        <div class="other_details">
+          <%= link_to item.account.title, item.account %>
+          <%= I18n.l(item.created_at, :format => "%d %B %Y, %H:%M") %>
+          <span>
+            в категориях:
+            <% item.categories.values.each do |category| %>
+              <%= link_to category.text, send("questions_#{category.value}_path") %>
+              &nbsp;
+            <% end %>
+        </span>
+
+        </div>
+      </div>
+      <div style='clear: both'>
+
+      </div>
+      <%= link_to 'Ответить', question_path(item.id), :class => 'answer_link' %>
+    </div>
+
+    <div class="right">
+      <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= item.comments.count %></span>
+      <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= item.likes_count %></span>
+      <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= item.page_visits.count %></span>
+    </div>
+
+  </li>
+<% end %>

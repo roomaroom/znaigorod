@@ -27,4 +27,12 @@ class MyMailer < ActionMailer::Base
     @review = review
     mail(:to => Settings['mail']['to_afisha'], :subject => 'В ЗнайГород опубликован новый обзор')
   end
+
+  def mail_new_answer(answer)
+    @answer = answer
+    @question = answer.commentable
+    @user = answer.account
+
+    mail(:to => @question.account.email, :subject => 'В ЗнайГород ответили на ваш вопрос')
+  end
 end

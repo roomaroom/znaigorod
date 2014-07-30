@@ -1,0 +1,23 @@
+<% content_for :account_content do %>
+  <div class='feeds'>
+    <div class="invitations header">
+      <div class='clear'>
+        <span class="panel"></span>
+      </div>
+      <h3><%= link_to 'Мои вопросы', my_questions_path, :class => 'add_link' %></h3>
+      <%= link_to 'Добавить вопрос', new_my_question_path, :class => 'invitation_link' %>
+    </div>
+
+    <div class="question_content_wrapper">
+      <% if @presenter.collection.any? %>
+        <ul class='posters js-paginable-list' data-item-width="220">
+          <%= render :partial => 'list', :locals => { :collection => @presenter.collection  } %>
+        </ul>
+      <% else %>
+        <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render file: "my/accounts/wrapper" %>

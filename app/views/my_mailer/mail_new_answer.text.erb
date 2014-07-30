@@ -1,0 +1,5 @@
+На сайте ЗнайГород (<%= Settings['app']['host'] %>)
+Пользователь  <%= link_to @user.title, account_url(@user), :host => Settings['app']['host'] %>
+ответил на ваш вопрос <%= link_to @question.title, question_url(@question), :host => Settings['app']['host'] %>
+
+

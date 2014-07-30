@@ -9,7 +9,7 @@
 <div class='main'>
   <div class='time'><%= time_ago_in_words(feed_vote_review_article.created_at) %> назад</div>
 
-  <% if current_user.present? && current_user.account_id == review.account_id %>
+  <% if current_user.present? && current_user.account_id == feed_vote_review_article.feedable.user.account_id %>
     <div class='type'>
       нравится обзор
     </div>

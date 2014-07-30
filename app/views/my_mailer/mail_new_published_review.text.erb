@@ -10,4 +10,4 @@
 Категории: <%= @review.categories.map(&:text).join(', ') %>
 Описание: <%= @review.content.present? ? @review.content : 'Нет описания' %>
 
-Помотреть обзор: <%= link_to @review.title, review_path(@review), :host => Settings['app']['host'] %>
+Помотреть обзор: <%= link_to @review.title, review_url(@review), :host => Settings['app']['host'] %>

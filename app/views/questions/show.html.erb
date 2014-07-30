@@ -1,7 +1,7 @@
 <div class="left margin">
   <div class="actions">
     <% if current_user && current_user.account == @question.account %>
-      <%= link_to ' изменить', my_review_path(@question.id), :class => 'fa fa-pencil' if can? :edit, @question %>
+      <%= link_to ' изменить', edit_my_question_path(@question.id), :class => 'fa fa-pencil' if can? :edit, @question %>
     <% else %>
       <%= link_to ' изменить', edit_manage_review_path(@question.id), :class => 'fa fa-pencil' if can? :edit, @question %>
     <% end %>

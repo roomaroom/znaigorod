@@ -176,6 +176,7 @@ ru:
     notification_message:
       kind:
         new_comment: оставил новый комментарий
+        new_answer: ответил на ваш вопрос
         reply_on_comment: ответил на ваш комментарий
         afisha_published: афиша опубликована
         afisha_returned: афиша возвращена на доработку

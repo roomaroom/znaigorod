@@ -1,0 +1,30 @@
+<% review = ReviewDecorator.new(feed_question.feedable) %>
+
+<div class='poster'>
+  <%= link_to image_tag(review.annotation_image(100, 100), :size => '100x100'), question_path(review) %>
+</div>
+
+<div class='main'>
+  <div class='time'><%= time_ago_in_words(feed_question.created_at) %> назад</div>
+
+  <% if current_user.present? && current_user.account.id == review.account_id %>
+    <div class='type'>
+      <%= t "account.added.#{feed_question.feedable.account.gender}" %> вопрос
+    </div>
+  <% else %>
+    <div class='avatar'>
+      <%= link_to review.account do %>
+        <%= image_tag(resized_image_url(review.account.avatar.url, 23, 23), :size => '23x23', :alt => review.account.title) %>
+      <% end %>
+    </div>
+
+    <div class='type'>
+      <%= link_to feed_question.feedable.account, feed_question.feedable.account  %>
+      <%= t "account.added.#{feed_question.feedable.account.gender}" %> вопрос
+    </div>
+  <% end %>
+
+  <div class='title'>
+    <%= link_to review.title, question_path(review) %>
+  </div>
+</div>

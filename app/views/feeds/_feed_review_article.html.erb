@@ -9,7 +9,7 @@
 
   <% if current_user.present? && current_user.account.id == review.account_id %>
     <div class='type'>
-      <%= t "account.rated.#{feed_review_article.feedable.account.gender}" %> обзор
+      <%= t "account.added.#{feed_review_article.feedable.account.gender}" %> обзор
     </div>
   <% else %>
     <div class='avatar'>
@@ -20,7 +20,7 @@
 
     <div class='type'>
       <%= link_to feed_review_article.feedable.account, feed_review_article.feedable.account  %>
-      <%= t "account.rated.#{feed_review_article.feedable.account.gender}" %> обзор
+      <%= t "account.added.#{feed_review_article.feedable.account.gender}" %> обзор
     </div>
   <% end %>
 

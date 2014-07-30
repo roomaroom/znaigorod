@@ -3,6 +3,36 @@ class My::QuestionsController < My::ApplicationController
 
   actions :all
 
+  def create
+    create! do |success, failure|
+      success.html {
+        redirect_to question_path(resource.id)
+      }
+
+      failure.html {
+        render :new
+      }
+    end
+  end
+
+  def update
+    create! do |success, failure|
+      success.html {
+        redirect_to question_path(resource.id)
+      }
+
+      failure.html {
+        render :edit
+      }
+    end
+  end
+
+  def index
+    index!{
+      @presenter = QuestionsPresenter.new(params)
+    }
+  end
+
   def preview
     @question = Question.new(params[:question]) do |question|
       question.account = current_user.account

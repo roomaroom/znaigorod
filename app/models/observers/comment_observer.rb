@@ -17,6 +17,11 @@ class CommentObserver < ActiveRecord::Observer
       notification_comment_to_discount(comment)
     end
 
+    if comment.is_answer? && comment.commentable.user != comment.user
+      notification_answer_to_question(comment)
+
+      MyMailer.delay(:queue => 'mailer').mail_new_answer(comment) if comment.account.email?
+    end
   end
 
 
@@ -60,4 +65,13 @@ class CommentObserver < ActiveRecord::Observer
     )
   end
 
+  def notification_answer_to_question(comment)
+    NotificationMessage.delay(:queue => 'critical').create(
+      account: comment.commentable.account,
+      producer: comment.user.account,
+      body: comment.body,
+      kind: :new_answer,
+      messageable: comment
+    )
+  end
 end

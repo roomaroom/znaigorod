@@ -10,7 +10,11 @@
     </div>
     <div class='type'>
       <%= link_to feed_comment.feedable.user.name, feed_comment.feedable.user.account  %>
-      <%= t "account.writed_a_comment.#{feed_comment.feedable.user.account.gender}" %>
+      <% if feed_comment.feedable.is_answer?  %>
+        <%= t "account.answered_a_question.#{feed_comment.feedable.user.account.gender}" %>
+      <% else %>
+        <%= t "account.writed_a_comment.#{feed_comment.feedable.user.account.gender}" %>
+      <% end %>
     </div>
   <% end %>
 
@@ -33,6 +37,10 @@
 
     <% if feed_comment.feedable.commentable.is_a?(Review) %>
       <%= link_to(feed_comment.feedable.commentable.title, review_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
+    <% end %>
+
+    <% if feed_comment.feedable.commentable.is_a?(Question) %>
+      <%= link_to(feed_comment.feedable.commentable.title, question_path(feed_comment.feedable.commentable, :anchor => "comment_#{feed_comment.feedable.id}")) %>
     <% end %>
   </div>
 

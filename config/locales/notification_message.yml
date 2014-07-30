@@ -66,6 +66,11 @@ ru:
       female:
         приняла приглашение
 
+    new_answer:
+      undefined: ответил на ваш вопрос
+      male: ответил на ваш вопрос
+      female: ответила на ваш вопрос
+
     disagreed_invite:
       undefined:
         отказался от приглашения

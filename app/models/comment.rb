@@ -23,6 +23,10 @@ class Comment < ActiveRecord::Base
     Comment.where(:ancestry => self.id.to_s)
   end
 
+  def is_answer?
+    commentable.is_a?(Question) && is_root?
+  end
+
   normalize_attribute :body, :ancestry
   validates_presence_of :body
   validate :authenticated_user

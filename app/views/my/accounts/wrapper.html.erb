@@ -100,6 +100,15 @@
                 <span class="menu_text">Мои обзоры</span>
               <% end %>
             </div>
+
+            <div class="show_button <%= 'selected' if controller_name == 'questions' %>">
+              <%= link_to my_questions_path do %>
+                <% if current_user.account.questions %>
+                  <span class="counter"><%= current_user.account.questions.size %></span>
+                <% end %>
+                <span class="menu_text">Мои вопросы</span>
+              <% end %>
+            </div>
           </div>
 
         </div>
