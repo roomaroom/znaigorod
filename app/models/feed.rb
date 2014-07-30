@@ -5,13 +5,26 @@ class Feed < ActiveRecord::Base
 
   scope :discount_or_member,  -> {where("feedable_type = 'Member' OR feedable_type = 'Discount'")}
 
+  searchable do
+    string(:feedable_type) { feedable.class.name.underscore }
+    integer(:account_id)
+  end
+
   def self.feeds_for_presenter(searcher_params)
     if searcher_params[:feedable_type] == 'Discount'
-      searcher_params.delete(:feedable_type)
-      self.discount_or_member.where(searcher_params).includes(:feedable).order('created_at DESC')
+      result = self.search do
+        with :account_id, searcher_params[:account_id]
+      end
+      #searcher_params.delete(:feedable_type)
+      #self.discount_or_member.where(searcher_params).includes(:feedable).order('created_at DESC')
     else
-      self.where(searcher_params).includes(:feedable).order('created_at DESC')
+      #self.where(searcher_params).includes(:feedable).order('created_at DESC')
+      result = self.search do
+        with :account_id, searcher_params[:account_id]
+        with :feedable_type, searcher_params[:feedable_type]
+      end
     end
+    result.results
   end
 
 end
