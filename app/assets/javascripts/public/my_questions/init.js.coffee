@@ -22,6 +22,17 @@
       .done (data) ->
         $('.reviews_show').html(data)
 
+  $('.tagit_categories').tagit {
+    fieldName:        'categories',
+    allowDuplicates:  false,
+    readOnly:         true,
+    placeholderText:  'Выберите категорию'
+  }
+
+  $('.select_type').change ->
+    $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
+    $(this).append('<input type="hidden" name="question[categories][]" value="' + $('.select_type').val()  + '"/>')
+
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
 

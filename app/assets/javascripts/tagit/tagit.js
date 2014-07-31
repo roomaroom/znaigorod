@@ -431,22 +431,18 @@
                 .addClass(additionalClass)
                 .append(label);
 
-            if (this.options.readOnly){
-                tag.addClass('tagit-choice-read-only');
-            } else {
-                tag.addClass('tagit-choice-editable');
-                // Button for removing the tag.
-                var removeTagIcon = $('<span></span>')
-                    .addClass('ui-icon ui-icon-close');
-                var removeTag = $('<a><span class="text-icon">\xd7</span></a>') // \xd7 is an X
-                    .addClass('tagit-close')
-                    .append(removeTagIcon)
-                    .click(function(e) {
-                        // Removes a tag when the little 'x' is clicked.
-                        that.removeTag(tag);
-                    });
-                tag.append(removeTag);
-            }
+            tag.addClass('tagit-choice-editable');
+            // Button for removing the tag.
+            var removeTagIcon = $('<span></span>')
+              .addClass('ui-icon ui-icon-close');
+            var removeTag = $('<a><span class="text-icon">\xd7</span></a>') // \xd7 is an X
+              .addClass('tagit-close')
+              .append(removeTagIcon)
+              .click(function(e) {
+                // Removes a tag when the little 'x' is clicked.
+                that.removeTag(tag);
+              });
+            tag.append(removeTag);
 
             // Unless options.singleField is set, each tag has a hidden input field inline.
             if (!this.options.singleField) {

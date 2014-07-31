@@ -65,7 +65,7 @@ class Review < ActiveRecord::Base
             :economy, :complaints_book, :spirituality, :help, :men_and_women, :creation,
             :handmade, :boiling, :good_news, :health, :sport, :policy, :studies, :abiturient,
             :commercial, :other, :cafe, :culture, :informative],
-    :multiple => true,
+    :multiple => false,
     :predicates => true
 
   friendly_id :title, :use => :slugged
