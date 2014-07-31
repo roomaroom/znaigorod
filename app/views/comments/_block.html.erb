@@ -1,5 +1,5 @@
 <div class="comments ajaxed ajaxed_voteable">
-  <% if parent_obj.type == 'Question' %>
+  <% if parent_obj.is_a?(Question) %>
     <h3>Ответы</h3>
   <% else %>
     <h3>Комментарии</h3>

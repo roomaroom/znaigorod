@@ -1,6 +1,5 @@
 @initMyQuestions = ->
   initMarkitup()
-  initTagit()
 
   form = $('.my_review_form')
 
@@ -22,9 +21,6 @@
     $.post('/my/questions/preview', serialized)
       .done (data) ->
         $('.reviews_show').html(data)
-
-initTagit = ->
-  tagitFor $('#question_tag')
 
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())

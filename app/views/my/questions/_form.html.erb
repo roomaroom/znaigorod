@@ -9,15 +9,12 @@
 
 
   <%= f.input :categories, :as => :check_boxes %>
-  <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
+  <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите заголовок вопроса' } %>
 
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup with-preview' }  %>
-  <%= f.input :tag, :as => :string,
-    :input_html => { :data => { 'autocomplete-source' => tags_available_my_reviews_path } } %>
-
 
   <div class='submit'>
-    <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>
+    <%= f.submit 'Отправить', :class => 'btn btn-lg btn-grey' %>
     <%= link_to 'Отмена', :back %>
   </div>
 <% end %>
