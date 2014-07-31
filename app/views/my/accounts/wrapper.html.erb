@@ -95,7 +95,7 @@
             <div class="show_button <%= 'selected' if controller_name == 'reviews' %>">
               <%= link_to my_reviews_path do %>
                 <% if current_user.account.reviews %>
-                  <span class="counter"><%= current_user.account.reviews.size %></span>
+                  <span class="counter"><%= current_user.account.reviews.size - current_user.account.questions.size  %></span>
                 <% end %>
                 <span class="menu_text">Мои обзоры</span>
               <% end %>

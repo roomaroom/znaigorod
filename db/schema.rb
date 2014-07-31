@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140729041123) do
+ActiveRecord::Schema.define(:version => 20140731023345) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -392,8 +392,9 @@ ActiveRecord::Schema.define(:version => 20140729041123) do
     t.integer  "feedable_id"
     t.string   "feedable_type"
     t.integer  "account_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "type_of_feedable"
   end
 
   add_index "feeds", ["account_id"], :name => "index_feeds_on_account_id"

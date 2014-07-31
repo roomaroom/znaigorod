@@ -69,8 +69,8 @@ class FeedsPresenter
   def my_and_friends_feed
     friends_params = {}
 
-    if @searcher_params[:feedable_type].present?
-      friends_params[:feedable_type] = @searcher_params[:feedable_type]
+    if @searcher_params[:type_of_feedable].present?
+      friends_params[:type_of_feedable] = @searcher_params[:type_of_feedable]
     end
 
     @friends_feeds ||= Account.find(@account_id).friends_feeds(friends_params)
@@ -87,7 +87,7 @@ class FeedsPresenter
   end
 
   def searcher_params
-    @searcher_params[:feedable_type] = @kind_filter.kind.capitalize if @kind_filter.used?
+    @searcher_params[:type_of_feedable] = @kind_filter.kind if @kind_filter.used?
     @searcher_params[:account_id] = @account_id if @account_id.present? && !@activity_filter.of_friends?
   end
 end
