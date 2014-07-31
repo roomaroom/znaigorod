@@ -54,7 +54,7 @@ class Review < ActiveRecord::Base
   scope :published, -> { where :state => :published }
   scope :without_questions, ->{where "type != 'Question'"}
 
-  validates_presence_of :title, :tag, :categories
+  validates_presence_of :title, :categories
 
   default_value_for :allow_external_links, false
   default_value_for :only_tomsk,           false

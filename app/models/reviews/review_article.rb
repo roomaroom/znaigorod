@@ -4,6 +4,7 @@ class ReviewArticle < Review
   attr_accessor :generate_poster
 
   validates :content, :presence => true
+  validates :tag, :presence => true
 
   private
 

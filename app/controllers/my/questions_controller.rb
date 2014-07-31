@@ -27,12 +27,6 @@ class My::QuestionsController < My::ApplicationController
     end
   end
 
-  def index
-    index!{
-      @presenter = QuestionsPresenter.new(params)
-    }
-  end
-
   def preview
     @question = Question.new(params[:question]) do |question|
       question.account = current_user.account

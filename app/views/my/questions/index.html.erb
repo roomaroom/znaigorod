@@ -9,9 +9,9 @@
     </div>
 
     <div class="question_content_wrapper">
-      <% if @presenter.collection.any? %>
+      <% if @questions.any? %>
         <ul class='posters js-paginable-list' data-item-width="220">
-          <%= render :partial => 'list', :locals => { :collection => @presenter.collection  } %>
+          <%= render :partial => 'list', :locals => { :collection => @questions } %>
         </ul>
       <% else %>
         <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>

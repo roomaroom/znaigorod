@@ -39,11 +39,11 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    primary.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { controller_name == 'accounts' } do |account|
-      account.noindex = true
+    primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
+      questions.noindex = true
 
-      Inviteables.instance.categories.keys.each do |item|
-        account.item Russian::translit(item).gsub(/\s|\//, '_'), item.mb_chars.capitalize, send("accounts_#{(transliterate(item))}_path"), :link => { :rel => :nofollow }
+      Hash[Question.categories.options].invert.each do |category, title|
+        questions.item category, title, [:questions, category], :link => { :rel => :nofollow }
       end
     end
 
@@ -51,6 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
       highlights_on: -> { %w[contests works cooperation].include?(controller_name) } do |more|
       more.noindex = true
 
+      more.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { controller_name == 'accounts' }
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }, :link => { :rel => :nofollow }
       more.item :news_of_tomsk, 'Новости Томска', 'http://news.znaigorod.ru', :link => { :rel => :nofollow }
       more.item :webcams, 'Веб-камеры', webcams_path, highlights_on: -> { controller_name == 'webcams' }, :link => { :rel => :nofollow }

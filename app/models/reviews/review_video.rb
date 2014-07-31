@@ -6,6 +6,7 @@ class ReviewVideo < Review
   before_save :reset_poster_url, :if => :reset_poster?
 
   validates :video_url, :presence => true
+  validates :tag, :presence => true
 
   def content_parser
     @content_parser ||= Reviews::Content::Videos.new(video_url)

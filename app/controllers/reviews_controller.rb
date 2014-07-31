@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @presenter = ReviewsPresenter.new(params.merge(:with_advertisement => true))
+        @presenter = ReviewsPresenter.new(params)
         @reviews = @presenter.decorated_collection
 
         render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' }, :layout => false and return if request.xhr?

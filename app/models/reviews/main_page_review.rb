@@ -17,6 +17,7 @@ class MainPageReview < ActiveRecord::Base
       paginate :page => 1, :per_page => 3
       with :state, :published
       without used.map(&:review)
+      without :type, :question
     end
 
     search.results

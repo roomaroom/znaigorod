@@ -1,0 +1,13 @@
+<div class="place-header">
+  <span class="place-title">
+    %title%
+  </span>
+</div>
+
+<div class="place-content review">
+  <div class="image">
+    <%= link_to image_tag(decorated_question.annotation_image(240, 136), :size => "#{240}x#{136}"), question_path(decorated_question) %>
+  </div>
+
+  <div class='title'><%= link_to decorated_question.title.text_gilensize, question_path(decorated_question) %></div>
+</div>

@@ -14,9 +14,9 @@
           <li>
             <%= link_to "##{state}" do %>
               <% unless state == 'all' %>
-                <%= t(state, :count => @reviews.by_state(state).count) %>
+                <%= t(state, :count => @reviews.by_state(state).without_questions.count ) %>
               <% else %>
-                <%= t(state, :count => current_user.account.reviews.count) %>
+                <%= t(state, :count => current_user.account.reviews.without_questions.count) %>
               <% end %>
             <% end %>
           </li>
