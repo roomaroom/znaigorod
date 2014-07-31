@@ -11,12 +11,12 @@
   </span>
 </div>
 
-<div class="place-content reviews">
+<div class="place-content reviews questions">
   <ul>
     <% presenter.decorated_collection.each do |item| %>
       <li>
         <div class='image'>
-          <%= link_to image_tag(item.annotation_image(88, 50), :size => "88x50"), question_path(item) %>
+        <%= image_tag item.account.avatar.url, :size => '35x35' %>
         </div>
         <div class='title'>
           <%= link_to truncate(item.title.text_gilensize, :length => 35), question_path(item), :title => item.title.text_gilensize %>
