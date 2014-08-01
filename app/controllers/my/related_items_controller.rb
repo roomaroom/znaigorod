@@ -22,6 +22,7 @@ class My::RelatedItemsController < ApplicationController
 
   def reviews
     searcher = HasSearcher.searcher(:reviews, :q => search_param, :state => 'published')
+      .without_questions
       .order_by_creation
       .paginate(page: page, per_page: per_page)
 
