@@ -4,7 +4,6 @@ class My::QuestionsController < My::ApplicationController
   actions :all
 
   def create
-    raise params.inspect
     create! do |success, failure|
       success.html {
         redirect_to question_path(resource.id)

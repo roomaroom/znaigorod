@@ -8,7 +8,7 @@
   :html => { :class => "my_review_form default_simple_form review_article_form" } do |f| %>
 
 
-  <%= text_field_tag 'tagit', '', :class => 'tagit_categories' %>
+  <%= f.input :tagit_categories, :as => :string, :label => 'Выбранные категории', :input_html => { :class => 'tagit_categories' } %>
   <%= select_tag :cat, options_for_select(Question.categories.options), :class => 'select_type' %>
   <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите заголовок вопроса' } %>
 

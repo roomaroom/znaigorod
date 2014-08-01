@@ -9,7 +9,13 @@
 
   <%= hidden_field_tag :type, @review.useful_type %>
 
-  <%= f.input :categories, :as => :check_boxes %>
+  <%= f.input :tagit_categories,
+    :as => :string,
+    :label => 'Выбранные категории',
+    :input_html => { :class => 'tagit_categories', :value => @review.categories.map(&:text).join(', ') }%>
+
+  <%= select_tag :cat, options_for_select(Review.categories.options), :class => 'select_type' %>
+
   <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
 
   <%= render "#{@review.useful_type}_fields", :f => f %>

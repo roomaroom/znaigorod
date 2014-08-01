@@ -96,6 +96,16 @@ handleImageButtonClick = ->
 initTagit = ->
   tagitFor $('#review_tag')
 
+  $('.tagit_categories').tagit {
+    fieldName:        'categories',
+    allowDuplicates:  false,
+    readOnly:         true,
+    placeholderText:  'Выберите категорию'
+  }
+
+  $('.select_type').change ->
+    $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
+
 @delay = (->
   timer = 0
   (callback, ms) ->

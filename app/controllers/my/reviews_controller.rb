@@ -10,7 +10,7 @@ class My::ReviewsController < My::ApplicationController
   end
 
   def show
-    show!{
+    show! {
       @review = ReviewDecorator.new(@review)
     }
   end

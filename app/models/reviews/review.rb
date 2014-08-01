@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :related_items
+  attr_accessor :related_items, :tagit_categories
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
@@ -19,11 +19,13 @@ class Review < ActiveRecord::Base
   before_save :store_cached_content_for_index
   before_save :store_cached_content_for_show
 
+  before_validation :set_categories, :on => :create
+
   after_save :parse_related_items
 
   attr_accessible :content, :title, :tag, :categories,
     :allow_external_links, :only_tomsk,
-    :related_items
+    :related_items, :tagit_categories
 
   belongs_to :account
   belongs_to :contest
@@ -65,7 +67,7 @@ class Review < ActiveRecord::Base
             :economy, :complaints_book, :spirituality, :help, :men_and_women, :creation,
             :handmade, :boiling, :good_news, :health, :sport, :policy, :studies, :abiturient,
             :commercial, :other, :cafe, :culture, :informative],
-    :multiple => false,
+    :multiple => true,
     :predicates => true
 
   friendly_id :title, :use => :slugged
@@ -182,5 +184,12 @@ class Review < ActiveRecord::Base
     return poster_image_url if poster_image_url?
     return gallery_images.first.file_url if gallery_images.any?
     return gallery_social_images.first.file_url if gallery_social_images.any?
+  end
+
+  def set_categories
+    reverted_options = Hash[self.class.categories.options].inject({}) { |h, e| h[e.first.mb_chars.downcase.to_s] = e.last; h }
+    form_categories = tagit_categories.split(',').map(&:squish).map(&:mb_chars).map(&:downcase).map(&:to_s)
+
+    self.categories = form_categories.map { |e| reverted_options[e] }.compact
   end
 end

@@ -31,7 +31,6 @@
 
   $('.select_type').change ->
     $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
-    $(this).append('<input type="hidden" name="question[categories][]" value="' + $('.select_type').val()  + '"/>')
 
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
