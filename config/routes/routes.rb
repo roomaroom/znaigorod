@@ -78,6 +78,7 @@ Znaigorod::Application.routes.draw do
     resources :user_ratings, :only => [:new, :create, :edit, :update, :show]
   end
 
+  get '/tsu' => redirect('/contests/ya-v-tgu-i-na-znaygorode')
   resources :contests, :only => [:index, :show] do
     resources :works, :only => [:new, :create, :show] do
       put 'change_vote' => 'votes#change_vote', :as => :change_vote

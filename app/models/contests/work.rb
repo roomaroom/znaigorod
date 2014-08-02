@@ -29,7 +29,7 @@ class Work < ActiveRecord::Base
       :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
       :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :image_url?
 
-  validates :image, :dimensions => { :width_min => 800, :height_min => 800 }, :if => :image?
+  validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
 
   scope :ordered, order('created_at desc')
   scope :ordered_by_likes, order('vk_likes desc')
