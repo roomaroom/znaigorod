@@ -5,9 +5,19 @@
 
 
 .training
+  width: 300px
   height: 80px
-  margin-bottom: -30px
-  margin-top: 40px
+  +clearfix
+  margin: 40px auto -30px
+
+  &.main_page,
+  &.accounts,
+  &.webcams,
+  &.contests,
+  &.cooperation,
+  &.widgets,
+  &.feedback
+    margin: 0 auto
 
 .banners_wrapper
   padding: 15px
