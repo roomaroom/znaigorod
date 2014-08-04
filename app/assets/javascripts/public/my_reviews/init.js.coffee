@@ -89,7 +89,7 @@ beforeImageInsert = (h) ->
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
 
-handleImageButtonClick = ->
+@handleImageButtonClick = ->
   $('.image_button').click ->
     $('#gallery_image_file').focus().trigger('click')
 

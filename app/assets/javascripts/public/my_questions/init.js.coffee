@@ -1,5 +1,6 @@
 @initMyQuestions = ->
   initMarkitup()
+  handleImageButtonClick()
 
   form = $('.my_review_form')
 
