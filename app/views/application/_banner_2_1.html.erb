@@ -1,0 +1,5 @@
+<% if Time.zone.now < DateTime.parse('2014-08-11T04:00:00+07:00') %>
+  <div class="training">
+    <embed src='<%= asset_path('public/training.swf') %>' quality='high' name='training' align='middle' allowscriptaccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' width='100%' height='100%'>
+  </div>
+<% end %>
