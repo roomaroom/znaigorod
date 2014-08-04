@@ -27,7 +27,7 @@ class OrganizationDecorator < ApplicationDecorator
 
   def truncated_address_link(address = organization.address)
     return "" if address.to_s.blank?
-    return h.link_to "#{address}#{office}".truncated(23, nil),
+    return h.link_to "#{address.city}, #{address}#{office}".truncated(27, nil),
         organization_url,
         :title => 'Показать на карте',
         :'data-latitude' => organization.address.latitude,
