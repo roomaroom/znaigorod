@@ -40,7 +40,7 @@ class OrganizationDecorator < ApplicationDecorator
 
   def address_link(address = organization.address)
     return "" if address.to_s.blank?
-    return h.link_to "#{address}#{office}",
+    return h.link_to "#{address.city}, #{address}#{office}",
         organization_url,
         :title => 'Показать на карте',
         :'data-latitude' => organization.address.latitude,
