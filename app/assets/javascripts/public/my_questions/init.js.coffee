@@ -27,12 +27,16 @@
     fieldName:        'categories',
     allowDuplicates:  false,
     readOnly:         true,
-    placeholderText:  'Выберите категорию'
+    placeholderText:  ''
+    beforeTagAdded: (event, ui) ->
+      if ui.tagLabel == 'Выберите категорию'
+        return false
+
   }
 
   $('.select_type').change ->
     $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
+    $('.select_type').val($('.select_type option:first').val())
 
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
-
