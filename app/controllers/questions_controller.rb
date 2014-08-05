@@ -18,7 +18,10 @@ class QuestionsController < ApplicationController
     @question = ReviewDecorator.new(Question.find(params[:id]))
 
     respond_to do |format|
-      format.html { @presenter = QuestionsPresenter.new(params) }
+      format.html {
+        @presenter = QuestionsPresenter.new(params)
+        @question.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+      }
 
       format.promotion {
         render :partial => 'promotions/question', :locals => { :decorated_question => @question }
