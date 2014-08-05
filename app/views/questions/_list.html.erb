@@ -2,7 +2,8 @@
   <li class='item'>
     <div class="left_questions">
       <div class="avatar">
-        <%= image_tag resized_image_url(item.account.avatar.url, 35, 35), :size => "#{35}x#{35}" %>
+        <%= render :partial => 'accounts/avatar',
+          :locals => { :account => item.account, :width => 35, :height => 35, :title => item.account } %>
       </div>
 
       <div class="details">

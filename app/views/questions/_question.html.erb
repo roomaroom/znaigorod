@@ -1,6 +1,7 @@
 <div class="questions">
   <div class="avatar">
-    <%= image_tag resized_image_url(question.account.avatar.url, 50, 50), :size => "#{50}x#{50}" %>
+    <%= render :partial => 'accounts/avatar',
+      :locals => { :account => question.account, :width => 50, :height => 50, :title => question.account } %>
   </div>
   <h1><%= question.title %></h1>
 
