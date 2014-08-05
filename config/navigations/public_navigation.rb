@@ -59,6 +59,7 @@ SimpleNavigation::Configuration.run do |navigation|
       more.item :services, 'Реклама', services_path, highlights_on: -> { controller_name == 'cooperation' }, :link => { :rel => :nofollow }
       more.item :widgets, 'Виджеты', widgets_root_path, highlights_on: -> { controller_name.match(/widgets/i) }, :link => { :rel => :nofollow }
       more.item :feedback, 'Отзывы и предложения', feedback_path, highlights_on: -> { controller_name == 'feedback' }, :link => { :rel => :nofollow }
+      more.item :questions, 'Спрашивай', questions_path, :link => { :rel => :nofollow }
     end
   end
 end
