@@ -2,19 +2,15 @@
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
+
 <%= simple_nested_form_for @review,
   :as => :review,
   :url => @review.new_record? ? my_reviews_path : my_review_path(@review.id),
   :html => { :class => "my_review_form default_simple_form review_#{@review.useful_type}_form" } do |f| %>
 
+  <span class='red_star'>*</span> <span class='text_help'> - поля, обязательные для заполнения</span>
+
   <%= hidden_field_tag :type, @review.useful_type %>
-
-  <%= f.input :tagit_categories,
-    :as => :string,
-    :label => 'Выбранные категории',
-    :input_html => { :class => 'tagit_categories', :value => @review.categories.map(&:text).join(', ') }%>
-
-  <%= select_tag :cat, options_for_select(Review.categories.options), :class => 'select_type' %>
 
   <%= f.input :title, :as => :text, :input_html => { :placeholder => 'Укажите название обзора' } %>
 
@@ -55,6 +51,15 @@
   </div>
 
   <div style='clear: both'></div>
+
+  <div class="select_categories">
+    <%= select_tag :cat, options_for_select(Review.categories.options), :class => 'select_type', :prompt => 'Выберите категорию' %> <span class="red_star for_categories" title='Обязательное поле'>*</span>
+
+    <%= f.input :tagit_categories,
+      :as => :string,
+      :label => false,
+      :input_html => { :class => 'tagit_categories', :value => @review.categories.map(&:text).join(', ') }%>
+  </div>
 
   <div class='submit'>
     <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-grey' %>

@@ -100,11 +100,16 @@ initTagit = ->
     fieldName:        'categories',
     allowDuplicates:  false,
     readOnly:         true,
-    placeholderText:  'Выберите категорию'
+    placeholderText:  ''
+    beforeTagAdded: (event, ui) ->
+      if ui.tagLabel == $('.select_type option:first').text()
+        return false
+
   }
 
   $('.select_type').change ->
-    $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
+    $('.tagit_categories').tagit('createTag', $(' option:selected', this).text())
+    $(this).val($('option:first', this).val())
 
 @delay = (->
   timer = 0
