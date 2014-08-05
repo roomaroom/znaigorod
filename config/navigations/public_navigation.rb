@@ -10,6 +10,14 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
+    primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
+      questions.noindex = true
+
+      Hash[Question.categories.options].invert.each do |category, title|
+        questions.item category, title, [:questions, category], :link => { :rel => :nofollow }
+      end
+    end
+
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first } do |organization|
       organization.noindex = true
@@ -36,14 +44,6 @@ SimpleNavigation::Configuration.run do |navigation|
 
       Hash[Review.categories.options].invert.each do |category, title|
         reviews.item category, title, [:reviews, category], :link => { :rel => :nofollow }
-      end
-    end
-
-    primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
-      questions.noindex = true
-
-      Hash[Question.categories.options].invert.each do |category, title|
-        questions.item category, title, [:questions, category], :link => { :rel => :nofollow }
       end
     end
 
