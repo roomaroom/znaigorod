@@ -1,9 +1,5 @@
 <% review = ReviewDecorator.new(feed_question.feedable) %>
 
-<div class='poster'>
-  <%= link_to image_tag(review.annotation_image(100, 100), :size => '100x100'), question_path(review) %>
-</div>
-
 <div class='main'>
   <div class='time'><%= time_ago_in_words(feed_question.created_at) %> назад</div>
 
