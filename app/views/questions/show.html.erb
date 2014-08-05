@@ -39,5 +39,13 @@
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @question } %>
 
 </div>
- <!-- TODO -->
-<div class="right"></div>
+<div class="right">
+  <% if @question.decorated_similar.any? %>
+    <h2>Похожие вопросы:</h2>
+    <ul class="similar posters">
+      <% @question.decorated_similar.each do |question| %>
+        <li class="item tiny"><%= render :partial => 'reviews/poster', :locals => { :review => question, :height => 120, :width => 214 } %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

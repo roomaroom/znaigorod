@@ -99,9 +99,15 @@ class ReviewDecorator < ApplicationDecorator
     all_images
   end
 
+  def searcher_params
+    @searcher_params ||= {}.tap do |params|
+      params[:type] = 'question' if review.is_a?(Question)
+    end
+  end
+
   def similar
     @similar ||= begin
-                   searcher = HasSearcher.searcher(:reviews).paginate(:page => 1, :per_page => 3).more_like_this(review)
+                   searcher = HasSearcher.searcher(:reviews, searcher_params).paginate(:page => 1, :per_page => 3).more_like_this(review)
                    searcher.without_eighteen_plus unless review.eighteen_plus?
 
                    searcher.results
