@@ -29,14 +29,14 @@
     readOnly:         true,
     placeholderText:  ''
     beforeTagAdded: (event, ui) ->
-      if ui.tagLabel == 'Выберите категорию'
+      if ui.tagLabel == $('.select_type option:first').text()
         return false
 
   }
 
   $('.select_type').change ->
-    $('.tagit_categories').tagit('createTag', $('.select_type option:selected').text())
-    $('.select_type').val($('.select_type option:first').val())
+    $('.tagit_categories').tagit('createTag', $(' option:selected', this).text())
+    $(this).val($('option:first', this).val())
 
 initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
