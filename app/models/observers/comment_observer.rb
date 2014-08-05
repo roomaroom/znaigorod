@@ -22,6 +22,10 @@ class CommentObserver < ActiveRecord::Observer
 
       MyMailer.delay(:queue => 'mailer').mail_new_answer(comment) if comment.account.email?
     end
+
+    if comment.commentable.is_a?(Question)
+      comment.commentable.delay.index
+    end
   end
 
 
