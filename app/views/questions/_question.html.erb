@@ -1,6 +1,6 @@
 <div class="questions">
   <div class="avatar">
-    <%= image_tag question.account.avatar.url, :size => '50x50' %>
+    <%= image_tag resized_image_url(question.account.avatar.url, 50, 50, :crop => nil) %>
   </div>
   <h1><%= question.title %></h1>
 
