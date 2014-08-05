@@ -20,7 +20,7 @@ class CommentObserver < ActiveRecord::Observer
     if comment.is_answer? && comment.commentable.user != comment.user
       notification_answer_to_question(comment)
 
-      MyMailer.delay(:queue => 'mailer').mail_new_answer(comment) if comment.account.email?
+      MyMailer.delay(:queue => 'mailer').mail_new_answer(comment) if comment.commentable.account.email?
     end
 
     if comment.commentable.is_a?(Question)
