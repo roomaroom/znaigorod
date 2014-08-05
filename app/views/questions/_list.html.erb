@@ -2,7 +2,7 @@
   <li class='item'>
     <div class="left_questions">
       <div class="avatar">
-        <%= image_tag item.account.avatar.url, :size => '35x35' %>
+        <%= image_tag resized_image_url(item.account.avatar.url, 35, 35, :crop => nil) %>
       </div>
 
       <div class="details">
