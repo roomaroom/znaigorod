@@ -44,6 +44,10 @@ class Ability
 
     can :read, SmsClaim if user.is_sales_manager?
 
+    can :edit, Discount do |discount|
+      discount.account == user.account && discount.copies
+    end
+
     case namespace
     when 'manage'
       can :manage, Afisha if user.is_afisha_editor?

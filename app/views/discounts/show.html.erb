@@ -58,7 +58,7 @@
 
   <div class="right">
     <div class="wrapper">
-      <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount && @discount.copies.any? %>
+      <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
 
       <% if @discount.geo_present? %>
         <div class="yandex_map">
@@ -98,7 +98,7 @@
 
   <div class="center">
     <% unless @discount.is_a?(AffiliatedCoupon) %>
-      <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount %>
+      <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount && current_user.is_admin? %>
     <% end %>
 
     <h1><%= @discount.title.text_gilensize %></h1>
