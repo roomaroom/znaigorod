@@ -1,5 +1,5 @@
 <div class="title">
-  <%= link_to item.title.truncate(60), item.is_a?(Afisha) ? afisha_show_path(item) : item %>
+  <%= link_to item.title.truncate(60), item.is_a?(Afisha) ? afisha_show_path(item) : review_path(item) %>
 </div>
 
 <div class="details">
@@ -19,7 +19,7 @@
     <%= link_to (image_tag item.logotype_url, {size: "214x190"}), organization_url(item)  %>
   <% elsif item.is_a?(Review) %>
     <% poster_url = item.poster_image_url || item.all_images.first.file_url %>
-    <%= link_to (image_tag poster_url, {size: "214x190"}), organization_url(item)  %>
+    <%= link_to (image_tag poster_url, {size: "214x190"}), review_path(item)  %>
     <div class="text">
       <%= item.cached_content_for_index %>
     </div>

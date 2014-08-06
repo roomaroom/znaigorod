@@ -98,7 +98,7 @@
 
   <div class="center">
     <% unless @discount.is_a?(AffiliatedCoupon) %>
-      <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount && current_user.is_admin? %>
+      <%= link_to 'изменить', [:edit, :manage, @discount.model], :class => 'icon_edit' if can? :edit, @discount && (current_user && current_user.is_admin?) %>
     <% end %>
 
     <h1><%= @discount.title.text_gilensize %></h1>
