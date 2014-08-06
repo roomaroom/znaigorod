@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        @presenter = QuestionsPresenter.new(params)
+        @presenter = QuestionsPresenter.new(params.merge(:category => @question.categories.map(&:value).first))
         @question.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
       }
 
