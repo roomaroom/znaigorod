@@ -8,6 +8,7 @@ class VotesController < ApplicationController
   belongs_to :work,           :polymorphic => true, :optional => true
 
   belongs_to :review,         :polymorphic => true, :optional => true
+  belongs_to :question,       :polymorphic => true, :optional => true
   belongs_to :review_article, :polymorphic => true, :optional => true
   belongs_to :review_photo,   :polymorphic => true, :optional => true
   belongs_to :review_video,   :polymorphic => true, :optional => true
@@ -23,7 +24,7 @@ class VotesController < ApplicationController
   end
 
   def change_vote
-    change_vote!{
+    change_vote! {
       if current_user
         @vote = current_user.vote_for(parent).first || parent.votes.new(:user_id => current_user.id)
       else
