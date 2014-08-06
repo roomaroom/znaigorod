@@ -15,3 +15,10 @@
     yaCounter14923525.reachGoal('ticket_on_affiche') if yaCounter14923525?
     true
   true
+
+@init_training_banner_stat = () ->
+  $('div.training').mousedown ->
+    yaCounter14923525.reachGoal('gadecky_training') if yaCounter14923525?
+    true
+
+  return

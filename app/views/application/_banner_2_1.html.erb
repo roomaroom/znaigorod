@@ -1,5 +1,15 @@
 <% if Time.zone.now < Time.zone.parse('2014-08-11 04:00:00') %>
   <div class='training <%= params['controller'].split('/').try(&:first) %>'>
-    <embed src='<%= asset_path('public/training.swf') %>' quality='high' name='training' align='middle' allowscriptaccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' width='300px' height='80px'>
+    <object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0' width='300' height='80' align='middle'>
+      <param name='wmode' value='transparent' />
+      <embed src='<%= asset_path('public/training.swf') %>'
+        quality='high' name='training' align='middle'
+        allowscriptaccess='always'
+        wmode='transparent'
+        type='application/x-shockwave-flash'
+        pluginspage='http://www.macromedia.com/go/getflashplayer'
+        width='300' height='80'>
+      </embed>
+    </object>
   </div>
 <% end %>
