@@ -3,6 +3,10 @@
 
   <% if current_user.present? && current_user.account.id == feed_vote_comment.feedable.user.account.id %>
 
+    <div class='avatar'>
+      <%= image_tag(resized_image_url(feed_vote_comment.feedable.user.account.avatar.url, 23, 23), :size => '23x23') %>
+    </div>
+
     <div class='type'>
       Нравится комментарий
     </div>
@@ -26,6 +30,8 @@
     <% unless feed_vote_comment.feedable.voteable.class.name == "Work" %>
       <% if feed_vote_comment.feedable.voteable.commentable.is_a?(Work) %>
         <%= link_to(feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commentable])  %>
+      <% elsif feed_vote_comment.feedable.voteable.commentable.is_a?(Question) %>
+        <%= link_to feed_vote_comment.feedable.voteable.commentable.title, question_path(feed_vote_comment.feedable.voteable.commentable) %>
       <% elsif feed_vote_comment.feedable.voteable.commentable.is_a?(Review) %>
         <%= link_to feed_vote_comment.feedable.voteable.commentable.title, review_path(feed_vote_comment.feedable.voteable.commentable) %>
       <% else %>

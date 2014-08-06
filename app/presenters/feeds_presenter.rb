@@ -39,8 +39,8 @@ class FeedsPresenter
   end
 
   def collection
-    public_feed()
-    private_feed()
+    public_feed
+    private_feed
     @feed
   end
 

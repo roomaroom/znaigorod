@@ -12,5 +12,4 @@ class My::FeedsController < ApplicationController
       render partial: 'my/feeds/feed', :collection => @feeds and return
     }
   end
-
 end

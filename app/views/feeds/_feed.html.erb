@@ -2,8 +2,6 @@
   <div class="feed_wrapper">
     <% if feed.feedable.is_a?(Discount)  %>
       <%= render :partial => 'feeds/feed_discount', :object => feed %>
-    <% elsif feed.feedable.is_a?(Review)  %>
-      <%= render :partial => 'feeds/feed_review', :object => feed %>
     <% else %>
       <%= render :partial => "feeds/feed_#{feed.feedable.class.name.underscore}", :object => feed %>
     <% end %>

@@ -4,6 +4,9 @@
   <div class='time'><%= time_ago_in_words(feed_question.created_at) %> назад</div>
 
   <% if current_user.present? && current_user.account.id == review.account_id %>
+    <div class="avatar">
+      <%= image_tag(resized_image_url(review.account.avatar.url, 23, 23), :size => '23x23', :alt => review.account.title) %>
+    </div>
     <div class='type'>
       <%= t "account.added.#{feed_question.feedable.account.gender}" %> вопрос
     </div>
