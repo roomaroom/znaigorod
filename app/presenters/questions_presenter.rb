@@ -136,7 +136,7 @@ class QuestionsPresenter
   end
 
   def current_count
-    total_count - (@page * @per_page)
+    total_count.to_i - (@page.to_i * @per_page.to_i)
   end
 
   def decorated_collection
@@ -159,7 +159,7 @@ class QuestionsPresenter
 
   def normalize_args
     @page     ||= 1
-    @per_page ||= per_page.to_i.zero? ? 12 : per_page.to_i
+    @per_page ||= per_page.to_i.zero? ? 10 : per_page.to_i
   end
 
   def store_parameters

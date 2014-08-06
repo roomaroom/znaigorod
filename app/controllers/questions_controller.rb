@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html {
         @presenter = QuestionsPresenter.new(params)
+
+        render :partial => 'questions/list', :locals => { :collection => @presenter.collection }, :layout => false and return if request.xhr?
       }
 
       format.promotion {
