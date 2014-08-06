@@ -1,5 +1,9 @@
 <div class="title">
-  <%= link_to item.title.truncate(60), item.is_a?(Afisha) ? afisha_show_path(item) : review_path(item) %>
+  <% if item.is_a?(Organization) %>
+    <%= link_to item.title.truncate(60), organization_url(item) %>
+  <% else %>
+    <%= link_to item.title.truncate(60), item.is_a?(Afisha) ? afisha_show_path(item) : review_path(item) %>
+  <% end %>
 </div>
 
 <div class="details">
