@@ -1,0 +1,21 @@
+<% if (current_user && current_user.liked?(voteable)) %>
+  <div class="user_like liked">
+    <%= link_to 'Мне нравится',
+      polymorphic_url([object_assoc_chain, :change_vote].flatten),
+      :method => :put,
+      :remote => true,
+      :class => "vote_#{voteable.id} change_vote" %>
+  </div>
+<% else %>
+  <div class="user_like dont_liked">
+    <%= link_to 'Мне нравится',
+      polymorphic_url([object_assoc_chain, :change_vote].flatten),
+      :method => :put,
+      :remote => true,
+      :class => "vote_#{voteable.id} change_vote share_to_vk",
+      :onClick => 'share_on_click(this);',
+      'data-owner_id' => current_user.try(:vk_uid),
+      'data-message' => "Рекомендую вопрос \"#{voteable.title}\"",
+      'data-attachments' => data_attachments(voteable) %>
+  </div>
+<% end %>

@@ -16,7 +16,9 @@
   </div>
 
   <% if !voteable.is_a?(Comment) || current_user != voteable.user %>
-    <% if voteable.is_a?(Review) %>
+    <% if voteable.is_a?(Question) %>
+      <%= render :partial => 'votes/question_vote', :locals => { :voteable => voteable, :object_assoc_chain => object_assoc_chain } %>
+    <% elsif voteable.is_a?(Review) %>
       <%= render :partial => 'votes/review_vote', :locals => { :voteable => voteable, :object_assoc_chain => object_assoc_chain } %>
     <% else %>
       <div class="user_like <%= (current_user && current_user.liked?(voteable))? 'liked' : 'dont_liked' %>">
