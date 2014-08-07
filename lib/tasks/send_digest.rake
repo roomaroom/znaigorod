@@ -39,11 +39,11 @@ namespace :send_digest do
   task :site => :environment do
     puts "Sending of site digest. Please wait..."
 
-    if ENV['accounts'].present?
-      args = ENV['accounts'].split(',').map(&:squish)
+    visit_period = 1.day
+    accounts = Account.with_email.with_site_digest.where('last_visit_at <= ?', Time.zone.now - visit_period) - Role.all.map(&:user).map(&:account).uniq
+    accounts.each do |account|
+      SiteDigestWorker.perform_async(account.id)
     end
-
-    SiteDigestWorker.perform_async(args)
   end
 
   desc "Send by email afisha and discout statistics to users"
