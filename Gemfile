@@ -46,7 +46,7 @@ group :default do
   gem 'nested_form'
   gem 'omniauth-facebook'
   gem 'omniauth-google-oauth2'
-  gem 'omniauth-mailru'
+  gem 'omniauth-mailru',            :git => 'git://github.com/semenyukdmitriy/omniauth-mailru', :ref => 'fbf40e8'
   gem 'omniauth-odnoklassniki'
   gem 'omniauth-twitter'
   gem 'omniauth-vkontakte',         '~> 1.3'

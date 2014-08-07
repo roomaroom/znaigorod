@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/semenyukdmitriy/omniauth-mailru
+  revision: fbf40e88732a184fdb5c7dfc893713b49fc7bb14
+  ref: fbf40e8
+  specs:
+    omniauth-mailru (1.0.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+GIT
   remote: git://github.com/sgruhier/capistrano-db-tasks
   revision: 229c2a63ebb43a61ed2aa1f042d4d447ee186037
   specs:
@@ -262,17 +271,14 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.2)
     oj (2.1.4)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
     omniauth-google-oauth2 (0.1.13)
       omniauth (~> 1.0)
       omniauth-oauth2
-    omniauth-mailru (1.0.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -542,7 +548,7 @@ DEPENDENCIES
   nested_form
   omniauth-facebook
   omniauth-google-oauth2
-  omniauth-mailru
+  omniauth-mailru!
   omniauth-odnoklassniki
   omniauth-twitter
   omniauth-vkontakte (~> 1.3)
