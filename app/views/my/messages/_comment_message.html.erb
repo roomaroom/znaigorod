@@ -16,6 +16,8 @@
         <%= link_to message.messageable.commentable.title, polymorphic_path([message.messageable.commentable.contest, message.messageable.commentable], anchor: "comment_#{message.messageable.id}") %>
       <% elsif message.messageable.commentable.is_a?(Discount) or message.messageable.commentable.is_a?(Certificate) or message.messageable.commentable.is_a?(Coupon) %>
         <%= link_to(message.messageable.commentable.title, discount_path(message.messageable.commentable, anchor: "comment_#{message.messageable.id}")) %>
+      <% elsif message.messageable.commentable.is_a?(Question) %>
+        <%= link_to(message.messageable.commentable.title, question_path(message.messageable.commentable, anchor: "comment_#{message.messageable.id}")) %>
       <% elsif message.messageable.commentable.class.name.match(/Review/) %>
         <%= link_to(message.messageable.commentable.title, review_path(message.messageable.commentable, anchor: "comment_#{message.messageable.id}")) %>
       <% else %>
