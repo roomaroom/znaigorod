@@ -33,6 +33,6 @@ class MyMailer < ActionMailer::Base
     @question = answer.commentable
     @user = answer.account
 
-    mail(:to => @question.account.email, :subject => 'В ЗнайГород ответили на ваш вопрос')
+    mail(:to => @question.account.email, :subject => 'В ЗнайГород ответили на ваш вопрос') if @question.account.email?
   end
 end
