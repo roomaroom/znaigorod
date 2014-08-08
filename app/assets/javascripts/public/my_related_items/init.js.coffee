@@ -23,6 +23,8 @@
       success: (response) ->
         $('.posters').empty() if need_empty
         $('.posters').append(response)
+        $('.posters').infinitescroll('destroy')
+        $('.posters').data('infinitescroll', null)
         initInfiniteScroll()
     false
 

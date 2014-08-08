@@ -1,7 +1,7 @@
 <% @related_reviews.each do |review| %>
   <li class='poster'>
     <div class="image">
-      <% poster_url = resized_image_url(review.poster_image_url, 88, 50) || review.all_images.first.nil? ? 'public/default_preview.jpg' : resized_image_url(review.all_images.first.file_url, 88, 50) %>
+      <% poster_url = resized_image_url(review.poster_image_url, 88, 50) || resized_image_url(review.all_images.first.file_url, 88, 50) %>
       <%= image_tag poster_url, size: "88x50"  %>
     </div>
     <div class="details">
