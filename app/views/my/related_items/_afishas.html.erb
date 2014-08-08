@@ -1,7 +1,7 @@
 <% @related_afishas.each do |afisha| %>
   <li class="poster">
     <div class="image">
-      <%= image_tag afisha.poster_url, size: "66x87"  %>
+      <%= image_tag resized_image_url(afisha.poster_url, 66, 87), size: "66x87"  %>
     </div>
     <div class="details">
       <%= link_to afisha.title.truncate(25), afisha_show_path(afisha), :target => '_blank' %>
