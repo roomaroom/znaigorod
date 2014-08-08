@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :related_items, :tagit_categories
+  attr_accessor :related_items, :tagit_categories, :need_change
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
@@ -21,11 +21,11 @@ class Review < ActiveRecord::Base
 
   before_validation :set_categories, :on => :create
 
-  after_save :parse_related_items
+  after_save :parse_related_items, :if => :need_change
 
   attr_accessible :content, :title, :tag, :categories,
     :allow_external_links, :only_tomsk,
-    :related_items, :tagit_categories
+    :related_items, :tagit_categories, :need_change
 
   belongs_to :account
   belongs_to :contest
@@ -152,6 +152,7 @@ class Review < ActiveRecord::Base
   end
 
   def parse_related_items
+    relations.destroy_all if related_items.nil?
     return true unless related_items
     relations.destroy_all
 

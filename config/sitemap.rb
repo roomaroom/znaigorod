@@ -99,6 +99,17 @@ SitemapGenerator::Sitemap.create do
       :lastmod => Review.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
   end
 
+  # Список вопросов
+  add questions_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Question.unscoped.last.updated_at
+
+  # Список обзоров по категориям
+  Question.categories.values.each do |item|
+    add send("question_#{item}_path"),
+      :changefreq => 'daily',
+      :priority => 0.8,
+      :lastmod => Question.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
+  end
+
   # Услуги и цены
   add services_path,      :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
   add benefit_path,       :changefreq => 'weekly', :priority => 0.5, :lastmod => DateTime.now - 7.days
