@@ -13,6 +13,7 @@ Disallow: */sms_claims
 Disallow: */visits
 Disallow: */works/new
 
+Disallow: /questions
 Disallow: /creations/kompyuternyy_mir
 Disallow: /kafe$
 Disallow: /extra_catalogs.html
