@@ -20,7 +20,7 @@
   <% if item.is_a?(Afisha) %>
     <%= link_to (image_tag item.poster_url, {size: "214x260"}), afisha_show_path(item) %>
   <% elsif item.is_a?(Organization) %>
-    <%= link_to (image_tag item.logotype_url, {size: "214x190"}), organization_url(item)  %>
+    <%= link_to (image_tag item.logotype_url.present? ? item.logotype_url : 'public/default_preview.jpg', {size: "214x190"}), organization_url(item)  %>
   <% elsif item.is_a?(Review) %>
     <% poster_url = item.poster_image_url || item.all_images.first.file_url %>
     <%= link_to (image_tag poster_url, {size: "214x190"}), review_path(item)  %>
