@@ -13,7 +13,7 @@
 
   <% content_for :zg_like_with_vk_share do %>
     <!-- ZG Like -->
-    <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @question } %>
+    <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @q } %>
     <!-- / ZG Like -->
   <% end %>
 
@@ -36,7 +36,7 @@
 
   <div style='clear: both'></div>
 
-  <%= render :partial => 'comments/block', :locals => { :parent_obj => @question } %>
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @q } %>
 
 </div>
 <div class="right">

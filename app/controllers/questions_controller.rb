@@ -17,7 +17,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = ReviewDecorator.new(Question.find(params[:id]))
+    @q = Question.find(params[:id]) # для comments & vote
+    @question = ReviewDecorator.new(@q)
 
     respond_to do |format|
       format.html {
