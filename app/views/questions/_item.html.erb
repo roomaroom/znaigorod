@@ -24,7 +24,7 @@
     </div>
     <div style='clear: both'></div>
 
-    <%= link_to 'Ответить', question_path(item.id), :class => 'answer_link' %>
+    <%= link_to 'Ответить', question_path(item), :class => 'answer_link' %>
 
     <div class="info">
       <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= item.comments.count %></span>

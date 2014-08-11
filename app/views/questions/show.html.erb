@@ -40,4 +40,12 @@
 
 </div>
 <div class="right">
+  <% if @question.decorated_similar.any? %>
+    <h2 class='big'>Похожие вопросы</h2>
+    <ul class="similar posters">
+      <% @question.decorated_similar.each do |question| %>
+        <li class="item tiny"><%= render :partial => 'similar', :locals => { :question => question, :height => 120, :width => 214 } %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

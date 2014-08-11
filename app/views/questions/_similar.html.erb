@@ -1,0 +1,19 @@
+<div class="questions for_questions">
+  <div class="avatar">
+    <%= render :partial => 'accounts/avatar',
+      :locals => { :account => question.account, :width => 50, :height => 50, :title => question.account } %>
+  </div>
+  <h2><%= link_to question.title, question_path(question.slug) %></h2>
+
+  <div style='clear: both'> </div>
+  <span class='author'><%= link_to question.account.title, question.account %></span>
+  <span class='date'>
+    <%= I18n.l(question.created_at, :format => '%d %B %Y, %H:%M') %>
+  </span>
+
+  <div style='clear: both'> </div>
+
+  <div class='description'>
+    <%= question.content_for_show.truncate(100).html_safe %>
+  </div>
+</div>
