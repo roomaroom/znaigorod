@@ -104,7 +104,7 @@ SitemapGenerator::Sitemap.create do
 
   # Список обзоров по категориям
   Question.categories.values.each do |item|
-    add send("question_#{item}_path"),
+    add send("questions_#{item}_path"),
       :changefreq => 'daily',
       :priority => 0.8,
       :lastmod => Question.published.select { |p| p.categories.include?(item) }.last.try(:updated_at)
