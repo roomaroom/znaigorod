@@ -10,7 +10,13 @@ next_page_handler = () ->
   button.on 'ajax:success', (evt, response) ->
     $('.pagination').remove()
 
-    $('.js-paginable-list').append(response)
+    if $('.is-js-reviews').length # if this page is /reviews
+      #initIsotopedContent()
+      wrapper = $('<div />').append(response)
+      $('.js-paginable-list').append(wrapper).isotope('appended', wrapper)
+    else
+      $('.js-paginable-list').append(response)
+
     init_sauna_halls_scroll() if $('.need_scrolling').length
 
     setTimeout (->

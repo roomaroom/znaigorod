@@ -32,8 +32,8 @@
 
 </div>
 
-<div class="reviews-paginator">
-  <ul class="posters js-isotoped-content" data-item-width="392">
+<div class="reviews-paginator js-button-pagination">
+  <ul class="posters js-isotoped-content js-paginable-list" data-item-width="392">
     <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
   </ul>
 </div>
