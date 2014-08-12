@@ -32,7 +32,7 @@ class My::QuestionsController < My::ApplicationController
       question.account = current_user.account
     end
 
-    render :partial => "my/reviews/review", :locals => { :review => ReviewDecorator.new(@question) }
+    render :partial => "my/questions/question", :locals => { :question => QuestionDecorator.new(@question) }
   end
 
   protected

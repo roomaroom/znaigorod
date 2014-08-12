@@ -6,9 +6,10 @@
   <h2><%= link_to question.title, question_path(question.slug) %></h2>
 
   <div style='clear: both'> </div>
+
   <span class='author'><%= link_to question.account.title, question.account %></span>
   <span class='date'>
-    <%= I18n.l(question.created_at, :format => '%d %B %Y, %H:%M') %>
+    <%= question.date %>
   </span>
 
   <div style='clear: both'> </div>

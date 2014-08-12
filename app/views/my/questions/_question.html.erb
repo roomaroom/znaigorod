@@ -1,0 +1,18 @@
+<h1><%= question.title %></h1>
+
+<div class="details">
+  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= question.comments.count %></span>
+  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= question.likes_count %></span>
+  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= question.page_visits.count %></span>
+</div>
+
+
+<div class="description">
+  <%= question.raw_content_for_show %>
+
+  <%= question.date %>
+</div>
+
+<div class="author">
+  <%= render :partial => 'commons/author', :locals => { :account => question.account } %>
+</div>
