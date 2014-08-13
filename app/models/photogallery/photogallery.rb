@@ -1,7 +1,7 @@
 class Photogallery < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :agreement, :description, :og_description, :og_image_content_type, :og_image_file_name, :og_image_file_size, :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path, :og_image
+  attr_accessible :agreement, :description, :og_description, :og_image_content_type, :og_image_file_name, :og_image_file_size, :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path, :og_image, :available_participation
 
   friendly_id :title, use: :slugged
 
@@ -21,7 +21,4 @@ class Photogallery < ActiveRecord::Base
     "/znaigorod/photogalleries/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 
-  def available_participation?
-    true
-  end
 end
