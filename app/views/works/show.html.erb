@@ -2,7 +2,7 @@
 <% content_for :page_title, work_title %>
 
 <% content_for :extra_meta do %>
-  <% full_content = @work.author_info
+  <% full_content = @work.author_info.to_s
      full_content += '. ' + @work.description.squish if @work.description.present?
      content = truncate(full_content, :length => 140)
   %>

@@ -15,6 +15,10 @@
   <meta name='twitter:image:src' content='<%= resized_image_url(@photogallery.og_image_url, 130, 63) %>' />
 <% end %>
 
+<% content_for :canonical_link do %>
+  <link rel='canonical' href='<%= photogallery_url(@photogallery) %>' />
+<% end %>
+
 <div class='photogallery <%= @photogallery.slug %>'>
   <%= render :partial => 'photogalleries/description' %>
 
@@ -22,24 +26,22 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => photogallery_url(@photogallery) } %>
   </div>
 
-  <%#= render :partial => 'reviews' if @reviews.any? %>
+  <div class="upload_work_wrapper" id="add_work">
+    <%= simple_form_for [@photogallery, @work] do |f| %>
+      <%= f.error :base %>
+      <%= f.input :description %>
+      <%= f.input :image %>
 
-  <div class="new_work_wrapper">
-    <% if user_signed_in? %>
-      <%= link_to 'Добавить фотографию', new_photogallery_work_path(@photogallery, @work, :anchor => 'add_work'), :class => 'add_work_link' if @photogallery.available_participation? %>
-    <% else %>
-      <%= link_to 'Добавить фотографию', '#', :class => 'auth_for_contest add_work_link', :remote => true, :rel => 'nofollow' if @photogallery.available_participation? %>
+      <div class="agreement_wrapper">
+        <%= f.input :agree, :as => :boolean %>
+        <%= link_to 'соглашения', '#', :class => 'agreement_link' %>
+
+        <div class="agreement_text">
+          <%= @photogallery.agreement.html_safe %>
+        </div>
+      </div>
+
+      <%= f.submit 'Готово', :class => 'submit' %>
     <% end %>
   </div>
-
-  <% if @works.any? %>
-    <div class='works ajaxed_voteable'>
-      <h2>Фотографии (<%= @photogallery.works.count %>)</h2>
-      <ul>
-        <%= render :partial => 'works/photogallery_list' %>
-      </ul>
-    </div>
-  <% end %>
 </div>
-
-<%= paginate @works %>

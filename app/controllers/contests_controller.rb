@@ -9,6 +9,6 @@ class ContestsController < ApplicationController
     @works = @contest.works.ordered.page(params[:page]).per(12)
     @reviews = ReviewDecorator.decorate(@contest.reviews)
 
-    render :partial => 'works/list' and return if request.xhr?
+    render :partial => 'works/contest_list' and return if request.xhr?
   end
 end
