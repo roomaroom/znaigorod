@@ -45,7 +45,7 @@
     <%= render :partial => 'commons/share_this' %>
     <% if @work.context.starts_at <= Time.zone.now %>
       <% if @work.context.ends_at >= Time.zone.now %>
-        <div class='contest_work_like'
+        <div class='contest_work_like'>
           <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
         </div>
       <% else %>

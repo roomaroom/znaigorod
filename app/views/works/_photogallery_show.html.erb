@@ -39,12 +39,12 @@
       <%= @work.title if @work.title.present? %>
       <%= '&nbsp;'.html_safe unless @work.title.present? %>
     </h2>
-    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+    <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
     <div class='image'>
       <%= work_image_tag @work %>
     </div>
     <%= render :partial => 'commons/share_this' %>
-    <div class='contest_work_like'
+    <div class='contest_work_like'>
       <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
     </div>
     <div class='author'>
