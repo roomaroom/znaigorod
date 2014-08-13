@@ -12,10 +12,16 @@ class Photogallery < ActiveRecord::Base
     :message => 'Изображение должно быть в формате jpeg, jpg или png'
   }
 
+  has_many :works, :as => :context, :dependent => :destroy
+
   alias_attribute :title_ru,       :title
   alias_attribute :title_translit, :title
 
   def self.generate_vfs_path
     "/znaigorod/photogalleries/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
+  end
+
+  def available_participation?
+    true
   end
 end

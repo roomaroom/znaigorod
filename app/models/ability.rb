@@ -19,7 +19,7 @@ class Ability
     can [:new, :create], Offer if user.persisted?
 
     can [:new, :create], Work do |work|
-      user.persisted? && work.contest.available_participation?
+      user.persisted? && work.context.available_participation?
     end
 
     can :manage, Visit do |visit|

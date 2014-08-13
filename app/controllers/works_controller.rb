@@ -1,13 +1,13 @@
 class WorksController < ApplicationController
   inherit_resources
-  belongs_to :contest
+  belongs_to :contest, :photogallery, :polymorphic => true
 
   load_and_authorize_resource :only => [:new, :create]
 
   actions :new, :create, :show
 
   def create
-    create! { contest_path(@work.contest) }
+    create! { @work.context }
   end
 
   protected
