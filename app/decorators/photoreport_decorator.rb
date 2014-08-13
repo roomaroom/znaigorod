@@ -14,5 +14,4 @@ class PhotoreportDecorator < AfishaDecorator
   def images_count
     afisha.images.count
   end
-
 end

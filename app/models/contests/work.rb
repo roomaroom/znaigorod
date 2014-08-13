@@ -9,8 +9,9 @@ class Work < ActiveRecord::Base
   belongs_to :account
   belongs_to :context, :polymorphic => true
 
-  has_many :votes, :as => :voteable, :dependent => :destroy
-  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :votes,                  :as => :voteable, :dependent => :destroy
+  has_many :page_visits,            :as => :page_visitable, :dependent => :destroy
+  has_many :comments,               :as => :commentable, :dependent => :destroy
 
   validates_presence_of :image_url, :unless => :image?
 
@@ -35,6 +36,10 @@ class Work < ActiveRecord::Base
 
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
+  end
+
+  def likes_count
+    votes.liked.size
   end
 
   def to_feed_title
