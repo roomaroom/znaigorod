@@ -1,0 +1,45 @@
+<% content_for :page_title, @photogallery.title.excerpt %>
+
+<% content_for :extra_meta do %>
+  <meta property='og:site_name' content='ЗнайГород - фотопроект' />
+  <meta property='og:title' content='Фотопроект ЗнайГорода «<%= @photogallery.title %>' />
+  <meta property='og:url' content='<%= photogallery_url(@photogallery) %>' />
+  <meta property='og:image' content='<%= resized_image_url(@photogallery.og_image_url, 130, 63) %>' />
+  <% if @photogallery.og_description? %>
+    <meta property='og:description' content='<%= @photogallery.og_description.squish %>' />
+  <% end %>
+
+  <meta name='twitter:site' content='@znaigorod' />
+  <meta name='twitter:title' content='Фотопроект ЗнайГорода «<%= @photogallery.title %>' />
+  <meta name='twitter:url' content='<%= photogallery_url(@photogallery) %>' />
+  <meta name='twitter:image:src' content='<%= resized_image_url(@photogallery.og_image_url, 130, 63) %>' />
+<% end %>
+
+<div class='photogallery <%= @photogallery.slug %>'>
+  <%= render :partial => 'photogalleries/description' %>
+
+  <div class='share_and_likes'>
+    <%= render :partial => 'commons/share_and_like_this', :locals => { :url => photogallery_url(@photogallery) } %>
+  </div>
+
+  <%#= render :partial => 'reviews' if @reviews.any? %>
+
+  <div class="new_work_wrapper">
+    <% if user_signed_in? %>
+      <%= link_to 'Добавить фотографию', new_photogallery_work_path(@photogallery, @work, :anchor => 'add_work'), :class => 'add_work_link' if @photogallery.available_participation? %>
+    <% else %>
+      <%= link_to 'Добавить фотографию', '#', :class => 'auth_for_contest add_work_link', :remote => true, :rel => 'nofollow' if @photogallery.available_participation? %>
+    <% end %>
+  </div>
+
+  <% if @works.any? %>
+    <div class='works ajaxed_voteable'>
+      <h2>Фотографии (<%= @photogallery.works.count %>)</h2>
+      <ul>
+        <%= render :partial => 'works/list' %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @works %>

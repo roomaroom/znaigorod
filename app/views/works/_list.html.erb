@@ -2,31 +2,40 @@
   <li class='<%= cycle('first', 'second', 'third', 'fourth') %>'>
     <div class='title'>
       <% if work.title.present? %>
-        <%= link_to(work.title, contest_work_path(@contest, work)) %>
+        <%= link_to(work.title, [work.context, work]) %>
       <% else %>
         &nbsp;
       <% end %>
     </div>
     <div class='image'>
-      <%= link_to contest_work_path(@contest, work) do %>
+      <%= link_to [work.context, work] do %>
         <%= image_tag(resized_image_url(work.image_url, 278, 278), :size => '278x278', :alt => work.title? ? work.title : work.image_file_name) %>
       <% end %>
     </div>
-    <% contest_description = work.author_info
-       contest_description += '. ' + work.description.squish if work.description.present?
-       contest_description = truncate(contest_description, :length => 140)
+    <%
+      contest_description = work.author_info
+      contest_description += '. ' + work.description.squish if work.description.present?
+      contest_description = truncate(contest_description, :length => 140)
     %>
-    <% if @contest.starts_at <= Time.zone.now %>
-      <% if @contest.ends_at >= Time.zone.now %>
-        <div class='contest_work_like'>
-          <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
-        </div>
+    <% if @contest %>
+      <% if @contest.starts_at <= Time.zone.now %>
+        <% if @contest.ends_at >= Time.zone.now %>
+          <div class='contest_work_like'>
+            <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
+          </div>
+        <% else %>
+          <div class='contest_work_vk_like_on_list'>
+            <%= t 'contest.votes', :count => work.context_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %>
+          </div>
+        <% end %>
       <% else %>
-        <div class='contest_work_vk_like_on_list'><%= t 'contest.votes', :count => work.context_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %></div>
+        <div class='contest_work_vk_like_on_list'>
+          Голосование начнётся <%= l @contest.starts_at %>
+        </div>
       <% end %>
     <% else %>
-      <div class='contest_work_vk_like_on_list'>
-        Голосование начнётся <%= l @contest.starts_at %>
+      <div class='contest_work_like'>
+        <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
       </div>
     <% end %>
   </li>
