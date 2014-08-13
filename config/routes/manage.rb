@@ -21,7 +21,6 @@ Znaigorod::Application.routes.draw do
         put 'fire_event_state/:event' => 'offers#fire_state_event', :on => :member, :as => :fire_state_event
       end
 
-
       get 'discounts' => 'discounts#index'
     end
 
@@ -75,6 +74,10 @@ Znaigorod::Application.routes.draw do
     get '/movie_info_from_kinopoisk/:movie_id' => 'afishas#movie_info_from_kinopoisk', :as => :movie_info_from_kinopoisk
 
     resources :contests do
+      resources :works, :except => [:index, :show]
+    end
+
+    resources :photogalleries do
       resources :works, :except => [:index, :show]
     end
 

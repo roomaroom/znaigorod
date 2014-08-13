@@ -1,3 +1,21 @@
 class Photogallery < ActiveRecord::Base
+  extend FriendlyId
+
   attr_accessible :agreement, :description, :og_description, :og_image_content_type, :og_image_file_name, :og_image_file_size, :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path
+
+  friendly_id :title, use: :slugged
+
+  has_attached_file :og_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+
+  validates_attachment :og_image, :content_type => {
+    :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
+    :message => 'Изображение должно быть в формате jpeg, jpg или png'
+  }
+
+  alias_attribute :title_ru,       :title
+  alias_attribute :title_translit, :title
+
+  def self.generate_vfs_path
+    "/znaigorod/photogalleries/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
+  end
 end

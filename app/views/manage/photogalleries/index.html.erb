@@ -1,0 +1,14 @@
+<div class="new_link">
+  <%= link_to t('new_photogallery'), new_manage_photogallery_url('photogallery[vfs_path]' => Photogallery.generate_vfs_path), :class => 'new_resource' %>
+</div>
+
+<div class="clearfix"></div>
+
+<ul class='collection'>
+  <% @collection.each do |item| %>
+    <li>
+      <%= link_to item.title, [:manage, item] %>
+      <%= content_tag :span, item.respond_to?(:category) ? item.category : item.class.model_name.human, :class => 'category' %>
+    </li>
+  <% end %>
+</ul>

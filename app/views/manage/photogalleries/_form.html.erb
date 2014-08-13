@@ -1,0 +1,18 @@
+<%= javascript_include_tag 'esp-ckeditor/application' %>
+<%= javascript_include_tag 'manage/info_plugin/info_plugin' %>
+
+<div class='form_view'>
+  <%= simple_form_for @photogallery, :url => [:manage, @photogallery], :html => { :novalidate => true }  do |f| %>
+    <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path' } %>
+    <%= f.input :title %>
+    <%= f.input :description, :as => :ckeditor, :label => false %>
+    <%= f.input :agreement %>
+    <%= f.input :og_description %>
+
+    <div class="actions">
+      <%= link_to "&larr; Назад".html_safe, :back %>
+      <%= f.submit 'Сохранить' %>
+      <%= link_to 'Удалить'.html_safe, resource_path, method: :delete, confirm: 'Уверены что хотите удалить?', class: :destroy unless resource.new_record? %>
+    </div>
+  <% end %>
+</div>

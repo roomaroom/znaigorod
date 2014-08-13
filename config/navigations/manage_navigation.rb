@@ -49,6 +49,10 @@ SimpleNavigation::Configuration.run do |navigation|
       :highlights_on => ->(){ resource_class == Contest },
       :if => -> { can?(:manage, Contest) }
 
+    primary.item :photogalleries, 'Фотопроекты', manage_photogalleries_path,
+      :highlights_on => ->(){ resource_class == Photogallery },
+      :if => -> { can?(:manage, Photogallery) }
+
     primary.item :reviews, 'Обзоры', manage_reviews_path,
       :highlights_on => ->(){ resource_class == Review },
       :if => -> { can?(:manage, Review) } do |review_item|
