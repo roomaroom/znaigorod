@@ -16,4 +16,8 @@ class PhotogalleryDecorator < ApplicationDecorator
 
     h.content_tag :div, I18n.l(date, :format => "%d %B %Y"), :class => :date
   end
+
+  def likes_count
+    votes.liked.size
+  end
 end

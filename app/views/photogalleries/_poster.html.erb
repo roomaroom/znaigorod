@@ -3,9 +3,9 @@
 </div>
 
 <div class="details">
-  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%#= photogallery.comments.count %></span>
-  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%#= photogallery.likes_count %></span>
-  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%#= photogallery.page_visits.count %></span>
+  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= photogallery.comments.count %></span>
+  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= photogallery.likes_count %></span>
+  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= photogallery.page_visits.count %></span>
 </div>
 
 <%= photogallery.date %>

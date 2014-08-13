@@ -12,7 +12,10 @@ class Photogallery < ActiveRecord::Base
     :message => 'Изображение должно быть в формате jpeg, jpg или png'
   }
 
-  has_many :works, :as => :context, :dependent => :destroy
+  has_many :works,                 :as => :context, :dependent => :destroy
+  has_many :comments,              :as => :commentable,    :dependent => :destroy
+  has_many :votes,                 :as => :voteable,       :dependent => :destroy
+  has_many :page_visits,           :as => :page_visitable, :dependent => :destroy
 
   alias_attribute :title_ru,       :title
   alias_attribute :title_translit, :title

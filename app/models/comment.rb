@@ -13,6 +13,7 @@ class Comment < ActiveRecord::Base
   has_one   :feed,            :as => :feedable,    :dependent => :destroy
   has_many  :comments_images, :as => :attachable,  :dependent => :destroy
   has_many  :reviews
+  has_many  :photogalleries
 
   accepts_nested_attributes_for :comments_images
 
