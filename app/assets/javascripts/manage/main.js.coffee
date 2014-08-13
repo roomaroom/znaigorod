@@ -20,6 +20,7 @@ $ ->
   init_markitup() if $('.discount .markitup').length
   init_offers() if $('.offers').length
   init_contest() if $('#contest_og_image').length
+  init_photogallery() if $('#photogallery_og_image').length
   initMyReviews() if $('.review_form').length
   initPromoteAfisha() if $('.promoted_link').length
   initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length

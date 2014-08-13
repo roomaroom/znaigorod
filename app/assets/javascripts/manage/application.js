@@ -33,6 +33,7 @@
  * = require ./curtail
  * = require ./webcam
  * = require ./contest
+ * = require ./photogalleries
  * = require ./accounts_for_lottery
  * = require ./offers
  * = require ./promote_afisha
