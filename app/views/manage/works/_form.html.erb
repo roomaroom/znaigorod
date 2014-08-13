@@ -1,20 +1,10 @@
 <div class='form_view'>
-  <%= simple_form_for @work, :url => [:manage, @contest, @work], :html => { :novalidate => true }  do |f| %>
+  <%= simple_form_for @work, :url => [:manage, @work.context, @work], :html => { :novalidate => true }  do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :author_info %>
-
-    <div class='image'>
-      <h3>Изображение:</h3>
-      <%= f.input :image_url, :as => :hidden, :input_html => { :id => 'work_image_url' } %>
-      <div class="choose_file_wrapper">
-        <div class="uploaded_file_wrapper image">
-          <%= image_tag f.object.image_url if f.object.image_url? %>
-        </div>
-        <%= link_to t('remove_link'), '#', :class => 'remove_link', :style => ("display: none;" unless f.object.image_url?) %>
-        <%= link_to t('choose_file'), '#', :class => 'work_image_url choose_file', :params => "vfs_path=#{f.object.vfs_path}", :style => ('display: none;' if f.object.image_url?) %>
-      </div>
-    </div>
+    <%= f.input :image %>
+    <%= f.input :agree, :as => :boolean, :input_html => {:checked => true}%>
 
     <div class="actions">
       <%= link_to "&larr; Назад".html_safe, :back %>

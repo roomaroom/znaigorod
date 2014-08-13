@@ -3,13 +3,14 @@ class Manage::WorksController < Manage::ApplicationController
 
   actions :all, :except => [:index, :show]
 
-  belongs_to :contest
+  belongs_to :contest, :polymorphic => true, :optional => true
+  belongs_to :photogallery, :polymorphic => true, :optional => true
 
   def create
-    create! { manage_contest_path(@contest) }
+    create! { [:manage, @work.context] }
   end
 
   def update
-    update! { manage_contest_path(@contest) }
+    update! { [:manage, @work.context] }
   end
 end

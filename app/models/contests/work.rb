@@ -13,7 +13,6 @@ class Work < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   validates_presence_of :image_url, :unless => :image?
-  validates :account_id, :uniqueness => { :scope => :contest_id }
 
   before_validation :check_account_work_uniquness
   before_validation :check_contest_actuality
@@ -35,7 +34,7 @@ class Work < ActiveRecord::Base
   scope :ordered_by_likes, order('vk_likes desc')
 
   def vfs_path
-    "/znaigorod/contests/#{contest.id}"
+    "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
   end
 
   def to_feed_title
@@ -46,7 +45,8 @@ class Work < ActiveRecord::Base
   private
 
   def check_contest_actuality
-    errors[:base] << 'Contest is not actual' unless contest.actual?
+    return true if context.is_a?(Photogallery)
+    errors[:base] << 'Contest is not actual' unless context.actual?
 
     true
   end
@@ -58,7 +58,8 @@ class Work < ActiveRecord::Base
   end
 
   def check_account_work_uniquness
-    errors[:base] << 'Можно добавить только одну работу для конкурса' if contest.accounts.include?(account)
+    return true if context.is_a?(Photogallery)
+    errors[:base] << 'Можно добавить только одну работу для конкурса' if context.accounts.include?(account)
 
     true
   end

@@ -1,6 +1,7 @@
 class WorksController < ApplicationController
   inherit_resources
-  belongs_to :contest, :photogallery, :polymorphic => true
+  belongs_to :contest, :polymorphic => true, :optional => true
+  belongs_to :photogallery, :polymorphic => true, :optional => true
 
   load_and_authorize_resource :only => [:new, :create]
 
