@@ -48,7 +48,7 @@ $ ->
   init_review_gallery() if $('.js-gallery, .review_show').length
   handleReviewGallerySort() if $('.js-gallery').length
   initUlToggle() if $('.js-ul-toggler')
-  init_photogallery() if $('.photogallery').length
+  init_photogallery() if $('.photogallery').length && !$('.photogalleries_show').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   initButtonPagination() if $('.js-button-pagination').length || $('.button_pagination').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
