@@ -2,6 +2,7 @@ class PhotogalleriesController < ApplicationController
 
   def index
     @photogalleries = Photogallery.order('id desc')
+    @p = PhotogalleryDecorator.decorate(@photogalleries)
   end
 
   def show

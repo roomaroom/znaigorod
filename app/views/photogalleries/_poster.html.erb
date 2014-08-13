@@ -1,0 +1,15 @@
+<div class="title">
+  <%= photogallery.truncated_title_link(60) %>
+</div>
+
+<div class="details">
+  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%#= photogallery.comments.count %></span>
+  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%#= photogallery.likes_count %></span>
+  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%#= photogallery.page_visits.count %></span>
+</div>
+
+<%= photogallery.date %>
+
+<div class="annotation">
+  <%= render :partial => "photogalleries/photo", :locals => { :photogallery => photogallery, :height => height, :width => width } %>
+</div>

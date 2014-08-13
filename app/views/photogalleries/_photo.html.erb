@@ -1,0 +1,16 @@
+<ul class="images">
+  <% if photogallery.works.count > 5 %>
+    <% photogallery.works.each_with_index do |work, index| %>
+      <li>
+        <% if index == 0 %>
+          <%= link_to image_tag(resized_image_url(work.image_url, 234, 158)), photogallery_path(photogallery) %>
+        <% else %>
+          <%= link_to image_tag(resized_image_url(work.image_url, 116, 78)), photogallery_path(photogallery) %>
+        <% end %>
+      </li>
+    <% end %>
+    <span class="counter fa fa-camera"> <%= photogallery.works.size %></span>
+  <% else %>
+    <%= link_to image_tag(resized_image_url(photogallery.works.first.image_url, 354, 240)), photogallery_path(photogallery) %>
+  <% end %>
+</ul>

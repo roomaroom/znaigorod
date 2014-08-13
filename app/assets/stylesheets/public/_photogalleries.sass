@@ -1,0 +1,100 @@
+.photogalleries-paginator
+  .posters
+    padding: 0 0 100px 0
+    position: relative
+
+    li.item
+      border: 1px solid #ccc
+      float: left
+      margin: 10px 6px
+      padding: 12px
+      width: 354px
+
+      &.tiny
+        width: 214px
+
+        .title
+          font-size: 14px
+
+        .text
+          +clearfix
+          max-width: 200px
+          text-overflow: ellipsis
+          vertical-align: top
+          white-space: nowrap
+
+      .title
+        font-size: 18px
+        line-height: 25px
+        margin: 0 0 10px 0
+        text-align: center
+
+      .date, .details
+        margin: 0 0 5px 0
+
+      .details
+        +clearfix
+        color: #999
+        float: right
+        font-size: 12px
+
+        span
+          margin: 0 0 0 5px
+
+      .date
+        color: #999
+        float: left
+        font-size: 11px
+        line-height: 16px
+
+      .annotation
+        clear: both
+        font-size: 14px
+        line-height: 20px
+        padding: 5px 0 0 0
+
+        .images
+          margin: 0 auto
+          height: 240px
+          position: relative
+
+        .counter
+          +border-radius(5px)
+          background-color: rgba(0, 0, 0, 0.5)
+          bottom: 10px
+          color: #fff
+          padding: 7px
+          position: absolute
+          right: 10px
+
+        li
+          float: left
+          height: 80px
+          margin: 0
+          padding: 0
+          width: 118px
+
+        .js-video-preview
+          position: relative
+
+          &:hover
+            &:after
+              opacity: 1
+
+          &:after
+            background: image_url('public/youtube.png')
+            content: ''
+            display: block
+            height: 32px
+            left: 50%
+            margin-left: -16px
+            margin-top: -100px
+            opacity: 0.5
+            position: absolute
+            top: 50%
+            width: 32px
+
+        li:first-child
+          height: 160px
+          width: 236px
+
