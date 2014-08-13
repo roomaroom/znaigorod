@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140731023345) do
+ActiveRecord::Schema.define(:version => 20140813020923) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -664,6 +664,22 @@ ActiveRecord::Schema.define(:version => 20140731023345) do
   add_index "payments", ["paymentable_type"], :name => "index_payments_on_paymentable_type"
   add_index "payments", ["type"], :name => "index_payments_on_type"
   add_index "payments", ["user_id"], :name => "index_payments_on_user_id"
+
+  create_table "photogalleries", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "description"
+    t.string   "vfs_path"
+    t.text     "og_description"
+    t.string   "og_image_file_name"
+    t.string   "og_image_content_type"
+    t.integer  "og_image_file_size"
+    t.datetime "og_image_updated_at"
+    t.text     "og_image_url"
+    t.text     "agreement"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "place_items", :force => true do |t|
     t.string   "url"
