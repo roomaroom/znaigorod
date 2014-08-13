@@ -43,12 +43,17 @@
     <div class='image'>
       <%= work_image_tag @work %>
     </div>
-    <div class="share_and_likes">
-      <%= render :partial => 'commons/like_this', :locals => { :url => photogallery_url(@work.context) } %>
-    </div>
-    <div class='contest_work_like'>
+
+    <% content_for :zg_like_with_vk_share do %>
+      <!-- ZG Like -->
       <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
+      <!-- / ZG Like -->
+    <% end %>
+
+    <div class="share_and_likes_photogallery ajaxed_voteable">
+      <%= render :partial => 'commons/like_this', :locals => { :url => photogallery_url(@work) } %>
     </div>
+
     <div class='author'>
       <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
     </div>

@@ -2,7 +2,7 @@
   <li class='<%= cycle('first', 'second', 'third', 'fourth') %>'>
     <div class='title'>
       <% if work.description.present? %>
-        <%= link_to(work.description, [work.context, work]) %>
+        <%= link_to(work.description.truncate(60), [work.context, work]) %>
       <% else %>
         &nbsp;
       <% end %>
