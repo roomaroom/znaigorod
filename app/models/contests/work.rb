@@ -7,7 +7,7 @@ class Work < ActiveRecord::Base
   attr_accessor :agree
 
   belongs_to :account
-  belongs_to :contest
+  belongs_to :context, :polymorphic => true
 
   has_many :votes, :as => :voteable, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy

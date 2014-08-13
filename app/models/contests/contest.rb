@@ -5,7 +5,7 @@ class Contest < ActiveRecord::Base
 
   attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :participation_ends_at, :vfs_path, :og_description, :og_image
 
-  has_many :works, :dependent => :destroy
+  has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
   has_many :reviews
 
