@@ -1,0 +1,61 @@
+<% work_title = [@work.title, "Поддержи участника конкурса ЗнайГорода «#{@work.context.title}"].compact.reject(&:empty?).join('. ') %>
+<% content_for :page_title, work_title %>
+
+<% content_for :extra_meta do %>
+  <% full_content = @work.author_info.to_s
+     full_content += '. ' + @work.description.squish if @work.description.present?
+     content = truncate(full_content, :length => 140)
+  %>
+  <meta name='description' content='<%= full_content %>' />
+
+  <meta property='og:site_name' content='ЗнайГород - конкурс' />
+
+  <meta property='og:title' content='<%= work_title %>' />
+  <% if @work.context.og_description? %>
+    <meta property='og:description' content='<%= @work.context.og_description.squish %>' />
+  <% end %>
+  <meta property='og:url' content='<%= contest_work_url(@work.context, @work) %>' />
+  <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
+
+  <meta name='twitter:site' content='@znaigorod' />
+  <meta name='twitter:title' content='<%= work_title %>' />
+  <meta name='twitter:url' content='<%= contest_work_url(@work.context, @work) %>' />
+  <meta name='twitter:image:src' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
+<% end %>
+
+<% content_for :canonical_link do %>
+  <link rel='canonical' href='<%= contest_url(@work.context) %>' />
+<% end %>
+
+<div class='contest <%= @work.context.slug %>'>
+  <h1><%= @work.context.title.excerpt %></h1>
+
+  <div class='description'>
+    <%= @work.context.description.as_html %>
+  </div>
+  <div class='work ajaxed_voteable'>
+    <%= link_to 'Все участники конкурса', contest_url(@work.context) %>
+    <h2>
+      <%= @work.title if @work.title.present? %>
+      <%= '&nbsp;'.html_safe unless @work.title.present? %>
+    </h2>
+    <div class='image'>
+      <%= work_image_tag @work %>
+    </div>
+    <%= render :partial => 'commons/share_this' %>
+    <% if @work.context.starts_at <= Time.zone.now %>
+      <% if @work.context.ends_at >= Time.zone.now %>
+        <div class='contest_work_like'
+          <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
+        </div>
+      <% else %>
+        <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
+      <% end %>
+    <% end %>
+    <div class='author'>
+      <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
+    </div>
+    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+  </div>
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @work } %>
+</div>
