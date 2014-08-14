@@ -47,6 +47,10 @@ class Work < ActiveRecord::Base
     self.title
   end
 
+  def rating
+    0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
+  end
+
   private
 
   def check_contest_actuality

@@ -22,8 +22,6 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => photogallery_url(@photogallery) } %>
   </div>
 
-  <%#= render :partial => 'reviews' if @reviews.any? %>
-
   <div class="new_work_wrapper">
     <% if user_signed_in? %>
       <%= link_to 'Добавить фотографию', new_photogallery_work_path(@photogallery, @work, :anchor => 'add_work'), :class => 'add_work_link' if @photogallery.available_participation? %>
@@ -35,6 +33,26 @@
   <% if @works.any? %>
     <div class='works ajaxed_voteable'>
       <h2>Фотографии (<%= @photogallery.works.count %>)</h2>
+      <div class="filter_and_share">
+        <div class='presentation_filters question'>
+          <!--noindex-->
+          <div class="order_by">
+            <p>Сортировать по:</p>
+            <ul>
+              <li <%= " class='selected'".html_safe if params[:order_by] == 'newest' %>>
+                <%= link_to 'По новизне', params.merge( { :order_by => 'newest' } ) %>
+              </li>
+              <li <%= " class='selected'".html_safe if params[:order_by] == 'popular' %>>
+                <%= link_to 'По полуряности', params.merge( { :order_by => 'popular' } ) %>
+              </li>
+            </ul>
+          </div>
+          <!--/noindex-->
+        </div>
+      </div>
+
+      <div style='clear: both'></div>
+
       <ul>
         <%= render :partial => 'works/photogallery_list' %>
       </ul>

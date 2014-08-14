@@ -7,7 +7,12 @@ class PhotogalleriesController < ApplicationController
 
   def show
     @photogallery = Photogallery.find(params[:id])
-    @works = @photogallery.works.ordered.page(params[:page]).per(12)
+    #@works = @photogallery.works.ordered.page(params[:page]).per(12)
+    @works = if params[:order_by] == 'newest'
+               @photogallery.works.ordered.page(params[:page]).per(12)
+             else
+               @photogallery.works.ordered_by_likes.page(params[:page]).per(12)
+             end
 
     @p = PhotogalleryDecorator.decorate(@photogallery)
 
