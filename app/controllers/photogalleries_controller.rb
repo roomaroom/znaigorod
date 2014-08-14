@@ -16,7 +16,7 @@ class PhotogalleriesController < ApplicationController
 
     @photo_decorator = PhotogalleryDecorator.decorate(@photogallery)
 
-    @photogallery.pdelay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+    @photogallery.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     render :partial => 'works/photogallery_list' and return if request.xhr?
   end
 end

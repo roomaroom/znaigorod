@@ -35,10 +35,9 @@
   </div>
   <div class='work ajaxed_voteable'>
     <%= link_to 'Все фотографии', photogallery_url(@work.context) %>
-    <h2>
-      <%= @work.title if @work.title.present? %>
-      <%= '&nbsp;'.html_safe unless @work.title.present? %>
-    </h2>
+
+    <%= content_tag :h2, @work.title if @work.title.present?%>
+
     <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
     <div class='image'>
       <%= work_image_tag @work %>
