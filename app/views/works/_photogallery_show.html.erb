@@ -47,6 +47,7 @@
       <%= content_tag :h2, @work.title if @work.title.present?%>
 
       <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
+
       <div class='image'>
         <%= work_image_tag @work %>
       </div>
