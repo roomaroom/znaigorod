@@ -14,7 +14,7 @@ class WorksController < ApplicationController
   def show
     show! {
       @work.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
-      @photogalleries = Photogallery.all
+      @photogalleries = Photogallery.limit(5)
     }
   end
 
