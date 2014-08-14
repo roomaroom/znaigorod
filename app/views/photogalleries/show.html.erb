@@ -22,6 +22,12 @@
     <%= render :partial => 'commons/share_and_like_this', :locals => { :url => photogallery_url(@photogallery) } %>
   </div>
 
+  <div class="details">
+    <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= @photo_decorator.comments.count %></span>
+    <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= @photo_decorator.likes_count %></span>
+    <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= @photo_decorator.page_visits.count %></span>
+  </div>
+
   <div class="new_work_wrapper">
     <% if user_signed_in? %>
       <%= link_to 'Добавить фотографию', new_photogallery_work_path(@photogallery, @work, :anchor => 'add_work'), :class => 'add_work_link' if @photogallery.available_participation? %>

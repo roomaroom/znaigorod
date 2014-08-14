@@ -33,6 +33,13 @@
   <div class='description'>
     <%= @work.context.description.as_html %>
   </div>
+
+  <div class="details">
+    <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= @work.comments.count %></span>
+    <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= @work.likes_count %></span>
+    <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= @work.page_visits.count %></span>
+  </div>
+
   <div class='work ajaxed_voteable'>
     <%= link_to 'Все фотографии', photogallery_url(@work.context) %>
 
