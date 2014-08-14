@@ -20,7 +20,7 @@
 
 <div class="photogalleries-paginator">
   <ul class="posters js-isotoped-content" data-item-width="392">
-    <%= render :partial => 'photogalleries/posters', :locals => { :collection => @p, :height => '200', :width => '354' } %>
+    <%= render :partial => 'photogalleries/posters', :locals => { :decorator => @photo_decorator, :height => '200', :width => '354' } %>
   </ul>
 </div>
 

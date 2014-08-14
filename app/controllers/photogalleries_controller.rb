@@ -2,7 +2,7 @@ class PhotogalleriesController < ApplicationController
 
   def index
     @photogalleries = Photogallery.order('id desc')
-    @p = PhotogalleryDecorator.decorate(@photogalleries)
+    @photo_decorator = PhotogalleryDecorator.decorate(@photogalleries)
   end
 
   def show
@@ -14,9 +14,9 @@ class PhotogalleriesController < ApplicationController
                @photogallery.works.ordered_by_rating.page(params[:page]).per(12)
              end
 
-    @p = PhotogalleryDecorator.decorate(@photogallery)
+    @photo_decorator = PhotogalleryDecorator.decorate(@photogallery)
 
-    @p.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
+    @photogallery.pdelay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
     render :partial => 'works/photogallery_list' and return if request.xhr?
   end
 end
