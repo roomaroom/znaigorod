@@ -71,4 +71,9 @@
 
 <div class="right_works">
   <h3>Еще галереи</h3>
+  <ul class="similar posters">
+    <% @photogalleries.each do |photogallery| %>
+      <li class="item tiny"><%= render :partial => 'photogalleries/poster', :locals => { :photogallery => PhotogalleryDecorator.decorate(photogallery), :height => 120, :width => 214 } %></li>
+    <% end %>
+  </ul>
 </div>
