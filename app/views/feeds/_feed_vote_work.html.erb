@@ -1,6 +1,6 @@
 <div class='poster'>
   <% if feed_vote_work.feedable.voteable.image_url.present? %>
-    <%= link_to [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable] do %>
+    <%= link_to [feed_vote_work.feedable.voteable.context, feed_vote_work.feedable.voteable] do %>
       <%= image_tag(resized_image_url(feed_vote_work.feedable.voteable.image_url, 100 , 100 ),
                     :size => '100x100')  %>
     <% end %>
@@ -29,6 +29,6 @@
   <% end %>
 
   <div class='title'>
-    <%= link_to("Работа " + feed_vote_work.feedable.voteable.to_feed_title, [feed_vote_work.feedable.voteable.contest, feed_vote_work.feedable.voteable])  %>
+    <%= link_to("Работа " + feed_vote_work.feedable.voteable.to_feed_title, [feed_vote_work.feedable.voteable.context, feed_vote_work.feedable.voteable])  %>
   </div>
 </div>
