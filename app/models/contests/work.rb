@@ -33,6 +33,7 @@ class Work < ActiveRecord::Base
 
   scope :ordered, order('created_at desc')
   scope :ordered_by_likes, order('vk_likes desc')
+  scope :ordered_by_rating, order('rating desc')
 
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
@@ -47,8 +48,8 @@ class Work < ActiveRecord::Base
     self.title
   end
 
-  def rating
-    0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
+  def update_rating
+    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
   end
 
   private

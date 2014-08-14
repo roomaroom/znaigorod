@@ -26,6 +26,11 @@ namespace :update_rating do
     Discount.actual.map(&:update_rating)
   end
 
+  desc "Обновление рейтинга работ"
+  task :works => :environment do
+    Work.all.map(&:update_rating)
+  end
+
   desc "Обновление рейтинга"
-  task :all => [:accounts, :afisha, :organizations, :reviews, :discounts]
+  task :all => [:accounts, :afisha, :organizations, :reviews, :discounts, :works]
 end

@@ -39,7 +39,7 @@
           <div class="order_by">
             <p>Сортировать по:</p>
             <ul>
-              <li <%= " class='selected'".html_safe if params[:order_by] == 'newest' %>>
+              <li <%= " class='selected'".html_safe if params[:order_by] == 'newest' || params[:order_by].nil? %>>
                 <%= link_to 'По новизне', params.merge( { :order_by => 'newest' } ) %>
               </li>
               <li <%= " class='selected'".html_safe if params[:order_by] == 'popular' %>>
