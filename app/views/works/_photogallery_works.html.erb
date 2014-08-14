@@ -1,0 +1,9 @@
+<ul class="images">
+  <div>
+    <%= link_to photos.title, photogallery_work_path(@more_photos, photos) if photos.title.present? %>
+  </div>
+  <%= link_to image_tag(resized_image_url(photos.image_url, width, height)), photogallery_work_path(@more_photos, photos) %>
+  <div>
+    <% if photos.author_info.present? %><b>Об авторе: <%= photos.author_info %></b><% end %>
+  </div>
+</ul>

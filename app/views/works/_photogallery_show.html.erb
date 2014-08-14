@@ -81,4 +81,15 @@
       <% end %>
     </ul>
   <% end %>
+
+  <% if @more_photos.works.any? %>
+    <h3>Еще работы из этой галереи</h3>
+    <ul class="similar posters">
+      <% @more_photos.works.each do |photos| %>
+        <li class="item tiny">
+          <%= render :partial => 'photogallery_works', :locals => { :photos => photos, :height => 120, :width => 214 } %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
