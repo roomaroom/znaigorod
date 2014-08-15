@@ -16,9 +16,16 @@
     true
   true
 
-@init_training_banner_stat = () ->
-  $('div.training').mousedown ->
-    yaCounter14923525.reachGoal('gadecky_training') if yaCounter14923525?
+#@init_training_banner_stat = () ->
+  #$('div.training').mousedown ->
+    #yaCounter14923525.reachGoal('gadecky_training') if yaCounter14923525?
+    #true
+
+  #return
+
+@init_love_kiss_hug_banner_stat = () ->
+  $('div.love_kiss_hug').click ->
+    yaCounter14923525.reachGoal('love_kiss_hug') if yaCounter14923525?
     true
 
   return
