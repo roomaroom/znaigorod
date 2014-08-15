@@ -33,7 +33,7 @@
     <% end %>
 
     <% if feed_comment.feedable.commentable.is_a?(Work) %>
-      <%= link_to("Работа " + feed_comment.feedable.commentable.to_feed_title, [feed_comment.feedable.commentable.contest, feed_comment.feedable.commentable])  %>
+      <%= link_to("Работа " + feed_comment.feedable.commentable.to_feed_title, [feed_comment.feedable.commentable.context, feed_comment.feedable.commentable])  %>
     <% end %>
 
     <% if feed_comment.feedable.commentable.is_a?(Afisha) %>

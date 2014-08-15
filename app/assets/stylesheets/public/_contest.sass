@@ -344,6 +344,21 @@
             margin-right: 0
 
           .image
+            position: relative
+            &:hover
+              img
+                +opacity(0.15)
+              .details
+                display: block
+
+            .details
+              bottom: 10px
+              color: #999
+              cursor: help
+              display: none
+              left: 20px
+              position: absolute
+              z-index: 999
             img
               display: block
               width: 278px
@@ -794,6 +809,100 @@
 
         span
           color: #fedb32
+
+  .reviews_index
+    margin: 0
+    padding: 0
+
+    .posters
+      padding: 0 !important
+
+.samyy-dolgiy-potseluy
+  > h1
+    display: none
+
+  .description
+    +clearfix
+    font-size: 14px
+
+    h1, h2
+      background: none
+      color: #179497
+      font-size: 22px
+      line-height: 32px
+      margin: 0
+      padding: 0
+
+    h3
+      font-size: 16px
+      line-height: 24px
+
+    p, ul
+      margin-bottom: 15px
+
+    ul li
+      margin-bottom: 3px
+
+    .left
+      float: left
+      width: 405px
+
+      .contest_logo
+        background: transparent image_url('public/samyy-dolgiy-potseluy/main.jpg') no-repeat center center
+        height: 293px
+        width: 405px
+
+      .organizator
+        background: transparent image_url('public/samyy-dolgiy-potseluy/organizator.jpg') no-repeat center center
+        height: 43px
+        margin-top: 0px
+        margin-bottom: 10px
+
+      .partners
+        background: transparent image_url('public/samyy-dolgiy-potseluy/partners.jpg') no-repeat center center
+        height: 100px
+        margin-left: -11px
+
+    .right
+      float: left
+      width: 755px
+      margin: 0 0 0 20px
+
+      h1
+        color: #ef008c
+        margin-bottom: 10px
+
+      .info_with_background
+        background-color: #e3f3fa
+        margin-bottom: 10px
+        padding: 10px
+
+      .pink_color
+        color: #ef008c
+
+      .div_with_background
+        background-color: #01a6ea
+        padding: 5px
+        width: 76px
+        margin: 20px 0
+
+  .share_and_likes
+    border-bottom: 2px solid #ffd9ee !important
+
+  .add_work_link
+    background-color: #f261b6 !important
+
+    &:hover
+      border: 1px solid #ef008c !important
+
+  .works
+    h2
+      background-color: #ffe8f5
+
+    .contest_work_like
+      float: right !important
+      margin: 10px !important
+
 
   .reviews_index
     margin: 0
