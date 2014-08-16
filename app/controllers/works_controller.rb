@@ -14,8 +14,10 @@ class WorksController < ApplicationController
   def show
     show! {
       @work.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
-      @photogalleries = Photogallery.find(:all, :conditions => ["slug != ?", params[:photogallery_id]], :limit => 5)
-      @more_photos = Photogallery.find(params[:photogallery_id])
+      if @work.context.is_a?(Photogallery)
+        @photogalleries = Photogallery.find(:all, :conditions => ["slug != ?", params[:photogallery_id]], :limit => 5)
+        @more_photos = Photogallery.find(params[:photogallery_id])
+      end
     }
   end
 
