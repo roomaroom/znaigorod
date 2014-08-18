@@ -5,13 +5,11 @@
     <%= @contest.description.as_html %>
   </div>
   <% if @works.any? %>
-    <div class='works ajaxed_voteable'>
+    <div class='works ajaxed_voteable js-button-pagination'>
       <h2>Участники</h2>
-      <ul>
+      <ul class='js-paginable-list'>
         <%= render :partial => 'list' %>
       </ul>
     </div>
   <% end %>
 </div>
-
-<%= paginate @works.context %>

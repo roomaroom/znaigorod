@@ -1,0 +1,25 @@
+<li class='<%= cycle('first', 'second', 'third', 'fourth') %>'>
+  <div class='title'>
+    <% if work.description.present? %>
+      <%= link_to(work.description.truncate(60), [work.context, work]) %>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class='image'>
+    <%= link_to [work.context, work] do %>
+      <%= image_tag(resized_image_url(work.image_url, 278, 278), :size => '278x278', :alt => work.title? ? work.title : work.image_file_name) %>
+    <% end %>
+  </div>
+  <%
+      contest_description = work.author_info.to_s
+  contest_description += '. ' + work.description.squish if work.description.present?
+  contest_description = truncate(contest_description, :length => 140)
+%>
+
+  <div class="details">
+    <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= work.comments.count %></span>
+    <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= work.likes_count %></span>
+    <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= work.page_visits.count %></span>
+  </div>
+</li>

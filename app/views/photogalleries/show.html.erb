@@ -55,14 +55,13 @@
       </div>
     </div>
     <div style='clear: both'></div>
-    <div class='works ajaxed_voteable'>
+    <div class='works ajaxed_voteable js-button-pagination'>
       <h2>Фотографии (<%= @photogallery.works.count %>)</h2>
 
-      <ul>
+      <ul class='js-paginable-list'>
         <%= render :partial => 'works/photogallery_list' %>
       </ul>
+
     </div>
   <% end %>
 </div>
-
-<%= paginate @works %>
