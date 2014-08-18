@@ -48,6 +48,17 @@
         <%= work_image_tag @work %>
       </div>
 
+      <h3>Еще фотографии из этой галереи</h3>
+      <div class='photogallery'>
+        <ul>
+          <% @more_photos.works.each_with_index do |photos, index| %>
+            <li class="item tiny">
+              <%= render :partial => 'photogallery_works', :locals => { :photos => photos, :height => 120, :width => 214 } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
       <% content_for :zg_like_with_vk_share do %>
         <!-- ZG Like -->
         <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
@@ -74,18 +85,6 @@
         <li class="item tiny">
           <%= render :partial => 'photogalleries/poster', :locals => { :photogallery => PhotogalleryDecorator.decorate(photogallery), :height => 120, :width => 214 } %>
         </li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <% if @more_photos.works.any? %>
-    <h3>Еще работы из этой галереи</h3>
-    <ul class="similar posters">
-      <% @more_photos.works.each_with_index do |photos, index| %>
-        <li class="item tiny">
-          <%= render :partial => 'photogallery_works', :locals => { :photos => photos, :height => 120, :width => 214 } %>
-        </li>
-        <% break if index > 4 %>
       <% end %>
     </ul>
   <% end %>
