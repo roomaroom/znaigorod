@@ -37,27 +37,26 @@
   </div>
 
   <% if @works.any? %>
+    <div class="filter_and_share">
+      <div class='presentation_filters question'>
+        <!--noindex-->
+        <div class="order_by">
+          <p>Сортировать по:</p>
+          <ul>
+            <li <%= " class='selected'".html_safe if params[:order_by] == 'newest' || params[:order_by].nil? %>>
+              <%= link_to 'По новизне', params.merge( { :order_by => 'newest' } ) %>
+            </li>
+            <li <%= " class='selected'".html_safe if params[:order_by] == 'popular' %>>
+              <%= link_to 'По полуряности', params.merge( { :order_by => 'popular' } ) %>
+            </li>
+          </ul>
+        </div>
+        <!--/noindex-->
+      </div>
+    </div>
+    <div style='clear: both'></div>
     <div class='works ajaxed_voteable'>
       <h2>Фотографии (<%= @photogallery.works.count %>)</h2>
-      <div class="filter_and_share">
-        <div class='presentation_filters question'>
-          <!--noindex-->
-          <div class="order_by">
-            <p>Сортировать по:</p>
-            <ul>
-              <li <%= " class='selected'".html_safe if params[:order_by] == 'newest' || params[:order_by].nil? %>>
-                <%= link_to 'По новизне', params.merge( { :order_by => 'newest' } ) %>
-              </li>
-              <li <%= " class='selected'".html_safe if params[:order_by] == 'popular' %>>
-                <%= link_to 'По полуряности', params.merge( { :order_by => 'popular' } ) %>
-              </li>
-            </ul>
-          </div>
-          <!--/noindex-->
-        </div>
-      </div>
-
-      <div style='clear: both'></div>
 
       <ul>
         <%= render :partial => 'works/photogallery_list' %>

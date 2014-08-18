@@ -31,10 +31,6 @@
   <div class='contest <%= @work.context.slug %>'>
     <h1><%= @work.context.title.excerpt %></h1>
 
-    <div class='description'>
-      <%= @work.context.description.as_html %>
-    </div>
-
     <div class="details">
       <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= @work.comments.count %></span>
       <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= @work.likes_count %></span>
@@ -85,10 +81,11 @@
   <% if @more_photos.works.any? %>
     <h3>Еще работы из этой галереи</h3>
     <ul class="similar posters">
-      <% @more_photos.works.each do |photos| %>
+      <% @more_photos.works.each_with_index do |photos, index| %>
         <li class="item tiny">
           <%= render :partial => 'photogallery_works', :locals => { :photos => photos, :height => 120, :width => 214 } %>
         </li>
+        <% break if index > 4 %>
       <% end %>
     </ul>
   <% end %>
