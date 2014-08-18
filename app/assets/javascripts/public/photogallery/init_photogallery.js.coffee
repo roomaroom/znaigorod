@@ -11,8 +11,8 @@
     scroll: scroll_count
     visible: visible_count
 
-  if $('.photogallery a').hasClass('stub')
-    return
+  if $('.photogallery img').hasClass('stub')
+    return true
   else
     $('.photogallery a').colorbox
       close: 'закрыть'
