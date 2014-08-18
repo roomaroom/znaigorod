@@ -58,7 +58,9 @@
 
   <div class="right">
     <div class="wrapper">
-      <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
+      <% if @discount.copies.any? %>
+        <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
+      <% end %>
 
       <% if @discount.geo_present? %>
         <div class="yandex_map">
