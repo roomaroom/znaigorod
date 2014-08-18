@@ -1,1 +1,1 @@
-<%= link_to image_tag(resized_image_url(photos.image_url, width, height), :class => 'stub'), photogallery_work_path(@more_photos, photos) %>
+<%= link_to image_tag(resized_image_url(photos.image_url, width, height), :class => 'stub'), photogallery_work_path(@more_photos, photos), :class => photos.slug == params[:id] ? 'selected' : 'non-selected' %>

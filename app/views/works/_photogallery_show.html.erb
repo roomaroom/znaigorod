@@ -51,7 +51,7 @@
       <h3>Еще фотографии из этой галереи</h3>
       <div class='photogallery'>
         <ul>
-          <% @more_photos.works.each_with_index do |photos, index| %>
+          <% @more_photos.works.each do |photos| %>
             <li class="item tiny">
               <%= render :partial => 'photogallery_works', :locals => { :photos => photos, :height => 120, :width => 214 } %>
             </li>
