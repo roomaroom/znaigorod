@@ -6,14 +6,16 @@
       data:
         title: $('#afisha_title').val()
       success: (response) ->
-        if response
+        wrapper = $("<div />").append(response)
+
+        if $.trim($(wrapper).html()) == ''
+          $('.similar_afishas').hide()
+          $('.preview').show()
+        else
           $('.preview').hide()
           $('.similar_afishas').empty()
           $('.similar_afishas').append(response)
           $('.similar_afishas').show()
-        else
-          $('.similar_afishas').hide()
-          $('.preview').show()
 
 
   $('body').on 'click', '.yes', ->
