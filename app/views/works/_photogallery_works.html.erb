@@ -1,1 +1,4 @@
-<%= link_to image_tag(resized_image_url(photos.image_url, width, height), :class => 'stub'), photogallery_work_path(@more_photos, photos), :class => photos.slug == params[:id] ? 'selected' : 'non-selected' %>
+<%= link_to image_tag(resized_image_url(photo.image_url, width, height), :class => 'stub'), photogallery_work_path(@more_photos, photo), :class => photo.slug == params[:id] ? 'selected' : 'non-selected' %>
+<% if photo.slug == params[:id] %>
+  <span style='display: none' class='js-start-position'><%= index %></span>
+<% end %>
