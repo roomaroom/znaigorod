@@ -52,7 +52,9 @@
       </div>
 
       <div class="wrapper">
-        <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount && @discount.copies.any? %>
+        <% if @discount.copies.any? %>
+          <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
+        <% end %>
       </div>
     </div>
 
@@ -121,7 +123,7 @@
       </div>
 
       <div class="text">
-        <%= @discount.html_description %>
+        <%= @discount.description_html %>
       </div>
 
       <div class="tags_and_visits">
