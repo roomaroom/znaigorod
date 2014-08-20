@@ -127,9 +127,10 @@
     color: #999
     margin: 4px 10px 0 0
 
-  .item, .pagination
-    border: 0px !important
-    width: 1180px
+  .item,
+    &.pagination
+      border: 0px !important
+      width: 1180px
 
   .order_by
     ul
@@ -227,6 +228,7 @@
       li:first-child
         height: 82px
         width: 142px
+
 .agreement_wrapper
   .agreement_text
     li
