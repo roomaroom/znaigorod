@@ -29,7 +29,7 @@
   <div class='title'>
     <% unless feed_vote_comment.feedable.voteable.class.name == "Work" %>
       <% if feed_vote_comment.feedable.voteable.commentable.is_a?(Work) %>
-        <%= link_to(feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commentable])  %>
+        <%= link_to(feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.context, feed_vote_comment.feedable.voteable.commentable])  %>
       <% elsif feed_vote_comment.feedable.voteable.commentable.is_a?(Question) %>
         <%= link_to feed_vote_comment.feedable.voteable.commentable.title, question_path(feed_vote_comment.feedable.voteable.commentable) %>
       <% elsif feed_vote_comment.feedable.voteable.commentable.is_a?(Review) %>
@@ -42,7 +42,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <%= link_to("Работа " + feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.contest, feed_vote_comment.feedable.voteable.commentable])  %>
+      <%= link_to("Работа " + feed_vote_comment.feedable.voteable.commentable.to_feed_title, [feed_vote_comment.feedable.voteable.commentable.context, feed_vote_comment.feedable.voteable.commentable])  %>
     <% end %>
   </div>
 
