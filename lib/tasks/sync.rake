@@ -180,14 +180,11 @@ namespace :sync do
     day_nodes = page.css('.av_tab_section')
     bar = ProgressBar.new(day_nodes.count)
     day_nodes.each do |day_node|
-      rows = day_node.css('tr').to_a
       date = day_node.css('div.tab').text.match(/((\d{2})\.(\d{2})\.(\d{4}))/)[1]
-      rows.each do |seance|
-        columns = seance.css('td').map(&:text)
-        time = columns[0].match(/((\d{2}):(\d{2}))/)[1]
+      day_node.css('td').map(&:text).each_slice(3) do |seance|
+        time, title, price_min = seance
         starts_at  =  Time.zone.parse("#{date} #{time}")
-        title = columns[1].gsub(/2D|3D/, '').gsub(/\d+\+\)/, '').squish
-        price_min = columns[2].to_i
+        title = title.gsub(/2D|3D/, '').gsub(/\d+\+\)/, '').squish
         movies[title] ||= []
         movies[title] << {starts_at: starts_at, price_min: price_min, price_max: price_min }
       end
