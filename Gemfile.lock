@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/sgruhier/capistrano-db-tasks
+  revision: 229c2a63ebb43a61ed2aa1f042d4d447ee186037
+  specs:
+    capistrano-db-tasks (0.2)
+
+GIT
   remote: git://github.com/semenyukdmitriy/omniauth-mailru
   revision: fbf40e88732a184fdb5c7dfc893713b49fc7bb14
   ref: fbf40e8
@@ -6,12 +12,6 @@ GIT
     omniauth-mailru (1.0.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
-
-GIT
-  remote: git://github.com/sgruhier/capistrano-db-tasks
-  revision: 229c2a63ebb43a61ed2aa1f042d4d447ee186037
-  specs:
-    capistrano-db-tasks (0.2)
 
 GEM
   remote: https://rubygems.org/
