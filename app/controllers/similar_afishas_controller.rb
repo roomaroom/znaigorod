@@ -7,5 +7,7 @@ class SimilarAfishasController < ApplicationController
     else
       render :nothing => true, :status => 200, :content_type => 'text/html' and return
     end
+
+    render :nothing => true, :status => 200, :content_type => 'text/html' and return
   end
 end
