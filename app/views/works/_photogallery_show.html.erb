@@ -37,10 +37,14 @@
       <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= @work.page_visits.count %></span>
     </div>
 
-    <div class='work ajaxed_voteable'>
+    <div style='clear: both'></div>
+
+    <div class='work ajaxed_voteable work_photogallery'>
       <%= link_to 'Все фотографии', photogallery_url(@work.context) %>
 
       <%= content_tag :h2, @work.title if @work.title.present?%>
+
+      <div style='clear: both'></div>
 
       <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
 

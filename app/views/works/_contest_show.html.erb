@@ -33,16 +33,19 @@
   <div class='description'>
     <%= @work.context.description.as_html %>
   </div>
-  <div class='work ajaxed_voteable'>
+  <div class='work ajaxed_voteable work_contest'>
     <%= link_to 'Все участники конкурса', contest_url(@work.context) %>
     <h2>
       <%= @work.title if @work.title.present? %>
       <%= '&nbsp;'.html_safe unless @work.title.present? %>
     </h2>
+
     <div class='image'>
       <%= work_image_tag @work %>
     </div>
+
     <%= render :partial => 'commons/share_this' %>
+
     <% if @work.context.starts_at <= Time.zone.now %>
       <% if @work.context.ends_at >= Time.zone.now %>
         <div class='contest_work_like'>
