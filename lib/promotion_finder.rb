@@ -15,7 +15,7 @@ class PromotionFinder
 
   private
   def split_url
-    @splited_url = promotion_url.split('/')
+    @splited_url = promotion_url.try(:split, '/') || 'afisha'
     @splited_url = @splited_url.drop(1)
   end
 
