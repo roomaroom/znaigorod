@@ -33,9 +33,9 @@
                 <span class="gray_text"><%= t "notice_mailer.at" %></span>
                 <% if material.voteable.commentable.is_a?(Work) %>
                   <% if material.voteable.commentable.title.present? %>
-                    <%= link_to material.voteable.commentable.title, contest_work_path(material.voteable.commentable.contest, material.voteable.commentable, keys_for_path) %>
+                    <%= link_to material.voteable.commentable.title, contest_work_path(material.voteable.commentable.context, material.voteable.commentable, keys_for_path) %>
                   <% else %>
-                    <%= link_to material.voteable.commentable.slug, contest_work_path(material.voteable.commentable.contest, material.voteable.commentable, keys_for_path) %>
+                    <%= link_to material.voteable.commentable.slug, contest_work_path(material.voteable.commentable.context, material.voteable.commentable, keys_for_path) %>
                   <% end %>
                 <% end %>
                 <% %w[afisha discount organization].each do |item| %>
