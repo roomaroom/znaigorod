@@ -1,0 +1,43 @@
+<div class="place-header">
+  <span class="place-title with-counter">
+    <%= link_to '%item_url%' do %>
+      %title%
+    <% end %>
+  </span>
+  <span class="place-counter">
+    <%= link_to '%item_url%' do %>
+      все <%= photogalleries.count %>
+    <% end %>
+  </span>
+</div>
+
+<div class="place-content photogalleries">
+  <ul>
+    <% photogalleries.each do |photogallery| %>
+      <li class="item">
+        <p><%= link_to photogallery.title, photogallery_path(photogallery) %></p>
+        <% if photogallery.works.any? %>
+          <div class="annotation">
+            <ul class="images">
+              <% if photogallery.works.count > 5 %>
+                <% photogallery.works.ordered.limit(6).each_with_index do |work, index| %>
+                  <li>
+                    <% if index == 0 %>
+                      <%= link_to image_tag(resized_image_url(work.image_url, 141, 81)), photogallery_path(photogallery) %>
+                    <% else %>
+                      <%= link_to image_tag(resized_image_url(work.image_url, 70, 40)), photogallery_path(photogallery) %>
+                    <% end %>
+                    <% break if index > 4 %>
+                  </li>
+                <% end %>
+                <span class="counter fa fa-camera"> <%= photogallery.works.size %></span>
+              <% else %>
+                <%= link_to image_tag(resized_image_url(photogallery.works.ordered.first.image_url, 214, 122)), photogallery_path(photogallery) %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
