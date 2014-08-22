@@ -45,7 +45,9 @@
       <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
 
       <div class='image'>
+        <button class='prev_image js-prev-image'>предыдущая</button>
         <%= work_image_tag @work %>
+        <button class='next_image js-next-image'>следующая</button>
       </div>
 
       <h3>Еще фотографии из этой галереи</h3>

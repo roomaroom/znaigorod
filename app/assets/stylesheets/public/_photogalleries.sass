@@ -148,6 +148,46 @@
     color: #999
     margin: 4px 10px 0 0
 
+  .image
+    position: relative
+
+    .next_image:active, .prev_image:active
+      outline: 0
+
+    .next_image, .prev_image
+      background: none
+      border: 0
+      cursor: pointer
+      margin: 0
+      outline: none
+      overflow: visible
+      padding: 0
+      top: 5%
+      width: 50%
+      height: 100%
+
+    .next_image
+      +opacity(0.3)
+      background: transparent image_url('public/right-arrow.png') no-repeat center right
+      margin-top: -32px
+      position: absolute
+      right: 10px
+      text-indent: -9999px
+
+      &:hover
+        +opacity(1)
+
+    .prev_image
+      +opacity(0.3)
+      background: transparent image_url('public/left-arrow.png') no-repeat center left
+      left: 10px
+      margin-top: -32px
+      position: absolute
+      text-indent: -9999px
+
+      &:hover
+        +opacity(1)
+
   .photogallery
     margin: 20px auto !important
     width: 850px

@@ -112,4 +112,5 @@
  * = require ./banners
  * = require ./isotoped_content
  * = require ./main
+ * = require ./photogalleries
  */

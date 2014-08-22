@@ -2,7 +2,7 @@
 
 module ContestHelper
 
-  def work_image_tag work, max_width = 890
+  def work_image_tag work, max_width = 860
     source_width, source_height = work.image_url.match(/\d+-\d+/)[0].split('-')
     image_width = source_width.to_i
     image_height = source_height.to_i
