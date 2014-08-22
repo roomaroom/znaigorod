@@ -32,8 +32,8 @@ class Work < ActiveRecord::Base
 
   validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
 
-  scope :ordered, order('created_at desc')
-  scope :ordered_by_likes, order('vk_likes desc')
+  scope :ordered,           order('created_at desc')
+  scope :ordered_by_likes,  order('vk_likes desc')
   scope :ordered_by_rating, order('rating desc')
 
   def vfs_path
