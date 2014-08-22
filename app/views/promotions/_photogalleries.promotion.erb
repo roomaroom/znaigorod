@@ -36,6 +36,8 @@
               <% end %>
             </ul>
           </div>
+        <% else %>
+          <%= raw photogallery.description.truncate(255) %>
         <% end %>
       </li>
     <% end %>
