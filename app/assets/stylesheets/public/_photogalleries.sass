@@ -148,61 +148,69 @@
     color: #999
     margin: 4px 10px 0 0
 
-  .image
-    position: relative
+  .work
+    text-align: center
 
-    .next_image:active, .prev_image:active
-      outline: 0
+    > a
+      float: left
 
-    .next_image, .prev_image
-      background: none
-      border: 0
-      cursor: pointer
-      margin: 0
-      outline: none
-      overflow: visible
-      padding: 0
-      top: 5%
-      width: 50%
-      height: 100%
+    .image
+      +clearfix
+      +inline-block
+      clear: both
+      position: relative
 
-    .next_image
-      +opacity(0.3)
-      background: transparent image_url('public/right-arrow.png') no-repeat center right
-      margin-top: -32px
-      position: absolute
-      right: 10px
-      text-indent: -9999px
+      .next_image:active, .prev_image:active
+        outline: 0
 
-      &:hover
-        +opacity(1)
+      .next_image, .prev_image
+        background: none
+        border: 0
+        cursor: pointer
+        margin: 0
+        outline: none
+        overflow: visible
+        padding: 0
+        top: 5%
+        width: 50%
+        height: 100%
 
-    .prev_image
-      +opacity(0.3)
-      background: transparent image_url('public/left-arrow.png') no-repeat center left
-      left: 10px
-      margin-top: -32px
-      position: absolute
-      text-indent: -9999px
+      .next_image
+        +opacity(0.3)
+        background: transparent image_url('public/right-arrow.png') no-repeat center right
+        margin-top: -32px
+        position: absolute
+        right: 10px
+        text-indent: -9999px
 
-      &:hover
-        +opacity(1)
+        &:hover
+          +opacity(1)
 
-  .photogallery
-    margin: 20px auto !important
-    width: 850px
+      .prev_image
+        +opacity(0.3)
+        background: transparent image_url('public/left-arrow.png') no-repeat center left
+        left: 10px
+        margin-top: -32px
+        position: absolute
+        text-indent: -9999px
 
-    .jcarousel-container-horizontal
-      width: 816px
+        &:hover
+          +opacity(1)
 
-      .jcarousel-clip-horizontal
-        width: 815px
+    .photogallery
+      margin: 20px auto !important
+      width: 850px
 
-      .jcarousel-item a
-        &.selected
-          height: 93px
-          border: 2px solid #ff7f1a
+      .jcarousel-container-horizontal
+        width: 816px
 
+        .jcarousel-clip-horizontal
+          width: 815px
+
+        .jcarousel-item a
+          &.selected
+            height: 93px
+            border: 2px solid #ff7f1a
 
 .left_works
   border-right: 1px solid #e5e5e5
