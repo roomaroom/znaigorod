@@ -25,4 +25,6 @@
       <%= link_to image_tag(resized_image_url(photogallery.works.ordered.first.image_url, width, height)), photogallery_path(photogallery) %>
     <% end %>
   </ul>
+<% else %>
+  <%= raw photogallery.description.truncate(255) %>
 <% end %>
