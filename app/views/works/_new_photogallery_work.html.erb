@@ -27,21 +27,8 @@
   </div>
 
   <div class="upload_work_wrapper" id="add_work">
-    <%= simple_form_for [@photogallery, @work] do |f| %>
-      <%= f.error :base %>
-      <%= f.input :description %>
-      <%= f.input :image %>
-
-      <div class="agreement_wrapper">
-        <%= f.input :agree, :as => :boolean %>
-        <%= link_to 'соглашения', '#', :class => 'agreement_link' %>
-
-        <div class="agreement_text">
-          <%= @photogallery.agreement.html_safe %>
-        </div>
-      </div>
-
-      <%= f.submit 'Готово', :class => 'submit' %>
-    <% end %>
+    <div class="agreement_wrapper">
+      <%= file_field_tag 'work_upload', multiple: true %>
+    </div>
   </div>
 </div>

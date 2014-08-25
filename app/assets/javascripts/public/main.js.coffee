@@ -86,6 +86,7 @@ $ ->
   initMyQuestions() if $('.questions_form').length
   initReviewVideoPreview() if $('.reviews_index').length
   init_next_image() if $('.js-next-image').length
+  test()
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length
   initIsotopedContent() if $('.js-isotoped-content').length

@@ -21,6 +21,17 @@ class WorksController < ApplicationController
     }
   end
 
+  def add
+    @photogallery = Photogallery.find(params[:photogallery_id])
+
+    if request.xhr?
+      @test = @photogallery.works.create! :image => params[:work_upload], :agree => '1'
+      render :json =>  {
+
+      }
+    end
+  end
+
   protected
 
   def build_resource

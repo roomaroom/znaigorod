@@ -88,6 +88,8 @@ Znaigorod::Application.routes.draw do
 
   resources :photogalleries, :only => [:index, :show] do
     resources :works, :only => [:new, :create, :show] do
+      get 'add' => 'works#add', on: :collection
+      post 'add' => 'works#add', on: :collection
       put 'change_vote' => 'votes#change_vote', :as => :change_vote
       get 'liked' => 'votes#liked', :as => :liked
     end
