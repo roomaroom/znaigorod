@@ -24,7 +24,7 @@ class Feed < ActiveRecord::Base
       self.type_of_feedable = self.feedable.class.name.underscore
       self.type_of_feedable = 'review' if review_types.include? self.type_of_feedable
     end
-    self.type_of_feedable = feed.feedable.is_answer? ? 'question' : 'comment' if self.feedable_type == 'Comment'
+    self.type_of_feedable = self.feedable.is_answer? ? 'question' : 'comment' if self.feedable_type == 'Comment'
 
     self.save
   end
