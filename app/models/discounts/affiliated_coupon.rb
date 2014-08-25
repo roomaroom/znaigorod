@@ -56,5 +56,6 @@ end
 #  placeholder               :text
 #  afisha_id                 :integer
 #  external_id               :string(255)
+#  discount_type             :string(255)
 #
 

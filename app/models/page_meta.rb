@@ -27,3 +27,26 @@ class PageMeta < ActiveRecord::Base
     "/znaigorod/page_metas/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 end
+
+# == Schema Information
+#
+# Table name: page_meta
+#
+#  id                    :integer          not null, primary key
+#  path                  :text
+#  title                 :text
+#  header                :text
+#  keywords              :text
+#  description           :text
+#  introduction          :text
+#  og_title              :text
+#  og_description        :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  og_image_file_name    :string(255)
+#  og_image_content_type :string(255)
+#  og_image_file_size    :integer
+#  og_image_updated_at   :datetime
+#  og_image_url          :text
+#
+

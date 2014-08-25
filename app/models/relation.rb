@@ -7,3 +7,17 @@ class Relation < ActiveRecord::Base
 
   belongs_to :slave, :polymorphic => true
 end
+
+# == Schema Information
+#
+# Table name: relations
+#
+#  id          :integer          not null, primary key
+#  master_id   :integer
+#  master_type :string(255)
+#  slave_id    :integer
+#  slave_type  :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+

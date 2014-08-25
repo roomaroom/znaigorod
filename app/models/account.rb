@@ -392,5 +392,6 @@ end
 #  avatar_url          :text
 #  birthday            :date
 #  last_visit_at       :datetime
+#  badge               :text
 #
 

@@ -27,3 +27,15 @@ class PromotionPlace < ActiveRecord::Base
     save
   end
 end
+
+# == Schema Information
+#
+# Table name: promotion_places
+#
+#  id           :integer          not null, primary key
+#  promotion_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  position     :integer
+#
+

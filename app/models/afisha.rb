@@ -483,5 +483,7 @@ end
 #  odn_likes                 :integer
 #  allow_auction             :boolean
 #  poster_vk_id              :string(255)
+#  promoted_at               :datetime
+#  bkz_link                  :text
 #
 

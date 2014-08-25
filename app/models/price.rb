@@ -24,15 +24,18 @@ end
 #
 # Table name: prices
 #
-#  id          :integer          not null, primary key
-#  kind        :string(255)
-#  value       :integer
-#  count       :integer
-#  period      :string(255)
-#  service_id  :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  description :string(255)
-#  max_value   :integer
+#  id           :integer          not null, primary key
+#  kind         :string(255)
+#  value        :integer
+#  count        :integer
+#  period       :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  description  :string(255)
+#  max_value    :integer
+#  type         :string(255)
+#  context_id   :integer
+#  context_type :string(255)
+#  day_kind     :string(255)
 #
 

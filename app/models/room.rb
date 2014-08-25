@@ -57,3 +57,20 @@ class Room < ActiveRecord::Base
     context.offers.map(&:mb_chars).map(&:downcase).map(&:to_s)
   end
 end
+
+# == Schema Information
+#
+# Table name: rooms
+#
+#  id           :integer          not null, primary key
+#  context_id   :integer
+#  context_type :string(255)
+#  title        :string(255)
+#  capacity     :integer
+#  rooms_count  :integer
+#  description  :text
+#  feature      :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+

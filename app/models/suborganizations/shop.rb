@@ -35,17 +35,17 @@ end
 
 # == Schema Information
 #
-# Table name: cultures
+# Table name: shops
 #
 #  id              :integer          not null, primary key
+#  organization_id :integer
 #  category        :text
 #  feature         :text
 #  offer           :text
 #  payment         :string(255)
-#  organization_id :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
 #  title           :string(255)
 #  description     :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 

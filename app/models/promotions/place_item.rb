@@ -76,3 +76,17 @@ class PlaceItem < ActiveRecord::Base
     encoded_response
   end
 end
+
+# == Schema Information
+#
+# Table name: place_items
+#
+#  id         :integer          not null, primary key
+#  url        :string(255)
+#  starts_at  :datetime
+#  ends_at    :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  title      :string(255)
+#
+

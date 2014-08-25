@@ -29,5 +29,7 @@ end
 #  file_updated_at   :datetime
 #  file_url          :text
 #  file_image_url    :string(255)
+#  position          :integer
+#  user_id           :integer
 #
 

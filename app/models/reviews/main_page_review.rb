@@ -23,3 +23,16 @@ class MainPageReview < ActiveRecord::Base
     search.results
   end
 end
+
+# == Schema Information
+#
+# Table name: main_page_reviews
+#
+#  id         :integer          not null, primary key
+#  review_id  :integer
+#  position   :integer
+#  expires_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+

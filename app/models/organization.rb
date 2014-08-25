@@ -368,5 +368,6 @@ end
 #  fb_likes                      :integer
 #  odn_likes                     :integer
 #  poster_vk_id                  :string(255)
+#  situated_at                   :integer
 #
 

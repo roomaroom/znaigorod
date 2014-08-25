@@ -67,3 +67,18 @@ class PonominaluTicket < ActiveRecord::Base
     self.title = response_without_error? ? raw_info.message.title : ''
   end
 end
+
+# == Schema Information
+#
+# Table name: ponominalu_tickets
+#
+#  id            :integer          not null, primary key
+#  afisha_id     :integer
+#  ponominalu_id :string(255)
+#  count         :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  raw_info      :text
+#  title         :string(255)
+#
+

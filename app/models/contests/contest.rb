@@ -67,5 +67,7 @@ end
 #  og_image_file_size    :integer
 #  og_image_updated_at   :datetime
 #  og_image_url          :text
+#  agreement             :text
+#  participation_ends_at :datetime
 #
 

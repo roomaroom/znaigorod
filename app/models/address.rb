@@ -31,5 +31,7 @@ end
 #  latitude        :string(255)
 #  longitude       :string(255)
 #  office          :string(255)
+#  region          :string(255)
+#  city            :string(255)
 #
 
