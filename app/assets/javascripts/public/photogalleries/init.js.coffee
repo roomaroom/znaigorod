@@ -29,8 +29,20 @@ add_uploaded_image = (image) ->
   $('#work_upload').fileupload
     acceptFileTypes:  /(\.|\/)(gif|jpe?g|png)$/i
     dataType:         'json'
+    add: (e, data) ->
+      file = data.files[0]
+      data.context = $(tmpl("template-upload", file))
+      $('.upload_wrapper').append(data.context)
+      data.submit()
+      true
     maxFileSize:      10000000
     url: ''
     done:  (evt, data) ->
       for file in  data.result.files
         add_uploaded_image file
+    start: (e) ->
+      $('.upload_wrapper').slideDown()
+      true
+    stop: (e) ->
+      $('.upload_wrapper').slideUp()
+      true
