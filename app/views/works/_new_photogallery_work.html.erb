@@ -46,4 +46,7 @@
           </div>
     </script>
   </div>
+  <div class="new_work_wrapper">
+    <%= link_to 'Готово', photogallery_path(@photogallery), :class => 'add_work_link' if @photogallery.available_participation? %>
+  </div>
 </div>

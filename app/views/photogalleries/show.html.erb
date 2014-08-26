@@ -30,9 +30,9 @@
 
   <div class="new_work_wrapper">
     <% if user_signed_in? %>
-      <%= link_to 'Добавить фотографию', add_photogallery_works_path(@photogallery), :class => 'add_work_link' if @photogallery.available_participation? %>
+      <%= link_to 'Добавить фотографии', add_photogallery_works_path(@photogallery), :class => 'add_work_link' if @photogallery.available_participation? %>
     <% else %>
-      <%= link_to 'Добавить фотографию', '#', :class => 'auth_for_contest add_work_link', :remote => true, :rel => 'nofollow' if @photogallery.available_participation? %>
+      <%= link_to 'Добавить фотографии', '#', :class => 'auth_for_contest add_work_link', :remote => true, :rel => 'nofollow' if @photogallery.available_participation? %>
     <% end %>
   </div>
 

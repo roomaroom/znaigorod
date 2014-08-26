@@ -37,8 +37,6 @@ change_description = ->
       data:
         'description' : $(this).val()
         'agree' : $('#agree').val()
-      error:
-        alert 'Произошла ошибка'
 
 @i_agree_with_u = ->
   $('#agree').change ->
@@ -71,5 +69,6 @@ change_description = ->
     done:  (evt, data) ->
       for file in  data.result.files
         add_uploaded_image file
+      $('.new_work_wrapper').show()
 
   change_description()
