@@ -28,8 +28,14 @@
 
   <div class="upload_work_wrapper" id="add_work">
     <div class="agreement_wrapper">
-      <%= file_field_tag 'work_upload', multiple: true %>
+      <%= check_box_tag :agree, '1' %> Я согласен с условиями
+      <%= link_to 'соглашения', '#', :class => 'agreement_link' %>
+
+      <div class="agreement_text">
+        <%= @photogallery.agreement.html_safe %>
+      </div>
     </div>
+    <%= file_field_tag 'work_upload', multiple: true, :disabled => true %>
   </div>
 
   <div class="upload_wrapper">

@@ -48,7 +48,7 @@ $ ->
   init_review_gallery() if $('.js-gallery, .review_show').length
   handleReviewGallerySort() if $('.js-gallery').length
   initUlToggle() if $('.js-ul-toggler')
-  init_photogallery() if $('.photogallery').length && !$('.photogalleries_show').length && !$('.works_new').length
+  init_photogallery() if $('.photogallery').length && !$('.photogalleries_show').length && !$('.works_new').length && !$('.works_add').length
   init_pagination() if $('nav.pagination').length or $('.feed_pagination').length or !$('#events_filter').length
   initButtonPagination() if $('.js-button-pagination').length || $('.button_pagination').length
   init_visitors_pagination() if $('.content .left .social_actions .pagination').length
@@ -86,7 +86,8 @@ $ ->
   initMyQuestions() if $('.questions_form').length
   initReviewVideoPreview() if $('.reviews_index').length
   init_next_image() if $('.js-next-image').length
-  upload_works()
+  upload_works() if $('.works_add').length
+  i_agree_with_u() if $('.works_add').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length
   initIsotopedContent() if $('.js-isotoped-content').length

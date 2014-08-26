@@ -22,8 +22,11 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    Work.find(params[:id]).destroy
-    render :nothing => true
+    Work.find(params[:id]).destroy and render :nothing => true
+  end
+
+  def update
+    Work.update(params[:id], :description => params[:description], :agree => params[:agree]) and render :nothing => true
   end
 
   def add
@@ -36,11 +39,12 @@ class WorksController < ApplicationController
           {
             :id           => @work_image.id,
             :name         => @work_image.image_file_name,
-            :width        => 130,
-            :height       => 100,
+            :width        => 200,
+            :height       => 170,
             :url          => view_context.resized_image_url(@work_image.image_url, 1920, 1080),
-            :thumbnailUrl => view_context.resized_image_url(@work_image.image_url, 130, 100),
+            :thumbnailUrl => view_context.resized_image_url(@work_image.image_url, 200, 170),
             :deleteUrl    => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}",
+            :updateUrl      => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}"
           }
         ]
       }

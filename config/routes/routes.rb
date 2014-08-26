@@ -87,7 +87,7 @@ Znaigorod::Application.routes.draw do
   end
 
   resources :photogalleries, :only => [:index, :show] do
-    resources :works, :only => [:new, :create, :show, :destroy] do
+    resources :works, :only => [:new, :create, :show, :destroy, :update] do
       get 'add' => 'works#add', on: :collection
       post 'add' => 'works#add', on: :collection
       put 'change_vote' => 'votes#change_vote', :as => :change_vote
