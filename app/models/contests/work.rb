@@ -4,7 +4,7 @@ class Work < ActiveRecord::Base
   extend FriendlyId
   include MakePageVisit
 
-  attr_accessible :agree, :author_info, :image_url, :title, :description, :image
+  attr_accessible :agree, :author_info, :image_url, :title, :description, :image, :account_id
   attr_accessor :agree
 
   belongs_to :account

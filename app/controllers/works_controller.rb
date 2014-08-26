@@ -33,7 +33,7 @@ class WorksController < ApplicationController
     @photogallery = Photogallery.find(params[:photogallery_id])
 
     if request.xhr?
-      @work_image = @photogallery.works.create! :image => params[:work_upload], :agree => '1'
+      @work_image = @photogallery.works.create! :image => params[:work_upload], :agree => '1', :account_id => current_user.account.id
       render :json =>  {
         :files => [
           {
