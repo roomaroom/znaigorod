@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(:version => 20140912080914) do
 
   add_index "addresses", ["organization_id"], :name => "index_addresses_on_organization_id"
 
+  create_table "adverts", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.text     "kind"
+    t.text     "categories"
+    t.string   "phone"
+    t.integer  "account_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "affiche_schedules", :force => true do |t|
     t.integer  "afisha_id"
     t.date     "starts_on"

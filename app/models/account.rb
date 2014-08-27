@@ -27,6 +27,8 @@ class Account < ActiveRecord::Base
   has_many :reviews,              :dependent => :destroy, :order => 'updated_at DESC'
   has_many :users,                :dependent => :destroy, :order => 'id ASC'
   has_many :works,                :dependent => :destroy
+  has_many :adverts,              :dependent => :destroy
+
 
   # STI
   has_many :messages, :dependent => :destroy, :order => 'messages.created_at DESC'

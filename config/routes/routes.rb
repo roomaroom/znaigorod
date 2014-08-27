@@ -101,6 +101,8 @@ Znaigorod::Application.routes.draw do
     resources :comments, :only => [:new, :create, :show]
   end
 
+  resources :adverts, :only => [:index, :show]
+
   resources :service_payments, :only => [:new, :create]
 
   resources :webcams, :only => [:index, :show]

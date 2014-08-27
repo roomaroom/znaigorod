@@ -4,8 +4,8 @@ class CreateAdverts < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.float :price
-      t.text :type
-      t.text :category
+      t.text :kind
+      t.text :categories
       t.string :phone
       t.integer :account_id
       t.timestamps

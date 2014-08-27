@@ -175,6 +175,16 @@ ru:
         commercial:       Реклама
         other:            Другое
 
+    advert:
+      kind:
+        buy: Купить
+        sell: Продать
+        exchange: Обмен
+        more: Еще
+      categories:
+        cat1: кате1
+        cat2: кате2
+
     notification_message:
       kind:
         new_comment: оставил новый комментарий
