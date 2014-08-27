@@ -4,6 +4,8 @@ class Advert < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many   :gallery_images,        :as => :attachable,     :dependent => :destroy
+
   validates_presence_of :title, :description, :kind, :categories, :phone
   enumerize :kind,
     in: [:buy, :sell, :exchange, :more]

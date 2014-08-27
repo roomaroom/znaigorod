@@ -6,6 +6,7 @@ class My::GalleryImagesController < My::ApplicationController
   belongs_to :account, :optional => true
   belongs_to :afisha,  :optional => true
   belongs_to :review,  :optional => true
+  belongs_to :advert,  :optional => true
 
   custom_actions :collection => :destroy_all
 

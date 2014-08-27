@@ -1,0 +1,9 @@
+<%= simple_form_for @advert, :url => [:my, @advert] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description, :as => :text %>
+  <%= f.input :price %>
+  <%= f.input :kind %>
+  <%= f.input :categories %>
+  <%= f.input :phone %>
+  <%= f.submit %>
+<% end %>
