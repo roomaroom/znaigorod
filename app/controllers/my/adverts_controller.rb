@@ -3,6 +3,8 @@ class My::AdvertsController < My::ApplicationController
 
   actions :all
 
+  custom_actions :resource => [:add_images, :download_album, :edit_poster, :send_to_published, :send_to_draft, :sort_images]
+
   def create
     create! do |success, failure|
       success.html {
