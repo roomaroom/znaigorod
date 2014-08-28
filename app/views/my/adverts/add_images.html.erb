@@ -10,10 +10,6 @@
     </div>
 
     <div class="gallery_images_wrapper">
-      <ul class="gallery_images gallery close js-gallery js-gallery-sort" data-sort-url="<%= images_sort_my_advert_path(@advert.id) %>">
-        <%= render :partial => 'gallery', :locals => { :advert => @advert } %>
-      </ul>
-
       <%= simple_form_for @advert.gallery_images.new,
         :url => my_advert_gallery_images_path(@advert.id),
         :html => { :multipart => true, :class => 'file_upload default_simple_form' } do |f| %>
@@ -34,15 +30,6 @@
           </div>
         </script>
       </div>
-
-      <%= simple_form_for @advert, :url => download_album_my_advert_path(@advert.id) do |f| %>
-        <div class="input">
-          <%= label_tag :album_url, 'Адрес альбома из Вконтакте или Яндекс.Фотки:' %>
-          <%= text_field_tag :album_url, nil, :class => 'string' %>
-        </div>
-
-        <%= f.submit 'Сохранить', :class => 'btn btn-lg btn-orange' %>
-      <% end %>
 
     </div>
 

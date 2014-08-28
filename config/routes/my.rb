@@ -88,7 +88,8 @@ Znaigorod::Application.routes.draw do
 
     resources :adverts, :except => [:show] do
       resources :gallery_images, :only => [:new, :create, :destroy]
-      get 'images/add'  => 'adverts#add_images',        :on => :member
+      get 'images/add'            => 'adverts#add_images',            :on => :member
+      post 'images/sort'          => 'reviews#sort_images',           :on => :member
     end
 
     get 'related_afishas' => 'related_items#afishas',             :as => 'related_afishas'
