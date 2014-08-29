@@ -48,6 +48,14 @@ HasSearcher.create_searcher :organizations do
     order_by(:total_rating, :desc)
   end
 
+  scope :without_debtors_and_non_cooperation do
+    without(:status, [:debtor,:non_cooperation])
+  end
+
+  scope :only_debtors_and_non_cooperation do
+    with(:status, [:debtor,:non_cooperation])
+  end
+
   scope(:order_by_title) { order_by :title }
 
   property :without do |search|

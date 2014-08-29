@@ -51,6 +51,14 @@ Organization.basic_suborganization_kinds.each do |kind|
       search.order_by_geodist(:location, search_object.location.lat, search_object.location.lon) if search_object.location
     end
 
+    scope :without_debtors_and_non_cooperation do
+      without(:status, [:debtor,:non_cooperation])
+    end
+
+    scope :only_debtors_and_non_cooperation do
+      with(:status, [:debtor,:non_cooperation])
+    end
+
     scope(:order_by_title) { order_by :organization_title }
   end
 end

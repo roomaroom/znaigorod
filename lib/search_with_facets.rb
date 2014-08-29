@@ -13,7 +13,7 @@ module SearchWithFacets
     def search_with_facets(*args)
       self.facets = args
 
-      delegate :total_rating, :virtual_tour_link, :site?, :images, to: :organization, prefix: true
+      delegate :total_rating, :virtual_tour_link, :site?, :images, :status, to: :organization, prefix: true
       delegate :latitude, :longitude, :to => :organization
 
       klass = self
@@ -33,6 +33,8 @@ module SearchWithFacets
 
         integer(:organization_ids, multiple: true) { [organization_id] }
         string :organization_title
+
+        string(:status) { organization_status }
 
         # OPTIMIZE: special cases
         boolean(:show_in_search_results) {

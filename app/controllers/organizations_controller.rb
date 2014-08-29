@@ -73,7 +73,7 @@ class OrganizationsController < ApplicationController
           locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter },
           layout: false and return if request.xhr?
 
-        render layout: "organization_layouts/#{@organization.subdomain}" if !@organization.status.debtor? && @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
+        render layout: "organization_layouts/#{@organization.subdomain}" if !@organization.status.debtor? && !@organization.status.non_cooperation? && @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 
       format.promotion do

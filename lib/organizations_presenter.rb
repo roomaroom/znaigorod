@@ -122,6 +122,10 @@ module OrganizationsPresenter
     decorator_class.decorate(searcher.results)
   end
 
+  def debtor_and_non_cooperation_collection
+    decorator_class.decorate(debtor_and_non_cooperation.results)
+  end
+
   def collection_geo_info
     #searcher(per_page * 3).results.map do |organization|
       #{
@@ -275,6 +279,14 @@ module OrganizationsPresenter
     @searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page_count)
       s.send("order_by_#{order_by}")
+      s.without_debtors_and_non_cooperation
+    }
+  end
+
+  def debtor_and_non_cooperation(per_page_count = @per_page)
+    @debtor_and_non_cooperation ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
+      s.send("order_by_#{order_by}")
+      s.only_debtors_and_non_cooperation
     }
   end
 

@@ -8,5 +8,12 @@
   <li class="item pagination">
     <%= link_to_next_page @presenter.paginated_collection, "Еще организации (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
   </li>
+<% else %>
+  <div style="clear:both"></div>
+  <% @presenter.debtor_and_non_cooperation_collection.each do |suborganization| %>
+    <li class="item fresh">
+      <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 194, height: 190 } %>
+    </li>
+  <% end %>
 <% end %>
 
