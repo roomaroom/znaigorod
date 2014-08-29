@@ -33,7 +33,7 @@ class Activity < ActiveRecord::Base
   end
 
   def handle_debtors
-    if status_debtor?
+    if status_debtor? || status_non_cooperation?
       (organization.sauna.try(:sauna_hall_ids) || []).each do |id|
         Sunspot.remove_by_id SaunaHall, id
       end
@@ -50,6 +50,9 @@ class Activity < ActiveRecord::Base
         record.index!
       end
     end
+
+    organization.index!
+    organization.priority_suborganization.index!
   end
 
   private
