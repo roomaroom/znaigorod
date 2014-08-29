@@ -75,6 +75,9 @@ SitemapGenerator::Sitemap.create do
   # Конкурсы
   add contests_path, :changefreq => 'weekly', :priority => 0.5, :lastmod => Contest.unscoped.last.updated_at
 
+  # Фотогалереи
+  add photogalleries_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Photogallery.unscoped.last.updated_at
+
   # Знакомства
   add accounts_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Account.unscoped.last.updated_at
 
@@ -102,7 +105,7 @@ SitemapGenerator::Sitemap.create do
   # Список вопросов
   add questions_path, :changefreq => 'daily', :priority => 1.0, :lastmod => Question.unscoped.last.updated_at
 
-  # Список обзоров по категориям
+  # Список вопросов по категориям
   Question.categories.values.each do |item|
     add send("questions_#{item}_path"),
       :changefreq => 'daily',
