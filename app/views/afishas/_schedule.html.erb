@@ -21,7 +21,7 @@
               <li class='theater'>
                 <p class='logo'>
                   <%= link_to organization_path(showings.first.place_decorator.organization) do %>
-                    <%= image_tag(resized_image_url(showings.first.place_decorator.organization.logotype_url, 40, 40), :alt => showings.first.place_decorator.organization.title.text_gilensize) %>
+                    <%= image_tag(resized_image_url(showings.first.place_decorator.organization.logotype_url.empty? ? 'public/post_poster_stub_mini.png' : showings.first.place_decorator.organization.logotype_url, 40, 40), :alt => showings.first.place_decorator.organization.title.text_gilensize, :size => '40x40') %>
                   <% end %>
                 </p>
                 <p class='name'><%= showings.first.place_decorator.link_short_title %></p>
