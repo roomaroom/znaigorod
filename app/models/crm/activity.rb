@@ -52,7 +52,7 @@ class Activity < ActiveRecord::Base
     end
 
     organization.index!
-    organization.priority_suborganization.index!
+    organization.index_suborganizations
   end
 
   private

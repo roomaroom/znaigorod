@@ -606,9 +606,13 @@ ActiveRecord::Schema.define(:version => 20140912080914) do
     t.integer  "odn_likes"
     t.string   "poster_vk_id"
     t.integer  "situated_at"
+<<<<<<< HEAD
     t.text     "page_meta_description"
     t.text     "page_meta_keywords"
     t.text     "page_meta_title"
+=======
+    t.datetime "positive_activity_date"
+>>>>>>> wierd migration
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
