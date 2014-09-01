@@ -66,10 +66,10 @@ discount:
 main_page_afisha:
   places:
     '1.0':
-      from: '2014-05-13 15:30'
-      to: '2014-05-23 18:00'
+      from: '2014-09-01 14:00'
+      to: '2014-09-03 18:00'
       content_type: 'afisha'
-      afisha_slug: 'gothic-industrial-party-kontsert-zaboynoy-elektronschiny-v-rokote'
+      afisha_slug: 'tango-i-dzhaz-novyy-vzglyad-na-argentinskuyu-muzyku'
       replaced_count: 1
 
     '1.1':
