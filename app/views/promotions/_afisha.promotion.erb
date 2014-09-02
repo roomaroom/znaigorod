@@ -6,6 +6,17 @@
 
 <div class="place-content afisha">
   <div class="image">
+  <% if decorated_afisha.has_available_tickets? %>
+    <% if decorated_afisha.has_tickets_for_sale? && decorated_afisha.max_tickets_discount > 0 %>
+      <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
+        Скидка на билеты <%= decorated_afisha.max_tickets_discount %>%
+      </div>
+    <% else %>
+      <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
+        Есть билеты в продаже
+      </div>
+    <% end %>
+  <% end %>
     <%= link_to afisha_show_path(decorated_afisha) do %>
       <% if decorated_afisha.poster_url? %>
         <%= image_tag resized_image_url(decorated_afisha.poster_url, 194, 260), :size => '194x260', :alt => decorated_afisha.title.text_gilensize %>
@@ -13,6 +24,17 @@
         <%= image_tag('public/stub_poster.png', :size => '194x260', :alt => :poster) %>
       <% end %>
     <% end %>
+  <% if decorated_afisha.has_available_tickets? %>
+    <% if decorated_afisha.has_tickets_for_sale? %>
+      <%= link_to 'Купить билет', afisha_show_path(decorated_afisha, anchor: :buy_ticket), class: :for_sale %>
+    <% elsif decorated_afisha.actual? && decorated_afisha.bkz_link.present? %>
+      <%= link_to 'Купить билет', decorated_afisha.bkz_link, class: 'for_sale bkz-link', :target => '_blank' %>
+    <% elsif decorated_afisha.has_available_ponominalu_tickets? %>
+      <%= link_to decorated_afisha.ponominalu_tickets.available.first.link, :target => '_blank', :class => 'for_sale ponominalu' do %>
+        <%= image_tag 'public/ponominalu_button.png', :size => '150x30', :class => 'link' %>
+      <% end %>
+    <% end %>
+  <% end %>
   </div>
 
   <div class='title'><%= link_to decorated_afisha.title.text_gilensize, afisha_show_path(decorated_afisha) %></div>

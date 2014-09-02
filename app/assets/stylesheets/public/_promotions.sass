@@ -88,12 +88,72 @@
         font-size: 12px
         line-height: 18px
         margin: 20px 0 0 0
+        position: relative
         text-align: center
 
         .image
           height: 260px
           margin: 0 auto
           width: 194px
+
+          &:hover
+            img:not(.link)
+              +opacity(0.15)
+
+            .for_sale
+              display: block
+
+          .has_items_for_sale
+            +as_green_ribbon
+            left: 28px
+            position: absolute
+            top: -3px
+            width: 206px
+
+          .ribbon
+            position: absolute
+            left: 0
+            bottom: 0
+            color: #fff
+            background-color: #f60
+            padding: 2px 8px 3px
+
+          .for_sale
+            background: #00bb84
+            border: 1px solid #00ad7a
+            color: #fff
+            display: none
+            font-size: 12px
+            height: 28px
+            left: 62px
+            line-height: 28px
+            margin: 0
+            padding: 0
+            position: absolute
+            text-align: center
+            top: 40px
+            width: 140px
+
+            &:active, &:hover
+              background: #00ad7a
+              border-color: #00ad7a
+              text-decoration: none
+
+            &.ponominalu
+              background: none
+              border: none
+              left: 24px
+
+          .bkz-link
+            background: image_url('public/bkz_logo.png') 7px 4px no-repeat #a42d22
+            border: 1px solid #8f2318
+            left: 14px
+            padding-left: 55px
+            width: 110px
+
+            &:active, &:hover
+              background: image_url('public/bkz_logo.png') 7px 4px no-repeat #8f2318
+              border: 1px solid #8f2318
 
         .title
           margin: 5px 0 0 0
