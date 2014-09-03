@@ -58,150 +58,276 @@
   </div>
 
   <div class='service_right'>
-
-    <div class='toggable'>
-      <div class='toggler'>
-        <a href='#'>&darr; развернуть</a>
-        <h2>Информационное размещение</h2>
+    <div class="toggable">
+      <div class="toggler">
+        <h2>1. Страница заведения<%= link_to '*', '#one_star', :class => 'example_link' %></h2>
+        <p>Подробное описание специфики заведения и предоставляемых услуг, особое внимание уникальным особенностям, фото и видео интерьера, виртуальный тур. В комплекс услуг входит продвижение страницы заведения (регистрация в справочниках, контекстная реклама, продвижение в поисковых система и социальных сетях). (Примеры Вы можете посмотреть <%= link_to 'в списке наших клиентов', our_customers_path(), :class => 'example_link' %>)</p>
       </div>
-      <div class='info'>
+      <div class="info">
         <table>
           <tr>
             <th class='center'>Наименование услуги</th>
+            <th class='center'>Цена, руб.<%= link_to '**', '#two_stars' %></th>
             <th class='center'>Период размещения</th>
+          </tr>
+          <tr>
+            <td>Кафе, бары, рестораны, банкетные залы и т. д.</td>
+            <td class='center'>4800</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Сауны</td>
+            <td class='center'>5000</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Ночные клубы</td>
+            <td class='center'>5000</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Бильярдные залы</td>
+            <td class='center'>2400</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Стриптиз-бары</td>
+            <td class='center'>5000</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Развлекательные комплексы</td>
+            <td class='center'>от 9600</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Спортивные заведения (фитнес, тренажерные залы, танцы, йога)</td>
+            <td class='center'>3600</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Детское творчество и развитие</td>
+            <td class='center'>3600</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Салоны красоты, оздоровительные центры</td>
+            <td class='center'>2400</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Базы отдыха, загородные дома</td>
+            <td class='center'>6000</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Гостиницы</td>
+            <td class='center'>3600</td>
+            <td class='center'>в год</td>
+          </tr>
+          <tr>
+            <td>Хостелы</td>
+            <td class='center'>2400</td>
+            <td class='center'>в год</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="toggable">
+      <div class="toggler">
+        <h2>2. Страница заведения с уникальным дизайном</h2>
+        <p>Разрабатывается уникальный дизайн страницы заведения с выделением отдельного доменного имени *.znaigorod.ru и *.знайгород.рф (например, <%= link_to 'http://relax.znaigorod.ru', 'http://relax.znaigorod.ru', :target => '_blank', :class => 'example_link' %>, <%= link_to 'http://lazertag.znaigorod.ru', 'http://lazertag.znaigorod.ru', :target => '_blank', :class => 'example_link' %>, <%= link_to 'http://nezabudka.znaigorod.ru', 'http://nezabudka.znaigorod.ru', :target => '_blank', :class => 'example_link' %>, <%= link_to 'http://sauna-dvorcovaya.znaigorod.ru', 'http://sauna-dvorcovaya.znaigorod.ru', :target => '_blank', :class => 'example_link' %>, <%= link_to 'http://strekoza.znaigorod.ru', 'http://strekoza.znaigorod.ru', :target => '_blank', :class => 'example_link' %>)</p>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Наименование услуги</th>
             <th class='center'>Цена, руб.</th>
+            <th class='center'>Период размещения</th>
           </tr>
           <tr>
-            <td><strong>Размещение афиши, анонса на портале «ЗнайГород» самостоятельно</strong> <%= link_to "Добавить афишу", new_my_afisha_path(), :class => :discount_link %></td>
-            <td class='center'>постоянно</td>
-            <td class='center'>бесплатно</td>
+            <td>Создание уникального дизайна</td>
+            <td class='center'>2900</td>
+            <td class='center'>разово</td>
           </tr>
           <tr>
-            <td><strong>Размещение афиши, анонса на портале «ЗнайГород» с помощью менеджера</strong></td>
-            <td class='center'>постоянно</td>
+            <td>Ежегодное продление</td>
             <td class='center'>200</td>
+            <td class='center'>в год</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="toggable">
+      <div class='toggler'>
+        <h2>3. SMS клиент</h2>
+        <p>На странице заведения появляется возможность записи или бронирования услуг. Сообщение клиента с контактным телефоном отправляется указанный сотовый телефон</p>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Цена, руб.</th>
+            <th class='center'>Количество</th>
           </tr>
           <tr>
-            <td><strong>Закрепление афиши на главной странице</strong></td>
-            <td class='center'>сутки</td>
-            <td class='center'>200</td>
+            <td class='center'>5</td>
+            <td class='center'>1 SMS</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="toggable">
+      <div class='toggler'>
+        <h2>4. Афиша</h2>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Название услуги</th>
+            <th class='center'>Цена, руб.</th>
+            <th class='center'>Цена, руб. (для клиентов<%= link_to '***', '#third_starts' %>)</th>
+            <th class='center'>Период</th>
           </tr>
           <tr>
-            <td><strong>Закрепление афиши в правом блоке раздела «Афиша»</strong></td>
-            <td class='center'>сутки</td>
+            <td>Размещение афиши пользователем<%= link_to "Добавить афишу", new_my_afisha_path(), :class => :discount_link %></td>
+            <td class='center' colspan='2'>Бесплатно</td>
+            <td class='center'></td>
+          </tr>
+          <tr>
+            <td>Размещение афиши менеджером</td>
             <td class='center'>100</td>
-          </tr>
-          <tr>
-            <td><strong>Поднятие и выделение афиши в разделе «Афиша»</strong></td>
-            <td class='center'>сутки</td>
-            <td class='center'>30</td>
-          </tr>
-          <tr>
-            <td><strong>Размещение информации о скидке самостоятельно</strong> <%= link_to "Добавить скидку", help_my_discounts_path(), :class => :discount_link %></td>
-            <td class='center'>постоянно</td>
-            <td class='center'>бесплатно</td>
-          </tr>
-          <tr>
-            <td><strong>Размещение информации о скидке с помощью менеджера</strong></td>
-            <td class='center'>постоянно</td>
-            <td class='center'>100</td>
-          </tr>
-          <tr>
-            <td><strong>Закрепление скидки на главной странице</strong></td>
-            <td class='center'>сутки</td>
-            <td class='center'>100</td>
-          </tr>
-          <tr>
-            <td><strong>Закрепление скидки на первой странице раздела «Скидки»</strong></td>
-            <td class='center'>сутки</td>
             <td class='center'>50</td>
+            <td class='center'></td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Закрепление и увеличение скидки на первой странице раздела «Скидки»</strong></p>
-              <p class='small'>Скидка закрепляется на первой странице, при этом размер ее отображения увеличивается в 4 раза</p>
-            </td>
-            <td class='center'>сутки</td>
-            <td class='center'>200</td>
+            <td>Реализация билетов</td>
+            <td class='center' colspan='2'>10% от стоимости билета</td>
+            <td class='center'></td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Размещение новости (обзора)</strong></p>
-              <p class='small'>Объём текста до 2000 знаков; количество фото и видео иллюстраций не ограниченно.</p>
-            </td>
-            <td class='center'>постоянно</td>
-            <td class='center'>900</td>
+            <td>Поднятие афиши</td>
+            <td class="center" colspan='2'>30</td>
+            <td class="center">Сутки</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Создание и размещение новости (обзора)</strong></p>
-              <p class='small'>Объём до 2000 знаков, количество фото и видео иллюстраций не ограниченно.</p>
-            </td>
-            <td class='center'>постоянно</td>
-            <td class='center'>1900</td>
+            <td>Закрепление афиши в правой части раздела</td>
+            <td class="center" colspan='2'>600</td>
+            <td class="center">Неделя</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Размещение статьи (рецензии)</strong></p>
-              <p class='small'>Объём до 10000 знаков; количество фото и видео иллюстраций не ограниченно</p>
-            </td>
-            <td class='center'>постоянно</td>
-            <td class='center'>2500</td>
+            <td>Закрепление афиши на главной странице</td>
+            <td class="center" colspan='2'>100</td>
+            <td class="center">Сутки</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Создание и размещение статьи (рецензии)</strong></p>
-              <p class='small'>Объём до 10000 знаков, количество фото и видео иллюстраций не ограниченно</p>
-            </td>
-            <td class='center'>постоянно</td>
-            <td class='center'>6500</td>
+            <td>Упоминание афиши в еженедельном обзоре мероприятий на выходные</td>
+            <td class="center" colspan='2'>50</td>
+            <td class="center">Раз в неделю</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="toggable">
+      <div class='toggler'>
+        <h2>5. Скидки</h2>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Название услуги</th>
+            <th class='center'>Цена, руб.</th>
+            <th class='center'>Цена, руб. (для клиентов<%= link_to '***', '#third_starts' %>)</th>
+            <th class='center'>Период</th>
           </tr>
           <tr>
-            <td>
-              <p><strong>Проведение конкурса. Пакет Стандарт</strong></p>
-              <p class='small'>Размещение анонса на портале и в социальных группах ВК, Одноклассники, Facebook, Twitter; анализ ответов; публикация итогов.</p>
-              <p class='small'>Предоставление площадки для индивидуального, личного оформления конкурса.</p>
-            </td>
-            <td class='center'>день</td>
+            <td>Размещение информации о скидке, акции пользователем <%= link_to "Добавить скидку", help_my_discounts_path(), :class => :discount_link %></td>
+            <td class='center' colspan='2'>Бесплатно</td>
+            <td class='center'></td>
+          </tr>
+          <tr>
+            <td>Размещение информации о скидке, акции менеджером портала</td>
             <td class='center'>100</td>
+            <td class='center'>50</td>
+            <td class='center'>Разово</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Проведение конкурса. Пакет Премиум</strong></p>
-              <p class='small'>Разработка концепции конкурса, размещение анонса на портале, в социальных группах ВК, Одноклассники, Facebook, Twitter. Регулярное освещение конкурса на портале и в социальных сетях (не менее 3 раз)</p>
-              <p class='small'>Брендирование портала ЗнайГород в фирменных цветах заказчика. Создание отдельного мероприятия (встречи) в ВК. Ведение встречи, новости, комментарии, ответы, фотографии и видео, тестовые посты (от 2 раз в день). Организация массовой рассылки приглашений на встречу, мероприятие в «В Контакте» (потенциал до 100 000 человек). Платные посты (от 4шт) о конкурсе на сторонних площадках в социальных сетях.</p>
-              <p class='small'>Создание и размещение платной статьи на сторонних тематических ресурсах.</p>
-              <p class='small'>Организация продаж билетов, услуг, товаров и купонов.</p>
-              <p class='small'>Анализ и публикация итогов</p>
-            </td>
-            <td class='center'>от 10 дней</td>
-            <td class='center'>от 20000</td>
+            <td>Реализация сертификатов</td>
+            <td class='center' colspan='2'>10% от стоимости сертификата</td>
+            <td class='center'></td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Проведение конкурса. Пакет Уникум.</strong></p>
-              <p>Все условия обсуждаются с персональным менеджером.</p>
-            </td>
-            <td class='center'>постоянно</td>
-            <td class='center'>&mdash;</td>
+            <td>Распространение бесплатных купонов</td>
+            <td class="center" colspan='2'>10</td>
+            <td class="center">За один купон</td>
           </tr>
           <tr>
-            <td><strong>Проведение интерактивного голосования или опроса.</strong></td>
-            <td class='center'>неделя</td>
+            <td>Реализация купонов</td>
+            <td class="center" colspan='2'>от 50</td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Поднятие скидки/купона/сертификата</td>
+            <td class="center" colspan='2'>30</td>
+            <td class="center">Сутки</td>
+          </tr>
+          <tr>
+            <td>Закрепление скидки/купона/сертификата на главной странице</td>
+            <td class="center" colspan='2'>100</td>
+            <td class="center"></td>
+          </tr>
+          <tr>
+            <td>Закрепление скидки/купона/сертификата в правой части раздела</td>
+            <td class="center" colspan='2'>600</td>
+            <td class="center">Неделя</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="toggable">
+      <div class='toggler'>
+        <h2>6. Обзоры</h2>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Название услуги</th>
+            <th class='center'>Цена, руб.</th>
+            <th class='center'>Цена, руб. (для клиентов<%= link_to '***', '#third_stars' %>)</th>
+            <th class='center'>Период</th>
+          </tr>
+          <tr>
+           <td>Разработка и публикация обзора</td>
+            <td class='center'>1900</td>
+            <td class='center'>1140</td>
+            <td class='center'>Разово</td>
+          </tr>
+          <tr>
+            <td>Участие в тематических агрегированных обзоров (несколько заведений)</td>
             <td class='center'>500</td>
+            <td class='center'>300</td>
+            <td class='center'>Разово</td>
           </tr>
           <tr>
-            <td><strong>Продажа билетов, купонов, сертификатов, услуг и товаров через интернет-портал «ЗнайГород».</strong></td>
-            <td class='center'>постоянно</td>
-            <td class='center'>
-              <p class='nobr'>от 30 рублей,</p>
-              <p class='nobr'>или от 10%</p>
-            </td>
+            <td>Публикация рекламных обзоров (с открытыми ссылками)</td>
+            <td class='center'>900</td>
+            <td class='center'>450</td>
+            <td class='center'>Разово</td>
           </tr>
           <tr>
-            <td><strong>Разработка комплексных рекламных акций</strong></td>
-            <td class='center'>по договоренности</td>
-            <td class='center'>по договоренности</td>
+            <td>Закрепление обзора на главной</td>
+            <td class="center" colspan='2'>200</td>
+            <td class="center">Сутки</td>
+          </tr>
+          <tr>
+            <td>Видеообзор</td>
+            <td class="center">2300</td>
+            <td class="center">1380</td>
+            <td class="center">Разово</td>
           </tr>
         </table>
       </div>
@@ -210,34 +336,59 @@
     <div class='toggable'>
       <div class='toggler'>
         <a href='#'>&uarr; свернуть</a>
-        <h2>Рекламное размещение (банерная сеть)</h2>
+        <h2>7. Реклама</h2>
       </div>
       <div class='info'>
         <table>
           <tr>
             <th class='center'>Наименование услуги</th>
-            <th class='center'>Период размещения</th>
             <th class='center'>Цена, руб.</th>
+            <th class='center'>Период размещения</th>
           </tr>
           <tr>
-            <td class='black'>1.1 Размещение баннера 1300 х 100</td>
-            <td class='center'>неделя</td>
+            <td >Баннер 1.1</td>
             <td class='center'>5000</td>
+            <td class='center'>Неделя</td>
           </tr>
           <tr>
-            <td class='black'>1.2 Размещение банера 880 x 80</td>
-            <td class='center'>неделя</td>
+            <td >Баннер 1.2</td>
             <td class='center'>3000</td>
+            <td class='center'>Неделя</td>
           </tr>
           <tr>
-            <td class='black'>1.3 Размещение банера в разделе "Афиша" 240 x 260</td>
-            <td class='center'>неделя</td>
+            <td >Баннер 1.3 в афише</td>
             <td class='center'>600</td>
+            <td class='center'>Неделя</td>
           </tr>
           <tr>
-            <td class='black'>Индивидуальное изготовление банера</td>
-            <td></td>
-            <td class='center'>от 500</td>
+            <td >Баннер 1.3 в заведениях</td>
+            <td class='center'>600</td>
+            <td class='center'>Неделя</td>
+          </tr>
+          <tr>
+            <td >Баннер 1.3 в скидках</td>
+            <td class='center'>600</td>
+            <td class='center'>Неделя</td>
+          </tr>
+          <tr>
+            <td >Пост в группе ВК <%= link_to 'http://vk.com/znaigorod', 'http://vk.com/znaigorod', :target => '_blank', :class => :discount_link %></td>
+            <td class='center'>350</td>
+            <td class='center'>Разово</td>
+          </tr>
+          <tr>
+            <td >Пост в ВК с закреплением <%= link_to 'http://vk.com/znaigorod', 'http://vk.com/znaigorod', :target => '_blank', :class => :discount_link %></td>
+            <td class='center'>600</td>
+            <td class='center'>Сутки</td>
+          </tr>
+          <tr>
+            <td >Рассылка по ВК <%= link_to 'http://vk.com/znaigorod', 'http://vk.com/znaigorod', :target => '_blank', :class => :discount_link %></td>
+            <td class='center'>950</td>
+            <td class='center'>Разово</td>
+          </tr>
+          <tr>
+            <td >Посты в группе в Одноклассниках <%= link_to 'http://odnoklassniki.ru/group/54186972610564', 'http://odnoklassniki.ru/group/54186972610564', :target => '_blank', :class => :discount_link %></td>
+            <td class='center'>200</td>
+            <td class='center'>Разово</td>
           </tr>
         </table>
         <p>Схема банеров на портале ЗнайГород. Обычное и зеркальное расположение.</p>
@@ -247,140 +398,72 @@
       </div>
     </div>
 
-    <div class='toggable'>
+    <div class="toggable">
       <div class='toggler'>
-        <a href='#'>&darr; развернуть</a>
-        <h2>Другие услуги</h2>
+        <h2>8. Конкурсы</h2>
       </div>
-      <div class='info'>
+      <div class="info">
         <table>
           <tr>
-            <th class='center'>Наименование услуги</th>
-            <th class='center'>Период размещения</th>
+            <th class='center'>Название услуги</th>
             <th class='center'>Цена, руб.</th>
+            <th class='center'>Период</th>
           </tr>
           <tr>
-            <td>
-              <p><strong>Сайт-визитка (или персональная страница)</strong></p>
-              <p class='small'>подробное описание специфики заведения и предоставляемых услуг, особое внимание уникальным особенностям, фото и видео интерьера, 3Д виртуальный тур, новости или афиша заведения, цены, специальные акции, продажа услуг, товаров, билетов или купонов. Услуга Смс- Клиент.</p>
-              <p class='small'>При размещении более 1 заведения скидка от 25%</p>
-            </td>
-            <td class='center'>
-              <p class='nobr'>год</p>
-              <p class='nobr'>6 месяцев</p>
-            </td>
-            <td class='center'>
-              <p class='nobr'>3900</p>
-              <p class='nobr'>2500</p>
-            </td>
+            <td>Организация конкурса на странице заведения (2 поста в группе + баннер 1.3)</td>
+            <td class='center'>2000</td>
+            <td class='center'>Неделя</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Индивидуальный дизайн и уникальное доменное имя на интернет-портале ЗнайГород.</strong></p>
-              <p class='small'>Пример: заведение.знайгород.рф и zavedenie.znaigorod.ru.</p>
-            </td>
-            <td class='center nobr'>год</td>
-            <td class='center nobr'>1200</td>
+            <td>Проведение конкурса в группе ВК</td>
+            <td class='center'>600</td>
+            <td class='center'>3 дня</td>
           </tr>
           <tr>
-            <td>
-              <p><strong>Услуга «СМС-Клиент».</strong></p>
-              <p class='small'>В каталоге заведений, на персональной странице заведений посредством кнопки «Заказ» на контактный мобильный номер отправляется СМС, с указанием контакта, имени и цели заказа и прочей требуемой информации).</p>
-              <p class='small'>(Примеры названий: «Бронирование столика бесплатно», «Заказать Тур» или «Запись на автомойку»)</p>
-            </td>
-            <td class='center nobr'>&mdash;</td>
-            <td class='center nobr'>от 3руб. за СМС</td>
-          </tr>
-          <tr>
-            <td><strong>Рекламный пост в группе «В Контакте»</strong> <a href='http://vk.com/znaigorod'>http://vk.com/znaigorod</a></td>
-            <td class='center nobr'>&mdash;</td>
-            <td class='center nobr'>250</td>
-          </tr>
-          <tr>
-            <td>
-              <p><strong>Рекламный пост в группе «В Контакте»</strong> <a href='http://vk.com/znaigorod'>http://vk.com/znaigorod</a></p>
-              <p class='small'>(закрепление в шапке группы на сутки)</p>
-            </td>
-            <td class='center nobr'>сутки</td>
-            <td class='center nobr'>450</td>
-          </tr>
-          <tr>
-            <td><strong>Рекламный пост в группе «В Контакте» Скидки</strong> <a href='http://vk.com/znaigorodsale'>http://vk.com/znaigorodsale</a></td>
-            <td class='center nobr'>&mdash;</td>
-            <td class='center nobr'>150</td>
-          </tr>
-          <tr>
-            <td>
-              <p><strong>Рекламный пост в группе «В Контакте» Скидки</strong> <a href='http://vk.com/znaigorodsale'>http://vk.com/znaigorodsale</a></p>
-              <p class='small'>(закрепление в шапке группы на сутки)</p>
-            </td>
-            <td class='center nobr'>сутки</td>
-            <td class='center nobr'>300</td>
-          </tr>
-          <tr>
-            <td><strong>Рекламный пост в группе ЗнайГород в социальной сети «Одноклассники»</strong> <a href='http://www.odnoklassniki.ru/group/54186972610564' target='_blank'>http://www.odnoklassniki.ru/group/54186972610564</a></td>
-            <td class='center nobr'>постоянно</td>
-            <td class='center nobr'>150</td>
-          </tr>
-          <tr>
-            <td><strong>Организация рассылки приглашений (более 16 тыс. человек) на мероприятие (встречу) «В Контакте»</strong></td>
-            <td class='center nobr'>неделя</td>
-            <td class='center nobr'>750</td>
-          </tr>
-          <tr>
-            <td><strong>Изготовление виртуального 3Д тура</strong></td>
-            <td class='center nobr'>постоянно</td>
-            <td class='center nobr'>650/точка обзора</td>
-          </tr>
-          <tr>
-            <td><strong>Профессиональная фотосъемка интерьера. До 100 фотографий.</strong></td>
-            <td class='center nobr'>постоянно</td>
-            <td class='center nobr'>1500</td>
-          </tr>
-          <tr>
-            <td>
-              <p><strong>Установка видеокамеры и организация круглосуточной трансляции с записью видеопотоков, включая рекламный баннер и фирменный логотип.</strong></p>
-              <ul>
-                <li class='small'>Абонентская плата (сервис,  профилактика)</li>
-              </ul>
-            </td>
-            <td class='center'>
-              <p class='nobr'>постоянно</p>
-              <p class='nobr'>год</p>
-            </td>
-            <td class='center'>
-              <p class='nobr'>от 7000</p>
-              <p class='nobr'>от 700</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p><strong>Установка наружной видеокамеры и интеграция в существующую web-сеть дорожного движения Томска,</strong> <a href='http://znaigorod.ru/webcams'>http://znaigorod.ru/webcams</a><strong>, включая рекламный баннер и фирменный логотип</strong></p>
-              <ul>
-                <li class='small'>Абонентская плата (сервис, профилактика)</li>
-                <li class='small'>Реклама на разделе «Web-камере». Подробности: <a href='http://znaigorod.ru/webcams'>http://znaigorod.ru/webcams</a></li>
-                <li class='small'>Предоставление записи с уличных web-камер</li>
-              </ul>
-            </td>
-            <td class='center'>
-              <p class='nobr'>постоянно</p>
-              <p class='nobr'>год</p>
-              <p class='nobr'>месяц</p>
-              <p class='nobr'>разово</p>
-            </td>
-            <td class='center'>
-              <p class='nobr'>от 12 500</p>
-              <p class='nobr'>от 900</p>
-              <p class='nobr'>500</p>
-              <p class='nobr'>1900</p>
-            </td>
+            <td>Проведение отдельного фотоконкурса</td>
+            <td class='center'>30000</td>
+            <td class='center'>2 недели</td>
           </tr>
         </table>
       </div>
     </div>
 
+    <div class="toggable">
+      <div class='toggler'>
+        <h2>9. Другие услуги</h2>
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th class='center'>Название услуги</th>
+            <th class='center'>Цена, руб.</th>
+          </tr>
+          <tr>
+            <td>Изготовление 3D-тура</td>
+            <td class='center'>650</td>
+          </tr>
+          <tr>
+            <td>Фотосъемка интерьера</td>
+            <td class='center'>2000</td>
+          </tr>
+          <tr>
+            <td>Фотосъемка мероприятия</td>
+            <td class='center'>2000</td>
+          </tr>
+          <tr>
+            <td>Предоставление записи с веб-камеры</td>
+            <td class='center'>1500</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="stars">
+      <p> <a name='one_star'></a>* - Если под брендом одного заведения действуют несколько заведений, то основное оплачивается 100%, все последующие - со скидкой 50%.</p>
+      <p>Если у одного клиента несколько заведений, то основное оплачивается 100%, за каждое последующее — скидка 30%.</p>
+      <p><a name='two_stars'></a>** - Возможен бартерный обмен (при этом стоимость услуг увеличивается на 30%)</p>
+      <p><a name='third_starts'></a>*** - Клиентом считается заведение у которого оформлена страница в соответствии с п.1</p>
+    </div>
   </div>
-
 </div>
 
 <% if page_meta %>

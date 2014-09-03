@@ -49,9 +49,9 @@
   $('.payment_form_wrapper form #copy_payment_phone').inputmask 'mask',
     'mask': '+7-(999)-999-9999'
 
-  $('.payment_form_wrapper form #copy_payment_email').inputmask 'Regex',
+  #$('.payment_form_wrapper form #copy_payment_email').inputmask 'Regex',
     #regex: "[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}"
-    regex: "^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$"
+    #regex: "^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$"
 
   $('.payment_form_wrapper form input[type=submit]').click ->
     $('.payment_form_wrapper form').submit()
