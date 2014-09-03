@@ -47,13 +47,14 @@ HasSearcher.create_searcher :organizations do
   scope :order_by_rating do
     order_by(:total_rating, :desc)
   end
+  scope(:order_by_activity) { order_by :positive_activity_date, :desc }
 
   scope :without_debtors_and_non_cooperation do
-    without(:status, [:debtor,:non_cooperation])
+    with(:status, [:client])
   end
 
   scope :only_debtors_and_non_cooperation do
-    with(:status, [:debtor,:non_cooperation])
+    with(:status, [:debtor,:non_cooperation, :fresh, :waiting_for_payment, :talks])
   end
 
   scope(:order_by_title) { order_by :title }

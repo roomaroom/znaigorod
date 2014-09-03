@@ -48,7 +48,7 @@
 
   <div class='right'>
     <div class='wrapper'>
-      <% unless @organization.status.debtor? || @organization.status.non_cooperation? %>
+      <% unless @organization.status.debtor? || @organization.status.non_cooperation? || @organization.status.fresh? %>
         <% if @organization.has_tour? %>
           <div class='virtual_tour'>
             <%= link_to('#', :class => :virtual_tour_link, :'data-link' => @organization.virtual_tour.link, title: '3D-тур') do %>
@@ -127,7 +127,7 @@
           <% end %>
         </ul>
       <% end %>
-      <% unless @organization.status.debtor? || @organization.status.non_cooperation? %>
+      <% unless @organization.status.debtor? || @organization.status.non_cooperation? || @organization.status.fresh? %>
 
         <% if @organization.description.present? %>
           <div class='description'>

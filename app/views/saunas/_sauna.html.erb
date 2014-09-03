@@ -1,4 +1,4 @@
-<% unless @organization.status.debtor? || @organization.status.non_cooperation?%>
+<% unless @organization.status.debtor? || @organization.status.non_cooperation? || @organization.status.fresh?%>
   <div class='suborganization_info sauna'>
 
     <div class='title'><%= sauna.title.text_gilensize %></div>

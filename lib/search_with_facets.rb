@@ -13,7 +13,7 @@ module SearchWithFacets
     def search_with_facets(*args)
       self.facets = args
 
-      delegate :total_rating, :virtual_tour_link, :site?, :images, :status, to: :organization, prefix: true
+      delegate :total_rating, :virtual_tour_link, :site?, :images, :status, :positive_activity_date, to: :organization, prefix: true
       delegate :latitude, :longitude, :to => :organization
 
       klass = self
@@ -35,6 +35,7 @@ module SearchWithFacets
         string :organization_title
 
         string(:status) { organization_status }
+        string(:positive_activity_date) { organization_positive_activity_date }
 
         # OPTIMIZE: special cases
         boolean(:show_in_search_results) {

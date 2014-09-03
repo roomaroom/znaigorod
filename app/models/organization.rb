@@ -15,7 +15,7 @@ class Organization < ActiveRecord::Base
                   :social_links_attributes, :user_id, :ability_to_comment,
                   :vkontakte_likes, :fb_likes, :odn_likes, :poster_vk_id,
                   :situated_at, :page_meta_keywords, :page_meta_description,
-                  :page_meta_title
+                  :page_meta_title, :positive_activity_date
 
   ### <=== CRM
 
@@ -164,6 +164,7 @@ class Organization < ActiveRecord::Base
 
     string :search_kind
     string :status
+    string :positive_activity_date
     string(:state) { :published }
     string(:inviteable_categories, :multiple => true) { ::Inviteables.instance.categories_for_organization self }
     string(:kind, :multiple => true) { ['organization'] }
