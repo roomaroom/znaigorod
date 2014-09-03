@@ -52,6 +52,11 @@
         <button class='prev_image js-prev-image'>предыдущая</button>
         <%= work_image_tag @work %>
         <button class='next_image js-next-image'>следующая</button>
+
+        <div class="author">
+          <%= render :partial => 'commons/author', :locals => { :account => @work.account } %>
+        </div>
+
       </div>
 
       <h3>Еще фотографии из этой галереи</h3>

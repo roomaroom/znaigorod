@@ -17,9 +17,13 @@
   contest_description = truncate(contest_description, :length => 140)
 %>
 
-  <div class="details">
-    <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= work.comments.count %></span>
-    <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= work.likes_count %></span>
-    <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= work.page_visits.count %></span>
-  </div>
+<div class="author">
+  <%= render :partial => 'commons/author', :locals => { :account => work.account } %>
+</div>
+
+<div class="details">
+  <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= work.comments.count %></span>
+  <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= work.likes_count %></span>
+  <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= work.page_visits.count %></span>
+</div>
 </li>
