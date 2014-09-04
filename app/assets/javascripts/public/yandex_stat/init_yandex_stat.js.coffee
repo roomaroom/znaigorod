@@ -39,12 +39,10 @@
 
 @init_photostream_stat = () ->
   $('.js-yandex-stat-top').click ->
-    alert 111
     yaCounter14923525.reachGoal('ohotanasvadbu-top') if yaCounter14923525?
     true
 
   $('.js-yandex-stat-photo').click ->
-    alert 111
     yaCounter14923525.reachGoal('ohotanasvadbu-photo') if yaCounter14923525?
     true
 
