@@ -72,3 +72,7 @@ change_description = ->
       $('.new_work_wrapper').show()
 
   change_description()
+
+@init_toggle = ->
+  $('.js-toggle-more-info').click ->
+    $('.more_info').toggle('slow')

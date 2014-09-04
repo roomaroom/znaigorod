@@ -86,6 +86,7 @@ $ ->
   initMyQuestions() if $('.questions_form').length
   initReviewVideoPreview() if $('.reviews_index').length
   init_next_image() if $('.js-next-image').length
+  init_toggle() if $('.photogalleries_show').length
   upload_works() if $('.works_add').length
   i_agree_with_u() if $('.works_add').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
