@@ -1,0 +1,13 @@
+<div class="photogalleries_main_page_list">
+  <div class="filter_header">
+    <h2><%= link_to t('meta.photogalleries.page_header'), photogalleries_path %></h2>
+  </div>
+
+  <% cache('main_page_photogalleries', :expires_in => 10.minutes) do %>
+    <div class="photogalleries-paginator">
+      <ul class="posters" data-item-width="392">
+        <%= render :partial => 'photogalleries/posters', :locals => { :decorator => @photo_decorator, :height => '200', :width => '354' } %>
+      </ul>
+    </div>
+  <% end %>
+</div>

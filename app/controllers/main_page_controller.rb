@@ -19,6 +19,8 @@ class MainPageController < ApplicationController
 
     @discount_filter = DiscountsPresenter.new(params)
     @accounts        = AccountsPresenter.new(:per_page => 6, :acts_as => ['inviter', 'invited'], :with_avatar => true)
+    @photogalleries = Photogallery.order('id desc').limit(3)
+    @photo_decorator = PhotogalleryDecorator.decorate(@photogalleries)
     @webcams         = Webcam.our.published.shuffle.take(5)
 
     @decorated_reviews = MainPageReview.used.map { |m| ReviewDecorator.new m.review }
