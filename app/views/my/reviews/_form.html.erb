@@ -38,7 +38,7 @@
     <div style='clear: both'></div>
 
     <div class='select_and_search'>
-      <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'], ['Обзор', '/my/related_reviews'], ['Фотогаллереи', '/my/related_photogalleries']], 'Афиша'), { class: 'type_select' }  %>
+      <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'], ['Обзор', '/my/related_reviews'], ['Фотогалерея', '/my/related_photogalleries']], 'Афиша'), { class: 'type_select' }  %>
       <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
       <%= text_field_tag :search, '', { class: 'related_search' } %>
     </div>
