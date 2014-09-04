@@ -79,10 +79,6 @@
       <div class="share_and_likes_photogallery ajaxed_voteable">
         <%= render :partial => 'commons/like_this', :locals => { :url => photogallery_url(@work) } %>
       </div>
-
-      <div class='author'>
-        <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
-      </div>
     </div>
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @work } %>
   </div>

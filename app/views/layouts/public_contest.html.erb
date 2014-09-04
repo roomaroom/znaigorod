@@ -1,0 +1,45 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'public/application', :media => 'all' %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'http://userapi.com/js/api/openapi.js?52' %>
+  <%= javascript_include_tag "#{Settings['faye.url']}/faye/client.js" %>
+  <%= javascript_include_tag 'public/application' %>
+<% end %>
+
+<% content_for :metrics do %>
+  <%= render :partial => 'commons/google_analytics' if Rails.env.production? %>
+<% end %>
+
+<% content_for :flash_messages do %>
+  <div class='message_wrapper'></div>
+<% end %>
+
+<%= content_for :content do %>
+  <div class='wadding_wrapper'>
+    <div class="links">
+      <a href="#" class='one'>#</a> <a href="http://охотанасвадьбу.рф" target='_blank' class='two'>#</a>
+    </div>
+    <div class="wedding_content_wrapper">
+      <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
+      <%= render :partial => 'commons/email_request_form' %>
+      <%= render :partial => 'commons/public_header' %>
+      <%= render :partial => 'banner_2_1' unless controller_name == 'afishas' || controller_name == 'organizations' || controller_name == 'discounts' || controller_name == 'questions' || controller_name == 'suborganizations' || controller_name == 'saunas' || controller_name == 'hotels' %>
+      <%= render :partial => 'commons/public_content' %>
+      <%= render :partial => 'commons/public_footer' %>
+      <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
+      <%= yield :yandex_map_scripts %>
+      <%= yield :two_gis_map_scripts %>
+      <%= render :partial => 'commons/public_reformal' %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :canonical_link do %>
+  <% if request.query_parameters.any? %>
+    <link rel='canonical' href='<%= request.url.split('?').first %>' />
+  <% end %>
+<% end %>
+
+<%= render :template => 'layouts/application' %>
