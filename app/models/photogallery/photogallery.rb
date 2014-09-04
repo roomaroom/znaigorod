@@ -38,7 +38,7 @@ class Photogallery < ActiveRecord::Base
     image_url= if self.works.present?
                  works.first.image_url
                else
-                 og_image_url
+                 'public/default_image.png'
                end
   end
 end
