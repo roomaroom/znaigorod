@@ -27,5 +27,7 @@
     <div class="text">
       <%= item.cached_content_for_index %>
     </div>
+  <% elsif item.is_a?(Photogallery) %>
+    <%= render :partial => "photogalleries/photo", :locals => { :photogallery => PhotogalleryDecorator.decorate(item), :height => 120, :width => 214 } %>
   <% end %>
 </div>

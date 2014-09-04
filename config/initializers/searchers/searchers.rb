@@ -67,6 +67,16 @@ HasSearcher.create_searcher :manage_organization do
   property :suborganizations
 end
 
+HasSearcher.create_searcher :photogalleries do
+  models :photogalleries
+
+  keywords :q do
+    fields :title
+  end
+
+  scope(:order_by_title) { order_by :title }
+end
+
 HasSearcher.create_searcher :global do
   models :organization, :afisha, :review, :account, :discount
 

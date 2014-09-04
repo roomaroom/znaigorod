@@ -199,7 +199,6 @@ class Discount < ActiveRecord::Base
     true
   end
 end
-
 # == Schema Information
 #
 # Table name: discounts
@@ -237,6 +236,8 @@ end
 #  placeholder               :text
 #  afisha_id                 :integer
 #  external_id               :string(255)
+#  discount_type             :string(255)
+#
 
 # == Schema Information
 #

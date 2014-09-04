@@ -21,10 +21,26 @@ class Photogallery < ActiveRecord::Base
   alias_attribute :title_ru,       :title
   alias_attribute :title_translit, :title
 
+  searchable do
+    string :title
+    text :description
+  end
+
   def self.generate_vfs_path
     "/znaigorod/photogalleries/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 
+  def likes_count
+    self.votes.liked.count
+  end
+
+  def image_url
+    image_url= if self.works.present?
+                 works.first.image_url
+               else
+                 og_image_url
+               end
+  end
 end
 
 # == Schema Information
