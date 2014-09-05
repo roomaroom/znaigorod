@@ -33,21 +33,29 @@ class WorksController < ApplicationController
     @photogallery = Photogallery.find(params[:photogallery_id])
 
     if request.xhr?
-      @work_image = @photogallery.works.create! :image => params[:work_upload], :agree => '1', :account_id => current_user.account.id
-      render :json =>  {
-        :files => [
-          {
-            :id           => @work_image.id,
-            :name         => @work_image.image_file_name,
-            :width        => 200,
-            :height       => 170,
-            :url          => view_context.resized_image_url(@work_image.image_url, 1920, 1080),
-            :thumbnailUrl => view_context.resized_image_url(@work_image.image_url, 200, 170),
-            :deleteUrl    => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}",
-            :updateUrl      => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}"
-          }
-        ]
-      }
+      @work_image = @photogallery.works.new :image => params[:work_upload], :agree => '1', :account_id => current_user.account.id
+      if @work_image.save
+        render :json =>  {
+          :files => [
+            {
+              :id           => @work_image.id,
+              :name         => @work_image.image_file_name,
+              :width        => 200,
+              :height       => 170,
+              :url          => view_context.resized_image_url(@work_image.image_url, 1920, 1080),
+              :thumbnailUrl => view_context.resized_image_url(@work_image.image_url, 200, 170),
+              :deleteUrl    => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}",
+              :updateUrl      => "/photogalleries/#{params[:photogallery_id]}/works/#{@work_image.id}"
+            }
+          ]
+        }
+      else
+        render :json => {
+          :errors =>[
+            :error =>  @work_image.errors.full_messages
+          ]
+        }, :status => 500
+      end
     end
   end
 

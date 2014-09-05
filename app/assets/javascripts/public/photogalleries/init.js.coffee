@@ -11,6 +11,12 @@
       prev.click() if selected.parent().prev().find('a').length
 
 # Создание множественных работ
+delete_errors_messages = ->
+  errors = $(".errors_wrapper")
+  errors.each (index, error) ->
+    error.remove()
+    return
+
 add_uploaded_image = (image) ->
   uploaded_list = $('.upload_work_wrapper')
   uploaded_list
@@ -67,9 +73,16 @@ change_description = ->
       true
 
     done:  (evt, data) ->
+      delete_errors_messages()
       for file in  data.result.files
         add_uploaded_image file
       $('.new_work_wrapper').show()
+
+    error: (evt,data) ->
+      errors = $.parseJSON(evt.responseText)
+      errors.errors[0].error.each (error) ->
+        $(".upload_work_wrapper").append("<div class='errors_wrapper' style='color: red'><p>#{error}</p></div>")
+        return
 
   change_description()
 
