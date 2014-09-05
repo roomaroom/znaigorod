@@ -29,7 +29,7 @@
 
 <div class="left_works">
   <div class='contest <%= @work.context.slug %>'>
-    <h1><%= @work.context.title.excerpt %></h1>
+    <h1><%= link_to @work.context.title.excerpt, photogallery_url(@work.context) %></h1>
 
     <div class="details">
       <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= @work.comments.count %></span>
@@ -40,13 +40,11 @@
     <div style='clear: both'></div>
 
     <div class='work ajaxed_voteable work_photogallery'>
-      <%= link_to 'Все фотографии', photogallery_url(@work.context) %>
 
       <%= content_tag :h2, @work.title if @work.title.present?%>
 
       <div style='clear: both'></div>
 
-      <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
 
       <div class='image'>
         <% if @more_photos.works.count > 2 %>
@@ -59,21 +57,10 @@
           <button class='next_image js-next-image'>следующая</button>
         <% end %>
 
-        <div class="author">
+        <div class="info_about_work">
+          <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
           <%= render :partial => 'commons/author', :locals => { :account => @work.account } %>
         </div>
-
-      </div>
-
-      <h3>Еще фотографии из этой галереи</h3>
-      <div class='photogallery'>
-        <ul>
-          <% @more_photos.works.ordered.each_with_index do |photo, index| %>
-            <li class="item tiny">
-              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 120, :width => 214, :index => index } %>
-            </li>
-          <% end %>
-        </ul>
       </div>
 
       <% content_for :zg_like_with_vk_share do %>
@@ -85,6 +72,17 @@
       <div class="share_and_likes_photogallery ajaxed_voteable">
         <%= render :partial => 'commons/like_this', :locals => { :url => photogallery_url(@work) } %>
       </div>
+
+      <div class='photogallery'>
+        <ul>
+          <% @more_photos.works.ordered.each_with_index do |photo, index| %>
+            <li class="item tiny">
+              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 120, :width => 214, :index => index } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
     </div>
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @work } %>
   </div>
