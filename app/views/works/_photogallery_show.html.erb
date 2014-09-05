@@ -49,9 +49,15 @@
       <%= content_tag :div, @work.description.as_html, :class => :work_description if @work.description.present? %>
 
       <div class='image'>
-        <button class='prev_image js-prev-image'>предыдущая</button>
+        <% if @more_photos.works.count > 2 %>
+          <button class='prev_image js-prev-image'>предыдущая</button>
+        <% end %>
+
         <%= work_image_tag @work %>
-        <button class='next_image js-next-image'>следующая</button>
+
+        <% if @more_photos.works.count > 2 %>
+          <button class='next_image js-next-image'>следующая</button>
+        <% end %>
 
         <div class="author">
           <%= render :partial => 'commons/author', :locals => { :account => @work.account } %>
