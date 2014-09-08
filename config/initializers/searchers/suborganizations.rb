@@ -52,11 +52,11 @@ Organization.basic_suborganization_kinds.each do |kind|
       search.order_by_geodist(:location, search_object.location.lat, search_object.location.lon) if search_object.location
     end
 
-    scope :without_debtors_and_non_cooperation do
+    scope :only_clients do
       with(:status, [:client])
     end
 
-    scope :only_debtors_and_non_cooperation do
+    scope :without_clients do
       with(:status, [:debtor,:non_cooperation, :fresh, :waiting_for_payment, :talks])
     end
 

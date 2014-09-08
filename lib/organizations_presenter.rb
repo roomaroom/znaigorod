@@ -278,14 +278,14 @@ module OrganizationsPresenter
   def searcher(per_page_count = @per_page)
     @searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page_count)
-      s.without_debtors_and_non_cooperation
+      s.only_clients
       s.send("order_by_#{order_by}")
     }
   end
 
   def debtor_and_non_cooperation(per_page_count = @per_page)
     @debtor_and_non_cooperation ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
-      s.only_debtors_and_non_cooperation
+      s.without_clients
     }
   end
 

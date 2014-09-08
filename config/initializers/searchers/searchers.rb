@@ -49,11 +49,11 @@ HasSearcher.create_searcher :organizations do
   end
   scope(:order_by_activity) { order_by :positive_activity_date, :desc }
 
-  scope :without_debtors_and_non_cooperation do
+  scope :only_clients do
     with(:status, [:client])
   end
 
-  scope :only_debtors_and_non_cooperation do
+  scope :without_clients do
     with(:status, [:debtor,:non_cooperation, :fresh, :waiting_for_payment, :talks])
   end
 
