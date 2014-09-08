@@ -1,5 +1,5 @@
 <div class='info'>
-  <% unless suborganization.organization.status.debtor? || suborganization.organization.status.non_cooperation? || suborganization.organization.status.fresh?  %>
+  <% if suborganization.organization.status.client?  %>
     <div class='image'>
       <% if suborganization.is_a?(OrganizationDecorator) %>
         <% if suborganization.sms_claimable? %>

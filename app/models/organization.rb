@@ -63,6 +63,10 @@ class Organization < ActiveRecord::Base
 
   def update_slave_organization_statuses
     slave_organizations.update_all :status => status
+
+    slave_organizations.update_all :positive_activity_date => positive_activity_date if status == "client"
+    slave_organizations.map(&:index)
+
   end
 
   ### CRM ===>
