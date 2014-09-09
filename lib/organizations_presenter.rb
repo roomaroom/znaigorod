@@ -53,6 +53,7 @@ module OrganizationsPresenter
     self.sms_claimable = self.sms_claimable && collection_sms_claimable?
 
     @page ||= 1
+    @not_client_page ||= 1
     @per_page = @per_page.to_i.zero? ? 20 : @per_page.to_i
   end
 
@@ -122,8 +123,8 @@ module OrganizationsPresenter
     decorator_class.decorate(searcher.results)
   end
 
-  def debtor_and_non_cooperation_collection
-    decorator_class.decorate(debtor_and_non_cooperation.results)
+  def without_clients_collection
+    decorator_class.decorate(without_clients_searcher.results)
   end
 
   def collection_geo_info
@@ -140,6 +141,10 @@ module OrganizationsPresenter
 
   def paginated_collection
     searcher.results
+  end
+
+  def paginated_without_clients_collection
+    without_clients_searcher.results
   end
 
   def random_collection
@@ -240,6 +245,10 @@ module OrganizationsPresenter
     paginated_collection.total_count - (@page.to_i * @per_page)
   end
 
+  def current_withot_clients_count
+    paginated_without_clients_collection.total_count - (@not_client_page.to_i * 40)
+  end
+
   def geo_filter
     @geo_filter ||= Hashie::Mash.new.tap { |h|
       h[:lat] = lat
@@ -283,9 +292,11 @@ module OrganizationsPresenter
     }
   end
 
-  def debtor_and_non_cooperation(per_page_count = @per_page)
-    @debtor_and_non_cooperation ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
+  def without_clients_searcher(per_page_count = @per_page)
+    @without_clients_searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
+      s.paginate(page: @not_client_page, per_page: 40)
       s.without_clients
+      s.send("order_by_rating")
     }
   end
 
