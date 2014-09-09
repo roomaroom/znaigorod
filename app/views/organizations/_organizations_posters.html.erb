@@ -10,15 +10,6 @@
   </li>
 <% else %>
   <div style="clear:both"></div>
-  <% @presenter.without_clients_collection.each do |suborganization| %>
-    <li class="item fresh">
-      <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 194, height: 190 } %>
-    </li>
-  <% end %>
-  <% unless @presenter.without_clients_collection.last_page? %>
-    <li class="item pagination">
-      <%= link_to_next_page @presenter.paginated_without_clients_collection, "Еще организации (#{@presenter.current_withot_clients_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
-    </li>
-  <% end %>
+  <%= render partial: 'organizations/not_client_posters' %>
 <% end %>
 

@@ -6,7 +6,7 @@ module OrganizationsPresenter
   include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
-  attr_accessor :order_by, :sms_claimable
+  attr_accessor :order_by, :sms_claimable, :not_client_page
 
   included do
     available_sortings.each do |sorting|
@@ -294,7 +294,7 @@ module OrganizationsPresenter
 
   def without_clients_searcher(per_page_count = @per_page)
     @without_clients_searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
-      s.paginate(page: @not_client_page, per_page: 40)
+      s.paginate(page: not_client_page, per_page: 40)
       s.without_clients
       s.send("order_by_rating")
     }
