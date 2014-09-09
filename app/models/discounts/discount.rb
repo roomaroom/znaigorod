@@ -45,7 +45,7 @@ class Discount < ActiveRecord::Base
 
   extend Enumerize
   serialize :kind, Array
-  enumerize :kind, :in => [:auto, :cafe, :entertainment, :beauty, :technique, :wear, :birthday, :travel, :home, :children, :other, :students],
+  enumerize :kind, :in => [:auto, :cafe, :entertainment, :beauty, :technique, :wear, :birthday, :travel, :home, :children, :other, :students, :photo],
                    :multiple => true,
                    :predicates => true
 

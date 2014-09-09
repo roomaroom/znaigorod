@@ -87,6 +87,7 @@ ru:
         children: Детям
         other: Другое
         students: Студентам
+        photo: Фото
       discount_type:
         rubles: руб
         percentages: '%'
