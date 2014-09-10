@@ -220,7 +220,7 @@
       </div>
     <% end %>
 
-    <% if @presenter.collection.any? %>
+    <% if @presenter.collection.any? && !@organization.status.client? %>
       <div class='suborganization_info next_organization'>
         <div class='title'>Рекомендуем</div>
         <ul class='posters js-paginable-list' data-item-width="220">
