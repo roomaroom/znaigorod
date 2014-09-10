@@ -222,7 +222,14 @@
 
     <% if @presenter.collection.any? %>
       <div class='suborganization_info next_organization'>
-          <div class='title'>Рекомендуем</div>
+        <div class='title'>Рекомендуем</div>
+        <ul class='posters js-paginable-list' data-item-width="220">
+          <% @presenter.collection.each do |item| %>
+            <li class="item">
+              <%= render partial: 'organizations/suborganization', locals: { suborganization: item, width: 194, height: 190 } %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
 

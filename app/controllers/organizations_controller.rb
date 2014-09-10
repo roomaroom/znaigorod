@@ -60,7 +60,7 @@ class OrganizationsController < ApplicationController
           @presenter = SaunaHallsPresenter.new
         else
           klass = "#{@organization.priority_suborganization_kind.pluralize}_presenter".classify.constantize
-          @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)],:lat => @organization.latitude, :lon => @organization.longitude, :radius => 100, :order_by => 'nearness', :per_page => 20 )
+          @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)],:lat => @organization.latitude, :lon => @organization.longitude, :radius => 100, :order_by => 'nearness', :per_page => 3 )
         end
 
         cookie = cookies['_znaigorod_afisha_list_settings'].to_s
