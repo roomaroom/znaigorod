@@ -90,7 +90,9 @@ class CopyPayment < Payment
   end
 
   def create_visit
-    paymentable.afisha.visits.create! :user_id => user_id
+    paymentable.afisha.visits.create :user_id => user_id
+
+    true
   end
 
   def create_member
