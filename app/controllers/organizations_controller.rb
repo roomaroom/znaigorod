@@ -60,8 +60,9 @@ class OrganizationsController < ApplicationController
           @presenter = SaunaHallsPresenter.new
         else
           klass = "#{@organization.priority_suborganization_kind.pluralize}_presenter".classify.constantize
-          @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)])
+          @presenter = klass.new(:categories => [@organization.priority_suborganization.try(:categories).try(:first).try(:mb_chars).try(:downcase)],:lat => @organization.latitude, :lon => @organization.longitude, :radius => 100, :order_by => 'nearness', :per_page => 20 )
         end
+
         cookie = cookies['_znaigorod_afisha_list_settings'].to_s
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
@@ -75,7 +76,6 @@ class OrganizationsController < ApplicationController
         render partial: @afisha_presenter.partial,
           locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter },
           layout: false and return if request.xhr?
-
         render layout: "organization_layouts/#{@organization.subdomain}" if @organization.status.client? && @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 

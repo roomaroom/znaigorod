@@ -167,6 +167,7 @@
       </div>
     </div>
 
+
     <% @organization.decorated_suborganizations.each do |suborganization| %>
       <%= render suborganization if suborganization.viewable? %>
     <% end %>
@@ -216,6 +217,12 @@
             <div style="clear: both"></div>
           </ul>
         <% end %>
+      </div>
+    <% end %>
+
+    <% if @presenter.collection.any? %>
+      <div class='suborganization_info next_organization'>
+          <div class='title'>Рекомендуем</div>
       </div>
     <% end %>
 

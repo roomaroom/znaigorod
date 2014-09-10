@@ -24,6 +24,7 @@ class EntertainmentsPresenter
     @searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page_count)
       s.send("order_by_#{order_by}")
+      s.only_clients
       s.remove_duplicated if need_remove_duplications?
     }
   end
