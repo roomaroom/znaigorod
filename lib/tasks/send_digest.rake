@@ -41,9 +41,7 @@ namespace :send_digest do
 
     visit_period = 1.day
     accounts = Account.with_email.with_site_digest.where('last_visit_at <= ?', Time.zone.now - visit_period) - Role.all.map(&:user).map(&:account).uniq
-    account_ids = []
-    account_ids << accounts.map(&:id)
-    SiteDigestWorker.perform_async(account_ids)
+    SiteDigestWorker.perform_async(accounts.map(&:id))
   end
 
   desc "Send by email afisha and discout statistics to users"
