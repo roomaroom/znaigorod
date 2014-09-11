@@ -7,12 +7,14 @@ desc 'Get social likes for afishas, organizations, reviews and discounts'
 task :social_likes => :environment do
   likes = SocialLikes.new
 
-  [Afisha, Organization, Review, Discount].each do |klass|
+  [Afisha, Organization, Review, Discount, Work].each do |klass|
     collection = case klass
                  when Afisha
                    klass.published.with_showings
                  when Discount, Review
                    klass.published
+                 when Work
+                   klass.where(:context_type => Photogallery)
                  else
                    klass.all
                  end
