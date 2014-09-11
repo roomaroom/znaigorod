@@ -340,6 +340,7 @@ class OrganizationDecorator < ApplicationDecorator
       end
 
       order_by_geodist(:location, lat, lon) if lat.present? && lon.present?
+      with(:status, [:client])
       paginate(page: 1, per_page: 5)
     end
 
