@@ -8,7 +8,7 @@ class Activity < ActiveRecord::Base
   belongs_to :contact
   validates_presence_of :title, :state, :status, :activity_at, :manager, :kind
   after_save :set_organization_status, if: :state_completed?
-  after_save :set_activity_date, :handle_debtors,  if: :state_completed?
+  after_save :handle_debtors,  if: :state_completed?
   default_scope order('activity_at desc')
 
   searchable do
@@ -33,7 +33,7 @@ class Activity < ActiveRecord::Base
   end
 
   def handle_debtors
-    if status_debtor? || status_non_cooperation?
+    if !status_client?
       (organization.sauna.try(:sauna_hall_ids) || []).each do |id|
         Sunspot.remove_by_id SaunaHall, id
       end
@@ -53,10 +53,6 @@ class Activity < ActiveRecord::Base
 
     organization.index!
     organization.index_suborganizations
-  end
-
-  def set_activity_date
-    organization.update_attribute(:positive_activity_date, activity_at) if status_client?
   end
 
   private

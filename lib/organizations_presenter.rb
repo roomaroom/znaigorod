@@ -40,7 +40,7 @@ module OrganizationsPresenter
     end
 
     def available_sortings
-      %w[rating nearness activity]
+      %w[activity rating title nearness ]
     end
 
     def available_sortings_without_nearness
@@ -245,7 +245,7 @@ module OrganizationsPresenter
     paginated_collection.total_count - (@page.to_i * @per_page)
   end
 
-  def current_withot_clients_count
+  def current_without_clients_count
     paginated_without_clients_collection.total_count - (@not_client_page.to_i * 40)
   end
 

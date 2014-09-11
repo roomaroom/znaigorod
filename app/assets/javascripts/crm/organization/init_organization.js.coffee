@@ -1,5 +1,4 @@
 @init_manipulate_contacts = () ->
-
   new_contact_link = $('.organization_show a.new_contact')
   new_contact_link.click (event) ->
     if $('.new_contact_form_wrapper', new_contact_link.closest('.right')).length
@@ -126,6 +125,7 @@
           $('#organization_phone_for_sms', additional_block).inputmask 'mask',
             'mask': '+7-(999)-999-9999'
             'showMaskOnHover': false
+          init_datetime_picker()
           true
       false
 

@@ -5,6 +5,6 @@
 <% end %>
 <% unless @presenter.without_clients_collection.last_page? %>
   <li class="item pagination">
-    <%= link_to_next_page @presenter.paginated_without_clients_collection, "Еще организации (#{@presenter.current_withot_clients_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :param_name => "not_client_page" ,:params => params %>
+    <%= link_to_next_page @presenter.paginated_without_clients_collection, "Еще организации (#{@presenter.current_without_clients_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :param_name => "not_client_page" ,:params => params %>
   </li>
 <% end %>

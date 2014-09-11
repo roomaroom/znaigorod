@@ -33,7 +33,6 @@
     </div>
     <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
   </div>
-
   <div class='organization_content js-button-pagination'>
     <% if @presenter.collection.any? %>
       <ul class='posters js-paginable-list' data-item-width="220">
