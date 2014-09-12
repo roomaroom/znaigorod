@@ -17,8 +17,6 @@
       <meta name='keywords' content='<%= page_meta.keywords.squish.html_safe %>' />
     <% elsif content_for?(:meta_keywords) %>
       <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
-    <% elsif content_for?(:meta_title) %>
-      <meta name='title' content='<%= yield(:meta_title) %>' />
     <% else %>
       <meta name='keywords' content='<%= I18n.t('meta.default.keywords', :default => '').squish.html_safe %>' />
     <% end %>
@@ -28,6 +26,9 @@
       <meta name='description' content='<%= yield(:meta_description) %>' />
     <% else %>
       <meta name='description' content='<%= I18n.t('meta.default.description', :default => '').squish.html_safe %>' />
+    <% end %>
+    <% if content_for?(:meta_title) %>
+      <meta name='title' content='<%= yield(:meta_title) %>' />
     <% end %>
     <%= yield(:canonical_link) %>
     <%= yield(:extra_meta) %>
