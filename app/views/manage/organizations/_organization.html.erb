@@ -201,6 +201,24 @@
       <span class="blank">Не указано</span>
     <% end %>
   </div>
+
+  <div>
+    <span class="label">Meta - description:</span>
+    <% if resource.page_meta_description.present? %>
+      <span class="value"><%= resource.page_meta_description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
+    <span class="label">Meta - keywords:</span>
+    <% if resource.page_meta_keywords.present? %>
+      <span class="value"><%= resource.page_meta_keywords %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
 </div>
 
 <div class='types'>

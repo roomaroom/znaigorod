@@ -307,6 +307,8 @@ ru:
         subdomain: Поддомен
         updated_at: Обновлено
         user_id: Менеджер
+        page_meta_keywords: Meta - keywords
+        page_meta_description: Meta - description
 
       organization_stand:
         guarded:            Охрана

@@ -594,6 +594,8 @@ ActiveRecord::Schema.define(:version => 20140912030453) do
     t.integer  "odn_likes"
     t.string   "poster_vk_id"
     t.integer  "situated_at"
+    t.text     "page_meta_description"
+    t.text     "page_meta_keywords"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true
