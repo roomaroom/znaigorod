@@ -219,6 +219,15 @@
       <span class="blank">Не указано</span>
     <% end %>
   </div>
+
+  <div>
+    <span class="label">Meta - title:</span>
+    <% if resource.page_meta_title.present? %>
+      <span class="value"><%= resource.page_meta_title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
 </div>
 
 <div class='types'>

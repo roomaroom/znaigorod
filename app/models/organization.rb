@@ -14,7 +14,8 @@ class Organization < ActiveRecord::Base
                   :comment, :organization_stand_attributes, :additional_rating,
                   :social_links_attributes, :user_id, :ability_to_comment,
                   :vkontakte_likes, :fb_likes, :odn_likes, :poster_vk_id,
-                  :situated_at, :page_meta_keywords, :page_meta_description
+                  :situated_at, :page_meta_keywords, :page_meta_description,
+                  :page_meta_title
 
   ### <=== CRM
 
@@ -371,5 +372,6 @@ end
 #  situated_at                   :integer
 #  page_meta_description         :text
 #  page_meta_keywords            :text
+#  page_meta_title               :text
 #
 

@@ -39,5 +39,6 @@ end
 #  situated_at                   :integer
 #  page_meta_description         :text
 #  page_meta_keywords            :text
+#  page_meta_title               :text
 #
 

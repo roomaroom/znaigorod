@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140912030453) do
+ActiveRecord::Schema.define(:version => 20140912080914) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -596,6 +596,7 @@ ActiveRecord::Schema.define(:version => 20140912030453) do
     t.integer  "situated_at"
     t.text     "page_meta_description"
     t.text     "page_meta_keywords"
+    t.text     "page_meta_title"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

@@ -309,6 +309,7 @@ ru:
         user_id: Менеджер
         page_meta_keywords: Meta - keywords
         page_meta_description: Meta - description
+        page_meta_title: Meta - title
 
       organization_stand:
         guarded:            Охрана
