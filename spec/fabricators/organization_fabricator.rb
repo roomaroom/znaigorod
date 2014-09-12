@@ -37,6 +37,5 @@ end
 #  odn_likes                     :integer
 #  poster_vk_id                  :string(255)
 #  situated_at                   :integer
-#  positive_activity_date        :datetime
 #
 

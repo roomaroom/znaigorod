@@ -22,6 +22,24 @@
     <% end %>
   </div>
 
+  <div>
+    <span class="label">Meta description:</span>
+    <% if resource.page_meta_description? %>
+      <span class="value"><%= resource.page_meta_description %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
+    <span class="label">Meta keywords:</span>
+    <% if resource.page_meta_keywords? %>
+      <span class="value"><%= resource.page_meta_keywords %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
   <div class='snapshot'>
     <span class="label">OG image:</span>
     <%= content_tag(:p, image_tag(resized_image_url(resource.og_image_url, 200, 97), size: '200x97')) if resource.og_image.present? %>

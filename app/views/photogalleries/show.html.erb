@@ -1,5 +1,8 @@
 <% content_for :page_title, @photogallery.title.excerpt %>
 
+<% content_for :meta_keywords, @photogallery.page_meta_keywords if @photogallery.page_meta_keywords.present? %>
+<% content_for :meta_description, @photogallery.page_meta_description if @photogallery.page_meta_description.present? %>
+
 <% content_for :extra_meta do %>
   <meta property='og:site_name' content='ЗнайГород - фотопроект' />
   <meta property='og:title' content='Фотопроект ЗнайГорода «<%= @photogallery.title %>' />

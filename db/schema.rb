@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825024134) do
+ActiveRecord::Schema.define(:version => 20140912030453) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -680,6 +680,8 @@ ActiveRecord::Schema.define(:version => 20140825024134) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.boolean  "available_participation"
+    t.text     "page_meta_description"
+    t.text     "page_meta_keywords"
   end
 
   create_table "place_items", :force => true do |t|

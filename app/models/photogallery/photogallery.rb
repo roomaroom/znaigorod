@@ -2,7 +2,9 @@ class Photogallery < ActiveRecord::Base
   extend FriendlyId
   include MakePageVisit
 
-  attr_accessible :agreement, :description, :og_description, :og_image_content_type, :og_image_file_name, :og_image_file_size, :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path, :og_image, :available_participation
+  attr_accessible :agreement, :description, :og_description, :og_image_content_type, :og_image_file_name, :og_image_file_size,
+    :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path, :og_image,
+    :available_participation, :page_meta_keywords, :page_meta_description
 
   friendly_id :title, use: :slugged
 
@@ -35,7 +37,7 @@ class Photogallery < ActiveRecord::Base
   end
 
   def image_url
-    image_url= if self.works.present?
+    image_url = if self.works.present?
                  works.first.image_url
                else
                  'public/default_image.png'
@@ -62,5 +64,7 @@ end
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  available_participation :boolean
+#  page_meta_description   :text
+#  page_meta_keywords      :text
 #
 
