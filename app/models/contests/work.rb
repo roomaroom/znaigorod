@@ -50,7 +50,7 @@ class Work < ActiveRecord::Base
   end
 
   def update_rating
-    update_attribute :rating, 0.5 * comments.count + 0.1 * votes.liked.count + 0.01 * page_visits.count
+    update_attribute :rating, 1 * votes.liked.count + 0.01 * page_visits.count
   end
 
   private

@@ -369,5 +369,7 @@ end
 #  odn_likes                     :integer
 #  poster_vk_id                  :string(255)
 #  situated_at                   :integer
+#  page_meta_description         :text
+#  page_meta_keywords            :text
 #
 

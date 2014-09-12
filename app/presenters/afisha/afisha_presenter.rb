@@ -134,7 +134,11 @@ class AfishaPresenter
   def periods_links
     @periods_links ||= [].tap { |array|
       @period_filter.available_period_values.each do |period_value|
-        link_url = period_value == 'today' ? 'afisha_today_path' : url
+        unless categories.present?
+          link_url = period_value == 'today' ? 'afisha_today_path' : url
+        else
+          link_url = url
+        end
 
         array << {
           title: (@period_filter.daily? && period_value == 'daily') ? I18n.l(@period_filter.date, format: '%d %B').gsub(/^0/, '') : I18n.t("afisha_periods.#{period_value}"),
