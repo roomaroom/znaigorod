@@ -176,6 +176,17 @@
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @discount } %>
 
+    <% if @discount.similar_discount.any? %>
+      <div class='discount_info similar_discount'>
+        <div class='title'>Похожие скидки</div>
+        <ul class='posters'>
+          <% @discount.similar_discount.each do |discount| %>
+            <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '196', :@height => '164' } %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="sape">
       <%= @sape.links(2).html_safe %>
     </div>

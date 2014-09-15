@@ -94,7 +94,8 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def similar_discount
-    count = geo_present? ? 3 : 5
+    #count = geo_present? ? 3 : 5
+    count = 3
     HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(count).results.map { |d| DiscountDecorator.new d }
   end
 

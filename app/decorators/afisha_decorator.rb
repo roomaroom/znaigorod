@@ -185,7 +185,8 @@ class AfishaDecorator < ApplicationDecorator
   end
 
   def similar_afisha
-    count = geo_present? ? 3 : 5
+    #count = geo_present? ? 3 : 5
+    count = 3
     searcher.more_like_this(afisha).limit(count).results.map { |a| AfishaDecorator.new a }
   end
 
