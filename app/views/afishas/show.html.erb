@@ -284,6 +284,17 @@
       </div>
     <% end %>
 
+    <% if @afisha.similar_afisha.any? %>
+      <div class='suborganization_info similart_afisha'>
+        <div class='title'>Похожие афиши</div>
+        <ul class='posters'>
+          <% @afisha.similar_afisha.each do |afisha| %>
+            <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @afisha } %>
 
   </div>
