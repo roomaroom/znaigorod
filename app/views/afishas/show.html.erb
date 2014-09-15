@@ -288,10 +288,12 @@
 
     <% if @afisha.similar_afisha.any? %>
       <div class='suborganization_info similar_afisha'>
-        <div class='title'>Похожие афиши</div>
+        <div class='similar_afishas_header'>Похожие афиши</div>
         <ul class='posters'>
           <% @afisha.similar_afisha.each do |afisha| %>
-            <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
+            <li class='item'>
+              <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
+            </li>
           <% end %>
         </ul>
       </div>
