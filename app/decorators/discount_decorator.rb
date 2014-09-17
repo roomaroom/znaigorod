@@ -99,6 +99,10 @@ class DiscountDecorator < ApplicationDecorator
     HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(count).results.map { |d| DiscountDecorator.new d }
   end
 
+  def kind_discounts(kind)
+    HasSearcher.searcher(:discounts, :kind => kind).paginate(:per_page => 6).results.map { |d| DiscountDecorator.new d }
+  end
+
   def smart_path(options = {})
     if discount.is_a?(OfferedDiscount) && discount.organizations.any?
       h.organization_path discount.organizations.first, options
