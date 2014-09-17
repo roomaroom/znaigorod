@@ -26,7 +26,7 @@
         <% end %>
       <% else %>
         <%= link_to organization_path(suborganization.organization) do %>
-          <span class='stub_poster <%= suborganization.priority_suborganization_kind %>'></span>=
+          <span class='stub_poster <%= suborganization.priority_suborganization_kind %>'></span>
         <% end %>
       <% end %>
       <%= link_to organization_path(suborganization.organization), class: :details do %>
