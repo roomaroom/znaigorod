@@ -165,7 +165,7 @@
 
       <% if @afisha.similar_afisha.present? %>
         <div class='more_like_this'>
-          <p class='title'>Другие мероприятия</p>
+          <p class='title'>Похожие афиши</p>
           <ul>
             <% @afisha.similar_afisha.each do |afisha| %>
               <li>
@@ -288,7 +288,7 @@
 
     <% if @kind_afishas.any? %>
       <div class='suborganization_info similar_afisha'>
-        <div class='similar_afishas_header'>Похожие афиши</div>
+        <div class='similar_afishas_header'>Другие мероприятия</div>
         <ul class='posters'>
           <% @kind_afishas.each do |afisha| %>
             <li class='item'>
