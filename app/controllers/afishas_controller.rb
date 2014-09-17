@@ -34,6 +34,7 @@ class AfishasController < ApplicationController
 
   def show
     @afisha = AfishaDecorator.new Afisha.published.find(params[:id])
+    @kind_afishas = @afisha.kind_searcher(@afisha.kind.first)
 
     respond_to do |format|
       format.html {
@@ -42,7 +43,7 @@ class AfishasController < ApplicationController
         @visits = @afisha.visits.page(1)
         @bet = @afisha.bets.build
         @certificates = @afisha.organization ? DiscountsPresenter.new(:organization_id => @afisha.organization.id, :type => 'certificate').decorated_collection : []
-        @reviews = ReviewDecorator.decorate(@afisha.reviews.published)
+        @reviews = ReviewDecorator.decorate(@afisha.reviews.published.ordered)
       }
 
       format.promotion do

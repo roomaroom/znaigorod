@@ -138,6 +138,8 @@ HasSearcher.create_searcher :afishas do
     fields :title
   end
 
+  property :kind
+
   scope do
     order_by :created_at, :desc
     with :state, :published

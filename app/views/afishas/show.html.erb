@@ -286,11 +286,11 @@
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @afisha } %>
 
-    <% if @afisha.similar_afisha.any? %>
+    <% if @kind_afishas.any? %>
       <div class='suborganization_info similar_afisha'>
         <div class='similar_afishas_header'>Похожие афиши</div>
         <ul class='posters'>
-          <% @afisha.similar_afisha.each do |afisha| %>
+          <% @kind_afishas.each do |afisha| %>
             <li class='item'>
               <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
             </li>
@@ -298,8 +298,5 @@
         </ul>
       </div>
     <% end %>
-
-
   </div>
-
 </div>

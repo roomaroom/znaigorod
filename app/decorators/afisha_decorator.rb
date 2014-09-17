@@ -194,6 +194,10 @@ class AfishaDecorator < ApplicationDecorator
     HasSearcher.searcher(:similar_afisha)
   end
 
+  def kind_searcher(kind)
+    HasSearcher.searcher(:afishas, :kind => kind).paginate(:per_page => 6).results.map { |a| AfishaDecorator.new a }
+  end
+
   auto_html_for :trailer_code do
     youtube(:width => 240, :height => 146)
     vimeo(:width => 240, :height => 146)
