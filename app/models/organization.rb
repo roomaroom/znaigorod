@@ -331,13 +331,15 @@ class Organization < ActiveRecord::Base
 
   def update_rating
     OrganizationObserver.disabled = true
-    update_attribute :total_rating, ((client? ? 10 : 0) +
-                                     afisha.map {|a| a.copies.sold.count}.sum +
-                                     discounts.map {|d| d.copies.sold.count}.sum +
-                                     0.5*afisha.actual.count +
-                                     0.5*visits.count +
-                                     0.1*votes.liked.count +
-                                     0.01*page_visits.count)
+    #update_attribute :total_rating, ((client? ? 10 : 0) +
+                                     #afisha.map {|a| a.copies.sold.count}.sum +
+                                     #discounts.map {|d| d.copies.sold.count}.sum +
+                                     #0.5*afisha.actual.count +
+                                     #0.5*visits.count +
+                                     #0.1*votes.liked.count +
+                                     #0.01*page_visits.count)
+
+    update_attribute :total_rating, votes.liked.count
     OrganizationObserver.disabled = false
   end
 end
