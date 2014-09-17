@@ -194,8 +194,8 @@ class AfishaDecorator < ApplicationDecorator
     HasSearcher.searcher(:similar_afisha)
   end
 
-  def kind_searcher(kind)
-    HasSearcher.searcher(:afishas, :kind => kind).paginate(:per_page => 6).results.map { |a| AfishaDecorator.new a }
+  def kind_searcher(kind, id)
+    HasSearcher.searcher(:afishas, :kind => kind, :without => id).paginate(:per_page => 6).results.map { |a| AfishaDecorator.new a }
   end
 
   auto_html_for :trailer_code do

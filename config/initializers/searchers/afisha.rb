@@ -140,6 +140,12 @@ HasSearcher.create_searcher :afishas do
 
   property :kind
 
+  property :without do |search|
+    if afisha = Afisha.find_by_id(search_object.without.to_i)
+      search.without(afisha)
+    end
+  end
+
   scope do
     order_by :created_at, :desc
     with :state, :published

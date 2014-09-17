@@ -34,7 +34,7 @@ class AfishasController < ApplicationController
 
   def show
     @afisha = AfishaDecorator.new Afisha.published.find(params[:id])
-    @kind_afishas = @afisha.kind_searcher(@afisha.kind.first)
+    @kind_afishas = @afisha.kind_searcher(@afisha.kind.first, @afisha.id)
 
     respond_to do |format|
       format.html {
