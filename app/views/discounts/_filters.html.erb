@@ -1,14 +1,5 @@
 <div class="filters_wrapper">
   <div class="filters discount">
-    <div class="by_type">
-      <ul>
-        <% @presenter.type_filter.links.each do |link| %>
-          <li class="<%= link.klass %>">
-            <%= link_to link.title, link.path %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
   </div>
 
   <div class="filters discount">
@@ -49,7 +40,7 @@
   <% end %>
 
   <div class="more_wrapper_toggler">
-    <%= link_to 'Добавить скидку', help_my_discounts_path, :class => 'button' %>
+    <%= link_to 'Добавить скидку', help_my_discounts_url(subdomain: false), :class => 'button' %>
     <%= link_to '', '#', :class => 'info_button open' %>
   </div>
 </div>

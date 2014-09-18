@@ -18,11 +18,10 @@ class DiscountsPresenter
     end
 
     def path(type: self.type, kind: self.kind, order_by: self.order_by)
-      return discounts_path(:order_by => order_by) if type.blank? && kind.blank?
+      return discounts_url(:order_by => order_by,subdomain: "discounts", host: "lvh.me:3000") if type.blank? && kind.blank?
 
       path = [type, kind].compact.join('_')
-
-      send "discounts_#{path}_path", :order_by => order_by
+      send "#{path}_url", :order_by => order_by, subdomain: "discounts", host: "lvh.me:3000"
     end
   end
 
@@ -105,7 +104,6 @@ class DiscountsPresenter
 
     def all_link
       params = Parameters.instance.params.merge(:kind => nil)
-
       Hashie::Mash.new(
         :value => nil,
         :title => params[:type]? I18n.t("activerecord.models.#{params[:type]}") : 'Все скидки',
