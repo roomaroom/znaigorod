@@ -5,10 +5,12 @@ Znaigorod::Application.routes.draw do
 
   constraints subdomain: 'discounts' do
 
+    get '/:id' => 'discounts#show', :as => :discounts_t
+
     Discount.classes_subtree.map(&:name).map(&:underscore).each do |type|
-      # /discounts/[discount|certificate|coupon]
+      # /[discount|certificate|coupon] not work yet
       get "/#{type}" => 'discounts#index', :constraints => { :type => type }, :defaults => { :type => type }
-      # /discounts/[discount|certificate|coupon]/[auto|beauty|sport|...]
+      # /[discount|certificate|coupon]/[auto|beauty|sport|...]
       Discount.kind.values.each do |kind|
         get "/#{type}/#{kind}" => 'discounts#index', :constraints => { :kind => kind, :type => type }, :defaults => { :kind => kind, :type => type }
       end
@@ -20,19 +22,17 @@ Znaigorod::Application.routes.draw do
       end
     end
 
-    # /discounts/[auto|beauty|sport|...]
+    # /[auto|beauty|sport|...]
     Discount.kind.values.each do |kind|
       get "/#{kind}" => 'discounts#index', :constraints => { :kind => kind }, :defaults => { :kind => kind }
     end
 
-    #get "/" => 'discounts#index', :as => 'discounts'
-    #get "/:id" => 'discounts#show', :as => 'discount_test'
-    resources :discounts, :only => [:index, :show] do
+    get '/' => 'discounts#index', :as => :discounts
+
+    resources :discounts, :only => [:index] do
       resources :members,  :only => [:index, :create, :destroy]
     end
 
-    #root to: 'discounts#index'
-
-    get 'offered_discount/:id' => 'discounts#show', :as => :offered_discount
+    #get 'offered_discount/:id' => 'discounts#show', :as => :offered_discount
   end
 end

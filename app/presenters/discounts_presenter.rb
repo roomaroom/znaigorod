@@ -18,7 +18,8 @@ class DiscountsPresenter
     end
 
     def path(type: self.type, kind: self.kind, order_by: self.order_by)
-      return discounts_url(:order_by => order_by,subdomain: "discounts", host: "lvh.me:3000") if type.blank? && kind.blank?
+      #raise kind.inspect
+      return discounts_url(:order_by => order_by, subdomain: "discounts", host: "lvh.me:3000") if type.nil? && kind.nil?
 
       path = [type, kind].compact.join('_')
       #path = "test_" + path if type && !kind
@@ -73,7 +74,6 @@ class DiscountsPresenter
           :path => Parameters.instance.path(type: value)
         )
       end
-
     end
   end
 
