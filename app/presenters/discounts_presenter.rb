@@ -21,6 +21,7 @@ class DiscountsPresenter
       return discounts_url(:order_by => order_by,subdomain: "discounts", host: "lvh.me:3000") if type.blank? && kind.blank?
 
       path = [type, kind].compact.join('_')
+      #path = "test_" + path if type && !kind
       send "#{path}_url", :order_by => order_by, subdomain: "discounts", host: "lvh.me:3000"
     end
   end
@@ -72,6 +73,7 @@ class DiscountsPresenter
           :path => Parameters.instance.path(type: value)
         )
       end
+
     end
   end
 
