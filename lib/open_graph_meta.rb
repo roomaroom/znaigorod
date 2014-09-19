@@ -23,15 +23,19 @@ module OpenGraphMeta
     @html_description ||= description.to_s.as_html.without_table.gsub(/<\/?\w+.*?>/m, '').gsub(' ,', ',').squish.html_safe
   end
 
+  def page_og_description
+    @page_og_description ||= og_description
+  end
+
   def meta_description(lendth = 160)
-    html_description.truncate(lendth, :separator => ' ').html_safe
+    page_og_description || html_description.truncate(lendth, :separator => ' ').html_safe
   end
 
   def open_graph_meta
     res = ""
     res << "<meta property='og:description' content='#{meta_description(300)}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:title' content='#{model.title}' />\n"
+    res << "<meta property='og:title' content='#{model.og_title || model.title}' />\n"
     res << "<meta property='og:url' content='#{object_url}' />\n"
     res << "<meta property='og:image' content='#{object_image}' />\n"
     res << "<link rel='image_src' href='#{object_image}' />\n"
