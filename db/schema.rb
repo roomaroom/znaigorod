@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140912080914) do
+ActiveRecord::Schema.define(:version => 20140919034933) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -610,6 +610,8 @@ ActiveRecord::Schema.define(:version => 20140912080914) do
     t.text     "page_meta_keywords"
     t.text     "page_meta_title"
     t.datetime "positive_activity_date"
+    t.text     "og_description"
+    t.text     "og_title"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

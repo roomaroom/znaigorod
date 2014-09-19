@@ -221,9 +221,27 @@
   </div>
 
   <div>
-    <span class="label">Meta - title:</span>
+    <span class="label">Title:</span>
     <% if resource.page_meta_title.present? %>
       <span class="value"><%= resource.page_meta_title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
+    <span class="label">Og-title:</span>
+    <% if resource.og_title.present? %>
+      <span class="value"><%= resource.og_title %></span>
+    <% else %>
+      <span class="blank">Не указано</span>
+    <% end %>
+  </div>
+
+  <div>
+    <span class="label">Og-description:</span>
+    <% if resource.og_description.present? %>
+      <span class="value"><%= resource.og_description %></span>
     <% else %>
       <span class="blank">Не указано</span>
     <% end %>
