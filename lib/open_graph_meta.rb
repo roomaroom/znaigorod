@@ -24,7 +24,11 @@ module OpenGraphMeta
   end
 
   def page_og_description
-    @page_og_description ||= og_description
+    @page_og_description ||= og_description if model.has_attribute?(:og_description)
+  end
+
+  def page_og_title
+    @page_og_title ||= og_title if model.has_attribute?(:og_title)
   end
 
   def meta_description(lendth = 160)
@@ -35,7 +39,7 @@ module OpenGraphMeta
     res = ""
     res << "<meta property='og:description' content='#{meta_description(300)}'/>\n"
     res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:title' content='#{model.og_title || model.title}' />\n"
+    res << "<meta property='og:title' content='#{page_og_title || model.title}' />\n"
     res << "<meta property='og:url' content='#{object_url}' />\n"
     res << "<meta property='og:image' content='#{object_image}' />\n"
     res << "<link rel='image_src' href='#{object_image}' />\n"
