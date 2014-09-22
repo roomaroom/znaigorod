@@ -148,7 +148,7 @@ module OrganizationsPresenter
   end
 
   def random_collection
-    decorator_class.decorate(searcher.order_by(:random).results)
+    decorator_class.decorate(searcher.order_by_activity.results)
   end
 
   def selected_category
