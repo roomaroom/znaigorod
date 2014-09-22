@@ -18,11 +18,10 @@ class DiscountsPresenter
     end
 
     def path(type: self.type, kind: self.kind, order_by: self.order_by)
-      #raise kind.inspect
       return discounts_url(:order_by => order_by, subdomain: "discounts", host: "lvh.me:3000") if type.nil? && kind.nil?
 
       path = [type, kind].compact.join('_')
-      #path = "test_" + path if type && !kind
+
       send "#{path}_url", :order_by => order_by, subdomain: "discounts", host: "lvh.me:3000"
     end
   end

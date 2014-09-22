@@ -4,7 +4,12 @@
   </div>
 
   <div class="body">
-    <%= link_to message.messageable.offerable.title, polymorphic_path([message.messageable.offerable]) %>
+    <% if message.messageable.offerable.is_a? OfferedDiscount %>
+      <%= link_to message.messageable.offerable.title, offered_discount_show_url(message.messageable.offerable, subdomain: 'discounts') %>
+    <% else %>
+      <%= link_to message.messageable.offerable.title, polymorphic_path([message.messageable.offerable], subdomain: false) %>
+    <% end %>
+
     <% unless message.messageable.dead? %>
       <span>
         <%= I18n.t("enumerize.notification_message.kind.#{message.kind}", :details => message.messageable.details) %>

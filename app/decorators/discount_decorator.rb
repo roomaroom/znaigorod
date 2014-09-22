@@ -107,7 +107,7 @@ class DiscountDecorator < ApplicationDecorator
     if discount.is_a?(OfferedDiscount) && discount.organizations.any?
       h.organization_path discount.organizations.first, options
     else
-      h.discount_path discount, options
+      h.discount_show_url discount, options # изменениe для поддомена
     end
   end
 
