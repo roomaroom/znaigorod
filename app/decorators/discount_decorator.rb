@@ -81,7 +81,7 @@ class DiscountDecorator < ApplicationDecorator
     place = places.first
 
     if place.organization_id?
-      results += h.link_to h.truncate(place.organization.try(:title), :length => 30), place.organization, :title => place.address
+      results += h.link_to h.truncate(place.organization.try(:title), :length => 30), h.organization_url(place.organization, :subdomain => false), :title => place.address
     else
       results += h.truncate(place.address, :length => 30)
     end
@@ -105,7 +105,7 @@ class DiscountDecorator < ApplicationDecorator
 
   def smart_path(options = {})
     if discount.is_a?(OfferedDiscount) && discount.organizations.any?
-      h.organization_path discount.organizations.first, options
+      h.organization_url discount.organizations.first, options.merge(:subdomain => false)
     else
       h.discount_show_url discount, options # изменениe для поддомена
     end

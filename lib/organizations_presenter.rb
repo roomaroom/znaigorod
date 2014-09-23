@@ -192,7 +192,7 @@ module OrganizationsPresenter
         array << {
           title: row.value.mb_chars.capitalize,
           klass: row.value.from_russian_to_param,
-          url: "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path",
+          url: "#{kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_url",
           parameters: url_parameters,
           selected: categories_filter[:selected].include?(row.value.mb_chars.downcase),
           count: row.count
@@ -203,7 +203,7 @@ module OrganizationsPresenter
       array.insert(0, {
         title: 'Все',
         klass: 'all',
-        url: "#{pluralized_kind}_path",
+        url: "#{pluralized_kind}_url",
         parameters: url_parameters,
         selected: array.select {|a| a[:selected]}.empty?,
         count: HasSearcher.searcher(pluralized_kind.to_sym).total
