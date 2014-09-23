@@ -7,7 +7,7 @@ class MainPageController < ApplicationController
       @afisha_list[adv.position] = adv
     end
     @afisha_filter   = AfishaPresenter.new(:has_tickets => false)
-    @organizations   = OrganizationsCatalogPresenter.new(:per_page => 6, :sms_claimable => true)
+    @organizations   = OrganizationsCatalogPresenter.new(:per_page => 6)
 
     @certificates    = DiscountsPresenter.new(:type => 'certificate', :per_page => 3, :order_by => 'random').decorated_collection
     @offered_discount = DiscountsPresenter.new(:type => 'offered_discount', :per_page => 2, :order_by => 'random').decorated_collection
