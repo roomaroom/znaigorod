@@ -34,4 +34,6 @@ Znaigorod::Application.routes.draw do
 
     get 'offered_discount/:id' => 'discounts#show', :as => :offered_discount_show
   end
+
+  root :to => 'main_page#show'
 end

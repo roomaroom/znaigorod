@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
   before_filter :sape_init
+  before_filter :test
 
   layout :resolve_layout
 
@@ -16,6 +17,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def test
+    if request.subdomain.present? && controller_name != 'discounts' && controller_name != 'comments'
+      #raise request.subdomain.inspect
+      #raise controller_name.inspect
+      redirect_to url_for :controller => params[:controller], :action => params[:action], :only_path => false, :subdomain => false
+    end
+  end
 
   def detect_robots_in_development
     puts "\n\n"
