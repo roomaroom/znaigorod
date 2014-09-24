@@ -10,8 +10,11 @@ class Manage::ContestsController < Manage::ApplicationController
   private
 
   def build_resource
-    klass = params[:contest][:contest_type].classify.constantize
-
-    @contest = klass.new(params[:contest])
+    unless params[:contest][:contest_type].nil?
+      klass = params[:contest][:contest_type].classify.constantize
+      @contest = klass.new(params[:contest])
+    else
+      @contest = Contest.new(params[:contest])
+    end
   end
 end
