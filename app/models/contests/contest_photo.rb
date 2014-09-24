@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class ContestPhoto < Contest
+  def self.model_name
+    Contest.model_name
+  end
 end
 
 # == Schema Information

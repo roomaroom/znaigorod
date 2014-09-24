@@ -7,7 +7,7 @@
 <ul class='collection'>
   <% collection.each do |item| %>
     <li>
-      <%= link_to item.title, manage_contest_path(item) %>
+      <%= link_to item.title, [:manage, item] %>
     </li>
   <% end %>
 </ul>

@@ -1,7 +1,7 @@
 <div class="show">
   <h1>
     <%= resource.title %>
-    <%= link_to t("edit_#{resource.class.model_name.underscore}"), edit_manage_contest_path(resource), :class => 'edit_link' %>
+    <%= link_to t("edit_#{resource.class.model_name.underscore}"), [:edit, :manage, resource], :class => 'edit_link' %>
   </h1>
 
   <div>
@@ -63,7 +63,7 @@
     <ul>
       <% resource.works.each do |work| %>
         <li>
-          <%= link_to image_tag(resized_image_url(work.image_url, 100, 125), :size => '100x125'), edit_manage_contest_work_path(resource, work) %>
+          <%= link_to image_tag(resized_image_url(work.image_url, 100, 125), :size => '100x125'), [:edit, :manage, resource, work] %>
           <div>
             <span class="label">Название:</span>
             <% if work.title? %>
@@ -89,7 +89,7 @@
             <% end %>
           </div>
           <div>
-            <%= link_to 'Редактировать', edit_manage_contest_work_path(resource, work)  %>
+            <%= link_to 'Редактировать', [:edit, :manage, resource, work]  %>
           </div>
         </li>
       <% end %>
