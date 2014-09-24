@@ -113,6 +113,7 @@
       <%= @organization.work_schedule %>
 
       <div class='phone_wrapper'>
+        <%= @organization.phone.truncate(8)%>
         <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: @organization.id %>
       </div>
 

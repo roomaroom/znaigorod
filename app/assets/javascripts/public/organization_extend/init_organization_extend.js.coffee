@@ -27,6 +27,7 @@
       data:
         organization_id: $(this).attr('id')
       success: (response) ->
+        $('.phone_wrapper').empty()
         $('.phone_wrapper').append(response)
       done:
         $(this).remove()
