@@ -24,8 +24,8 @@ class Review < ActiveRecord::Base
   after_save :parse_related_items, :if => :need_change
 
   attr_accessible :content, :title, :tag, :categories,
-    :allow_external_links, :only_tomsk,
-    :related_items, :tagit_categories, :need_change
+                  :allow_external_links, :only_tomsk,
+                  :related_items, :tagit_categories, :need_change
 
   belongs_to :account
   belongs_to :contest

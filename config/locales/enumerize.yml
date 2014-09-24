@@ -42,6 +42,11 @@ ru:
         male: Мужской
         female: Женский
 
+    contest:
+      type:
+        contest: Фотоконкурс
+        video_contest: Видеоконкурс
+
 
     role:
       admin:                   Администратор

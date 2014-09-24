@@ -176,6 +176,7 @@ ru:
         starts_at: Начало
         og_description: OG description
         og_image: OG image
+        type: Тип конкурса
 
       work:
         <<: *common_attributes
