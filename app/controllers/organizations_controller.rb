@@ -136,4 +136,9 @@ class OrganizationsController < ApplicationController
     response.headers['Access-Control-Allow-Origin'] = '*'
   end
 
+  def show_phone
+    organization = Organization.find(params[:organization_id])
+    organization.increment!(:phone_show_counter)
+    render text: organization.phone and return if request.xhr?
+  end
 end
