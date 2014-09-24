@@ -32,7 +32,7 @@ class Contest < ActiveRecord::Base
   alias_attribute :title_translit, :title
 
   extend Enumerize
-  enumerize :contest_type, :in => [:contest, :video_contest],
+  enumerize :contest_type, :in => [:contest_photo, :contest_video],
                    :predicates => true
 
   searchable do
@@ -65,10 +65,6 @@ class Contest < ActiveRecord::Base
 
   def available_participation?
     participation_ends_at > Time.zone.now && starts_at < Time.zone.now
-  end
-
-  def useful_type
-    self.class.name.underscore.gsub self.class.prefix, ''
   end
 end
 
