@@ -3,7 +3,11 @@
 class Contest < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :participation_ends_at, :vfs_path, :og_description, :og_image
+  attr_accessor :contest_type
+
+  attr_accessible :agreement, :title, :description, :ends_at, :starts_at,
+    :participation_ends_at, :vfs_path,
+    :og_description, :og_image, :contest_type
 
   has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
@@ -26,6 +30,10 @@ class Contest < ActiveRecord::Base
 
   alias_attribute :title_ru,       :title
   alias_attribute :title_translit, :title
+
+  extend Enumerize
+  enumerize :contest_type, :in => [:contest, :video_contest],
+                   :predicates => true
 
   searchable do
     text :title,          :boost => 1.0 * 1.2
