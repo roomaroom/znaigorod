@@ -1,4 +1,4 @@
-class VideoContest < Contest
+class ContestVideo < Contest
 end
 
 # == Schema Information
