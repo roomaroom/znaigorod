@@ -380,5 +380,9 @@ end
 #  page_meta_description         :text
 #  page_meta_keywords            :text
 #  page_meta_title               :text
+#  positive_activity_date        :datetime
+#  og_description                :text
+#  og_title                      :text
+#  phone_show_counter            :integer          default(0)
 #
 

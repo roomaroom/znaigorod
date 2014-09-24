@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140924023436) do
+ActiveRecord::Schema.define(:version => 20140924035953) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -287,6 +287,7 @@ ActiveRecord::Schema.define(:version => 20140924023436) do
     t.text     "og_image_url"
     t.text     "agreement"
     t.datetime "participation_ends_at"
+    t.string   "type"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true

@@ -69,5 +69,6 @@ end
 #  og_image_url          :text
 #  agreement             :text
 #  participation_ends_at :datetime
+#  type                  :string(255)
 #
 
