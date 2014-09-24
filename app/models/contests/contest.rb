@@ -47,12 +47,28 @@ class Contest < ActiveRecord::Base
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 
+  def self.prefix
+    'contest_'
+  end
+
+  def self.descendant_names
+    descendants.map(&:name).map(&:underscore)
+  end
+
+  def self.descendant_names_without_prefix
+    descendant_names.map { |name| name.gsub prefix, '' }
+  end
+
   def actual?
     ends_at > Time.zone.now && starts_at < Time.zone.now
   end
 
   def available_participation?
     participation_ends_at > Time.zone.now && starts_at < Time.zone.now
+  end
+
+  def useful_type
+    self.class.name.underscore.gsub self.class.prefix, ''
   end
 end
 

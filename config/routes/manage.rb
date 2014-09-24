@@ -77,6 +77,10 @@ Znaigorod::Application.routes.draw do
       resources :works, :except => [:index, :show]
     end
 
+    Contest.descendant_names_without_prefix.each do |type|
+      get "contests/#{type}" => 'contests#index', :constraints => { :type => type }, :defaults => { :type => type }
+    end
+
     resources :photogalleries do
       resources :works, :except => [:index, :show]
     end
