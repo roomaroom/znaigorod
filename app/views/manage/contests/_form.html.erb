@@ -2,7 +2,7 @@
 <%= javascript_include_tag 'manage/info_plugin/info_plugin' %>
 
 <div class='form_view'>
-  <%= simple_form_for @contest, :as => :contest, :url => @contest.new_record? ? [:manage, @contest] : manage_contest_path(@contest.id), :html => { :novalidate => true }  do |f| %>
+  <%= simple_form_for @contest,:url => [:manage, @contest], :html => { :novalidate => true }  do |f| %>
     <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path' } %>
     <%= f.input :title %>
     <%= f.input :description, :as => :ckeditor, :label => false %>
