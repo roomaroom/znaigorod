@@ -19,3 +19,15 @@
       $.scrollTo $('.organization_show .discount_details'), 500, { offset: {top: -50} }
       $.removeCookie('_znaigorod_jump_to_discounts')
     , 500
+
+  $('.js-show-phone').click ->
+    $.ajax
+      url: "/show_phone"
+      type: "GET"
+      data:
+        organization_id: $(this).attr('id')
+      success: (response) ->
+        $('.phone_wrapper').append(response)
+      done:
+        $(this).remove()
+

@@ -111,7 +111,10 @@
       <h1><%= @organization.title %></h1>
       <%= content_tag(:div, @organization.address_link, class: :place) if @organization.address_link.present? %>
       <%= @organization.work_schedule %>
-      <%= content_tag(:div, @organization.phone, class: :phone_wrapper) if @organization.phone.present? %>
+
+      <div class='phone_wrapper'>
+        <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: @organization.id %>
+      </div>
 
       <% if @organization.contact_links.present? %>
         <ul class='links'>
