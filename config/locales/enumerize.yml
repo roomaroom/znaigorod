@@ -43,9 +43,12 @@ ru:
         female: Женский
 
     contest:
-      type:
-        contest: Фотоконкурс
-        video_contest: Видеоконкурс
+      contest_type:
+        contest_photo: Фотоконкурс
+        contest_video: Видеоконкурс
+      vote_type:
+        sms: Голосование по смс
+        like: Лайки ЗнайГорода
 
 
     role:

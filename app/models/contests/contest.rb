@@ -5,15 +5,14 @@ class Contest < ActiveRecord::Base
 
   attr_accessor :contest_type
 
-  attr_accessible :agreement, :title, :description, :ends_at, :starts_at,
-    :participation_ends_at, :vfs_path,
-    :og_description, :og_image, :contest_type
+  attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vote_type,
+    :participation_ends_at, :vfs_path, :og_description, :og_image, :contest_type
 
   has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
   has_many :reviews
 
-  validates_presence_of :title, :starts_at, :ends_at, :participation_ends_at
+  validates_presence_of :title, :starts_at, :ends_at, :participation_ends_at, :vote_type
 
   scope :available, -> { where('starts_at <= ?', Time.zone.now).order('starts_at desc') }
 
@@ -33,6 +32,9 @@ class Contest < ActiveRecord::Base
 
   extend Enumerize
   enumerize :contest_type, :in => [:contest_photo, :contest_video],
+                   :predicates => true
+
+  enumerize :vote_type, :in => [:like, :sms],
                    :predicates => true
 
   searchable do
