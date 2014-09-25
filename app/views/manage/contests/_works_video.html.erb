@@ -1,7 +1,7 @@
 <ul class='video'>
   <% resource.works.each do |work| %>
     <li>
-      <%= link_to image_tag(resized_image_url(work.image_url, 250, 200), :size => '250x200'), [:edit, :manage, resource, work.becomes(Work)] %>
+      <%= link_to image_tag(resized_image_url(work.image_url, 250, 200, options = { :crop => '!', :magnify => 'm', :orientation => '' } ), :size => '250x200'), [:edit, :manage, resource, work.becomes(Work)] %>
       <div>
         <span class="label">Название:</span>
         <% if work.title? %>
