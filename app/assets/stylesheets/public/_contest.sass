@@ -396,6 +396,23 @@
           margin: 0 20px 20px 20px
 
           .image
+            &:hover
+              &:after
+                opacity: 1
+
+            &:after
+              background: image_url('public/youtube.png')
+              content: ''
+              display: block
+              height: 32px
+              left: 50%
+              margin-left: -16px
+              margin-top: -4px
+              opacity: 0.5
+              position: absolute
+              top: 50%
+              width: 32px
+              z-index: -1
             img
               width: 350px !important
 
