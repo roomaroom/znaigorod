@@ -63,7 +63,7 @@
     <ul>
       <% resource.works.each do |work| %>
         <li>
-          <%= link_to image_tag(resized_image_url(work.image_url, 100, 125), :size => '100x125'), [:edit, :manage, resource, work] %>
+          <%= link_to image_tag(resized_image_url(work.image_url, 100, 125), :size => '100x125'), [:edit, :manage, resource, work.becomes(Work)] %>
           <div>
             <span class="label">Название:</span>
             <% if work.title? %>
@@ -89,7 +89,7 @@
             <% end %>
           </div>
           <div>
-            <%= link_to 'Редактировать', [:edit, :manage, resource, work]  %>
+            <%= link_to 'Редактировать', [:edit, :manage, resource, work.becomes(Work)]  %>
           </div>
         </li>
       <% end %>

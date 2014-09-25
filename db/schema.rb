@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140924035953) do
+ActiveRecord::Schema.define(:version => 20140924101038) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1322,6 +1322,9 @@ ActiveRecord::Schema.define(:version => 20140924035953) do
     t.integer  "image_file_size"
     t.string   "context_type"
     t.float    "rating"
+    t.string   "video_url"
+    t.integer  "code"
+    t.string   "type"
   end
 
   add_index "works", ["account_id"], :name => "index_works_on_account_id"

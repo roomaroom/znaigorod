@@ -13,4 +13,17 @@ class Manage::WorksController < Manage::ApplicationController
   def update
     update! { [:manage, @work.context] }
   end
+
+  private
+
+  def build_resource
+    unless params[:type].nil?
+      klass = params[:type].constantize
+      @work = klass.new(params[:work])
+      @work.context = Contest.find(params[:contest_id])
+      @work
+    else
+      @work = Contest.find(params[:contest_id]).works.new
+    end
+  end
 end
