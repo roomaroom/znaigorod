@@ -64,9 +64,13 @@
 
     <% if @work.context.starts_at <= Time.zone.now %>
       <% if @work.context.ends_at >= Time.zone.now %>
-        <div class='contest_work_like'>
-          <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
-        </div>
+        <% if @work.context.vote_type == "like" %>
+          <div class='contest_work_like'>
+            <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => work } %>
+          </div>
+        <% else %>
+          Код для голосования: <%= @work.code %>
+        <% end %>
       <% else %>
         <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
       <% end %>
