@@ -8,6 +8,7 @@
   <% collection.each do |item| %>
     <li>
       <%= link_to item.title, [:manage, item] %>
+      <%= item.is_a?(ContestVideo) ? 'Видеоконкурс' : 'Фотоконкурс' %>
     </li>
   <% end %>
 </ul>
