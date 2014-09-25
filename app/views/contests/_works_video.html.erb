@@ -1,0 +1,10 @@
+<%= render :partial => 'winners' %>
+
+<% if @works.any? %>
+  <div class='works ajaxed_voteable js-button-pagination video_works'>
+    <h2>Работы (<%= @contest.works.count %>)</h2>
+    <ul class='js-paginable-list'>
+      <%= render :partial => 'works/contest_list', :locals => { :width => 350, :height => 200 } %>
+    </ul>
+  </div>
+<% end %>

@@ -11,6 +11,10 @@ class WorkVideo < Work
   def set_poster
     self.image = Reviews::Content::Parser.new(video_url).poster
   end
+
+  def content_parser
+    @content_parser ||= Reviews::Content::Videos.new(video_url)
+  end
 end
 
 # == Schema Information
