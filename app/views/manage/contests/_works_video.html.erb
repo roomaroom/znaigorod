@@ -27,6 +27,14 @@
         <% end %>
       </div>
       <div>
+        <span class="label">Код</span>
+        <% if work.code? %>
+          <span class="value"><%= work.code %></span>
+        <% else %>
+          <span class="value">Не указано</span>
+        <% end %>
+      </div>
+      <div>
         <%= link_to 'Редактировать', [:edit, :manage, resource, work.becomes(Work)]  %>
       </div>
     </li>
