@@ -1,7 +1,16 @@
 # encoding: utf-8
 
 class WorkVideo < Work
-  attr_accessible :video_url, :code
+  attr_accessible :video_url, :code, :image_url
+
+  validates :video_url, :presence => true
+  validates :code, :presence => true
+
+  before_save :set_poster
+
+  def set_poster
+    self.image = Reviews::Content::Parser.new(video_url).poster
+  end
 end
 
 # == Schema Information

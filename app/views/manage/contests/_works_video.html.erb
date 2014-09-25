@@ -1,0 +1,34 @@
+<ul class='video'>
+  <% resource.works.each do |work| %>
+    <li>
+      <%= link_to image_tag(resized_image_url(work.image_url, 250, 200), :size => '250x200'), [:edit, :manage, resource, work.becomes(Work)] %>
+      <div>
+        <span class="label">Название:</span>
+        <% if work.title? %>
+          <span class="value"><%= work.title %></span>
+        <% else %>
+          <span class="value">Не указано</span>
+        <% end %>
+      </div>
+      <div>
+        <span class="label">Описание:</span>
+        <% if work.description? %>
+          <span class="value"><%= simple_format work.description %></span>
+        <% else %>
+          <span class="value">Не указано</span>
+        <% end %>
+      </div>
+      <div>
+        <span class="label">Информация об авторе:</span>
+        <% if work.author_info? %>
+          <span class="value"><%= work.author_info %></span>
+        <% else %>
+          <span class="value">Не указано</span>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to 'Редактировать', [:edit, :manage, resource, work.becomes(Work)]  %>
+      </div>
+    </li>
+  <% end %>
+</ul>
