@@ -10,6 +10,10 @@ class WorkPhoto < Work
       :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :image_url?
 
   validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
+
+  def self.model_name
+    Work.model_name
+  end
 end
 
 # == Schema Information

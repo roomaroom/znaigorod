@@ -64,4 +64,5 @@ class WorksController < ApplicationController
   def build_resource
     @work = super.tap { |w| w.account_id = current_user.account_id }
   end
+
 end

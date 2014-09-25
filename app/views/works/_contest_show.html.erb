@@ -41,7 +41,11 @@
     </h2>
 
     <div class='image'>
-      <%= work_image_tag @work %>
+      <% if @work.is_a?(WorkPhoto) %>
+        <%= work_image_tag @work %>
+      <% else %>
+        <%= @work.video_content.html_safe %>
+      <% end %>
     </div>
 
     <%= render :partial => 'commons/share_this' %>
