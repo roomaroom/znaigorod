@@ -113,5 +113,7 @@ Znaigorod::Application.routes.draw do
 
   post '/promotions' => 'promotions#show'
 
+  get '/getmvote' => 'sms_votes#index'
+
   root :to => 'main_page#show'
 end
