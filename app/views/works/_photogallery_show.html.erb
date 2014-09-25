@@ -45,7 +45,6 @@
 
       <div style='clear: both'></div>
 
-
       <div class='image'>
         <% if @more_photos.works.count > 2 %>
           <button class='prev_image js-prev-image'>предыдущая</button>
@@ -82,7 +81,6 @@
           <% end %>
         </ul>
       </div>
-
     </div>
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @work } %>
   </div>
