@@ -151,6 +151,21 @@
     text-align: center
     font-size: 16px
 
+  .photogallery
+    margin: 20px auto !important
+    width: 850px
+
+    .jcarousel-container-horizontal
+      width: 816px
+
+      .jcarousel-clip-horizontal
+        width: 815px
+
+      .jcarousel-item a
+        &.selected
+          height: 93px
+          border: 2px solid #ff7f1a
+
   h1
     float: left
 
@@ -226,20 +241,6 @@
         &:hover
           +opacity(1)
 
-    .photogallery
-      margin: 20px auto !important
-      width: 850px
-
-      .jcarousel-container-horizontal
-        width: 816px
-
-        .jcarousel-clip-horizontal
-          width: 815px
-
-        .jcarousel-item a
-          &.selected
-            height: 93px
-            border: 2px solid #ff7f1a
 
 .left_works
   border-right: 1px solid #e5e5e5

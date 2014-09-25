@@ -27,7 +27,7 @@ class ReviewDecorator < ApplicationDecorator
     if review.poster_url?
       h.resized_image_url(review.poster_url, width, height, :crop => nil)
     elsif review.poster_image_url?
-      h.resized_image_url(review.poster_image_url, width, height)
+      h.resized_image_url(review.poster_image_url, width, height, options = { :crop => '!', :magnify => 'm', :orientation => ''})
     elsif review.gallery_images.any?
       h.resized_image_url(review.gallery_images.first.file_url, width, height)
     elsif review.gallery_social_images.any?

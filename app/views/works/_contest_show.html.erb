@@ -48,6 +48,18 @@
       <% end %>
     </div>
 
+    <% if @more_photos.works.count > 1 %>
+      <div class='photogallery'>
+        <ul>
+          <% @more_photos.works.ordered.each_with_index do |photo, index| %>
+            <li class="item tiny">
+              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 120, :width => 214, :index => index } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= render :partial => 'commons/share_this' %>
 
     <% if @work.context.starts_at <= Time.zone.now %>
@@ -59,6 +71,7 @@
         <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
       <% end %>
     <% end %>
+
     <div class='author'>
       <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
     </div>

@@ -17,6 +17,8 @@ class WorksController < ApplicationController
       if @work.context.is_a?(Photogallery)
         @photogalleries = Photogallery.find(:all, :conditions => ["slug != ?", params[:photogallery_id]], :limit => 5)
         @more_photos = Photogallery.find(params[:photogallery_id])
+      else
+        @more_photos = Contest.find(params[:contest_id])
       end
     }
   end
