@@ -84,7 +84,7 @@ $ ->
   init_auth_for_contest() if $('.new_work_wrapper').length
   initMyReviews() if $('.review_form').length
   initMyQuestions() if $('.questions_form').length
-  initReviewVideoPreview() if $('.reviews_index').length
+  initReviewVideoPreview() if $('.reviews_index').length || $('.contests_show').length
   init_next_image() if $('.js-next-image').length
   init_toggle() if $('.photogalleries_show').length
   upload_works() if $('.works_add').length
