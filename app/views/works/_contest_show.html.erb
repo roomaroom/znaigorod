@@ -60,5 +60,5 @@
     </div>
     <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
   </div>
-  <%= render :partial => 'comments/block', :locals => { :parent_obj => @work } %>
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
 </div>

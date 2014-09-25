@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140924101038) do
+ActiveRecord::Schema.define(:version => 20140925071646) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1325,6 +1325,7 @@ ActiveRecord::Schema.define(:version => 20140924101038) do
     t.string   "video_url"
     t.integer  "code"
     t.string   "type"
+    t.text     "video_content"
   end
 
   add_index "works", ["account_id"], :name => "index_works_on_account_id"
