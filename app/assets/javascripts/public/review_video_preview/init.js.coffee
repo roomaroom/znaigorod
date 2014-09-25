@@ -4,7 +4,7 @@ videoContainer = (src, width) ->
   $('<div class="video-container"></div>').html(iframe)
 
 handlePictureClick = ->
-  $('.js-video-preview', '.item').click ->
+  $('.js-video-preview').click ->
     target = $(this)
 
     src = target.data('video').src
