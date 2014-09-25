@@ -1,7 +1,7 @@
 <li class='<%= cycle('first', 'second', 'third', 'fourth') unless work.context.is_a?(ContestVideo) %>'>
   <div class='title'>
     <% if work.title.present? %>
-      <%= work.context.is_a?(ContestVideo) ? work.title : link_to(work.title, [work.context, work.becomes(Work)]) %>
+      <%= link_to(work.title, [work.context, work.becomes(Work)]) %>
     <% else %>
       &nbsp;
     <% end %>
