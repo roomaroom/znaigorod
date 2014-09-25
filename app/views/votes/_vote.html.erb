@@ -1,4 +1,4 @@
-<% object_assoc_chain = voteable.is_a?(Work) ? [voteable.context, voteable] : [voteable] %>
+<% object_assoc_chain = voteable.is_a?(Work) ? [voteable.context, voteable.becomes(Work)] : [voteable] %>
 
 <div class="like_wrapper">
   <div class="like_box">
