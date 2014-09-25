@@ -1,5 +1,5 @@
 <% id = photo.slug.present? ? photo.slug : photo.id.to_s %>
-<%= link_to image_tag(resized_image_url(photo.image_url, width, height), :class => 'stub'),
+<%= link_to image_tag(resized_image_url(photo.image_url, width, height, options = { :crop => '!', :magnify => 'm', :orientation => '' }), :class => 'stub'),
   photo.context.is_a?(Contest) ? contest_work_path(@more_photos, photo) : photogallery_work_path(@more_photos, photo),
   :class => id == params[:id] ? 'selected' : 'non-selected' %>
 <% if id == params[:id] %>
