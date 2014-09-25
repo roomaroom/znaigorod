@@ -14,8 +14,6 @@ class Work < ActiveRecord::Base
   has_many :page_visits,            :as => :page_visitable, :dependent => :destroy
   has_many :comments,               :as => :commentable, :dependent => :destroy
 
-  validates_presence_of :image_url, :unless => :image?
-
   before_validation :check_account_work_uniquness
   before_validation :check_contest_actuality
   after_validation :check_agreement_accepted
@@ -23,14 +21,6 @@ class Work < ActiveRecord::Base
   friendly_id :title, use: :slugged
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
-  validates_attachment :image,
-    :presence => true,
-    :content_type => {
-      :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
-      :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :image_url?
-
-  validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
 
   scope :ordered,           order('created_at desc')
   scope :ordered_by_likes,  order('vk_likes desc')
@@ -96,5 +86,8 @@ end
 #  image_file_size    :integer
 #  context_type       :string(255)
 #  rating             :float
+#  video_url          :string(255)
+#  code               :integer
+#  type               :string(255)
 #
 

@@ -1,9 +1,9 @@
 <div class='form_view'>
-  <%= simple_form_for @work, :url => [:manage, @work.context, @work], :html => { :novalidate => true }  do |f| %>
+  <%= simple_form_for @work, :as => :work, :url => [:manage, @work.context, @work.becomes(Work)], :html => { :novalidate => true }  do |f| %>
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :author_info %>
-    <%= f.input :image %>
+    <%= render :partial => "#{@work.context.type_without_prefix}_field", :locals => { :f => f } %>
     <%= f.input :agree, :as => :boolean, :input_html => {:checked => true}%>
 
     <div class="actions">

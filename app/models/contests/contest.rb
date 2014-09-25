@@ -47,7 +47,7 @@ class Contest < ActiveRecord::Base
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 
-  def self.prefix
+  def prefix
     'contest_'
   end
 
@@ -65,6 +65,10 @@ class Contest < ActiveRecord::Base
 
   def available_participation?
     participation_ends_at > Time.zone.now && starts_at < Time.zone.now
+  end
+
+  def type_without_prefix
+    self.class.name.underscore.gsub prefix, ''
   end
 end
 

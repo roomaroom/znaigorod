@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class WorkVideo < Work
+  attr_accessible :video_url, :code
 end
 
 # == Schema Information
@@ -23,5 +24,8 @@ end
 #  image_file_size    :integer
 #  context_type       :string(255)
 #  rating             :float
+#  video_url          :string(255)
+#  code               :integer
+#  type               :string(255)
 #
 

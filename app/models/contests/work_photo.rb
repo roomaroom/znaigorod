@@ -1,6 +1,15 @@
 # encoding: utf-8
 
 class WorkPhoto < Work
+  validates_presence_of :image_url, :unless => :image?
+
+  validates_attachment :image,
+    :presence => true,
+    :content_type => {
+      :content_type => ['image/jpeg', 'image/jpg', 'image/png'],
+      :message => 'Изображение должно быть в формате jpeg, jpg или png' }, :if => :image_url?
+
+  validates :image, :dimensions => { :width_min => 300, :height_min => 300 }, :if => :image?
 end
 
 # == Schema Information
@@ -23,5 +32,8 @@ end
 #  image_file_size    :integer
 #  context_type       :string(255)
 #  rating             :float
+#  video_url          :string(255)
+#  code               :integer
+#  type               :string(255)
 #
 
