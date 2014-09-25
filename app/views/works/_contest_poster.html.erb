@@ -1,4 +1,4 @@
-<li class='<%= cycle('first', 'second', 'third', 'fourth') %>'>
+<li class='<%= cycle('first', 'second', 'third', 'fourth') unless work.context.is_a?(ContestVideo) %>'>
   <div class='title'>
     <% if work.title.present? %>
       <%= link_to(work.title, [work.context, work.becomes(Work)]) %>
@@ -12,8 +12,14 @@
       <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= work.likes_count %></span>
       <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= work.page_visits.count %></span>
     </div>
-    <%= link_to [work.context, work.becomes(Work)] do %>
-      <%= image_tag(resized_image_url(work.image_url, 278, 278), :size => '278x278', :alt => work.title? ? work.title : work.image_file_name) %>
+    <% if work.context.is_a?(ContestVideo) %>
+      <%= link_to image_tag(resized_image_url(work.image_url, width, height), :size => "#{width}x#{height}"), [work.context, work.becomes(Work)],
+        :class => 'js-video-preview',
+        :data => { :video => { :src => work.content_parser.videos.first.src, :width => '700' } } %>
+    <% else %>
+      <%= link_to [work.context, work.becomes(Work)] do %>
+        <%= image_tag(resized_image_url(work.image_url, width, height), :size => "#{width}x#{height}", :alt => work.title? ? work.title : work.image_file_name) %>
+      <% end %>
     <% end %>
   </div>
   <%

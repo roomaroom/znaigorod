@@ -1,0 +1,18 @@
+<div class="new_work_wrapper">
+  <% if user_signed_in? %>
+    <%= link_to 'Добавить фотографию', new_contest_work_path(@contest, @work, :anchor => 'add_work'), :class => 'add_work_link' if @contest.available_participation? %>
+  <% else %>
+    <%= link_to 'Добавить фотографию', '#', :class => 'auth_for_contest add_work_link', :remote => true, :rel => 'nofollow' if @contest.available_participation? %>
+  <% end %>
+</div>
+
+<%= render :partial => 'winners' %>
+
+<% if @works.any? %>
+  <div class='works ajaxed_voteable js-button-pagination'>
+    <h2>Участники (<%= @contest.works.count %>)</h2>
+    <ul class='js-paginable-list'>
+      <%= render :partial => 'works/contest_list', :locals => { :width => 278, :height => 278 } %>
+    </ul>
+  </div>
+<% end %>
