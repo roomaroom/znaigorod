@@ -15,6 +15,10 @@ class WorkVideo < Work
   def content_parser
     @content_parser ||= Reviews::Content::Videos.new(video_url)
   end
+
+  def self.model_name
+    Work.model_name
+  end
 end
 
 # == Schema Information

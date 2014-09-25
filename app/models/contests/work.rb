@@ -17,6 +17,7 @@ class Work < ActiveRecord::Base
   before_validation :check_account_work_uniquness
   before_validation :check_contest_actuality
   after_validation :check_agreement_accepted
+  before_save :store_video_content
 
   friendly_id :title, use: :slugged
 
@@ -25,6 +26,10 @@ class Work < ActiveRecord::Base
   scope :ordered,           order('created_at desc')
   scope :ordered_by_likes,  order('vk_likes desc')
   scope :ordered_by_rating, order('rating desc')
+
+  def store_video_content
+    self.video_content = AutoHtmlRenderer.new(video_url).render_show if is_a?(WorkVideo)
+  end
 
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
