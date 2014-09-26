@@ -7,7 +7,7 @@ class SmsVotesController < ApplicationController
 
     if md5_secret.hexdigest == params[:sid]
       work = contest.works.where(code: params[:txt].to_i).first
-      work.sms_votes.create(vote_date: params[:date], sid: params[:sid], sms_text: params[:txt], sms_id: params[:tid],prefix: params[:prefix] )
+      work.sms_votes.create(vote_date: params[:date], sid: params[:sid], sms_text: params[:txt], sms_id: params[:tid],prefix: params[:prefix] ) if work
     end
     render text: 'sms'
   end
