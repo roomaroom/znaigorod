@@ -1,5 +1,5 @@
 <% @works.each do |work| %>
-  <%= render :partial => 'works/contest_poster', :locals => { :work => work, :width => width, :height => height } %>
+  <%= render :partial => "works/contest_#{work.context.type_without_prefix}_poster", :locals => { :work => work, :width => width, :height => height } %>
 <% end %>
 
 <% unless @works.last_page? %>

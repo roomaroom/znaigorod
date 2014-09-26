@@ -107,6 +107,7 @@
     .share_and_likes
       border-bottom: 1px solid #ccc
       min-height: 30px
+      margin: 10px 0 15px 0
 
       .share
         float: left
@@ -333,7 +334,7 @@
           +clearfix
           border: 1px solid #ccc
           float: left
-          margin: 0 20px 20px 0
+          margin: 0 19px 20px 0
           padding-bottom: 10px
           max-height: 365px
 
@@ -393,6 +394,22 @@
           width: 350px
           height: 280px
           margin: 0 20px 20px 20px
+
+          .title
+            width: 300px
+            padding-top: 10px
+
+          .sms_vote, .sms_votes_counter, .sms_title
+            margin: 0 auto
+            text-align: center
+            width: 340px
+
+          .sms_vote
+            font-size: 14px
+
+            .colored
+              color: #ff4800
+              font-weight: bold
 
           .image
             &:hover
@@ -1150,6 +1167,7 @@
       h1
         color: #dc0000
         margin-bottom: 20px
+        float: none !important
 
     .sms_info_for_mts, .mvote
       color: #959789
@@ -1166,6 +1184,39 @@
       h1
         color: #dc0000
         margin-bottom: 20px
+        float: none !important
+
+  .video_works
+    .sms_vote, .sms_votes_counter, .sms_title
+      margin: 0 auto 7px
+      text-align: center
+      width: 840px
+
+    .sms_vote, .sms_title
+      font-size: 14px
+
+      .colored
+        color: #ff4800
+        font-weight: bold
+
+  .photogallery
+    .jcarousel-container-horizontal
+      .jcarousel-clip-horizontal
+        .jcarousel-item
+          position: relative
+
+          &:after
+            background: image_url('public/youtube.png')
+            content: ''
+            display: block
+            height: 32px
+            left: 54%
+            margin-left: -16px
+            margin-top: -4px
+            position: absolute
+            top: 15%
+            width: 32px
+
 
 .contests_show
   .item, .pagination

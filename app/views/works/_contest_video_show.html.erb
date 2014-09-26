@@ -1,0 +1,94 @@
+<% work_title = [@work.title, "Поддержи участника конкурса ЗнайГорода «#{@work.context.title}"].compact.reject(&:empty?).join('. ') %>
+<% content_for :page_title, work_title %>
+
+<% content_for :extra_meta do %>
+  <% full_content = @work.author_info.to_s
+     full_content += '. ' + @work.description.squish if @work.description.present?
+     content = truncate(full_content, :length => 140)
+  %>
+  <meta name='description' content='<%= full_content %>' />
+
+  <meta property='og:site_name' content='ЗнайГород - конкурс' />
+
+  <meta property='og:title' content='<%= work_title %>' />
+  <% if @work.context.og_description? %>
+    <meta property='og:description' content='<%= @work.context.og_description.squish %>' />
+  <% end %>
+  <meta property='og:url' content='<%= contest_work_url(@work.context, @work) %>' />
+  <meta property='og:image' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
+
+  <meta name='twitter:site' content='@znaigorod' />
+  <meta name='twitter:title' content='<%= work_title %>' />
+  <meta name='twitter:url' content='<%= contest_work_url(@work.context, @work) %>' />
+  <meta name='twitter:image:src' content='<%= resized_image_url(@work.image_url, 130, 63) %>' />
+<% end %>
+
+<% content_for :canonical_link do %>
+  <link rel='canonical' href='<%= contest_url(@work.context) %>' />
+<% end %>
+
+<div class='contest <%= @work.context.slug %>'>
+  <h1><%= @work.context.title.excerpt %></h1>
+
+  <div class='description'>
+    <%= @work.context.description.as_html %>
+  </div>
+
+
+  <div class='work ajaxed_voteable work_contest video_works'>
+    <div class="share_and_likes">
+      <%= render :partial => 'commons/share_and_like_this', :locals => { :url => request.url.split('?').first }%>
+    </div>
+
+    <h2>
+      <%= link_to 'Все участники', contest_url(@work.context) %>
+    </h2>
+
+    <div class='image'>
+     <div class="sms_title">
+       Участница № <%= @work.code %> - <%= @work.title %>
+     </div>
+     <div class="sms_vote">
+    Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.prefix %><%= @work.code %></span>
+     </div>
+    <div class="sms_votes_counter">
+      <%= @work.sms_counter %> голосов
+    </div>
+    <% if @work.is_a?(WorkPhoto) %>
+      <%= work_image_tag @work %>
+    <% else %>
+      <%= @work.video_content.html_safe %>
+    <% end %>
+  </div>
+
+    <% if @more_photos.works.count > 1 %>
+      <div class='photogallery'>
+        <ul>
+          <% @more_photos.works.ordered.each_with_index do |photo, index| %>
+            <li class="item tiny">
+              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 95, :width => 132, :index => index } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if @work.context.starts_at <= Time.zone.now %>
+      <% if @work.context.ends_at >= Time.zone.now %>
+        <% if @work.context.vote_type == "like" %>
+          <div class='contest_work_like'>
+            <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
+      <% end %>
+    <% end %>
+
+    <div class='author'>
+      <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
+    </div>
+    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+  </div>
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
+</div>
