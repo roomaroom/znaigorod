@@ -289,7 +289,7 @@ ActiveRecord::Schema.define(:version => 20140926035118) do
     t.datetime "participation_ends_at"
     t.string   "type"
     t.string   "vote_type"
-    t.string   "prefix"
+    t.string   "sms_prefix"
     t.integer  "short_number"
   end
 
