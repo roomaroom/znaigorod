@@ -14,6 +14,14 @@
       many: "%{count} голосов"
       other: "%{count} голоса"
 
+  work:
+    sms:
+      zero: "нет голосов"
+      one: "%{count} голос"
+      few: "%{count} голоса"
+      many: "%{count} голосов"
+      other: "%{count} голоса"
+
   copy:
     for_sale:
       zero: "Билетов больше нет"
