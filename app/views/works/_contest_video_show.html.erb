@@ -49,10 +49,10 @@
        Участница № <%= @work.code %> - <%= @work.title %>
      </div>
      <div class="sms_vote">
-    Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.prefix %><%= @work.code %></span>
+    Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %><%= @work.code %></span>
      </div>
     <div class="sms_votes_counter">
-      <%= @work.sms_counter %> голосов
+      <%= t 'work.sms', :count => @work.sms_counter %>
     </div>
     <% if @work.is_a?(WorkPhoto) %>
       <%= work_image_tag @work %>
