@@ -47,3 +47,10 @@
     true
 
   return
+
+@init_go_go_stat = () ->
+  $('.js-go-go-stat').click ->
+    yaCounter14923525.reachGoal('dance-go-go') if yaCounter14923525?
+    true
+
+  return

@@ -114,6 +114,7 @@ $(window).load ->
   init_love_kiss_hug_banner_stat() if $('div.love_kiss_hug').length
   init_questions_banner_stat() if $('.top_headline').length
   init_photostream_stat() if $('.js-yandex-stat-top').length || $('.js-yandex-stat-photo').length
+  init_go_go_stat() if $('.js-go-go-stat').length
 
   init_afisha_yandex_map() if $('.yandex_map .map').length
   init_afisha_map() if $('.show_map_link').length || $('.feeds').length
