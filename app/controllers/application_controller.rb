@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def resolve_layout
-    request.xhr? ? false : 'public'
+    request.xhr? ? false : 'public_contest'
   end
 
   def page
