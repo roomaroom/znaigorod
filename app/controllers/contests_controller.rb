@@ -11,7 +11,7 @@ class ContestsController < ApplicationController
     @works = @contest.works.ordered.page(page).per(per_page)
     @reviews = ReviewDecorator.decorate(@contest.reviews)
 
-    render :partial => 'works/contest_list', :locals => { :current_count => current_count  } and return if request.xhr?
+    render :partial => 'works/contest_list', :locals => { :current_count => current_count, :width => 278, :height => 278 } and return if request.xhr?
   end
 
   def current_count
