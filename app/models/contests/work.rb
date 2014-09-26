@@ -4,7 +4,7 @@ class Work < ActiveRecord::Base
   extend FriendlyId
   include MakePageVisit
 
-  attr_accessible :agree, :author_info, :image_url, :title, :description, :image, :account_id
+  attr_accessible :agree, :author_info, :image_url, :title, :description, :image, :account_id, :sms_counter
   attr_accessor :agree
 
   belongs_to :account
@@ -13,6 +13,7 @@ class Work < ActiveRecord::Base
   has_many :votes,                  :as => :voteable, :dependent => :destroy
   has_many :page_visits,            :as => :page_visitable, :dependent => :destroy
   has_many :comments,               :as => :commentable, :dependent => :destroy
+  has_many :sms_votes,              :dependent => :destroy
 
   before_validation :check_account_work_uniquness
   before_validation :check_contest_actuality
@@ -45,6 +46,7 @@ class Work < ActiveRecord::Base
   end
 
   def update_rating
+    update_attribute :rating, sms_counter and return if context.has_attribute?(:vote_type) && context.vote_type == "sms"
     update_attribute :rating, 1 * votes.liked.count + 0.01 * page_visits.count
   end
 

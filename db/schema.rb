@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140925095017) do
+ActiveRecord::Schema.define(:version => 20140926035118) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -289,6 +289,8 @@ ActiveRecord::Schema.define(:version => 20140925095017) do
     t.datetime "participation_ends_at"
     t.string   "type"
     t.string   "vote_type"
+    t.string   "prefix"
+    t.integer  "short_number"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
@@ -1130,6 +1132,18 @@ ActiveRecord::Schema.define(:version => 20140925095017) do
     t.string   "claimed_type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "sms_votes", :force => true do |t|
+    t.datetime "vote_date"
+    t.text     "sid"
+    t.string   "sms_text"
+    t.integer  "sms_id"
+    t.string   "prefix"
+    t.string   "phone"
+    t.integer  "work_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "smses", :force => true do |t|

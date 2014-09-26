@@ -178,12 +178,17 @@ ru:
         og_image: OG image
         contest_type: Тип конкурса
         vote_type: Тип голосования
+        prefix: Префикс
+        short_number: Короткий номер
 
       work:
         <<: *common_attributes
         author_info: Информация об авторе
         agree: Я согласен с условиями
         image: Выберите фотографию для загрузки
+        sms_counter: Количество смс
+        video_url: Ссылка на видео
+        code: Уникальный код участника
 
       afisha:
         <<: *common_attributes
