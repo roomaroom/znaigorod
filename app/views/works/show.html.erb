@@ -1,2 +1,2 @@
-<%= render :partial => 'contest_show' if @contest %>
+<%= render :partial => "contest_#{@contest.type_without_prefix}_show" if @contest %>
 <%= render :partial => 'photogallery_show' if @photogallery %>
