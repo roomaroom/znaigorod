@@ -7,7 +7,7 @@ class Contest < ActiveRecord::Base
 
   attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vote_type,
                   :participation_ends_at, :vfs_path, :og_description, :og_image, :contest_type,
-                  :prefix, :short_number
+                  :sms_prefix, :short_number
 
   has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
