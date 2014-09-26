@@ -29,7 +29,7 @@
           </div>
         <% else %>
           <div class="sms_vote">
-            SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %><%= work.code %></span>
+            SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= work.code %></span>
           </div>
           <div class="sms_votes_counter">
             <%= t 'work.sms', :count => work.sms_counter %>
