@@ -1,5 +1,5 @@
 class SmsVote < ActiveRecord::Base
-  #attr_accessible :title, :body
+  attr_accessible :vote_date, :sid, :sms_text, :sms_id, :prefix
   belongs_to :work
 
   after_create :increment_sms_counter

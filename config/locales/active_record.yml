@@ -180,6 +180,7 @@ ru:
         vote_type: Тип голосования
         sms_prefix: Префикс
         short_number: Короткий номер
+        sms_secret: Секретная фраза
 
       work:
         <<: *common_attributes
