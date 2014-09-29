@@ -27,7 +27,6 @@ class Work < ActiveRecord::Base
   scope :ordered_by_likes,  order('vk_likes desc')
   scope :ordered_by_rating, order('rating desc')
 
-
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
   end
@@ -43,6 +42,7 @@ class Work < ActiveRecord::Base
 
   def update_rating
     update_attribute :rating, sms_counter and return if context.has_attribute?(:vote_type) && context.vote_type == "sms"
+
     update_attribute :rating, 1 * votes.liked.count + 0.01 * page_visits.count
   end
 
