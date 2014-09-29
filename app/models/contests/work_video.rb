@@ -6,7 +6,7 @@ class WorkVideo < Work
   validates :video_url, :presence => true
   validates :code, :presence => true
 
-  before_save :set_poster
+  before_save :set_poster, :store_video_content
 
   def set_poster
     self.image = Reviews::Content::Parser.new(video_url).poster
@@ -14,6 +14,10 @@ class WorkVideo < Work
 
   def content_parser
     @content_parser ||= Reviews::Content::Videos.new(video_url)
+  end
+
+  def store_video_content
+    self.video_content = AutoHtmlRenderer.new(video_url).render_show
   end
 
   def self.model_name

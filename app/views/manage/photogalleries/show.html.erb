@@ -50,7 +50,7 @@
   </div>
 
   <div class="works">
-    <h3>Работы <%= link_to "Добавить работу", new_manage_photogallery_work_path(resource), :class => 'edit_link' %></h3>
+    <h3>Работы <%= link_to "Добавить работу", new_manage_photogallery_work_path(resource, :context_type => "Photogallery"), :class => 'edit_link' %></h3>
     <ul>
       <% resource.works.each do |work| %>
         <li>

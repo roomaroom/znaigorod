@@ -59,7 +59,7 @@
   </div>
 
   <div class="works">
-    <h3>Работы <%= link_to "Добавить работу", new_manage_contest_work_path(resource), :class => 'edit_link' %></h3>
+    <h3>Работы <%= link_to "Добавить работу", new_manage_contest_work_path(resource, :context_type => "Contest"), :class => 'edit_link' %></h3>
     <%= render :partial => "works_#{resource.type_without_prefix}" %>
   </div>
 </div>

@@ -5,6 +5,7 @@
     <%= f.input :author_info %>
     <%= render :partial => "#{@work.context.type_without_prefix}_field", :locals => { :f => f } %>
     <%= f.input :agree, :as => :boolean, :input_html => {:checked => true}%>
+    <%= hidden_field_tag :context_type, params[:context_type] %>
 
     <div class="actions">
       <%= link_to "&larr; Назад".html_safe, :back %>
