@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
   before_filter :sape_init
-  before_filter :test
+  before_filter :redirect_without_subdomain
+  before_filter :set_access
 
   layout :resolve_layout
 
@@ -18,12 +19,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def test
-    if request.subdomain.present? && controller_name != 'discounts' && controller_name != 'comments'
+  def redirect_without_subdomain
+    #controllers = %w['discounts', 'comments', 'copy_payments', 'offers']
+    if request.subdomain.present? && controller_name != 'discounts' && controller_name != 'comments' && controller_name != 'offers' && controller_name != 'sessions' && controller_name != 'omniauth_callbacks'
       #raise request.subdomain.inspect
       #raise controller_name.inspect
       redirect_to url_for :controller => params[:controller], :action => params[:action], :only_path => false, :subdomain => false
     end
+  end
+
+  def set_access
+    #@response.headers["Access-Control-Allow-Origin"] = "*"
+    headers['Access-Control-Allow-Origin'] = '*'
   end
 
   def detect_robots_in_development
