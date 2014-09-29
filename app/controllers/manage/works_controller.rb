@@ -18,12 +18,14 @@ class Manage::WorksController < Manage::ApplicationController
 
   def build_resource
     unless params[:type].nil?
-      klass = params[:type].constantize
+      klass = params[:type].classify.constantize
       @work = klass.new(params[:work])
-      context_klass = params[:context_type].constantize
+      context_klass = params[:context_type].classify.constantize
       @work.context = context_klass.find(params["#{params[:context_type].underscore}_id"])
+
+      @work
     else
-      context_klass = params[:context_type].constantize
+      context_klass = params[:context_type].classify.constantize
       @work = context_klass.find(params["#{params[:context_type].underscore}_id"]).works.new
     end
   end
