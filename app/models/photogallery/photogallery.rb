@@ -32,6 +32,10 @@ class Photogallery < ActiveRecord::Base
     "/znaigorod/photogalleries/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 
+  def type_without_prefix
+    "photo"
+  end
+
   def likes_count
     self.votes.liked.count
   end

@@ -20,10 +20,11 @@ class Manage::WorksController < Manage::ApplicationController
     unless params[:type].nil?
       klass = params[:type].constantize
       @work = klass.new(params[:work])
-      @work.context = Contest.find(params[:contest_id])
-      @work
+      context_klass = params[:context_type].constantize
+      @work.context = context_klass.find(params["#{params[:context_type].underscore}_id"])
     else
-      @work = Contest.find(params[:contest_id]).works.new
+      context_klass = params[:context_type].constantize
+      @work = context_klass.find(params["#{params[:context_type].underscore}_id"]).works.new
     end
   end
 end
