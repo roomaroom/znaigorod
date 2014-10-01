@@ -29,7 +29,8 @@ class SaunaHall < ActiveRecord::Base
   accepts_nested_attributes_for :sauna_hall_pool
   accepts_nested_attributes_for :sauna_hall_schedules, :allow_destroy => true, :reject_if => :all_blank
 
-  delegate :organization_title, :to => :sauna
+  delegate :organization_title, :status, :to => :sauna
+  delegate :positive_activity_date, :to => :organization
   delegate :size, :to => :sauna_hall_pool, :prefix => :pool
   alias_method :images, :gallery_images
 
@@ -38,6 +39,7 @@ class SaunaHall < ActiveRecord::Base
     integer :price_max
     integer :price_min
     integer(:price) { price_min }
+    date :positive_activity_date
 
     float(:rating) { sauna.organization.total_rating }
 
@@ -47,6 +49,7 @@ class SaunaHall < ActiveRecord::Base
     string :features,       :multiple => true
     string :pool_features,  :multiple => true
     string :sauna_id
+    string :status
     string(:title) { organization_title }
     boolean(:sms_claimable) { sauna.respond_to?(:sms_claimable?) ? sauna.sms_claimable? : false }
   end

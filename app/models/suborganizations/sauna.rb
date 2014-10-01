@@ -9,7 +9,7 @@ class Sauna < ActiveRecord::Base
 
   delegate :address, :phone, :schedules, :halls,
            :site?, :site, :email?, :email, :afisha,
-           :latitude, :longitude, :nearest_afisha, :to => :organization
+           :latitude, :longitude, :nearest_afisha, :status, :to => :organization
 
   delegate :title, :description, :description?, to: :organization, prefix: true
 

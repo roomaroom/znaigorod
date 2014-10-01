@@ -45,7 +45,7 @@ class SaunaHallsPresenter
   end
 
   def self.available_sortings
-    %w[rating price title]
+    %w[positive_activity_date rating price title]
   end
 
   available_sortings.each do |sorting|
@@ -64,7 +64,7 @@ class SaunaHallsPresenter
   alias_method :criterion, :order_by
 
   def sortings
-    { 'rating' => 'desc', 'price' => 'asc', 'title' => 'asc' }
+    { 'positive_activity_date' => 'desc', 'rating' => 'desc', 'price' => 'asc', 'title' => 'asc' }
   end
 
   def direction
@@ -145,6 +145,7 @@ class SaunaHallsPresenter
 
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
       with(:sms_claimable, true) if sms_claimable
+      with(:status, [:client])
 
       facet :baths,         sort: :index, zeros: true
       facet :features,      sort: :index, zeros: true
@@ -164,8 +165,20 @@ class SaunaHallsPresenter
     }
   end
 
+  def sauna_with_not_client_status
+    Sauna.search_ids {
+      without(:status, [:client])
+      with(:location).in_radius(lat, lon, radius) if lat && lon && radius
+      paginate(:page => 1, :per_page => 100)
+    }
+  end
+
+  def sauna_ids
+    sauna_with_not_client_status + sauna_without_halls_ids
+  end
+
   def organization_for_saunas_without_halls
-    OrganizationDecorator.decorate(Organization.where(:id => Sauna.where(:id => sauna_without_halls_ids).pluck(:organization_id)))
+    OrganizationDecorator.decorate(Organization.where(:id => Sauna.where(:id => sauna_ids).pluck(:organization_id)))
   end
 
   def search_with_groups
@@ -238,7 +251,7 @@ class SaunaHallsPresenter
   end
 
   def sort_links
-    [rating_sort_link, price_sort_link, title_sort_link].join("\n").html_safe
+    [positive_activity_date_sort_link, rating_sort_link, price_sort_link, title_sort_link].join("\n").html_safe
   end
 
   def keywords
