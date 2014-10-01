@@ -1,0 +1,39 @@
+<table class='reviews'>
+  <thead>
+    <tr>
+      <th>Автор</th>
+      <th>Обзоры</th>
+      <th>Общее кол-во символов</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |author, review| %>
+      <tr>
+        <td class='author'><%= Account.find(author) %></td>
+        <td>
+          <table>
+            <thead>
+              <th>Название</th>
+              <th>Кол-во символов</th>
+              <th>Кол-во просмотров</th>
+            </thead>
+            <% review.each do |e| %>
+              <tr>
+                <td>
+                  <p class='with_border'><%= link_to e.title, review_path(e), target: '_blank' %></p>
+                </td>
+                <td>
+                  <p><%= e.content.size if e.content %></p>
+                </td>
+                <td>
+                  <p><%#= e.page_visits.count %></p>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td class='author'><%= review.map{ |review| review.content ? review.content.size : 0 }.sum %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
