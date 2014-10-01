@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   include MakePageVisit
   include VkUpload
 
-  attr_accessor :related_items, :tagit_categories, :need_change
+  attr_accessor :related_items, :tagit_categories, :need_change, :category_flag
 
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
@@ -19,13 +19,13 @@ class Review < ActiveRecord::Base
   before_save :store_cached_content_for_index
   before_save :store_cached_content_for_show
 
-  before_validation :set_categories
+  before_validation :set_categories, :if => :category_flag
 
   after_save :parse_related_items, :if => :need_change
 
   attr_accessible :content, :title, :tag, :categories,
                   :allow_external_links, :only_tomsk,
-                  :related_items, :tagit_categories, :need_change
+                  :related_items, :tagit_categories, :need_change, :category_flag
 
   belongs_to :account
   belongs_to :contest

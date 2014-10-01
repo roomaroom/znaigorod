@@ -60,6 +60,8 @@
       :as => :string,
       :label => false,
       :input_html => { :class => 'tagit_categories', :value => @review.categories.map(&:text).join(', ') }%>
+
+    <%= hidden_field_tag "review[category_flag]", true %>
   </div>
 
   <div class='submit'>
