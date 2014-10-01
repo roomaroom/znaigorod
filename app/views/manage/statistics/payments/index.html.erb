@@ -1,5 +1,10 @@
 <h1>Платежи</h1>
 
+<%= link_to 'Все', manage_statistics_payments_path(:order_by => 'every') %>
+<%= link_to 'Подтвержден', manage_statistics_payments_path(:order_by => 'approved') %>
+<%= link_to 'Отменен', manage_statistics_payments_path(:order_by => 'canceled') %>
+<%= link_to 'Ожидается', manage_statistics_payments_path(:order_by => 'pending') %>
+
 <table class='payments'>
   <thead>
     <tr>
