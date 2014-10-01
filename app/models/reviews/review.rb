@@ -19,8 +19,7 @@ class Review < ActiveRecord::Base
   before_save :store_cached_content_for_index
   before_save :store_cached_content_for_show
 
-  before_validation :set_categories, :on => :create
-  before_validation :set_categories, :on => :update
+  before_validation :set_categories
 
   after_save :parse_related_items, :if => :need_change
 
