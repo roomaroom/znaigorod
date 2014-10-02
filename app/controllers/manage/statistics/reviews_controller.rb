@@ -17,18 +17,22 @@ class Manage::Statistics::ReviewsController < Manage::ApplicationController
     end
 
     author_ids = %w[4649, 6, 2303, 8581, 18960, 14818]
-    @reviews = Review.where(:account_id => author_ids, state: 'published').where('created_at >= ? and created_at <= ?', @starts_at, @ends_at).where('type != ?', "Question").group_by(&:account_id)
+    @reviews = Review.where(:account_id => author_ids, state: 'published')
+                .where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
+                .without_questions
+                .order('created_at DESC')
+                .group_by(&:account_id)
 
     respond_to do |format|
       format.html
       format.csv {
         generated_csv = CSV.generate do |csv|
-          csv << ["Автор", "Название обзора", "Количество символов", "Количестов просмотров"]
+          csv << ["Автор", "Название обзора", "Кол-во просмотров", "Кол-во лайков", "Кол-во комментариев", "Дата публикации", "Количетво символов"]
           @reviews.each do |author, review|
             review.each do |attr|
-              csv << [Account.find(author), attr.title, attr.content? ? attr.content.size : 0, attr.page_visits.count]
+              csv << [Account.find(author), attr.title, attr.page_visits.count, attr.likes_count, attr.comments.count, attr.created_at.strftime('%d.%m.%Y'), attr.content? ? attr.content.size : 0]
             end
-            csv << ["", "", total_review_count(review), ""]
+            csv << ["", "", "", "", "", "", total_review_count(review)]
           end
         end
         send_data generated_csv
