@@ -1,0 +1,112 @@
+<h1>Афиши</h1>
+
+<div class='period'>
+  <%= simple_form_for :search, :url => manage_statistics_afishas_index_path, :method => :get do |f| %>
+    <span class='label'>С:</span>
+    <%= f.input :starts_at, :as => :date_picker, :label => false, :input_html => {:value => @starts_at.strftime('%d.%m.%Y')} %>
+    <span class='label'>По:</span>
+    <%= f.input :ends_at, :as => :date_picker, :label => false, :input_html => {:value => @ends_at.strftime('%d.%m.%Y')} %>
+    <%= f.submit 'Найти' %>
+  <% end %>
+</div>
+
+<%#= link_to "CSV", manage_statistics_afishas_path(format: "csv", params: params ) %>
+
+<table class='afishas'>
+  <thead>
+    <tr>
+      <th>Автор</th>
+      <th>Афиши</th>
+      <th>Кол-во афиш</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @afishas.each do |author, afisha| %>
+      <tr>
+        <td class='author'><%= User.find(author) %></td>
+        <td>
+          <table>
+            <thead>
+              <th>Название</th>
+              <th>Кол-во просмотров</th>
+              <th>Кол-во лайков</th>
+              <th>Кол-во комментариев</th>
+              <th>Дата публикации</th>
+            </thead>
+            <% afisha.each do |e| %>
+              <tr>
+                <td>
+                  <p><%= link_to e.title, afisha_show_path(e), target: '_blank' %></p>
+                </td>
+                <td>
+                  <p><%= e.page_visits.count %></p>
+                </td>
+                <td>
+                  <p><%= e.likes_count %></p>
+                </td>
+                <td>
+                  <p><%= e.comments.count %></p>
+                </td>
+                <td>
+                  <p><%= e.created_at.strftime('%d.%m.%Y') %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td class='author'><%= afisha.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Сеансы</h1>
+<table class='afishas'>
+  <thead>
+    <th>Автор</th>
+    <th>Афиша</th>
+    <th>Кол-во афиш</th>
+  </thead>
+  <tbody>
+    <% @showings.each do |author, afisha| %>
+      <tr>
+        <td class='author'><%= User.find(author) %></td>
+        <td>
+          <table>
+            <thead>
+              <th>Название</th>
+              <th>Кол-во просмотров</th>
+              <th>Кол-во лайков</th>
+              <th>Кол-во комментариев</th>
+              <th>Кол-во сеансов</th>
+              <th>Дата публикации</th>
+            </thead>
+            <% afisha.each do |e| %>
+              <tr>
+                <td>
+                  <p><%= link_to e.title, afisha_show_path(e), target: '_blank' %></p>
+                </td>
+                <td>
+                  <p><%= e.page_visits.count %></p>
+                </td>
+                <td>
+                  <p><%= e.likes_count %></p>
+                </td>
+                <td>
+                  <p><%= e.comments.count %></p>
+                </td>
+                <td>
+                  <p><%= e.showings.count %></p>
+                </td>
+                <td>
+                  <p><%= e.created_at.strftime('%d.%m.%Y') %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td class='author'><%= afisha.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -34,7 +34,7 @@
             <% review.each do |e| %>
               <tr>
                 <td>
-                  <p class='with_border'><%= link_to e.title, review_path(e), target: '_blank' %></p>
+                  <p><%= link_to e.title, review_path(e), target: '_blank' %></p>
                 </td>
                 <td>
                   <p><%= e.page_visits.count %></p>
