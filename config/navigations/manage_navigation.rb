@@ -82,6 +82,7 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :offers, 'Предложения цены', by_state_manage_statistics_offers_path(:fresh)
       statistics_item.item :comments, 'Комментарии', manage_comments_path, :if => -> { can?(:manage, Comment) }
       statistics_item.item :reviews, 'Обзоры', manage_statistics_reviews_path
+      statistics_item.item :afishas, 'Афиши', manage_statistics_afishas_index_path
     end
 
     primary.dom_class = 'navigation'
