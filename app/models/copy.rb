@@ -36,6 +36,8 @@ class Copy < ActiveRecord::Base
     string :state
     string(:copyable_id_str) { copyable_id.to_s }
 
+    time :updated_at
+
     text :copyable_description
   end
 
