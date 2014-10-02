@@ -85,6 +85,7 @@ ru:
       price: Цене
       title: Названию
       activity: Обновлению
+      positive_activity_date: Обновлению
 
   organization_stand:
     places:
