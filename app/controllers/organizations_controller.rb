@@ -8,10 +8,7 @@ class OrganizationsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        cookie = cookies['_znaigorod_organization_list_settings'].to_s
-        settings_from_cookie = {}
-        settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
-        @presenter = OrganizationsCatalogPresenter.new(settings_from_cookie.merge(params))
+        @presenter = OrganizationsCatalogPresenter.new(params)
         if request.xhr?
           render partial: 'organizations/organizations_posters', layout: false and return unless (@presenter.collection.last_page? && params[:not_client_page].present? )
           render partial: 'organizations/not_client_posters', layout: false
