@@ -1,0 +1,61 @@
+<h1>Билеты</h1>
+<div class='period'>
+  <%= simple_form_for :search, :url => manage_statistics_ticket_statistic_path, :method => :get do |f| %>
+    <span class='label'>С:</span>
+    <%= f.input :starts_at, :as => :date_picker, :label => false, :input_html => {:value => @starts_at.strftime('%d.%m.%Y')} %>
+    <span class='label'>По:</span>
+    <%= f.input :ends_at, :as => :date_picker, :label => false, :input_html => {:value => @ends_at.strftime('%d.%m.%Y')} %>
+    <%= f.submit 'Найти' %>
+  <% end %>
+</div>
+<%#= link_to "CSV", manage_statistics_reviews_path(format: "csv", params: params ) %>
+
+<table class='reviews'>
+  <thead>
+    <tr>
+      <th>Место проведения</th>
+      <th>Билеты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |place, tickets| %>
+      <tr>
+        <td class='author'><%= place%></td>
+        <td>
+          <table>
+            <thead>
+              <th>Афиша</th>
+              <th>Платежная система</th>
+              <th>Стоимость</th>
+              <th>Продано</th>
+              <th>Наша часть</th>
+              <th>Необходимо перечислить</th>
+            </thead>
+            <% tickets.each do |e| %>
+              <tr>
+                <td>
+                  <p><%= link_to e.afisha.title, afisha_show_path(e.afisha), target: '_blank' %></p>
+                </td>
+                <td>
+                  <p><%= e.payment_system %></p>
+                </td>
+                <td>
+                  <p><%= e.price %></p>
+                </td>
+                <td>
+                  <p><%= e.copies.where(state: 'sold').count %></p>
+                </td>
+                <td>
+                   <p><%= zg_part(e) * e.copies.where(state: 'sold').count %></p>
+                </td>
+                <td>
+                   <p><%= organizations_part(e) * e.copies.where(state: 'sold').count %></p>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

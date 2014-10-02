@@ -13,6 +13,7 @@ Znaigorod::Application.routes.draw do
       resources :tickets, only: [:index, :edit, :update, :destroy] do
         get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state
       end
+      get 'ticket_statistic' => 'tickets#ticket_statistic', :as => 'ticket_statistic'
 
       resources :afisha,        :only => [] do
         resources :tickets
