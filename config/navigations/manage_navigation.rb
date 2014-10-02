@@ -79,6 +79,7 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :discount_with_prices, 'Купоны', manage_statistics_discounts_path
       statistics_item.item :sms_claims, 'Смс заявки', manage_statistics_sms_claims_path
       statistics_item.item :tickets, 'Билеты', manage_statistics_tickets_path
+      statistics_item.item :tickets_2_0, 'Билеты 2.0', manage_statistics_ticket_statistic_path
       statistics_item.item :offers, 'Предложения цены', by_state_manage_statistics_offers_path(:fresh)
       statistics_item.item :comments, 'Комментарии', manage_comments_path, :if => -> { can?(:manage, Comment) }
       statistics_item.item :reviews, 'Обзоры', manage_statistics_reviews_path
