@@ -25,8 +25,11 @@
           <table>
             <thead>
               <th>Название</th>
-              <th>Кол-во символов</th>
               <th>Кол-во просмотров</th>
+              <th>Кол-во лайков</th>
+              <th>Кол-во комментариев</th>
+              <th>Дата публикации</th>
+              <th>Кол-во символов</th>
             </thead>
             <% review.each do |e| %>
               <tr>
@@ -34,10 +37,19 @@
                   <p class='with_border'><%= link_to e.title, review_path(e), target: '_blank' %></p>
                 </td>
                 <td>
-                  <p><%= e.content.size if e.content %></p>
+                  <p><%= e.page_visits.count %></p>
                 </td>
                 <td>
-                  <p><%= e.page_visits.count %></p>
+                  <p><%= e.likes_count %></p>
+                </td>
+                <td>
+                  <p><%= e.comments.count %></p>
+                </td>
+                <td>
+                  <p><%= e.created_at.strftime('%d.%m.%Y') %>
+                </td>
+                <td>
+                  <p><%= e.content.size if e.content %></p>
                 </td>
               </tr>
             <% end %>
