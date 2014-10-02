@@ -16,12 +16,6 @@
   if presentation_block.hasClass('afisha')
     cookie_name = '_znaigorod_afisha_list_settings'
 
-  if presentation_block.hasClass('organization')
-    cookie_name = '_znaigorod_organization_list_settings'
-
-  if presentation_block.hasClass('sauna')
-    cookie_name = '_znaigorod_sauna_list_settings'
-
   if presentation_block.hasClass('accounts')
     cookie_name = '_znaigorod_accounts_list_settings'
 
