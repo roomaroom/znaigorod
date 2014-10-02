@@ -39,11 +39,12 @@ class Manage::Statistics::TicketsController < Manage::ApplicationController
     else
       @ends_at = Time.zone.today.end_of_day
     end
+
     search = Copy.search(:include => :copyable) {
       if params[:search] && params[:search]['starts_at'].present?
         @starts_at = Time.zone.parse(params[:search]['starts_at']).beginning_of_day
       else
-        @starts_at = Time.zone.today.beginning_of_month
+        @starts_at = Time.zone.today.beginning_of_month.beginning_of_day
       end
 
       if params[:search] && params[:search]['ends_at'].present?
@@ -51,6 +52,7 @@ class Manage::Statistics::TicketsController < Manage::ApplicationController
       else
         @ends_at = Time.zone.today.end_of_day
       end
+
       group :copyable_id_str
       order_by :id, :desc
       paginate :page => page, :per_page => 10000
