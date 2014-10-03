@@ -31,7 +31,7 @@ class Manage::Statistics::TicketsController < Manage::ApplicationController
     if params[:search] && params[:search]['starts_at'].present?
       @starts_at = Time.zone.parse(params[:search]['starts_at']).beginning_of_day
     else
-      @starts_at = Time.zone.today.beginning_of_month
+      @starts_at = Time.zone.today.beginning_of_month.beginning_of_day
     end
 
     if params[:search] && params[:search]['ends_at'].present?
@@ -40,27 +40,14 @@ class Manage::Statistics::TicketsController < Manage::ApplicationController
       @ends_at = Time.zone.today.end_of_day
     end
 
-    search = Copy.search(:include => :copyable) {
-      if params[:search] && params[:search]['starts_at'].present?
-        @starts_at = Time.zone.parse(params[:search]['starts_at']).beginning_of_day
-      else
-        @starts_at = Time.zone.today.beginning_of_month.beginning_of_day
-      end
-
-      if params[:search] && params[:search]['ends_at'].present?
-        @ends_at = Time.zone.parse(params[:search]['ends_at']).end_of_day
-      else
-        @ends_at = Time.zone.today.end_of_day
-      end
-
-      group :copyable_id_str
-      order_by :id, :desc
-      paginate :page => page, :per_page => 10000
-      with :copyable_type, 'Ticket'
-      with :state, 'sold'
-      with(:updated_at).between(@starts_at..@ends_at)
-      #with(:updated_at).less_than(@ends_at)
-    }
+    search = Copy.search(:include => :copyable) do |s|
+      s.group :copyable_id_str
+      s.order_by :id, :desc
+      s.paginate :page => page, :per_page => 10000
+      s.with :copyable_type, 'Ticket'
+      s.with :state, 'sold'
+      s.with(:updated_at).between(@starts_at..@ends_at)
+    end
 
     groups = search.group(:copyable_id_str).groups
 
