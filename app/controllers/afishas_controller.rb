@@ -69,6 +69,6 @@ class AfishasController < ApplicationController
       afishas[afisha.id] = hash_info
     end
 
-    render json: afishas.to_json
+    render json: afishas.to_json, :callback => params['callback']
   end
 end
