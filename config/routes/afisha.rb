@@ -4,6 +4,9 @@ Znaigorod::Application.routes.draw do
   mount Affiches::API => '/'
   mount Mobile::API => '/'
 
+  get '/api/single_afisha' => 'afishas#single_afisha', :as => :single_afisha_api
+  get '/api/afisha_collection' => 'afishas#afisha_collection', :as => :afisha_collection_api
+
   get '/afisha_tomsk_segodnya' => 'afishas#index', :as => :afisha_today, :defaults => { :period => 'today' }, :constraints => { :period => 'today' }
   get '/afisha',
     :constraints => -> (req) { req.query_parameters['period'] == 'today' },

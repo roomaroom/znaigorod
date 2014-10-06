@@ -51,4 +51,24 @@ class AfishasController < ApplicationController
       end
     end
   end
+
+  def single_afisha
+  end
+
+  def afisha_collection
+    searcher = HasSearcher.searcher(:afishas, :q => params[:q], :state => 'published')
+      .paginate(:page => params[:page], :per_page => 12)
+
+    afishas = {}
+
+    searcher.results.each do |afisha|
+      hash_info=[]
+      hash_info << afisha.image_url
+      hash_info << afisha.title
+      hash_info << afisha_show_url(afisha)
+      afishas[afisha.id] = hash_info
+    end
+
+    afishas.to_json
+  end
 end
