@@ -69,6 +69,6 @@ class AfishasController < ApplicationController
       afishas[afisha.id] = hash_info
     end
 
-    afishas.to_json
+    render json: afishas.to_json
   end
 end
