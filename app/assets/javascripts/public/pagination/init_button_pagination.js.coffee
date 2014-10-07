@@ -11,7 +11,6 @@ next_page_handler = () ->
     $('.pagination').remove()
 
     if $('.is-js-reviews').length # if this page is /reviews
-      #initIsotopedContent()
       wrapper = $('<div />').append(response)
       $('.js-paginable-list').append(wrapper).isotope('appended', wrapper)
     else
