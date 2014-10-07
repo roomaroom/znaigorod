@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class AfishasController < ApplicationController
+  include ImageHelper
+
   respond_to :html, :rss, :promotion
 
   def index
@@ -63,7 +65,7 @@ class AfishasController < ApplicationController
 
     searcher.results.each do |afisha|
       hash_info = {}.tap{ |info|
-        info['image'] = afisha.image_url
+        info['image'] = resized_image_url(afisha.image_url, 66, 87)
         info['title'] = afisha.title
         info['url'] = afisha_show_url(afisha)
       }
