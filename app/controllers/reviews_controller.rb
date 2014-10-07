@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  include ImageHelper
+
   def index
     respond_to do |format|
       format.html {
@@ -50,5 +52,26 @@ class ReviewsController < ApplicationController
         render :partial => 'promotions/review', :locals => { :decorated_review => @review }
       }
     end
+  end
+
+  def review_collection
+    searcher = HasSearcher.searcher(:reviews, :q => params[:q], :state => 'published')
+      .without_questions
+      .order_by_creation
+      .paginate(page: params[:page], per_page: 12)
+
+    reviews = {}
+    searcher.results.each do |review|
+      hash_info = {}.tap{ |info|
+        info['image'] = resized_image_url(review.poster_image_url, 88, 50)
+        info['title'] = review.title
+        info['url'] = review_url(review)
+        info['prefix'] = 'reivew'
+      }
+      reviews[review.id] = hash_info
+    end
+
+
+    render json: reviews.to_json, :callback => params['callback']
   end
 end

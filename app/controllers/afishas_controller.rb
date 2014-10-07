@@ -54,9 +54,6 @@ class AfishasController < ApplicationController
     end
   end
 
-  def single_afisha
-  end
-
   def afisha_collection
     searcher = HasSearcher.searcher(:afishas, :q => params[:q], :state => 'published')
       .paginate(:page => params[:page], :per_page => 12)
@@ -66,7 +63,7 @@ class AfishasController < ApplicationController
     searcher.results.each do |afisha|
       hash_info = {}.tap{ |info|
         info['image'] = resized_image_url(afisha.image_url, 66, 87)
-        info['title'] = afisha.title.truncate(30)
+        info['title'] = afisha.title
         info['url'] = afisha_show_url(afisha)
         info['prefix'] = 'afisha'
       }
