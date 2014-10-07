@@ -66,11 +66,13 @@ class AfishasController < ApplicationController
     searcher.results.each do |afisha|
       hash_info = {}.tap{ |info|
         info['image'] = resized_image_url(afisha.image_url, 66, 87)
-        info['title'] = afisha.title
+        info['title'] = afisha.title.truncate(30)
         info['url'] = afisha_show_url(afisha)
+        info['prefix'] = 'afisha'
       }
       afishas[afisha.id] = hash_info
     end
+
 
     render json: afishas.to_json, :callback => params['callback']
   end
