@@ -110,7 +110,7 @@ $ ->
 $(window).load ->
   init_3dtourme_stat() if $('a.3dtourme').length
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
-  #init_training_banner_stat() if $('div.training embed').length
+  init_kniga_banner_stat() if $('.js-goal-kniga').length
   init_love_kiss_hug_banner_stat() if $('div.love_kiss_hug').length
   init_questions_banner_stat() if $('.top_headline').length
   init_photostream_stat() if $('.js-yandex-stat-top').length || $('.js-yandex-stat-photo').length
