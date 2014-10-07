@@ -1,4 +1,6 @@
 Znaigorod::Application.routes.draw do
+  get 'api/review_collection' => 'reviews#review_collection', :as => :review_collection_api
+
   namespace :my do
     resources :reviews do
       get 'add'                   => 'reviews#add',                   :on => :collection
