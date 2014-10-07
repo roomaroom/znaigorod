@@ -62,10 +62,11 @@ class AfishasController < ApplicationController
     afishas = {}
 
     searcher.results.each do |afisha|
-      hash_info=[]
-      hash_info << afisha.image_url
-      hash_info << afisha.title
-      hash_info << afisha_show_url(afisha)
+      hash_info = {}.tap{ |info|
+        info['image'] = afisha.image_url
+        info['title'] = afisha.title
+        info['url'] = afisha_show_url(afisha)
+      }
       afishas[afisha.id] = hash_info
     end
 
