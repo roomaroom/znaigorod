@@ -1,4 +1,4 @@
-<div class='kniga <%= params['controller'].split('/').try(&:first) if params.present? %>'>
+<div class='kniga <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
   <object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0' width='600' height='100' align='middle'>
     <param name='wmode' value='transparent' />
     <embed src='<%= asset_path('public/banner_zgivaya_kniga_znay_gorod.swf') %>'
