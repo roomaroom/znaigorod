@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20141030041720) do
+=======
+ActiveRecord::Schema.define(:version => 20141010023159) do
+>>>>>>> filter for video works
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -293,7 +297,10 @@ ActiveRecord::Schema.define(:version => 20141030041720) do
     t.integer  "short_number"
     t.string   "sms_secret"
     t.string   "default_sort",          :default => "by_id"
+<<<<<<< HEAD
     t.string   "new_work_text",         :default => "Добавить фотографию"
+=======
+>>>>>>> filter for video works
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
