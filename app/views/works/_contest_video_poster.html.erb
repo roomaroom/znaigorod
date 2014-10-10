@@ -36,9 +36,15 @@
           </div>
         <% end %>
       <% else %>
-        <div class='contest_work_vk_like_on_list'>
-          <%= t 'contest.votes', :count => work.context_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %>
-        </div>
+        <% if @contest.vote_type == "like" %>
+          <div class='contest_work_vk_like_on_list'>
+            <%= t 'contest.votes', :count => work.context_id < 4 ? work.vk_likes.to_i : work.votes.liked.count %>
+          </div>
+        <% else %>
+          <div class="sms_votes_counter">
+            <%= t 'work.sms', :count => work.sms_counter %>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <div class='contest_work_vk_like_on_list'>

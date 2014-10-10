@@ -7,7 +7,7 @@ class Contest < ActiveRecord::Base
 
   attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vote_type,
                   :participation_ends_at, :vfs_path, :og_description, :og_image, :contest_type,
-                  :sms_prefix, :short_number, :sms_secret
+                  :sms_prefix, :short_number, :sms_secret, :default_sort
 
   has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
@@ -36,6 +36,9 @@ class Contest < ActiveRecord::Base
                    :predicates => true
 
   enumerize :vote_type, :in => [:like, :sms],
+                   :predicates => true
+
+  enumerize :default_sort, :in => [:by_id, :by_sms_counter],
                    :predicates => true
 
   searchable do

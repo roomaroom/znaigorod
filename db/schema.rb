@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140926090815) do
+ActiveRecord::Schema.define(:version => 20141010023159) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -275,8 +275,8 @@ ActiveRecord::Schema.define(:version => 20140926090815) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "vfs_path"
     t.string   "slug"
     t.text     "og_description"
@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20140926090815) do
     t.string   "sms_prefix"
     t.integer  "short_number"
     t.string   "sms_secret"
+    t.string   "default_sort",          :default => "by_id"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
