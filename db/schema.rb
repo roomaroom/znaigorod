@@ -275,8 +275,8 @@ ActiveRecord::Schema.define(:version => 20141030041720) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "vfs_path"
     t.string   "slug"
     t.text     "og_description"
