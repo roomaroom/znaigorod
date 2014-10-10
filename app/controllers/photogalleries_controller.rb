@@ -19,7 +19,7 @@ class PhotogalleriesController < ApplicationController
       format.html {
         @photogallery = Photogallery.find(params[:id])
         @works = if params[:order_by] == 'newest' || params[:order_by].nil?
-                   @photogallery.works.ordered.page(page).per(per_page)
+                   @photogallery.works.ordered_by_id.page(page).per(per_page)
                  else
                    @photogallery.works.ordered_by_rating.page(page).per(per_page)
                  end
