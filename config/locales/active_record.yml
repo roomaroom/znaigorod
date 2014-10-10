@@ -181,6 +181,7 @@ ru:
         sms_prefix: Префикс
         short_number: Короткий номер
         sms_secret: Секретная фраза
+        default_sort: Сортировка по умолчанию
 
       work:
         <<: *common_attributes

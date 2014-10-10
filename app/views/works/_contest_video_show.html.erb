@@ -3,9 +3,9 @@
 
 <% content_for :extra_meta do %>
   <% full_content = @work.author_info.to_s
-     full_content += '. ' + @work.description.squish if @work.description.present?
-     content = truncate(full_content, :length => 140)
-  %>
+  full_content += '. ' + @work.description.squish if @work.description.present?
+  content = truncate(full_content, :length => 140)
+%>
   <meta name='description' content='<%= full_content %>' />
 
   <meta property='og:site_name' content='ЗнайГород - конкурс' />
@@ -45,15 +45,23 @@
     </h2>
 
     <div class='image'>
-     <div class="sms_title">
-       Участница № <%= @work.code %> - <%= @work.title %>
-     </div>
-     <div class="sms_vote">
-    Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= @work.code %></span>
-     </div>
-    <div class="sms_votes_counter">
-      <%= t 'work.sms', :count => @work.sms_counter %>
+      <div class="sms_title">
+        Участница № <%= @work.code %> - <%= @work.title %>
     </div>
+
+    <% if @contest.ends_at >= Time.zone.now %>
+      <div class="sms_vote">
+        Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= @work.code %></span>
+      </div>
+      <div class="sms_votes_counter">
+        <%= t 'work.sms', :count => @work.sms_counter %>
+      </div>
+    <% else %>
+      <div class="sms_votes_counter">
+        <%= t 'work.sms', :count => @work.sms_counter %>
+      </div>
+    <% end %>
+
     <% if @work.is_a?(WorkPhoto) %>
       <%= work_image_tag @work %>
     <% else %>
@@ -61,34 +69,34 @@
     <% end %>
   </div>
 
-    <% if @more_photos.works.count > 1 %>
-      <div class='photogallery'>
-        <ul>
-          <% @more_photos.works.ordered.each_with_index do |photo, index| %>
-            <li class="item tiny">
-              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 95, :width => 132, :index => index } %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <% if @work.context.starts_at <= Time.zone.now %>
-      <% if @work.context.ends_at >= Time.zone.now %>
-        <% if @work.context.vote_type == "like" %>
-          <div class='contest_work_like'>
-            <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
-          </div>
+  <% if @more_photos.works.count > 1 %>
+    <div class='photogallery'>
+      <ul>
+        <% @more_photos.works.ordered_by_id.each_with_index do |photo, index| %>
+          <li class="item tiny">
+            <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 95, :width => 132, :index => index } %>
+          </li>
         <% end %>
-      <% else %>
-        <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
-      <% end %>
-    <% end %>
-
-    <div class='author'>
-      <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
+      </ul>
     </div>
-    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+  <% end %>
+
+  <% if @work.context.starts_at <= Time.zone.now %>
+    <% if @work.context.ends_at >= Time.zone.now %>
+      <% if @work.context.vote_type == "like" %>
+        <div class='contest_work_like'>
+          <%= render :partial => 'votes/vote_wrapper', :locals => { :voteable => @work } %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class='contest_work_vk_like'><%= t 'contest.votes', :count => @work.context_id < 4 ? @work.vk_likes.to_i : @work.votes.liked.count %></div>
+    <% end %>
+  <% end %>
+
+  <div class='author'>
+    <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
   </div>
-  <%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
+  <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+</div>
+<%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
 </div>

@@ -23,9 +23,10 @@ class Work < ActiveRecord::Base
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
-  scope :ordered,           order('created_at desc')
-  scope :ordered_by_likes,  order('vk_likes desc')
-  scope :ordered_by_rating, order('rating desc')
+  scope :ordered_by_id,          order('created_at desc')
+  scope :ordered_by_sms_counter, order('sms_counter desc')
+  scope :ordered_by_likes,       order('vk_likes desc')
+  scope :ordered_by_rating,      order('rating desc')
 
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"

@@ -49,6 +49,9 @@ ru:
       vote_type:
         sms: Голосование по смс
         like: Лайки ЗнайГорода
+      default_sort:
+        by_id: По обновлению
+        by_sms_counter: По голосам
 
 
     role:
