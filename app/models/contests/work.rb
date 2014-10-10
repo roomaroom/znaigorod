@@ -28,12 +28,15 @@ class Work < ActiveRecord::Base
   scope :ordered_by_likes,       order('vk_likes desc')
   scope :ordered_by_zg_likes,    joins(:votes).group("works.id").order('count(works.id) desc')
   scope :ordered_by_rating,      order('rating desc')
+<<<<<<< HEAD
 
   def should_generate_new_friendly_id?
     return true if !self.slug?
 
     false
   end
+=======
+>>>>>>> filter for video works
 
   def vfs_path
     "/znaigorod/#{context_type.downcase.pluralize}/#{context_id}"
