@@ -10,8 +10,12 @@
 <div class='organization_show'>
   <div class='left'>
     <div class='image'>
-      <% if @organization.logotype_url? %>
-        <%= link_to(image_tag(resized_image_url(@organization.logotype_url, 200, 200, :watermark => false), :size => '200x200', :alt => @organization.title), @organization.logotype_url) %>
+      <% if @organization.status.client? %>
+        <% if @organization.logotype_url? %>
+          <%= link_to(image_tag(resized_image_url(@organization.logotype_url, 200, 200, :watermark => false), :size => '200x200', :alt => @organization.title), @organization.logotype_url) %>
+        <% else %>
+          <span class='stub_poster <%= @organization.priority_suborganization_kind %>'></span>
+        <% end %>
       <% else %>
         <span class='stub_poster <%= @organization.priority_suborganization_kind %>'></span>
       <% end %>
@@ -131,6 +135,7 @@
           <% end %>
         </ul>
       <% end %>
+
       <% if @organization.status.client? %>
         <% if @organization.description.present? %>
           <div class='description'>
