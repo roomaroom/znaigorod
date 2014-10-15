@@ -1043,3 +1043,70 @@
         .comments
           h3
             background-color: #fdf5b4
+
+.paprika_content_wrapper
+  background: black image_url('public/paprika/header.jpg') no-repeat center top
+
+  .paprika_logo
+    width: 1200px
+    height: 110px
+    margin: 0 auto
+
+  .content_wrapper
+    background-color: rgba(#000, 0.2)
+    +border-radius(5px)
+
+    .left
+      .image
+        border: 2px solid #860000
+        margin: 0
+        border-bottom: 0
+
+      .social_actions
+        border: 2px solid #860000
+        border-top: 0
+        background-color: #3d0006
+        width: 208px
+
+        .user_actions
+          border-bottom: 2px solid #860000
+          padding: 7px 5px
+
+        .visits_counter
+          color: #fff
+
+          .floatr
+            color: #0066cc
+
+        .visitors
+          li
+            &:first-child
+              border: 0
+
+    .center
+      color: #fff
+
+      div.title, h3
+        background-color: #3d0006
+
+      .share_and_likes
+        border-bottom: 1px solid #860000
+
+        .share
+          .title
+            background-color: transparent
+
+    .right
+      border: 2px solid #860000
+      width: 203px
+      padding: 5px
+
+      .wrapper
+        border: 0
+
+        .yandex_map
+
+        .more_like_this
+          +background(linear-gradient(top, #1d0708, #3f0006))
+          border-top: 2px solid #860000
+          margin: 6px -5px -5px
