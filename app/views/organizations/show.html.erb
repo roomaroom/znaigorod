@@ -132,7 +132,6 @@
         </ul>
       <% end %>
       <% if @organization.status.client? %>
-
         <% if @organization.description.present? %>
           <div class='description'>
             <%= @organization.description_html %>
@@ -172,8 +171,10 @@
     </div>
 
 
-    <% @organization.decorated_suborganizations.each do |suborganization| %>
-      <%= render suborganization if suborganization.viewable? %>
+    <% if @organization.status.client? %>
+      <% @organization.decorated_suborganizations.each do |suborganization| %>
+        <%= render suborganization if suborganization.viewable? %>
+      <% end %>
     <% end %>
 
     <% if @discount_presenter.collection.any? || @certificate_presenter.collection.any? || @coupon_presenter.collection.any? %>
