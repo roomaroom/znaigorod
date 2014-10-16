@@ -73,4 +73,17 @@ class PhotogalleriesController < ApplicationController
 
     render json: photogalleries.to_json, :callback => params['callback']
   end
+
+  def single_photogallery
+    photogallery = Photogallery.find(params[:id])
+
+    single_photogallery = {}.tap{ |single|
+      single['image'] = photogallery.works.limit(6).map{ |work| resized_image_url(work.image_url, 234, 158) }
+      single['published_at'] = photogallery.created_at
+      single['title'] = photogallery.title
+      single['url'] = photogallery_url(photogallery)
+    }
+
+    render json: single_photogallery.to_json
+  end
 end
