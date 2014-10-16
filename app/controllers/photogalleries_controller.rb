@@ -1,4 +1,5 @@
 class PhotogalleriesController < ApplicationController
+  include ImageHelper
   helper_method :page, :per_page, :current_count, :total_count
 
   def index
@@ -50,5 +51,26 @@ class PhotogalleriesController < ApplicationController
 
   def total_count
     @photogallery.works.count
+  end
+
+  def photogallery_collection
+    searcher = HasSearcher.searcher(:photogalleries, :q => params[:q])
+      .order_by_title
+      .paginate(page: params[:page], per_page: 12)
+
+    photogalleries = {}
+
+    searcher.results.each do |photogallery|
+      hash_info = {}.tap{ |info|
+        info['image'] = resized_image_url(photogallery.image_url, 66, 87)
+        info['title'] = photogallery.title
+        info['url'] = photogallery_url(photogallery)
+        info['prefix'] = 'photogallery'
+      }
+      photogalleries[photogallery.id] = hash_info
+    end
+
+
+    render json: photogalleries.to_json, :callback => params['callback']
   end
 end
