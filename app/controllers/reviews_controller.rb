@@ -54,6 +54,7 @@ class ReviewsController < ApplicationController
     end
   end
 
+#talant API
   def review_collection
     searcher = HasSearcher.searcher(:reviews, :q => params[:q], :state => 'published')
       .without_questions
@@ -66,12 +67,25 @@ class ReviewsController < ApplicationController
         info['image'] = resized_image_url(review.poster_image_url, 88, 50)
         info['title'] = review.title
         info['url'] = review_url(review)
-        info['prefix'] = 'reivew'
+        info['prefix'] = 'review'
       }
       reviews[review.id] = hash_info
     end
 
-
     render json: reviews.to_json, :callback => params['callback']
+  end
+
+  def single_review
+    review = Review.find(params[:id])
+
+    single_review = {}.tap{ |single|
+      single['image'] = resized_image_url(review.poster_image_url, 354, 200)
+      single['description'] = review.description
+      single['published_at'] = review.created_at
+      single['title'] = review.title
+      single['url'] = review_url(review)
+    }
+
+    render json: single_review.to_json
   end
 end
