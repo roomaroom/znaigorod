@@ -80,7 +80,7 @@ class ReviewsController < ApplicationController
 
     single_review = {}.tap{ |single|
       single['image'] = resized_image_url(review.poster_image_url, 354, 200)
-      single['description'] = review.description
+      single['description'] = review.cached_content_for_index
       single['published_at'] = review.created_at
       single['title'] = review.title
       single['url'] = review_url(review)
