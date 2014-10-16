@@ -79,7 +79,7 @@ class ReviewsController < ApplicationController
     review = Review.find(params[:id])
 
     single_review = {}.tap{ |single|
-      single['image'] = resized_image_url(review.poster_image_url, 354, 200)
+      single['image'] = resized_image_url(review.poster_image_url, 370, 200)
       single['description'] = review.cached_content_for_index
       single['published_at'] = review.created_at
       single['title'] = review.title
