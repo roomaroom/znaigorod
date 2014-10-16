@@ -88,6 +88,7 @@ Znaigorod::Application.routes.draw do
     end
   end
 
+  get '/api/photogallery_collection' => 'photogalleries#photogallery_collection', :as => 'photogallery_collection_api'
   resources :photogalleries, :only => [:index, :show] do
     resources :works, :only => [:new, :create, :show, :destroy, :update] do
       get 'add' => 'works#add', on: :collection
