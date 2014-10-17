@@ -73,4 +73,17 @@ class AfishasController < ApplicationController
 
     render json: afishas.to_json, :callback => params['callback']
   end
+
+  def single_afisha
+    afisha = Afisha.find(params[:id])
+
+    single_afisha = {}.tap{ |single|
+      single['image'] = resized_image_url(afisha.poster_image_url, 370, 200)
+      single['published_at'] = afisha.created_at
+      single['title'] = afisha.title
+      single['url'] = afisha_show_url(afisha)
+    }
+
+    render json: single_afisha.to_json
+  end
 end
