@@ -29,6 +29,7 @@
       success: (response) ->
         $('.phone_wrapper').empty()
         $('.phone_wrapper').append(response)
+        $('.phone_wrapper').append('     Скажите, что Вы нашли телефон на ЗнайГород')
       done:
         $(this).remove()
 
