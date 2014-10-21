@@ -22,7 +22,7 @@
       <% end %>
       <span class="counter fa fa-camera"> <%= photogallery.works.size %></span>
     <% else %>
-      <%= link_to image_tag(resized_image_url(photogallery.works.ordered.first.image_url, width, height)), photogallery_path(photogallery) %>
+      <%= link_to image_tag(resized_image_url(photogallery.works.ordered_by_id.first.image_url, width, height)), photogallery_path(photogallery) %>
     <% end %>
   </ul>
 <% else %>
