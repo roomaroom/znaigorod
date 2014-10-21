@@ -50,7 +50,7 @@ class My::DiscountsController < My::ApplicationController
     @discount = current_user.account.discounts.find(params[:id])
     @discount.to_published!
 
-    redirect_to discount_path(@discount), :notice => "Информация о скидке «#{@discount.title}» опубликована."
+    redirect_to discount_show_url(@discount, subdomain: 'discounts'), :notice => "Информация о скидке «#{@discount.title}» опубликована."
   end
 
   def send_to_draft
