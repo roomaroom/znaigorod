@@ -18,7 +18,7 @@ class DiscountsPresenter
     end
 
     def path(type: self.type, kind: self.kind, order_by: self.order_by)
-      return discounts_url(:order_by => order_by, subdomain: "discounts", host: "lvh.me:3000") if type.nil? && kind.nil?
+      return discounts_url(:order_by => order_by, subdomain: "discounts", host: "lvh.me:3000") if type.nil? && kind.nil? # FIXME
 
       path = [type, kind].compact.join('_')
 

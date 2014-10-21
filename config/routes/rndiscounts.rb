@@ -2,6 +2,7 @@
 
 Znaigorod::Application.routes.draw do
   mount Discounts::API => '/'
+  get '/discounts' => redirect('http://discounts.lvh.me:3000') # legacy
 
   Discount.classes_subtree.map(&:name).map(&:underscore).each do |type|
     # /[discount|certificate|coupon] not work yet
