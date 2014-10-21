@@ -1,6 +1,6 @@
 <div class="offer_price_wrapper">
   <%= link_to 'Предложить свою цену',
-    polymorphic_url([:new, discount, :offer], subdomain: 'discounts'),
+    polymorphic_url([:new, discount, :offer], subdomain: false),
     :remote => true,
     :class => 'offer_price button',
     :data => { :title => 'Предложить свою цену' } %>

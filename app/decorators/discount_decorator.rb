@@ -107,7 +107,7 @@ class DiscountDecorator < ApplicationDecorator
     if discount.is_a?(OfferedDiscount) && discount.organizations.any?
       h.organization_url discount.organizations.first, options.merge(:subdomain => false)
     else
-      h.discount_show_url discount, options # изменениe для поддомена
+      h.discount_show_url discount, options.merge(subdomain: 'discounts')
     end
   end
 

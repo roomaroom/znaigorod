@@ -20,16 +20,13 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_without_subdomain
-    #controllers = %w['discounts', 'comments', 'copy_payments', 'offers']
-    if request.subdomain.present? && controller_name != 'discounts' && controller_name != 'comments' && controller_name != 'offers' && controller_name != 'sessions' && controller_name != 'omniauth_callbacks'
-      #raise request.subdomain.inspect
-      #raise controller_name.inspect
+    controllers = %w(discounts comments copy_payments offers)
+    if request.subdomain.present? && !controllers.include?(controller_name)
       redirect_to url_for :controller => params[:controller], :action => params[:action], :only_path => false, :subdomain => false
     end
   end
 
   def set_access
-    #@response.headers["Access-Control-Allow-Origin"] = "*"
     headers['Access-Control-Allow-Origin'] = '*'
   end
 
