@@ -6,7 +6,13 @@ class Photogallery < ActiveRecord::Base
     :og_image_updated_at, :og_image_url, :slug, :title, :vfs_path, :og_image,
     :available_participation, :page_meta_keywords, :page_meta_description
 
+  extend FriendlyId
   friendly_id :title, use: :slugged
+  def should_generate_new_friendly_id?
+    return true if !self.slug?
+
+    false
+  end
 
   has_attached_file :og_image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
