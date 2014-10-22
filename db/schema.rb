@@ -293,7 +293,6 @@ ActiveRecord::Schema.define(:version => 20141024054304) do
     t.integer  "short_number"
     t.string   "sms_secret"
     t.string   "default_sort",          :default => "by_id"
-    t.string   "new_work_text",         :default => "Добавить фотографию"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
