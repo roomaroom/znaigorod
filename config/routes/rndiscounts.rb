@@ -30,11 +30,10 @@ Znaigorod::Application.routes.draw do
     get '/' => 'discounts#index', :as => :discounts
   end
 
-  resources :discounts, :only => [:index, :show] do
+  resources :discounts, :only => [:index] do
     resources :members,  :only => [:index, :create, :destroy]
   end
 
   get 'offered_discount/:id' => 'discounts#show', :as => :offered_discount_show
 
-  #root :to => 'main_page#show'
 end

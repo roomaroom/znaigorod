@@ -79,7 +79,6 @@ class DiscountDecorator < ApplicationDecorator
     return results if places.empty?
 
     place = places.first
-
     if place.organization_id?
       results += h.link_to h.truncate(place.organization.try(:title), :length => 30), h.organization_url(place.organization, :subdomain => false), :title => place.address
     else
