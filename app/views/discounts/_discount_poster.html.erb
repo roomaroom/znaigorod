@@ -1,5 +1,5 @@
 <li>
-  <div class="item <%= 'fresh' if controller_name == 'discounts' %>">
+  <div class="item <%= 'fresh' if controller_name == 'discounts' && action_name != 'show' %>">
     <div class="info">
       <%= render :partial => "discounts/#{discount.model.class.name.underscore}_info", :locals => { :discount => discount.model } %>
     </div>
