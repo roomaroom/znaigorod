@@ -2,7 +2,9 @@
 
 Znaigorod::Application.routes.draw do
   mount Discounts::API => '/'
-  get '/discounts' => redirect('http://discounts.lvh.me:3000') # legacy
+  #legacy
+  get '/discounts' => redirect("http://discounts.#{Settings[:app][:host]}")
+  get '/discounts/:id' => redirect { |params, req| "http://discounts.#{Settings[:app][:host]}/#{params[:id]}" }
 
   Discount.classes_subtree.map(&:name).map(&:underscore).each do |type|
     # /[discount|certificate|coupon] not work yet
@@ -25,10 +27,6 @@ Znaigorod::Application.routes.draw do
   end
 
   get ':id' => 'discounts#show', :as => :discount_show
-
-  constraints subdomain: 'discounts' do
-    get '/' => 'discounts#index', :as => :discounts
-  end
 
   resources :discounts, :only => [:index] do
     resources :members,  :only => [:index, :create, :destroy]

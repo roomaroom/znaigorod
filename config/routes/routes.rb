@@ -115,5 +115,9 @@ Znaigorod::Application.routes.draw do
 
   get '/getmvote' => 'sms_votes#index'
 
+  constraints subdomain: 'discounts' do
+    get '/' => 'discounts#index', :as => :discounts
+  end
+
   root :to => 'main_page#show'
 end

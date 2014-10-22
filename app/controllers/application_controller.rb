@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_without_subdomain
-    controllers = %w(discounts comments copy_payments offers)
+    controllers = %w(discounts comments copy_payments offers main_page)
     if request.subdomain.present? && !controllers.include?(controller_name)
       redirect_to url_for :controller => params[:controller], :action => params[:action], :only_path => false, :subdomain => false
     end

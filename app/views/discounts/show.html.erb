@@ -80,12 +80,12 @@
             <% @discount.similar_discount.each do |discount| %>
               <li>
                 <div class="image">
-                  <%= link_to discount_path(discount) do %>
+                  <%= link_to discount_show_url(discount, subdomain: 'discounts') do %>
                     <%= image_tag resized_image_url(discount.poster_url, 80, 60), :size => '80x60', :alt => discount.title.text_gilensize %>
                   <% end %>
                 </div>
                 <div class="clearfix">
-                  <div class="title"><%= link_to truncate(discount.title.text_gilensize, :length => 25), discount_path(discount) %></div>
+                  <div class="title"><%= link_to truncate(discount.title.text_gilensize, :length => 25), discount_show_url(discount,subdomain: 'discounts') %></div>
                   <% if discount.discount? %>
                     <div class="profit">Скидка <%= discount.model.discount %>%</div>
                   <% end %>

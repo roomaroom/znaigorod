@@ -73,9 +73,6 @@ Znaigorod::Application.routes.draw do
     get '/movies_from_kinopoisk' => 'afishas#movies_from_kinopoisk', :as => :movies_from_kinopoisk
     get '/movie_info_from_kinopoisk/:movie_id' => 'afishas#movie_info_from_kinopoisk', :as => :movie_info_from_kinopoisk
 
-    #Contest.descendant_names_without_prefix.each do |type|
-      #get "contests/#{type}" => 'contests#index', :constraints => { :type => type }, :defaults => { :type => type }
-    #end
 
     resources :contests do
       resources :works, :except => [:index, :show]
