@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <% if false && @presenter.kind_filter.links.count > 8 %>
+  <% if @presenter.kind_filter.links.count > 8 %>
     <ul class="more">
       <% @presenter.kind_filter.links[8..@presenter.kind_filter.links.count].each do |link| %>
         <li class="<%= link.klass %>">
