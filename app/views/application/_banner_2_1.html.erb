@@ -1,14 +1,5 @@
-<div class='kniga <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
-  <object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0' width='600' height='100' align='middle'>
-    <param name='wmode' value='transparent' />
-    <embed src='<%= asset_path('public/banner_zgivaya_kniga_znay_gorod.swf') %>'
-    quality='high' name='kniga' align='middle'
-    allowscriptaccess='always'
-    wmode='transparent'
-    type='application/x-shockwave-flash'
-    pluginspage='http://www.macromedia.com/go/getflashplayer'
-    width='600' height='100'>
-    </embed>
-  </object>
-  <%= link_to '#', 'http://ohotanasvadbu.ru/project/proekt-jivaya-kniga-tomsk-2014', class: 'link_to_for_flash js-goal-kniga', target: '_blank' %>
-</div>
+<% unless params[:id] == 'imidzh-proekt-potentsial' %>
+  <div class='potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+    <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
+  </div>
+<% end %>

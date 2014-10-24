@@ -16,16 +16,9 @@
     true
   true
 
-@init_kniga_banner_stat = () ->
-  $('.js-goal-kniga').click ->
-    yaCounter14923525.reachGoal('kniga_banner') if yaCounter14923525?
-    true
-
-  return
-
-@init_love_kiss_hug_banner_stat = () ->
-  $('div.love_kiss_hug').click ->
-    yaCounter14923525.reachGoal('love_kiss_hug') if yaCounter14923525?
+@init_potential_banner_stat = () ->
+  $('.js-stat-potential').click ->
+    yaCounter14923525.reachGoal('potential_banner') if yaCounter14923525?
     true
 
   return
@@ -33,24 +26,6 @@
 @init_questions_banner_stat = () ->
   $('.top_headline a').click ->
     yaCounter14923525.reachGoal('questions_banner') if yaCounter14923525?
-    true
-
-  return
-
-@init_photostream_stat = () ->
-  $('.js-yandex-stat-top').click ->
-    yaCounter14923525.reachGoal('ohotanasvadbu-top') if yaCounter14923525?
-    true
-
-  $('.js-yandex-stat-photo').click ->
-    yaCounter14923525.reachGoal('ohotanasvadbu-photo') if yaCounter14923525?
-    true
-
-  return
-
-@init_go_go_stat = () ->
-  $('.js-go-go-stat').click ->
-    yaCounter14923525.reachGoal('dance-go-go') if yaCounter14923525?
     true
 
   return
