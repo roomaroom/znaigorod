@@ -1,1 +1,1 @@
-set :branch, 'promotion'
+set :branch, 'subdomain_discounts'
