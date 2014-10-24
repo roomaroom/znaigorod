@@ -60,6 +60,8 @@
       </div>
     <% end %>
 
+    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
+
     <%= render :partial => 'commons/share_this' %>
 
     <% if @work.context.starts_at <= Time.zone.now %>
@@ -79,7 +81,6 @@
     <div class='author'>
       <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
     </div>
-    <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
   </div>
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
 </div>

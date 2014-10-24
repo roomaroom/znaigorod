@@ -30,9 +30,12 @@
     <%= simple_form_for [@contest, @work] do |f| %>
       <%= f.error :base %>
       <%= f.input :image %>
-      <%= f.input :title %>
-      <%= f.input :description %>
-      <%= f.input :author_info, :as => :hidden, :input_html => {:value => ""} %>
+
+      <% if @contest.slug == 'imidzh-proekt-potentsial' %>
+        <%= f.input :title, label: false, input_html: { placeholder: 'Ваше имя' } %>
+        <%= f.input :description, label: false, input_html: { placeholder: 'Расскажите немного информации о себе', cols: 100 } %>
+        <%= f.input :author_info, :as => :hidden, :input_html => { :value => "" } %>
+      <% end %>
 
       <div class="agreement_wrapper">
         <%= f.input :agree, :as => :boolean %>
