@@ -1,4 +1,4 @@
-<% if @contest.ends_at <= Time.zone.now %>
+<% if @contest.ends_at <= Time.zone.now && @winners.present? %>
   <div class='winners'>
     <h2>Победители</h2>
     <ul>
@@ -11,8 +11,8 @@
             :class => 'js-video-preview',
             :data => { :video => { :src => @winners[0].content_parser.videos.first.src, :width => '700' } } %>
         </div>
-        <div class='contest_work_vk_like_on_list'><%= t 'work.sms', :count => @winners[0].sms_counter %></div>
       </li>
+
       <li>
         <div class='title silver'>Второе место</div>
         <div class='image'>
@@ -22,8 +22,8 @@
             :class => 'js-video-preview',
             :data => { :video => { :src => @winners[1].content_parser.videos.first.src, :width => '700' } } %>
         </div>
-        <div class='contest_work_vk_like_on_list'><%= t 'work.sms', :count => @winners[1].sms_counter %></div>
       </li>
+
       <li>
         <div class='title bronze'>Третье место</div>
         <div class='image'>
@@ -33,7 +33,17 @@
             :class => 'js-video-preview',
             :data => { :video => { :src => @winners[2].content_parser.videos.first.src, :width => '700' } } %>
         </div>
-        <div class='contest_work_vk_like_on_list'><%= t 'work.sms', :count => @winners[2].sms_counter %></div>
+      </li>
+
+      <li>
+        <div class='title fourth'>Приз зрительских симпатий</div>
+        <div class='image'>
+          <%= link_to image_tag(resized_image_url(@winners[3].image_url, 350, 200,
+                                                  options = { :crop => '!', :magnify => 'm', :orientation => '' }) , :size => "350x200"),
+          [@winners[3].context, @winners[3].becomes(Work)],
+          :class => 'js-video-preview',
+          :data => { :video => { :src => @winners[3].content_parser.videos.first.src, :width => '700' } } %>
+        </div>
       </li>
     </ul>
   </div>
