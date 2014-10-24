@@ -64,6 +64,9 @@ class WorksController < ApplicationController
   protected
 
   def build_resource
-    @work = super.tap { |w| w.account_id = current_user.account_id }
+      @work = WorkPhoto.new(params[:work])
+      context_klass = params[:context_type].classify.constantize
+      @work.context = context_klass.find(params["#{params[:context_type].underscore}_id"])
+      @work = super.tap { |w| w.account_id = current_user.account_id }
   end
 end
