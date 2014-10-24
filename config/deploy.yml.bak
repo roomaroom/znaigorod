@@ -1,0 +1,9 @@
+production:
+  gateway:              peoneerko@taurus.openteam.ru
+  application:          znaigorod.ru
+  domain:               rvmuser@znaigorod
+
+development:
+  gateway:              peoneerko@taurus.openteam.ru
+  application:          dev.znaigorod.ru
+  domain:               ruby@znaigorod-dev
