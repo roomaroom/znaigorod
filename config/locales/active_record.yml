@@ -177,6 +177,7 @@ ru:
         og_description: OG description
         og_image: OG image
         contest_type: Тип конкурса
+        new_work_text: Текст кнопки новой работы
         vote_type: Тип голосования
         sms_prefix: Префикс
         short_number: Короткий номер
