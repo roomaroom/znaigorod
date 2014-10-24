@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def resolve_layout
-    request.xhr? ? false : 'public_contest'
+    request.xhr? ? false : 'public'
   end
 
   def page
