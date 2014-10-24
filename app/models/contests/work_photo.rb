@@ -39,5 +39,7 @@ end
 #  video_url          :string(255)
 #  code               :integer
 #  type               :string(255)
+#  video_content      :text
+#  sms_counter        :integer          default(0)
 #
 

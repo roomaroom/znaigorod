@@ -7,7 +7,7 @@ class Contest < ActiveRecord::Base
 
   attr_accessible :agreement, :title, :description, :ends_at, :starts_at, :vote_type,
                   :participation_ends_at, :vfs_path, :og_description, :og_image, :contest_type,
-                  :sms_prefix, :short_number, :sms_secret, :default_sort
+                  :sms_prefix, :short_number, :sms_secret, :default_sort, :new_work_text
 
   has_many :works, :as => :context, :dependent => :destroy
   has_many :accounts, :through => :works, :uniq => true
@@ -100,5 +100,11 @@ end
 #  agreement             :text
 #  participation_ends_at :datetime
 #  type                  :string(255)
+#  vote_type             :string(255)
+#  sms_prefix            :string(255)
+#  short_number          :integer
+#  sms_secret            :string(255)
+#  default_sort          :string(255)      default("by_id")
+#  new_work_text         :string(255)      default("Добавить фотографию")
 #
 

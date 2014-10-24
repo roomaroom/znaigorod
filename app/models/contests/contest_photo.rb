@@ -28,5 +28,11 @@ end
 #  agreement             :text
 #  participation_ends_at :datetime
 #  type                  :string(255)
+#  vote_type             :string(255)
+#  sms_prefix            :string(255)
+#  short_number          :integer
+#  sms_secret            :string(255)
+#  default_sort          :string(255)      default("by_id")
+#  new_work_text         :string(255)      default("Добавить фотографию")
 #
 
