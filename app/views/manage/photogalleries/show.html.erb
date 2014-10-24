@@ -80,7 +80,8 @@
             <% end %>
           </div>
           <div>
-            <%= link_to 'Редактировать', [:edit, :manage, resource, work]  %>
+            <%= link_to 'Редактировать', [:edit, :manage, resource, work]  %> <br />
+            <%= link_to 'Удалить', [:manage, resource, work.becomes(Work)], method: :delete, confirm: 'Уверены что хотите удалить?' %>
           </div>
         </li>
       <% end %>
