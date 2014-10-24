@@ -30,6 +30,9 @@
     <%= simple_form_for [@contest, @work] do |f| %>
       <%= f.error :base %>
       <%= f.input :image %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :author_info, :as => :hidden, :input_html => {:value => ""} %>
 
       <div class="agreement_wrapper">
         <%= f.input :agree, :as => :boolean %>
@@ -39,7 +42,7 @@
           <%= @contest.agreement.html_safe %>
         </div>
       </div>
-
+      <input type="hidden" name="context_type" value="<%= params[:context_type] %>" />
       <%= f.submit 'Готово', :class => 'submit' %>
     <% end %>
   </div>
