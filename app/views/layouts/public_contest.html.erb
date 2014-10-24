@@ -37,7 +37,7 @@
 <% end %>
 
 <% content_for :canonical_link do %>
-  <% if request.query_parameters.any? %>
+  <% if request.env['REQUEST_URI'].include?('?') %>
     <link rel='canonical' href='<%= request.url.split('?').first %>' />
   <% end %>
 <% end %>
