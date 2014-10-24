@@ -33,7 +33,6 @@ class ContestsController < ApplicationController
 
   protected
 
-<<<<<<< HEAD
   def winner_array(slug)
     [].tap { |array|
       array << Work.find("pashkevich-ekaterina")
@@ -43,8 +42,6 @@ class ContestsController < ApplicationController
     } if slug == 'dance-2-go-go-ladies-go'
   end
 
-=======
->>>>>>> filter for video works
   def order_by(contest)
     params[:order_by] || contest.default_sort
   end
