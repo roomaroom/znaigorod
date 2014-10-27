@@ -48,18 +48,6 @@
       <% end %>
     </div>
 
-    <% if @more_photos.works.count > 1 %>
-      <div class='photogallery'>
-        <ul>
-          <% @more_photos.works.ordered_by_id.each_with_index do |photo, index| %>
-            <li class="item tiny">
-              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 120, :width => 214, :index => index } %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <%= content_tag :div, @work.description.as_html, :class => :description if @work.description.present? %>
 
     <%= render :partial => 'commons/share_this' %>
@@ -81,6 +69,19 @@
     <div class='author'>
       <%= "<strong>Автор работы:</strong> #{@work.author_info}".html_safe if @work.author_info.present? %>
     </div>
+
+    <% if @more_photos.works.count > 1 %>
+      <div class='photogallery'>
+        <ul>
+          <% @more_photos.works.ordered_by_id.each_with_index do |photo, index| %>
+            <li class="item tiny">
+              <%= render :partial => 'photogallery_works', :locals => { :photo => photo, :height => 120, :width => 214, :index => index } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
   </div>
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @work.becomes(Work) } %>
 </div>
