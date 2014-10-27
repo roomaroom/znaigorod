@@ -66,8 +66,7 @@ class WorksController < ApplicationController
   def build_resource
     if current_user
       @work = WorkPhoto.new(params[:work])
-      context_klass = params[:context_type].classify.constantize
-      @work.context = context_klass.find(params["#{params[:context_type].underscore}_id"])
+      @work.context = Contest.find(params["contest_id"])
       @work = super.tap { |w| w.account_id = current_user.account_id }
     else
       redirect_to contest_path(params[:contest_id]) and return
