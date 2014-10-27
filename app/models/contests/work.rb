@@ -15,8 +15,8 @@ class Work < ActiveRecord::Base
   has_many :comments,               :as => :commentable, :dependent => :destroy
   has_many :sms_votes,              :dependent => :destroy
 
-  before_validation :check_account_work_uniquness
-  before_validation :check_contest_actuality
+  before_validation :check_account_work_uniquness, :on => :create
+  before_validation :check_contest_actuality, :on => :create
   after_validation :check_agreement_accepted
 
   friendly_id :title, use: :slugged
