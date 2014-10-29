@@ -1,2 +1,10 @@
 <h3><%= resource.title %></h3>
+<%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource) %>
+<% if resource.section_pages.any? %>
+    <% resource.section_pages.each do |section_page| %>
+      <p><%= section_page.title %></p>
+    <% end %>
+<% else %>
+  <p>Нет страниц</p>
+<% end %>
 <h3><%= link_to "Удалить", manage_organization_section_path(params[:organization_id], resource), method: 'DELETE', data: {confirm: "Вы уверены что хотите удалить раздел?"} %></h3>
