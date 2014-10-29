@@ -21,7 +21,8 @@ namespace :account do
   desc 'Get friends for account'
   task :get_friends => :environment do
     puts 'Get friends for accounts from socials'
-    accounts = Account.ordered
+    #accounts = Account.ordered
+    accounts = Account.ordered.where(last_visit_at: (Time.zone.now.beginning_of_day - 1.month)..Time.zone.now.end_of_day)
     bar = ProgressBar.new(accounts.count)
     accounts.each do |account|
       account.users.first.get_friends_from_socials if account.users
