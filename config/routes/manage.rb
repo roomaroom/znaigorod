@@ -150,6 +150,8 @@ Znaigorod::Application.routes.draw do
       end
 
       resources :organizations,  :only => [:new, :create, :destroy]
+
+      resources :sections, :only => [:show, :destroy]
     end
 
     Organization.available_suborganization_kinds.each do |kind|
