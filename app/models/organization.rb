@@ -43,6 +43,7 @@ class Organization < ActiveRecord::Base
   has_many :social_links,           :dependent => :destroy
   has_many :visits,                 :dependent => :destroy, :as => :visitable
   has_many :votes,                  :dependent => :destroy, :as => :voteable
+  has_many :sections,               :dependent => :destroy
 
   has_many :afisha,            :through => :showings, :uniq => true
   has_many :certificates,      :through => :places, :source => :placeable, :source_type => 'Discount', :conditions => { 'discounts.type' => 'Certificate' }

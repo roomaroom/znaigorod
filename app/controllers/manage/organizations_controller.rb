@@ -13,6 +13,10 @@ class Manage::OrganizationsController < Manage::ApplicationController
 
   respond_to :html, :json
 
+  def show
+    Organization.find(params[:id]).sections.create(title: params[:section_title]) if request.xhr?
+  end
+
   private
 
   def build_nested_objects

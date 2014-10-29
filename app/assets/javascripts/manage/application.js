@@ -44,4 +44,5 @@
  * = require ../public/my_related_items
  * = require ../public/my_discount
  * = require ./main
+ * = require ./organizations
  */
