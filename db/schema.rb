@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141029052655) do
+ActiveRecord::Schema.define(:version => 20141029083825) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1087,6 +1087,18 @@ ActiveRecord::Schema.define(:version => 20141029052655) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.boolean  "holiday"
+  end
+
+  create_table "section_pages", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "section_id"
+    t.string   "poster_image_url"
+    t.string   "poster_image_file_name"
+    t.string   "poster_image_content_type"
+    t.string   "poster_image_file_size"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "sections", :force => true do |t|
