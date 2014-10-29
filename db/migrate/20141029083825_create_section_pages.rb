@@ -2,7 +2,7 @@ class CreateSectionPages < ActiveRecord::Migration
   def change
     create_table :section_pages do |t|
       t.string :title
-      t.string :content
+      t.text :content
       t.belongs_to :section
       t.string :poster_image_url
       t.string :poster_image_file_name

@@ -1,5 +1,5 @@
 <%= simple_form_for [:manage, resource.section.organization, resource.section, resource] do |f| %>
   <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
   <%= f.submit %>
 <% end %>
