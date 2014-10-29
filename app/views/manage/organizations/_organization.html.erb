@@ -284,6 +284,25 @@
   </ul>
 </div>
 
+
+<div class="sections_wrapper">
+  <h3>Разделы</h3>
+  <%= link_to "Новый раздел", "#", class: "new_section_link" %>
+  <div class="new_section">
+    <%= text_field_tag  'new_section', nil , placeholder: 'Название раздела' %>
+    <%= button_tag 'Создать', class: "new_section_button" %>
+  </div>
+  <div class="sections">
+    <% if resource.sections.any? %>
+      <% resource.sections.each do |section| %>
+        <p><%= link_to section.title, manage_organization_section_path(resource, section) %></p>
+      <% end %>
+    <% else %>
+      <span class="blank">Нет разделов</span>
+    <% end %>
+  </div>
+</div>
+
 <div class='images'>
   <h3>Галерея изображений</h3>
 
