@@ -54,7 +54,7 @@ class SocialLikes
         vote_uids = User.where(id: vote_ids).pluck(:uid)
         (vote_uids - uids).each do |e|
           if User.find_by_uid(e)
-            item.votes.find_by_user_id(User.find_by_uid(e)).destroy
+            item.votes.find_by_user_id(User.find_by_uid(e)).try(:destroy)
           end
         end
         item_like_count = item.votes.source(:vk).without_user.count
