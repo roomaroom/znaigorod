@@ -25,6 +25,7 @@ Znaigorod::Application.routes.draw do
       end
 
       get 'discounts' => 'discounts#index'
+      get 'discount_statistic' => 'discounts#discount_statistic', :as => 'discount_statistic'
     end
 
     post 'red_cloth' => 'red_cloth#show'
