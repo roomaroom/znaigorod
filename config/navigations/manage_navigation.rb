@@ -9,6 +9,7 @@ SimpleNavigation::Configuration.run do |navigation|
       secondary.item :place_items,       'Продвигаемые элементы', manage_place_items_path
       secondary.item :promotions,        'Рекламные места',       manage_promotions_path
       secondary.item :main_page_reviews, 'Обзоры на главной',     manage_main_page_reviews_path
+      secondary.item :main_page_posters, 'Афиши на главной',      manage_main_page_posters_path
     end
 
     primary.item :users, 'Пользователи', manage_admin_users_path,
