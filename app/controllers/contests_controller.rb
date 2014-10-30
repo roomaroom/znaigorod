@@ -8,12 +8,8 @@ class ContestsController < ApplicationController
 
   def show
     @contest = Contest.find(params[:id])
-<<<<<<< HEAD
     @works = @contest.works.send("ordered_#{order_by(@contest)}").page(page).per(@contest.is_a?(ContestVideo) ? 200 : per_page)
     @winners = winner_array(@contest.slug)
-=======
-    @works = @contest.works.send("ordered_#{order_by(@contest)}").page(page).per(per_page)
->>>>>>> filter for video works
     @reviews = ReviewDecorator.decorate(@contest.reviews)
 
     render :partial => 'works/contest_list', :locals => { :current_count => current_count, :width => @contest.is_a?(ContestVideo) ? 350 : 278 , :height => @contest.is_a?(ContestVideo) ? 200 : 278 } and return if request.xhr?
