@@ -40,6 +40,7 @@ Znaigorod::Application.routes.draw do
     resources :promotions,  :except => [:show]
 
     resources :main_page_reviews, :except => [:new, :create, :show, :destroy]
+    resources :main_page_posters, :except => [:new, :create, :show, :destroy]
 
     resources :reviews do
       get ':by_category' =>'reviews#index', :on => :collection, :as => :by_category, :constraints => {:by_category => /#{Review.categories.values.map(&:value).join('|')}/}

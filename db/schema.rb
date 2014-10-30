@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141024054304) do
+ActiveRecord::Schema.define(:version => 20141030041720) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -468,6 +468,14 @@ ActiveRecord::Schema.define(:version => 20141024054304) do
 
   add_index "invitations", ["inviteable_id"], :name => "index_invitations_on_inviteable_id"
   add_index "invitations", ["invited_id"], :name => "index_invitations_on_invited_id"
+
+  create_table "main_page_posters", :force => true do |t|
+    t.integer  "afisha_id"
+    t.integer  "position"
+    t.datetime "expires_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "main_page_reviews", :force => true do |t|
     t.integer  "review_id"
