@@ -1,6 +1,4 @@
 class SectionPage < ActiveRecord::Base
-  include CropedPoster
-
   attr_accessible :title, :content, :poster, :generate_poster
 
   attr_accessor  :generate_poster

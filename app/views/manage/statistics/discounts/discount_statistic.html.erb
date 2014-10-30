@@ -1,0 +1,47 @@
+<h1>Скидки</h1>
+
+<div class='period'>
+  <%= simple_form_for :search, :url => manage_statistics_discount_statistic_path, :method => :get do |f| %>
+    <span class='label'>С:</span>
+    <%= f.input :starts_at, :as => :date_picker, :label => false, :input_html => {:value => @starts_at.strftime('%d.%m.%Y')} %>
+    <span class='label'>По:</span>
+    <%= f.input :ends_at, :as => :date_picker, :label => false, :input_html => {:value => @ends_at.strftime('%d.%m.%Y')} %>
+    <%= f.submit 'Найти' %>
+  <% end %>
+</div>
+
+<table class='discounts'>
+  <thead>
+    <tr>
+      <th>Автор</th>
+      <th>Скидки</th>
+      <th>Кол-во скидок</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @discounts.each do |author, discount| %>
+      <tr>
+        <td class='author'><%= Account.find(author) %></td>
+        <td>
+          <table>
+            <thead>
+              <th>Название</th>
+              <th>Дата публикации</th>
+            </thead>
+            <% discount.each do |e| %>
+              <tr>
+                <td>
+                  <p><%= link_to e.title, discount_path(e), target: '_blank' %></p>
+                </td>
+                <td>
+                  <p><%= e.created_at.strftime('%d.%m.%Y') %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </td>
+        <td class='author'><%= discount.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
