@@ -275,8 +275,8 @@ ActiveRecord::Schema.define(:version => 20141030041720) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
     t.string   "vfs_path"
     t.string   "slug"
     t.text     "og_description"
@@ -293,6 +293,7 @@ ActiveRecord::Schema.define(:version => 20141030041720) do
     t.integer  "short_number"
     t.string   "sms_secret"
     t.string   "default_sort",          :default => "by_id"
+    t.string   "new_work_text",         :default => "Добавить фотографию"
   end
 
   add_index "contests", ["slug"], :name => "index_contests_on_slug", :unique => true
