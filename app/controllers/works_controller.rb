@@ -37,7 +37,7 @@ class WorksController < ApplicationController
     if request.xhr?
       @work_image = @photogallery.works.new :image => params[:work_upload], :agree => '1', :account_id => current_user.account.id
       if @work_image.save
-        render :json =>  {
+        render :json => {
           :files => [
             {
               :id           => @work_image.id,

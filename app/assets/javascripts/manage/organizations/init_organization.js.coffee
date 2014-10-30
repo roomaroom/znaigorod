@@ -9,11 +9,12 @@
       type: "GET"
       data:
         section_title: $('#new_section').val()
-      success: ->
+      success: (response) ->
         $('.sections').append("
-          <p>" + $('#new_section').val()  + "</p>
+          <p><a href='/manage/organizations/"+response.organization+"/sections/"+response.id+"'>" + $('#new_section').val()  + "</a></p>
           ")
         $('.new_section').toggle()
+        $('#new_section').val('')
   true
 
 @initMarkitup = ->
