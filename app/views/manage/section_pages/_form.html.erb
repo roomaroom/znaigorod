@@ -1,0 +1,11 @@
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
+<% end %>
+
+<%= simple_nested_form_for [:manage, resource.section.organization, resource.section, resource] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
+  <%= f.input :generate_poster, :as => :hidden, :input_html => { :value => true } %>
+  <%= f.submit %>
+<% end %>
+
