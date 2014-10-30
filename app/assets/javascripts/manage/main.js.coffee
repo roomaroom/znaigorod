@@ -17,7 +17,8 @@ $ ->
   init_webcam() if $('#webcam_snapshot_image').length
   init_webcam_map() if $('#webcam_map').length
   init_accounts_for_lottery() if $('.accounts_for_lottery').length
-  init_markitup() if $('.discount .markitup').length
+  init_markitup() if $('.discounts .markitup').length
+  initMarkitup() if $('.markitup').length
   init_offers() if $('.offers').length
   init_contest() if $('#contest_og_image').length
   init_organization() if $('.sections').length

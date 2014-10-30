@@ -2,7 +2,9 @@
 <%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource) %>
 <% if resource.section_pages.any? %>
     <% resource.section_pages.each do |section_page| %>
-      <p><%= section_page.title %></p>
+      <p><%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
+      (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)</p>
+      <p><%= section_page.cached_content_for_index %></p>
     <% end %>
 <% else %>
   <p>Нет страниц</p>

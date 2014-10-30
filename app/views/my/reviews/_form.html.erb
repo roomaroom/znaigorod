@@ -2,7 +2,6 @@
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
-
 <%= simple_nested_form_for @review,
   :as => :review,
   :url => @review.new_record? ? my_reviews_path : my_review_path(@review.id),

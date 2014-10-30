@@ -182,6 +182,17 @@
       <% end %>
     <% end %>
 
+    <% if @organization.sections.any? %>
+      <% @organization.sections.each do |section| %>
+        <% if section.section_pages.any? %>
+          <div class="title"><%= section.title %></div>
+          <% section.section_pages.each do |page| %>
+            <p><%= page.cached_content_for_index %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
     <% if @discount_presenter.collection.any? || @certificate_presenter.collection.any? || @coupon_presenter.collection.any? %>
       <div class="suborganization_info discount_details">
         <div class="title">Скидки</div>
