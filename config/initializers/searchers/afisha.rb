@@ -44,6 +44,10 @@ HasSearcher.create_searcher :showings do
     end if search_object.price_min.present?
   end
 
+  scope :without_for_main_page do
+    without :afisha_id, MainPagePoster.where('afisha_id is not null').map(&:afisha_id)
+  end
+
   property :price_min do |search|
     search.with(:price_min).less_than_or_equal_to(search_object.price_max) if search_object.price_max.present?
   end
@@ -150,6 +154,7 @@ HasSearcher.create_searcher :afishas do
     order_by :created_at, :desc
     with :state, :published
   end
+
 end
 
 HasSearcher.create_searcher :similar_afisha do
