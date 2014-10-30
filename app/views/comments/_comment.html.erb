@@ -5,7 +5,7 @@
       :locals => { :account => comment.account, :width => 35, :height => 35, :title => comment.account } %>
 
     <div class="user_info">
-      <%= link_to comment.name, comment.account, :target => '_blank', :class => 'profile_link' %>,
+      <%= link_to comment.name, comment.account, :target => '_blank', :class => 'profile_link', rel: 'nofollow' %>,
       <span class="date">
         <%= l comment.created_at, :format => :long %>
       </span>
