@@ -8,7 +8,10 @@ class PreparePromotionPlaceWorker
   def perform(id, channel)
     find_promotion_place(id)
 
-    send_request_to_faye(channel) if place.html
+    begin
+      send_request_to_faye(channel) if place.html
+    rescue
+    end
   end
 
   private
@@ -29,6 +32,9 @@ class PreparePromotionPlaceWorker
       }
     }
 
-    RestClient.post("#{Settings['faye.url']}/faye", params.to_json, :content_type => :json, :accept => :json)
+    begin
+      RestClient.post("#{Settings['faye.url']}/faye", params.to_json, :content_type => :json, :accept => :json)
+    rescue
+    end
   end
 end
