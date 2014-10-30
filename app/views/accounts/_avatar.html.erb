@@ -7,7 +7,7 @@
     <% url = local_assigns[:url] ? url : account %>
 
     <%= link_to url do %>
-      <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title %>
+      <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title, rel: 'nofollow' %>
 
       <% if account.photo_correspondent? %>
         <span class='badge badge-<%= size %> badge-photo-correspondent show_tipsy' title="<%= Hash[Account.badge.options].invert['photo_correspondent'] %>"></span>
