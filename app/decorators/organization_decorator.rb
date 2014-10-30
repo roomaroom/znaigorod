@@ -242,7 +242,8 @@ class OrganizationDecorator < ApplicationDecorator
             "#{suborganization.class.name.underscore.pluralize}_path"
           arr << Link.new(
             title: category,
-            url: h.send(url)
+            url: h.send(url),
+            nofollow: true
           )
         end
       end

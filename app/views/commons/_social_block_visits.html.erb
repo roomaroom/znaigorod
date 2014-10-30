@@ -5,7 +5,7 @@
         :locals => { :account => visit.user.account, :width => 35, :height => 35, :title => visit.user.account } %>
 
       <div class="details">
-        <%= link_to(visit.user.account, visit.user.account, :class => :name) %>
+        <%= link_to(visit.user.account, visit.user.account, :class => :name, rel: 'nofollow') %>
         <div class="wanted">
           <div class="info">
             <% visit.user.account.invitations.without_invited.where(:inviteable_id => visit.visitable_id, :inviteable_type => visit.visitable_type).each do |invitation| %>

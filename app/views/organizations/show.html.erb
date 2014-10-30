@@ -163,7 +163,9 @@
       <div class='categories_and_visits'>
         <ul class='categories'>
           <li class='title'>Категории:</li>
+          <!-- noindex -->
           <%= @organization.category_links.map { |link| content_tag :li, link }.join.mb_chars.downcase.html_safe %>
+          <!-- /noindex -->
         </ul>
         <div class='details'>
           <span class='show_tipsy fa fa-users' title='Участники'> <%= @organization.visits.count %></span>
