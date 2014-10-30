@@ -14,7 +14,18 @@ class Manage::OrganizationsController < Manage::ApplicationController
   respond_to :html, :json
 
   def show
-    Organization.find(params[:id]).sections.create(title: params[:section_title]) if request.xhr?
+    if request.xhr?
+      record = Organization.find(params[:id]).sections.create(title: params[:section_title])
+
+      respond_to do |format|
+        format.json do
+          render :json => {
+            :id           => record.id,
+            :organization => params[:id]
+          }
+        end
+      end
+    end
   end
 
   private
