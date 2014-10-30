@@ -3,7 +3,7 @@ class MainPageController < ApplicationController
   def show
     @afisha_list       = MainPagePoster.where('afisha_id is not null').ordered.actual.map { |afisha| AfishaDecorator.new Afisha.find(afisha.afisha_id) }
 
-    other_afishas_list = AfishaPresenter.new(:per_page => 6 - @afisha_list.count, :without_advertisement => true, :order_by => 'creation', main_page: true).decorated_collection
+    other_afishas_list = AfishaPresenter.new(:per_page => 6 - @afisha_list.count, :without_advertisement => true, :order_by => 'creation', main_page: @afisha_list.any? ? true : false).decorated_collection
     @afisha_list += other_afishas_list
     @afisha_filter     = AfishaPresenter.new(:has_tickets => false)
 
