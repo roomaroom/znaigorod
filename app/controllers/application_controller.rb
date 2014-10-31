@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :update_account_last_visit_at
   before_filter :sape_init
   before_filter :redirect_without_subdomain
+  before_filter :set_access
 
   layout :resolve_layout
 
@@ -23,6 +24,10 @@ class ApplicationController < ActionController::Base
     if request.subdomain.present? && !controllers.include?(controller_name)
       redirect_to url_for :controller => params[:controller], :action => params[:action], :only_path => false, :subdomain => false
     end
+  end
+
+  def set_access
+    headers['Access-Control-Allow-Origin'] = '*'
   end
 
   def detect_robots_in_development

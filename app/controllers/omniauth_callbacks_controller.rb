@@ -41,15 +41,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @after_sign_in_url = after_sign_in_path_for(@user)
 
     if @after_sign_in_url.match(/manage/)
-      redirect_to(manage_root_path(subdomain: false))
+      redirect_to(manage_root_url(subdomain: false))
     elsif @after_sign_in_url.match(/my\z/)
-      redirect_to(my_root_path(subdomain: false))
+      redirect_to(my_root_url(subdomain: false))
     else
       render('callback', :layout => false)
     end
   end
 
   def after_omniauth_failure_path_for(scope)
-    new_my_session_path(scope, subdomain: false)
+    new_my_session_url(scope, subdomain: false)
   end
 end
