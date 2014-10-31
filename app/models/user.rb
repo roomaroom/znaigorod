@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :uid, :provider, :auth_raw_info, :roles_attributes, :account
 
   devise :trackable, :omniauthable, :rememberable,
-    omniauth_providers: [:vkontakte, :google_oauth2, :yandex, :facebook, :twitter, :odnoklassniki, :mailru]
+    omniauth_providers: [:vkontakte, :google_oauth2, :yandex, :facebook, :twitter, :odnoklassniki, :mailru],
+    request_keys: [:subdomain]
 
   has_many :afisha,          uniq: true
   has_many :showings,        through: :afisha
