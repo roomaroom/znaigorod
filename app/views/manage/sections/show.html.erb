@@ -1,12 +1,16 @@
 <h3><%= resource.title %></h3>
 <%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource) %>
-<% if resource.section_pages.any? %>
+<ul class='section_pages_wrapper'>
+  <% if resource.section_pages.any? %>
     <% resource.section_pages.each do |section_page| %>
-      <p><%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
-      (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)</p>
-      <p><%= section_page.cached_content_for_index %></p>
-    <% end %>
+      <li>
+        <%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
+        (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)
+        <p><%= section_page.cached_content_for_index %></p>
+      </li>
+  <% end %>
 <% else %>
   <p>Нет страниц</p>
 <% end %>
+</ul>
 <h3><%= link_to "Удалить", manage_organization_section_path(params[:organization_id], resource), method: 'DELETE', data: {confirm: "Вы уверены что хотите удалить раздел?"} %></h3>
