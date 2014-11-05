@@ -60,7 +60,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def organization_url
-    h.organization_url(organization)
+    h.organization_url(organization, subdomain: false)
   end
 
   def email_link
