@@ -10,8 +10,8 @@
       data:
         section_title: $('#new_section').val()
       success: (response) ->
-        $('.sections').append("
-          <p><a href='/manage/organizations/"+response.organization+"/sections/"+response.id+"'>" + $('#new_section').val()  + "</a></p>
+        $('.sections ul').append("
+          <li><a href='/manage/organizations/"+response.organization+"/sections/"+response.id+"'>" + $('#new_section').val()  + "</a></li>
           ")
         $('.new_section').toggle()
         $('#new_section').val('')

@@ -293,13 +293,15 @@
     <%= button_tag 'Создать', class: "new_section_button" %>
   </div>
   <div class="sections">
-    <% if resource.sections.any? %>
-      <% resource.sections.each do |section| %>
-        <p><%= link_to section.title, manage_organization_section_path(resource, section) %></p>
+    <ul>
+      <% if resource.sections.any? %>
+        <% resource.sections.each do |section| %>
+          <li><%= link_to section.title, manage_organization_section_path(resource, section) %></li>
+        <% end %>
+      <% else %>
+        <span class="blank">Нет разделов</span>
       <% end %>
-    <% else %>
-      <span class="blank">Нет разделов</span>
-    <% end %>
+    </ul>
   </div>
 </div>
 
