@@ -182,29 +182,30 @@
       <% @organization.decorated_suborganizations.each do |suborganization| %>
         <%= render suborganization if suborganization.viewable? %>
       <% end %>
-    <% end %>
 
-
-    <div class="sections_info suborganization_info">
-      <% if @organization.sections.any? %>
-        <% @organization.sections.each do |section| %>
-          <% if section.section_pages.any? %>
-            <div class="title"><%= section.title %></div>
-            <% section.section_pages.each do |page| %>
-              <div class="image">
-                <%= image_tag page.poster_image_url, size: '150x100' %>
-              </div>
-              <div class='info'>
-                <h2><%= page.title %></h2>
-                <%= page.cached_content_for_index %>
-              </div>
-              <div style='clear: both'></div>
-              <div class="divider"></div>
+      <div class="sections_info suborganization_info">
+        <% if @organization.sections.any? %>
+          <% @organization.sections.each do |section| %>
+            <% if section.section_pages.any? %>
+              <div class="title"><%= section.title %></div>
+              <% section.section_pages.each do |page| %>
+                <div class="image">
+                  <%= image_tag page.poster_image_url? ? page.poster_image_url : 'public/default_image.png', size: '150x100' %>
+                </div>
+                <div class='info'>
+                  <h2><%= page.title %></h2>
+                  <%= page.cached_content_for_index %>
+                </div>
+                <div style='clear: both'></div>
+                <div class="divider"></div>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+
+
 
     <% if @discount_presenter.collection.any? || @certificate_presenter.collection.any? || @coupon_presenter.collection.any? %>
       <div class="suborganization_info discount_details">
