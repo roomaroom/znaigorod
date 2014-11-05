@@ -5,7 +5,6 @@
 <%= simple_nested_form_for [:manage, resource.section.organization, resource.section, resource] do |f| %>
   <%= f.input :title %>
   <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
-  <%= f.input :generate_poster, :as => :hidden, :input_html => { :value => true } %>
   <%= f.submit %>
 <% end %>
 
