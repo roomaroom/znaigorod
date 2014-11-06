@@ -2,9 +2,9 @@ class PromotionWorker
   include Sidekiq::Worker
   sidekiq_options :queue => :promotion
 
-  def perform(url, channel)
+  def perform(url, channel, subdomain)
     begin
-      smart_promotion = PromotionFinder.new(url)
+      smart_promotion = PromotionFinder.new(url, subdomain)
       promotion = smart_promotion.promotion
 
       promotion.promotion_places.each do |place|

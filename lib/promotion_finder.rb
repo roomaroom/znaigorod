@@ -1,8 +1,8 @@
 class PromotionFinder
-  attr_accessor :promotion_url, :splited_url, :url_array
+  attr_accessor :promotion_url, :splited_url, :url_array, :subdomain
 
-  def initialize(url)
-    @promotion_url = url
+  def initialize(url, subdomain)
+    @promotion_url = subdomain.empty? ? url : "/#{subdomain}#{url}".gsub(/\/$/,'')
     @url_array = Array.new
     @url_array << @promotion_url
   end
@@ -13,7 +13,6 @@ class PromotionFinder
     nil
   end
 
-  private
   def split_url
     @splited_url = promotion_url.try(:split, '/') || ['/afisha']
     @splited_url = @splited_url.drop(1)
@@ -26,7 +25,7 @@ class PromotionFinder
   def create_array
     split_url
 
-    while url_array.length < splited_url_length do
+    while url_array.length <= splited_url_length do
       url_array << url_array.last.gsub("/#{splited_url.pop}","")
     end
     url_array
