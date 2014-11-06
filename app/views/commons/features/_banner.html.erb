@@ -1,3 +1,5 @@
-<div class='top_headline banner'>
-  <%= image_tag 'public/banner_peoples_menu.png', :size => '1200x100', :alt => 'Пипл меню' %>
-</div>
+<% cache('new_feature', :expires_in => 10.minutes) do %>
+  <div class='top_headline banner'>
+    <%= image_tag 'public/banner_peoples_menu.png', :size => '1200x100', :alt => 'Пипл меню' %>
+  </div>
+<% end %>
