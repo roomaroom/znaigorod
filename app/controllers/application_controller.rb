@@ -86,7 +86,8 @@ class ApplicationController < ActionController::Base
   end
 
   def page_meta
-    @current_page_meta ||= PageMeta.find_by_path request.path
+    path = request.subdomain.present? ? "/#{request.subdomain}#{request.path}".gsub(/\/$/,'') : request.path
+    @current_page_meta ||= PageMeta.find_by_path path
   end
 
   def sape_init
