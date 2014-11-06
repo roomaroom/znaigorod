@@ -1,8 +1,10 @@
 <div class='footer_wrapper'>
   <div class='footer'>
-    <div class="menu">
-      <%= render_navigation :context => :public, :expand_all => true, :renderer => :list_with_noindex %>
-    </div>
+    <% cache('footer_navigation', :expires_in => 10.minutes) do %>
+      <div class="menu">
+        <%= render_navigation :context => :public, :expand_all => true, :renderer => :list_with_noindex %>
+      </div>
+    <% end %>
     <div class="wrapper">
       <div class='our_social_link'>
         <h5>Мы в социальных сетях</h5>
