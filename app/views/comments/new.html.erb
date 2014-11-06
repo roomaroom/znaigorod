@@ -3,12 +3,12 @@
 <% else %>
   <li class='ajaxed_item comment_form'>
     <% if resource.account %>
-      <%= link_to resource.account do %>
+      <%= link_to account_url(resource.account, subdomain: false) do %>
         <%= image_tag(resized_image_url(resource.avatar.url, 35, 35),
                       size: '35x35',
                       title: resource.account.title,
                       alt: resource.account.title, class: :avatar) %>
-        <%= link_to resource.name, resource.account, :target => '_blank', :class => 'profile_link' %>
+        <%= link_to resource.name, account_url(resource.account, subdomain: false), :target => '_blank', :class => 'profile_link' %>
       <% end %>
     <% else %>
       <%= image_tag(resized_image_url(resource.avatar.url, 35, 35),

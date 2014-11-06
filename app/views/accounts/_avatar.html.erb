@@ -6,7 +6,7 @@
   <div class="avatar-wrapper <%= clickable_class %>">
     <% url = local_assigns[:url] ? url : account %>
 
-    <%= link_to url, rel: 'nofollow' do %>
+    <%= link_to account_url(url, subdomain: false), rel: 'nofollow' do %>
       <%= image_tag resized_image_url(account.avatar.url, width, height), :size => "#{width}x#{height}", :alt => title, :title => title, rel: 'nofollow' %>
 
       <% if account.photo_correspondent? %>
