@@ -26,7 +26,7 @@ class PromotionFinder
     split_url
 
     while url_array.length <= splited_url_length do
-      url_array << url_array.last.gsub("/#{splited_url.pop}","")
+      url_array << url_array.last.gsub(/\/#{splited_url.pop}$/,'')
     end
     url_array
   end
