@@ -1,4 +1,4 @@
-<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images', :data => { :title => 'Загрузка изображения' } } do |f| %>
+<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images gallery-images-sections-new', :data => { :title => 'Загрузка изображения' } } do |f| %>
   <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
 <% end %>
 
