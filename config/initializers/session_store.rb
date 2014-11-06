@@ -1,6 +1,5 @@
 # Be sure to restart your server when you modify this file.
-
-Znaigorod::Application.config.session_store :cookie_store, key: '_znaigorod_session', :domain => :all
+Znaigorod::Application.config.session_store :cookie_store, key: '_znaigorod_session', :domain => ".#{Settings['app.domain']}"
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
