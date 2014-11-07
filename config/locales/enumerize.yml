@@ -51,7 +51,8 @@ ru:
         like: Лайки ЗнайГорода
       default_sort:
         by_id: По обновлению
-        by_sms_counter: По голосам
+        by_sms_counter: По голосам(смс)
+        by_zg_likes: По голосам(ЗГ лайки)
 
 
     role:
