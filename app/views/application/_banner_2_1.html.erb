@@ -1,7 +1,5 @@
 <% unless params[:id] == 'imidzh-proekt-potentsial' %>
-  <% cache('banner_2_1', :expires_in => 10.minutes) do %>
-    <div class='potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
-      <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
-    </div>
-  <% end %>
+  <div class='potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+    <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
+  </div>
 <% end %>

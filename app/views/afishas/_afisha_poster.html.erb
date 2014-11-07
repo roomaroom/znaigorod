@@ -1,63 +1,65 @@
-<div class='image'>
-  <% if afisha.has_available_tickets? %>
-    <% if afisha.has_tickets_for_sale? && afisha.max_tickets_discount > 0 %>
-      <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
-        Скидка на билеты <%= afisha.max_tickets_discount %>%
-      </div>
-    <% else %>
-      <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
-        Есть билеты в продаже
-      </div>
-    <% end %>
-  <% end %>
-
-  <%= afisha.poster_with_link(194, 260) %>
-
-  <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
-
-  <% if afisha.has_available_tickets? %>
-    <% if afisha.has_tickets_for_sale? %>
-      <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
-    <% elsif afisha.actual? && afisha.bkz_link.present? %>
-      <%= link_to 'Купить билет', afisha.bkz_link, class: 'for_sale bkz-link', :target => '_blank' %>
-    <% elsif afisha.has_available_ponominalu_tickets? %>
-      <%= link_to afisha.ponominalu_tickets.available.first.link, :target => '_blank', :class => 'for_sale ponominalu' do %>
-        <%= image_tag 'public/ponominalu_button.png', :size => '150x30', :class => 'link' %>
+<% cache("afisha#{afisha.id}", expires_in: 10.minutes) do %>
+  <div class='image'>
+    <% if afisha.has_available_tickets? %>
+      <% if afisha.has_tickets_for_sale? && afisha.max_tickets_discount > 0 %>
+        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие со скидкой!'>
+          Скидка на билеты <%= afisha.max_tickets_discount %>%
+        </div>
+      <% else %>
+        <div class='has_items_for_sale' title='У нас вы можете купить билеты на мероприятие!'>
+          Есть билеты в продаже
+        </div>
       <% end %>
     <% end %>
-  <% end %>
 
-  <% if afisha.user == current_user %>
-    <div class="promote_afisha_wrapper">
-      <%= render :partial => 'afishas/promote_button', :locals => { :afisha => afisha } %>
-    </div>
-  <% end %>
+    <%= afisha.poster_with_link(194, 260) %>
 
-  <%= link_to afisha_show_path(afisha), class: :details do %>
-    <span class='first_line'>
-      <span class='show_tipsy fa fa-users' title='Участники'> <%= afisha.visits.count %></span>
-      <span class='show_tipsy fa fa-user' title='Приглашения'> <%= afisha.invitations.inviter.without_invited.count %></span>
-      <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= afisha.comments.count %></span>
-    </span>
+    <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
 
-    <span class='second_line'>
-      <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= afisha.likes_count %></span>
-      <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= afisha.page_visits.count %></span>
-      <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возрастное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
-    </span>
-  <% end %>
-</div>
+    <% if afisha.has_available_tickets? %>
+      <% if afisha.has_tickets_for_sale? %>
+        <%= link_to 'Купить билет', afisha_show_path(afisha, anchor: :buy_ticket), class: :for_sale %>
+      <% elsif afisha.actual? && afisha.bkz_link.present? %>
+        <%= link_to 'Купить билет', afisha.bkz_link, class: 'for_sale bkz-link', :target => '_blank' %>
+      <% elsif afisha.has_available_ponominalu_tickets? %>
+        <%= link_to afisha.ponominalu_tickets.available.first.link, :target => '_blank', :class => 'for_sale ponominalu' do %>
+          <%= image_tag 'public/ponominalu_button.png', :size => '150x30', :class => 'link' %>
+        <% end %>
+      <% end %>
+    <% end %>
 
-<div class='title'>
-  <%= afisha.truncated_title_link(35, separator: nil) %>
-</div>
+    <% if afisha.user == current_user %>
+      <div class="promote_afisha_wrapper">
+        <%= render :partial => 'afishas/promote_button', :locals => { :afisha => afisha } %>
+      </div>
+    <% end %>
 
-<%= content_tag(:span, '', :class => 'arrow-up show_tipsy', :title => 'Автор хочет обратить внимание на эту афишу') if afisha.highlighted? %>
+    <%= link_to afisha_show_path(afisha), class: :details do %>
+      <span class='first_line'>
+        <span class='show_tipsy fa fa-users' title='Участники'> <%= afisha.visits.count %></span>
+        <span class='show_tipsy fa fa-user' title='Приглашения'> <%= afisha.invitations.inviter.without_invited.count %></span>
+        <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= afisha.comments.count %></span>
+      </span>
 
-<div class='place'>
-  <%= afisha.afisha_place(:length => 24, :separator => nil) %>
-</div>
+      <span class='second_line'>
+        <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= afisha.likes_count %></span>
+        <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= afisha.page_visits.count %></span>
+        <%= content_tag :span, "#{afisha.age_min.to_i}+", title: 'Возрастное ограничение', class: 'show_tipsy minimal_age' if afisha.age_min.present? %>
+      </span>
+    <% end %>
+  </div>
 
-<div class='human_when'>
-  <%= afisha.human_when ? afisha.human_when : "&nbsp;".html_safe %>
-</div>
+  <div class='title'>
+    <%= afisha.truncated_title_link(35, separator: nil) %>
+  </div>
+
+  <%= content_tag(:span, '', :class => 'arrow-up show_tipsy', :title => 'Автор хочет обратить внимание на эту афишу') if afisha.highlighted? %>
+
+  <div class='place'>
+    <%= afisha.afisha_place(:length => 24, :separator => nil) %>
+  </div>
+
+  <div class='human_when'>
+    <%= afisha.human_when ? afisha.human_when : "&nbsp;".html_safe %>
+  </div>
+<% end %>
