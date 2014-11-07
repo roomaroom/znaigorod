@@ -340,7 +340,7 @@ module EmailDigestHelper
       else
         result << comment.commentable.slug + "\n"
       end
-      result << contest_work_path(comment.commentable.contest,
+      result << contest_work_path(comment.commentable.context,
                                   comment.commentable,
                                   keys_for_path) + " )\n"
     end
@@ -356,7 +356,7 @@ module EmailDigestHelper
 
     if comment.commentable.is_a?(Work)
       result << t("notice_mailer.answer")
-      result << " (" + contest_work_path(comment.commentable.contest,
+      result << " (" + contest_work_path(comment.commentable.context,
                                   comment.commentable, keys_for_path.merge({
                                   :anchor => "answer_#{comment.id}"}))
       result << " )\n "
@@ -408,14 +408,14 @@ module EmailDigestHelper
     if vote.voteable.commentable.is_a?(Work)
       if vote.voteable.commentable.title.present?
         result << vote.voteable.commentable.title + " ("
-        result << contest_work_path(vote.voteable.commentable.contest,
+        result << contest_work_path(vote.voteable.commentable.context,
                                     vote.voteable.commentable,
                                     keys_for_path)
         result << " )\n"
       else
         if vote.try(:voteable).try(:commentable).try(:slug).present?
           result << vote.voteable.commentable.slug + " ("
-          result << contest_work_path(vote.voteable.commentable.contest,
+          result << contest_work_path(vote.voteable.commentable.context,
                                       vote.voteable.commentable,
                                       keys_for_path)
           result << " )\n"
