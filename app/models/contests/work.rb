@@ -26,6 +26,7 @@ class Work < ActiveRecord::Base
   scope :ordered_by_id,          order('created_at desc')
   scope :ordered_by_sms_counter, order('sms_counter desc')
   scope :ordered_by_likes,       order('vk_likes desc')
+  scope :ordered_by_zg_likes,    joins(:votes).group("works.id").order('count(works.id) desc')
   scope :ordered_by_rating,      order('rating desc')
 
   def should_generate_new_friendly_id?
