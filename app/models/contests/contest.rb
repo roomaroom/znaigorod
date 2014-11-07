@@ -38,7 +38,7 @@ class Contest < ActiveRecord::Base
   enumerize :vote_type, :in => [:like, :sms],
                    :predicates => true
 
-  enumerize :default_sort, :in => [:by_id, :by_sms_counter],
+  enumerize :default_sort, :in => [:by_id, :by_sms_counter, :by_zg_likes],
                    :predicates => true
 
   searchable do
