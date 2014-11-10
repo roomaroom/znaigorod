@@ -1,13 +1,21 @@
 <% if review.has_annotation_gallery? %>
   <ul class="images">
     <% if controller_path == 'my/reviews' && action_name == 'index' %>
-      <%= review.annotation_gallery(185, 104) %>
+      <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>
+        <%= review.annotation_gallery(185, 104) %>
+      <% end %>
     <% elsif controller_path == 'reviews' && action_name == 'show' %>
-      <%= review.annotation_gallery(142, 80) %>
+      <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>
+        <%= review.annotation_gallery(142, 80) %>
+      <% end %>
     <% elsif controller_path == 'afishas' || controller_path == 'organizations' && action_name == 'show' %>
-      <%= review.annotation_gallery(120, 80) %>
+      <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>
+        <%= review.annotation_gallery(120, 80) %>
+      <% end %>
     <% else %>
-      <%= review.annotation_gallery %>
+      <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>
+        <%= review.annotation_gallery %>
+      <% end %>
     <% end %>
     <span class="counter fa fa-camera"> <%= review.all_images.size %></span>
   </ul>

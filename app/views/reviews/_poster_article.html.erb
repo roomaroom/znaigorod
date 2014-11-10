@@ -1,5 +1,7 @@
-<%= link_to image_tag(review.annotation_image(width, height), :size => "#{width}x#{height}"), review_path(review) %>
+<% cache("review_#{review.useful_type}_#{review.id}", expires_in: 10.minutes) do %>
+  <%= link_to image_tag(review.annotation_image(width, height), :size => "#{width}x#{height}"), review_path(review) %>
 
-<div class="text">
-  <%= review.content_for_index %>
-</div>
+  <div class="text">
+    <%= review.content_for_index %>
+  </div>
+<% end %>
