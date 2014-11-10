@@ -1,17 +1,19 @@
-<% cache("review#{review.id}", expires_in: 10.minutes) do %>
-  <div class="title">
-    <%= review.truncated_title_link(60) %>
-  </div>
+<% unless review.useful_type == 'photo' %>
+  <% cache("review#{review.id}", expires_in: 10.minutes) do %>
+    <div class="title">
+      <%= review.truncated_title_link(60) %>
+    </div>
 
-  <div class="details">
-    <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= review.comments.count %></span>
-    <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= review.likes_count %></span>
-    <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= review.page_visits.count %></span>
-  </div>
+    <div class="details">
+      <span class="show_tipsy fa fa-comments" title="Комментарии"> <%= review.comments.count %></span>
+      <span class="show_tipsy fa fa-heart" title="Понравилось"> <%= review.likes_count %></span>
+      <span class="show_tipsy fa fa-eye" title="Просмотры"> <%= review.page_visits.count %></span>
+    </div>
 
-  <%= review.date %>
+    <%= review.date %>
 
-  <div class="annotation">
-    <%= render :partial => "reviews/poster_#{review.useful_type}", :locals => { :review => review, :height => height, :width => width } %>
-  </div>
+    <div class="annotation">
+      <%= render :partial => "reviews/poster_#{review.useful_type}", :locals => { :review => review, :height => height, :width => width } %>
+    </div>
+  <% end %>
 <% end %>
