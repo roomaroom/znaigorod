@@ -3,7 +3,9 @@
   <td><%= payment.amount %></td>
   <td><%= payment.phone %></td>
   <td><%= payment.email %></td>
-  <td><%= payment.paymentable.try :message_for_sms %></td>
+  <td><%= link_to payment.paymentable.has_attribute?(:title) ? payment.paymentable.title : payment.paymentable.afisha.title,
+    payment.paymentable.has_attribute?(:title) ? discount_path(payment.paymentable) : afisha_show_path(payment.paymentable.afisha),
+    target: '_blank' %></td>
   <td><%= payment.state_text %></td>
   <td><%= l payment.created_at %></td>
 </tr>
