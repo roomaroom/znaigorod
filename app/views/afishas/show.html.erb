@@ -230,7 +230,7 @@
       <%= @afisha.html_attachments %>
 
       <%= render :partial => 'commons/author', :locals => { :account => @afisha.user.account } if @afisha.user.present? %>
-      <%= render :partial => 'commons/published_date', :locals => { :published_date => @afisha.published_at } %>
+      <%= render :partial => 'commons/published_date', :locals => { :published_date => @afisha.updated_at } %>
     </div>
 
     <div class='share_and_likes'>

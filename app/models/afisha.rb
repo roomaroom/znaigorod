@@ -21,7 +21,7 @@ class Afisha < ActiveRecord::Base
                   :original_title, :trailer_code, :vk_aid, :yandex_fotki_url, :constant,
                   :age_min, :age_max, :state_event, :state, :user_id, :kind, :vk_event_url,
                   :fb_likes, :odn_likes, :vkontakte_likes, :poster_vk_id, :bkz_link,
-                  :promoted_at, :published_at
+                  :promoted_at
 
   belongs_to :user
 
@@ -372,7 +372,7 @@ class Afisha < ActiveRecord::Base
   end
 
   def can_be_send_to_drafts?
-    return false if published_at < Time.zone.now - 2.days
+    return false if updated_at < Time.zone.now - 2.days
 
     true
   end
@@ -491,6 +491,5 @@ end
 #  poster_vk_id              :string(255)
 #  promoted_at               :datetime
 #  bkz_link                  :text
-#  published_at              :datetime
 #
 
