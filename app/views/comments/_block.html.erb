@@ -1,16 +1,16 @@
 <div class="comments ajaxed ajaxed_voteable">
   <% if parent_obj.is_a?(Question) %>
     <h3>Ответы</h3>
+  <% elsif parent_obj.is_a?(Organization) %>
+    <h3>Отзывы</h3>
   <% else %>
     <h3>Комментарии</h3>
   <% end %>
 
   <ul>
-    <!-- noindex -->
     <% parent_obj.comments.roots.order('created_at ASC').each do |comment| %>
       <%= render comment %>
     <% end %>
-    <!-- /noindex -->
   </ul>
 
   <% if user_signed_in? %>
