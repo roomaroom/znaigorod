@@ -86,6 +86,7 @@ class My::AfishasController < My::ApplicationController
 
   def send_to_published
     @afisha = current_user.afisha.find(params[:id])
+    @afisha.published_at = Time.zone.now
     @afisha.to_published!
 
     redirect_to my_afisha_path, :notice => "Афиша «#{@afisha.title}» опубликована."
