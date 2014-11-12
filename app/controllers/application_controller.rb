@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   before_filter :sape_init
   before_filter :redirect_without_subdomain
 
-  #match (/\/\bphotogalleries\b\/.*\/[^w][^o][^r][^k][^s].*/) => 'photogalleries#index'
   layout :resolve_layout
 
   rescue_from CanCan::AccessDenied do |exception|
