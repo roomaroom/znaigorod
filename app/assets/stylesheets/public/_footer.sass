@@ -3,6 +3,15 @@ $font-size: 12px
   +clearfix
   background-color: #e8e8e8
   border-top: 1px solid #ccc
+  position: relative
+
+  .social-likes
+    position: absolute
+    top: 188px
+    right: 120px
+
+    h2
+      font-size: 14px
 
   .footer
     +liquid-size($desktop_min_width, $desktop_max_width)
@@ -128,8 +137,10 @@ $font-size: 12px
     margin-left: 10px
 
   .counters
-    float: right
-    margin-top: -10px
+    clear: both
+    float: left
+    margin: 10px 0 0 10px
+    height: 60px
 
     a, img
       +inline-block
