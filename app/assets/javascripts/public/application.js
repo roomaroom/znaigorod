@@ -113,4 +113,5 @@
  * = require ./isotoped_content
  * = require ./main
  * = require ./photogalleries
+ * = require ./social_likes
  */

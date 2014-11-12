@@ -73,7 +73,7 @@ class Ability
       end
 
       can [:send_to_draft], Afisha do |afisha|
-        afisha.published? && afisha.user == user
+        afisha.published? && afisha.can_be_send_to_drafts?  && afisha.user == user
       end
 
       can :show, Afisha do |afisha|

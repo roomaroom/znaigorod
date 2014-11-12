@@ -1,4 +1,5 @@
 <div class='footer_wrapper'>
+  <%= render partial: 'commons/social_likes' %>
   <div class='footer'>
     <% cache('footer_navigation', :expires_in => 10.minutes) do %>
       <div class="menu">
