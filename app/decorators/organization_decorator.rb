@@ -167,7 +167,7 @@ class OrganizationDecorator < ApplicationDecorator
       end
       more_schedule = h.content_tag(:ul, more_schedule.html_safe, class: 'js-ul-toggleable ul-toggleable')
     end
-    h.content_tag(:div, content, :class => "schedule_wrapper work_schedule #{open_closed(schedule.from, schedule.to)}") + more_schedule
+    h.content_tag(:div, "Время работы: #{content}".html_safe, :class => "schedule_wrapper work_schedule #{open_closed(schedule.from, schedule.to)}") + more_schedule
   end
 
   # FIXME: mabe not used
@@ -242,8 +242,7 @@ class OrganizationDecorator < ApplicationDecorator
             "#{suborganization.class.name.underscore.pluralize}_path"
           arr << Link.new(
             title: category,
-            url: h.send(url),
-            nofollow: true
+            url: h.send(url)
           )
         end
       end

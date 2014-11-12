@@ -18,7 +18,13 @@
     <% end %>
     <%= simple_form_for [association_chain, @comment].flatten, :url => polymorphic_url([association_chain, @comment].flatten), :html => { :remote => true } do |f| %>
       <%= f.input :parent_id,  :as => :hidden %>
-      <%= f.input :body,       :as => :text, :label => false, :placeholder => 'Текст вашего комментария...' %>
+      <% text = if resource.commentable_type == 'Organization'
+                  "Текст вашего отзыва..."
+                else
+                  "Текст вашего комментарий..."
+                end
+              %>
+      <%= f.input :body,       :as => :text, :label => false, :placeholder => text %>
       <div class='comments_images_wrapper empty'>
         <div class="uploaded_list"></div>
         <span class='choose_file_link'>

@@ -113,11 +113,11 @@
       <% end %>
 
       <h1><%= @organization.title %></h1>
-      <%= content_tag(:div, @organization.address_link, class: :place) if @organization.address_link.present? %>
+      <%= content_tag(:div, "Адрес: #{@organization.address_link}".html_safe, class: :place) if @organization.address_link.present? %>
       <%= @organization.work_schedule %>
 
       <div class='phone_wrapper'>
-        <%= @organization.phone.truncate(5)%>
+        Телефон: <%= @organization.phone.truncate(5)%>
         <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: @organization.id %>
       </div>
 
@@ -145,7 +145,10 @@
 
 
         <% if @organization.has_photogallery? %>
-          <div class='photogallery'>
+          <div class='photogallery suborganization_info'>
+            <div class="title">
+              Фото
+            </div>
             <ul>
               <% @organization.gallery_images.each do |image| %>
                 <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "organization_gallery_#{@organization.id}" } %>
@@ -163,9 +166,7 @@
       <div class='categories_and_visits'>
         <ul class='categories'>
           <li class='title'>Категории:</li>
-          <!-- noindex -->
           <%= @organization.category_links.map { |link| content_tag :li, link }.join.mb_chars.downcase.html_safe %>
-          <!-- /noindex -->
         </ul>
         <div class='details'>
           <span class='show_tipsy fa fa-users' title='Участники'> <%= @organization.visits.count %></span>
@@ -205,38 +206,45 @@
       </div>
     <% end %>
 
-
-
-    <% if @discount_presenter.collection.any? || @certificate_presenter.collection.any? || @coupon_presenter.collection.any? %>
-      <div class="suborganization_info discount_details">
-        <div class="title">Скидки</div>
-        <div class="discount_content pagination_none">
+    <div class="suborganization_info discount_details">
+      <div class="title">
+        Скидки
+        <span class='link'><%= link_to 'Добавить скидку', help_my_discounts_path %></span>
+      </div>
+      <div class="discount_content pagination_none">
+        <% if @discount_presenter.collection.any? || @certificate_presenter.collection.any? || @coupon_presenter.collection.any? %>
           <ul class="posters">
             <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } if @discount_presenter.collection.any? %>
             <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @certificate_presenter.decorated_collection, :@height => '120', :@width => '184' } if @certificate_presenter.collection.any? %>
             <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @coupon_presenter.decorated_collection, :@width => '183', :@height => '120' } if @coupon_presenter.collection.any? if @coupon_presenter.collection.any? %>
           </ul>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
 
-    <% if @afisha_presenter.collection.any? %>
-      <div class='suborganization_info afisha_content js-button-pagination'>
-        <div class='title'>Афиша</div>
+    <div class='suborganization_info afisha_content js-button-pagination'>
+      <div class='title'>
+        Афиша
+        <span class='link'><%= link_to 'Добавить афишу', new_my_afisha_path %></span>
+      </div>
+      <% if @afisha_presenter.collection.any? %>
         <ul class='posters js-paginable-list' data-item-width="220">
           <%= render :partial => 'afishas/afisha_posters', :locals => { :afishas => @afisha_presenter.decorated_collection, :presenter => @afisha_presenter } %>
         </ul>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
-    <% if @reviews.any? %>
-      <div class='suborganization_info related-reviews'>
-        <div class='title'>Обзоры</div>
+    <div class='suborganization_info related-reviews'>
+      <div class='title'>
+        Обзоры
+        <span class='link'><%= link_to 'Добавить обзор', add_my_reviews_path %></span>
+      </div>
+      <% if @reviews.any? %>
         <ul class='posters js-isotoped-content' data-item-width="220">
           <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
         </ul>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <% if @organization.grouped_situated_organizations.any? %>
       <div class='suborganization_info situated_items'>
