@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :update_account_last_visit_at
   before_filter :sape_init
 
+  #match (/\/\bphotogalleries\b\/.*\/[^w][^o][^r][^k][^s].*/) => 'photogalleries#index'
   layout :resolve_layout
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -16,7 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
 
   def detect_robots_in_development
     puts "\n\n"
