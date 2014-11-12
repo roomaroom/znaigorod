@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   private
 
+
   def detect_robots_in_development
     puts "\n\n"
     puts "DEBUG ---> #{request.user_agent.to_s}"
