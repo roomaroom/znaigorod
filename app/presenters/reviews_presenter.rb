@@ -26,7 +26,7 @@ class ReviewsPresenter
     end
 
     def count
-      HasSearcher.searcher(:reviews, @args).total_count
+      HasSearcher.searcher(:reviews, @args).without_questions.total_count
     end
   end
 
