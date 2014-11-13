@@ -70,6 +70,7 @@ ru:
       client:                  Клиент
       non_cooperation:         Отказ в сотрудничестве
       debtor:                  Должник
+      advertising_service:     Рекламные услуги
 
     state:
       planned:             Запланированное
