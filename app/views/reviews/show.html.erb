@@ -54,9 +54,11 @@
     <h2>Обзор связан с:</h2>
     <ul class="related posters">
       <% @review.relations.each do |relation| %>
-        <li class="item tiny">
-          <%= render :partial => 'reviews/related_poster', :locals => {:item => relation.slave} %>
-        </li>
+        <% cache "related_review#{relation.id}", expire_at: 10.minutes do %>
+          <li class="item tiny">
+            <%= render :partial => 'reviews/related_poster', :locals => {:item => relation.slave} %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   <% end %>
