@@ -3,15 +3,6 @@ $font-size: 12px
   +clearfix
   background-color: #e8e8e8
   border-top: 1px solid #ccc
-  position: relative
-
-  .social-likes
-    position: absolute
-    top: 47%
-    right: 10%
-
-    h2
-      font-size: 14px
 
   .footer
     +liquid-size($desktop_min_width, $desktop_max_width)
@@ -20,12 +11,19 @@ $font-size: 12px
     margin-top: 10px
     margin-bottom: 10px
 
-
     .menu
-      height: 335px
-      +liquid-size($desktop_min_width, $desktop_max_width)
       +fixed-size
-      +clearfix
+      +liquid-size($desktop_min_width, $desktop_max_width)
+      height: 335px
+      position: relative
+
+      .social-likes
+        position: absolute
+        top: 182px
+        right: 95px
+
+        h2
+          font-size: 14px
 
       > ul
         float: left
