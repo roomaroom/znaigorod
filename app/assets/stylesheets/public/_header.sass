@@ -101,15 +101,26 @@
               display: block
 
           .hidden_more_buttons
-            background-color: white
+            background-color: #e8e8e8
+            border: 2px solid white
+            border-top: 0
             display: none
+            left: -15px
+            padding: 5px 0 0 5px
             position: absolute
-            right: -66px
+            right: -24px
             top: 25px
             z-index: 10
 
             &:focus
               display: block
+
+            a
+              color: black
+              text-decoration: none
+
+              &:hover
+                color: #ff6600
 
         .avatar img
           +border-radius
