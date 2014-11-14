@@ -3,7 +3,7 @@
 
   <% if invitation.inviteable %>
     <%= Preposition.new(invitation.inviteable).value %>
-    <%= link_to invitation.inviteable.title, invitation.inviteable %>
+    <%= link_to invitation.inviteable.title, invitation.inviteable.is_a?(Afisha) ? afisha_show_path(invitation.inviteable) : invitation.inviteable %>
   <% else %>
     <%= invitation.category %>
   <% end %>
