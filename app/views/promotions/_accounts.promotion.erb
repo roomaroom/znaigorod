@@ -1,11 +1,11 @@
 <div class="place-header">
   <span class="place-title with-counter">
-    <%= link_to '%item_url%' do %>
+    <%= link_to '%item_url%', rel: 'nofollow' do %>
       %title%
     <% end %>
   </span>
   <span class="place-counter">
-    <%= link_to '%item_url%' do %>
+    <%= link_to '%item_url%', rel: 'nofollow' do %>
       все <%= presenter.total_count %>
     <% end %>
   </span>
