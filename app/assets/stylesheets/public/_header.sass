@@ -84,7 +84,7 @@
       .my_new_action
         font-size: 11px
         +button-style
-        margin: 0 10px 3px 0
+        margin-top: 4px
       .sign_in
         cursor: pointer
         +inline-block
@@ -92,6 +92,25 @@
         margin: 0 5px 3px 0
         padding-right: 18px
       .user
+        .more_button
+          +inline-block
+          position: relative
+
+          &:hover
+            .hidden_more_buttons
+              display: block
+
+          .hidden_more_buttons
+            background-color: white
+            display: none
+            position: absolute
+            right: -66px
+            top: 25px
+            z-index: 10
+
+            &:focus
+              display: block
+
         .avatar img
           +border-radius
         .sign_out
