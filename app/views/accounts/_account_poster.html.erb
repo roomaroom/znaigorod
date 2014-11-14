@@ -1,6 +1,6 @@
 <div class="item">
   <div class="title">
-    <%= link_to truncate(account.title, length: 20), account %>
+    <%= link_to truncate(account.title, length: 20), account, rel: 'nofollow' %>
   </div>
 
   <div class="image">
@@ -10,7 +10,7 @@
       :locals => { :account => account, :width => 178, :height => 178, :title => account.title } %>
 
     <% if account.last_visit_at? %>
-      <%= link_to account.title, account_path(account), rel: 'nofollow' do %>
+      <%= link_to account_path(account), rel: 'nofollow' do %>
         <span class='last_visit'>
           <% if account.last_visit_at > DateTime.now - 5.minute %>
             сейчас на сайте
@@ -22,7 +22,7 @@
     <% end %>
 
     <% if account.last_visit_at? %>
-      <%= link_to account.title, account_path(account), rel: 'nofollow' do %>
+      <%= link_to account_path(account), rel: 'nofollow' do %>
         <span class='last_visit'>
           <% if account.last_visit_at > DateTime.now - 5.minute %>
             сейчас на сайте
