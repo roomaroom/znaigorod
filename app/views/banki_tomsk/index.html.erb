@@ -8,10 +8,10 @@
       <td colspan = "2">Евро</td>
     </tr>
     <tr class="thead">
-      <td>Покупка <%= link_to "#", banki_tomsk_path(currency: "usd_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(currency: "usd_sell") %></td>
-      <td>Покупка <%= link_to "#", banki_tomsk_path(currency: "euro_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(currency: "euro_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "usd_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "usd_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "euro_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "euro_sell") %></td>
     </tr>
     <tbody>
       <% @exchange_rate.each do |rate| %>
@@ -36,14 +36,14 @@
       <td colspan = "2">Паладий</td>
     </tr>
     <tr class="thead">
-      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "gold_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "gold_sell") %></td>
-      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "silver_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "silver_sell") %></td>
-      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "platinum_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "platinum_sell") %></td>
-      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "palldium_buy") %></td>
-      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "palladium_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "gold_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "gold_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "silver_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "silver_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "platinum_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "platinum_sell") %></td>
+      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "palldium_buy") %></td>
+      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "palladium_sell") %></td>
     </tr>
     <tbody>
       <% @metals.each do |metal| %>
