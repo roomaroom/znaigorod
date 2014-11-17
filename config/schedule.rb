@@ -51,6 +51,7 @@ every 2.hours do
   rake 'afisha:event_users'
   rake 'actualize_discounts'
   rake 'update_ponominalu_tickets'
+  rake 'banki_tomsk:update'
 end
 
 every 3.hours do

@@ -2,6 +2,7 @@ class CreateCurrencyRates < ActiveRecord::Migration
   def change
     create_table :currency_rates do |t|
       t.string :bank
+      t.string :bank_link
       t.float :usd_sell
       t.float :usd_buy
       t.float :euro_sell

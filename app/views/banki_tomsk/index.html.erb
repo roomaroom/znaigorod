@@ -8,15 +8,14 @@
       <td colspan = "2">Евро</td>
     </tr>
     <tr class="thead">
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "usd_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "usd_sell") %></td>
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "euro_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(currency: "euro_sell") %></td>
+      <% currency_filter.each do |key, filter|  %>
+        <td><%= filter[0] %> <%= link_to filter[1].html_safe, banki_tomsk_path(currency: filter[2]) %></td>
+      <% end %>
     </tr>
     <tbody>
       <% @exchange_rate.each do |rate| %>
         <tr>
-          <td><%= rate.bank %></td>
+          <td><%= link_to rate.bank, rate.bank_link %></td>
           <td><%= rate.usd_buy %></td>
           <td><%= rate.usd_sell %></td>
           <td><%= rate.euro_buy %></td>
@@ -36,14 +35,9 @@
       <td colspan = "2">Паладий</td>
     </tr>
     <tr class="thead">
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "gold_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "gold_sell") %></td>
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "silver_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "silver_sell") %></td>
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "platinum_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "platinum_sell") %></td>
-      <td>Покупка <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "palldium_buy") %></td>
-      <td>Продажа <%= link_to "&darr;".html_safe, banki_tomsk_path(metals: "palladium_sell") %></td>
+      <% metal_filter.each do |key, filter|  %>
+        <td><%= filter[0] %> <%= link_to filter[1].html_safe, banki_tomsk_path(currency: filter[2]) %></td>
+      <% end %>
     </tr>
     <tbody>
       <% @metals.each do |metal| %>

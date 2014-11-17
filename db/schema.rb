@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117040353) do
+ActiveRecord::Schema.define(:version => 20141114103249) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -340,6 +340,7 @@ ActiveRecord::Schema.define(:version => 20141117040353) do
 
   create_table "currency_rates", :force => true do |t|
     t.string   "bank"
+    t.string   "bank_link"
     t.float    "usd_sell"
     t.float    "usd_buy"
     t.float    "euro_sell"
@@ -487,13 +488,6 @@ ActiveRecord::Schema.define(:version => 20141117040353) do
 
   add_index "invitations", ["inviteable_id"], :name => "index_invitations_on_inviteable_id"
   add_index "invitations", ["invited_id"], :name => "index_invitations_on_invited_id"
-
-  create_table "link_counters", :force => true do |t|
-    t.string   "link_type"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "main_page_posters", :force => true do |t|
     t.integer  "afisha_id"
