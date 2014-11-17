@@ -1,5 +1,8 @@
 class LinkCounter < ActiveRecord::Base
   attr_accessible :name, :type
+
+  extend Enumerize
+  enumerize :link_type, :in => [:auto, :cafe, :entertainment, :beauty, :technique, :wear, :birthday, :travel, :home, :children, :other, :students, :photo]
 end
 
 # == Schema Information

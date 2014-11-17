@@ -490,7 +490,7 @@ ActiveRecord::Schema.define(:version => 20141114103249) do
   add_index "invitations", ["invited_id"], :name => "index_invitations_on_invited_id"
 
   create_table "link_counters", :force => true do |t|
-    t.string   "type"
+    t.string   "link_type"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

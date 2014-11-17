@@ -1,7 +1,7 @@
 class CreateLinkCounters < ActiveRecord::Migration
   def change
     create_table :link_counters do |t|
-      t.string :type
+      t.string :link_type
       t.string :name
 
       t.timestamps
