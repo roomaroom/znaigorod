@@ -44,6 +44,7 @@ group :default do
   gem 'koala',                      '~> 1.7.0rc1'
   gem 'mainsms_api'
   gem 'nested_form'
+  gem 'nokogiri'
   gem 'omniauth-facebook'
   gem 'omniauth-google-oauth2'
   gem 'omniauth-mailru',            :git => 'git://github.com/semenyukdmitriy/omniauth-mailru', :ref => 'fbf40e8'

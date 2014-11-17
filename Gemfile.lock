@@ -546,6 +546,7 @@ DEPENDENCIES
   mainsms_api
   mock_redis
   nested_form
+  nokogiri
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-mailru!

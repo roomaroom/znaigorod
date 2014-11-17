@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141030041720) do
+ActiveRecord::Schema.define(:version => 20141114103249) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -336,6 +336,24 @@ ActiveRecord::Schema.define(:version => 20141030041720) do
     t.datetime "updated_at",      :null => false
     t.string   "title"
     t.text     "description"
+  end
+
+  create_table "currency_rates", :force => true do |t|
+    t.string   "bank"
+    t.float    "usd_sell"
+    t.float    "usd_buy"
+    t.float    "euro_sell"
+    t.float    "euro_buy"
+    t.float    "gold_sell"
+    t.float    "gold_buy"
+    t.float    "silver_sell"
+    t.float    "silver_buy"
+    t.float    "platinum_sell"
+    t.float    "platinum_buy"
+    t.float    "palladium_sell"
+    t.float    "palladium_buy"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
