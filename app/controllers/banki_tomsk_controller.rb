@@ -10,6 +10,7 @@ class BankiTomskController < ApplicationController
 
       format.promotion{
         @topkurs = xml.xpath('//topkurs').first.children.children.map{|topkurs| topkurs.text }
+        render partial: 'promotions/banki_tomsk'
       }
     end
   end
