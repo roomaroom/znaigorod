@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'esp-ckeditor/application' %>
+
 <%= simple_nested_form_for resource, :url => [:manage, resource], :html => { :novalidate => true } do |f| %>
   <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 
@@ -8,11 +10,12 @@
     </div>
   </div>
 
+  <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path' } %>
   <%= f.input :title %>
   <%= f.input :primary_organization_id, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.primary_organization_id  %>
   <%= f.input :situated_at, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.situated_at  %>
   <%= f.input :comment %>
-  <%= f.input :description %>
+  <%= f.input :description, :as => :ckeditor, :label => false%>
   <%= f.input :phone %>
   <%= f.input :email %>
   <%= f.input :site %>
