@@ -1,0 +1,68 @@
+<div class="banki_tomska_left">
+  <%= render :partial => 'banner_2_1' %>
+  <h1>Курс валют</h1>
+  <table class="banki_tomsk_currency">
+    <tr class="thead">
+      <td rowspan = "2">Банк</td>
+      <td colspan = "2">Доллар</td>
+      <td colspan = "2">Евро</td>
+    </tr>
+    <tr class="thead">
+      <td>Покупка <%= link_to "#", banki_tomsk_path(currency: "usd_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(currency: "usd_sell") %></td>
+      <td>Покупка <%= link_to "#", banki_tomsk_path(currency: "euro_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(currency: "euro_sell") %></td>
+    </tr>
+    <tbody>
+      <% @exchange_rate.each do |rate| %>
+        <tr>
+          <td><%= rate.bank %></td>
+          <td><%= rate.usd_buy %></td>
+          <td><%= rate.usd_sell %></td>
+          <td><%= rate.euro_buy %></td>
+          <td><%= rate.euro_sell %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h1>Курсы драгоценных металлов</h1>
+  <table class="banki_tomsk_metals">
+    <tr class="thead">
+      <td rowspan = "2">Банк</td>
+      <td colspan = "2">Золото</td>
+      <td colspan = "2">Серебро</td>
+      <td colspan = "2">Платина</td>
+      <td colspan = "2">Паладий</td>
+    </tr>
+    <tr class="thead">
+      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "gold_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "gold_sell") %></td>
+      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "silver_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "silver_sell") %></td>
+      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "platinum_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "platinum_sell") %></td>
+      <td>Покупка <%= link_to "#", banki_tomsk_path(metals: "palldium_buy") %></td>
+      <td>Продажа <%= link_to "#", banki_tomsk_path(metals: "palladium_sell") %></td>
+    </tr>
+    <tbody>
+      <% @metals.each do |metal| %>
+        <tr>
+          <td><%= metal.bank %></td>
+          <td><%= metal.gold_buy %></td>
+          <td><%= metal.gold_sell %></td>
+          <td><%= metal.silver_buy %></td>
+          <td><%= metal.silver_sell %></td>
+          <td><%= metal.platinum_buy %></td>
+          <td><%= metal.platinum_sell %></td>
+          <td><%= metal.palladium_buy %></td>
+          <td><%= metal.palladium_sell %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="banki_tomska_right">
+  <%= render :partial => 'commons/promotions' %>
+</div>
