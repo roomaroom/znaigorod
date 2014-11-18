@@ -124,5 +124,7 @@ Znaigorod::Application.routes.draw do
 
   get '/getmvote' => 'sms_votes#index'
 
+  get '/link_counters/create' => 'link_counters#create'
+
   root :to => 'main_page#show'
 end

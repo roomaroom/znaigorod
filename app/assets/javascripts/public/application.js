@@ -114,4 +114,5 @@
  * = require ./main
  * = require ./photogalleries
  * = require ./social_likes
+ * = require ./link_counter
  */

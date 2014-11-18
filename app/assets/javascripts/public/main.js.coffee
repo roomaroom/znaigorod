@@ -105,6 +105,11 @@ $ ->
   initMyDiscount() if $('.js-toggle-forms').length
 
 
+  init_top_headline_banner_stat() if $('.js-top_headline a').length
+  init_banner12_stat() if $('.js-banner12 a').length
+  init_right_block_stat()
+
+
   true
 
 $(window).load ->

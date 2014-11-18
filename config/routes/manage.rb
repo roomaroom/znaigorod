@@ -9,6 +9,7 @@ Znaigorod::Application.routes.draw do
       resources :sms_claims,    :only => :index
       resources :reviews,       :only => :index
       resources :afishas,       :only => :index
+      resources :links,         :only => :index
 
       resources :tickets, only: [:index, :edit, :update, :destroy] do
         get ':by_state' => 'tickets#index', :on => :collection, :as => :with_state

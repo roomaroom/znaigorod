@@ -1,8 +1,8 @@
 class LinkCounter < ActiveRecord::Base
-  attr_accessible :name, :type
+  attr_accessible :name, :link_type, :link
 
   extend Enumerize
-  enumerize :link_type, :in => [:auto, :cafe, :entertainment, :beauty, :technique, :wear, :birthday, :travel, :home, :children, :other, :students, :photo]
+  enumerize :link_type, :in => [:external, :banner, :right], scope: true
 end
 
 # == Schema Information
@@ -12,6 +12,7 @@ end
 #  id         :integer          not null, primary key
 #  link_type  :string(255)
 #  name       :string(255)
+#  link       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

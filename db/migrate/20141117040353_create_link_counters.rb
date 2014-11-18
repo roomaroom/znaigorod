@@ -3,6 +3,7 @@ class CreateLinkCounters < ActiveRecord::Migration
     create_table :link_counters do |t|
       t.string :link_type
       t.string :name
+      t.string :link
 
       t.timestamps
     end
