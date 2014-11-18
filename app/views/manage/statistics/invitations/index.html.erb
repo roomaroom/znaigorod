@@ -93,12 +93,14 @@
       <tr>
         <th>Подключено клиентов на СМС-бронирование</th>
         <th>Получено СМС-заявок</th>
+        <th>Количество просмотров телефона</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><%= @reservcations.count %></td>
         <td><%= @sms_claims.count %></td>
+        <td><%= @organization_show_phones %></td>
       </tr>
     </tbody>
   </table>
@@ -260,3 +262,4 @@
     </tbody>
   </table>
 </div>
+
