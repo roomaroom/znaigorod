@@ -111,7 +111,7 @@ $(window).load ->
   init_3dtourme_stat() if $('a.3dtourme').length
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
   init_potential_banner_stat() if $('.js-stat-potential').length
-  init_questions_banner_stat() if $('.top_headline').length
+  init_top_banner_stat() if $('.top_headline').length
 
   init_afisha_yandex_map() if $('.yandex_map .map').length
   init_afisha_map() if $('.show_map_link').length || $('.feeds').length

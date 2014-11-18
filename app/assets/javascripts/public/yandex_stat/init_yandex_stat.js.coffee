@@ -23,9 +23,9 @@
 
   return
 
-@init_questions_banner_stat = () ->
+@init_top_banner_stat = () ->
   $('.top_headline a').click ->
-    yaCounter14923525.reachGoal('questions_banner') if yaCounter14923525?
+    yaCounter14923525.reachGoal('top_banner') if yaCounter14923525?
     true
 
   return
