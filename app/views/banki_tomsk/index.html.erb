@@ -42,7 +42,7 @@
     <tbody>
       <% @metals.each do |metal| %>
         <tr>
-          <td><%= metal.bank %></td>
+          <td><%= link_to metal.bank, metal.bank_link %></td>
           <td><%= metal.gold_buy %></td>
           <td><%= metal.gold_sell %></td>
           <td><%= metal.silver_buy %></td>
