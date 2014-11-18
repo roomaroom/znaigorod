@@ -1,13 +1,8 @@
-@init_top_headline_banner_stat = ->
-  $('.top_headline a').click ->
+@init_banner_stat = ->
+  $('.js-banner a').click ->
     link = $(this).attr('href')
-    name = $(this).text()
-    perform_ajax(link, name, 'banner')
-
-@init_banner12_stat = ->
-  $('.js-banner12 a').click ->
-    link = $(this).attr('href')
-    name = $(this).text()
+    name = $(event.target).attr('alt')
+    console.log name
     perform_ajax(link, name, 'banner')
 
 @init_right_block_stat = ->

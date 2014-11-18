@@ -492,9 +492,11 @@ ActiveRecord::Schema.define(:version => 20141114103249) do
   create_table "link_counters", :force => true do |t|
     t.string   "link_type"
     t.string   "name"
+    t.string   "human_name"
     t.string   "link"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "count",      :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "main_page_posters", :force => true do |t|
