@@ -4,8 +4,9 @@ class CreateLinkCounters < ActiveRecord::Migration
       t.string :link_type
       t.string :name
       t.string :human_name
-      t.string :link
       t.integer :count, default: 0
+      t.string :link
+
       t.timestamps
     end
   end

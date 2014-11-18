@@ -2,8 +2,6 @@
   $('.js-banner a').click ->
     link = $(this).attr('href')
     name = $(event.target).attr('alt')
-    console.log name
-    perform_ajax(link, name, 'banner')
 
 @init_right_block_stat = ->
   $('.promotions').on 'click', $('.js-right-block a'), ->

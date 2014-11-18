@@ -494,7 +494,7 @@ ActiveRecord::Schema.define(:version => 20141114103249) do
     t.string   "name"
     t.string   "human_name"
     t.string   "link"
-    t.integer  "count",      :default => 1
+    t.integer  "count",      :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
