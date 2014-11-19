@@ -8,18 +8,18 @@ else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
 
-every :thursday, :at => '8:00 am' do
-  rake 'send_digest:site'
-end
+#every :thursday, :at => '8:00 am' do
+  #rake 'send_digest:site'
+#end
 
-every :day, :at => '6:00 am' do
-  rake 'send_digest:personal'
-  rake 'generate_yandex_companies_xml_files'
-end
+#every :day, :at => '6:00 am' do
+  #rake 'send_digest:personal'
+  #rake 'generate_yandex_companies_xml_files'
+#end
 
-every :day, :at => '6:30 am' do
-  rake 'send_digest:statistics'
-end
+#every :day, :at => '6:30 am' do
+  #rake 'send_digest:statistics'
+#end
 
 every :day, :at => '7:15 am' do
   rake 'sync:fakel'
@@ -37,33 +37,33 @@ every :day, :at => '7:30 am' do
   rake 'sync:goodwin'
 end
 
+#every 6.hours do
+  #rake 'sitemap:refresh refresh_sitemaps'
+  #rake 'social_likes'
+#end
+
+#every :day, :at => '5am' do
+  #rake 'account:get_friends'
+  #rake 'invitations:destroy_irrelevant'
+#end
+
 every 6.hours do
-  rake 'sitemap:refresh refresh_sitemaps'
-  rake 'social_likes'
-end
-
-every :day, :at => '5am' do
-  rake 'account:get_friends'
-  rake 'invitations:destroy_irrelevant'
-end
-
-every 2.hours do
-  rake 'afisha:event_users'
+  #rake 'afisha:event_users'
   rake 'actualize_discounts'
   rake 'update_ponominalu_tickets'
   rake 'banki_tomsk:update'
 end
 
 every 3.hours do
-  rake 'update_rating:all'
+  #rake 'update_rating:all'
   #rake 'balance_notify'
 end
 
-every 5.minutes do
+every 30.minutes do
   rake 'refresh_copies'
   rake 'kill_offers'
 end
 
 every 15.minutes do
-  rake 'get_sape_links'
+  #rake 'get_sape_links'
 end
