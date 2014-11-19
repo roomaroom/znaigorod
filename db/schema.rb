@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141114103249) do
+ActiveRecord::Schema.define(:version => 20141117040353) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -493,8 +493,8 @@ ActiveRecord::Schema.define(:version => 20141114103249) do
     t.string   "link_type"
     t.string   "name"
     t.string   "human_name"
-    t.string   "link"
     t.integer  "count",      :default => 0
+    t.string   "link"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
