@@ -86,6 +86,7 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :reviews, 'Обзоры', manage_statistics_reviews_path
       statistics_item.item :afishas, 'Афиши', manage_statistics_afishas_index_path
       statistics_item.item :discounts, 'Скидки', manage_statistics_discount_statistic_path
+      statistics_item.item :links, 'Переходы по ссылкам', manage_statistics_links_path
     end
 
     primary.dom_class = 'navigation'

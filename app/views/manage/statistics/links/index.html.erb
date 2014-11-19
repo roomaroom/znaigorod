@@ -1,13 +1,25 @@
+<%= link_to 'Все', manage_statistics_links_path %>
+<%= link_to 'Внешние ссылки', manage_statistics_links_path(order_by: 'external') %>
+<%= link_to 'Баннеры', manage_statistics_links_path(order_by: 'banner') %>
+<%= link_to 'Клики по правой части', manage_statistics_links_path(order_by: 'right') %>
 <h1>Ссылки</h1>
 <table class='links'>
   <thead>
     <tr>
       <th>Ссылка</th>
-      <th>Название (если есть)</th>
+      <th>Название</th>
+      <th>Тип</th>
       <th>Кол-во переходов</th>
     </tr>
   </thead>
   <tbody>
-
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link_to link.link, link.link, target: '_blank' %></td>
+        <td><%= link.smart_name %>(<%= link_to 'ред.', edit_manage_statistics_link_path(link) %>)</td>
+        <td><%= link.link_type.text %></td>
+        <td><%= link.count %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

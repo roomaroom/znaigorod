@@ -229,6 +229,12 @@ ru:
         agree: Вы согласились
         disagree: Вы отказались
 
+    link_counter:
+      link_type:
+        banner: Баннер
+        right: Правая часть
+        external: Внешняя ссылка
+
     invitation:
       gender:
         all: Неважно

@@ -1,0 +1,5 @@
+<%= simple_form_for @link, url: manage_statistics_link_path do |f| %>
+  <%= @link.link %>
+  <%= f.input :human_name, label: false, input_html: { placeholder: 'Введите понятное имя' } %>
+  <%= f.submit 'Сохранить' %>
+<% end %>

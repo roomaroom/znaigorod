@@ -14,10 +14,12 @@
       else
         link = element.attr('href')
 
-      name = element.text()
       perform_ajax(link, name, 'right')
 
 perform_ajax = (link, name, type) ->
+  alert link
+  alert name
+  alert type
   $.ajax
     type: 'get'
     url: '/link_counters/create'
