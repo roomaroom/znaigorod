@@ -16,7 +16,7 @@
     <% presenter.decorated_collection.each do |item| %>
       <li>
         <div class='image'>
-        <%= image_tag item.account.avatar.url, :size => '35x35' %>
+        <%= image_tag resized_image_url(item.account.avatar.url, 35, 35), :size => '35x35' %>
         </div>
         <div class='title'>
           <%= link_to truncate(item.title.text_gilensize, :length => 35), question_path(item), :title => item.title.text_gilensize %>
