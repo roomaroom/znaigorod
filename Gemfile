@@ -86,6 +86,7 @@ group :development do
   gem 'hirb'
   gem 'letter_opener'
   gem 'openteam-capistrano'
+  gem 'capistrano',                 '2.15.4'
   gem 'pry'
   gem 'quiet_assets'
   gem 'rails-erd'
