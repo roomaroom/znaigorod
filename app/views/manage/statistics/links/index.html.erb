@@ -15,7 +15,7 @@
   <tbody>
     <% @links.each do |link| %>
       <tr>
-        <td><%= link_to link.link.truncate(50), link.link, target: '_blank' %></td>
+        <td><%= link_to link.link ? link.link.truncate(50) : 'нет ссылки' , link.link, target: '_blank' %></td>
         <td><%= link.smart_name.truncate(50) %>(<%= link_to 'ред.', edit_manage_statistics_link_path(link) %>)</td>
         <td><%= link.link_type.text %></td>
         <td><%= link.count %></td>
