@@ -81,6 +81,7 @@ Znaigorod::Application.routes.draw do
   end
 
   get '/tsu' => redirect('/contests/ya-v-tgu-i-na-znaygorode')
+  get '/contests/tomskie-talanty-2014-nominatsiya-horeografiya' => redirect('/contests/tomskie-talanty-2014')
   resources :contests, :only => [:index, :show] do
     resources :works, :only => [:new, :create, :show] do
       put 'change_vote' => 'votes#change_vote', :as => :change_vote
@@ -125,6 +126,7 @@ Znaigorod::Application.routes.draw do
   get '/getmvote' => 'sms_votes#index'
 
   get '/link_counters/create' => 'link_counters#create'
+
 
   root :to => 'main_page#show'
 end
