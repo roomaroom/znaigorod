@@ -18,12 +18,12 @@ namespace :update_rating do
 
   desc "Обновление рейтинга обзоров"
   task :reviews => :environment do
-    Review.all.map(&:update_rating)
+    Review.with_period.map(&:update_rating)
   end
 
   desc "Обновление рейтинга купонов"
   task :discounts => :environment do
-    Discount.actual.map(&:update_rating)
+    Discount.published.actual.map(&:update_rating)
   end
 
   desc "Обновление рейтинга работ"

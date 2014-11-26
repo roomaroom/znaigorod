@@ -10,9 +10,11 @@ task :social_likes => :environment do
   [Afisha, Organization, Review, Discount, Work].each do |klass|
     collection = case klass
                  when Afisha
-                   klass.published.with_showings
-                 when Discount, Review
-                   klass.published
+                   klass.published.actual.with_showings
+                 when Discount
+                   klass.published.actual
+                 when Review
+                   klass.with_period.published
                  when Work
                    klass.where(:context_type => Photogallery)
                  else

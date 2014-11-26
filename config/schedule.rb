@@ -37,10 +37,10 @@ every :day, :at => '7:30 am' do
   rake 'sync:goodwin'
 end
 
-#every 6.hours do
+every 6.hours do
   #rake 'sitemap:refresh refresh_sitemaps'
-  #rake 'social_likes'
-#end
+  rake 'social_likes'
+end
 
 #every :day, :at => '5am' do
   #rake 'account:get_friends'
@@ -55,7 +55,7 @@ every 6.hours do
 end
 
 every 3.hours do
-  #rake 'update_rating:all'
+  rake 'update_rating:all'
   #rake 'balance_notify'
 end
 

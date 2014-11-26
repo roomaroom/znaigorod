@@ -55,8 +55,9 @@ class Review < ActiveRecord::Base
   scope :by_state,          -> (state) { where :state => state }
   scope :draft,             -> { where :state => :draft }
   scope :published,         -> { where :state => :published }
-  scope :without_questions, ->{where "type != 'Question'"}
+  scope :without_questions, -> { where "type != 'Question'" }
   scope :ordered,           order('created_at desc')
+  scope :with_period,       -> { where created_at: (Time.zone.now - 1.month)..Time.zone.now }
 
   validates_presence_of :title, :categories
 
