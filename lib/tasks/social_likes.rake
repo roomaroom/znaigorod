@@ -8,14 +8,13 @@ task :social_likes => :environment do
   likes = SocialLikes.new
 
   [Afisha, Organization, Review, Discount, Work].each do |klass|
-    collection = case klass
-                 when Afisha
+    collection = if klass == Afisha
                    klass.published.actual.with_showings
-                 when Discount
+                 elsif klass ==  Discount
                    klass.published.actual
-                 when Review
+                 elsif klass ==  Review
                    klass.with_period.published
-                 when Work
+                 elsif klass ==  Work
                    klass.where(:context_type => Photogallery)
                  else
                    klass.all
