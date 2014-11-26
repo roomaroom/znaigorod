@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117040353) do
+ActiveRecord::Schema.define(:version => 20141126040326) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -151,6 +151,14 @@ ActiveRecord::Schema.define(:version => 20141117040353) do
 
   add_index "afisha", ["slug"], :name => "index_affiches_on_slug", :unique => true
   add_index "afisha", ["user_id"], :name => "index_affiches_on_user_id"
+
+  create_table "afisha_list_posters", :force => true do |t|
+    t.integer  "position"
+    t.datetime "expires_at"
+    t.integer  "afisha_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"

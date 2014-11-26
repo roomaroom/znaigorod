@@ -48,6 +48,10 @@ HasSearcher.create_searcher :showings do
     without :afisha_id, MainPagePoster.where('afisha_id is not null').map(&:afisha_id)
   end
 
+  scope :without_for_afisha_list do
+    without :afisha_id, AfishaListPoster.where('afisha_id is not null').map(&:afisha_id)
+  end
+
   property :price_min do |search|
     search.with(:price_min).less_than_or_equal_to(search_object.price_max) if search_object.price_max.present?
   end

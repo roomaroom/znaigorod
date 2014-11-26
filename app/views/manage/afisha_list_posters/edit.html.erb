@@ -1,0 +1,18 @@
+<h3>Афиши в списочном виде  <%= "№#{@afisha_list_poster.position}" %></h3>
+
+<%= simple_form_for [:manage, @afisha_list_poster] do |f| %>
+  <div>
+    <%= label_tag :q, 'Поиск афиши' %>
+    <%= text_field_tag :afisha_list_afishas_autocomplete,
+      nil,
+      :class => 'js-afisha_list_posters_autocomplete afisha_list_posters_autocomplete',
+      :placeholder => 'Введите название афиши',
+      :data => { 'autocomplete-source' => manage_afisha_list_posters_index_path, :target => '#afisha_list_poster_afisha_id' } %>
+
+    <%= f.input :afisha_id, :as => :hidden %>
+  </div>
+
+  <%= f.input :expires_at, :as => :datetime_picker %>
+
+  <%= f.submit 'Сохранить' %> или <%= link_to 'Отмена', manage_afisha_list_posters_path %>
+<% end %>

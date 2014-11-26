@@ -1,0 +1,32 @@
+<h3>Афиши на главной странице</h3>
+
+<ul class="afisha_list_posters">
+  <% @afisha_list_posters.each do |afisha_list_poster| %>
+    <li>
+      <% if afisha_list_poster.afisha %>
+        <% decorated_afisha = AfishaDecorator.new(afisha_list_poster.afisha) %>
+          <div class="image">
+            <%= decorated_afisha.poster_with_link(100, 100) %>
+          </div>
+
+          <div>
+            <%= link_to decorated_afisha.title %>
+          </div>
+
+          <div>
+            Действителен до <%= l afisha_list_poster.expires_at, :format => :long %>
+          </div>
+
+          <div>
+            <%= link_to 'Выбрать другую афишу', edit_manage_afisha_list_posters_path(afisha_list_poster) %>
+            <%= link_to 'Освободить место', manage_afisha_list_posters_path(afisha_list_poster, 'afisha_list_poster[afisha_id]' => ''), :method => :put %>
+          </div>
+      <% else %>
+        <div>
+          Афиша не выбрана
+          <%= link_to 'Выбрать афишу', edit_manage_afisha_list_posters_path(afisha_list_poster) %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

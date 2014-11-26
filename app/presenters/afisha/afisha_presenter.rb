@@ -19,7 +19,8 @@ class AfishaPresenter
                 :hide_categories,
                 :has_tickets,
                 :for_mobile_api,
-                :main_page
+                :main_page,
+                :afisha_list
 
   def initialize(args)
     super(args)
@@ -218,6 +219,7 @@ class AfishaPresenter
       params[:to]               = time_filter.to             if time_filter.to.present?
       params[:has_tickets]      = true                       if has_tickets
       params[:main_page]        = true                       if main_page
+      params[:afisha_list]      = true                       if afisha_list
 
       params[:location] = Hashie::Mash.new(lat: geo_filter.lat, lon: geo_filter.lon, radius: geo_filter.radius) if geo_filter.used?
     end
@@ -229,6 +231,7 @@ class AfishaPresenter
     @searcher ||= HasSearcher.searcher(:showings, searcher_params).tap { |s|
       s.paginate(page: page, per_page: per_page)
       s.groups
+      s.without_for_afisha_list if afisha_list
       s.without_for_main_page if main_page
       sorting_filter.order_by_random? ? s.order_by(:random) : s.send("order_by_#{sorting_filter.order_by}")
 
