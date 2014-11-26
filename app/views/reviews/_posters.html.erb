@@ -7,13 +7,5 @@
 <% unless @presenter.nil? || @presenter.collection.last_page? || controller_name == 'afishas' || controller_name == 'organizations' || controller_name == 'contests' %> <! -- TODO: fix it -->
   <li class="pagination">
     <%= link_to_next_page @presenter.collection, "Еще обзоры (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
-    <script type="text/javascript">
-      google_ad_client = "ca-pub-4981169986614180";
-      google_ad_slot = "6687067759";
-      google_ad_width = 728;
-      google_ad_height = 90;
-    </script>
-    <!-- Тест -->
-    <script type="text/javascript" src="//"></script>
   </li>
 <% end %>
