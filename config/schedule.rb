@@ -37,10 +37,14 @@ every :day, :at => '7:30 am' do
   rake 'sync:goodwin'
 end
 
-every 6.hours do
-  #rake 'sitemap:refresh refresh_sitemaps'
+every :day, :at => '3:00 am' do
+  rake 'update_rating:all'
   rake 'social_likes'
 end
+
+#every 6.hours do
+  #rake 'sitemap:refresh refresh_sitemaps'
+#end
 
 #every :day, :at => '5am' do
   #rake 'account:get_friends'
@@ -54,16 +58,15 @@ every 6.hours do
   rake 'banki_tomsk:update'
 end
 
-every 3.hours do
-  rake 'update_rating:all'
+#every 3.hours do
   #rake 'balance_notify'
-end
+#end
 
 every 30.minutes do
   rake 'refresh_copies'
   rake 'kill_offers'
 end
 
-every 15.minutes do
+#every 15.minutes do
   #rake 'get_sape_links'
-end
+#end
