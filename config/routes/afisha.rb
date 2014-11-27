@@ -47,7 +47,7 @@ Znaigorod::Application.routes.draw do
         :constraints => lambda {|request| request.fullpath !~ /^\/afisha\/bilety/ }
 
       get '/affiches', :to => redirect('/afisha')
-      get 'newyears', :to => redirect('/afisha_newyear')
+      get '/newyears' => redirect { |params, request| "/afisha_newyear?#{request.params.to_query}" }
 
       Afisha.kind.values.map(&:pluralize).each do |kind|
         get "/#{kind}",
