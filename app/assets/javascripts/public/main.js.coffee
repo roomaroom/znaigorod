@@ -63,7 +63,6 @@ $ ->
   init_sms_claims_by_hash() if window.location.hash.match(/^#new_sms_claim/)
   init_swfkrpano() if $('#krpano').length
   init_trailers() if $('.afisha_show .trailer p').length
-  init_webcam_map() if $('.webcams .webcam_map').length
   init_add_webcam() if $('.webcams .add_webcam').length
   init_my_afisha() if $('.my_wrapper').length
   init_file_upload() if $('.file_upload').length
@@ -104,30 +103,24 @@ $ ->
   loadRelatedAfishas() if $('.relations').length
   initMyDiscount() if $('.js-toggle-forms').length
 
-
   init_banner_stat() if $('.js-banner a').length
   init_right_block_stat()
-
-
   true
 
 $(window).load ->
   init_3dtourme_stat() if $('a.3dtourme').length
-  init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
-  init_potential_banner_stat() if $('.js-stat-potential').length
-  init_top_banner_stat() if $('.top_headline').length
-
-  init_afisha_yandex_map() if $('.yandex_map .map').length
   init_afisha_map() if $('.show_map_link').length || $('.feeds').length
+  init_afisha_yandex_map() if $('.yandex_map .map').length
   init_auth() if ('.auth_links').length
-  init_services() if $('.services')
-  init_menus() if $('.menus')
-
-  init_move_to_top() if $('a.move_to_top').length
-  init_crop()
-
   init_countdown() if $('.countdown').length
-
+  init_crop()
   init_discount_map() if $('.discount').length
+  init_menus() if $('.menus')
+  init_move_to_top() if $('a.move_to_top').length
+  init_potential_banner_stat() if $('.js-stat-potential').length
+  init_services() if $('.services')
+  init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
+  init_top_banner_stat() if $('.top_headline').length
+  init_webcam_map() if $('.webcams .webcam_map').length
 
   true

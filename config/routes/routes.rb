@@ -115,6 +115,8 @@ Znaigorod::Application.routes.draw do
 
   resources :webcams, :only => [:index, :show]
 
+  resources :map_projects, only: [:index, :show]
+
   get '/kurs_valut' => 'banki_tomsk#index', :as => 'banki_tomsk'
 
   match '/' => redirect{|p, req| "#{req.url.sub(req.subdomain+'.', '')}organizations/#{Organization.find_by_subdomain(req.subdomain).slug}"}, :constraints => lambda{|r| r.subdomain.present? && Organization.pluck(:subdomain).uniq.delete_if{|s| s.nil? || s.blank?}.include?(r.subdomain) }
@@ -126,7 +128,6 @@ Znaigorod::Application.routes.draw do
   get '/getmvote' => 'sms_votes#index'
 
   get '/link_counters/create' => 'link_counters#create'
-
 
   root :to => 'main_page#show'
 end
