@@ -20,6 +20,7 @@ class Manage::AfishaListPostersController < Manage::ApplicationController
   def update
     @afisha_list_poster = AfishaListPoster.find(params[:id])
     @afisha_list_poster.update_attributes(params[:afisha_list_poster])
+    Afisha.find(params[:afisha_list_poster][:afisha_id]).update_attributes(promoted_at: params[:afisha_list_poster][:expires_at]) if params[:afisha_list_poster][:expires_at]
     redirect_to manage_afisha_list_posters_index_path
   end
 
