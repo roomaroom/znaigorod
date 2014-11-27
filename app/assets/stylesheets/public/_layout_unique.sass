@@ -1295,3 +1295,101 @@
           +background(linear-gradient(top, #030e0c, #003f08))
           border-top: 2px solid #009f05
           margin: 6px -5px -5px
+
+.luks_content_wrapper
+  $main_color: #d6afe6
+  $border_color: #cf9ee2
+  $link_color: #086ad9
+  +background(image_url('public/luks/header.png') no-repeat center top, linear-gradient(top, $main_color, #fff))
+
+  a
+    color: $link_color
+
+  .luks_logo
+    width: 1200px
+    height: 110px
+    margin: 0 auto
+
+  .content_wrapper
+    background-color: #f0def5
+    +border-radius(5px)
+
+    .left
+      .image
+        border: 2px solid $border_color
+        margin: 0
+        border-bottom: 0
+
+      .social_actions
+        border: 2px solid $border_color
+        border-top: 0
+        background-color: #e2c2ee
+        width: 208px
+
+        .user_actions
+          border-bottom: 2px solid $border_color
+          padding: 7px 5px
+
+        .visits_counter
+          color: black
+
+          .floatr
+            color: $link_color
+
+        .visitors
+          li
+            &:first-child
+              border: 0
+
+    .center
+      color: black
+
+      .sections_info
+        .info
+          h2
+            color: black
+
+        .divider
+          border: 1px solid $border_color
+          margin: 0 0 5px 0
+
+      .comments
+        .body
+          p
+            color: black
+
+      div.title, h3
+        background-color: $main_color
+
+      .services
+        .info
+          .head
+            h3
+              background-color: black
+
+      .share_and_likes
+        border-bottom: 1px solid $border_color
+
+        .share
+          .title
+            background-color: transparent
+
+      .discount_details, .afisha_content
+        .posters
+          .item
+            border: 1px solid $border_color
+
+    .right
+      border: 2px solid $border_color
+      width: 203px
+      padding: 5px
+
+      .wrapper
+        border: 0
+
+        .yandex_map
+
+        .more_like_this
+          +background(linear-gradient(top, $main_color, #fff))
+          border-top: 2px solid $border_color
+          margin: 6px -5px -5px
