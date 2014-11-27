@@ -65,7 +65,7 @@ class Review < ActiveRecord::Base
   default_value_for :only_tomsk,           false
 
   enumerize :categories,
-    :in => [:children, :interesting, :auto, :accidents, :crash, :animals, :cookery,
+    :in => [:newyear, :children, :interesting, :auto, :accidents, :crash, :animals, :cookery,
             :eighteen_plus, :humor, :hi_tech, :entertainment, :family, :lifehack,
             :economy, :complaints_book, :spirituality, :help, :men_and_women, :creation,
             :handmade, :boiling, :good_news, :health, :sport, :policy, :studies, :abiturient,
