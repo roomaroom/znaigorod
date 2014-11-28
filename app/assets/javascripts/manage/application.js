@@ -46,4 +46,5 @@
  * = require ../public/my_discount
  * = require ./main
  * = require ./organizations
+ * = require ./map_project
  */
