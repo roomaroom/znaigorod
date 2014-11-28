@@ -45,9 +45,10 @@
             "</center>"
           hintContent: title
       ,
-        iconImageHref: '/assets/public/icon_map_webcam.png'
-        iconImageOffset: [-15, -40]
-        iconImageSize: [37, 42]
+        iconImageHref: $(item).attr('data-icon')
+        console.log $(item).attr('data-icon')
+        #iconImageOffset: [-15, -40]
+        #iconImageSize: [37, 42]
 
       map.geoObjects.add point
 

@@ -27,7 +27,8 @@
        <% map_layer.map_placemarks.each do |map_placemark| %>
          <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
            data-title='<%= map_placemark.title.as_html %>'
-           data-image='<%= resized_image_url(map_placemark.image_url, 200, 150) %>'>
+           data-image='<%= resized_image_url(map_placemark.image_url, 200, 150) %>'
+           data-icon='<%= map_layer.image_url %>'>
            <%= link_to map_placemark.title, map_placemark.url %>
          </p>
        <% end %>
