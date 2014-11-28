@@ -113,6 +113,10 @@ class Discount < ActiveRecord::Base
     organizations.map(&:title).join(' ')
   end
 
+  def organization
+    organizations.first
+  end
+
   def type_for_solr
     self.class.name.underscore
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141126040326) do
+ActiveRecord::Schema.define(:version => 20141127093017) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -524,6 +524,30 @@ ActiveRecord::Schema.define(:version => 20141126040326) do
   end
 
   add_index "main_page_reviews", ["review_id"], :name => "index_main_page_reviews_on_review_id"
+
+  create_table "map_layers", :force => true do |t|
+    t.string   "title"
+    t.integer  "map_project_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "map_placemarks", :force => true do |t|
+    t.string   "title"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "image_url"
+    t.string   "url"
+    t.integer  "map_layer_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "map_projects", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "meals", :force => true do |t|
     t.text     "category"

@@ -1,7 +1,7 @@
-require 'spec_helper'
+class MapProject < ActiveRecord::Base
+  attr_accessible :title
 
-describe MapProject do
-  pending "add some examples to (or delete) #{__FILE__}"
+  has_many :map_layers, dependent: :destroy
 end
 
 # == Schema Information

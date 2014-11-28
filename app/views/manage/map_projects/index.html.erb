@@ -1,0 +1,10 @@
+<div class="new_map_project">
+  <%= link_to "Новая карта", new_manage_map_project_path %>
+</div>
+<div class="map_projects">
+  <ul class="map_projects_list">
+    <% @map_projects.each do |map_project|  %>
+      <li><%= link_to map_project.title, manage_map_project_path(map_project) %> </li>
+    <% end %>
+  </ul>
+</div>

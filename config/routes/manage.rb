@@ -80,14 +80,9 @@ Znaigorod::Application.routes.draw do
     get '/movies_from_kinopoisk' => 'afishas#movies_from_kinopoisk', :as => :movies_from_kinopoisk
     get '/movie_info_from_kinopoisk/:movie_id' => 'afishas#movie_info_from_kinopoisk', :as => :movie_info_from_kinopoisk
 
-    #Contest.descendant_names_without_prefix.each do |type|
-      #get "contests/#{type}" => 'contests#index', :constraints => { :type => type }, :defaults => { :type => type }
-    #end
-
     resources :contests do
       resources :works, :except => [:index, :show]
     end
-
 
     resources :photogalleries do
       resources :works, :except => [:index, :show]
@@ -178,6 +173,11 @@ Znaigorod::Application.routes.draw do
     resources :webcams do
       get 'snapshot' => 'afishas#snapshot', :on => :member, :as => :snapshot
       put 'snapshot' => 'afishas#snapshot', :on => :member, :as => :snapshot
+    end
+
+    resources :map_projects do
+      resources :map_layers, :except => [:index, :show]
+      resource :map_placemarks, :except =>[:index, :show]
     end
 
     root :to => 'organizations#index'

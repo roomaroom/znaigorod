@@ -1,0 +1,30 @@
+<h1><%= @map_project.title %></h1>
+<%= link_to 'Редактировать', edit_manage_map_project_path(@map_project) %>
+<%= link_to 'Удалить', manage_map_project_path(@map_project), method: 'DELETE', confirm: 'Вы уверены?' %>
+<div class="map_project_wrapper">
+  <%= link_to 'Новая метка', new_manage_map_project_map_placemarks_path(@map_project)  %>
+  <div class="left">
+    <ul>
+      <% @map_project.map_layers.each do |map_layer| %>
+        <li>
+          <%= map_layer.title %>
+          (<%= link_to "Редактировать", edit_manage_map_project_map_layer_path(@map_project, map_layer) %>
+          <%= link_to "Удалить", manage_map_project_map_layer_path(@map_project, map_layer), method: 'DELETE', confirm: 'Вы уверены?' %>)
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to 'Новый слой', new_manage_map_project_map_layer_path(@map_project) %>
+  </div>
+  <div class="right">
+
+  </div>
+  <div style="clear:both"> </div>
+  <div class="placemarks_list">
+     <% @map_project.map_layers.each do |map_layer|  %>
+       <% map_layer.map_placemarks.each do |map_placemark| %>
+         <p><%= link_to map_placemark.title, map_placemark.url %></p>
+       <% end %>
+     <% end %>
+  </div>
+
+</div>
