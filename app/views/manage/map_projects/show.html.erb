@@ -10,7 +10,7 @@
     <ul>
       <% @map_project.map_layers.each do |map_layer| %>
         <li>
-          <%= map_layer.title %>
+          <%= link_to map_layer.title,  manage_map_project_map_layer_path(@map_project, map_layer) %>
           (<%= link_to "Редактировать", edit_manage_map_project_map_layer_path(@map_project, map_layer) %>
           <%= link_to "Удалить", manage_map_project_map_layer_path(@map_project, map_layer), method: 'DELETE', confirm: 'Вы уверены?' %>)
         </li>

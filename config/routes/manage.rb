@@ -176,7 +176,7 @@ Znaigorod::Application.routes.draw do
     end
 
     resources :map_projects do
-      resources :map_layers, :except => [:index, :show]
+      resources :map_layers, :except => [:index]
       resource :map_placemarks, :except =>[:index, :show]
     end
 
