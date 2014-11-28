@@ -6,6 +6,8 @@ class CreateMapPlacemarks < ActiveRecord::Migration
       t.float :longitude
       t.string :image_url
       t.string :url
+      t.string :address
+      t.string :when
       t.belongs_to :map_layer
       t.timestamps
     end

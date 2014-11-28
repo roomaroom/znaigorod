@@ -542,6 +542,8 @@ ActiveRecord::Schema.define(:version => 20141127093017) do
     t.float    "longitude"
     t.string   "image_url"
     t.string   "url"
+    t.string   "address"
+    t.string   "when"
     t.integer  "map_layer_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
