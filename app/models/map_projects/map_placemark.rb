@@ -45,7 +45,7 @@ class MapPlacemark < ActiveRecord::Base
         self.longitude = class_item.organization.longitude
         self.image_url = resized_image_url(class_item.poster_url, 190, 260)
         self.address = class_item.address
-        self.work_time = "#{item_type.classify}Decorator".constantize.new(class_item).human_when
+        self.when = "#{item_type.classify}Decorator".constantize.new(class_item).human_when
         self.url = "/#{item_type}/#{class_item.slug}"
       end
     end
