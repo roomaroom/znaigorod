@@ -1,8 +1,10 @@
 class MapLayer < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessible :title, :image
 
   belongs_to :map_project
   has_many :map_placemarks, dependent: :destroy
+
+  has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 end
 
 # == Schema Information
