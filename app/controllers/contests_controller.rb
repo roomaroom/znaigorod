@@ -10,7 +10,7 @@ class ContestsController < ApplicationController
     @contest = Contest.find(params[:id])
     @works = @contest.works.send("ordered_#{order_by(@contest)}").page(page).per(@contest.is_a?(ContestVideo) ? 200 : per_page)
     @winners = winner_array(@contest.slug)
-    @reviews = ReviewDecorator.decorate(@contest.reviews)
+    @reviews = ReviewDecorator.decorate(@contest.reviews.order('id'))
 
     render :partial => 'works/contest_list', :locals => { :current_count => current_count, :width => @contest.is_a?(ContestVideo) ? 350 : 278 , :height => @contest.is_a?(ContestVideo) ? 200 : 278 } and return if request.xhr?
   end

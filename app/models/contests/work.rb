@@ -23,6 +23,8 @@ class Work < ActiveRecord::Base
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
+  default_value_for :rating, 0
+
   scope :ordered_by_id,          order('created_at desc')
   scope :ordered_by_sms_counter, order('sms_counter desc')
   scope :ordered_by_likes,       order('vk_likes desc')

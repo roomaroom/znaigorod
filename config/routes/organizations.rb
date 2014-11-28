@@ -29,7 +29,7 @@ Znaigorod::Application.routes.draw do
   }
   resources :saunas, :only => :index
   get '/saunas/sauny', :to => redirect('/saunas')
-  get '/meals' => redirect { |params, request| "/kafe_tomska?#{request.params.to_query}" }
+  get '/meals' => redirect { |params, request| request.params.empty? ? "/kafe_tomske" : "/kafe_tomska?#{request.params.to_query}" }
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
 
   get '/recreation_centers' => 'hotels#index',
