@@ -528,6 +528,7 @@ ActiveRecord::Schema.define(:version => 20141127093017) do
   create_table "map_layers", :force => true do |t|
     t.string   "title"
     t.integer  "map_project_id"
+    t.string   "slug"
     t.string   "image_url"
     t.string   "image_file_name"
     t.string   "image_content_type"

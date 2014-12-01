@@ -10,8 +10,9 @@
   <div class="left">
     <p class="title">Слои:</p>
     <ul>
+      <li class="<%= controller_name == 'map_projects' ? 'selected' : '' %>"><%= link_to 'Все слои', manage_map_project_path(@map_project) %></li>
       <% @map_project.map_layers.each do |map_layer| %>
-        <li>
+        <li class="<%= map_layer.slug == params[:id] ? 'selected' : '' %>">
           <%= link_to map_layer.title,  manage_map_project_map_layer_path(@map_project, map_layer) %>
           (<%= link_to "Редактировать", edit_manage_map_project_map_layer_path(@map_project, map_layer) %>
           <%= link_to "Удалить", manage_map_project_map_layer_path(@map_project, map_layer), method: 'DELETE', confirm: 'Вы уверены?' %>)
@@ -25,22 +26,21 @@
   </div>
   <div style="clear:both"> </div>
   <div class="placemarks_list">
-    <p class="title">
+    <h3>
       Список меток:
       (<%= link_to 'Новая метка', new_manage_map_project_map_placemark_path(@map_project)  %>)
-    </p>
-     <% @map_project.map_layers.each do |map_layer|  %>
-       <% map_layer.map_placemarks.each do |map_placemark| %>
-         <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
-           data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
-           data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
-           data-when='<%= map_placemark.when %>'>
-           <%= link_to map_placemark.title, map_placemark.url %>
-           (<%= link_to "Редактировать", edit_manage_map_project_map_placemark_path(@map_project, map_placemark)  %>
-           <%= link_to "Удалить", manage_map_project_map_placemark_path(@map_project, map_placemark), method: 'DELETE', confirm: "Вы уверены?"  %>)
-         </p>
-       <% end %>
-     <% end %>
+    </h3>
+    <% @map_project.map_layers.each do |map_layer|  %>
+      <% map_layer.map_placemarks.each do |map_placemark| %>
+        <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
+          data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
+          data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
+          data-when='<%= map_placemark.when %>'>
+          <%= link_to map_placemark.title, map_placemark.url %>
+          (<%= link_to "Редактировать", edit_manage_map_project_map_placemark_path(@map_project, map_placemark)  %>
+          <%= link_to "Удалить", manage_map_project_map_placemark_path(@map_project, map_placemark), method: 'DELETE', confirm: "Вы уверены?"  %>)
+        </p>
+      <% end %>
+    <% end %>
   </div>
-
 </div>
