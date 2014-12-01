@@ -4,7 +4,6 @@
   <div class="map_projects_content">
     <div class="map_projects_header"></div>
     <div class="map_projects_main clearfix1">
-
       <div class="other_wrapper">
         <div class="text_block">
           Тут какой-то текст
@@ -15,6 +14,19 @@
         <div class="right_image">
           <%= image_tag asset_path('public/map_projects/right.png') %>
         </div>
+      </div>
+
+      <div class="placemarks_list">
+        <% @map_project.map_layers.each do |map_layer|  %>
+          <% map_layer.map_placemarks.each do |map_placemark| %>
+            <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
+              data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
+              data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
+              data-when='<%= map_placemark.when %>'>
+              <%= link_to map_placemark.title, map_placemark.url %>
+            </p>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="left">

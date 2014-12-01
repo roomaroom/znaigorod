@@ -115,7 +115,9 @@ Znaigorod::Application.routes.draw do
 
   resources :webcams, :only => [:index, :show]
 
-  resources :map_projects, only: [:index, :show]
+  resources :map_projects, only: [:index, :show] do
+    resources :map_layers, only: [:show]
+  end
 
   get '/kurs_valut' => 'banki_tomsk#index', :as => 'banki_tomsk'
 
