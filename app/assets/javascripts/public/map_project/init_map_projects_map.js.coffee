@@ -15,7 +15,7 @@
       top: 5
       left: 5
 
-    $('.map_project_wrapper .placemarks_list p').each (index, item) ->
+    $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)
       title = link.text()
 
