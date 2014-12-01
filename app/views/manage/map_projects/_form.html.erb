@@ -1,4 +1,8 @@
-<%= simple_form_for [:manage, @map_project] do |f| %>
-  <%= f.input :title %>
-  <%= f.submit %>
-<% end %>
+<div class="map_placemark_form">
+  <h1>Картопроект:</h1>
+  <%= simple_form_for [:manage, @map_project] do |f| %>
+    <%= f.input :title %>
+    <%= f.submit %>
+    <%= link_to 'Назад', manage_map_projects_path %>
+  <% end %>
+</div>

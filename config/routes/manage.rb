@@ -177,7 +177,7 @@ Znaigorod::Application.routes.draw do
 
     resources :map_projects do
       resources :map_layers, :except => [:index]
-      resource :map_placemarks, :except =>[:index, :show]
+      resources :map_placemarks, :except =>[:index, :show]
     end
 
     root :to => 'organizations#index'

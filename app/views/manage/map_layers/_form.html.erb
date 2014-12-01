@@ -1,5 +1,9 @@
-<%= simple_form_for [:manage, resource.map_project, resource] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :image %>
-  <%= f.submit %>
-<% end %>
+<div class="map_placemark_form">
+  <h1>Слой:</h1>
+  <%= simple_form_for [:manage, resource.map_project, resource] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :image %>
+    <%= f.submit %>
+    <%= link_to 'Назад', manage_map_project_path(resource.map_project) %>
+  <% end %>
+</div>

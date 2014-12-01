@@ -9,7 +9,7 @@ class Manage::MapPlacemarksController < Manage::ApplicationController
 
   def edit
     edit!{
-      @map_layer = resource.map_layer
+      @map_project = MapProject.find(params[:map_project_id])
     }
   end
 

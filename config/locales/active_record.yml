@@ -72,6 +72,9 @@ ru:
         question:                         Все вопросы
 
       room:                               Номера/квартиры/загородные дома
+      map_project:                        Картопроект
+      map_layer:                          Слой
+      map_placemark:                      Метка
 
 
     attributes:
@@ -574,3 +577,14 @@ ru:
         snapshot_image_file_size: Snapshot image_file_size
         snapshot_image_updated_at: Snapshot image_updated_at
         snapshot_image_url: Snapshot image_url
+
+      map_project:
+        <<: *common_attributes
+
+      map_layer:
+        <<: *common_attributes
+        image: Картинка слоя
+
+      map_placemark:
+        <<: *common_attributes
+        map_layer: Слой

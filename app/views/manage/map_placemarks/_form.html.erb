@@ -1,26 +1,29 @@
-<%= simple_form_for [:manage, @map_project, resource] do |f| %>
-  <%= f.input :title %>
-  <%= f.association :map_layer, collection: @map_project.map_layers, prompt: 'Выберите слой' %>
-  <div class='relations'>
-    <p>Эта метка связана с</p>
+<div class="map_placemark_form">
+  <h1>Отметка на карте:</h1>
+  <%= simple_form_for [:manage, @map_project, resource] do |f| %>
+    <%= f.association :map_layer, collection: @map_project.map_layers, prompt: 'Выберите слой' %>
+    <div class='relations'>
+      <p class="title">Эта метка связана с:</p>
 
-    <div class='sticky_elements'>
+      <div class='sticky_elements'>
+      </div>
+
+      <div style='clear: both'></div>
+
+      <div class='select_and_search'>
+        <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'] ]), { class: 'type_select' }  %>
+        <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+        <%= text_field_tag :search, '', { class: 'related_search' } %>
+      </div>
+
+      <div style='clear: both'></div>
+
+      <div class='results infinite_list'>
+        <ul class='posters'></ul>
+      </div>
+      <input type="hidden" value="map_placemark[related_items][]" class="params_name">
     </div>
-
-    <div style='clear: both'></div>
-
-    <div class='select_and_search'>
-      <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'] ]), { class: 'type_select' }  %>
-      <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
-      <%= text_field_tag :search, '', { class: 'related_search' } %>
-    </div>
-
-    <div style='clear: both'></div>
-
-    <div class='results infinite_list'>
-      <ul class='posters'></ul>
-    </div>
-    <input type="hidden" value="map_placemark[related_items][]" class="params_name">
-  </div>
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+    <%= link_to 'Назад', manage_map_project_path(@map_project) %>
+  <% end %>
+</div>
