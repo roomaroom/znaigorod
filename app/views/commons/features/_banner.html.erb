@@ -1,16 +1,5 @@
 <div class='top_headline banner js-banner'>
-  <% random = rand(3) %>
-  <% if random == 0 %>
-    <%= link_to '/discounts/skidka-50-na-silovye-trenirovki-v-klube-hot-line-fitness' do %>
-      <%= image_tag 'public/banner_fitnes_hot_line.jpg', :size => '1200x100', :alt => 'Hot Line Fitness' %>
-    <% end %>
-  <% elsif random == 1 %>
-    <%= link_to '/discounts/skidki-ot-71-do-85-na-vse-velnes-trenazhyory' do %>
-      <%= image_tag 'public/velnes.jpg', :size => '1200x100', :alt => 'Wellness Club Effect' %>
-    <% end %>
-  <% else %>
-    <%= link_to '/contests/tomskie-talanty-2014' do %>
-      <%= image_tag 'public/talanty-banner.jpg', :size => '1200x100', :alt => 'Томские таланты 2014' %>
-    <% end %>
+  <%= link_to '/away?to=http://ярмаркавтомске.рф', target: '_blank' do %>
+    <%= image_tag 'public/banner_znaigorod.jpg', :size => '1200x100', :alt => 'Ярмарка В Томске' %>
   <% end %>
 </div>
