@@ -1,0 +1,47 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
+
+<div class="map_projects_wrapper">
+  <div class="map_projects_content">
+    <div class="map_projects_header"></div>
+    <div class="map_projects_main clearfix1">
+
+      <div class="other_wrapper">
+        <div class="text_block">
+          Тут какой-то текст
+        </div>
+        <div class="left_image">
+          <%= image_tag asset_path('public/map_projects/left.png') %>
+        </div>
+        <div class="right_image">
+          <%= image_tag asset_path('public/map_projects/right.png') %>
+        </div>
+      </div>
+
+      <div class="left">
+        <ul>
+          <% @map_project.map_layers.each do |map_layer| %>
+            <li>
+              <span class='icon'><%= image_tag map_layer.image_url %></span>
+              <span class='title'>
+                <%= map_layer.title %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class="actual_reviews">
+          <span class='icon'></span>
+          <span class="title">Актуальные обзоры</span>
+        </div>
+
+      </div>
+      <div class="right">
+        <div class="map_wrapper">
+          <div class="map">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

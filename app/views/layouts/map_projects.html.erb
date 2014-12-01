@@ -4,7 +4,6 @@
 
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'http://userapi.com/js/api/openapi.js?52' %>
-  <%= javascript_include_tag "#{Settings['faye.url']}/faye/client.js" %>
   <%= javascript_include_tag 'public/application' %>
 <% end %>
 
@@ -12,30 +11,22 @@
   <%= render :partial => 'commons/google_analytics' if Rails.env.production? %>
 <% end %>
 
-<% content_for :flash_messages do %>
+<%= content_for :flash_messages do %>
   <div class='message_wrapper'></div>
 <% end %>
-
 
 <%= content_for :content do %>
   <%= render :partial => 'commons/new_feature' %>
   <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
   <%= render :partial => 'commons/email_request_form' %>
-  <%= render :partial => 'commons/public_header' %>
-  <% controllers = %w[afishas organizations discounts questions suborganizations saunas hotels map_projects banki_tomsk] %>
-  <%= render :partial => 'banner_2_1' unless controllers.include? controller_name || params[:id] == 'parad-nashestvie-nevest-2014' || params[:photogallery_id] == 'parad-nashestvie-nevest-2014' %>
-  <%= render :partial => 'commons/public_content' %>
+  <div class='unique_header_wrapper'>
+    <%= render :partial => 'commons/public_header' %>
+  </div>
+  <%= yield %>
   <%= render :partial => 'commons/public_footer' %>
   <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
   <%= yield :yandex_map_scripts %>
-  <%= yield :two_gis_map_scripts %>
   <%= render :partial => 'commons/public_reformal' %>
-<% end %>
-
-<% content_for :canonical_link do %>
-  <% if request.env['REQUEST_URI'].include?('?') %>
-    <link rel='canonical' href='<%= request.url.split('?').first %>' />
-  <% end %>
 <% end %>
 
 <%= render :template => 'layouts/application' %>

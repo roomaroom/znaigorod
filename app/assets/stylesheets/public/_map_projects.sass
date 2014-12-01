@@ -1,0 +1,110 @@
+.map_projects_wrapper
+  +background(image_url('public/map_projects/background.jpg') no-repeat center top, #a1dce9)
+  +clearfix
+  width: 100%
+
+  .clearfix1:before,
+  .clearfix1:after
+    content: "."
+    display: block
+    height: 0
+    overflow: visible
+
+  .clearfix1:after
+    clear: both
+
+  .map_projects_content
+    margin: 0 auto
+    overflow: visible
+    width: 1200px
+
+    .map_projects_header
+      border: 1px solid black
+      height: 100px
+      margin-bottom: 20px
+
+    .map_projects_main
+      $left_block_size: 250px
+      position: relative
+
+      .other_wrapper
+        overflow: visible
+
+        .text_block
+          background-color: #e1f8fb
+          bottom: 0
+          height: 400px
+          margin-top: 20px
+          position: absolute
+          width: $left_block_size
+
+        .left_image
+          position: absolute
+          bottom: 0
+          left: -40px
+          z-index: 2
+
+        .right_image
+          width: 290px
+          height: 210px
+          position: absolute
+          top: -66px
+          right: 0
+          z-index: 2
+
+      .left
+        float: left
+        margin-right: 20px
+        font-size: 14px
+
+        ul
+          li
+            background-color: #e5f7fb
+            clear: both
+            height: 35px
+            margin: 5px 0 0 0
+            width: $left_block_size
+
+            &:hover
+              border: 2px solid #009f9c
+              color: #009c9a
+
+            span
+              display: block
+              float: left
+              height: 35px
+
+              &.icon
+                margin-right: 10px
+
+              &.title
+                padding-top: 9px
+
+        .actual_reviews
+          background-color: #ffe369
+          clear: both
+          height: 50px
+          margin-top: 20px
+
+          span
+            display: block
+            float: left
+            height: 35px
+
+            &.icon
+              background: image-url('public/map_projects/arrow.png') no-repeat center center
+              padding: 15px 0 0 10px
+              width: 28px
+              margin-right: 8px
+
+            &.title
+              padding-top: 9px
+
+
+      .right
+        float: left
+
+        .map_wrapper
+          .map
+            height: 600px
+            width: 900px
