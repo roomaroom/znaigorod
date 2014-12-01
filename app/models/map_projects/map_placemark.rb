@@ -3,6 +3,8 @@ include ImageHelper
 class MapPlacemark < ActiveRecord::Base
   attr_accessor :related_items
   attr_accessible :title, :map_layer_id, :related_items
+
+  validates_presence_of :map_layer_id, :related_items
   after_save :parse_related_item
   before_save :set_address
 
@@ -38,7 +40,7 @@ class MapPlacemark < ActiveRecord::Base
         self.longitude = class_item.longitude
         self.image_url = resized_image_url(class_item.logotype_url, 190, 190)
         self.address = class_item.address.to_s
-        self.url = "/organization/#{class_item.slug}"
+        self.url = "/organizations/#{class_item.slug}"
       else
         self.title = class_item.title
         self.latitude = class_item.organization.latitude

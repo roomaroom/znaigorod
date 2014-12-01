@@ -1,5 +1,6 @@
 class MapProject < ActiveRecord::Base
   attr_accessible :title
+  validates_presence_of :title
 
   has_many :map_layers, dependent: :destroy
 end

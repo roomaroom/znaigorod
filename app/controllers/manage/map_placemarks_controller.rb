@@ -14,15 +14,19 @@ class Manage::MapPlacemarksController < Manage::ApplicationController
   end
 
   def create
-    create!{
-      redirect_to manage_map_project_path(params[:map_project_id]) and return
-    }
+    create! do |success, failure|
+      @map_project = MapProject.find(params[:map_project_id])
+      success.html { redirect_to manage_map_project_path(@map_project)}
+      failure.html { render :new }
+    end
   end
 
   def update
-    update!{
-      redirect_to manage_map_project_path(params[:map_project_id]) and return
-    }
+    update! do |success, failure|
+      @map_project = MapProject.find(params[:map_project_id])
+      success.html { redirect_to manage_map_project_path(@map_project)}
+      failure.html { render :edit }
+    end
   end
 
   def destroy
