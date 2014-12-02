@@ -55,5 +55,18 @@
         </div>
       </div>
     </div>
+    <div class="map_project_reviews">
+      <div class="likes">
+        <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
+      </div>
+      <div class="reviews_title">
+        Обзоры
+      </div>
+      <div class='suborganization_info related-reviews'>
+        <ul class='posters js-isotoped-content' data-item-width="220">
+          <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
