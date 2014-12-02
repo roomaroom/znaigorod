@@ -1,3 +1,4 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 <div class="map_placemark_form">
   <h1>Отметка на карте:</h1>
   <%= simple_form_for [:manage, @map_project, resource] do |f| %>
@@ -28,6 +29,15 @@
         <ul class='posters'></ul>
       </div>
       <input type="hidden" value="map_placemark[related_items][]" class="params_name">
+    </div>
+    <div class="not_zg_objects">
+      <%= f.input :title %>
+      <%= f.input :latitude, as: :hidden %>
+      <%= f.input :longitude, as: :hidden %>
+      <%= f.input :url %>
+      <%= f.input :address %>
+      <%= f.input :image %>
+      <%= link_to 'указать местоположение на карте', '#', :class => 'choose_coordinates' %>
     </div>
     <%= f.submit %>
     <%= link_to 'Назад', manage_map_project_path(@map_project) %>

@@ -542,12 +542,15 @@ ActiveRecord::Schema.define(:version => 20141127093017) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "image_url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
     t.string   "url"
     t.string   "address"
     t.string   "when"
     t.integer  "map_layer_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "map_projects", :force => true do |t|

@@ -24,6 +24,7 @@ end
 #  id                 :integer          not null, primary key
 #  title              :string(255)
 #  map_project_id     :integer
+#  slug               :string(255)
 #  image_url          :string(255)
 #  image_file_name    :string(255)
 #  image_content_type :string(255)

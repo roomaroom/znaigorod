@@ -8,16 +8,19 @@ end
 #
 # Table name: map_placemarks
 #
-#  id           :integer          not null, primary key
-#  title        :string(255)
-#  latitude     :float
-#  longitude    :float
-#  image_url    :string(255)
-#  url          :string(255)
-#  address      :string(255)
-#  when         :string(255)
-#  map_layer_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                 :integer          not null, primary key
+#  title              :string(255)
+#  latitude           :float
+#  longitude          :float
+#  image_url          :string(255)
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :string(255)
+#  url                :string(255)
+#  address            :string(255)
+#  when               :string(255)
+#  map_layer_id       :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
