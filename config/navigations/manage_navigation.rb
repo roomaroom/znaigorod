@@ -90,6 +90,9 @@ SimpleNavigation::Configuration.run do |navigation|
       statistics_item.item :links, 'Переходы по ссылкам', manage_statistics_links_path
     end
 
+    primary.item :map_projects, 'Картопроекты', manage_map_projects_path,
+      :highlights_on => ->() { controller_name == 'map_projects' || controller_name == 'map_layers'}
+
     primary.dom_class = 'navigation'
   end
 end
