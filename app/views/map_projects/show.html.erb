@@ -33,8 +33,14 @@
 
       <div class="left">
         <ul>
+          <li class="<%= controller_name == 'map_projects' ? 'selected' : ''%> ">
+            <span class='icon'></span>
+            <span class='title'>
+              <%= link_to 'Все слои', new_year_2015_path %>
+            </span>
+          </li>
           <% @map_project.map_layers.each do |map_layer| %>
-            <li class="<%= map_layer.slug == params[:id] %> ? 'selected' : ''">
+            <li class="<%= map_layer.slug == params[:id] ? 'selected' : '' %>">
               <span class='icon'><%= image_tag map_layer.image_url %></span>
               <span class='title'>
                 <%= link_to map_layer.title, new_year_2015_layers_path(map_layer) %>
