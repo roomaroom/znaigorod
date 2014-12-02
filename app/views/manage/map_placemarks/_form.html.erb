@@ -4,6 +4,7 @@
   <%= simple_form_for [:manage, @map_project, resource] do |f| %>
     <%= f.association :map_layer, collection: @map_project.map_layers, prompt: 'Выберите слой' %>
     <div class='relations'>
+      <p><%= link_to 'Указать местоположение вручную', '#', :class => 'toggle_forms' %> </p>
       <p class="title">Эта метка связана с:</p>
       <div class='sticky_elements'>
         <% resource.relations.each do |item| %>
@@ -30,14 +31,15 @@
       </div>
       <input type="hidden" value="map_placemark[related_items][]" class="params_name">
     </div>
-    <div class="not_zg_objects">
+    <div class="not_zg_object">
+      <%= link_to 'Выбрать из списка', '#', :class => 'toggle_forms' %>
       <%= f.input :title %>
       <%= f.input :latitude, as: :hidden %>
       <%= f.input :longitude, as: :hidden %>
       <%= f.input :url %>
       <%= f.input :address %>
       <%= f.input :image %>
-      <%= link_to 'указать местоположение на карте', '#', :class => 'choose_coordinates' %>
+      <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
     </div>
     <%= f.submit %>
     <%= link_to 'Назад', manage_map_project_path(@map_project) %>

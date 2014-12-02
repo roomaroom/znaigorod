@@ -70,6 +70,7 @@
 
   true
 
+
 @init_map_placemark = () ->
   $.fn.add_click_handler = () ->
     $this = $(this)
@@ -157,4 +158,9 @@
     $(this).add_click_handler()
     true
 
+  $('.toggle_forms').click ->
+    $('.relations').toggle()
+    $('.not_zg_object').toggle()
+
   true
+

@@ -37,7 +37,6 @@ class MapPlacemark < ActiveRecord::Base
       relation = relation.slave
       if relation.is_a? Organization
         self.title = relation.title
-        raise self.title
         self.latitude = relation.latitude
         self.longitude = relation.longitude
         self.image_url = resized_image_url(relation.logotype_url, 190, 190)
