@@ -10,4 +10,5 @@
   <%= link_to 'Изменить постер', poster_edit_manage_review_path(@review.id) %>
   <%= link_to 'Редактировать фотографии', images_add_manage_review_path(@review.id) %>
   <%= link_to 'Добавить Webanketa', new_manage_review_webanketa_path(@review.id) %>
+  <%= link_to 'Посмотреть в публичном виде', review_path(@review) %>
 </div>
