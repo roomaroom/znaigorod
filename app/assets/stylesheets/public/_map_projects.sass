@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster&subset=cyrillic)
+
 .map_projects_wrapper
   +background(image_url('public/map_projects/background.jpg') no-repeat center top, #a1dce9)
   +clearfix
@@ -22,9 +24,17 @@
     width: 1200px
 
     .map_projects_header
-      border: 1px solid black
+      border-bottom: 1px solid white
       height: 100px
       margin-bottom: 20px
+
+      .lobster_font
+        color: #f00000
+        font-family: 'Lobster', cursive
+        font-size: 36px
+        padding-top: 40px
+        text-shadow: -8px 0px 10px #fff589, 0 0 1em #ffffff
+
 
     .map_projects_main
       $left_block_size: 250px
@@ -63,6 +73,7 @@
         ul
           li
             background-color: #e5f7fb
+            border: 2px solid #e5f7fb
             clear: both
             height: 35px
             margin: 5px 0 0 0
