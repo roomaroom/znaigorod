@@ -44,6 +44,7 @@
         </ul>
 
         <div class="actual_reviews">
+          <a href='#actual_reviews'>Актуальные обзоры</a>
           <span class='icon'></span>
           <span class="title">Актуальные обзоры</span>
         </div>
@@ -62,6 +63,7 @@
       <div class="reviews_title">
         Обзоры
       </div>
+      <a name='actual_reviews'></a>
       <div class='suborganization_info related-reviews'>
         <ul class='posters js-isotoped-content' data-item-width="220">
           <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
