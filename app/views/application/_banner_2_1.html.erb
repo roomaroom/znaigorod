@@ -1,5 +1,12 @@
 <% unless params[:id] == 'imidzh-proekt-potentsial' %>
-  <div class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
-    <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
-  </div>
+  <% rand = Random.rand(2) %>
+  <% if rand == 0 %>
+    <div class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+      <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
+    </div>
+  <% else %>
+    <div class='js-banner potential talanty <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+      <%= link_to (image_tag 'public/tomskie_talanty.jpg', size: '880x80'), '/contests/tomskie-talanty-2014', class: 'js-stat-talanty' %>
+    </div>
+  <% end %>
 <% end %>
