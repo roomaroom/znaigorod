@@ -115,10 +115,6 @@ Znaigorod::Application.routes.draw do
 
   resources :webcams, :only => [:index, :show]
 
-  resources :map_projects, only: [:index, :show] do
-    resources :map_layers, only: [:show]
-  end
-
   get '/kurs_valut' => 'banki_tomsk#index', :as => 'banki_tomsk'
 
   match '/' => redirect{|p, req| "#{req.url.sub(req.subdomain+'.', '')}organizations/#{Organization.find_by_subdomain(req.subdomain).slug}"}, :constraints => lambda{|r| r.subdomain.present? && Organization.pluck(:subdomain).uniq.delete_if{|s| s.nil? || s.blank?}.include?(r.subdomain) }
@@ -130,6 +126,9 @@ Znaigorod::Application.routes.draw do
   get '/getmvote' => 'sms_votes#index'
 
   get '/link_counters/create' => 'link_counters#create'
+
+  get '/new_year_2015' => 'map_projects#show', :as => "new_year_2015", :defaults => { :id => 'new-year-2015' }
+  get '/new_year_2015/:id' => 'map_layers#show', :as => "new_year_2015_layers", :defaults => { :map_project_id => 'new-year-2015' }
 
   root :to => 'main_page#show'
 end

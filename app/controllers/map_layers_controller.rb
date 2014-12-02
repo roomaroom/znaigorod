@@ -1,4 +1,4 @@
-class MapProjectsController < ApplicationController
+class MapLayersController < ApplicationController
   inherit_resources
 
   actions :show

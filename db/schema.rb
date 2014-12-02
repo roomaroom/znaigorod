@@ -555,6 +555,7 @@ ActiveRecord::Schema.define(:version => 20141127093017) do
 
   create_table "map_projects", :force => true do |t|
     t.string   "title"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

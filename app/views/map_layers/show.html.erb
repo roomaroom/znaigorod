@@ -19,21 +19,19 @@
       </div>
 
       <div class="placemarks_list">
-        <% @map_project.map_layers.each do |map_layer|  %>
-          <% map_layer.map_placemarks.each do |map_placemark| %>
-            <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
-              data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
-              data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
-              data-when='<%= map_placemark.when %>'>
-              <%= link_to map_placemark.title, map_placemark.url %>
-            </p>
-          <% end %>
+        <% resource.map_placemarks.each do |map_placemark| %>
+          <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
+            data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
+            data-icon='<%= resource.image_url %>' data-address='<%= map_placemark.address %>'
+            data-when='<%= map_placemark.when %>'>
+            <%= link_to map_placemark.title, map_placemark.url %>
+          </p>
         <% end %>
       </div>
 
       <div class="left">
         <ul>
-          <% @map_project.map_layers.each do |map_layer| %>
+          <% resource.map_project.map_layers.each do |map_layer| %>
             <li class="<%= map_layer.slug == params[:id] %> ? 'selected' : ''">
               <span class='icon'><%= image_tag map_layer.image_url %></span>
               <span class='title'>
@@ -44,7 +42,6 @@
         </ul>
 
         <div class="actual_reviews">
-          <a href='#actual_reviews'>Актуальные обзоры</a>
           <span class='icon'></span>
           <span class="title">Актуальные обзоры</span>
         </div>
@@ -63,7 +60,6 @@
       <div class="reviews_title">
         Обзоры
       </div>
-      <a name='actual_reviews'></a>
       <div class='suborganization_info related-reviews'>
         <ul class='posters js-isotoped-content' data-item-width="220">
           <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
