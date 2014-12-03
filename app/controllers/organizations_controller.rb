@@ -68,7 +68,7 @@ class OrganizationsController < ApplicationController
         @discount_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'discount', order_by: settings_from_cookie.merge(params)['order_by'], page: params[:page])
         @certificate_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'certificate', :order_by => 'random', :page => params[:page])
         @coupon_presenter = DiscountsPresenter.new(organization_id: organization_ids, :type => 'coupon', :order_by => 'random', :page => params[:page])
-        @reviews = ReviewDecorator.decorate(@organization.reviews.published)
+        @reviews = ReviewDecorator.decorate(@organization.reviews.published.order('id desc'))
 
         render partial: @afisha_presenter.partial,
           locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter },
