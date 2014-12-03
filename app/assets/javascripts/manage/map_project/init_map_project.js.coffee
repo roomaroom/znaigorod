@@ -13,8 +13,17 @@
       top: 5
       left: 5
 
+    customItemContentLayout = ymaps.templateLayoutFactory.createClass("<h2 class=ballon_header>{{ properties.balloonContentHeader|raw }}</h2>" + "<div class=ballon_body>{{ properties.balloonContentBody|raw }}</div>" + "<div class=ballon_footer>{{ properties.balloonContentFooter|raw }}</div>")
+
     clusterer = new ymaps.Clusterer(
-      clusterDisableClickZoom: true
+      clusterDisableClickZoom: true,
+      clusterOpenBalloonOnClick: true,
+      clusterBalloonContentLayout: 'cluster#balloonCarousel',
+      clusterBalloonItemContentLayout: customItemContentLayout,
+      clusterBalloonPanelMaxMapArea: 0,
+      clusterBalloonContentLayoutWidth: 200,
+      clusterBalloonContentLayoutHeight: 130,
+      clusterBalloonPagerSize: 5
     )
 
     $('.map_project_wrapper .placemarks_list p').each (index, item) ->
@@ -45,8 +54,9 @@
             "</a>" +
             "<br />" +
             "</center>"
-          hintContent: title
+          hintContent: $(item).attr('data-title')
       ,
+        iconLayout: 'default#image'
         iconImageHref: $(item).attr('data-icon')
 
       clusterer.add point
@@ -57,15 +67,6 @@
       showHintOnHover: false
 
     map.geoObjects.add clusterer
-
-    map.geoObjects.events.add 'mouseenter', (event) ->
-      geoObject = event.get('target')
-      position = event.get('globalPixelPosition')
-      balloon = geoObject.balloon.open(position)
-      balloon.events.add 'mouseleave', ->
-        balloon.close()
-        true
-      true
 
     true
 
