@@ -1,0 +1,12 @@
+defaults: &defaults
+  gateway:              gateway
+
+production:
+  application:          app
+  domain:               domain
+  <<: *defaults
+
+development:
+  application:          app
+  domain:               domain
+  <<: *defaults
