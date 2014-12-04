@@ -2,18 +2,29 @@
 
   ymaps.ready ->
     $map = $('.map_wrapper .map')
-
     map = new ymaps.Map $map[0],
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
       zoom: 12
       behaviors: ['drag', 'scrollZoom']
-    ,
       maxZoom: 23
       minZoom: 12
 
     map.controls.add 'zoomControl',
       top: 5
       left: 5
+
+    customItemContentLayout = ymaps.templateLayoutFactory.createClass("<h2 class=ballon_header>{{ properties.balloonContentHeader|raw }}</h2>" + "<div class=ballon_body>{{ properties.balloonContentBody|raw }}</div>" + "<div class=ballon_footer>{{ properties.balloonContentFooter|raw }}</div>")
+
+    clusterer = new ymaps.Clusterer(
+      clusterDisableClickZoom: true,
+      clusterOpenBalloonOnClick: true,
+      clusterBalloonContentLayout: 'cluster#balloonCarousel',
+      clusterBalloonItemContentLayout: customItemContentLayout,
+      clusterBalloonPanelMaxMapArea: 0,
+      clusterBalloonContentLayoutWidth: 200,
+      clusterBalloonContentLayoutHeight: 130,
+      clusterBalloonPagerSize: 5
+    )
 
     $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)
@@ -43,28 +54,19 @@
             "</a>" +
             "<br />" +
             "</center>"
-          hintContent: title
+          hintContent: $(item).attr('data-title')
       ,
+        iconLayout: 'default#image'
         iconImageHref: $(item).attr('data-icon')
-        console.log $(item).attr('data-icon')
-        #iconImageOffset: [-15, -40]
-        #iconImageSize: [37, 42]
 
-      map.geoObjects.add point
+      clusterer.add point
 
       true
 
     map.geoObjects.options.set
       showHintOnHover: false
 
-    map.geoObjects.events.add 'mouseenter', (event) ->
-      geoObject = event.get('target')
-      position = event.get('globalPixelPosition')
-      balloon = geoObject.balloon.open(position)
-      balloon.events.add 'mouseleave', ->
-        balloon.close()
-        true
-      true
+    map.geoObjects.add clusterer
 
     true
 
