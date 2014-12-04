@@ -34,6 +34,16 @@ class AfishaObserver < ActiveRecord::Observer
   end
 
   def after_save(afisha)
+    placemark = afisha.relations.where(master_type: 'MapPlacemark').first.try(:master)
+    if placemark.is_a? MapPlacemark
+      placemark.title = afisha.title
+      placemark.latitude = afisha.organization.latitude
+      placemark.longitude = afisha.organization.longitude
+      placemark.image_url = resized_image_url(afisha.poster_url, 190, 260, { :magnify => nil, :orientation => nil })
+      placemark.when = AfishaDecorator.new(afisha).human_when
+      placemark.save
+    end
+
     return unless afisha.published?
 
     afisha.delay.reindex_showings
