@@ -3,9 +3,11 @@ include ImageHelper
 class MapPlacemark < ActiveRecord::Base
   attr_accessor :related_items
   attr_accessible :title, :map_layer_id, :related_items, :latitude, :longitude, :url, :address,
-                  :image
+                  :image, :kind
 
   validates_presence_of :map_layer_id
+  default_value_for :kind, 'custom'
+
   before_save :parse_related_items
 
   belongs_to :map_layer
@@ -39,17 +41,20 @@ class MapPlacemark < ActiveRecord::Base
         self.title = relation.title
         self.latitude = relation.latitude
         self.longitude = relation.longitude
-        self.image_url = resized_image_url(relation.logotype_url, 190, 190)
+        self.image_url = resized_image_url(relation.logotype_url, 190, 190, { :magnify => nil, :orientation => nil })
         self.address = relation.address.to_s
         self.url = "/organizations/#{relation.slug}"
-      else
+        self.kind = 'organization'
+      end
+      if relation.is_a? Afisha
         self.title = relation.title
         self.latitude = relation.organization.latitude
         self.longitude = relation.organization.longitude
-        self.image_url = resized_image_url(relation.poster_url, 190, 260)
+        self.image_url = resized_image_url(relation.poster_url, 190, 260, { :magnify => nil, :orientation => nil })
         self.address = relation.address
         self.when = "#{relation.class.name}Decorator".constantize.new(relation).human_when
         self.url = "/afisha/#{relation.slug}"
+        self.kind = 'afisha'
       end
     end
   end
@@ -73,5 +78,6 @@ end
 #  map_layer_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  kind               :string(255)
 #
 

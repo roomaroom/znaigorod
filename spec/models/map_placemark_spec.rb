@@ -22,5 +22,6 @@ end
 #  map_layer_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  kind               :string(255)
 #
 

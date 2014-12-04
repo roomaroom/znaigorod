@@ -1,10 +1,12 @@
 # encoding: utf-8
 
 module ImageHelper
-  def resized_image_url(url, width, height, options = { :crop => '!', :magnify => 'm', :orientation => 'n' })
+  def resized_image_url(url, width, height, options = { :crop => '!', :magnify => 'm', :orientation => 'n'})
     return if url.blank?
 
     return url unless url.match /(\d+\/region\/\d+)|(\/files\/\d+\/\d+-\d+\/)/
+
+    options = { :crop => '!', :magnify => 'm', :orientation => 'n'}.merge(options)
 
     if url.match(/\d+\/region\/\d+/)
       modified_url = url.gsub(/(\/files\/\d+\/region\/(\d+|\/){8})/) { "#{$1}#{width}-#{height}#{options[:crop]}/" }

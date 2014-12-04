@@ -8,139 +8,99 @@
   .placemarks_list
     display: none
 
-  .clearfix1:before,
-  .clearfix1:after
-    content: "."
-    display: block
-    height: 0
-    overflow: visible
-
-  .clearfix1:after
-    clear: both
-
   .map_projects_content
     margin: 0 auto
-    overflow: visible
     width: 1200px
 
     .map_projects_header
       border-bottom: 1px solid white
-      height: 100px
-      margin-bottom: 20px
+      margin: 20px 0
 
       .lobster_font
         color: #f00000
         font-family: 'Lobster', cursive
         font-size: 36px
-        padding-top: 40px
-        text-shadow: -8px 0px 10px #fff589, 0 0 1em #ffffff
-
+        +text-shadow(#fff589 -3px 0 2px, #fff589 3px 0 2px, #fff589 0 3px 2px, #fff589 0 -3px 2px)
 
     .map_projects_main
-      $left_block_size: 250px
-      position: relative
-
-      .other_wrapper
-        overflow: visible
-
-        .text_block
-          background-color: #e1f8fb
-          bottom: 0
-          height: 400px
-          margin-top: 20px
-          position: absolute
-          width: $left_block_size
-
-        .left_image
-          position: absolute
-          bottom: 0
-          left: -40px
-          z-index: 2
-
-        .right_image
-          width: 290px
-          height: 210px
-          position: absolute
-          top: -66px
-          right: 0
-          z-index: 2
 
       .left
         float: left
+        width: 250px
         margin-right: 20px
         font-size: 14px
 
         ul
+
           li
-            background-color: #e5f7fb
-            border: 2px solid #e5f7fb
-            clear: both
-            height: 35px
-            margin: 5px 0 0 0
-            width: $left_block_size
+            margin-bottom: 5px
 
-            &:hover
-              border: 2px solid #009f9c
-              color: #009c9a
-
-
-            span
+            a
+              color: inherit
               display: block
-              float: left
-              height: 35px
+              background-color: #e5f7fb
+              background-position: 3px center
+              background-repeat: no-repeat
+              padding: 10px 10px 10px 40px
 
-              &.icon
-                margin-right: 10px
+              &.all_layers
+                background-image: none
 
-              &.title
-                padding-top: 9px
+              &:hover
+                color: #009c9a
+                text-decoration: none
 
-          .selected
-            border: 2px solid #009f9c
-            color: #009c9a
+            &.selected a
+              color: #009c9a
+              border: 2px solid #009f9c
 
         .actual_reviews
           background-color: #ffe369
-          clear: both
-          height: 50px
           margin-top: 20px
           position: relative
 
-          &:hover
-            background-color: #fff589
-
           a
-            height: 50px
-            position: absolute
-            text-indent: -99999px
-            width: 100%
-
-
-          span
+            color: red
             display: block
-            float: left
-            height: 35px
+            font-size: 20px
+            font-family: 'Lobster', cursive
+            background: transparent image_url('public/map_projects/arrow.png') no-repeat 6px center
+            padding: 10px 10px 10px 40px
 
-            &.icon
-              background: image-url('public/map_projects/arrow.png') no-repeat center center
-              padding: 15px 0 0 10px
-              width: 28px
-              margin-right: 8px
+            &:hover
+              text-decoration: none
+              background-color: #fff589
 
-            &.title
-              color: red
-              font-family: 'Lobster', cursive
-              font-size: 20px
-              padding-top: 9px
+        .text_block
+          position: relative
+          background-color: #fff
+          +background(rgba(#fff, 0.6))
+          margin: 20px 0 10px
+          padding: 10px 10px 200px
 
+          .left_wreath
+            position: absolute
+            left: -20px
+            bottom: -20px
 
       .right
         float: left
+        width: 930px
 
         .map_wrapper
+          position: relative
+
+          .right_wreath
+            display: none
+            position: absolute
+            top: -70px
+            right: -30px
+            z-index: 100
+
           .map
-            height: 600px
-            width: 900px
+            height: 700px
+            width: 930px
+            margin-bottom: 10px
 
     .map_project_reviews
       +clearfix
@@ -149,19 +109,16 @@
 
       .likes
         +likes
-        margin-right: 13px
 
       .reviews_title
         background-color: #009f9c
-        clear: both
         color: white
         font-size: 14px
-        height: 23px
         margin-top: 30px
-        padding-left: 10px
-        padding-top: 4px
-        width: 97%
+        padding: 5px 10px
 
       .related-reviews
+        margin-left: 15px
+
         li.item
           background-color: white

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141127093017) do
+ActiveRecord::Schema.define(:version => 20141204082409) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -551,6 +551,7 @@ ActiveRecord::Schema.define(:version => 20141127093017) do
     t.integer  "map_layer_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "kind"
   end
 
   create_table "map_projects", :force => true do |t|

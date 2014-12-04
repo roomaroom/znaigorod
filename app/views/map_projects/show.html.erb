@@ -1,80 +1,72 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU') %>
 
-<div class="map_projects_wrapper">
-  <div class="map_projects_content">
-    <div class="map_projects_header">
-    <h1 class="lobster_font">Отдых в новогодние праздники</h1>
+<div class='map_projects_wrapper'>
+  <div class='map_projects_content'>
+
+    <div class='map_projects_header'>
+      <h1 class='lobster_font'>Отдых в новогодние праздники</h1>
     </div>
-    <div class="map_projects_main clearfix1">
-      <div class="other_wrapper">
-        <div class="text_block">
-          Тут какой-то текст
-        </div>
-        <div class="left_image">
-          <%= image_tag asset_path('public/map_projects/left.png') %>
-        </div>
-        <div class="right_image">
-          <%= image_tag asset_path('public/map_projects/right.png') %>
-        </div>
-      </div>
 
-      <div class="placemarks_list">
-        <% @map_project.map_layers.each do |map_layer|  %>
-          <% map_layer.map_placemarks.each do |map_placemark| %>
-            <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
-              data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
-              data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
-              data-when='<%= map_placemark.when %>'>
-              <%= link_to map_placemark.title, map_placemark.url %>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
+    <div class='map_projects_main'>
 
-      <div class="left">
+      <div class='left'>
         <ul>
-          <li class="<%= controller_name == 'map_projects' ? 'selected' : ''%> ">
-            <span class='icon'></span>
-            <span class='title'>
-              <%= link_to 'Все слои', new_year_2015_path %>
-            </span>
-          </li>
+          <%= content_tag :li, :class => controller_name == 'map_projects' ? 'selected' : nil do %>
+            <%= link_to 'Все слои', new_year_2015_path, :class => 'all_layers' %>
+          <% end%>
           <% @map_project.map_layers.each do |map_layer| %>
-            <li class="<%= map_layer.slug == params[:id] ? 'selected' : '' %>">
-              <span class='icon'><%= image_tag map_layer.image_url %></span>
-              <span class='title'>
-                <%= link_to map_layer.title, new_year_2015_layers_path(map_layer) %>
-              </span>
-            </li>
+            <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>
+              <%= link_to map_layer.title, new_year_2015_layers_path(map_layer), :style => "background-image: url('#{map_layer.image_url}')" %>
+            <% end %>
           <% end %>
         </ul>
 
-        <div class="actual_reviews">
+        <div class='actual_reviews'>
           <a href='#actual_reviews'>Актуальные обзоры</a>
-          <span class='icon'></span>
-          <span class="title">Актуальные обзоры</span>
         </div>
 
-      </div>
-      <div class="right">
-        <div class="map_wrapper">
-          <div class="map" data-latitude='56.493246' data-longitude='84.982112'></div>
+        <div class='text_block'>
+          <%= image_tag asset_path('public/map_projects/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
+          he grid-background mixins allow you to generate fixed, fluid and elastic grid-images on-the-fly using css3 gradients. These can be used for testing both horizontal and vertical grids. Тут какой-то текст
         </div>
       </div>
+
+      <div class='right'>
+        <div class='map_wrapper'>
+          <%= image_tag asset_path('public/map_projects/right.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath' %>
+          <div class='placemarks_list'>
+            <% @map_project.map_layers.each do |map_layer|  %>
+              <% map_layer.map_placemarks.each do |map_placemark| %>
+                <p data-type='<%= map_placemark.kind %>'
+                  data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
+                  data-image='<%= map_placemark.kind == 'custom' ? resized_image_url(map_placemark.image_url, 190, 190, { :magnify => nil, :orientation => nil }) : map_placemark.image_url %>'
+                  data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
+                  data-when='<%= map_placemark.when %>'>
+                  <%= link_to map_placemark.title.text_gilensize, map_placemark.url %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+          <div class='map' data-latitude='56.493246' data-longitude='84.982112'></div>
+        </div>
+      </div>
+
     </div>
-    <div class="map_project_reviews">
-      <div class="likes">
+
+    <div class='map_project_reviews'>
+      <div class='likes'>
         <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
       </div>
-      <div class="reviews_title">
+      <a name='actual_reviews'></a>
+      <div class='reviews_title'>
         Обзоры
       </div>
-      <a name='actual_reviews'></a>
       <div class='suborganization_info related-reviews'>
         <ul class='posters js-isotoped-content' data-item-width="220">
           <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
         </ul>
       </div>
     </div>
+
   </div>
 </div>
