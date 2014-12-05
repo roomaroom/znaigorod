@@ -94,12 +94,23 @@
             position: absolute
             top: -70px
             right: -30px
-            z-index: 100
+            z-index: 1
 
           .map
             height: 700px
             width: 930px
             margin-bottom: 10px
+
+            .ymaps-2-1-17-default-cluster
+              background: none
+              background-color: #e5f7fb
+              +box-shadow(#333 0 0 3px)
+              +border-radius(20px)
+
+            .ymaps-2-1-17-places-pane .ymaps-2-1-17-image
+              position: relative
+              +box-shadow(#333 0 0 3px)
+              +border-radius(20px)
 
             .ymaps-2-1-17-balloon__close
               background-color: #fff
