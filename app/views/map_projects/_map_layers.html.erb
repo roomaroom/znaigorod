@@ -1,0 +1,21 @@
+<div class='left'>
+  <ul>
+    <%= content_tag :li, :class => controller_name == 'map_projects' ? 'selected' : nil do %>
+      <%= link_to 'Все слои', new_year_2015_path, :class => 'all_layers' %>
+    <% end%>
+    <% map_project.map_layers.each do |map_layer| %>
+      <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>
+        <%= link_to map_layer.title, new_year_2015_layers_path(map_layer), :style => "background-image: url('#{map_layer.image_url}')" %>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <div class='actual_reviews'>
+    <a href='#actual_reviews'>Актуальные обзоры</a>
+  </div>
+
+  <div class='text_block'>
+    <%= image_tag asset_path('public/map_projects/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
+    he grid-background mixins allow you to generate fixed, fluid and elastic grid-images on-the-fly using css3 gradients. These can be used for testing both horizontal and vertical grids. Тут какой-то текст
+  </div>
+</div>
