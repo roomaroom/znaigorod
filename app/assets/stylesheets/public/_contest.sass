@@ -1431,6 +1431,9 @@
       margin-bottom: 5px
 
     .left
+      float: left
+      width: 375px
+
       .contest_logo
         background: transparent image_url('public/tomskie-talanty-2014/poster.jpg') no-repeat left center
         height: 293px
@@ -1439,6 +1442,39 @@
     .right
       h1, h2
         color: #5ba3c0
+
+.malenkaya-krasavitsa-2014
+  > h1
+    display: none
+
+  .description
+
+    p
+      margin-bottom: 15px
+
+    ul
+      list-style: none
+
+      li
+        &:before
+          content: "-"
+          padding-right: 10px
+
+    .left
+      float: left
+      width: 375px
+
+      .contest_logo
+        background: transparent image_url('public/malenkaya-krasavitsa-2014/poster.jpg') no-repeat left center
+        height: 293px
+        width: 405px
+
+    .right
+      float: left
+      width: 755px
+
+      h1, h2
+        color: #0386d3
 
 .contests_show
   .item
