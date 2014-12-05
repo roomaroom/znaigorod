@@ -4,7 +4,7 @@
     $map = $('.map_wrapper .map')
     map = new ymaps.Map $map[0],
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
-      zoom: 11
+      zoom: 12
       behaviors: ['drag', 'scrollZoom']
       controls: []
     ,
@@ -33,7 +33,7 @@
       clusterDisableClickZoom: true
       clusterBalloonContentLayout: 'cluster#balloonAccordion'
       balloonAccordionShowIcons: false
-      clusterBalloonContentLayoutWidth: 220
+      clusterBalloonContentLayoutWidth: 217
 
     $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)
@@ -50,7 +50,7 @@
           coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
         properties:
           balloonContentHeader: "" +
-            "<div class='balloon_content_header' style='margin-bottom:5px;font-size:12px;padding-right:33px;'>" +
+            "<div class='balloon_content_header' style='margin:5px 0;font-size:13px;font-weight:normal;padding-right:33px;'>" +
             title +
             "</div>"
           balloonContentBody: "" +
@@ -61,8 +61,8 @@
             "</div>"
           hintContent: title
       ,
-        balloonMinWidth: 220
-        balloonMaxWidth: 220
+        balloonMinWidth: 203
+        balloonMaxWidth: 203
         #iconLayout: 'default#image'
         #iconImageHref: $(item).attr('data-icon')
 
