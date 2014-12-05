@@ -41,7 +41,7 @@ class MapPlacemark < ActiveRecord::Base
         self.title = relation.title
         self.latitude = relation.latitude
         self.longitude = relation.longitude
-        self.image_url = resized_image_url(relation.logotype_url, 190, 190, { :magnify => nil, :orientation => nil })
+        self.image_url = relation.logotype_url.empty? ? resized_image_url('/assets/public/default_image.png', 190, 190, { :magnify => nil, :orientation => nil }) : resized_image_url(relation.logotype_url, 190, 190, { :magnify => nil, :orientation => nil })
         self.address = relation.address.to_s
         self.url = "/organizations/#{relation.slug}"
         self.kind = 'organization'

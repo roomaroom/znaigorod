@@ -1,0 +1,16 @@
+<div class="left">
+  <p class="title">Слои:</p>
+  <ul>
+    <%= content_tag :li, :class => controller_name == 'map_projects' ? 'selected' : nil do %>
+      <%= link_to 'Все слои', manage_map_project_path(map_project), :class => 'all_layers' %>
+    <% end%>
+    <% map_project.map_layers.each do |map_layer| %>
+      <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>
+        <%= link_to map_layer.title,  manage_map_project_map_layer_path(map_project, map_layer) %>
+          (<%= link_to "Редактировать", edit_manage_map_project_map_layer_path(map_project, map_layer) %>
+          <%= link_to "Удалить", manage_map_project_map_layer_path(map_project, map_layer), method: 'DELETE', confirm: 'Вы уверены?' %>)
+        <% end %>
+    <% end %>
+  </ul>
+  <%= link_to 'Новый слой', new_manage_map_project_map_layer_path(map_project) %>
+</div>

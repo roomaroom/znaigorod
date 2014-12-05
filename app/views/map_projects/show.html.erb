@@ -20,8 +20,7 @@
                 <p data-type='<%= map_placemark.kind %>'
                   data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
                   data-image='<%= map_placemark.kind == 'custom' ? resized_image_url(map_placemark.image_url, 190, 190, { :magnify => nil, :orientation => nil }) : map_placemark.image_url %>'
-                  data-icon='<%= map_layer.image_url %>' data-address='<%= map_placemark.address %>'
-                  data-when='<%= map_placemark.when %>'>
+                  data-icon='<%= map_layer.image_url %>' data-when='<%= map_placemark.when %>'>
                   <%= link_to map_placemark.title.text_gilensize, map_placemark.url %>
                 </p>
               <% end %>

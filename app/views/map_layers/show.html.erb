@@ -16,10 +16,10 @@
           <%= image_tag asset_path('public/map_projects/right.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath' %>
           <div class="placemarks_list">
             <% resource.map_placemarks.each do |map_placemark| %>
-              <p data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
-                data-title='<%= map_placemark.title.as_html %>' data-image='<%= map_placemark.image_url %>'
-                data-icon='<%= resource.image_url %>' data-address='<%= map_placemark.address %>'
-                data-when='<%= map_placemark.when %>'>
+              <p data-type='<%= map_placemark.kind %>'
+                data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
+                data-image='<%= map_placemark.kind == 'custom' ? resized_image_url(map_placemark.image_url, 190, 190, { :magnify => nil, :orientation => nil }) : map_placemark.image_url %>'
+                data-icon='<%= resource.image_url %>' data-when='<%= map_placemark.when %>'>
                 <%= link_to map_placemark.title, map_placemark.url %>
               </p>
             <% end %>
