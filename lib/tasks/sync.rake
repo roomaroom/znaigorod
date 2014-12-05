@@ -101,6 +101,8 @@ class MovieSyncer
       title.gsub!('Букашки. Приключения в долине муравьев', 'Букашки. Приключение в Долине Муравьев')
       title.gsub!('Трансформеры 4', 'Трансформеры: Эпоха истребления')
       title.gsub!('Неудержимые 3 спецверсия', 'Неудержимые 3')
+      title.gsub!('Голодные игры: Сойка-пересмешница. Часть 1', 'Голодные игры: Сойка-пересмешница. Часть I')
+      title.gsub!('Голодные игры: Сойка-пересмешница ', 'Голодные игры: Сойка-пересмешница. Часть I')
       Afisha.find_by_title(title) || find_similar_movie_by(title)
     end
 
@@ -151,7 +153,7 @@ namespace :sync do
         movies = {}
         bar = ProgressBar.new(json['films'].count)
         json['films'].each do |movie|
-          title = movie['title'].gsub(',&nbsp;', '').gsub(/\(2D|\(3D/, '').gsub(/\d+\+\)/, '').gsub(/\s+\(\z/, '').squish
+          title = movie['title'].gsub(',&nbsp;', '').gsub(/\(2D|\(3D|HFR/, '').gsub(/\d+\+\)/, '').gsub(/\s+\(\z/, '').squish
           movies[title] ||= []
           movie['halls'].each do |hash|
             hash['sessions'].each do |session|
@@ -184,7 +186,7 @@ namespace :sync do
       day_node.css('td').map(&:text).each_slice(3) do |seance|
         time, title, price_min = seance
         starts_at  =  Time.zone.parse("#{date} #{time}")
-        title = title.gsub(/2D|3D/, '').gsub(/\d+\+\)/, '').squish
+        title = title.gsub(/\(?2D\)?|\(?3D\)?|\(?HFR\)?/, '').gsub(/\d+\+\)/, '').squish
         movies[title] ||= []
         movies[title] << {starts_at: starts_at, price_min: price_min, price_max: price_min }
       end
@@ -213,7 +215,7 @@ namespace :sync do
         hall_html.next_element.css('div.hallContainer').each do |film|
           title = film.css('h3 a').text.squish
           three_d = title.match(/\(?3D\)?/)
-          title = title.gsub(/\(?3D\)?\b|\(?2D\)?|\(?IMAX\)?|\(?\d+\+\)?/, '').squish
+          title = title.gsub(/\(?3D\)?\b|\(?2D\)?|\(?IMAX\)?|\(?HFR\)?|\(?\d+\+\)?/, '').squish
           movies[title] ||= []
           film.css('a.timeLineItem').each do |seans|
             next if seans['class'].match(/session-already-past|session-disabled/)
@@ -256,7 +258,7 @@ namespace :sync do
           title = seance.css('h1').text
           three_d = title.match(/((?:в 3D)|3D)/).try(:[], 1)
           title = title.gsub(/((?:в 3D)\b|3D\b)/,'').squish
-          title = title.gsub(/\s\(?3D\)?\b|\(?2D\)?|\(?\d+\+\)?/,'').squish
+          title = title.gsub(/\s\(?3D\)?\b|\(?2D\)?|\(?HFR\)?|\(?\d+\+\)?/,'').squish
           next if title =~ /^Non-stop [[:alpha:]]+ зал$/
           movies[title] ||= []
           seance.parent.parent.parent.parent.css('td:nth-child(2) > div > div').each do |i|
