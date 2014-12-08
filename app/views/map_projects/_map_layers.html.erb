@@ -1,7 +1,7 @@
 <div class='left'>
   <ul>
     <%= content_tag :li, :class => controller_name == 'map_projects' ? 'selected' : nil do %>
-      <%= link_to 'Все слои', new_year_2015_path, :class => 'all_layers' %>
+      <%= link_to 'Новый год 2015', new_year_2015_path, :class => 'all_layers' %>
     <% end%>
     <% map_project.map_layers.each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>

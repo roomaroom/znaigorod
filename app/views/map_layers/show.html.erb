@@ -16,13 +16,7 @@
           <%= image_tag asset_path('public/map_projects/right.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath' %>
           <div class="placemarks_list">
             <% resource.map_placemarks.each do |map_placemark| %>
-              <p data-type='<%= map_placemark.kind %>'
-                data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
-                data-image='<%= map_placemark.kind == 'custom' ? resized_image_url(map_placemark.image_url, 190, 190, { :magnify => nil, :orientation => nil }) : map_placemark.image_url %>'
-                data-icon='<%= resource.image_url %>' data-when='<%= map_placemark.when %>'
-                data-organization-title = '<%= map_placemark.organization_title %>' data-organization-url = '<%= map_placemark.organization_url %>' >
-                <%= link_to map_placemark.title, map_placemark.url %>
-              </p>
+              <%= render :partial => 'map_projects/map_placemark', :locals => { :map_layer => resource, :map_placemark => map_placemark } %>
             <% end %>
           </div>
           <div class='map' data-latitude='56.493246' data-longitude='84.982112'></div>

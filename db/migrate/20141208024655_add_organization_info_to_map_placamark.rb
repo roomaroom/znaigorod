@@ -8,7 +8,7 @@ class AddOrganizationInfoToMapPlacamark < ActiveRecord::Migration
       afisha_organization = map_placemark.relations.first.slave.try(:organization)
       if afisha_organization
         map_placemark.organization_title = afisha_organization.title
-        map_placemark.organization_url = '/organizations/#{afisha_organization.slug}'
+        map_placemark.organization_url = "/organizations/#{afisha_organization.slug}"
         map_placemark.save(:validate => false)
       end
     end
