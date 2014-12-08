@@ -22,11 +22,12 @@
         <p data-type='<%= map_placemark.kind %>'
           data-latitude='<%= map_placemark.latitude %>' data-longitude='<%= map_placemark.longitude %>'
           data-image='<%= map_placemark.image_url %>'
-          data-icon='<%= map_layer.image_url %>' data-when='<%= map_placemark.when %>'>
+          data-icon = '<%= map_layer.image_url %>' data-when = '<%= map_placemark.when %>'
+          data-organization-title = '<%= map_placemark.organization_title %>' data-organization-url = '<%= map_placemark.organization_url %>' >
           <%= link_to map_placemark.title, map_placemark.url %>
+          (<%= link_to "Редактировать", edit_manage_map_project_map_placemark_path(@map_project, map_placemark)  %>
+          <%= link_to "Удалить", manage_map_project_map_placemark_path(@map_project, map_placemark), method: 'DELETE', confirm: "Вы уверены?"  %>)
         </p>
-        (<%= link_to "Редактировать", edit_manage_map_project_map_placemark_path(@map_project, map_placemark)  %>
-        <%= link_to "Удалить", manage_map_project_map_placemark_path(@map_project, map_placemark), method: 'DELETE', confirm: "Вы уверены?"  %>)
       <% end %>
     <% end %>
   </div>

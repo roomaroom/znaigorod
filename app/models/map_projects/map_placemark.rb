@@ -15,8 +15,6 @@ class MapPlacemark < ActiveRecord::Base
   has_many :relations,             :as => :master,         :dependent => :destroy
   has_many :afishas,        :through => :relations, :source => :slave, :source_type => Afisha
   has_many :organizations,  :through => :relations, :source => :slave, :source_type => Organization
-  has_many :reviews,        :through => :relations, :source => :slave, :source_type => Review
-  has_many :photogalleries, :through => :relations, :source => :slave, :source_type => Photogallery
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
@@ -42,19 +40,21 @@ class MapPlacemark < ActiveRecord::Base
         self.latitude = relation.latitude
         self.longitude = relation.longitude
         self.image_url = relation.logotype_url.empty? ? resized_image_url('/assets/public/default_image.png', 190, 190, { :magnify => nil, :orientation => nil }) : resized_image_url(relation.logotype_url, 190, 190, { :magnify => nil, :orientation => nil })
-        self.address = relation.address.to_s
         self.url = "/organizations/#{relation.slug}"
         self.kind = 'organization'
       end
+
       if relation.is_a? Afisha
+        afisha_organization = relation.try(:organization)
         self.title = relation.title
-        self.latitude = relation.organization.latitude
-        self.longitude = relation.organization.longitude
+        self.latitude = afisha_organization.try(:latitude) || relation.showings.first.latitude
+        self.longitude = afisha_organization.try(:longitude) || relation.showings.first.longitude
         self.image_url = resized_image_url(relation.poster_url, 190, 260, { :magnify => nil, :orientation => nil })
-        self.address = relation.address
-        self.when = "#{relation.class.name}Decorator".constantize.new(relation).human_when
+        self.when = AfishaDecorator.new(relation).human_when
         self.url = "/afisha/#{relation.slug}"
         self.kind = 'afisha'
+        self.organization_title = afisha_organization.title if afisha_organization
+        self.organization_url = "/organizations/#{afisha_organization.slug}" if afisha_organization
       end
     end
   end
@@ -73,11 +73,12 @@ end
 #  image_content_type :string(255)
 #  image_file_size    :string(255)
 #  url                :string(255)
-#  address            :string(255)
 #  when               :string(255)
 #  map_layer_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  kind               :string(255)
+#  organization_title :string(255)
+#  organization_url   :string(255)
 #
 

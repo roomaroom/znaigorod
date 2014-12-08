@@ -46,7 +46,7 @@
 
     $('.map_project_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)
-      title = link.text()
+      title = link[0].text
 
       img_width = 190
       img_height = 190
