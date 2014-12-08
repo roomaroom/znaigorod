@@ -23,6 +23,13 @@
 
   return
 
+@init_krasavitsa_banner_stat = () ->
+  $('.js-stat-krasavitsa-2014').click ->
+    yaCounter14923525.reachGoal('krasavitsa_2014_banner') if yaCounter14923525?
+    true
+
+  return
+
 @init_top_banner_stat = () ->
   $('.top_headline a').click ->
     yaCounter14923525.reachGoal('top_banner') if yaCounter14923525?
