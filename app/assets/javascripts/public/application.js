@@ -116,4 +116,5 @@
  * = require ./social_likes
  * = require ./link_counter
  * = require ./map_project
+ * = require ./shuffle
  */

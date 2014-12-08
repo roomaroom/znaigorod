@@ -105,6 +105,8 @@ $ ->
 
   init_banner_stat() if $('.js-banner a').length
   init_right_block_stat()
+
+  init_banners_shuffle() if $('.banner12').length
   true
 
 $(window).load ->
