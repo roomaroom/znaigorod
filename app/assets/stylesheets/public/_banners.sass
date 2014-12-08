@@ -4,14 +4,20 @@
   margin: 20px auto 20px
 
 .banner12
+  +clearfix
+  height: 80px
+  width: 880px
+  position: relative
+  margin: 20px auto
 
-  .potential
+  > li
     +clearfix
     display: none
-    height: 100px
-    margin: 40px auto -30px
-    position: relative
+    height: 80px
     width: 880px
+    position: absolute
+    top: 0
+    left: 0
 
     &:first-child
       display: block

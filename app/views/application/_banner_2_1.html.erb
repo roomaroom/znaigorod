@@ -1,15 +1,15 @@
 <% unless params[:id] == 'imidzh-proekt-potentsial' %>
 
   <ul class='banner12'>
-    <li class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+    <li class='js-banner imidzh-proekt-potentsial <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
       <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
     </li>
 
-    <li class='js-banner potential talanty <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+    <li class='js-banner tomskie-talanty-2014 <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
       <%= link_to (image_tag 'public/tomskie_talanty.jpg', size: '880x80'), '/contests/tomskie-talanty-2014', class: 'js-stat-talanty' %>
     </li>
 
-    <li class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+    <li class='js-banner malenkaya-krasavitsa-2014 <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
       <%= link_to (image_tag 'public/malenkaya-krasavitsa-2014.jpg', size: '880x80'), '/contests/malenkaya-krasavitsa-2014', class: 'js-stat-krasavitsa-2014' %>
     </li>
   </ul>
