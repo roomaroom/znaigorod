@@ -118,7 +118,7 @@ $(window).load ->
   init_menus() if $('.menus')
   init_move_to_top() if $('a.move_to_top').length
   init_potential_banner_stat() if $('.js-stat-potential').length
-  init_krasavitsa_banner_stat() $('.js-stat-krasavitsa-2014').length
+  init_krasavitsa_banner_stat() if $('.js-stat-krasavitsa-2014').length
   init_services() if $('.services')
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
   init_top_banner_stat() if $('.top_headline').length
