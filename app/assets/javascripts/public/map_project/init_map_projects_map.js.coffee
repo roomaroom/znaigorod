@@ -36,12 +36,12 @@
 
     clusterer = new ymaps.Clusterer
       clusterDisableClickZoom: true
-      clusterBalloonContentLayout: 'cluster#balloonAccordion'
-      balloonAccordionShowIcons: false
-      clusterBalloonContentLayoutWidth: 217
       showInAlphabeticalOrder: true
-      openBalloonOnClick: true
       hideIconOnBalloonOpen: false
+      clusterBalloonContentLayout: 'cluster#balloonCarousel'
+      clusterBalloonPagerType: 'marker'
+      clusterBalloonContentLayoutWidth: 192
+      clusterBalloonContentLayoutHeight: 355
       clusterIcons: clusterIcons
 
     $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
@@ -53,29 +53,29 @@
       schedule = ""
       if $(item).attr('data-type') == 'afisha'
         img_height = 260
-        schedule = "<div>" +
-          "<a href='#{link.attr('href')}' target='_blank'>#{$(item).attr('data-when')}</a>" +
-          "</div>"
+        schedule = $(item).attr('data-when')
 
       point = new ymaps.GeoObject
         geometry:
           type: 'Point'
           coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
         properties:
-          balloonContentHeader: "" +
-            "<div class='balloon_content_header' style='margin:5px 0;font-size:13px;font-weight:normal;padding-right:33px;'>" +
-            title +
-            "</div>"
           balloonContentBody: "" +
             "<div class='ymaps-2-1-17-b-cluster-content__body'>" +
             "<a href='#{link.attr('href')}' target='_blank'>" +
             "<img width='#{img_width}' height='#{img_height}' src='#{$(item).attr('data-image')}' />" +
             "</a>" +
-            schedule
+            "<div class='balloon_content_header' style='border-bottom:1px dashed #ccc;margin:5px 0;padding-bottom:5px;width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" +
+            "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" +
+            "</div>" +
+            "<div style='margin-bottom: 5px;width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" +
+            "<a href='#{$(item).attr('data-organization-url')}' target='_blank' title='#{$(item).attr('data-organization-title')}'>#{$(item).attr('data-organization-title')}</a>" +
+            "</div>" +
+            "<div>#{schedule}</div>"
           hintContent: title
       ,
-        balloonMinWidth: 203
-        balloonMaxWidth: 203
+        balloonMinWidth: 192
+        balloonMaxWidth: 192
         hideIconOnBalloonOpen: false
         iconLayout: 'default#image'
         iconImageHref: $(item).attr('data-icon')
