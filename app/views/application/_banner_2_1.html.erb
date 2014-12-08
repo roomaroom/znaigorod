@@ -1,12 +1,18 @@
 <% unless params[:id] == 'imidzh-proekt-potentsial' %>
-  <% rand = Random.rand(2) %>
+  <% rand = Random.rand(3) %>
   <% if rand == 0 %>
     <div class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
       <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
     </div>
-  <% else %>
+  <% end %>
+  <% if rand == 1 %>
     <div class='js-banner potential talanty <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
       <%= link_to (image_tag 'public/tomskie_talanty.jpg', size: '880x80'), '/contests/tomskie-talanty-2014', class: 'js-stat-talanty' %>
+    </div>
+  <% end %>
+  <% if rand == 2 %>
+    <div class='js-banner potential <%= params['controller'].split('/').try(&:first) if params['controller'] %>'>
+      <%= link_to (image_tag 'public/malenkaya-krasavitsa-2014.jpg', size: '880x80'), '/contests/malenkaya-krasavitsa-2014', class: 'js-stat-krasavitsa-2014' %>
     </div>
   <% end %>
 <% end %>
