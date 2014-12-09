@@ -16,6 +16,11 @@
 
   <div class='text_block'>
     <%= image_tag asset_path('public/map_projects/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
-    he grid-background mixins allow you to generate fixed, fluid and elastic grid-images on-the-fly using css3 gradients. These can be used for testing both horizontal and vertical grids. Тут какой-то текст
+    <p class='important'>Вас нет на карте?</p>
+    <p>Звоните нам:</p>
+    <p class='phone with_icon'><%= t('services.phone').split(',').first.to_s.squish %></p>
+    <p class='phone'><%= t('services.phone').split(',').second.to_s.squish %></p>
+    <p>или пишите на</p>
+    <p class='email'><%= mail_to 'office@znaigorod.ru' %></p>
   </div>
 </div>
