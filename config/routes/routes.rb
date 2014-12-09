@@ -127,8 +127,8 @@ Znaigorod::Application.routes.draw do
 
   get '/link_counters/create' => 'link_counters#create'
 
-  get '/novyy-god-2015' => 'map_projects#show', :as => "new_year_2015", :defaults => { :id => 'new-year-2015' }
-  get '/novyy-god-2015/:id' => 'map_layers#show', :as => "new_year_2015_layers", :defaults => { :map_project_id => 'new-year-2015' }
+  get '/novyj_god_2015_v_tomske' => 'map_projects#show', :as => "new_year_2015", :defaults => { :id => 'new-year-2015' }
+  get '/novyj_god_2015_v_tomske/:id' => 'map_layers#show', :as => "new_year_2015_layers", :defaults => { :map_project_id => 'new-year-2015' }
 
   root :to => 'main_page#show'
 end
