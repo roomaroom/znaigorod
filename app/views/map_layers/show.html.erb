@@ -13,7 +13,9 @@
 
       <div class='right'>
         <div class='map_wrapper'>
-          <%= image_tag asset_path('public/map_projects/right.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath' %>
+          <%= image_tag asset_path('public/map_projects/right_1.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_1' %>
+          <%= image_tag asset_path('public/map_projects/right_2.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_2' %>
+          <%= image_tag asset_path('public/map_projects/right_3.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_3' %>
           <div class="placemarks_list">
             <% resource.map_placemarks.each do |map_placemark| %>
               <%= render :partial => 'map_projects/map_placemark', :locals => { :map_layer => resource, :map_placemark => map_placemark } %>
