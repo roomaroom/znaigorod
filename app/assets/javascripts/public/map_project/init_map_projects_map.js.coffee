@@ -4,7 +4,7 @@
     $map = $('.map_wrapper .map')
     map = new ymaps.Map $map[0],
       center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
-      zoom: 11
+      zoom: 12
       behaviors: ['drag', 'scrollZoom']
       controls: []
     ,
