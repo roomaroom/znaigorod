@@ -10,6 +10,16 @@
   position: relative
   margin: 20px auto
 
+  &.main_page
+    margin: 20px auto 0
+
+  &.afishas,
+  &.organizations,
+  &.discounts,
+  &.reviews,
+  &.questions
+    margin: 50px auto 0
+
   > li
     +clearfix
     display: none
@@ -21,29 +31,6 @@
 
     &:first-child
       display: block
-
-    &.accounts,
-    &.cooperation_services,
-    &.cooperation
-      margin: 10px auto 0
-
-    &.webcams,
-    &.contests,
-    &.widgets,
-    &.feedback
-      margin: 0 auto 0
-
-    &.my,
-    &.works,
-    &.search,
-    &.photogalleries
-      margin: 10px auto 0px
-
-    &.main_page
-      margin: 20px auto -10px
-
-    &.reviews
-      margin: 40px auto -30px
 
     .link_to_for_flash
       display: block
