@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module ImageHelper
-  def resized_image_url(url, width, height, options = { :crop => '!', :magnify => 'm', :orientation => 'n'})
+  def resized_image_url(url, width, height, options = {})
     return if url.blank?
 
     return url unless url.match /(\d+\/region\/\d+)|(\/files\/\d+\/\d+-\d+\/)/
