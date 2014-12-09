@@ -1,7 +1,7 @@
 .header_wrapper
   +min-height(105px)
   border-bottom: 2px solid #f60
-  margin: 10px 0
+  margin: 0 0 10px 0
 
   .header
     +liquid-size($desktop_min_width, $desktop_max_width)
@@ -24,7 +24,7 @@
     .tomsk
       font-size: 12px
       position: absolute
-      top: 5px
+      top: 22px
       left: 197px
       a
         color: #000
@@ -43,7 +43,7 @@
       line-height: 26px
       padding: 0 0 0 10px
       position: absolute
-      top: 0
+      top: 17px
       width: 120px
 
       &:after, &:before
@@ -76,7 +76,7 @@
     .dashboard
       font-size: 12px
       position: absolute
-      top: 0
+      top: 17px
       right: 10px
       p
         text-align: right
@@ -85,39 +85,41 @@
       .my_new_action
         font-size: 11px
         +button-style
-        margin-top: 4px
       .sign_in
         cursor: pointer
         +inline-block
         background: transparent image_url('public/sign_in.png') no-repeat right center
-        margin: 0 5px 3px 0
+        margin: 0 5px
         padding-right: 18px
       .user
-        .avatar img
-          +border-radius
+        .avatar
+          height: 22px
+          margin-left: 5px
+
+          img
+            +border-radius
         .sign_out
           border-left: 1px solid #000
           background: transparent image_url('public/sign_out.png') no-repeat right center
           margin-left: 5px
           padding: 0 18px 0 5px
-      .private
-        margin-bottom: 3px
+
       .messages
-        +clearfix
-        a
+        margin-top: 5px
+        a.empty,
+        a.new
           color: #000
-          display: block
-          float: right
           padding-right: 21px
           background: transparent image_url('public/messages_icon.png') no-repeat right 0
           text-decoration: none
+          margin-right: 5px
           &.empty
             color: #ccc
-            background-position: right 4px
+            background-position: right 3px
           &.new
             +animate_blink
             font-weight: bold
-            background-position: right -32px
+            background-position: right -33px
             &:hover
               color: #f60
               +animate_paused
@@ -129,7 +131,7 @@
 
       .social_signin_links
         +inline-block
-        height: 26px
+        height: 20px
         li
           +inline-block
 
