@@ -50,14 +50,14 @@
     </div>
 
     <% if @contest.ends_at >= Time.zone.now %>
-      <div class="sms_vote">
-        <% if @contest.vote_type.sms? %>
+      <% if @contest.vote_type.sms? %>
+        <div class="sms_vote">
           Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= @work.code %></span>
         </div>
+        <div class="sms_votes_counter">
+          <%= t 'work.sms', :count => @work.sms_counter %>
+        </div>
       <% end %>
-      <div class="sms_votes_counter">
-        <%= t 'work.sms', :count => @work.sms_counter %>
-      </div>
     <% else %>
       <div class="sms_votes_counter">
         <%= t 'work.sms', :count => @work.sms_counter %>
