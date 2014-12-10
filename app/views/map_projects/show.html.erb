@@ -23,6 +23,11 @@
           </div>
           <div class='map' data-latitude='56.493246' data-longitude='84.982112'></div>
         </div>
+        <% if page_meta %>
+          <div class='introduction'>
+            <%= page_meta.html_introduction %>
+          </div>
+        <% end %>
       </div>
 
     </div>
