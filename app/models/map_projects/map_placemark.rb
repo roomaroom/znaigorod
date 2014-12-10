@@ -9,15 +9,21 @@ class MapPlacemark < ActiveRecord::Base
   default_value_for :kind, 'custom'
 
   before_save :parse_related_items
+  before_destroy :delete_map_layers
 
-  has_many :map_relations
-  has_many :map_layers, :through => :map_relations, dependent: :destroy
+
+  has_many :map_relations, :dependent => :destroy
+  has_many :map_layers, :through => :map_relations
 
   has_many :relations,      :as => :master,         :dependent => :destroy
   has_many :afishas,        :through => :relations, :source => :slave, :source_type => Afisha
   has_many :organizations,  :through => :relations, :source => :slave, :source_type => Organization
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+
+  def delete_map_layers
+    self.map_layers.delete_all
+  end
 
   def parse_related_items
     return if related_items.nil?
