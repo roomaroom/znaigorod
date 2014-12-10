@@ -18,7 +18,6 @@ end
 #  image_file_size    :string(255)
 #  url                :string(255)
 #  when               :string(255)
-#  map_layer_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  kind               :string(255)

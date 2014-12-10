@@ -5,7 +5,8 @@ class MapLayer < ActiveRecord::Base
   validates_presence_of :title, :image
 
   belongs_to :map_project
-  has_many :map_placemarks, dependent: :destroy
+  has_many :map_relations
+  has_many :map_placemarks, :through => :map_relations, dependent: :destroy
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 

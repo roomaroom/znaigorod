@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141208024655) do
+ActiveRecord::Schema.define(:version => 20141210033041) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -547,7 +547,6 @@ ActiveRecord::Schema.define(:version => 20141208024655) do
     t.string   "image_file_size"
     t.string   "url"
     t.string   "when"
-    t.integer  "map_layer_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "kind"
@@ -560,6 +559,13 @@ ActiveRecord::Schema.define(:version => 20141208024655) do
     t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "map_relations", :id => false, :force => true do |t|
+    t.integer  "map_layer_id"
+    t.integer  "map_placemark_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "meals", :force => true do |t|

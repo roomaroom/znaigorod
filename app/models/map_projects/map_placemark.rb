@@ -2,17 +2,18 @@ include ImageHelper
 
 class MapPlacemark < ActiveRecord::Base
   attr_accessor :related_items
-  attr_accessible :title, :map_layer_id, :related_items, :latitude, :longitude, :url, :address,
+  attr_accessible :title, :map_layer_ids, :related_items, :latitude, :longitude, :url, :address,
                   :image, :kind
 
-  validates_presence_of :map_layer_id
+  validates_presence_of :map_layer_ids
   default_value_for :kind, 'custom'
 
   before_save :parse_related_items
 
-  belongs_to :map_layer
+  has_many :map_relations
+  has_many :map_layers, :through => :map_relations, dependent: :destroy
 
-  has_many :relations,             :as => :master,         :dependent => :destroy
+  has_many :relations,      :as => :master,         :dependent => :destroy
   has_many :afishas,        :through => :relations, :source => :slave, :source_type => Afisha
   has_many :organizations,  :through => :relations, :source => :slave, :source_type => Organization
 
@@ -74,7 +75,6 @@ end
 #  image_file_size    :string(255)
 #  url                :string(255)
 #  when               :string(255)
-#  map_layer_id       :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  kind               :string(255)
