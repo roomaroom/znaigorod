@@ -11,6 +11,12 @@
   <link rel='canonical' href='<%= new_year_2015_url %>' />
 <% end %>
 
+<% content_for :extra_meta do %>
+  <% if page_meta %>
+    <%= render :partial => 'commons/page_meta_og' %>
+  <% end %>
+<% end %>
+
 <% content_for :metrics do %>
   <%= render :partial => 'commons/google_analytics' if Rails.env.production? %>
 <% end %>
