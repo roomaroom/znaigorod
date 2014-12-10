@@ -46,13 +46,15 @@
 
     <div class='image'>
       <div class="sms_title">
-        Участница № <%= @work.code %> - <%= @work.title %>
+        Участник № <%= @work.code %> - <%= @work.title %>
     </div>
 
     <% if @contest.ends_at >= Time.zone.now %>
       <div class="sms_vote">
-        Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= @work.code %></span>
-      </div>
+        <% if @contest.vote_type.sms? %>
+          Поддержи участницу! Отправь SMS на номер <span class='colored'><%= @contest.short_number %></span> с текстом <span class='colored'><%= @contest.sms_prefix %> <%= @work.code %></span>
+        </div>
+      <% end %>
       <div class="sms_votes_counter">
         <%= t 'work.sms', :count => @work.sms_counter %>
       </div>
