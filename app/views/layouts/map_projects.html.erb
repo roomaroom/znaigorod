@@ -7,6 +7,10 @@
   <%= javascript_include_tag 'public/application' %>
 <% end %>
 
+<% content_for :canonical_link do %>
+  <link rel='canonical' href='<%= new_year_2015_url %>' />
+<% end %>
+
 <% content_for :metrics do %>
   <%= render :partial => 'commons/google_analytics' if Rails.env.production? %>
 <% end %>
