@@ -53,7 +53,7 @@
   <% if @review.relations.present?  %>
     <h2>Обзор связан с:</h2>
     <ul class="related posters">
-      <% @review.relations.each do |relation| %>
+      <% @review.relations.delete_if{ |relation| relation.slave.blank? }.each do |relation| %>
         <% cache "related_review#{relation.id}", expires_in: 10.minutes do %>
           <li class="item tiny">
             <%= render :partial => 'reviews/related_poster', :locals => {:item => relation.slave} %>
