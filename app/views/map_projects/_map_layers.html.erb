@@ -5,7 +5,7 @@
     <% end%>
     <% map_project.map_layers.each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>
-        <%= link_to map_layer.title, new_year_2015_layers_path(map_layer), :style => "background-image: url('#{map_layer.image_url}')" %>
+        <%= link_to map_layer.title, new_year_2015_path(layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
       <% end %>
     <% end %>
   </ul>
