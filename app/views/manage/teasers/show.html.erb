@@ -3,8 +3,9 @@
   <ul>
     <% resource.teaser_items.each do |item| %>
       <li>
+        <%= image_tag item.image_url ? item.image_url : '/assets/public/default_image.png' %>
         <%= item.text %> <br />
-        <%= link_to 'Добавить', new_manage_teaser_teaser_item_path(resource) %> / <%= link_to 'Редактировать', edit_manage_teaser_teaser_item_path(item) %> / <%= link_to 'Удалить', manage_teaser_teaser_item_path(item), confirm: 'Вы уверены?', method: :delete %>
+        <%= link_to 'Добавить/Редактировать', edit_manage_teaser_teaser_item_path(resource, item) %> / <%= link_to 'Удалить', "#" %>
       </li>
     <% end %>
   </ul>

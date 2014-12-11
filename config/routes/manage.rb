@@ -181,7 +181,7 @@ Znaigorod::Application.routes.draw do
     end
 
     resources :teasers do
-      resources :teaser_items
+      resources :teaser_items, :only =>[:edit, :update]
     end
 
     root :to => 'organizations#index'
