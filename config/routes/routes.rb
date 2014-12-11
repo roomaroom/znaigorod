@@ -130,5 +130,7 @@ Znaigorod::Application.routes.draw do
   get '/novyj_god_2015_v_tomske' => 'map_projects#show', :as => "new_year_2015", :defaults => { :id => 'new-year-2015' }
   get '/novyj_god_2015_v_tomske/:id' => 'map_layers#show', :as => "new_year_2015_layers", :defaults => { :map_project_id => 'new-year-2015' }
 
+  resources :teasers, only: [:show]
+
   root :to => 'main_page#show'
 end

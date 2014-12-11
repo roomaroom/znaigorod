@@ -1,0 +1,19 @@
+<div class='teaser_wrapper' style='width: 860x'>
+  <% @teaser.teaser_items.each do |item| %>
+    <div class='teaser_item' style='width: 280px; height: 110px; border: 1px solid #ff9e43; border-radius: 5px; background-color: #ffe0bd; float: left; margin: 0 10px 10 0'>
+      <div class="left" style='float:left; margin-right:10px; text-align:center; width: 104px'>
+        <div class='image' style='padding:9px; width: 94px; height: 92px'>
+          <%= link_to item.text, '#', :style => "background-image: url('#{resized_image_url(item.image_url, 94, 92)}'); width: 94px; height: 92px; display: block; text-indent: -9999px" %>
+        </div>
+      </div>
+      <div class="right" style='float: left; width: 164px; height: 100%'>
+        <div class="link" style='padding: 33px 0 0 0;'>
+          <%= link_to item.text.try(:truncate, 10), '#', style: 'color: #008ff2; font-size: 18px' %>
+        </div>
+        <div class="author" style='vertical-align:middle'>
+          <span>znaigorod.ru</span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
