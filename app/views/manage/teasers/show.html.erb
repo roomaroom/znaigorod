@@ -1,0 +1,11 @@
+<div class="teaser_wrapper">
+  <h1><%= resource.title %></h1>
+  <ul>
+    <% resource.teaser_items.each do |item| %>
+      <li>
+        <%= item.text %> <br />
+        <%= link_to 'Добавить/Изменить', '#' %>  <%= link_to 'Удалить', '#' %>
+      </li>
+    <% end %>
+  </ul>
+</div>

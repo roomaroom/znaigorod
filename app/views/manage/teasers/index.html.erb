@@ -1,0 +1,13 @@
+<div class="teaser_wrapper">
+<%= link_to "Новый тизер", new_manage_teaser_path %>
+<ul>
+  <% @teasers.each do |teaser| %>
+    <li>
+      <%= link_to teaser.title, manage_teaser_path(teaser) %> <br />
+      (Количество элементов: <%= teaser.items_quantity %>) <br />
+      <%= link_to 'Редактировать', edit_manage_teaser_path(teaser)  %>
+      <%= link_to 'Удалить', manage_teaser_path(teaser), method: "DELETE", confirm: "Вы уверены?" %>
+    </li>
+  <% end %>
+</ul>
+</div>
