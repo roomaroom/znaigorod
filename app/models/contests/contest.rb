@@ -49,6 +49,10 @@ class Contest < ActiveRecord::Base
     string(:state) { :published }
   end
 
+  def vote_sort_value
+    vote_type.like? ? 'by_zg_likes' : 'by_sms_counter'
+  end
+
   def self.generate_vfs_path
     "/znaigorod/contests/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
