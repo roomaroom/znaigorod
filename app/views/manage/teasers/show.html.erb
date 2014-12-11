@@ -4,7 +4,7 @@
     <% resource.teaser_items.each do |item| %>
       <li>
         <%= item.text %> <br />
-        <%= link_to 'Добавить/Изменить', '#' %>  <%= link_to 'Удалить', '#' %>
+        <%= link_to 'Добавить', new_manage_teaser_teaser_item_path(resource) %> / <%= link_to 'Редактировать', edit_manage_teaser_teaser_item_path(item) %> / <%= link_to 'Удалить', manage_teaser_teaser_item_path(item), confirm: 'Вы уверены?', method: :delete %>
       </li>
     <% end %>
   </ul>

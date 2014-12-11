@@ -180,7 +180,9 @@ Znaigorod::Application.routes.draw do
       resources :map_placemarks, :except =>[:index, :show]
     end
 
-    resources :teasers
+    resources :teasers do
+      resources :teaser_items
+    end
 
     root :to => 'organizations#index'
   end
