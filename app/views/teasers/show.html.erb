@@ -1,6 +1,22 @@
-<div class='teaser_wrapper' style='width: 860x'>
+<style>
+  .label {
+    background-color: #f45800;
+    color: white;
+    display: table-cell;
+    font-size: 13px;
+    height: 14px;
+    text-align: center;
+    vertical-align: middle;
+    width: 95px;
+  }
+</style>
+
+<div class='teaser_wrapper' style='width: 876px; overflow: hidden'>
+  <div class="label" style=''>
+    <span>znaigorod.ru</span>
+  </div>
   <% @teaser.teaser_items.each do |item| %>
-    <div class='teaser_item' style='width: 280px; height: 110px; border: 1px solid #ff9e43; border-radius: 5px; background-color: #ffe0bd; float: left; margin: 0 10px 10 0'>
+    <div class='teaser_item' style='width: 280px; height: 110px; border: 1px solid #ff9e43; border-radius: 3px; background-color: #ffe0bd; float: left; margin: 0 10px 10 0'>
       <div class="left" style='float:left; margin-right:10px; text-align:center; width: 104px'>
         <div class='image' style='padding:9px; width: 94px; height: 92px'>
           <%= link_to item.text, '#', :style => "background-image: url('#{resized_image_url(item.image_url, 94, 92)}'); width: 94px; height: 92px; display: block; text-indent: -9999px" %>
@@ -10,7 +26,7 @@
         <div class="link" style='padding: 33px 0 0 0;'>
           <%= link_to item.text.try(:truncate, 10), '#', style: 'color: #008ff2; font-size: 18px' %>
         </div>
-        <div class="author" style='vertical-align:middle'>
+        <div class="author">
           <span>znaigorod.ru</span>
         </div>
       </div>
