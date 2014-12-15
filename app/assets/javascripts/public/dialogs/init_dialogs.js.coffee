@@ -226,7 +226,6 @@ add_disabled = () ->
 
 # AJAX для табов #dialogs, #invites, #notifications
 @init_messages = () ->
-  console.log '213'
 
   $('.invitations .read_all_notifications a').on 'click', () ->
     sure = confirm("Вы действительно хотите сделать все уведомления прочитанными?")
