@@ -4,6 +4,8 @@ class TeaserItem < ActiveRecord::Base
   belongs_to :teaser
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
+
+  scope :order_by_id, order('id')
 end
 
 # == Schema Information
