@@ -1,5 +1,10 @@
 <style>
-  .label {
+  .teaser_wrapper {
+    width: 876px;
+    overflow: hidden;
+  }
+
+  .teaser_wrapper .label {
     background-color: #f45800;
     color: white;
     display: table-cell;
@@ -9,22 +14,37 @@
     vertical-align: middle;
     width: 95px;
   }
+
+  .teaser_wrapper .label:after {
+    background: white;
+    float: right;
+    border: 8px solid transparent;
+    border-right: 0;
+    border-left-color: #f45800;
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  .teaser_wrapper .right .author {
+    font-size: 13px;
+  }
 </style>
 
-<div class='teaser_wrapper' style='width: 876px; overflow: hidden'>
-  <div class="label" style=''>
+<div class='teaser_wrapper'>
+  <div class="label">
     <span>znaigorod.ru</span>
   </div>
   <% @teaser.teaser_items.each do |item| %>
     <div class='teaser_item' style='width: 280px; height: 110px; border: 1px solid #ff9e43; border-radius: 3px; background-color: #ffe0bd; float: left; margin: 0 10px 10 0'>
       <div class="left" style='float:left; margin-right:10px; text-align:center; width: 104px'>
         <div class='image' style='padding:9px; width: 94px; height: 92px'>
-          <%= link_to item.text, '#', :style => "background-image: url('#{resized_image_url(item.image_url, 94, 92)}'); width: 94px; height: 92px; display: block; text-indent: -9999px" %>
+          <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, 94, 92)}'); width: 94px; height: 92px; display: block; text-indent: -9999px" %>
         </div>
       </div>
       <div class="right" style='float: left; width: 164px; height: 100%'>
-        <div class="link" style='padding: 33px 0 0 0;'>
-          <%= link_to item.text.try(:truncate, 10), '#', style: 'color: #008ff2; font-size: 18px' %>
+        <div class="link" style='white-space: pre-line'>
+          <%= link_to item.text.try(:truncate, @teaser.text_length), item.try(:url), style: 'color: #008ff2; font-size: 18px', target: '_blank' %>
         </div>
         <div class="author">
           <span>znaigorod.ru</span>

@@ -1289,12 +1289,13 @@ ActiveRecord::Schema.define(:version => 20141211050313) do
   end
 
   create_table "teaser_items", :force => true do |t|
-    t.text     "text"
     t.integer  "teaser_id"
-    t.string   "image_url"
-    t.string   "image_file_name"
     t.string   "image_content_type"
+    t.string   "image_file_name"
     t.string   "image_file_size"
+    t.string   "image_url"
+    t.string   "url"
+    t.text     "text"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

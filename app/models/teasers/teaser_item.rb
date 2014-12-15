@@ -1,5 +1,5 @@
 class TeaserItem < ActiveRecord::Base
-  attr_accessible :text, :image
+  attr_accessible :text, :image, :url
 
   belongs_to :teaser
 
