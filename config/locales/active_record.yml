@@ -75,6 +75,8 @@ ru:
       map_project:                        Картопроект
       map_layer:                          Слой
       map_placemark:                      Метка
+      teaser:                             Тизер
+      teaser_item:                        Элемент тизера
 
 
     attributes:
@@ -588,3 +590,18 @@ ru:
       map_placemark:
         <<: *common_attributes
         map_layer: Слой
+
+      teaser:
+        <<: *common_attributes
+        image_quantity: Количество элементов
+        image_width: Ширина картинки
+        image_height: Высота картинки
+        background_color: Цвет фона
+        border_color: Цвет рамки
+        text_color: Цвет текста
+        link_color: Цвет ссылки
+
+      teaser_item:
+        text: Текст
+        url: Ссылка
+        image: Постер
