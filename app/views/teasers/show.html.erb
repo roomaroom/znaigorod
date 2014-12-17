@@ -11,12 +11,16 @@
 .teaser_wrapper .label {
   background-color: #f45800;
   color: white;
-  display: table-cell;
-  font-size: 13px;
-  height: 14px;
+  display: table-row;
+  font-size: 10px;
   text-align: center;
-  vertical-align: middle;
   width: 95px;
+}
+
+.teaser_wrapper .label span {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 10px;
 }
 
 .teaser_wrapper .label:after {
@@ -83,7 +87,7 @@
   <% @teaser.teaser_items.order_by_id.each do |item| %>
     <div class='teaser_item'>
       <div class="left">
-        <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, 94, 92)}')" %>
+        <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, @teaser.image_width, @teaser.image_height)}')" %>
       </div>
 
       <div class="right">
