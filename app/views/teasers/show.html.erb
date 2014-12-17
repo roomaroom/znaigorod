@@ -35,9 +35,9 @@
 }
 
 .teaser_wrapper .teaser_item {
-  background-color: #ffe0bd;
+  background-color: <%= @teaser.background_color %>;
   border-radius: 3px;
-  border: 1px solid #ff9e43;
+  border: 1px solid <%= @teaser.border_color %>;
   float: left;
   display: table-row;
   margin: 0 5px 0 0;
@@ -69,13 +69,14 @@
 }
 
 .teaser_item .right .link a {
-  color: #269aee;
+  color: <%= @teaser.link_color %>;
   font-size: 13px;
   line-height: 19px;
 }
 
 .teaser_item .right .author {
   font-size: 11px;
+  color: <%= @teaser.text_color  %>;
 }
 </style>
 
@@ -92,7 +93,7 @@
 
       <div class="right">
         <div class="link">
-          <%= link_to item.text.try(:truncate, @teaser.text_length), item.try(:url), target: '_blank' %>
+          <%= link_to item.text, item.try(:url), target: '_blank' %>
         </div>
         <div class="author">
           <span>znaigorod.ru</span>
