@@ -181,6 +181,7 @@ Znaigorod::Application.routes.draw do
     end
 
     resources :teasers do
+      put 'clear' => 'teasers#clear', :on => :member, as: :clear
       resources :teaser_items, :only =>[:edit, :update]
     end
 
