@@ -1295,7 +1295,7 @@ ActiveRecord::Schema.define(:version => 20141211050313) do
     t.string   "image_file_size"
     t.string   "image_url"
     t.string   "url"
-    t.text     "text"
+    t.string   "text"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
@@ -1304,10 +1304,14 @@ ActiveRecord::Schema.define(:version => 20141211050313) do
     t.integer  "items_quantity"
     t.integer  "image_width"
     t.integer  "image_height"
-    t.integer  "text_length"
+    t.string   "background_color"
+    t.string   "border_color"
+    t.string   "text_color"
+    t.string   "link_color"
     t.string   "title"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "slug"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "tickets", :force => true do |t|

@@ -11,7 +11,7 @@
         </p>
         <p><%= link_to item.url, item.url, target: '_blank' %></p>
         <p>
-          <%= link_to 'Добавить/Редактировать', edit_manage_teaser_teaser_item_path(resource, item) %> / <%= link_to 'Очистить', clear_manage_teaser_path(resource, 'teaser_item_id' => item.id), method: :put %>
+          <%= link_to 'Редактировать', edit_manage_teaser_teaser_item_path(resource, item) %> / <%= link_to 'Очистить', clear_manage_teaser_path(resource, 'teaser_item_id' => item.id), method: :put %>
         </p>
       </li>
     <% end %>

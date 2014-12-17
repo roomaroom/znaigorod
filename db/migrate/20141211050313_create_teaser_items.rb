@@ -7,7 +7,7 @@ class CreateTeaserItems < ActiveRecord::Migration
       t.string :image_file_size
       t.string :image_url
       t.string :url
-      t.text :text
+      t.string :text
       t.timestamps
     end
   end

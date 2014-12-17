@@ -4,7 +4,10 @@
   <%= f.input :items_quantity %>
   <%= f.input :image_width %>
   <%= f.input :image_height %>
-  <%= f.input :text_length %>
+  <%= f.input :background_color, as: :minicolors %>
+  <%= f.input :border_color, as: :minicolors %>
+  <%= f.input :text_color, as: :minicolors  %>
+  <%= f.input :link_color, as: :minicolors  %>
   <%= f.submit %>
   <%= link_to 'Назад', manage_teasers_path %>
 <% end %>
