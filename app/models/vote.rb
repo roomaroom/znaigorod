@@ -22,8 +22,14 @@ class Vote < ActiveRecord::Base
   scope :rendereable,      -> { where(:voteable_type => ['Afisha', 'Organization']).where(:like => true) }
 
   def change_vote
+    contest_not_end = if self.voteable.is_a?(Work)
+             self.voteable.context.is_a?(Contest) ? self.voteable.context.ends_at > Time.zone.now : true
+           else
+             true
+           end
+
     self.like = (like? ? false : true)
-    self.save
+    self.save if contest_not_end
   end
 
   private
