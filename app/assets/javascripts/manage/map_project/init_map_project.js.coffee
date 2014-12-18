@@ -30,7 +30,7 @@
         left: 10
 
     clusterIcons = [{
-      size: [35, 35]
+      size: [35, 50]
       offset: [-18, -18]
     }]
 
@@ -79,7 +79,7 @@
         hideIconOnBalloonOpen: false
         iconLayout: 'default#image'
         iconImageHref: $(item).attr('data-icon')
-        iconImageSize: [35, 35]
+        iconImageSize: [35, 50]
         iconImageOffset: [-18, -18]
 
       clusterer.add point

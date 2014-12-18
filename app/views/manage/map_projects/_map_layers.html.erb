@@ -6,7 +6,10 @@
     <% end%>
     <% map_project.map_layers.each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:id] ? 'selected' : nil do %>
-        <%= link_to map_layer.title,  manage_map_project_map_layer_path(map_project, map_layer) %>
+        <%= link_to map_layer.title, manage_map_project_map_layer_path(map_project, map_layer) %>
+        <p>
+          <%= image_tag map_layer.icon_image_url, size: '35x50' %> <%= image_tag map_layer.image_url, size: '35x35' %>
+        </p>
           (<%= link_to "Редактировать", edit_manage_map_project_map_layer_path(map_project, map_layer) %>
           <%= link_to "Удалить", manage_map_project_map_layer_path(map_project, map_layer), method: 'DELETE', confirm: 'Вы уверены?' %>)
         <% end %>

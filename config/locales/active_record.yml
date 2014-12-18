@@ -586,6 +586,7 @@ ru:
       map_layer:
         <<: *common_attributes
         image: Картинка слоя
+        icon_image: Иконка на карте
 
       map_placemark:
         <<: *common_attributes

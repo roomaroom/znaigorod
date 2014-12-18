@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141211050313) do
+ActiveRecord::Schema.define(:version => 20141218082602) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -533,8 +533,12 @@ ActiveRecord::Schema.define(:version => 20141211050313) do
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.string   "image_file_size"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "icon_image_url"
+    t.string   "icon_image_file_name"
+    t.string   "icon_image_content_type"
+    t.string   "icon_image_file_size"
   end
 
   create_table "map_placemarks", :force => true do |t|

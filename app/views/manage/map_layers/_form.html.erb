@@ -3,6 +3,7 @@
   <%= simple_form_for [:manage, resource.map_project, resource] do |f| %>
     <%= f.input :title %>
     <%= f.input :image %>
+    <%= f.input :icon_image %>
     <%= f.submit %>
     <%= link_to 'Назад', manage_map_project_path(resource.map_project) %>
   <% end %>
