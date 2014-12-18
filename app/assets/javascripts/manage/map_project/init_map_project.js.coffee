@@ -38,6 +38,7 @@
       clusterDisableClickZoom: true
       showInAlphabeticalOrder: true
       hideIconOnBalloonOpen: false
+      groupByCoordinates: true
       clusterBalloonContentLayout: 'cluster#balloonCarousel'
       clusterBalloonPagerType: 'marker'
       clusterBalloonContentLayoutWidth: 192
