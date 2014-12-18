@@ -30,6 +30,7 @@
         left: 10
 
     clusterIcons = [{
+      href: $('.js-cluster-icon').attr('data-cluster_icon')
       size: [35, 35]
       offset: [-18, -18]
     }]
@@ -38,11 +39,14 @@
       clusterDisableClickZoom: true
       showInAlphabeticalOrder: true
       hideIconOnBalloonOpen: false
+      groupByCoordinates: true
       clusterBalloonContentLayout: 'cluster#balloonCarousel'
       clusterBalloonPagerType: 'marker'
       clusterBalloonContentLayoutWidth: 192
       clusterBalloonContentLayoutHeight: 355
       clusterIcons: clusterIcons
+      clusterIconContentLayout: null
+
 
     $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)

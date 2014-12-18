@@ -10,4 +10,10 @@
       <%= link_to (image_tag 'public/malenkaya-krasavitsa-2014.jpg', size: '880x80'), '/contests/malenkaya-krasavitsa-2014', class: 'js-stat-krasavitsa-2014' %>
     </li>
   <% end %>
+
+  <% unless params[:id] == 'delay-super-selfi-s-monopodom-dlya-smartfona' %>
+    <li class='js-banner selfi-monopode'>
+      <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/discounts/delay-super-selfi-s-monopodom-dlya-smartfona', class: 'js-stat-monopode' %>
+    </li>
+  <% end %>
 </ul>
