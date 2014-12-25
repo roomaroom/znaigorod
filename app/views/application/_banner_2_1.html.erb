@@ -1,18 +1,18 @@
 <ul class='banner12 <%= params['controller'].to_s.split('/').try(&:first) %>'>
   <% unless params[:id] == 'imidzh-proekt-potentsial' %>
-    <li class='js-banner imidzh-proekt-potentsial'>
+    <li class='js-banner imidzh-proekt-potentsial' data-timer='10000'>
       <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
     </li>
   <% end %>
 
-  <% unless params[:id] == 'malenkaya-krasavitsa-2014' %>
-    <li class='js-banner malenkaya-krasavitsa-2014'>
+  <% unless params[:id] == 'malenkaya-krasavitsa-2014' || Time.zone.now > Time.zone.now.beginning_of_day + 1.day %>
+    <li class='js-banner malenkaya-krasavitsa-2014' data-timer='10000'>
       <%= link_to (image_tag 'public/malenkaya-krasavitsa-2014.jpg', size: '880x80'), '/contests/malenkaya-krasavitsa-2014', class: 'js-stat-krasavitsa-2014' %>
     </li>
   <% end %>
 
   <% unless params[:id] == 'delay-super-selfi-s-monopodom-dlya-smartfona' %>
-    <li class='js-banner selfi-monopode'>
+    <li class='js-banner selfi-monopode' data-timer='20000'>
       <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/discounts/delay-super-selfi-s-monopodom-dlya-smartfona', class: 'js-stat-monopode' %>
     </li>
   <% end %>
