@@ -1,12 +1,12 @@
 <ul class='banner12 <%= params['controller'].to_s.split('/').try(&:first) %>'>
   <% unless params[:id] == 'imidzh-proekt-potentsial' %>
-    <li class='js-banner imidzh-proekt-potentsial' data-timer='10000'>
+    <li class='js-banner imidzh-proekt-potentsial'>
       <%= link_to (image_tag 'public/potential_banner.jpg', size: '880x80'), '/contests/imidzh-proekt-potentsial', class: 'js-stat-potential' %>
     </li>
   <% end %>
 
   <% unless params[:id] == 'delay-super-selfi-s-monopodom-dlya-smartfona' %>
-    <li class='js-banner selfi-monopode' data-timer='20000'>
+    <li class='js-banner selfi-monopode'>
       <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/discounts/delay-super-selfi-s-monopodom-dlya-smartfona', class: 'js-stat-monopode' %>
     </li>
   <% end %>
