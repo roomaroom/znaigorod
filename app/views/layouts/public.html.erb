@@ -16,14 +16,13 @@
   <div class='message_wrapper'></div>
 <% end %>
 
-
 <%= content_for :content do %>
-  <%= render :partial => 'commons/new_feature' %>
+  <%= render :partial => 'banners/banner_1_1' %>
   <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
   <%= render :partial => 'commons/email_request_form' %>
   <%= render :partial => 'commons/public_header' %>
   <% controllers = %w[afishas organizations discounts questions suborganizations saunas hotels map_projects banki_tomsk] %>
-  <%= render :partial => 'banner_2_1' unless controllers.include? controller_name || params[:id] == 'parad-nashestvie-nevest-2014' || params[:photogallery_id] == 'parad-nashestvie-nevest-2014' %>
+  <%= render :partial => 'banners/banner_1_2' unless controllers.include? controller_name || params[:id] == 'parad-nashestvie-nevest-2014' || params[:photogallery_id] == 'parad-nashestvie-nevest-2014' %>
   <%= render :partial => 'commons/public_content' %>
   <%= render :partial => 'commons/public_footer' %>
   <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
