@@ -403,7 +403,6 @@
       ul
         li
           width: 350px
-          height: 280px
           margin: 0 20px 20px 20px
 
           .title
@@ -412,6 +411,7 @@
 
           .sms_vote, .sms_votes_counter, .sms_title
             margin: 0 auto
+            padding: 5px 0 0
             text-align: center
             width: 340px
 
@@ -542,6 +542,12 @@
 
   > h1
     display: none
+
+  .winners
+    ul
+      li
+        &:last-child
+          margin: 0 0 20px !important
 
   .description
     +clearfix
