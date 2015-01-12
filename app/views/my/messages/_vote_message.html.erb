@@ -20,6 +20,8 @@
         <%= link_to message.messageable.voteable.commentable.title, question_path(message.messageable.voteable.commentable, :anchor => "comment_#{message.messageable.voteable.id}") %>
       <% elsif message.messageable.voteable.commentable.is_a?(Review) %>
         <%= link_to message.messageable.voteable.commentable.title, review_path(message.messageable.voteable.commentable, :anchor => "comment_#{message.messageable.voteable.id}") %>
+      <% elsif message.messageable.voteable.commentable.is_a?(Discount) %>
+        <%= link_to message.messageable.voteable.commentable.title, discount_path(message.messageable.voteable.commentable, :anchor => "comment_#{message.messageable.voteable.id}") %>
       <% else %>
         <%= link_to(message.messageable.voteable.commentable.title, polymorphic_path(message.messageable.voteable.commentable, anchor: "comment_#{message.messageable.voteable.id}")) %>
       <% end %>
