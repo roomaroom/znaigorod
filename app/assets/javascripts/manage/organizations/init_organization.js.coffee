@@ -47,7 +47,7 @@ markItUpSettings = ->
   buyButton = {
     name: 'Добавить ссылку "Купить"'
     className: 'buy_button'
-    replaceWith: '<a class="buy_button" href="copy_payments/new">[![Текст кнопки:!:Введите текст кнопки]!]</a>'
+    replaceWith: '<div align="center" class="buy_button"> <a class="button" href="copy_payments/new">[![Текст кнопки:!:Введите текст кнопки]!] </a> </div>'
   }
 
   settings.markupSet.push(imageButton)
