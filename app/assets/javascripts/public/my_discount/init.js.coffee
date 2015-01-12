@@ -9,6 +9,7 @@
   $('.js-examples').click ->
     $('.help_examples').show()
 
+    true
 
 init_discount_switch = () ->
   $('.switch_box').on 'change', ->
