@@ -3,6 +3,12 @@ class Manage::CouponsController < Manage::ApplicationController
 
   actions :all, :except => [:index, :show, :destroy]
 
+  def edit
+    edit! {
+      render text: params[:id] and return if request.xhr?
+    }
+  end
+
   def create
     create! { manage_discount_path resource }
   end

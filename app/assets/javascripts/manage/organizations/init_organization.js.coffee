@@ -47,7 +47,7 @@ markItUpSettings = ->
   buyButton = {
     name: 'Добавить ссылку "Купить"'
     className: 'buy_button'
-    replaceWith: '<div align="center" class="buy_button"> <a class="button" href="copy_payments/new">[![Текст кнопки:!:Введите текст кнопки]!] </a> </div>'
+    replaceWith: '<div align="center" class="buy_button"> <a class="button" href="http://znaigorod.ru/discounts/#{get_discount_slug().responseText}/copy_payment/new">[![Текст кнопки:!:Введите текст кнопки]!] </a> </div>'
   }
 
   settings.markupSet.push(imageButton)
@@ -57,6 +57,11 @@ markItUpSettings = ->
 
   settings
 
+get_discount_slug = ->
+  $.ajax
+    type: 'get'
+    async: false
+    success: (res) ->
 
 @handleImageButtonClick = ->
   $('.image_button').click ->

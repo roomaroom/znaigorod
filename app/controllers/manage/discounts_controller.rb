@@ -8,6 +8,12 @@ class Manage::DiscountsController < Manage::ApplicationController
   has_scope :by_state, :only => :index
   has_scope :by_kind, :only => :index
 
+  def edit
+    edit! {
+      render text: params[:id] and return if request.xhr?
+    }
+  end
+
   def update
     update! do |success, failure|
       success.html {
