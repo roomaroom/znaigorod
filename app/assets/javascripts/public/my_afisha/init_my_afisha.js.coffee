@@ -31,14 +31,6 @@ init_preview_description = ->
       $('#markitup_description').keyup()
       true
 
-    buyButton = {
-      name: 'Добавить ссылку "Купить"'
-      className: 'buy_button'
-      replaceWith: '<a class="buy_button" href="copy_payments/new">[![Текст кнопки:!:Введите текст кнопки]!]</a>'
-    }
-
-  mySettings.markupSet.push(buyButton) if $('.discount').length
-
   $('#markitup_description').markItUp(mySettings).keyup ->
     if $(this).val()
       $('.my_wrapper .preview .description .text').html(textile($(this).val()))

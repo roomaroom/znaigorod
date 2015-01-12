@@ -44,9 +44,16 @@ markItUpSettings = ->
     replaceWith: '[![Добавление видео с Vimeo:!:Просто вставьте сюда ссылку на видео с Vimeo, например, http://vimeo.com/11192521]!]'
   }
 
+  buyButton = {
+    name: 'Добавить ссылку "Купить"'
+    className: 'buy_button'
+    replaceWith: '<a class="buy_button" href="copy_payments/new">[![Текст кнопки:!:Введите текст кнопки]!]</a>'
+  }
+
   settings.markupSet.push(imageButton)
   settings.markupSet.push(youtubeButton)
   settings.markupSet.push(vimeoButton)
+  settings.markupSet.push(buyButton) if $('.discounts').length
 
   settings
 
