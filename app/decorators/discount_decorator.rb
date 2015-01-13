@@ -94,13 +94,15 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def similar_discount
-    #count = geo_present? ? 3 : 5
-    count = 3
-    HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(count).results.map { |d| DiscountDecorator.new d }
+    HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(3).results.map { |d| DiscountDecorator.new d }
   end
 
   def kind_discounts(kind)
     HasSearcher.searcher(:discounts, :kind => kind).paginate(:per_page => 6).results.map { |d| DiscountDecorator.new d }
+  end
+
+  def type_discounts(type)
+    HasSearcher.searcher(:discounts, :type => type).paginate(:per_page => 6).results.map { |d| DiscountDecorator.new d }
   end
 
   def smart_path(options = {})

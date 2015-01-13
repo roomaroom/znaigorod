@@ -183,11 +183,11 @@
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @discount } %>
 
-    <% if @kind_discounts.any? %>
+    <% if @type_discounts.any? %>
       <div class='discount_info similar_discount'>
         <div class='title'>Похожие скидки</div>
         <ul class='posters'>
-          <% @kind_discounts.each do |discount| %>
+          <% @type_discounts.each do |discount| %>
             <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '196', :@height => '164' } %>
           <% end %>
         </ul>
