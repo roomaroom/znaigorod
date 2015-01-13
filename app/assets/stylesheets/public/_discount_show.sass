@@ -315,6 +315,22 @@
             margin-right: 10px
             position: relative
 
+            &:hover
+              img
+                +opacity(.5)
+
+              .hidden_button
+                +opacity(1)
+                display: block
+                z-index: 100
+
+            .hidden_button
+              display: none
+              left: 10px
+              position: absolute
+              top: 20px
+
+
           &:last-child
             margin-bottom: 0
 

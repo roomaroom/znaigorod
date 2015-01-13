@@ -82,6 +82,13 @@
                 <div class="image">
                   <%= link_to discount_path(discount) do %>
                     <%= image_tag resized_image_url(discount.poster_url, 80, 60), :size => '80x60', :alt => discount.title.text_gilensize %>
+                    <% if discount.copies.for_sale.any? && discount.price %>
+                      <% if discount.price.zero? %>
+                        <%= link_to 'Получить код', new_discount_copy_payment_path(discount), :class => 'payment_link button hidden_button', :remote => true, :rel => :nofollow %>
+                      <% else %>
+                        <%= link_to 'Купить', new_discount_copy_payment_path(discount), :class => 'payment_link button hidden_button', :remote => true, :rel => :nofollow %>
+                      <% end %>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="clearfix">
