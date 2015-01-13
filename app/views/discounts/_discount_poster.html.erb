@@ -1,4 +1,4 @@
-<% cache("discount#{discount.id}_#{controller_name}", expires_in: 10.minutes) do %>
+<% cache("discount#{discount.id}_#{controller_name}_#{action_name}", expires_in: 10.minutes) do %>
   <li>
     <div class="item <%= 'fresh' if controller_name == 'discounts' && action_name != 'show' %>">
       <div class="info">

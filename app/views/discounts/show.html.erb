@@ -157,7 +157,7 @@
             <%= link_to('ЗнайГород (Афиша Томска)', 'http://vk.com/znaigorod') %>
           </p>
         <% end %>
-        <%= render :partial => 'commons/published_date', :locals => { :published_date => @discount.updated_at } %>
+        <%= render :partial => 'commons/published_date', :locals => { :published_date => @discount.created_at } %>
       <% end %>
     </div>
 
