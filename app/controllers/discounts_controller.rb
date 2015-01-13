@@ -32,7 +32,7 @@ class DiscountsController < ApplicationController
       format.html do
         @discount = DiscountDecorator.new(@discount)
         @kind_discounts = @discount.kind_discounts(@discount.kind.first)
-        @type_discounts = @discount.type_discounts(@discount.type.underscore)
+        @type_discounts = @discount.type_discounts(@discount.type.try(:underscore))
         @presenter = DiscountsPresenter.new(params.merge(:kind => @discount.kind.map(&:value).first, :type => @discount.model.type_for_solr))
         @discount.delay(:queue => 'critical').create_page_visit(request.session_options[:id], request.user_agent, current_user)
         @members = @discount.members.page(1).per(3)
