@@ -43,6 +43,16 @@ class My::RelatedItemsController < ApplicationController
     render :partial => 'my/related_items/photogalleries' if request.xhr?
   end
 
+  def discounts
+    searcher = HasSearcher.searcher(:discounts, :q => search_param)
+      .paginate(page: page, per_page: per_page)
+
+    @related_items=related_items("discount")
+    @related_discounts = searcher.results
+
+    render :partial => 'my/related_items/discounts' if request.xhr?
+  end
+
   private
   def related_items(item_name)
     return [] unless params[:related_items_ids]

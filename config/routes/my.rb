@@ -96,6 +96,7 @@ Znaigorod::Application.routes.draw do
     get 'related_reviews' => 'related_items#reviews',             :as => 'related_reviews'
     get 'related_organizations' => 'related_items#organizations', :as => 'related_organizations'
     get 'related_photogalleries' => 'related_items#photogalleries', :as => 'related_photogalleries'
+    get 'related_discounts' => 'related_items#discounts', :as => 'related_discounts'
 
     root to: 'accounts#show'
   end
