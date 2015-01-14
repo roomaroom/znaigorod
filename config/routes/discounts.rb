@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Znaigorod::Application.routes.draw do
-  mount Discounts::API => '/'
+  #mount Discounts::API => '/'
 
   Discount.classes_subtree.map(&:name).map(&:underscore).each do |type|
     # /discounts/[discount|certificate|coupon]
