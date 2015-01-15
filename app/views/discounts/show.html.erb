@@ -84,9 +84,9 @@
                     <%= image_tag resized_image_url(discount.poster_url, 80, 60), :size => '80x60', :alt => discount.title.text_gilensize %>
                     <% if discount.copies.for_sale.any? && discount.price %>
                       <% if discount.price.zero? %>
-                        <%= link_to 'Получить код', new_discount_copy_payment_path(discount), :class => 'payment_link button hidden_button', :remote => true, :rel => :nofollow %>
+                        <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => 'for_sale button hidden_button', :rel => 'nofollow' %>
                       <% else %>
-                        <%= link_to 'Купить', new_discount_copy_payment_path(discount), :class => 'payment_link button hidden_button', :remote => true, :rel => :nofollow %>
+                        <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => 'for_sale button hidden_button', :rel => 'nofollow' %>
                       <% end %>
                     <% end %>
                   <% end %>

@@ -56,7 +56,7 @@
       <% @review.relations.delete_if{ |relation| relation.slave.blank? }.each do |relation| %>
         <% cache "related_review#{relation.id}", expires_in: 10.minutes do %>
           <li class="item tiny">
-            <%= render :partial => 'reviews/related_poster', :locals => {:item => relation.slave} %>
+            <%= render :partial => "reviews/related_poster_#{relation.slave.class.to_s.downcase}", :locals => { :item => "#{relation.slave.class.to_s}Decorator".constantize.new(relation.slave) } %>
           </li>
         <% end %>
       <% end %>
