@@ -1,6 +1,6 @@
 <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}", expires_in: 10.minutes) do %>
   <% @presenter.collection.each do |suborganization| %>
-    <li class="item fresh">
+    <li class="item_organization fresh">
       <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 194, height: 190 } %>
     </li>
   <% end %>

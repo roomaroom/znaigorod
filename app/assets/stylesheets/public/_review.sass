@@ -236,7 +236,7 @@
 
   .right
     float: right
-    width: 240px
+    width: 264px
 
     h2
       font-size: 14px
@@ -245,54 +245,55 @@
       text-align: center
 
     .posters
-      li.item
+      li.item_review
         border: 1px solid #ccc
         margin: 5px 0 20px 0
         padding: 12px
+        clear: both
 
         &.tiny
           width: 214px
 
-      .title
-        font-size: 14px
-        line-height: 18px
-        margin: 0 0 10px 0
-        text-align: center
+        .title
+          font-size: 14px
+          line-height: 18px
+          margin: 0 0 10px 0
+          text-align: center
 
-      .date, .details
-        font-size: 10px
-        margin: 0 0 5px 0
-
-        .comments, .likes, .visits
+        .date, .details
           font-size: 10px
+          margin: 0 0 5px 0
 
-      .annotation
-        clear: both
+          .comments, .likes, .visits
+            font-size: 10px
 
-        .images
-          height: 122px
-          margin: 0 auto
-          position: relative
+        .annotation
+          clear: both
 
-        .counter
-          +border-radius(5px)
-          background-color: rgba(#000, 0.5)
-          padding: 5px
-          bottom: 5px
-          color: #fff
-          position: absolute
-          right: 5px
+          .images
+            height: 122px
+            margin: 0 auto
+            position: relative
 
-        li
-          float: left
-          height: 41px
-          margin: 0
-          padding: 0
-          width: 71px
+          .counter
+            +border-radius(5px)
+            background-color: rgba(#000, 0.5)
+            padding: 5px
+            bottom: 5px
+            color: #fff
+            position: absolute
+            right: 5px
 
-        li:first-child
-          height: 82px
-          width: 142px
+          li
+            float: left
+            height: 41px
+            margin: 0
+            padding: 0
+            width: 71px
+
+          li:first-child
+            height: 82px
+            width: 142px
 
 
   .questions
@@ -303,7 +304,7 @@
     .date
       color: #ccc
 
-    .author:
+    .author
       font-size: 12px
 
     .avatar

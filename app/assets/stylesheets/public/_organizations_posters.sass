@@ -24,7 +24,7 @@
     padding: 10px 0
     width: 262px
 
-.organization_content, .organizations_main_page_list, .situated_items, .next_organization
+.organization_content, .organizations_main_page_list, .situated_items, .next_organization, .related_posters
   clear: both
 
   &.situated_items
@@ -46,7 +46,7 @@
   .posters
     overflow: visible
 
-    li
+    li.item_organization
       +transition(all 750ms ease-out)
       float: left
       margin: 0 19px 20px 0px
@@ -190,9 +190,9 @@
   li.pagination
     border: none !important
     height: 30px !important
-    margin: 0 8px !important
+    margin: 0 !important
     padding: 0 0 20px 0 !important
-    width: 850px !important
+    width: 858px !important
 
     a
       &.disabled

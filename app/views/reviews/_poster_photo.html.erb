@@ -6,7 +6,7 @@
       <% end %>
     <% elsif controller_path == 'reviews' && action_name == 'show' %>
       <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>
-        <%= review.annotation_gallery(142, 80) %>
+        <%= review.annotation_gallery(140, 80) %>
       <% end %>
     <% elsif controller_path == 'afishas' || controller_path == 'map_projects' || controller_path == 'organizations' && action_name == 'show' %>
       <% cache("review_#{review.useful_type}_#{action_name}_#{review.id}", expires_in: 10.minutes) do %>

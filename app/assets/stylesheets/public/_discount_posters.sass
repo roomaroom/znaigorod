@@ -25,13 +25,17 @@
   padding: 10px 0
   width: 262px
 
-.discount_content, .discounts_main_page_list, .similar_discount
+.discount_content, .discounts_main_page_list, .similar_discount, .related_posters
   clear: both
 
   .posters
     +clearfix
 
-    li
+    &.related_discounts
+      li.item_wrapper
+        margin: 0 0 20px
+
+    li.item_wrapper
       float: left
       margin: 0 10px 20px 10px
       width: 200px

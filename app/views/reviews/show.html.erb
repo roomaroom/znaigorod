@@ -52,21 +52,19 @@
 <div class="right">
   <% if @review.relations.present?  %>
     <h2>Обзор связан с:</h2>
-    <ul class="related posters">
-      <% @review.relations.delete_if{ |relation| relation.slave.blank? }.each do |relation| %>
-        <% cache "related_review#{relation.id}", expires_in: 10.minutes do %>
-          <li class="item tiny">
-            <%= render :partial => "reviews/related_poster_#{relation.slave.class.to_s.downcase}", :locals => { :item => "#{relation.slave.class.to_s}Decorator".constantize.new(relation.slave) } %>
-          </li>
+    <div class="related_posters">
+      <ul class="posters related_discounts">
+        <% @review.relations.delete_if{ |relation| relation.slave.blank? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
+      <h2>Похожие обзоры:</h2>
+      <ul class="similar posters">
+        <% @review.decorated_similar.each do |review| %>
+          <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <h2>Похожие обзоры:</h2>
-  <ul class="similar posters">
-    <% @review.decorated_similar.each do |review| %>
-      <li class="item tiny"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
-    <% end %>
-  </ul>
 </div>

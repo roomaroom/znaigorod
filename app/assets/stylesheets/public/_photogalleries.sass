@@ -248,7 +248,7 @@
   padding: 0 40px 25px 5px
   width: 880px
 
-.right_works
+.right_works, .related_posters
   float: left
   border-left: 1px solid #e5e5e5
   margin: 0 0 0 -1px
@@ -261,7 +261,8 @@
 
   .posters
     margin-left: 20px
-    li.item
+
+    li.item_photogallery
       border: 1px solid #ccc
       margin: 5px 0 20px 0
       padding: 12px
@@ -269,46 +270,46 @@
       &.tiny
         width: 214px
 
-    .title
-      font-size: 14px
-      line-height: 18px
-      margin: 0 0 10px 0
-      text-align: center
+      .title
+        font-size: 14px
+        line-height: 18px
+        margin: 0 0 10px 0
+        text-align: center
 
-    .date, .details
-      font-size: 10px
-      margin: 0 0 5px 0
-
-      .comments, .likes, .visits
+      .date, .details
         font-size: 10px
+        margin: 0 0 5px 0
 
-    .annotation
-      clear: both
+        .comments, .likes, .visits
+          font-size: 10px
 
-      .images
-        height: 122px
-        margin: 0 auto
-        position: relative
+      .annotation
+        clear: both
 
-      .counter
-        +border-radius(5px)
-        background-color: rgba(0, 0, 0, 0.5)
-        bottom: 5px
-        color: #fff
-        padding: 5px
-        position: absolute
-        right: 5px
+        .images
+          height: 122px
+          margin: 0 auto
+          position: relative
 
-      li
-        float: left
-        height: 41px
-        margin: 0
-        padding: 0
-        width: 71px
+        .counter
+          +border-radius(5px)
+          background-color: rgba(0, 0, 0, 0.5)
+          bottom: 5px
+          color: #fff
+          padding: 5px
+          position: absolute
+          right: 5px
 
-      li:first-child
-        height: 82px
-        width: 142px
+        li
+          float: left
+          height: 41px
+          margin: 0
+          padding: 0
+          width: 71px
+
+        li:first-child
+          height: 82px
+          width: 142px
 
 .agreement_wrapper
   .agreement_text

@@ -4,7 +4,7 @@
 
 <% unless controller_name == 'organizations' || controller_name == 'afishas' %>
   <% unless @presenter.collection.last_page? %>
-    <li class="item pagination">
+    <li class="item_wrapper pagination">
       <%= link_to_next_page @presenter.collection, "Еще скидки (#{@presenter.current_count})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
     </li>
   <% end %>
