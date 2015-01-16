@@ -17,3 +17,50 @@
   clear: both
   float: left
   margin: 10px 0
+
+.list_view_organization_left
+  overflow-y: scroll
+  max-height: 540px
+  width: 610px
+
+  .list_view_organization_content
+    clear: both
+
+    .list_view_organization_posters
+      +clearfix
+
+      li.list_view_organization_item
+        +clearfix
+        border-bottom: 1px solid #ccc
+        margin: 10px
+        padding: 0 0 10px 0
+
+        .list_view_organization_poster
+          width: 100%
+          +clearfix
+
+          li
+            float: left
+
+          .image
+            width: 100px
+            height: 100px
+            float: left
+
+          .info
+            float: left
+            margin: 0 0 0 10px
+
+            h1
+              font-size: 14px
+
+            .categories_and_visits
+              .categories
+                li
+                  margin: 0 5px 0 0
+                  font-size: 11px
+                  color: #adadad
+
+              .details
+                clear: both
+                color: #989898

@@ -19,6 +19,62 @@
       <!--/noindex-->
     </div>
   </div>
+
+  <div class="list_view_organization_content">
+    <ul class="list_view_organization_posters">
+      <% @presenter.collection.each do |item| %>
+        <li class='list_view_organization_item'>
+          <div class="list_view_organization_poster">
+
+            <!-- логотип -->
+            <div class="image">
+              <!-- если логотип есть -->
+              <% if item.organization.logotype_url? %>
+                <%= link_to organization_path(item.organization) do %>
+                  <%= image_tag(resized_image_url(item.organization.logotype_url, 100, 100, :watermark => false), size: "#{100}x#{100}", alt: item.organization.title) %>
+                <% end %>
+              <% else %>
+                <!-- иначе -->
+                <%= link_to organization_path(item.organization) do %>
+                  <span class='stub_poster <%= item.priority_item_kind %>'></span>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="info">
+              <!-- информация о заведении -->
+
+              <h1><%= link_to item.title, organization_path(item) %></h1>
+              <!-- адрес -->
+              <%= content_tag(:div, "Адрес: #{item.address_link}".html_safe, class: :place) if item.address_link.present? %>
+              <%= item.work_schedule %>
+
+              <!-- телефон -->
+              Телефон: <%= item.phone.truncate(5)%>
+            <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: item.id %>
+
+            <!-- категории и остальная информация -->
+            <div class='categories_and_visits'>
+              <ul class='categories'>
+                <%= item.category_links.map { |link| content_tag :li, link }.join.mb_chars.downcase.html_safe %>
+              </ul>
+
+              <div class='details'>
+                <span class='show_tipsy fa fa-users' title='Участники'> <%= item.visits.count %></span>
+                <span class='show_tipsy fa fa-user' title='Приглашения'> 0</span> <!-- TODO change this -->
+                <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= item.comments.count %></span>
+                <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= item.likes_count %></span>
+                <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= item.page_visits.count %></span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
 </div>
 
 <div class='list_view_organization_right'>
