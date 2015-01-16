@@ -51,6 +51,10 @@ class ReviewDecorator < ApplicationDecorator
     votes.liked.size
   end
 
+  def sorted_related_items
+    @sorted_related_items = relations.where(slave_type: 'Discount') + relations.where('slave_type != ?', 'Discount')
+  end
+
   def tags
     tag.split(',').map(&:squish).map(&:mb_chars).map(&:downcase)
   end
