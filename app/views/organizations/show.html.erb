@@ -269,7 +269,7 @@
       <div class='title'>Рекомендуем</div>
       <ul class='posters js-paginable-list' data-item-width="220">
         <% @presenter.collection.each do |item| %>
-          <li class="item">
+          <li class="item_organization">
             <%= render partial: 'organizations/suborganization', locals: { suborganization: item, width: 194, height: 190 } %>
           </li>
         <% end %>
