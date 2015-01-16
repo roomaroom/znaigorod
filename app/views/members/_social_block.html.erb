@@ -1,7 +1,7 @@
 <div class="social_actions">
-  <ul class="user_actions">
-    <%= render :partial => 'members/member_link', :locals => { :discount => discount } %>
-  </ul>
+  <!-- <ul class="user_actions"> -->
+    <%#= render :partial => 'members/member_link', :locals => { :discount => discount } %>
+    <!-- </ul> -->
 
   <% unless discount.constant? %>
     <% if discount.goes_now? %>
@@ -17,5 +17,5 @@
     <% end %>
   <% end %>
 
-  <%= render :partial => 'members/members' %>
+  <%#= render :partial => 'members/members' %>
 </div>
