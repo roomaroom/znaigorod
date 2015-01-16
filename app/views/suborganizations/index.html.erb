@@ -12,44 +12,8 @@
   <% end %>
 <% end %>
 
-<div class="organization_left">
-  <%= render :partial => 'banners/banner_1_2' %>
-
-  <div class='filter_header'>
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.page_header.blank? %>
-      <h1><%= t('meta.organizations.page_header') %></h1>
-    <% else %>
-      <h1><%= @presenter.page_header %></h1>
-    <% end %>
-  </div>
-
-  <div class="filter_and_share">
-    <div class='presentation_filters organization'>
-      <!--noindex-->
-      <%= render :partial => 'commons/presentation_filters' %>
-      <!--/noindex-->
-    </div>
-    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
-  </div>
-
-  <div class='organization_content js-button-pagination'>
-    <% if @presenter.collection.any? || @presenter.without_clients_collection.any? %>
-      <ul class='posters js-paginable-list' data-item-width="220">
-        <%= render :partial => 'organizations/organizations_posters' %>
-      </ul>
-    <% else %>
-      <p class='empty_items_list'>По заданным параметрам ничего не найдено ;(</p>
-    <% end %>
-  </div>
-
-  <%= render :partial => 'commons/ads_by_google' %>
-</div>
-
-<div class="organization_right">
-  <%= render :partial => 'commons/promotions' %>
-</div>
+<%#= render 'suborganizations/tile_view' %>
+<%= render 'suborganizations/list_view' %>
 
 <% if page_meta %>
   <div class='introduction'>
