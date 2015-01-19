@@ -74,6 +74,10 @@
       </li>
     <% end %>
   </ul>
+  <div class="add_and_paginate">
+    <%= link_to '+ Добавить организацию' %>
+    <%= link_to_next_page @presenter.paginated_collection, "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 40})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small', :params => params %>
+  </div>
 </div>
 </div>
 
