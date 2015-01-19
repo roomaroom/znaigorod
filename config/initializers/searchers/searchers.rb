@@ -109,7 +109,7 @@ HasSearcher.create_searcher :global do
 
     boost 1 do
       any_of do
-        with(:last_showing_time).greater_than(HasSearcher.cacheable_now)
+        with(:last_showing_time).greater_than(DateTime.now.beginning_of_day)
         with(:kind, ['organization'])
       end
     end
@@ -125,10 +125,23 @@ HasSearcher.create_searcher :global do
   end
 
   scope do
-    without :state, :draft
-    without :state, :pending
-    without :status, :draft
-    without :category, :eighteen_plus
+    any_of do
+      all_of do
+        with :class, [Account, Organization, Review]
+      end
+
+      all_of do
+        with :class, [Discount, Coupon, Certificate, ReviewArticle, ReviewPhoto, ReviewVideo]
+        without :state, [:draft, :pending]
+        without :category, :eighteen_plus
+      end
+
+      all_of do
+        with :class, Afisha
+        without :state, :draft
+        with(:last_showing_time).greater_than DateTime.now.beginning_of_day
+      end
+    end
 
     adjust_solr_params do |params|
       (params[:qf] || '').gsub!(/\bterm_text\b/, '')

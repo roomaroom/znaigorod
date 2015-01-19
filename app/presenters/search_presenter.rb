@@ -31,24 +31,8 @@ class SearchPresenter
     @kind_filter.search_address? ? @ya_addresses_search.collection : collection.results
   end
 
-  def only_actual_afishas
-    not_actual = []
-
-    @only_actual_afishas ||= [].tap do |array|
-      collection.hits.each do |hit|
-        if hit.result.is_a?(Afisha)
-          hit.result.actual? ? array << hit : not_actual << hit
-        else
-          array << hit
-        end
-      end
-    end
-
-    @only_actual_afishas + not_actual
-  end
-
   def hits
-    HitDecorator.decorate(only_actual_afishas).select { |h| h.result && (!h.organization? || h.raw_suborganization) }
+    HitDecorator.decorate(collection.hits).select { |h| h.result && (!h.organization? || h.raw_suborganization) }
   end
 
   def hits?
