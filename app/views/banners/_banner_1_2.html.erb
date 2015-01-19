@@ -10,4 +10,10 @@
       <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/discounts/delay-super-selfi-s-monopodom-dlya-smartfona', class: 'js-stat-monopode' %>
     </li>
   <% end %>
+
+  <% if Time.zone.now < Time.zone.parse('19-02-2015 00:00') %>
+    <li class='js-banner ars-dsm'>
+      <%= link_to (image_tag 'public/banners/banner_ars.jpg', :size => '880x82', :alt => 'Кастинг: Детская супермодель'), '/away?to=http://ars-alliance.ru/projects/dsm', target: '_blank', class: 'js-stat-dsm' %>
+    </li>
+  <% end %>
 </ul>
