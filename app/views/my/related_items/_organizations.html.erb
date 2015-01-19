@@ -3,6 +3,7 @@
     <div class="image">
       <%= image_tag organization.logotype_url.blank? ? 'public/default_image.png' : resized_image_url(organization.logotype_url, 66, 66), size: "66x66"  %>
     </div>
+
     <div class="details">
       <%= link_to organization.title.truncate(25), organization_url(organization), :target => '_blank' %>
       <div>
