@@ -9,7 +9,7 @@ class MainPageController < ApplicationController
 
     @organizations     = OrganizationsCatalogPresenter.new(:per_page => 6)
 
-    @discounts           = DiscountsPresenter.new(:type => 'coupon', :per_page => 5, :order_by => 'random').decorated_collection
+    @discounts           = DiscountsPresenter.new(:type => 'coupon', :per_page => 5).decorated_collection
     advertisement = Advertisement.new(list: 'main_page_discounts')
     advertisement.places_at(1).compact.each do |adv|
       @discounts[adv.position] = adv
