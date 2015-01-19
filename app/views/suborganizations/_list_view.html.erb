@@ -44,7 +44,7 @@
             <div class="info">
               <!-- информация о заведении -->
 
-              <h1><%= link_to item.title, organization_path(item) %></h1>
+              <h1><%= link_to item.title.truncate(30), organization_path(item) %></h1>
               <!-- адрес -->
               <%= content_tag(:div, "Адрес: #{item.address_link}".html_safe, class: :place) if item.address_link.present? %>
               <%= item.work_schedule %>

@@ -19,21 +19,24 @@
   margin: 10px 0
 
 .list_view_organization_left
-  overflow-y: scroll
-  max-height: 540px
+  +clearfix
   width: 610px
 
   .list_view_organization_content
     clear: both
+    +clearfix
 
     .list_view_organization_posters
-      +clearfix
+      overflow-y: scroll
+      max-height: 540px
 
       li.list_view_organization_item
         +clearfix
         border-bottom: 1px solid #ccc
-        margin: 10px
-        padding: 0 0 10px 0
+        padding: 10px
+
+        &:hover
+          background-color: #f2f2f2
 
         .list_view_organization_poster
           width: 100%
@@ -51,15 +54,24 @@
             float: left
             margin: 0 0 0 10px
 
+            .schedule_wrapper
+              .ul-toggler
+                border: 0
+
             h1
               font-size: 14px
 
             .categories_and_visits
               .categories
+                +clearfix
+                width: 375px
+
                 li
                   margin: 0 5px 0 0
                   font-size: 11px
-                  color: #adadad
+
+                  a
+                    color: #adadad
 
               .details
                 clear: both
