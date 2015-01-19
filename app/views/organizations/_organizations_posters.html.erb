@@ -1,16 +1,24 @@
 <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}", expires_in: 10.minutes) do %>
   <% @presenter.collection.each do |suborganization| %>
     <li class="item_organization fresh">
-      <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 194, height: 190 } %>
+      <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 150, height: 150 } %>
     </li>
   <% end %>
 <% end %>
-
-<% unless @presenter.collection.last_page? %>
-  <li class="item pagination">
-    <%= link_to_next_page @presenter.paginated_collection, "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 40})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
-  </li>
+<% if params[:kind] || params[:categories] %>
+  <% unless @presenter.collection.last_page? %>
+    <li class="item pagination">
+      <%= link_to_next_page @presenter.paginated_collection, "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 40})", :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-lg', :params => params %>
+    </li>
+  <% else %>
+    <div style="clear:both"></div>
+    <%= render partial: 'organizations/not_client_posters' %>
+  <% end %>
 <% else %>
-  <div style="clear:both"></div>
-  <%= render partial: 'organizations/not_client_posters' %>
+  <% @presenter.kinds_links_for_index.each do |kind| %>
+    <p><%= link_to kind[:title], kind[:url] %></p>
+    <% kind[:categories].each do |category| %>
+      <p><%= link_to category[:title], category[:url] %></p>
+    <% end %>
+  <% end %>
 <% end %>

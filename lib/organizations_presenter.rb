@@ -172,6 +172,30 @@ module OrganizationsPresenter
     params.merge(aditional)
   end
 
+  def kinds_links_for_index
+    @kinds_links_for_index ||= [].tap do |array|
+      (Organization.suborganization_kinds_for_navigation - ["organization"]).each do |suborganization_kind|
+        array << {
+          title: I18n.t("organization.kind.#{suborganization_kind}"),
+          url: "#{suborganization_kind.pluralize}_path",
+          categories: categories_for_kind(suborganization_kind)
+        }
+      end
+    end
+  end
+
+  def categories_for_kind(suborganization_kind)
+    @categories_for_kind ||= [].tap { |array|
+      HasSearcher.searcher(suborganization_kind.pluralize.to_sym).facet("#{suborganization_kind}_category").rows.map do |row|
+        array << {
+          title: row.value.mb_chars.capitalize,
+          url: "#{suborganization_kind.pluralize}_#{row.value.from_russian_to_param.pluralize}_path",
+          count: row.count
+        }
+      end
+    }
+  end
+
   def kinds_links
     @kinds_links ||= [].tap do |kinds_links|
       Organization.suborganization_kinds_for_navigation.each do |suborganization_kind|
