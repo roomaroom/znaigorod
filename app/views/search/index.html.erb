@@ -3,6 +3,7 @@
 <% content_for :extra_meta do %>
   <meta name='description' content='<%= I18n.t("meta_description.search_results") %> <%= I18n.t("meta_description.main_page") %>' />
 <% end %>
+
 <div class="search_results">
   <% if @search_presenter.hits? %>
     <%= render :partial => "search_addresses_list_short" if @search_presenter.render_addresses? %>
