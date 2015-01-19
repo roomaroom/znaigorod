@@ -2,7 +2,9 @@
 <%= link_to 'Внешние ссылки', manage_statistics_links_path(order_by: 'external') %>
 <%= link_to 'Баннеры', manage_statistics_links_path(order_by: 'banner') %>
 <%= link_to 'Клики по правой части', manage_statistics_links_path(order_by: 'right') %>
+
 <h1>Ссылки</h1>
+
 <table class='links'>
   <thead>
     <tr>
@@ -23,3 +25,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @links %>

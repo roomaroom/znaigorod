@@ -1,8 +1,9 @@
 class Manage::Statistics::LinksController < Manage::ApplicationController
   authorize_resource
+  helper_method :page
 
   def index
-    @links = params[:order_by].present? ? LinkCounter.with_link_type(params[:order_by]) : LinkCounter.all
+    @links = params[:order_by].present? ? LinkCounter.with_link_type(params[:order_by]).ordered.page(page).per(20) : LinkCounter.ordered.page(page).per(20)
   end
 
   def edit
@@ -17,5 +18,12 @@ class Manage::Statistics::LinksController < Manage::ApplicationController
     else
       render 'edit'
     end
+  end
+
+
+  private
+
+  def page
+    params[:page] || 1
   end
 end

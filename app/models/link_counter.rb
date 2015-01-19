@@ -4,6 +4,8 @@ class LinkCounter < ActiveRecord::Base
   extend Enumerize
   enumerize :link_type, :in => [:external, :banner, :right], scope: true
 
+  scope :ordered, -> { order('id desc') }
+
   def smart_name
     if human_name.present?
       human_name
