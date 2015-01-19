@@ -18,6 +18,10 @@ HasSearcher.create_searcher :reviews do
     without :category, :eighteen_plus
   end
 
+  scope :without_adv_plus do
+    without :category, :adv_plus
+  end
+
   scope :without_questions do
     without :type, 'question'
   end
