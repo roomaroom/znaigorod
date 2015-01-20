@@ -1,6 +1,6 @@
 <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}", expires_in: 10.minutes) do %>
-  <% @presenter.collection.each do |suborganization| %>
-    <li class="item_organization fresh">
+  <% @presenter.collection.each_with_index do |suborganization, index| %>
+    <li class='item_organization fresh <%= "index_#{index}" %>'>
       <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 150, height: 150 } %>
     </li>
   <% end %>
@@ -15,10 +15,12 @@
     <%= render partial: 'organizations/not_client_posters' %>
   <% end %>
 <% else %>
-  <% @presenter.kinds_links_for_index.each do |kind| %>
-    <p><%= link_to kind[:title], kind[:url] %></p>
-    <% kind[:categories].each do |category| %>
-      <p><%= link_to category[:title], category[:url] %></p>
+  <div class="tree">
+    <% @presenter.kinds_links_for_index.each do |kind| %>
+      <p><%= link_to kind[:title], kind[:url] %></p>
+      <% kind[:categories].each do |category| %>
+        <p><%= link_to category[:title], category[:url] %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

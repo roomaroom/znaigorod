@@ -1,9 +1,6 @@
 .content
-  .organization_left
-    border-right: 1px solid #e5e5e5
-    float: left
-    padding: 0 40px 25px 5px
-    width: 880px
+  .organization_wrapper
+    margin: 0 auto
 
     .filter_header
       +clearfix
@@ -16,13 +13,6 @@
       +likes
       .likes
         margin: 15px 0 15px 0
-
-  .organization_right
-    border-left: 1px solid #e5e5e5
-    float: left
-    margin: 0 0 0 -1px
-    padding: 10px 0
-    width: 262px
 
 .organization_content, .organizations_main_page_list, .situated_items, .next_organization, .related_posters
   clear: both
@@ -45,11 +35,18 @@
 
   .posters
     overflow: visible
+    margin: 0 auto
+
+    .tree
+      clear: both
 
     li.item_organization
       +transition(all 750ms ease-out)
       float: left
-      margin: 0 19px 20px 0px
+      margin: 0 18px 20px 0
+
+      &.index_6
+        margin: 0 0 20px
 
       .info
         width: 154px

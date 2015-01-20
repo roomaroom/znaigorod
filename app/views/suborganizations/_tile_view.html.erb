@@ -1,6 +1,4 @@
-<div class="organization_left">
-  <%= render :partial => 'banners/banner_1_2' %>
-
+<div class="organization_wrapper">
   <div class='filter_header'>
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
@@ -31,8 +29,4 @@
   </div>
 
   <%= render :partial => 'commons/ads_by_google' %>
-</div>
-
-<div class="organization_right">
-  <%= render :partial => 'commons/promotions' %>
 </div>

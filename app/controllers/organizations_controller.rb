@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @presenter = OrganizationsCatalogPresenter.new(params.merge(per_page: 5))
+        @presenter = OrganizationsCatalogPresenter.new(params.merge(per_page: 7))
         if request.xhr?
           render partial: 'organizations/organizations_posters', layout: false and return unless (@presenter.collection.last_page? && params[:not_client_page].present? )
           render partial: 'organizations/not_client_posters', layout: false
