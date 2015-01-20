@@ -127,5 +127,6 @@ $(window).load ->
   init_top_banner_stat() if $('.top_headline').length
   init_webcam_map() if $('.webcams .webcam_map').length
   init_map_project() if $('.map_wrapper .map').length
+  init_organization_list_view_map()
 
   true
