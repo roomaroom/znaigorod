@@ -55,7 +55,7 @@ class Afisha < ActiveRecord::Base
 
   serialize :kind, Array
   enumerize :kind,
-    in: [:newyear, :child, :movie, :concert, :party,
+    in: [:child, :movie, :concert, :party,
          :spectacle, :exhibition, :training,
          :masterclass, :sportsevent, :competition, :other],
     multiple: true,
