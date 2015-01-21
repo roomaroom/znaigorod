@@ -47,7 +47,6 @@
       clusterIcons: clusterIcons
       clusterIconContentLayout: null
 
-
     $('.map_projects_wrapper .placemarks_list p').each (index, item) ->
       link = $('a', item)
       title = link.text()

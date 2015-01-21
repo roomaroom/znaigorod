@@ -36,7 +36,7 @@
   ymaps.ready ->
     $map = $('.map_wrapper .map')
     map = new ymaps.Map $map[0],
-      center: [$map.attr('data-latitude'), $map.attr('data-longitude')]
+      center: [56.4800670145844, 85.00952437484801]
       zoom: 12
       behaviors: ['drag', 'scrollZoom']
       controls: []
@@ -62,3 +62,23 @@
         top: 90
         left: 10
 
+    clusterer = new ymaps.Clusterer
+      clusterDisableClickZoom: true
+      showInAlphabeticalOrder: true
+      hideIconOnBalloonOpen: false
+      groupByCoordinates: true
+      clusterBalloonContentLayout: 'cluster#balloonCarousel'
+      clusterBalloonPagerType: 'marker'
+      clusterBalloonContentLayoutWidth: 192
+      clusterBalloonContentLayoutHeight: 355
+      clusterIconContentLayout: null
+
+    $('.list_view_organization_item').each (index, item) ->
+      point = new ymaps.GeoObject
+        geometry:
+          type: 'Point'
+          coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
+
+      clusterer.add point
+
+    map.geoObjects.add clusterer

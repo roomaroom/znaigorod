@@ -25,20 +25,20 @@
   <div class="list_view_organization_content">
     <ul class="list_view_organization_posters">
       <% @presenter.collection.each do |item| %>
-        <li class='list_view_organization_item'>
+        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>">
           <div class="list_view_organization_poster">
 
             <!-- логотип -->
             <div class="image">
               <!-- если логотип есть -->
               <% if item.organization.logotype_url? %>
-                <%= link_to organization_path(item.organization) do %>
+                <%= link_to organization_path(item) do %>
                   <%= image_tag(resized_image_url(item.organization.logotype_url, 100, 100, :watermark => false), size: "#{100}x#{100}", alt: item.organization.title) %>
                 <% end %>
               <% else %>
                 <!-- иначе -->
-                <%= link_to organization_path(item.organization) do %>
-                  <span class='stub_poster <%= item.priority_item_kind %>'></span>
+                <%= link_to organization_path(item) do %>
+                  <span class='stub_poster <%= item.organization.priority_suborganization_kind %>'></span>
                 <% end %>
               <% end %>
             </div>
@@ -46,10 +46,10 @@
             <div class="info">
               <!-- информация о заведении -->
 
-              <h1><%= link_to item.title.truncate(30), organization_path(item) %></h1>
+              <h1><%= link_to item.organization.title.truncate(30), organization_path(item.organization) %></h1>
               <!-- адрес -->
               <%= content_tag(:div, "Адрес: #{item.address_link}".html_safe, class: :place) if item.address_link.present? %>
-              <%= item.work_schedule %>
+              <%#= item.work_schedule %>
 
               <!-- телефон -->
               Телефон: <%= item.phone.truncate(5)%>
@@ -62,11 +62,11 @@
               </ul>
 
               <div class='details'>
-                <span class='show_tipsy fa fa-users' title='Участники'> <%= item.visits.count %></span>
+                <span class='show_tipsy fa fa-users' title='Участники'> <%= item.organization.visits.count %></span>
                 <span class='show_tipsy fa fa-user' title='Приглашения'> 0</span> <!-- TODO change this -->
-                <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= item.comments.count %></span>
-                <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= item.likes_count %></span>
-                <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= item.page_visits.count %></span>
+                <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= item.organization.comments.count %></span>
+                <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= item.organization.likes_count %></span>
+                <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= item.organization.page_visits.count %></span>
               </div>
 
             </div>
@@ -87,7 +87,6 @@
   <!-- map -->
   <div class="map_wrapper">
     <div class="map">
-
     </div>
   </div>
 </div>

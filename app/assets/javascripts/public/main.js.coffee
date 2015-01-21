@@ -126,7 +126,7 @@ $(window).load ->
   init_tickets_stat() if $('.tickets_list li a.payment_link, .affiche .tickets a.payment_link').length
   init_top_banner_stat() if $('.top_headline').length
   init_webcam_map() if $('.webcams .webcam_map').length
-  init_map_project() if $('.map_wrapper .map').length
+  #init_map_project() if $('.map_wrapper .map').length #FIXME: вирните миня на место!
   init_organization_list_view_map()
 
   true

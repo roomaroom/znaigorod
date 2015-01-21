@@ -54,7 +54,7 @@ module OrganizationsPresenter
 
     @page ||= 1
     @not_client_page ||= 1
-    @per_page = @per_page.to_i.zero? ? 20 : @per_page.to_i
+    @per_page = @per_page.to_i.zero? ? 100 : @per_page.to_i
   end
 
   def order_by
