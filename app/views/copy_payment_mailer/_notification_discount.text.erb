@@ -1,0 +1,7 @@
+Завершилась продажа <%= "#{@copy_payment.paymentable.title} (#{discount_url(@copy_payment.paymentable)})" %>
+Продано <%= "#{I18n.t('bet.copies', :count => @paymentable.copies.sold.count)}" %> по цене <%= number_to_currency @paymentable.price %>
+
+Коды:
+<% @paymentable.copies.sold.each do |copy| %>
+  * <%= copy.to_s %>
+<% end %>

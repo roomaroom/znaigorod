@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150122084750) do
+ActiveRecord::Schema.define(:version => 20150123050823) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -416,6 +416,7 @@ ActiveRecord::Schema.define(:version => 20150122084750) do
     t.string   "external_id"
     t.string   "discount_type"
     t.text     "email_addresses"
+    t.boolean  "stale"
   end
 
   add_index "discounts", ["afisha_id"], :name => "index_discounts_on_afisha_id"

@@ -10,7 +10,7 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :constant, :sale,
-                  :place_attributes, :discount_type
+                  :place_attributes, :discount_type, :stale
 
   belongs_to :account
   belongs_to :afisha
@@ -53,6 +53,8 @@ class Discount < ActiveRecord::Base
   normalize_attribute :kind, :with => :blank_array
 
   has_croped_poster min_width: 220, min_height: 164
+
+  default_value_for :stale, false
 
   alias_attribute :title_ru,       :title
   alias_attribute :description_ru, :description

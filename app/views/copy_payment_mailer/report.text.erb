@@ -1,11 +1,5 @@
-Завершилась продажа билетов
-Мероприятие: "<%= @ticket.afisha.title %>" (<%= afisha_show_url(@ticket.afisha) %>)
-Место проведения: <%= @ticket.afisha.place %>
-Продан(ы) <%= I18n.t('bet.tickets', :count => @ticket.copies.sold.count) %> по цене <%= number_to_currency @ticket.price %>
-
-Коды проданных билетов:
-<% @ticket.copies.sold.each do |copy| %>
-  * <%= copy.to_s %>
+<% if @paymentable.is_a?(Ticket) %>
+  <%= render 'notification_ticket' %>
+<% else %>
+  <%= render 'notification_discount' %>
 <% end %>
-
-Необходимо перечислить <%= number_to_currency @ticket.copies.sold.count * @ticket.undertow.to_i %>

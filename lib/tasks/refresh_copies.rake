@@ -8,4 +8,12 @@ task :refresh_copies => :environment do
     end if ticket.copies.sold.any?
     ticket.stale!
   end
+
+  Discount.with_emails.where(:type => %w[Counpon Certificate]).where(:stale => false).each do |discount|
+    discount.emails.each do |email|
+      CopyPaymentMailer.delay(:queue => 'mailer').report(email, discount)
+    end
+
+    discount.update_attribute :stale, true
+  end
 end
