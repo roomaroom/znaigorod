@@ -6,6 +6,12 @@
       many: '%{count} билетов'
       other: '%{count} билета'
 
+    copies:
+      one: '%{count} копия'
+      few: '%{count} копии'
+      many: '%{count} копий'
+      other: '%{count} копии'
+
   contest:
     votes:
       zero: "нет голосов"

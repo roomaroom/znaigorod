@@ -1,12 +1,3 @@
-Fabricator :ticket do
-  number 10
-  original_price 1000
-  price 500
-  description 'some concert'
-  affiche { Fabricate :exhibition }
-  stale_at { Time.zone.now + 2.days }
-end
-
 # == Schema Information
 #
 # Table name: tickets
@@ -21,10 +12,18 @@ end
 #  description        :text
 #  stale_at           :datetime
 #  organization_price :float
-#  email_addressess   :text
+#  email_addresses    :text
 #  undertow           :integer
 #  state              :string(255)
 #  payment_system     :string(255)
 #  short_description  :string(255)
 #
 
+Fabricator :ticket do
+  number 10
+  original_price 1000
+  price 500
+  description 'some concert'
+  affiche { Fabricate :exhibition }
+  stale_at { Time.zone.now + 2.days }
+end

@@ -1,0 +1,18 @@
+Продано <%= "#{I18n.t('bet.copies', :count => @copy_payment.copies.count)} #{@copy_payment.paymentable.title} (#{discount_url(@copy_payment.paymentable)})" %> по цене <%= number_to_currency @copy_payment.paymentable.price %>
+Общая сумма <%= number_to_currency @copy_payment.copies.count * @copy_payment.paymentable.price.to_i %>
+
+<% if @copy_payment.paymentable.places.any? %>
+  Места:
+  <% @copy_payment.paymentable.places.each do |place| %>
+    <% if place.organization_id? %>
+      <%= "#{place.organization.title} (#{organization_url(place.organization)})"  %>
+    <% else %>
+      <%= place.address %>
+    <% end %>
+  <% end %>
+<% end %>
+
+Коды:
+<% @copy_payment.copies.each do |copy| %>
+  * <%= copy.to_s %>
+<% end %>

@@ -6,12 +6,12 @@ class CopyPaymentMailer < ActionMailer::Base
   def notification(email, copy_payment)
     @copy_payment = copy_payment
 
-    mail(:to => email, :subject => 'На сайте znaigorod.ru проданы билеты')
+    mail(:to => email, :subject => 'На сайте znaigorod.ru осуществилась продажа')
   end
 
   def report(email, ticket)
     @ticket = ticket
 
-    mail(:to => email, :subject => 'На сайте znaigorod.ru завершилась продажа билетов')
+    mail(:to => email, :subject => 'На сайте znaigorod.ru завершилась продажа')
   end
 end

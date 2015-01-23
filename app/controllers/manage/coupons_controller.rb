@@ -10,7 +10,9 @@ class Manage::CouponsController < Manage::ApplicationController
   end
 
   def create
-    create! { manage_discount_path resource }
+    create! { |success, failure|
+      success.html { redirect_to manage_discount_path(resource) }
+    }
   end
 
   def update

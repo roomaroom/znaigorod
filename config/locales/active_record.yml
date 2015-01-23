@@ -248,6 +248,7 @@ ru:
         sale: Точное значение скидки неизвестно
         starts_at: Дата начала
         type: Тип скидки
+        email_addressess: Уведомлять следующие email адреса
 
       certificate:
         constant: Бессрочный сертификат

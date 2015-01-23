@@ -47,6 +47,14 @@ class CopyPayment < Payment
     copies.map(&:release!)
   end
 
+  def paymentable_is_ticket?
+    paymentable.is_a? Ticket
+  end
+
+  def paymentable_is_discount?
+    paymentable.is_a? Discount
+  end
+
   private
 
   def check_copies_number
@@ -79,14 +87,6 @@ class CopyPayment < Payment
     paymentable.emails.each do |email|
       CopyPaymentMailer.delay(:queue => 'mailer').notification(email, self)
     end
-  end
-
-  def paymentable_is_ticket?
-    paymentable.is_a? Ticket
-  end
-
-  def paymentable_is_discount?
-    paymentable.is_a? Discount
   end
 
   def create_visit
