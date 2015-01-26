@@ -1,6 +1,11 @@
 <style>
+
   body {
-    font-family: 'Verdana'
+    font-family: 'Verdana';
+}
+
+table {
+  margin: -3px 0 0 -4px
 }
 
 .teaser_wrapper {
@@ -33,7 +38,7 @@
   width: 0;
 }
 
-.teaser_wrapper .teaser_item {
+.teaser_item {
   background-color: <%= @teaser.background_color %>;
   border-radius: 3px;
   border: 1px solid <%= @teaser.border_color %>;
@@ -66,12 +71,13 @@
   color: <%= @teaser.link_color %>;
   font-size: 13px;
   line-height: 19px;
+  width: 100%;
 }
 
 .teaser_item .right .author {
   font-size: 11px;
   color: <%= @teaser.text_color  %>;
-  float: left
+  float: left;
 }
 
 </style>
@@ -80,21 +86,28 @@
   <div class="label">
     <span>znaigorod.ru</span>
   </div>
-
-  <% @teaser.teaser_items.order_by_id.each do |item| %>
-    <div class='teaser_item'>
-      <div class="left">
-        <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, @teaser.image_width, @teaser.image_height)}')" %>
-      </div>
-
-      <div class="right">
-        <div class="link">
-          <%= link_to item.text, item.try(:url), target: '_blank' %>
-        </div>
-        <div class="author">
-          <span>znaigorod.ru</span>
-        </div>
-      </div>
-    </div>
-  <% end %>
 </div>
+
+<table>
+  <tr>
+    <% @teaser.teaser_items.order_by_id.each do |item| %>
+      <td>
+        <div class='teaser_item'>
+          <div class="left">
+            <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, @teaser.image_width, @teaser.image_height)}')" %>
+          </div>
+
+          <div class="right">
+            <div class="link">
+              <%= link_to item.text, item.try(:url), target: '_blank' %>
+            </div>
+
+            <div class="author">
+              <span>znaigorod.ru</span>
+            </div>
+          </div>
+        </div>
+      </td>
+    <% end %>
+  </tr>
+</table>
