@@ -12,7 +12,7 @@ class My::AfishasController < My::ApplicationController
     index! {
       @account = AccountDecorator.new(current_user.account)
 
-      @events = @account.afisha.page(1).per(15)
+      @events = @account.afisha.page(1).per(16)
     }
   end
 
