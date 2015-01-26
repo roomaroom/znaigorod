@@ -7,6 +7,12 @@ class Manage::CertificatesController < Manage::ApplicationController
     create! { manage_discount_path resource }
   end
 
+  def edit
+    edit! {
+      render text: params[:id] and return if request.xhr?
+    }
+  end
+
   def update
     update! { manage_discount_path resource }
   end

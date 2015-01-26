@@ -1,5 +1,4 @@
 @init_organization = () ->
-
   $('.new_section_link').click ->
     $('.new_section').toggle()
     false
@@ -53,7 +52,7 @@ markItUpSettings = ->
   settings.markupSet.push(imageButton)
   settings.markupSet.push(youtubeButton)
   settings.markupSet.push(vimeoButton)
-  settings.markupSet.push(buyButton) if $('.discounts').length
+  settings.markupSet.push(buyButton) if $('.discounts').length && $('form').attr('class').indexOf('edit') > -1
 
   settings
 
@@ -61,7 +60,6 @@ get_discount_slug = ->
   $.ajax
     type: 'get'
     async: false
-    success: (res) ->
 
 @handleImageButtonClick = ->
   $('.image_button').click ->
