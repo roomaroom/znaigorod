@@ -100,6 +100,9 @@ init_comments_images = ->
 
   $(".ajaxed").on 'ajax:beforeSend', (evt, xhr, settings) ->
     $this = $(evt.target)
+    if $this.is('a') && $this.hasClass('delete')
+      $('.ajax_blocking').show()
+
     if $this.is('form') && $this.hasClass('new_comment')
       $('.ajax_blocking').show()
       unless valid($this)
@@ -109,6 +112,8 @@ init_comments_images = ->
   .on "ajax:success", (evt, response, status, jqXHR) ->
     $('.ajax_blocking').hide()
     target = $(evt.target)
+    if target.is('a') and target.hasClass('delete')
+      target.closest('.comment_item').hide()
 
     if $('.social_signin_links', $(response)).length
       save_unauthorized_action(target)

@@ -7,4 +7,12 @@ class Manage::CommentsController < Manage::ApplicationController
   def collection
     super.order('id desc').page(params[:page])
   end
+
+  def destroy
+    destroy! {
+      render text: '200', layout: false, status: 200 and return if request.xhr?
+
+      redirect_to manage_comments_path and return
+    }
+  end
 end
