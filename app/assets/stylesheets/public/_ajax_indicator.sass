@@ -5,3 +5,14 @@ body
     border: none !important
     background: transparent image_url('public/ajax_loading_items_indicator.gif') no-repeat center center !important
     margin: 0 0 10px 0 !important
+
+.ajax_blocking
+  +opacity(.7)
+  background: black image_url('public/ajax_blocking_loading.gif') no-repeat center center
+  display: none
+  height: 100%
+  left: 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 10
