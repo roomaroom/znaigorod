@@ -4,7 +4,6 @@
 }
 
 .teaser_wrapper {
-  width: 876px;
   overflow: hidden;
 }
 
@@ -40,16 +39,13 @@
   border: 1px solid <%= @teaser.border_color %>;
   float: left;
   display: table-row;
-  margin: 0 5px 0 0;
-  width: 280px;
+  margin: 0 5px 10px 0;
 }
 
 .teaser_item .left {
   margin-right:10px;
   display: table-cell;
   text-align:center;
-  width: 104px;
-  height: 100%;
   padding: 10px;
 }
 
@@ -61,8 +57,6 @@
 }
 
 .teaser_item .right {
-  height: 100%;
-  width: 100%;
   padding: 10px 10px 10px 0;
   display: table-cell;
   vertical-align: middle;
@@ -77,7 +71,9 @@
 .teaser_item .right .author {
   font-size: 11px;
   color: <%= @teaser.text_color  %>;
+  float: left
 }
+
 </style>
 
 <div class='teaser_wrapper'>
