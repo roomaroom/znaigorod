@@ -10,7 +10,7 @@ class Discount < ActiveRecord::Base
 
   attr_accessible :title, :description, :ends_at, :kind, :starts_at,
                   :discount, :organization_title, :constant, :sale,
-                  :place_attributes, :discount_type, :stale
+                  :place_attributes, :discount_type, :stale, :account_id
 
   belongs_to :account
   belongs_to :afisha
