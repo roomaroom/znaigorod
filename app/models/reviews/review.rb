@@ -13,6 +13,7 @@ class Review < ActiveRecord::Base
   alias_attribute :file_url,       :poster_image_url
   alias_attribute :description,    :content
   alias_attribute :description_ru, :content
+  alias_attribute :title_ru,       :title
 
   before_save :set_poster
 
@@ -100,6 +101,7 @@ class Review < ActiveRecord::Base
     text :content,        :boost => 0.1 * 1.2
     text :description_ru, :boost => 0.1, :more_like_this => true, :stored => true
     text :title,          :boost => 1.0, :more_like_this => true, :stored => true
+    text :title_ru,       :boost => 1.0, :more_like_this => true
 
     text :title,          :as => :term_text
 
