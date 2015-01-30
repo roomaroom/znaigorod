@@ -19,6 +19,7 @@
   <% end %>
 
   <%= f.input :phone, label: 'Введите номер мобильного телефона', require: false %>
+  <span class='phone_info'>На указанный телефон будет выслан код билета</span>
 
   <% if parent.payment_system_rbkmoney? %>
     <%= f.input :email, label: 'Введите адрес электронной почты', require: false %>

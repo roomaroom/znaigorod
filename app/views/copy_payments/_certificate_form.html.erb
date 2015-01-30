@@ -17,6 +17,9 @@
 <%= simple_form_for [parent, @copy_payment] do |f| %>
   <%= f.input :number, label: 'Количество', as: :select, collection: 1..parent.copies_for_sale.count, include_blank: false, require: false %>
   <%= f.input :phone, label: 'Введите номер мобильного телефона', require: false %>
+  <span class='phone_info'>
+    На указанный телефон будет выслан код сертификата
+  </span>
 
   <% if parent.payment_system_rbkmoney? %>
     <%= f.input :email, label: 'Введите адрес электронной почты', require: false %>
