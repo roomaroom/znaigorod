@@ -31,9 +31,8 @@
       <%= f.error :base %>
       <%= f.input :image %>
 
-      <% if @contest.slug == 'imidzh-proekt-potentsial' %>
-        <%= f.input :title, label: false, input_html: { placeholder: 'Ваше имя' } %>
-        <%= f.input :description, label: false, input_html: { placeholder: 'Расскажи о себе и почему именно ты должна стать участницей проекта', cols: 100 } %>
+      <% if @contest.slug == 'fotokonkurs-par-goroda-tomska-polovinki-loventinki-2' %>
+        <%= f.input :description, label: false, input_html: { placeholder: 'Здесь Вы можете рассказать вашу историю', cols: 100 } %>
         <%= f.input :author_info, :as => :hidden, :input_html => { :value => "" } %>
       <% end %>
 
