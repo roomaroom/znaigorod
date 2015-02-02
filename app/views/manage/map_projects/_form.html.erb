@@ -2,6 +2,41 @@
   <h1>Картопроект:</h1>
   <%= simple_form_for [:manage, @map_project] do |f| %>
     <%= f.input :title %>
+    <div class='relations'>
+      <p>Этот пост связан с</p>
+
+      <div class='sticky_elements'>
+        <% @map_project.relations.each do |item| %>
+          <div class="element">
+            <% if item.slave.is_a? Afisha %>
+              <%= link_to item.slave.title.truncate(30), afisha_show_path(item.slave), :target => '_blank' %>
+            <% elsif item.slave.is_a? Discount %>
+              <%= link_to item.slave.title.truncate(30), discount_path(item.slave), :target => '_blank' %>
+            <% else %>
+              <%= link_to item.slave.title.truncate(30), item.slave, :target => '_blank' %>
+            <% end %>
+            <span class="del_icon"></span>
+            <%= hidden_field_tag "map_project[related_items][]","#{item.slave_type.underscore}_#{item.slave_id}", class: "hidden_ids" %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= hidden_field_tag "map_project[need_change]", true %>
+      <div style='clear: both'></div>
+
+      <div class='select_and_search'>
+        <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'], ['Обзор', '/my/related_reviews'],['Фотогалерея','/my/related_photogalleries'], ['Скидки', '/my/related_discounts']], 'Афиша'), { class: 'type_select' }  %>
+        <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+        <%= text_field_tag :search, '', { class: 'related_search' } %>
+      </div>
+
+      <div style='clear: both'></div>
+
+      <div class='results infinite_list'>
+        <ul class='posters'></ul>
+      </div>
+      <input type="hidden" value="map_project[related_items][]" class="params_name">
+    </div>
     <%= f.submit %>
     <%= link_to 'Назад', manage_map_projects_path %>
   <% end %>

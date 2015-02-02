@@ -9,7 +9,7 @@
   </div>
   <div class='suborganization_info related-reviews'>
     <ul class='posters js-isotoped-content' data-item-width="220">
-      <%= render :partial => 'reviews/posters', locals: { collection: @reviews, height: '120', width: '184' } %>
+      <%= render :partial => 'reviews/posters', locals: { collection: @reviews, height: '120', width: '184' } if @reviews %>
     </ul>
   </div>
 </div>

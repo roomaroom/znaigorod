@@ -11,9 +11,9 @@ class MapProjectsController < ApplicationController
         @map_layer = MapLayer.find(params[:layer])
         @map_placemarks = @map_layer.map_placemarks
       else
-        @map_placemarks = MapPlacemark.offset(82).all # TODO: надо как-то фиксить
+        @map_placemarks = MapProject.find(params[:id]).map_layers.map(&:map_placemarks).flatten
       end
-      @reviews = ReviewsPresenter.new(category: 'newyear', per_page: 100).decorated_collection
+      @reviews = ReviewDecorator.decorate(MapProject.find(params[:id]).relations.map(&:slave))
     }
   end
 end

@@ -1,15 +1,37 @@
 class MapProject < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :title
+  friendly_id :title, use: :slugged
+
+  attr_accessible :title, :related_items, :need_change
+  attr_accessor :related_items, :need_change
+
   validates_presence_of :title
 
-  has_many :map_layers, dependent: :destroy
+  has_many :map_layers,                                    dependent: :destroy
+  has_many :relations,             as: :master,            dependent: :destroy
 
-  friendly_id :title, use: :slugged
+  after_save :parse_related_items
+
   def should_generate_new_friendly_id?
     return true if !self.slug?
 
     false
+  end
+
+  def parse_related_items
+    relations.destroy_all if related_items.nil?
+    return true unless related_items
+    relations.destroy_all
+
+    related_items.each do |item|
+      slave_type, slave_id = item.split("_")
+
+      relation = relations.new
+      relation.slave_type = slave_type.classify
+      relation.slave_id = slave_id
+
+      relation.save
+    end
   end
 end
 
