@@ -1,21 +1,22 @@
 <div class='left'>
   <ul>
-    <%= content_tag :li, :class => controller_name == 'map_projects' && params[:layer].blank? ? 'selected' : nil do %>
-      <%= link_to 'Новый год 2015', new_year_2015_path, :class => 'all_layers' %>
-    <% end%>
     <% map_project.map_layers.each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:layer] ? 'selected' : nil do %>
-        <%= link_to map_layer.title, new_year_2015_path(layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
+        <%= link_to map_layer.title, february_path(layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
       <% end %>
     <% end %>
   </ul>
+
+  <div class="contest">
+    <%= link_to (image_tag asset_path('public/february_contest/banner.jpg'), size: '250x160'), '#' %>
+  </div>
 
   <div class='actual_reviews'>
     <a href='#actual_reviews'>Актуальные обзоры</a>
   </div>
 
   <div class='text_block'>
-    <%= image_tag asset_path('public/map_projects/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
+    <%= image_tag asset_path('public/february_contest/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
     <p class='important'>Вас нет на карте?</p>
     <p>Звоните нам:</p>
     <p class='phone with_icon'><%= t('services.phone').split(',').first.to_s.squish %></p>

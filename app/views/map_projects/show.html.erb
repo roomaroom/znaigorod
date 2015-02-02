@@ -4,7 +4,7 @@
   <div class='map_projects_content'>
 
     <div class='map_projects_header'>
-      <h1 class='lobster_font'><%= page_meta.og_title %></h1>
+      <h1 class='lobster_font'>1111<%#= page_meta.og_title %></h1>
     </div>
 
     <div class='map_projects_main'>
@@ -13,9 +13,6 @@
 
       <div class='right'>
         <div class='map_wrapper'>
-          <%= image_tag asset_path('public/map_projects/right_1.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_1' %>
-          <%= image_tag asset_path('public/map_projects/right_2.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_2' %>
-          <%= image_tag asset_path('public/map_projects/right_3.png'), :alt => 'Отдых в новогодние праздники', :class => 'right_wreath_3' %>
           <div class='placemarks_list'>
             <span data-cluster_icon="<%= @map_layer ? @map_layer.icon_image_url : asset_path('public/map_projects/all_layers_for_map.png') %>" class='js-cluster-icon' style='display: none'></span>
             <% @map_placemarks.each do |map_placemark| %>

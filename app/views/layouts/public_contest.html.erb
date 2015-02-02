@@ -14,14 +14,15 @@
 
 <% content_for :flash_messages do %>
   <div class='message_wrapper'></div>
+  <div class="ajax_blocking"></div>
 <% end %>
 
 <%= content_for :content do %>
-  <div class='kapital_voice_deti_wrapper'>
-    <div class="links">
-      <a href="/contests/kapital-voice-deti" class='one js-kapital-voice-deti-stat'>#</a>
+  <div class='february_wrapper'>
+    <div class='links'>
+      <a href='/contests/kapital-voice-deti' class='one js-kapital-voice-deti-stat'>#</a>
     </div>
-    <div class="kapital_voice_deti_content_wrapper">
+    <div class='february_content_wrapper'>
       <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
       <%= render :partial => 'commons/email_request_form' %>
       <%= render :partial => 'commons/public_header' %>

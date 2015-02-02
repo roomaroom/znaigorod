@@ -3,7 +3,7 @@ class Manage::MapProjectsController < Manage::ApplicationController
 
   def show
     show!{
-      @map_placemarks = MapPlacemark.order('id desc')
+      @map_placemarks = MapPlacemark.offset(82) #TODO: как-то фиксить ннада
     }
   end
 end

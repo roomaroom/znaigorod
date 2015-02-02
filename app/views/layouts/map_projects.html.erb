@@ -8,7 +8,7 @@
 <% end %>
 
 <% content_for :canonical_link do %>
-  <link rel='canonical' href='<%= new_year_2015_url %>' />
+  <link rel='canonical' href='<%= february_url %>' />
 <% end %>
 
 <% content_for :extra_meta do %>
@@ -23,20 +23,27 @@
 
 <%= content_for :flash_messages do %>
   <div class='message_wrapper'></div>
+  <div class="ajax_blocking"></div>
 <% end %>
 
 <%= content_for :content do %>
-  <%= render :partial => 'banners/banner_1_1' %>
-  <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
-  <%= render :partial => 'commons/email_request_form' %>
-  <div class='unique_header_wrapper'>
-    <%= render :partial => 'commons/public_header' %>
+  <div class='february_wrapper'>
+    <div class='links'>
+      <a href='/contests/kapital-voice-deti' class='one js-kapital-voice-deti-stat'>#</a>
+    </div>
+    <div class='february_content_wrapper'>
+      <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
+      <%= render :partial => 'commons/email_request_form' %>
+      <div class='unique_header_wrapper'>
+        <%= render :partial => 'commons/public_header' %>
+      </div>
+      <%= yield %>
+      <%= render :partial => 'commons/public_footer' %>
+      <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
+      <%= yield :yandex_map_scripts %>
+      <%= render :partial => 'commons/public_reformal' %>
+    </div>
   </div>
-  <%= yield %>
-  <%= render :partial => 'commons/public_footer' %>
-  <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
-  <%= yield :yandex_map_scripts %>
-  <%= render :partial => 'commons/public_reformal' %>
 <% end %>
 
 <%= render :template => 'layouts/application' %>

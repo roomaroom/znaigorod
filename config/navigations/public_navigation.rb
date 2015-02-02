@@ -2,6 +2,12 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.id_generator = Proc.new {|key| "main_menu_#{key}"}
 
   navigation.items do |primary|
+    primary.item '14_february', 'День Влюбленных', february_path, highlights_on: -> { %w[map_projects map_layers].include? controller_name } do |february|
+      MapProject.find('february').map_layers.each do |map_layer|
+        february.item map_layer.slug, map_layer.title, february_path(layer: map_layer.slug)
+      end
+    end
+
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { controller_name == 'afishas' } do |afisha|
 
       Afisha.kind.values.each do |item|
