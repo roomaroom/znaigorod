@@ -1,8 +1,14 @@
 source 'https://rubygems.org'
 
 group :assets do
+  gem 'coffee-rails'
+  gem 'compass-rails'
+  gem 'font-awesome-sass'
   gem 'jcrop-rails'
+  gem 'jquery-minicolors-rails'
+  gem 'jquery-rails',               '2.0.3'
   gem 'jquery.fileupload-rails'
+  gem 'sass-rails'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier'
 end
@@ -15,8 +21,6 @@ group :default do
   gem 'attribute_normalizer'
   gem 'auto_html'
   gem 'cancan'
-  gem 'coffee-rails'
-  gem 'compass-rails'
   gem 'curb',                       :require => false
   gem 'daemons'
   gem 'default_value_for'
@@ -27,7 +31,6 @@ group :default do
   gem 'enumerize'
   gem 'esp-ckeditor'
   gem 'fastimage'
-  gem 'font-awesome-sass'
   gem 'friendly_id'
   gem 'gilenson'
   gem 'grape',                      '~> 0.6.0'
@@ -38,7 +41,6 @@ group :default do
   gem 'htmldiff'
   gem 'httparty'
   gem 'inherited_resources',        '1.4.1'
-  gem 'jquery-rails',               '2.0.3'
   gem 'kaminari'
   gem 'kinopoisk_parser',           :require => false
   gem 'koala',                      '~> 1.7.0rc1'
@@ -63,7 +65,6 @@ group :default do
   gem 'roadie'
   gem 'russian'
   gem 'sanitize'
-  gem 'sass-rails'
   gem 'sidekiq'
   gem 'simple-navigation'
   gem 'simple_form'
@@ -75,7 +76,6 @@ group :default do
   gem 'timecop',                    :require => false
   gem 'validates_email_format_of'
   gem 'vkontakte_api',              :require => false
-  gem 'jquery-minicolors-rails'
 end
 
 group :development do
