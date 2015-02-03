@@ -107,6 +107,7 @@ $ ->
   init_right_block_stat()
 
   init_banners_shuffle() if $('.banner12').length
+  init_collapse() if $('.js-slider').length
   true
 
 $(window).load ->

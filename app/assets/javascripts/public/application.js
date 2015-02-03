@@ -117,4 +117,5 @@
  * = require ./link_counter
  * = require ./map_project
  * = require ./shuffle
+ * = require ./collapse
  */
