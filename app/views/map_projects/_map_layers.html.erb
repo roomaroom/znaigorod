@@ -1,6 +1,6 @@
 <div class='left'>
   <ul>
-    <% map_project.map_layers.each do |map_layer| %>
+    <% map_project.map_layers.order('created_at desc').each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:layer] ? 'selected' : nil do %>
         <%= link_to map_layer.title, february_path(layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
       <% end %>
