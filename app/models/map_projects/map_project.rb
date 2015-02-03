@@ -13,12 +13,6 @@ class MapProject < ActiveRecord::Base
 
   has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
-  has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
-  has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
-  has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
   after_save :parse_related_items
 
   def should_generate_new_friendly_id?
