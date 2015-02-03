@@ -49,7 +49,7 @@
                   <p><%= e.created_at.strftime('%d.%m.%Y') %>
                 </td>
                 <td>
-                  <p><%= e.content.size if e.content %></p>
+                  <p><%= e.content.gsub(/!http\S+\s*!|:http\S+\s*|"/, "").size if e.content %></p>
                 </td>
               </tr>
             <% end %>
