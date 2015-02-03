@@ -78,5 +78,6 @@ end
 #  external_id               :string(255)
 #  discount_type             :string(255)
 #  email_addresses           :text
+#  stale                     :boolean
 #
 

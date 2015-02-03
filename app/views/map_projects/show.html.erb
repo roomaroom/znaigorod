@@ -14,7 +14,7 @@
       <div class='right'>
         <div class='map_wrapper'>
           <div class='placemarks_list'>
-            <span data-cluster_icon="<%= @map_layer ? @map_layer.icon_image_url : asset_path('public/map_projects/all_layers_for_map.png') %>" class='js-cluster-icon' style='display: none'></span>
+            <span data-cluster_icon="<%= @map_layer ? @map_layer.icon_image_url : @map_project.cluster_icon_url %>" class='js-cluster-icon' style='display: none'></span>
             <% @map_placemarks.each do |map_placemark| %>
               <%= render :partial => 'map_placemark', :locals => { :map_layer => @map_layer ? @map_layer : map_placemark.map_layers.first, :map_placemark => map_placemark } %>
             <% end %>
