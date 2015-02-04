@@ -7,14 +7,25 @@
     <% else %>
       <h1><%= @presenter.page_header %></h1>
     <% end %>
+    <%= link_to 'Добавить организацию', '#', class: [:button, :add_organization] %>
   </div>
-  <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
+
   <div class="filter_and_share">
+    <!--noindex-->
     <div class='presentation_filters organization'>
-      <!--noindex-->
       <%= render :partial => 'commons/presentation_filters' %>
-      <!--/noindex-->
     </div>
+
+    <div class="view_by">
+      <div class="tile_view"> </div>
+
+      <div class="list_view"> </div>
+    </div>
+
+    <div class="search_field">
+
+    </div>
+    <!--/noindex-->
   </div>
 </div>
 
