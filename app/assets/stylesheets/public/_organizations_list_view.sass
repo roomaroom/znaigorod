@@ -19,7 +19,9 @@
 
 .list_view_organization_content
   +clearfix
+  clear: both
   width: 100%
+  position: relative
 
   .map_wrapper
     +clearfix
@@ -28,78 +30,86 @@
       height: 700px
       width: 100%
 
-  //.list_view_organization_content
-    //clear: both
-    //+clearfix
+  .list_view_organization_list
+    +border-radius(7px)
+    +box-shadow(-1px 1px 13px 1px rgba(0,0,0, .5))
+    +clearfix
+    background-color: white
+    left: 50px
+    position: absolute
+    top: 30px
+    width: 490px
+    z-index: 100
 
-    //.add_and_paginate
-      //+clearfix
-      //margin: 20px 0
+    .add_and_paginate
+      +clearfix
+      margin: 20px 0
 
-      //.btn-small
-        //background: #e8e7e8
-        //color: #0066cc
-        //float: right
-        //padding: 10px 25px
+      .btn-small
+        background: #e8e7e8
+        color: #0066cc
+        float: right
+        padding: 10px 25px
 
-        //&:hover
-          //+box-shadow(rgba(#000, 0.3), 1px 1px 2px)
-          //background-color: #f3f3f3
+        &:hover
+          +box-shadow(rgba(#000, 0.3), 1px 1px 2px)
+          background-color: #f3f3f3
 
-      //.add_link
-        //font-size: 16px
+      .add_link
+        font-size: 16px
 
-    //.list_view_organization_posters
-      //overflow-y: scroll
-      //max-height: 540px
+    .list_view_organization_posters
+      overflow-y: scroll
+      max-height: 540px
 
-      //li.list_view_organization_item
-        //+clearfix
-        //border-bottom: 1px solid #ccc
-        //padding: 10px
+      li.list_view_organization_item
+        +clearfix
+        border-bottom: 1px solid #ccc
+        padding: 10px
 
-        //&:hover
-          //background-color: #f2f2f2
+        &:hover
+          background-color: #f2f2f2
 
-        //.list_view_organization_poster
-          //width: 100%
-          //+clearfix
+        .list_view_organization_poster
+          width: 100%
+          +clearfix
 
-          //li
-            //float: left
+          li
+            float: left
 
-          //.image
-            //width: 100px
-            //height: 100px
-            //float: left
+          .image
+            width: 90px
+            height: 90px
+            float: left
 
-          //.info
-            //float: left
-            //margin: 0 0 0 10px
+          .info
+            float: left
+            margin: 0 0 0 10px
+            width: 360px
 
-            //.schedule_wrapper
-              //.ul-toggler
-                //border: 0
+            .schedule_wrapper
+              .ul-toggler
+                border: 0
 
-            //h1
-              //font-size: 14px
+            h1
+              font-size: 13px
 
-            //.categories_and_visits
-              //.categories
-                //+clearfix
-                //width: 375px
+            .categories_and_visits
+              .categories
+                +clearfix
+                width: 375px
 
-                //li
-                  //margin: 0 5px 0 0
-                  //font-size: 11px
+                li
+                  margin: 0 5px 0 0
+                  font-size: 11px
 
-                  //a
-                    //color: #adadad
+                  a
+                    color: #adadad
 
-              //.details
-                //clear: both
-                //color: #989898
+              .details
+                clear: both
+                color: #989898
 
-                //span
-                  //cursor: help
-                  //margin: 0 5px
+                span
+                  cursor: help
+                  margin: 0 5px
