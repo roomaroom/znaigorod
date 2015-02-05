@@ -1,3 +1,14 @@
+@init_organization = ->
+  $('.js-open-list').click ->
+    $(this).parent().next('.categories').toggle()
+    $(this).toggleClass('minus plus')
+    false
+
+  $('.js-swap-position').click ->
+    $(this).parent().toggleClass('left_tree right_tree')
+    $(this).toggleClass('swap_left swap_right')
+    false
+
 @init_organization_jump_to_afisha = ->
   $('.organization_show .afisha_details .presentation_filters .order_by a').click ->
     $.cookie('_znaigorod_jump_to_afisha', true)
