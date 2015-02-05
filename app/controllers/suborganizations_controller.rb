@@ -1,4 +1,5 @@
 class SuborganizationsController < ApplicationController
+  helper_method :view_type
   def index
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
     klass = "#{kind.pluralize}_presenter".classify.constantize
@@ -7,7 +8,6 @@ class SuborganizationsController < ApplicationController
       format.html {
         cookie = cookies['_znaigorod_organization_list_settings'].to_s
         settings_from_cookie = {}
-        per_page = Organization.where(status: :client).count
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = klass.new(settings_from_cookie.merge(params.merge(per_page: per_page)))
         if request.xhr?
@@ -24,5 +24,13 @@ class SuborganizationsController < ApplicationController
         render :partial => 'promotions/organizations', :locals => { :presenter => presenter }
       }
     end
+  end
+
+  def view_type
+    params[:view_type] || "list"
+  end
+
+  def per_page
+    view_type =='list' ? Organization.where(status: :client).count : 14
   end
 end

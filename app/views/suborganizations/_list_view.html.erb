@@ -1,33 +1,5 @@
 <div class="list_view_organization_header">
-  <div class='filter_header'>
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.page_header.blank? %>
-      <h1><%= t('meta.organizations.page_header') %></h1>
-    <% else %>
-      <h1><%= @presenter.page_header %></h1>
-    <% end %>
-    <%= link_to 'Добавить организацию', '#', class: [:button, :add_organization] %>
-  </div>
-
-  <div class="filter_and_share">
-    <!--noindex-->
-    <div class='presentation_filters organization'>
-      <%= render :partial => 'commons/presentation_filters' %>
-    </div>
-
-    <div class="view_by">
-      <div class="tile_view"> </div>
-
-      <div class="list_view selected"> </div>
-    </div>
-
-    <div class="search_field">
-      <%= text_field_tag :search, '', class: :search_field %>
-      <%= link_to 'Расширенный поиск', class: :search_arrow %>
-    </div>
-    <!--/noindex-->
-  </div>
+  <%= render partial: "filters_and_search" %>
 </div>
 
 <div class="list_view_organization_content">

@@ -1,6 +1,5 @@
-.list_view_organization_header
+.list_view_organization_header, .organization_wrapper
   +clearfix
-  border-bottom: 1px solid #ccc
   margin: 65px 0 0
 
   .filter_header
@@ -37,6 +36,13 @@
         line-height: 27px
         width: 22px
         cursor: pointer
+
+      .tile_view, .list_view
+        .view_link
+          display: block
+          width: 100%
+          height: 100%
+          text-indent: -9999px
 
       .tile_view
         background: #e9e9e9 image_url('public/organizations_list_view/tile_button.png') no-repeat center center

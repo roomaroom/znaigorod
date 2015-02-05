@@ -253,7 +253,6 @@ module OrganizationsPresenter
       self.class.available_sortings_without_nearness.each do |sorting_value|
         array << {
           title: I18n.t("organization.sort.#{sorting_value}"),
-          url: collection_url,
           parameters: url_parameters(order_by: sorting_value),
           selected: order_by == sorting_value
         }
@@ -318,7 +317,7 @@ module OrganizationsPresenter
 
   def without_clients_searcher(per_page_count = @per_page)
     @without_clients_searcher ||= HasSearcher.searcher(pluralized_kind.to_sym, searcher_params).tap { |s|
-      s.paginate(page: not_client_page, per_page: 40)
+      s.paginate(page: not_client_page, per_page: 42)
       s.without_clients
       s.send("order_by_rating")
     }

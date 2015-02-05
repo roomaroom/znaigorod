@@ -1,6 +1,8 @@
+<% index = 1 %>
 <% @presenter.without_clients_collection.each do |suborganization| %>
-  <li class="item_organization fresh">
+  <li class="item_organization fresh not_client_poster <%= index.modulo(7) == 0 ? 'need_margin' : '' %>">
     <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 194, height: 190 } %>
+    <% index+=1 %>
   </li>
 <% end %>
 <% unless @presenter.without_clients_collection.last_page? %>

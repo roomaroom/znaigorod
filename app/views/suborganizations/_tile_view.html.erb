@@ -1,22 +1,5 @@
 <div class="organization_wrapper">
-  <div class='filter_header'>
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% elsif @presenter.page_header.blank? %>
-      <h1><%= t('meta.organizations.page_header') %></h1>
-    <% else %>
-      <h1><%= @presenter.page_header %></h1>
-    <% end %>
-  </div>
-
-  <div class="filter_and_share">
-    <div class='presentation_filters organization'>
-      <!--noindex-->
-      <%= render :partial => 'commons/presentation_filters' %>
-      <!--/noindex-->
-    </div>
-    <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
-  </div>
+  <%= render partial: "suborganizations/filters_and_search" %>
 
   <div class='organization_content js-button-pagination'>
     <% if @presenter.collection.any? || @presenter.without_clients_collection.any? %>

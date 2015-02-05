@@ -115,7 +115,13 @@
       float: left
       margin: 0 18px 20px 0
 
-      &.index_6
+      &:nth-child(7n+7)
+        margin: 0 0 20px
+
+      &.not_client_poster
+        margin: 0 18px 20px 0
+
+      &.need_margin
         margin: 0 0 20px
 
       .info
@@ -255,11 +261,12 @@
           padding-left: 8px
 
   li.pagination
+    clear: both
     border: none !important
     height: 30px !important
     margin: 0 !important
     padding: 0 0 20px 0 !important
-    width: 858px !important
+    width: 1200px !important
 
     a
       &.disabled

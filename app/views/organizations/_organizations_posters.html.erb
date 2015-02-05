@@ -1,6 +1,6 @@
 <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}", expires_in: 10.minutes) do %>
-  <% @presenter.collection.each_with_index do |suborganization, index| %>
-    <li class='item_organization fresh <%= "index_#{index}" %>'>
+  <% @presenter.collection.each do |suborganization| %>
+    <li class='item_organization fresh'>
       <%= render partial: 'organizations/suborganization', locals: { suborganization: suborganization, width: 150, height: 150 } %>
     </li>
   <% end %>

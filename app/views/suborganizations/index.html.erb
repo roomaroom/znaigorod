@@ -12,8 +12,7 @@
   <% end %>
 <% end %>
 
-<%#= render 'suborganizations/tile_view' %>
-<%= render 'suborganizations/list_view' %>
+<%= render "suborganizations/#{view_type}_view" %>
 
 <% if page_meta %>
   <div class='introduction'>
