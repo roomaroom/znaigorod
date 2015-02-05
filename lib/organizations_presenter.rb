@@ -173,9 +173,9 @@ module OrganizationsPresenter
   end
 
   def kinds_links_for_index
-    @kinds_links_for_index ||= [].tap do |array|
+    @kinds_links_for_index ||= [].tap do |kind_links|
       (Organization.suborganization_kinds_for_navigation - ["organization"]).each do |suborganization_kind|
-        array << {
+        kind_links << {
           title: I18n.t("organization.kind.#{suborganization_kind}"),
           url: "#{suborganization_kind.pluralize}_path",
           categories: categories_for_kind(suborganization_kind)
@@ -185,7 +185,7 @@ module OrganizationsPresenter
   end
 
   def categories_for_kind(suborganization_kind)
-    @categories_for_kind ||= [].tap { |array|
+    [].tap { |array|
       HasSearcher.searcher(suborganization_kind.pluralize.to_sym).facet("#{suborganization_kind}_category").rows.map do |row|
         array << {
           title: row.value.mb_chars.capitalize,
