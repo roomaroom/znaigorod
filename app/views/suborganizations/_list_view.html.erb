@@ -44,7 +44,7 @@
 
     <ul class="list_view_organization_posters">
       <% @presenter.collection.each do |item| %>
-        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>">
+        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" style="<%= "background: url('#{asset_path('public/organizations_list_view/reservation_icon.png')}') no-repeat right center" %>">
           <div class="list_view_organization_poster">
 
             <!-- логотип -->
