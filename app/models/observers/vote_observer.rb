@@ -19,7 +19,7 @@ class VoteObserver < ActiveRecord::Observer
 
   def after_save(vote)
     if vote.like && vote.user.present?
-      Feed.create(
+      Feed.delay(:queue => 'critical').create(
         :feedable => vote,
         :account => vote.user.account,
       )

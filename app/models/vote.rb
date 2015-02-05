@@ -10,6 +10,7 @@ class Vote < ActiveRecord::Base
   has_one :feed, :as => :feedable, :dependent => :destroy
 
   validate :authenticated_user
+  validates_uniqueness_of :user_id, :scope => [:user_id, :voteable_id]
 
   extend Enumerize
   enumerize :source, in: [:zg, :vk, :fb, :odn], :predicates => true, :default => :zg
