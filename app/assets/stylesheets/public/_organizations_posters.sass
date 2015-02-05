@@ -37,6 +37,79 @@
     overflow: visible
     margin: 0 auto
 
+    .tree
+      +border-radius(5px)
+      +box-shadow(-1px 1px 13px 1px rgba(0,0,0, .5))
+      +clearfix
+      width: 330px
+
+      &.left_tree
+        float: left
+
+      &.right_tree
+        float: right
+
+      .swap_position
+        +border-radius(3px)
+        display: block
+        text-indent: -9999px
+        margin: 5px 5px 5px 0
+        width: 25px
+        height: 18px
+        float: right
+
+        &.swap_left
+          background: #579897 image_url('public/organizations_list_view/arrow.png') no-repeat center center
+
+        &.swap_right
+          background: #579897 image_url('public/organizations_list_view/back_arrow.png') no-repeat center center
+
+
+      .scroll_wrapper
+        clear: both
+        margin: 25px 0 0 20px
+        overflow-y: scroll
+        height: 600px
+
+        .kind_wrapper
+          +clearfix
+          clear: both
+          margin: 5px 0
+
+          .open_list
+            display: block
+            float: left
+            margin: 5px 10px 0 0
+            width: 16px
+            height: 16px
+            text-indent: -9999px
+            +border-radius(2px)
+
+            &.plus
+              background: #E7E7E7 image_url('public/organizations_list_view/plus.png') no-repeat center center
+
+            &.minus
+              background: #E7E7E7 image_url('public/organizations_list_view/minus.png') no-repeat center center
+
+          .kind
+            float: left
+            font-size: 18px
+
+          .organization_quantity
+            color: #BFBFBF
+            margin: 0 0 0 6px
+
+          .categories
+            display: none
+            clear: both
+            margin: 0 0 0 34px
+
+            p
+              padding: 1px 0
+
+              .category
+                font-size: 12px
+
     li.item_organization
       +transition(all 750ms ease-out)
       float: left
