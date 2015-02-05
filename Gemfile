@@ -5,7 +5,6 @@ group :assets do
   gem 'compass-rails'
   gem 'font-awesome-sass'
   gem 'jcrop-rails'
-  gem 'jquery-minicolors-rails'
   gem 'jquery-rails',               '2.0.3'
   gem 'jquery.fileupload-rails'
   gem 'sass-rails'
@@ -41,6 +40,7 @@ group :default do
   gem 'htmldiff'
   gem 'httparty'
   gem 'inherited_resources',        '1.4.1'
+  gem 'jquery-minicolors-rails'
   gem 'kaminari'
   gem 'kinopoisk_parser',           :require => false
   gem 'koala',                      '~> 1.7.0rc1'
