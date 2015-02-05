@@ -1614,13 +1614,16 @@
         color: #ff004d
 
       .partners
+        +clearfix
+
         p
           color: #ff004d
           font-weight: bold
           margin: 20px 0 0
 
         div
-          float: left
+          +inline-block
+          margin: 20px 20px 20px 0
 
           a
             display: block
@@ -1631,26 +1634,47 @@
         .partner_svet
           background: image_url('public/february_contest/svet.jpg') no-repeat center center
           height: 70px
-          margin: 20px 20px 0 0
           width: 198px
 
         .partner_procofe
           background: image_url('public/february_contest/procofe.jpg') no-repeat center center
           height: 73px
-          margin: 20px 20px 0 0
           width: 138px
 
         .partner_peremen
           background: image_url('public/february_contest/peremen.jpg') no-repeat center center
           height: 73px
-          margin: 20px 20px 0
           width: 77px
 
         .partner_fler
-          background: image_url('public/february_contest/fler.jpg') no-repeat center center
+          background: image_url('public/february_contest/flerdecor.png') no-repeat center center
           height: 70px
-          margin: 20px 0 0
+          width: 104px
+
+        .partner_42
+          background: image_url('public/february_contest/42.png') no-repeat center center
+          height: 70px
+          width: 190px
+
+        .partner_flowrida
+          background: image_url('public/february_contest/Flowrida.png') no-repeat center center
+          height: 70px
           width: 82px
+
+        .partner_ohota
+          background: image_url('public/february_contest/OhotaNaSvadbu.png') no-repeat center center
+          height: 70px
+          width: 170px
+
+        .partner_ars
+          background: image_url('public/february_contest/ars-aliance.png') no-repeat center center
+          height: 70px
+          width: 150px
+
+        .partner_mayak
+          background: image_url('public/february_contest/Mayak.png') no-repeat center center
+          height: 70px
+          width: 276px
 
       .marked
         background-color: #ffe5f1
