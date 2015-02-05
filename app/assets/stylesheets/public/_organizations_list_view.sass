@@ -36,17 +36,18 @@
         height: 22px
         line-height: 27px
         width: 22px
+        cursor: pointer
 
       .tile_view
         background: #e9e9e9 image_url('public/organizations_list_view/tile_button.png') no-repeat center center
 
-        &:hover
+        &:hover, &.selected
           background: #ff5400 image_url('public/organizations_list_view/tile_button_active.png') no-repeat center center
 
       .list_view
         background: #e9e9e9 image_url('public/organizations_list_view/list_button.png') no-repeat center center
 
-        &:hover
+        &:hover, &.selected
           background: #ff5400 image_url('public/organizations_list_view/list_button_active.png') no-repeat center center
 
     div.search_field
@@ -86,14 +87,27 @@
     width: 490px
     z-index: 100
 
+    .change_place
+      +clearfix
+      padding: 5px 0
+      border-bottom: 1px solid #ccc
+
+      .arrow
+        background: #009c9b image_url('public/organizations_list_view/arrow.png') no-repeat center center
+        float: right
+        margin: 0 10px 0 0
+        text-indent: -9999px
+        width: 19px
+
     .add_and_paginate
       +clearfix
       margin: 20px 0
+      padding: 0 10px
 
       .btn-small
         background: #e8e7e8
         color: #0066cc
-        float: right
+        float: left
         padding: 10px 25px
 
         &:hover
@@ -101,7 +115,10 @@
           background-color: #f3f3f3
 
       .add_link
+        clear: left
+        float: left
         font-size: 16px
+        margin: 0 0 15px 0
 
     .list_view_organization_posters
       overflow-y: scroll
@@ -138,6 +155,9 @@
 
             h1
               font-size: 13px
+
+              a
+                padding-right: 17px
 
             .categories_and_visits
               .categories
