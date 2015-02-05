@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150203082559) do
+ActiveRecord::Schema.define(:version => 20150205084007) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -544,20 +544,20 @@ ActiveRecord::Schema.define(:version => 20150203082559) do
   end
 
   create_table "map_placemarks", :force => true do |t|
-    t.string   "title"
+    t.text     "title"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "image_url"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.string   "image_file_size"
-    t.string   "url"
+    t.text     "url"
     t.string   "when"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "kind"
-    t.string   "organization_title"
-    t.string   "organization_url"
+    t.text     "organization_title"
+    t.text     "organization_url"
   end
 
   create_table "map_projects", :force => true do |t|

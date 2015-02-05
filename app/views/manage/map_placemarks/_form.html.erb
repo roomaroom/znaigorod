@@ -33,10 +33,10 @@
     </div>
     <div class="not_zg_object">
       <%= link_to 'Выбрать из списка', '#', :class => 'toggle_forms' %>
-      <%= f.input :title %>
+      <%= f.input :title, as: :string %>
       <%= f.input :latitude, as: :hidden %>
       <%= f.input :longitude, as: :hidden %>
-      <%= f.input :url %>
+      <%= f.input :url, as: :string %>
       <%= f.input :image %>
       <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
     </div>
