@@ -6,7 +6,7 @@
   <% else %>
     <h1><%= @presenter.page_header %></h1>
   <% end %>
-  <%= link_to 'Добавить организацию', '#', class: [:button, :add_organization] %>
+  <%= link_to 'Добавить организацию', organizations_add_path, class: [:button, :add_organization] %>
 </div>
 
 <div class="filter_and_share">

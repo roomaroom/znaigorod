@@ -93,3 +93,23 @@
       clusterer.add point
 
     map.geoObjects.add clusterer
+
+@init_resizable_list = ->
+  $('.js-resizable').resizable({
+    handles: "w, e"
+    minWidth: 300
+    maxWidth: 490
+    grid: [95, 0]
+    resize: (event, ui) ->
+      target = ui.element
+      console.log ui.size
+
+      if ui.size.width > 449
+        target.addClass('maximum').removeClass('medium small')
+
+      if ui.size.width <= 449 && ui.size.width > 300
+        target.addClass('medium').removeClass('maximum small')
+
+      if ui.size.width == 300
+        target.addClass('small').removeClass('medium')
+  })

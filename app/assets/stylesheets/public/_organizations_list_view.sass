@@ -83,7 +83,7 @@
       width: 100%
 
   .list_view_organization_list
-    +border-radius(7px)
+    +border-radius(4px)
     +box-shadow(-1px 1px 13px 1px rgba(0,0,0, .5))
     +clearfix
     background-color: white
@@ -92,6 +92,19 @@
     top: 30px
     width: 490px
     z-index: 100
+
+    &.maximum
+      .image, .categories_and_visits, .place, .phone
+        display: block
+
+    &.medium
+      .image, .categories_and_visits
+        display: none
+
+    &.small
+      .image, .categories_and_visits, .place, .phone
+        display: none
+
 
     .change_place
       +clearfix
@@ -153,7 +166,7 @@
           .info
             float: left
             margin: 0 0 0 10px
-            width: 360px
+            width: 250px
 
             .schedule_wrapper
               .ul-toggler

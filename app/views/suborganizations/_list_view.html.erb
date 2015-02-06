@@ -9,7 +9,7 @@
     <div class="map"></div>
   </div>
 
-  <div class="list_view_organization_list">
+  <div class="list_view_organization_list js-resizable maximum">
     <div class="change_place">
       <%= link_to 'Сменить позицию', '#', class: 'js-change-position arrow' %>
     </div>
@@ -44,8 +44,10 @@
               <%= content_tag(:div, "Адрес: #{item.address_link}".html_safe, class: :place) if item.address_link.present? %>
 
               <!-- телефон -->
-              Телефон: <%= item.phone.truncate(5)%>
-            <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: item.id %>
+              <span class='phone'>
+                Телефон: <%= item.phone.truncate(5)%>
+              <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: item.id %>
+            </span>
 
             <!-- категории и остальная информация -->
             <div class='categories_and_visits'>
