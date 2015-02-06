@@ -1,4 +1,4 @@
-<% cache("review#{review.id}", expires_in: 10.minutes) do %>
+<% cache("review#{review.id}_#{controller_name}_#{action_name}", expires_in: 10.minutes) do %>
   <div class="title">
     <%= review.truncated_title_link(60) %>
   </div>
