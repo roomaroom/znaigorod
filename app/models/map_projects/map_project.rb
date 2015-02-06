@@ -9,6 +9,7 @@ class MapProject < ActiveRecord::Base
 
   has_many :map_layers,                                    dependent: :destroy
   has_many :relations,             as: :master,            dependent: :destroy
+  has_many :reviews,        :through => :relations, :source => :slave, :source_type => Review
 
   has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
