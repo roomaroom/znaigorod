@@ -10,6 +10,7 @@
           <span class="value">Не указано</span>
         <% end %>
       </div>
+
       <div>
         <span class="label">Описание:</span>
         <% if work.description? %>
@@ -18,6 +19,7 @@
           <span class="value">Не указано</span>
         <% end %>
       </div>
+
       <div>
         <span class="label">Информация об авторе:</span>
         <% if work.author_info? %>
@@ -25,6 +27,12 @@
         <% else %>
           <span class="value">Не указано</span>
         <% end %>
+      </div>
+
+      <div>
+        <span class="label">Автор:</span>
+        <span class="value"><%= work.account.title %></span>
+        <span class="value"><%= link_to('Профиль в социальной сети', work.account.link_to_social, :rel => 'nofollow', :target => '_blank') %> </span>
       </div>
       <div>
         <%= link_to 'Редактировать', [:edit, :manage, resource, work.becomes(Work)]  %>
