@@ -12,7 +12,7 @@ end
 #  title              :text
 #  latitude           :float
 #  longitude          :float
-#  image_url          :string(255)
+#  image_url          :text
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
 #  image_file_size    :string(255)
