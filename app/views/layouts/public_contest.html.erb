@@ -21,6 +21,7 @@
   <div class='february_wrapper'>
     <div class='links'>
       <a href='/contests/fotokonkurs-par-goroda-tomska-polovinki-loventinki-2' class='one'>Конкурс "Половинки LOVEнтинки 2"</a>
+      <%= link_to 'Клуб Маяк', AwayLink.to('http://club.mayakvtomske.ru/'), class: :two %>
     </div>
     <div class='february_content_wrapper'>
       <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
