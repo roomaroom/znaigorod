@@ -24,8 +24,8 @@
 
             <!-- логотип -->
             <div class="image">
-              <!-- если логотип есть -->
               <% if item.organization.logotype_url? %>
+                <!-- если логотип есть -->
                 <%= link_to organization_path(item) do %>
                   <%= image_tag(resized_image_url(item.organization.logotype_url, 90, 90, :watermark => false), size: "#{90}x#{90}", alt: item.organization.title) %>
                 <% end %>
