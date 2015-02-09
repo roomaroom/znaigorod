@@ -109,7 +109,6 @@ $ ->
   init_banners_shuffle() if $('.banner12').length
   init_collapse() if $('.js-slider').length
 
-  init_resizable_list() if $('.js-resizable').length
   true
 
 $(window).load ->

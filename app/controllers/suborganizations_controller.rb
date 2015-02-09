@@ -11,8 +11,12 @@ class SuborganizationsController < ApplicationController
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = klass.new(settings_from_cookie.merge(params.merge(per_page: per_page)))
         if request.xhr?
-          render partial: 'organizations/organizations_posters', layout: false and return unless (@presenter.collection.last_page? && params[:not_client_page].present? )
-          render partial: 'organizations/not_client_posters', layout: false
+          if view_type == 'list'
+            render partial: 'suborganizations/not_client_list_view', layout: false
+          else
+            render partial: 'organizations/organizations_posters', layout: false and return unless (@presenter.collection.last_page? && params[:not_client_page].present? )
+            render partial: 'organizations/not_client_posters', layout: false
+          end
         end
       }
 
@@ -31,6 +35,6 @@ class SuborganizationsController < ApplicationController
   end
 
   def per_page
-    view_type =='list' ? Organization.where(status: :client).count : 14
+    view_type =='list' ? Organization.where(status: :client).where(priority_suborganization_kind: params[:kind]).count : 14
   end
 end
