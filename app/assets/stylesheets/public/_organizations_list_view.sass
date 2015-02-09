@@ -12,11 +12,16 @@
       float: left
 
     .button
+      +background(#ff5700)
+      +box-shadow(0px 2px 5px 0px rgba(0,0,0,0.75))
       float: right
       font-size: 13px
       height: 26px
       line-height: 25px
       margin: 0 0 20px 0
+
+      &:hover
+        +background(#ff7600)
 
   .filter_and_share
     +clearfix
@@ -164,10 +169,11 @@
       padding: 0 10px
 
       .btn-small
-        background: #e8e7e8
-        color: #0066cc
+        +box-shadow(0px 2px 1px 0px rgba(#cdcdcd, .75))
+        background: #e8e8e8
+        color: #000
         float: left
-        padding: 10px 25px
+        padding: 5px 10px
 
         &:hover
           +box-shadow(rgba(#000, 0.3), 1px 1px 2px)
@@ -177,13 +183,13 @@
         clear: left
         float: left
         font-size: 16px
-        margin: 0 0 15px 0
+        margin: 15px 0 0
 
     .list_view_organization_posters
-      clear: both
-      overflow-y: scroll
-      max-height: 540px
       border-top: 1px solid #ccc
+      clear: both
+      max-height: 540px
+      overflow-y: scroll
 
       li.list_view_organization_item
         +clearfix
