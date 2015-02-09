@@ -17,16 +17,16 @@
 
   <% if params[:kind] || params[:categories] %>
     <div class="view_by">
-      <div class="tile_view <%= view_type == 'tile' ? 'selected' : '' %>"><%= link_to "tile", params.merge({:view_type => "tile"}), class: :view_link %></div>
+      <div class="tile_view <%= view_type == 'tile' ? 'selected' : '' %>"><%= link_to "Плиточный вид", params.merge({:view_type => "tile"}), class: :view_link %></div>
 
-      <div class="list_view <%= view_type == 'list' ? 'selected' : '' %>"><%= link_to "tile", params.merge({:view_type => "list"}), class: :view_link %> </div>
+      <div class="list_view <%= view_type == 'list' ? 'selected' : '' %>"><%= link_to "Списочный вид", params.merge({:view_type => "list"}), class: :view_link %> </div>
     </div>
   <% end %>
 
   <div class="search_field">
     <%= text_field_tag :search, '', class: :search_field, placeholder: 'Поиск организации' %>
     <%= button_tag :search_button, class: :search_button %>
-    <%= link_to "Расширенный поиск &darr;".html_safe, class: :search_arrow %>
+    <%= link_to "Расширенный поиск &darr;".html_safe, '#', class: [:extended_search, 'js-extended-search'] %>
   </div>
   <!--/noindex-->
 </div>
