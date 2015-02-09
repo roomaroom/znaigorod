@@ -45,18 +45,6 @@
       maxZoom: 23
       minZoom: 11
 
-    #map.controls.add 'fullscreenControl',
-      #float: 'none'
-      #position:
-        #top: 10
-        #left: $test + 20
-
-    #map.controls.add 'geolocationControl',
-      #float: 'none'
-      #position:
-        #top: 50
-        #left: $test + 20
-
     map.controls.add 'zoomControl',
       float: 'none'
       position:
@@ -96,10 +84,11 @@
 
     $('.js-swap-position').click ->
       $(this).parent().toggleClass('left_position right_position')
+      $(this).parent().css('left','').css('right','10px')
       $(this).toggleClass('swap_left swap_right')
       $(this).parent().find('.js-resize').toggleClass('left right')
 
-      zoom_position = if $(this).is('.swap_left') then menu_width + 20 else 1150 - menu_width
+      zoom_position = if $(this).is('.swap_left') then $(this).parent().width() + 20 else 1150 - $(this).parent().width()
       map.controls.remove 'zoomControl'
       map.controls.add 'zoomControl',
         float: 'none'
@@ -109,22 +98,26 @@
 
       false
 
-@init_resizable_list = ->
-  $('.js-resizable').resizable({
-    handles: "w, e"
-    minWidth: 300
-    maxWidth: 490
-    grid: [95, 0]
-    resize: (event, ui) ->
-      target = ui.element
-      console.log ui.size
+    $('.js-resizable').resizable({
+      handles: "w, e"
+      minWidth: 300
+      maxWidth: 490
+      resize: (event, ui) ->
+        target = ui.element
+        zoom_position = if $('.swap_left').length then ui.size.width + 20 else 1150 - ui.size.width
+        map.controls.remove 'zoomControl'
+        map.controls.add 'zoomControl',
+          float: 'none'
+          position:
+            top: 10
+            left: zoom_position
 
-      if ui.size.width > 449
-        target.addClass('maximum').removeClass('medium small')
+        if ui.size.width > 449
+          target.addClass('maximum').removeClass('medium small')
 
-      if ui.size.width <= 449 && ui.size.width > 320
-        target.addClass('medium').removeClass('maximum small')
+        if ui.size.width <= 449 && ui.size.width > 320
+          target.addClass('medium').removeClass('maximum small')
 
-      if ui.size.width <= 320
-        target.addClass('small').removeClass('medium')
-  })
+        if ui.size.width <= 320
+          target.addClass('small').removeClass('medium')
+    })
