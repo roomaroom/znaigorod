@@ -16,6 +16,11 @@
   <% end %>
 <% else %>
   <div class="map_and_tree_wrapper">
+    <ul class= "placemark_list">
+      <% @placemarks.each do |item| %>
+        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"></li>
+      <% end %>
+    </ul>
     <div class="map_wrapper">
       <div class="map"></div>
     </div>

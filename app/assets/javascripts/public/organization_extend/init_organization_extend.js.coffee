@@ -72,15 +72,20 @@
       clusterBalloonPagerType: 'marker'
       clusterBalloonContentLayoutWidth: 192
       clusterBalloonContentLayoutHeight: 355
-      clusterIconContentLayout: null
 
     $('.list_view_organization_item').each (index, item) ->
       point = new ymaps.GeoObject
         geometry:
           type: 'Point'
           coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
+        properties:
+          hintContent: "123"
+      ,
+        hideIconOnBalloonOpen: false
 
       clusterer.add point
+
+      true
 
     map.geoObjects.add clusterer
 
