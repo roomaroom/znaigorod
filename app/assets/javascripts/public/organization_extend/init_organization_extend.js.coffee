@@ -121,9 +121,9 @@
       if ui.size.width > 449
         target.addClass('maximum').removeClass('medium small')
 
-      if ui.size.width <= 449 && ui.size.width > 300
+      if ui.size.width <= 449 && ui.size.width > 320
         target.addClass('medium').removeClass('maximum small')
 
-      if ui.size.width == 300
+      if ui.size.width <= 320
         target.addClass('small').removeClass('medium')
   })

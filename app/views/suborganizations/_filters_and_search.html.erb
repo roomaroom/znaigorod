@@ -24,8 +24,9 @@
   <% end %>
 
   <div class="search_field">
-    <%= text_field_tag :search, '', class: :search_field %>
-    <%= link_to 'Расширенный поиск', class: :search_arrow %>
+    <%= text_field_tag :search, '', class: :search_field, placeholder: 'Поиск организации' %>
+    <%= button_tag :search_button, class: :search_button %>
+    <%= link_to "Расширенный поиск &darr;".html_safe, class: :search_arrow %>
   </div>
   <!--/noindex-->
 </div>
