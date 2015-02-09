@@ -140,30 +140,24 @@
       cursor: ew-resize
 
     .resize
-      +box-shadow(3px 0px 10px -6px rgba(0, 0, 0, 0.5))
       background: #fff image_url('public/organizations_list_view/resize.png') no-repeat center center
       border-bottom-right-radius: 2px
       border-top-right-radius: 2px
       display: block
       height: 50px
       position: absolute
-      right: -26px
       top: 50%
       width: 26px
 
-    .change_place
-      +clearfix
-      padding: 5px 0
-      border-bottom: 1px solid #ccc
+      &.right
+        +box-shadow(-4px 0px 10px -6px rgba(0, 0, 0, 0.5))
+        left: -26px
 
-      .arrow
-        background: #009c9b image_url('public/organizations_list_view/arrow.png') no-repeat center center
-        float: right
-        margin: 0 10px 0 0
-        text-indent: -9999px
-        width: 19px
+      &.left
+        +box-shadow(3px 0px 10px -6px rgba(0, 0, 0, 0.5))
+        right: -26px
 
->>>>>>> sms claim icon now work. need test. some changes for filters
+
     .add_and_paginate
       +clearfix
       margin: 20px 0

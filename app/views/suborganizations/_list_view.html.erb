@@ -12,6 +12,7 @@
   <div class="list_view_organization_list js-resizable maximum left_position">
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters">
+      <div class="resize js-resize left"></div>
       <% @presenter.collection.each do |item| %>
         <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>">
           <% if item.sms_claimable? %>
@@ -19,7 +20,6 @@
               send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
               :class => :sms_claim_link %>
           <% end %>
-          <div class="resize"></div>
           <div class="list_view_organization_poster">
 
             <!-- логотип -->

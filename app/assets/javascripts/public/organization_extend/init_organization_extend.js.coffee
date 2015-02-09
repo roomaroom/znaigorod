@@ -97,6 +97,7 @@
     $('.js-swap-position').click ->
       $(this).parent().toggleClass('left_position right_position')
       $(this).toggleClass('swap_left swap_right')
+      $(this).parent().find('.js-resize').toggleClass('left right')
 
       zoom_position = if $(this).is('.swap_left') then menu_width + 20 else 1150 - menu_width
       map.controls.remove 'zoomControl'
