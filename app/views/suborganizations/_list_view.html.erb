@@ -9,11 +9,8 @@
     <div class="map"></div>
   </div>
 
-  <div class="list_view_organization_list js-resizable maximum">
-    <div class="change_place">
-      <%= link_to 'Сменить позицию', '#', class: 'js-change-position arrow' %>
-    </div>
-
+  <div class="list_view_organization_list js-resizable maximum left_position">
+    <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters">
       <% @presenter.collection.each do |item| %>
         <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" style="<%= "background: url('#{asset_path('public/organizations_list_view/reservation_icon.png')}') no-repeat right center" %>">

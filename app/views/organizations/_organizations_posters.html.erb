@@ -15,19 +15,24 @@
     <%= render partial: 'organizations/not_client_posters' %>
   <% end %>
 <% else %>
-  <div class="tree left_tree">
-    <%= link_to "swap","#", :class => "js-swap-position swap_position swap_left" %>
-    <div class="scroll_wrapper">
-      <% @presenter.kinds_links_for_index.each do |kind| %>
-        <div class="kind_wrapper">
-          <p><%= link_to "+", "#", :class => "js-open-list open_list plus" %> <%= link_to kind[:title], send(kind[:url]), :class => "kind" %> <span class="organization_quantity"><%= kind[:categories].map{ |k|  k[:count] }.inject(:+) %></span></p>
-          <div class="categories">
-            <% kind[:categories].each do |category| %>
-              <p><%= link_to category[:title], send(category[:url]), :class => "category" %> <span class="organization_quantity"><%= category[:count] %></span></p>
-            <% end %>
+  <div class="map_and_tree_wrapper">
+    <div class="map_wrapper">
+      <div class="map"></div>
+    </div>
+    <div class="tree left_position">
+      <%= link_to "swap","#", :class => "js-swap-position swap_position swap_left" %>
+      <div class="scroll_wrapper">
+        <% @presenter.kinds_links_for_index.each do |kind| %>
+          <div class="kind_wrapper">
+            <p><%= link_to "+", "#", :class => "js-open-list open_list plus" %> <%= link_to kind[:title], send(kind[:url]), :class => "kind" %> <span class="organization_quantity"><%= kind[:categories].map{ |k|  k[:count] }.inject(:+) %></span></p>
+            <div class="categories">
+              <% kind[:categories].each do |category| %>
+                <p><%= link_to category[:title], send(category[:url]), :class => "category" %> <span class="organization_quantity"><%= category[:count] %></span></p>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
