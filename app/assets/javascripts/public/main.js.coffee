@@ -40,7 +40,6 @@ $ ->
   init_menu_colorbox() if $('.menus .info .details a img').length
   init_filter_handler() if $('.filters_wrapper').length
   init_organization_jump_to_afisha() if $('.organization_show').length
-  init_organization() if $('.organizations_index').length
   init_more_categories_menu() if $('.filters .more_link').length
   init_sauna_advanced_filter() if $('.filters_wrapper .advanced_filters_toggler').length
   init_sauna_halls_scroll() if $('.need_scrolling').length
