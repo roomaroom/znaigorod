@@ -72,7 +72,6 @@
  * = require ./photogallery
  * = require ./distribution
  * = require ./back_to_top
- * = require ./filters_toggler
  * = require ./filter_handler
  * = require ./organization_extend
  * = require ./sauna_advanced_filter
