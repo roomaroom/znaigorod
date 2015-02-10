@@ -35,6 +35,8 @@ class SuborganizationsController < ApplicationController
   end
 
   def per_page
-    view_type =='list' ? Organization.where(status: :client).where(priority_suborganization_kind: params[:kind]).count : 14
+    kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
+    klass = "#{kind.pluralize}_presenter".classify.constantize
+    view_type =='list' ? klass.new(params).total_count : 14
   end
 end

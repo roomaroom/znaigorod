@@ -269,7 +269,7 @@ module OrganizationsPresenter
   end
 
   def current_without_clients_count
-    paginated_without_clients_collection.total_count - (@not_client_page.to_i * 40)
+    paginated_without_clients_collection.total_count - (@not_client_page.to_i * 42)
   end
 
   def geo_filter
