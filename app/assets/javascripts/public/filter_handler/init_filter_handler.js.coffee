@@ -150,7 +150,10 @@ criteria_handler = () ->
     $(this).add(target).toggle()
     target.find('input').removeAttr('disabled')
     initialize_map() if $(this).hasClass('geo')
+
     false
+
+  return
 
 set_previous_state = () ->
   $('.filters_wrapper .hide').each (index, item) ->
@@ -159,6 +162,8 @@ set_previous_state = () ->
   $('.filters_wrapper .show').each (index, item) ->
     $('.'+$(item).attr('id'), '.filters_wrapper').hide()
 
+  return
+
 remove_filter_handler = () ->
   $('.remove_filter_link').on 'click', ->
     filter = $(this).parent()
@@ -166,6 +171,8 @@ remove_filter_handler = () ->
     filter.find('.ms-sel-ctn').html('')
     $('.'+filter.removeClass('used').toggle().attr('id'), '.filters_wrapper').toggle()
     false
+
+  return
 
 clear_filter_handler = () ->
   $('.clear_filter_link').on 'click', ->
@@ -180,8 +187,9 @@ clear_form_handler = () ->
     $('.filters_wrapper .filter_inputs input').val('').change()
     $('.filters_wrapper .filter_checkboxes input').attr('checked', false).change()
     $('.filters_wrapper .remove_filter_link:visible').click()
-    window.location.href = window.location.href.replace(/\?.*/, '')
     false
+
+  return
 
 $.fn.draw_scale = (min, max) ->
   middle = (max / 2.0).round()
@@ -300,27 +308,6 @@ filter_date_handler = () ->
     else
       $('.date_picker_wrapper input', filter).val('')
     true
-
-(($) ->
-  $.each [
-    'show'
-    'hide'
-  ], (i, ev) ->
-    el = $.fn[ev]
-
-    $.fn[ev] = ->
-      @trigger ev
-      el.apply this, arguments
-
-    return
-  return
-) jQuery
-
-observer = () ->
-  $('#features').on 'show', ->
-    console.log 'show'
-  $('#features').on 'hide', ->
-    console.log 'hide'
 
 @init_filter_handler = () ->
   set_previous_state()

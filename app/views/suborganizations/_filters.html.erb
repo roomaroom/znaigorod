@@ -43,10 +43,6 @@
         <% end %>
       </ul>
     </div>
-
-    <% if controller_name != 'organizations' && action_name == 'index'%>
-      <%= render :partial => 'advanced_filters' %>
-    <% end %>
   </div>
 
   <% if @presenter.categories_links.count > 8 %>
