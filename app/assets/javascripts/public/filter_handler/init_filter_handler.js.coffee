@@ -156,11 +156,11 @@ criteria_handler = () ->
   return
 
 set_previous_state = () ->
-  $('.filters_wrapper .hide').each (index, item) ->
+  $('.js-filters-wrapper .hide').each (index, item) ->
     $(item).hide().find('input').attr('disabled', 'disabled')
 
-  $('.filters_wrapper .show').each (index, item) ->
-    $('.'+$(item).attr('id'), '.filters_wrapper').hide()
+  $('.js-filters-wrapper .show').each (index, item) ->
+    $('.'+$(item).attr('id'), '.js-filters-wrapper').hide()
 
   return
 
@@ -169,7 +169,7 @@ remove_filter_handler = () ->
     filter = $(this).parent()
     filter.find('input').val('').attr('checked', false).attr('disabled','disabled').change()
     filter.find('.ms-sel-ctn').html('')
-    $('.'+filter.removeClass('used').toggle().attr('id'), '.filters_wrapper').toggle()
+    $('.'+filter.removeClass('used').toggle().attr('id'), '.js-filters-wrapper').toggle()
     false
 
   return
@@ -183,10 +183,10 @@ clear_filter_handler = () ->
 
 clear_form_handler = () ->
   $('.clear_wrapper a').on 'click', ->
-    $('.filters_wrapper .date_filter li:last a').click()
-    $('.filters_wrapper .filter_inputs input').val('').change()
-    $('.filters_wrapper .filter_checkboxes input').attr('checked', false).change()
-    $('.filters_wrapper .remove_filter_link:visible').click()
+    $('.js-filters-wrapper .date_filter li:last a').click()
+    $('.js-filters-wrapper .filter_inputs input').val('').change()
+    $('.js-filters-wrapper .filter_checkboxes input').attr('checked', false).change()
+    $('.js-filters-wrapper .remove_filter_link:visible').click()
     false
 
   return
@@ -318,4 +318,4 @@ filter_date_handler = () ->
   filter_date_handler()
   clear_form_handler()
   clear_filter_handler()
-  initialize_map() if $('#geo', '.filters_wrapper').is(':visible')
+  initialize_map() if $('#geo', '.js-filters-wrapper').is(':visible')
