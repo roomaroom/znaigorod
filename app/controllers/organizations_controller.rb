@@ -2,6 +2,7 @@
 
 class OrganizationsController < ApplicationController
   has_scope :page, :default => 1
+
   helper_method :view_type
 
   before_filter :allow_cross_domain_access
@@ -134,7 +135,7 @@ class OrganizationsController < ApplicationController
   def show_phone
     organization = Organization.find(params[:organization_id])
     organization.increment!(:phone_show_counter)
-    render text: "Телефон: #{organization.phone}".html_safe and return if request.xhr?
+    render text: "#{organization.phone}".html_safe and return if request.xhr?
   end
 
   def view_type

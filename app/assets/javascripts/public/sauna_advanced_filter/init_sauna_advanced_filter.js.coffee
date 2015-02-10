@@ -1,12 +1,12 @@
 @init_sauna_advanced_filter = () ->
-  toggler = $('.filters_wrapper .advanced_filters_toggler a')
+  toggler = $('.filters_wrapper .js-extended-search')
 
   toggler.click ->
     $('.advanced', $(this).closest('.filters_wrapper')).slideToggle 400, ->
       if $('.advanced', $(this).closest('.filters_wrapper')).is(':visible')
-        toggler.html('&uarr; Расширенный поиск')
+        toggler.html('Расширенный поиск &uarr;')
       else
-        toggler.html('&darr; Расширенный поиск')
+        toggler.html('Расширенный поиск &darr;')
       true
     false
 

@@ -301,6 +301,27 @@ filter_date_handler = () ->
       $('.date_picker_wrapper input', filter).val('')
     true
 
+(($) ->
+  $.each [
+    'show'
+    'hide'
+  ], (i, ev) ->
+    el = $.fn[ev]
+
+    $.fn[ev] = ->
+      @trigger ev
+      el.apply this, arguments
+
+    return
+  return
+) jQuery
+
+observer = () ->
+  $('#features').on 'show', ->
+    console.log 'show'
+  $('#features').on 'hide', ->
+    console.log 'hide'
+
 @init_filter_handler = () ->
   set_previous_state()
   remove_filter_handler()

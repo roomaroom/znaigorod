@@ -11,22 +11,21 @@
     h1
       float: left
 
-    .button
-      +background(#ff5700)
-      +box-shadow(0px 2px 5px 0px rgba(0,0,0,0.75))
-      float: right
-      font-size: 13px
-      height: 26px
-      line-height: 25px
-      margin: 0 0 20px 0
+  .button
+    +background(#ff5700)
+    +box-shadow(0px 2px 5px 0px rgba(0,0,0,0.75))
+    float: right
+    font-size: 13px
+    height: 26px
+    line-height: 25px
+    margin: 0 0 20px 0
 
-      &:hover
-        +background(#ff7600)
+    &:hover
+      +background(#ff7600)
 
   .filter_and_share
     +clearfix
     clear: left
-    float: left
 
     .presentation_filters
       float: left
@@ -99,6 +98,68 @@
 
         &:active
           background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center 10px
+
+    form
+      +clearfix
+      clear: both
+
+      .advanced
+
+        &.opened
+          display: block
+
+        &.closed
+          display: none
+
+        .filter
+          +clearfix
+
+          &.hide
+            display: none
+
+          .filter_label
+            background-color: #e8e8e8
+            font-weight: bold
+            padding: 5px
+
+          a
+            float: right
+            margin: 5px 10px
+
+          .filter_checkboxes
+            .checkbox
+              +inline-block
+              margin: 5px 0
+              width: 200px
+
+        .criteria_list
+          margin: 15px 0
+
+          .criteria_label
+            +inline-block
+
+          ul
+            +inline-block
+
+            li
+              +inline-block
+
+        .submit_action
+          margin: 0 0 15px 0
+
+          .button
+            margin: 0 !important
+
+          > div
+            +inline-block
+
+          .results_counter
+            color: #9a9a9a
+            margin: 0 20px
+
+          .clear_wrapper
+            a
+              color: #ff4b00
 
 .list_view_organization_content
   +clearfix

@@ -9,7 +9,7 @@
   <%= link_to 'Добавить организацию', organizations_add_path, class: [:button, :add_organization] %>
 </div>
 
-<div class="filter_and_share">
+<div class="filter_and_share filters_wrapper">
   <!--noindex-->
   <div class='presentation_filters organization'>
     <%= render :partial => 'commons/presentation_filters' %>
@@ -28,5 +28,6 @@
     <%= button_tag :search_button, class: :search_button %>
     <%= link_to "Расширенный поиск &darr;".html_safe, '#', class: [:extended_search, 'js-extended-search'] %>
   </div>
+  <%= render partial: 'suborganizations/advanced_filters' %>
   <!--/noindex-->
 </div>

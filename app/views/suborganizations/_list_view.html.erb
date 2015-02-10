@@ -49,8 +49,8 @@
               <!-- телефон -->
               <span class='phone'>
                 <%= item.phone.truncate(5)%>
-              <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: item.id %>
-            </span>
+                <%= link_to "Показать телефон", "#", class: "js-show-phone", id: item.organization.id %>
+              </span>
 
             <!-- категории и остальная информация -->
             <div class='categories_and_visits'>

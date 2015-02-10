@@ -20,17 +20,20 @@
       $.removeCookie('_znaigorod_jump_to_discounts')
     , 500
 
-  $('.js-show-phone').click ->
+
+@init_organization_show_phone = ->
+  $('.js-show-phone').click (e) ->
+    target = e.target
+    console.log target
     $.ajax
       url: "/show_phone"
       type: "GET"
       data:
-        organization_id: $(this).attr('id')
+        organization_id: $(target).attr('id')
       success: (response) ->
-        $('.phone_wrapper').empty()
-        $('.phone_wrapper').append(response)
-      done:
-        $(this).remove()
+        $(target).parent().html(response)
+    e.preventDefault()
+
 
 @init_organization_list_view_map = ->
   ymaps.ready ->
