@@ -34,6 +34,10 @@ Organization.basic_suborganization_kinds.each do |kind|
       end
     end
 
+    keywords :q do
+      fields :title
+    end
+
     property :sms_claimable
 
     # OPTIMIZE: special cases

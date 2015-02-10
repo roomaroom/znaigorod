@@ -1,68 +1,26 @@
-<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU') %>
 
 <% content_for :page_title, t('meta.saunas.title') %>
 <% content_for :meta_keywords, t('meta.saunas.keywords') %>
 <% content_for :meta_description, t('meta.saunas.description') %>
 <% content_for :extra_meta do %>
   <%= render :partial => 'commons/page_meta_og' %>
-  <% end if page_meta %>
+<% end if page_meta %>
 
-  <div class="organization_left">
-    <%= render :partial => 'banners/banner_1_2' %>
+<div class="filter_and_search">
+  <%= render partial: "suborganizations/filters_and_search" %>
+</div>
+<%= render "#{view_type}_view" %>
 
-    <div class='filter_header'>
-      <% if page_meta %>
-        <h1><%= page_meta.header.squish.html_safe %></h1>
-      <% elsif @presenter.page_header.blank? %>
-        <%= t('meta.organizations.page_header') %>
-      <% else %>
-        <%= @presenter.page_header %>
-      <% end %>
-    </div>
-
-    <div class="filter_and_share">
-
-      <div class='presentation_filters sauna'>
-        <!--noindex-->
-        <div class='order_by'>
-          <p>Сортировать по:</p>
-          <ul>
-            <% @presenter.sortings_links.each do |sortings_link| %>
-              <li<%= " class=selected" if sortings_link[:selected] %>>
-                <%= link_to sortings_link[:title],
-                  send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <!--/noindex-->
-      </div>
-      <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
-    </div>
-
-    <div class='sauna_housing_content js-button-pagination'>
-      <% if @presenter.saunas.any? %>
-        <ul class='sauna_posters js-paginable-list'>
-          <%= render :partial => 'sauna_posters' %>
-        </ul>
-      <% else %>
-        <p class="empty_items_list">По заданным параметрам ничего не найдено ;(</p>
-      <% end %>
-    </div>
-    <% if page_meta %>
-      <div class='introduction green medium'>
-        <%= page_meta.html_introduction %>
-      </div>
-    <% elsif t("meta.#{category}.introduction", default: '').present? %>
-      <div class='introduction green medium'>
-        <%= t("meta.#{category}.introduction").as_html %>
-      </div>
-    <% end %>
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
   </div>
-
-  <% category = @presenter.categories_links.select{|c| c[:selected]}.first[:klass] %>
-
-  <div class="organization_right">
-    <%= render :partial => 'commons/promotions' %>
+<% elsif t("meta.#{category}.introduction", default: '').present? %>
+  <div class='introduction'>
+    <%= t("meta.#{category}.introduction").as_html %>
   </div>
+<% end %>
+
+
 

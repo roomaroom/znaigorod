@@ -1,6 +1,4 @@
 <div class="organization_wrapper">
-  <%= render partial: "suborganizations/filters_and_search" %>
-
   <div class='organization_content js-button-pagination'>
     <% if @presenter.collection.any? || @presenter.without_clients_collection.any? %>
       <ul class='posters js-paginable-list' data-item-width="220">

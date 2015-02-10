@@ -12,6 +12,10 @@
   <% end %>
 <% end %>
 
+<div class="filter_and_search">
+  <%= render partial: "suborganizations/filters_and_search" %>
+</div>
+
 <%= render "suborganizations/#{view_type}_view" %>
 
 <% if page_meta %>

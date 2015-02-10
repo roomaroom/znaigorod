@@ -15,7 +15,7 @@
     <%= render :partial => 'commons/presentation_filters' %>
   </div>
 
-  <% if params[:kind] || params[:categories] %>
+  <% if params[:kind] || params[:categories] || controller_name == 'saunas' %>
     <div class="view_by">
       <div class="tile_view <%= view_type == 'tile' ? 'selected' : '' %>"><%= link_to "Плиточный вид", params.merge({:view_type => "tile"}), class: :view_link %></div>
 

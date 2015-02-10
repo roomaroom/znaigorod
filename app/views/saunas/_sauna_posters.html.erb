@@ -1,5 +1,5 @@
 <% @presenter.organizations.each do |organization| %>
-  <li class='sauna_item <%= cycle('item_1', 'item_2', :name => 'sauna_item') %>'>
+  <li class='sauna_item <%= cycle('item_1', 'item_2', 'item_3', :name => 'sauna_item') %>'>
     <div class='info'>
       <div class='image'>
         <% if organization.sauna.sms_claimable? %>
@@ -11,21 +11,10 @@
         <% end %>
         <%= link_to organization_path(organization) do %>
           <% if organization.logotype_url? %>
-            <%= image_tag(resized_image_url(organization.logotype_url, 178, 178), :size => '178x178', :alt => organization.title.text_gilensize) %>
+            <%= image_tag(resized_image_url(organization.logotype_url, 150, 150), :size => '150x150', :alt => organization.title.text_gilensize) %>
           <% else %>
             <span class='stub_poster <%= organization.priority_suborganization_kind %>'></span>
           <% end %>
-        <% end %>
-        <%= link_to organization_path(organization), class: :details do %>
-          <span class='first_line'>
-            <span class='to_go'><%= organization.visits.count %></span>
-            <span class='wait_invite'>0</span>
-            <span class='comments'><%= organization.comments.count %></span>
-          </span>
-          <span class='second_line'>
-            <span class='likes'><%= organization.likes_count %></span>
-            <span class='visits'><%= organization.page_visits.count %></span>
-          </span>
         <% end %>
       </div>
 
@@ -35,9 +24,6 @@
         <%= organization.truncated_address_link.present? ? organization.truncated_address_link : "&nbsp;".html_safe %>
       </div>
 
-      <div class='phone'>
-        <%= organization.decorated_phones %>
-      </div>
     </div>
 
     <ul class='sauna_halls need_scrolling'>
@@ -51,15 +37,12 @@
 <% end %>
 
 <% if @presenter.last_page? %>
-  <% @presenter.organization_for_saunas_without_halls.each_with_index do |organization, index| %>
-    <li class='sauna_short_item <%= cycle('item_1', 'item_2', 'item_3', 'item_4', :name => 'sauna_short_item') %><%= ' clear_left' if index.zero? %>'>
+  <% @presenter.organization_for_saunas_without_halls.each do |organization| %>
+    <li class='sauna_short_item'>
       <div class='info'>
         <div class='title'><%= organization.truncated_title_link %> </div>
         <hr />
         <%= content_tag :div, organization.truncated_address_link, :class => :address if organization.truncated_address_link.present? %>
-        <div class='phone'>
-          <%= organization.decorated_phones %>
-        </div>
       </div>
     </li>
   <% end %>

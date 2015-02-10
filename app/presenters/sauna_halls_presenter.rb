@@ -39,7 +39,7 @@ class SaunaHallsPresenter
     self.lon    = self.lon.blank? ? nil : self.lon
     self.radius = self.radius.blank? ? nil : self.radius
 
-    self.per_page = 10
+    self.per_page = self.per_page
 
     self.page     ||= 1
   end
@@ -107,7 +107,7 @@ class SaunaHallsPresenter
   def search(args = {})
     args[:group_by_sauna_id] ||= false
     args[:page]              ||= page
-    args[:per_page]          ||= 10
+    args[:per_page]          ||= per_page
 
     SaunaHall.search(:include => [
         :organization,

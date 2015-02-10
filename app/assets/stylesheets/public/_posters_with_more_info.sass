@@ -1,36 +1,10 @@
-.content
-  .organization_left
-    border-right: 1px solid #e5e5e5
-    float: left
-    padding: 0 40px 25px 5px
-    width: 880px
-
-    .filter_header
-      +clearfix
-      border-bottom: 1px solid #e5e5e5
-      font-size: 22px
-      line-height: 40px
-      margin: 30px 0 0 0
-
-    .filter_and_share
-      +likes
-      .likes
-        margin: 15px 0 15px 0
-
-    .pagination
-      width: 872px
-      clear: both
-      margin: 0 8px
-
-  .organization_right
-    border-left: 1px solid #e5e5e5
-    float: left
-    margin: 0 0 0 -1px
-    padding: 10px 0
-    width: 262px
-
 .sauna_housing_content
   clear: both
+
+  .pagination
+    width: 1182px
+    clear: both
+    margin: 0 8px
 
   .fresh
     +opacity(0)
@@ -47,38 +21,37 @@
 
       &.sauna_item,
       &.housing_item
-        width: 418px
-        height: 285px
+        width: 378px
+        height: 245px
         border: 1px solid #ccc
-        margin: 0 20px 20px 10px
-
-        &:nth-child(2n)
-          margin-right: 0
+        margin: 0 20px 20px 0
 
         .info
           border-right: 1px dashed #ccc
-          height: 285px
+          height: 245px
+
+      &.item_1
+        margin-left: 10px
+
+      &.item_3
+        margin-right: 0
+
 
       &.sauna_short_item,
       &.housing_short_item
-        width: 178px
+        width: 150px
+        height: 95px
         border: 1px solid #ccc
-        margin: 0 23px 20px 10px
+        margin: 0 18px 20px 0
 
         hr
           border: none
           border-top: 1px dashed #ccc
           margin: 0 0 3px 0
 
-        &.item_1
-          clear: left
-
-        &.item_6
-          margin-right: 0
-
       .info
         float: left
-        width: 178px
+        width: 150px
         text-align: center
 
         .title
@@ -95,13 +68,13 @@
           text-align: left
 
         .image
-          width: 178px
-          height: 178px
+          width: 150px
+          height: 150px
           position: relative
           margin-bottom: 3px
 
           .sms_claimable
-            width: 185px
+            width: 157px
             position: absolute
             top: 0
             left: -6px
@@ -116,13 +89,13 @@
             position: absolute
             top: 0
             left: 0
-            width: 178px
-            height: 178px
+            width: 150px
+            height: 150px
 
             .stub_poster
               display: block
-              width: 178px
-              height: 178px
+              width: 150px
+              height: 150px
               background: transparent image_url('public/organization_stub_poster_kind.png') no-repeat top left
 
               &.sauna
@@ -130,50 +103,12 @@
 
           .sms_claim_link
             display: block
-            width: 130px
+            width: 102px
             height: auto
             top: 50px
             left: 15px
             +button-style
             z-index: 0
-
-          .details
-            color: #000
-            text-align: left
-
-          .first_line
-            bottom: 35px
-
-          .second_line
-            bottom: 10px
-
-          .first_line,
-          .second_line
-            display: none
-            width: 100%
-            position: absolute
-            left: 0
-
-            span
-              display: block
-              float: left
-              width: 34px
-              padding-left: 25px
-              background: transparent image_url('public/details_sprite.png') no-repeat 10px 3px
-
-              &.to_go
-                background-position: 12px 3px
-              &.wait_invite
-                background-position: 4px -17px
-              &.comments
-                background-position: 5px -36px
-              &.likes
-                background-position: 12px -57px
-              &.visits
-                background-position: 6px -77px
-              &.minimal_age
-                background: none
-                padding-left: 18px
 
           &:hover
             .sms_claim_link
@@ -183,26 +118,19 @@
             img
               +opacity(0.15)
             .for_sale,
-            .first_line,
-            .second_line
-              display: block
 
         .address
           margin-bottom: 3px
           padding-left: 10px
           padding-top: 10px
 
-        .phone
-          margin-bottom: 3px
-          padding-left: 5px
-
-        .address, .phone
+        .address
           text-align: left
 
       .sauna_halls,
       .rooms
         float: left
-        width: 239px
+        width: 227px
         height: 244px
 
         li
