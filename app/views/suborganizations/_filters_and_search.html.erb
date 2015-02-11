@@ -25,10 +25,12 @@
 
   <div class='search_wrapper'>
     <div class='search_fields'>
-      <%= text_field_tag :search, '', class: :search_field, placeholder: 'Поиск организации' %>
-      <%= button_tag :search_button, class: :search_button %>
+      <%= form_tag '', method: :get  do %>
+        <%= text_field_tag :q, params[:q], class: :search_field, placeholder: 'Поиск организации' %>
+        <%= button_tag :search_button, class: :search_button %>
+      <% end %>
     </div>
-    <%= link_to "Расширенный поиск &darr;".html_safe, '#', class: [:extended_search, 'js-extended-search'] %>
+    <%= link_to "Расширенный поиск &darr;".html_safe, '#', class: [:extended_search, 'js-extended-search'] unless controller_name == 'organizations' %>
   </div>
   <%= render partial: 'advanced_filters' unless controller_name == 'organizations' %>
   <!--/noindex-->

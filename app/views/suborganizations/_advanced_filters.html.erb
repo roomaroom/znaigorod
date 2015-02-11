@@ -1,5 +1,5 @@
 <%= form_tag send("#{@presenter.pluralized_kind}_path"), :method => :get do %>
-  <div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
+  <div class='advanced <%= (params[:utf8].present? && !params[:q]) ? 'opened' : 'closed' %>'>
     <% @presenter.class.filters.each do |filter_name| %>
       <% next if filter_name == :categories %>
       <% next if @presenter.send("#{filter_name}_filter").available.empty? %>

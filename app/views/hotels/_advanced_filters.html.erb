@@ -1,5 +1,5 @@
 <%= form_tag hotels_path, :method => :get do %>
-  <div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
+  <div class='advanced <%= (params[:utf8].present? && !params[:q]) ? 'opened' : 'closed' %>'>
     <div class='introduction'>
       <%= t('meta.hotels.introduction').as_html %>
     </div>

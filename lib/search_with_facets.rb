@@ -37,6 +37,8 @@ module SearchWithFacets
         string(:status) { organization_status }
         string(:positive_activity_date) { organization_positive_activity_date }
 
+        text :title, :using => :organization_title
+
         # OPTIMIZE: special cases
         boolean(:show_in_search_results) {
           (self.is_a?(Sauna) || self.is_a?(Billiard)) && (self.organization.suborganizations.map(&:class) & [Entertainment]).any? ? false : true

@@ -42,6 +42,7 @@ class SaunaHallsPresenter
     self.per_page = self.per_page
 
     self.page     ||= 1
+    self.q = self.q
   end
 
   def self.available_sortings
@@ -125,6 +126,8 @@ class SaunaHallsPresenter
         with(:capacity, capacity)
         with(:capacity).greater_than(capacity)
       end
+
+      fulltext(q, :fields => [:title])
 
       without(:price_max).less_than(price_min)    if price_min
       without(:price_min).greater_than(price_max) if price_max

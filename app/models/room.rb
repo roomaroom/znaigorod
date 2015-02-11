@@ -25,6 +25,7 @@ class Room < ActiveRecord::Base
     string :categories,    :multiple => true
     string :context_id
     string :room_features, :multiple => true
+    text(:title) {context.organization.title}
 
     string(:context_type)                { context_type.underscore }
     string(:features, :multiple => true) { context_features }

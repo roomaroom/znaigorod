@@ -70,7 +70,7 @@
         </div>
       </li>
     <% end %>
-    <%= link_to "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1), :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' %>
+    <%= link_to "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1), :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' if @presenter.current_without_clients_count == 0 %>
   </ul>
 
   <div class="add_and_paginate">
