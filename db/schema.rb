@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150203082559) do
+ActiveRecord::Schema.define(:version => 20150211083638) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -670,6 +670,15 @@ ActiveRecord::Schema.define(:version => 20150203082559) do
 
   add_index "offers", ["account_id"], :name => "index_offers_on_account_id"
   add_index "offers", ["offerable_id"], :name => "index_offers_on_offerable_id"
+
+  create_table "organization_categories", :force => true do |t|
+    t.string   "title"
+    t.string   "ancestry"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "organization_categories", ["ancestry"], :name => "index_organization_categories_on_ancestry"
 
   create_table "organization_stands", :force => true do |t|
     t.integer  "organization_id"
