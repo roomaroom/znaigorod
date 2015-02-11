@@ -38,7 +38,7 @@
 
 <% if @presenter.last_page? %>
   <% @presenter.organization_for_saunas_without_halls.each do |organization| %>
-    <li class='sauna_short_item'>
+    <li class='sauna_short_item <%= cycle("short_item_1", "short_item_2", "short_item_3", "short_item_4", "short_item_5", "short_item_6", "short_item_7") %>'>
       <div class='info'>
         <div class='title'><%= organization.truncated_title_link %> </div>
         <hr />

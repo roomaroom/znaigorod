@@ -1,53 +1,16 @@
+<% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU') %>
 <% content_for :extra_meta do %>
   <%= render :partial => 'commons/page_meta_og' %>
-  <% end if page_meta %>
+<% end if page_meta %>
 
-  <div class="organization_left">
-    <%= render :partial => 'banners/banner_1_2' %>
+<div class="filter_and_search">
+  <%= render partial: "suborganizations/filters_and_search" %>
+</div>
 
-    <div class='filter_header'>
-      <% if page_meta %>
-        <h1><%= page_meta.header.squish.html_safe %></h1>
-      <% elsif @presenter.page_header.blank? %>
-        <%= t('meta.organizations.page_header') %>
-      <% else %>
-        <%= @presenter.page_header %>
-      <% end %>
-    </div>
+<%= render "#{view_type}_view" %>
 
-    <div class="filter_and_share">
-
-      <div class='presentation_filters hotels'>
-        <!--noindex-->
-        <div class='order_by'>
-          <p>Сортировать по:</p>
-          <ul>
-            <% @presenter.sortings_links.each do |sortings_link| %>
-              <li<%= " class=selected" if sortings_link[:selected] %>>
-                <%= link_to sortings_link[:title],
-                  send(sortings_link[:url], sortings_link[:parameters]), :class => sortings_link[:parameters][:order_by] %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <!--/noindex-->
-      </div>
-      <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
-    </div>
-
-    <div class='sauna_housing_content js-button-pagination'>
-        <ul class='housing_posters js-paginable-list'>
-          <%= render :partial => 'housings/housing_posters', :locals => { :housing => :hotel } %>
-        </ul>
-    </div>
+<% if page_meta %>
+  <div class='introduction'>
+    <%= page_meta.html_introduction %>
   </div>
-
-  <div class="organization_right">
-    <%= render :partial => 'commons/promotions' %>
-  </div>
-
-  <% if page_meta %>
-    <div class='introduction'>
-      <%= page_meta.html_introduction %>
-    </div>
-  <% end %>
+<% end %>

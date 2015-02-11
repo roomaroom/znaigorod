@@ -275,7 +275,7 @@ class RoomsPresenter
     @features ||= []
     @offers ||= []
     @page ||= 1
-    @per_page ||= 10
+    @per_page ||= per_page
   end
 
   def search
