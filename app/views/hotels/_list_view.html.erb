@@ -9,7 +9,7 @@
     <ul class="list_view_organization_posters js-paginable-list">
       <div class="resize js-resize left"></div>
       <% @presenter.decorated_collection.each do |item| %>
-        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>">
+        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>">
           <% if item.sms_claimable? %>
             <%= link_to item.priority_sms_claimable_suborganization.reservation_title,
               send("new_#{item.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.priority_sms_claimable_suborganization),

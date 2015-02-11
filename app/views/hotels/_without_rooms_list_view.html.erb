@@ -1,5 +1,5 @@
 <% @presenter.organizations_without_rooms.each do |organization| %>
-  <li class='list_view_organization_item' data-longitude="<%= organization.longitude %>" data-latitude="<%= organization.latitude %>">
+  <li class='list_view_organization_item' data-longitude="<%= organization.longitude %>" data-latitude="<%= organization.latitude %>" data-image="<%= organization.logotype_url %>">
     <div class="list_view_organization_poster">
       <div class="info">
         <!-- информация о заведении -->

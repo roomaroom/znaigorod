@@ -9,7 +9,7 @@
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters js-paginable-list">
       <% @presenter.collection.each do |item| %>
-        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>">
+        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>">
           <% if item.sms_claimable? %>
             <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
               send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
