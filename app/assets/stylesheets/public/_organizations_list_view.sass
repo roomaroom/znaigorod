@@ -400,7 +400,6 @@
           text-indent: -99999px
 
         .list_view_organization_poster
-          +clearfix
           float: left
 
           li
@@ -410,6 +409,46 @@
             width: 90px
             height: 90px
             float: left
+            position: relative
+
+            .with_discount
+              color: #fff
+              position: absolute
+              border-bottom: 18px solid #009e9e
+              border-left: 18px solid transparent
+              border-right: 18px solid transparent
+              height: 0
+              width: 50px
+              font-weight: bold
+              text-align: center
+              +rotate(-45deg)
+              top: 10px
+              left: -23px
+
+              a
+                color: #fff
+                display: block
+
+                &:hover
+                  text-decoration: none
+
+              &:before,
+              &:after
+                display: block
+                content: ''
+                position: absolute
+                width: 0
+                height: 0
+                border-style: solid
+                border-width: 3px 3px 0 3px
+                border-color: #3a6666 transparent transparent transparent
+                top: 18px
+
+              &:before
+                left: -18px
+
+              &:after
+                right: -17px
 
             .stub_poster
               background: transparent image_url('public/organization_stub_poster_kind_medium.png') no-repeat top left
