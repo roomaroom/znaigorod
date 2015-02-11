@@ -13,15 +13,26 @@
 
   .button
     +background(#ff5700)
-    +box-shadow(0px 2px 5px 0px rgba(0,0,0,0.75))
+    +box-shadow(0px 0px 1px 0px rgba(#000, .5))
     float: right
     font-size: 13px
     height: 26px
-    line-height: 25px
+    line-height: 23px
     margin: 0 0 20px 0
+    outline: none
 
     &:hover
       +background(#ff7600)
+      cursor: pointer
+
+    &:acitve
+      outline: none
+
+    &.big
+      line-height: 25px
+
+    &.small
+      line-height: 23px
 
   .filter_and_share
     +clearfix
