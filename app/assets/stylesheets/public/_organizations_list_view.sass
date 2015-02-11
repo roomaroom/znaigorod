@@ -70,34 +70,38 @@
         &:hover, &.selected
           background: #ff5400 image_url('public/organizations_list_view/list_button_active.png') no-repeat center center
 
-    div.search_field
-      margin: 12px 15px
+    .search_wrapper
+      +clearfix
       float: left
+      margin: 12px 15px
 
-      &:active, &:hover, &:focus
+      div.search_fields
+        +inline-block
+
+        &:active, &:hover, &:focus
+          input.search_field
+            border: 2px solid #ff5400
+
+          button.search_button
+            background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center center
+
         input.search_field
-          border: 2px solid #ff5400
+          border: 2px solid #9a9a9a
+          outline: none
+          padding: 6px
+          width: 400px
 
         button.search_button
-          background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center center
+          background: #9a9a9a image_url('public/organizations_list_view/search_icon.png') no-repeat center center
+          border: 0
+          cursor: pointer
+          margin: 0 10px 0 -4px
+          outline: none
+          padding: 8px 15px
+          text-indent: -9999px
 
-      input.search_field
-        border: 2px solid #9a9a9a
-        outline: none
-        padding: 6px
-        width: 400px
-
-      button.search_button
-        background: #9a9a9a image_url('public/organizations_list_view/search_icon.png') no-repeat center center
-        border: 0
-        cursor: pointer
-        margin: 0 10px 0 -4px
-        outline: none
-        padding: 8px 15px
-        text-indent: -9999px
-
-        &:active
-          background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center 10px
+          &:active
+            background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center 10px
 
     form
       +clearfix
@@ -367,7 +371,7 @@
           background: #f2f2f2
 
         .sms_claim_link
-          background: image_url('/assets/public/organizations_list_view/reservation_icon.png') no-repeat center center
+          background: image_url('/assets/public/organizations_list_view/reservation_icon.png') no-repeat center right
           float: right
           text-indent: -99999px
 
@@ -443,7 +447,7 @@
               font-size: 13px
 
               span
-                float: right
+                +inline-block
                 width: 11px
                 height: 11px
 
@@ -454,7 +458,7 @@
                   background: image_url('public/organizations_list_view/open_icon.png') no-repeat right center
 
               a
-                padding-right: 17px
+                +inline-block
 
             .categories_and_visits
               .categories

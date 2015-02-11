@@ -9,23 +9,25 @@
   <%= link_to 'Добавить организацию', organizations_add_path, class: [:button, :add_organization] %>
 </div>
 
-<div class="filter_and_share js-filters-wrapper">
+<div class='filter_and_share js-filters-wrapper'>
   <!--noindex-->
   <div class='presentation_filters organization'>
     <%= render :partial => 'commons/presentation_filters' %>
   </div>
 
   <% if params[:kind] || params[:categories] || controller_name == 'saunas' || controller_name == 'hotels'%>
-    <div class="view_by">
+    <div class='view_by'>
       <div class="tile_view <%= view_type == 'tile' ? 'selected' : '' %>"><%= link_to "Плиточный вид", params.merge({:view_type => "tile"}), class: :view_link %></div>
 
       <div class="list_view <%= view_type == 'list' ? 'selected' : '' %>"><%= link_to "Списочный вид", params.merge({:view_type => "list"}), class: :view_link %> </div>
     </div>
   <% end %>
 
-  <div class="search_field">
-    <%= text_field_tag :search, '', class: :search_field, placeholder: 'Поиск организации' %>
-    <%= button_tag :search_button, class: :search_button %>
+  <div class='search_wrapper'>
+    <div class='search_fields'>
+      <%= text_field_tag :search, '', class: :search_field, placeholder: 'Поиск организации' %>
+      <%= button_tag :search_button, class: :search_button %>
+    </div>
     <%= link_to "Расширенный поиск &darr;".html_safe, '#', class: [:extended_search, 'js-extended-search'] %>
   </div>
   <%= render partial: 'advanced_filters' %>
