@@ -4,7 +4,8 @@
       <div class="info">
         <!-- информация о заведении -->
         <h1>
-          <%= link_to organization.title.truncate(30), organization_path(organization), style: "background: url('#{asset_path(organization.schedules.first.holiday? ? 'public/organizations_list_view/close_icon.png' : 'public/organizations_list_view/open_icon.png')}') no-repeat right center" %>
+          <%= link_to item.organization.title.truncate(30), organization_path(item.organization) %>
+          <span <%= "#{item.organization.schedules.first.holiday? ? 'class=close title=Закрыто' : 'class=open title=Открыто'}" %>></span>
         </h1>
         <!-- адрес -->
         <%= content_tag(:div, "#{organization.address_link}".html_safe, class: :place) if organization.address_link.present? %>

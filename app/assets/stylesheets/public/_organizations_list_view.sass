@@ -13,9 +13,9 @@
 
   .button
     +background(#ff5700)
-    +box-shadow(0px 0px 1px 0px rgba(#000, .5))
+    +box-shadow(0px 2px 0px 0px rgba(209, 83, 0, 1))
     float: right
-    font-size: 13px
+    font-size: 11px
     height: 26px
     line-height: 23px
     margin: 0 0 20px 0
@@ -47,10 +47,21 @@
 
             &.selected
               a
-                line-height: 18px
+                line-height: 12px
+                margin-top: 1px
+                padding: 5px 4px
+                +box-shadow(0 -4px 3px 0px rgba(#e84800, 1))
 
             a
-              padding: 5px 8px 4px
+              padding: 4px
+              border: 0
+              line-height: 14px
+              +box-shadow(0 1px 0px 0px rgba(#cdcdcd, 1))
+
+            &:nth-child(2n)
+              a
+                border-right: 1px solid #cdcdcd
+
 
     .view_by
       float: left
@@ -59,8 +70,8 @@
       div
         cursor: pointer
         float: left
-        height: 27px
-        width: 29px
+        height: 23px
+        width: 25px
 
       .tile_view, .list_view
         .view_link
@@ -99,7 +110,7 @@
         input.search_field
           border: 2px solid #9a9a9a
           outline: none
-          padding: 6px
+          padding: 5px
           width: 400px
 
         button.search_button
@@ -108,7 +119,7 @@
           cursor: pointer
           margin: 0 10px 0 -4px
           outline: none
-          padding: 8px 15px
+          padding: 7px 15px
           text-indent: -9999px
 
           &:active
@@ -346,12 +357,13 @@
         display: none
 
     .btn-small
-      +box-shadow(0px 2px 1px 0px rgba(#cdcdcd, .75))
+      +box-shadow(0px 2px 0px 0px rgba(#cdcdcd, 1))
       background: #e8e8e8
       color: #000
       float: left
       padding: 5px 10px
       margin: 10px 0 0 12px
+      border: 0
 
       &:hover
         +box-shadow(rgba(#000, 0.3), 1px 1px 2px)
@@ -372,6 +384,7 @@
       clear: both
       max-height: 540px
       overflow-y: scroll
+      padding-bottom: 5px
 
       li.list_view_organization_item
         +clearfix
