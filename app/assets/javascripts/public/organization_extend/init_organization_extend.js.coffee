@@ -83,7 +83,7 @@
 
     map.geoObjects.add clusterer
 
-    $('.pagination').bind 'ajax:success', (evt, response) ->
+    $('.list_view_organization_posters').on 'ajax:success', '.pagination', (evt, response) ->
       $(response).filter('.list_view_organization_item').each (index, item) ->
         point = new ymaps.GeoObject
           geometry:
