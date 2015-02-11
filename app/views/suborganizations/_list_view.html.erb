@@ -13,7 +13,9 @@
           <% if item.sms_claimable? %>
             <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
               send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
-              :class => :sms_claim_link %>
+              :class => :sms_claim_link,
+              :title => item.reservation_title
+            %>
           <% end %>
           <div class="list_view_organization_poster">
 
@@ -36,10 +38,11 @@
               <!-- информация о заведении -->
 
               <h1>
-                <%= link_to item.organization.title.truncate(30), organization_path(item.organization), style: "background: url('#{asset_path(item.organization.schedules.first.holiday? ? 'public/organizations_list_view/close_icon.png' : 'public/organizations_list_view/open_icon.png')}') no-repeat right center" %>
+                <%= link_to item.organization.title.truncate(30), organization_path(item.organization) %>
+                <span <%= "#{item.organization.schedules.first.holiday? ? 'class=close title=Закрыто' : 'class=open title=Открыто'}" %>></span>
               </h1>
               <!-- адрес -->
-              <%= content_tag(:div, "#{item.address_link}".html_safe, class: :place) if item.address_link.present? %>
+              <%= content_tag(:div, "#{item.address_without_link}".html_safe, class: :place) if item.address_link.present? %>
 
               <!-- телефон -->
               <span class='phone'>

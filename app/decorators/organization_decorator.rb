@@ -51,6 +51,12 @@ class OrganizationDecorator < ApplicationDecorator
     "#{address}#{office}"
   end
 
+  def address_without_link(address = organization.address)
+    return "" if address.to_s.blank?
+    return h.content_tag :span, "#{address.city}, #{address}#{office}",
+      :title => "#{address.city}, #{address.office}"
+  end
+
   def office
     return ", #{organization.address.office.squish}" unless organization.address.office.blank?
   end

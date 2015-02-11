@@ -10,6 +10,7 @@ class SuborganizationsController < ApplicationController
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = klass.new(settings_from_cookie.merge(params.merge(per_page: per_page)))
+
         if request.xhr?
           if view_type == 'list'
             render partial: 'suborganizations/not_client_list_view', layout: false

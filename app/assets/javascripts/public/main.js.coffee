@@ -41,6 +41,7 @@ $ ->
   init_filter_handler() if $('.js-filters-wrapper').length
   init_organization_jump_to_afisha() if $('.organization_show').length
   init_more_categories_menu() if $('.filters .more_link').length
+  init_organization_show_phone() if $('.js-show-phone').length
   init_sauna_advanced_filter() if $('.js-extended-search').length
   init_sauna_halls_scroll() if $('.need_scrolling').length
   init_iconize_info() if $('.organization_show .show_description_link').length

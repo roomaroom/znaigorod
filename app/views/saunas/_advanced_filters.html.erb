@@ -1,9 +1,9 @@
-<div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
-  <div class='introduction'>
-    <%= t('meta.saunas.introduction').as_html %>
-  </div>
+<%= form_tag saunas_path, :method => :get do %>
+  <div class='advanced <%= params[:utf8].present? ? 'opened' : 'closed' %>'>
+    <div class='introduction'>
+      <%= t('meta.saunas.introduction').as_html %>
+    </div>
 
-  <%= form_tag saunas_path, :method => :get do %>
     <%= hidden_field_tag :order_by, @presenter.order_by %>
 
     <div class='filter <%= @presenter.price_filter_used? ? 'used' : 'not_used' %>' id='amount'>
@@ -95,7 +95,7 @@
     </div>
     <div class='submit_action'>
       <div class='submit_wrapper'>
-        <input type='submit' value='Применить фильтр' class='submit' />
+        <input type='submit' value='Применить фильтр' class='button' />
       </div>
       <div class='results_counter'>
         <span class='counter'><%= t('sauna.found_total_count', :count => @presenter.total_count) %></span>
@@ -104,5 +104,5 @@
         <%= link_to 'Очистить', '#' %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

@@ -22,8 +22,8 @@
 
 
 @init_organization_show_phone = ->
-  $('.js-show-phone').click (e) ->
-    target = e.target
+  $('.js-show-phone').click ->
+    target = $(this)
     console.log target
     $.ajax
       url: "/show_phone"
@@ -32,8 +32,10 @@
         organization_id: $(target).attr('id')
       success: (response) ->
         $(target).parent().html(response)
-    e.preventDefault()
 
+      false
+    false
+  return
 
 @init_organization_list_view_map = ->
   ymaps.ready ->
