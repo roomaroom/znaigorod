@@ -66,6 +66,7 @@
       clusterBalloonContentLayoutWidth: 192
       clusterBalloonContentLayoutHeight: 355
 
+
     $('.list_view_organization_item').each (index, item) ->
       point = new ymaps.GeoObject
         geometry:
@@ -81,6 +82,23 @@
       true
 
     map.geoObjects.add clusterer
+
+    $('.pagination').bind 'ajax:success', (evt, response) ->
+      $(response).filter('.list_view_organization_item').each (index, item) ->
+        point = new ymaps.GeoObject
+          geometry:
+            type: 'Point'
+            coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
+          properties:
+            hintContent: "123"
+        ,
+          hideIconOnBalloonOpen: false
+
+        clusterer.add point
+
+      map.geoObjects.add clusterer
+
+      true
 
     $('.js-open-list').click ->
       $(this).parent().next('.categories').toggle()
