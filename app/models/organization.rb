@@ -26,6 +26,8 @@ class Organization < ActiveRecord::Base
   belongs_to :placement,            :class_name => 'Organization', :foreign_key => 'situated_at'
   belongs_to :primary_organization, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
 
+  has_and_belongs_to_many :organization_categories
+
   has_many :activities,             :dependent => :destroy
   has_many :comments,               :dependent => :destroy, :as => :commentable
   has_many :contacts,               :dependent => :destroy

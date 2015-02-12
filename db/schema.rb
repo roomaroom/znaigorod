@@ -680,6 +680,11 @@ ActiveRecord::Schema.define(:version => 20150211083638) do
 
   add_index "organization_categories", ["ancestry"], :name => "index_organization_categories_on_ancestry"
 
+  create_table "organization_categories_organizations", :id => false, :force => true do |t|
+    t.integer "organization_category_id"
+    t.integer "organization_id"
+  end
+
   create_table "organization_stands", :force => true do |t|
     t.integer  "organization_id"
     t.integer  "places"
