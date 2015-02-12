@@ -16,6 +16,7 @@ class CreateOrganizationCategories < ActiveRecord::Migration
       t.references :organization_category
       t.references :organization
     end
+    add_index :organization_categories_organizations, [:organization_category_id, :organization_id], :uniq => true, :name => 'organization_organization_category'
 
     Organization.basic_suborganization_kinds.each do |kind|
       parent_title = normalize_title(I18n.t("organization.kind.#{kind}"))
@@ -38,10 +39,17 @@ class CreateOrganizationCategories < ActiveRecord::Migration
         end
       end
     end
+
+    Organization.includes(Organization.available_suborganization_kinds).select { |o| o.suborganizations.empty? }.each do |o|
+      category_title = normalize_title(I18n.t("organization.kind.#{o.priority_suborganization_kind}"))
+      category = OrganizationCategory.find_by_title(category_title)
+
+      o.organization_categories << category
+    end
   end
 
   def down
-    drop_table :organizations_organization_categories
+    drop_table :organization_categories_organizations
     drop_table :organization_categories
   end
 end

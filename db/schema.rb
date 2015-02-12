@@ -685,6 +685,8 @@ ActiveRecord::Schema.define(:version => 20150211083638) do
     t.integer "organization_id"
   end
 
+  add_index "organization_categories_organizations", ["organization_category_id", "organization_id"], :name => "organization_organization_category"
+
   create_table "organization_stands", :force => true do |t|
     t.integer  "organization_id"
     t.integer  "places"
