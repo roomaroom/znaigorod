@@ -39,7 +39,7 @@
 
 @init_organization_list_view_map = ->
   ymaps.ready ->
-    $map = $('.map_wrapper .map')
+    $map = $('.suborganizations_map_wrapper .map')
     menu_width = if $('.tree').length then $('.tree').width() else $('.list_view_organization_list').width()
     map = new ymaps.Map $map[0],
       center: [56.4800670145844, 84.95244759591]
