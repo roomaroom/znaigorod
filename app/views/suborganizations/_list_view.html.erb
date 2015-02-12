@@ -21,7 +21,9 @@
 
             <!-- логотип -->
             <div class="image">
-              <div class='with_discount'><%= link_to 'скидка', organization_path(item) %></div>
+              <% if item.organization.discounts.present? %>
+                <div class='with_discount'><%= link_to 'скидка', organization_path(item) %></div>
+              <% end %>
               <% if item.organization.logotype_url? %>
                 <!-- если логотип есть -->
                 <%= link_to organization_path(item) do %>

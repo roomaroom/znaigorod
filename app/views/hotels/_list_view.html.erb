@@ -19,7 +19,10 @@
 
             <!-- логотип -->
             <div class="image">
-              <% if item.organization.logotype_url? %>
+              <% if item.discounts.present? %>
+                <div class='with_discount'><%= link_to 'скидка', organization_path(item) %></div>
+              <% end %>
+              <% if item.logotype_url? %>
                 <!-- если логотип есть -->
                 <%= link_to organization_path(item) do %>
                   <%= image_tag(resized_image_url(item.organization.logotype_url, 90, 90, :watermark => false), size: "#{90}x#{90}", alt: item.title) %>
@@ -45,7 +48,7 @@
               <!-- телефон -->
               <span class='phone'>
                 <%= item.phone.truncate(5)%>
-              <%= link_to "Показать телефон","javascript:void()", class: "js-show-phone", id: item.id %>
+              <%= link_to "Показать телефон", "#", class: "js-show-phone", id: item.id %>
             </span>
 
             <!-- категории и остальная информация -->
