@@ -8,7 +8,7 @@
           <span <%= "#{item.organization.schedules.first.holiday? ? 'class=close title=Закрыто' : 'class=open title=Открыто'}" %>></span>
         </h1>
         <!-- адрес -->
-        <%= content_tag(:div, "#{organization.address_link}".html_safe, class: :place) if organization.address_link.present? %>
+        <%= content_tag(:div, "#{organization.address_without_link}".html_safe, class: :place) if organization.address_link.present? %>
       </div>
     </div>
   </li>
