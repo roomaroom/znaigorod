@@ -149,8 +149,11 @@
       handles: "w, e"
       minWidth: 300
       maxWidth: 490
+      minHeight: 598
+      maxHeight: 628
       resize: (event, ui) ->
         target = ui.element
+        target.css('height', 'auto')
         zoom_position = if $('.swap_left').length then ui.size.width + 20 else 1150 - ui.size.width
         map.controls.remove 'zoomControl'
         map.controls.add 'zoomControl',
