@@ -39,7 +39,7 @@
                 <p><%= link_to "+", "#", :class => "js-open-list open_list plus" %> <%= link_to category, send("#{category.kind.pluralize}_path"), :class => "kind" %> <span class="organization_quantity"><%= category.organizations_count %></span></p>
                 <div class="categories">
                   <% category.children.each do |child| %>
-                    <p><%= link_to child, send("#{child.kind.pluralize}_#{child.downcased_title.from_russian_to_param.pluralize}_path"), :class => "category" %> <span class="organization_quantity"><%= child.organizations_count %></span></p>
+                    <p><%= link_to child, send(child.category_path_string), :class => "category" %> <span class="organization_quantity"><%= child.organizations_count %></span></p>
                   <% end %>
                 </div>
               </div>

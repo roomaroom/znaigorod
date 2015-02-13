@@ -50,6 +50,20 @@ class CreateOrganizationCategories < ActiveRecord::Migration
     end
   end
 
+  def resort_some_categories
+    avtomoiki = OrganizationCategory.find_by_title!('Автомойки')
+    avto = OrganizationCategory.find_by_title!('Авто')
+
+    avtomoiki.parent = avto
+    avtomoiki.save
+
+    saunas = OrganizationCategory.find_by_title!('Сауны')
+    entertainments = OrganizationCategory.find_by_title!('Развлечения')
+
+    saunas.parent = entertainments
+    saunas.save
+  end
+
   def up
     create_table :organization_categories do |t|
       t.string :title
@@ -68,6 +82,7 @@ class CreateOrganizationCategories < ActiveRecord::Migration
     create_organization_categories
     set_categories_for_organizations_with_suborganizations
     set_categories_for_organizations_without_suborganizations
+    resort_some_categories
   end
 
   def down

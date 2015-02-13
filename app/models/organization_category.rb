@@ -8,6 +8,10 @@ class OrganizationCategory < ActiveRecord::Base
 
   has_ancestry
 
+  def self.used_roots
+    OrganizationCategory.roots.where('title NOT IN (?)', ['Автосервис', 'Туристические агентства','Магазины'])
+  end
+
   def downcased_title
     title.mb_chars.downcase.to_s
   end
@@ -24,5 +28,16 @@ class OrganizationCategory < ActiveRecord::Base
     facet_row = Organization.search { facet :organization_category, :only => downcased_title }.facet(:organization_category).rows.first
 
     facet_row ? facet_row.count : 0
+  end
+
+  def organizations
+    Organization.search { with :organization_category, downcased_title; paginate :page => 1, :per_page => 1_000_000 }.results
+  end
+
+  def category_path_string
+    return 'car_washes_path' if downcased_title == 'автомойки'
+    return 'saunas_path' if downcased_title == 'сауны'
+
+    "#{kind.pluralize}_#{downcased_title.from_russian_to_param.pluralize}_path"
   end
 end
