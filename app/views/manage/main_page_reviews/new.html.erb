@@ -1,10 +1,10 @@
-<h3>Обзор на главной странице <%= "№#{@main_page_review.position}" %></h3>
+<h3>Добавление обзора на главную страницу</h3>
 
 <%= simple_form_for [:manage, @main_page_review] do |f| %>
   <div>
     <%= label_tag :q, 'Поиск обзора' %>
     <%= text_field_tag :main_page_reviews_autocomplete,
-      Review.find(@main_page_review.review_id).title,
+      nil,
       :class => 'js-main_page_reviews_autocomplete main_page_reviews_autocomplete',
       :placeholder => 'Введите название обзора',
       :data => { 'autocomplete-source' => manage_main_page_reviews_path, :target => '#main_page_review_review_id' } %>
@@ -12,7 +12,7 @@
     <%= f.input :review_id, :as => :hidden %>
   </div>
 
-  <%= f.input :expires_at, :as => :datetime_picker %>
+  <%= f.input :expires_at, :as => :datetime_picker, :input_html => { :value => I18n.l(DateTime.now + 7.days) } %>
 
   <%= f.submit 'Сохранить' %> или <%= link_to 'Отмена', manage_main_page_reviews_path %>
 <% end %>

@@ -1,7 +1,7 @@
 class Manage::MainPageReviewsController < Manage::ApplicationController
   load_and_authorize_resource
 
-  actions :all, :except => [:new, :create, :show, :destroy]
+  actions :all, :except => :show
 
   def index
     @main_page_reviews = MainPageReview.ordered
@@ -14,4 +14,5 @@ class Manage::MainPageReviewsController < Manage::ApplicationController
       format.json { render :json => reviews.map { |r|  { :label => r.title, :value => r.id } } }
     end
   end
+
 end

@@ -11,6 +11,10 @@ class MainPageReview < ActiveRecord::Base
 
   validates :expires_at, :presence => true
 
+  before_create :set_position
+
+  after_destroy :reorder_positions
+
   def self.latest_reviews
     search = Review.search do
       order_by :created_at, :desc
@@ -21,6 +25,18 @@ class MainPageReview < ActiveRecord::Base
     end
 
     search.results
+  end
+
+  private
+
+  def set_position
+    self.position = MainPageReview.maximum(:position).to_i + 1
+  end
+
+  def reorder_positions
+    MainPageReview.ordered.each_with_index do |item, index|
+      item.update_attribute :position, index+1
+    end
   end
 end
 

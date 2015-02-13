@@ -1,5 +1,7 @@
 <h3>Обзоры на главной странице</h3>
 
+<p><%= link_to 'Добавить', new_manage_main_page_review_path %></p>
+
 <ul class="main_page_reviews">
   <% @main_page_reviews.each do |main_page_review| %>
     <li>
@@ -10,7 +12,8 @@
           </div>
 
           <div>
-            <%= link_to decorated_review.title %>
+            <%= main_page_review.position %>.
+            <%= link_to decorated_review.title, review_path(main_page_review.review), :target => '_blank' %>
           </div>
 
           <div>
@@ -18,8 +21,8 @@
           </div>
 
           <div>
-            <%= link_to 'Выбрать другой обзор', edit_manage_main_page_review_path(main_page_review) %>
-            <%= link_to 'Освободить место', manage_main_page_review_path(main_page_review, 'main_page_review[review_id]' => ''), :method => :put %>
+            <%= link_to 'Изменить', edit_manage_main_page_review_path(main_page_review) %>
+            <%= link_to 'Удалить', manage_main_page_review_path(main_page_review), :method => :delete, :confirm => 'Вы уверены?' %>
           </div>
       <% else %>
         <div>
