@@ -12,6 +12,7 @@ class OrganizationsController < ApplicationController
       format.html {
         @presenter = OrganizationsCatalogPresenter.new(params.merge(per_page: 7))
         @placemarks = Organization.where(status: :client)
+        @categories = OrganizationCategory.roots
       }
 
       format.json {

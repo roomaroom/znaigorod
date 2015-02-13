@@ -156,6 +156,10 @@ class Organization < ActiveRecord::Base
   alias_attribute :payment_ru, :payment
   alias_attribute :address_ru, :address
 
+  def organization_categories_uniq_downcased_titles
+    organization_categories.flat_map { |c| c.path }.uniq.map(&:downcased_title)
+  end
+
   searchable do
     boolean(:logotyped) { logotype_url? }
     boolean(:sms_claimable) { suborganizations.select {|s| s.respond_to?(:sms_claimable?)}.select {|s| s.sms_claimable?}.any? }
@@ -169,6 +173,7 @@ class Organization < ActiveRecord::Base
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 
+    string(:organization_category, :multiple => true) { organization_categories_uniq_downcased_titles }
     string :search_kind
     string :status
     string :positive_activity_date
