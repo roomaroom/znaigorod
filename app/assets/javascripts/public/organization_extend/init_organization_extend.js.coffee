@@ -83,6 +83,7 @@
             "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" +
             "</div>"
           hintContent: title
+          id: $(item).attr('data-slug')
       ,
         hideIconOnBalloonOpen: false
 
@@ -143,6 +144,24 @@
           left: zoom_position
 
       false
+
+    $('.js-organization-item').each (index, item) ->
+      $(item).hover (e) ->
+        target = $(this)
+        objects = clusterer.getGeoObjects()
+        objects.each (index, value) ->
+          slug = index.properties.get('id')
+          if $(target).attr('data-slug') == slug
+            index.options.set('preset', 'islands#pinkIcon')
+            index.options.set('zIndex', 1000)
+      , (e) ->
+        target = $(this)
+        objects = clusterer.getGeoObjects()
+        objects.each (index, value) ->
+          slug = index.properties.get('id')
+          if $(target).attr('data-slug') == slug
+            index.options.set('preset', 'islands#blueIcon')
+            index.options.set('zIndex', 100)
 
     $('.js-resizable').resizable({
       handles: "w, e"

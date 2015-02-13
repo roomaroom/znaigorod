@@ -8,14 +8,15 @@
   <div class="list_view_organization_list js-resizable maximum left_position js-button-pagination">
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters js-paginable-list">
-      <% @presenter.collection.each do |item| %>
-        <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>">
-          <% if item.sms_claimable? %>
-            <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
-              send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
-              :class => :sms_claim_link,
-              :title => item.reservation_title
-            %>
+      <% if @presenter.collection.present? %>
+        <% @presenter.collection.each do |item| %>
+          <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>">
+            <% if item.sms_claimable? %>
+              <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
+                send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
+                :class => :sms_claim_link,
+                :title => item.reservation_title
+              %>
           <% end %>
           <div class="list_view_organization_poster">
 
@@ -53,25 +54,30 @@
                 <%= link_to "Показать телефон", "#", class: "js-show-phone", id: item.organization.id %>
               </span>
 
-            <!-- категории и остальная информация -->
-            <div class='categories_and_visits'>
-              <ul class='categories'>
-                <%= item.category_links.map { |link| content_tag :li, link }.join.mb_chars.downcase.html_safe %>
-              </ul>
+              <!-- категории и остальная информация -->
+              <div class='categories_and_visits'>
+                <ul class='categories'>
+                  <%= item.category_links.map { |link| content_tag :li, link }.join.mb_chars.downcase.html_safe %>
+                </ul>
 
-              <div class='details'>
-                <span class='show_tipsy fa fa-users' title='Участники'> <%= item.organization.visits.count %></span>
-                <span class='show_tipsy fa fa-user' title='Приглашения'> 0</span> <!-- TODO change this -->
-                <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= item.organization.comments.count %></span>
-                <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= item.organization.likes_count %></span>
-                <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= item.organization.page_visits.count %></span>
+                <div class='details'>
+                  <span class='show_tipsy fa fa-users' title='Участники'> <%= item.organization.visits.count %></span>
+                  <span class='show_tipsy fa fa-user' title='Приглашения'> 0</span> <!-- TODO change this -->
+                  <span class='show_tipsy fa fa-comments' title='Комментарии'> <%= item.organization.comments.count %></span>
+                  <span class='show_tipsy fa fa-heart' title='Понравилось'> <%= item.organization.likes_count %></span>
+                  <span class='show_tipsy fa fa-eye' title='Просмотры'> <%= item.organization.page_visits.count %></span>
+                </div>
+
               </div>
-
             </div>
-          </div>
 
-        </div>
-      </li>
+          </div>
+        </li>
+      <% end %>
+    <% else %>
+      <div class="nothing_find">
+        По Вашему запросу ничего не найдено :(
+      </div>
     <% end %>
     <%= link_to "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1), :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' if @presenter.current_without_clients_count > 0 %>
   </ul>
