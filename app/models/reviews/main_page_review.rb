@@ -35,7 +35,7 @@ class MainPageReview < ActiveRecord::Base
 
   def reorder_positions
     MainPageReview.ordered.each_with_index do |item, index|
-      item.update_attribute :position, index+1
+      item.update_attribute :position, index + 1
     end
   end
 end

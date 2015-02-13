@@ -2,34 +2,23 @@
 
 <p><%= link_to 'Добавить', new_manage_main_page_review_path %></p>
 
-<ul class="main_page_reviews">
-  <% @main_page_reviews.each do |main_page_review| %>
-    <li>
-      <% if main_page_review.review %>
-        <% decorated_review = ReviewDecorator.new(main_page_review.review) %>
-          <div class="image">
-            <%= image_tag(decorated_review.annotation_image(100, 100), :size => "100x100") %>
-          </div>
-
-          <div>
-            <%= main_page_review.position %>.
-            <%= link_to decorated_review.title, review_path(main_page_review.review), :target => '_blank' %>
-          </div>
-
-          <div>
-            Действителен до <%= l main_page_review.expires_at, :format => :long %>
-          </div>
-
+<% if @main_page_reviews.any? %>
+  <form class='sortable' data-sort='<%= sort_manage_main_page_reviews_path %>'>
+    <ul class='main_page_reviews'>
+      <% @main_page_reviews.each do |main_page_review| %>
+        <li>
+          <% decorated_review = ReviewDecorator.new(main_page_review.review) %>
+          <div class='sortable_handle'>&#8597;</div>
+          <%= hidden_field :position, main_page_review.id, :class => :position, :value => main_page_review.position %>
+          <div class='image'><%= image_tag(decorated_review.annotation_image(100, 100), :size => "100x100") %></div>
+          <div><span class='position'><%= main_page_review.position %></span>. <%= link_to decorated_review.title, review_path(main_page_review.review), :target => '_blank' %></div>
+          <div>Действителен до <%= l main_page_review.expires_at, :format => :long %></div>
           <div>
             <%= link_to 'Изменить', edit_manage_main_page_review_path(main_page_review) %>
             <%= link_to 'Удалить', manage_main_page_review_path(main_page_review), :method => :delete, :confirm => 'Вы уверены?' %>
           </div>
-      <% else %>
-        <div>
-          Обзор не выбран
-          <%= link_to 'Выбрать обзор', edit_manage_main_page_review_path(main_page_review) %>
-        </div>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </form>
+<% end %>

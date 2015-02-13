@@ -41,7 +41,10 @@ Znaigorod::Application.routes.draw do
     resources :place_items, :except => [:show]
     resources :promotions,  :except => [:show]
 
-    resources :main_page_reviews, :except => :show
+    resources :main_page_reviews, :except => :show do
+      post 'sort', :on => :collection
+    end
+
     resources :main_page_posters, :except => [:new, :create, :show, :destroy]
     resources :afisha_list_posters, :except => [:new, :create, :show, :destroy]
 

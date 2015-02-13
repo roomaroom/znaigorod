@@ -38,6 +38,7 @@
  * = require ./photogalleries
  * = require ./accounts_for_lottery
  * = require ./offers
+ * = require ./sortable
  * = require ./promote_afisha
  * = require ./main_page_reviews
  * = require ./main_page_posters
