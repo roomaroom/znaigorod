@@ -20,6 +20,8 @@
       $.removeCookie('_znaigorod_jump_to_discounts')
     , 500
 
+  true
+
 
 @init_organization_show_phone = ->
   $('.js-show-phone').click ->
@@ -148,20 +150,12 @@
     $('.js-organization-item').each (index, item) ->
       $(item).hover (e) ->
         target = $(this)
-        objects = clusterer.getGeoObjects()
-        objects.each (index, value) ->
-          slug = index.properties.get('id')
-          if $(target).attr('data-slug') == slug
-            index.options.set('preset', 'islands#pinkIcon')
-            index.options.set('zIndex', 1000)
+        init_hl_icons_on_map(target, 'h', clusterer)
       , (e) ->
         target = $(this)
-        objects = clusterer.getGeoObjects()
-        objects.each (index, value) ->
-          slug = index.properties.get('id')
-          if $(target).attr('data-slug') == slug
-            index.options.set('preset', 'islands#blueIcon')
-            index.options.set('zIndex', 100)
+        init_hl_icons_on_map(target, 'n', clusterer)
+
+      true
 
     $('.js-resizable').resizable({
       handles: "w, e"
@@ -197,3 +191,19 @@
 
   $('.js-search-field').focusout ->
     $('.js-search-button').toggleClass('selected')
+
+# state, h - highlight
+# state, n - not highlight
+init_hl_icons_on_map = (target, state = 'h', clusterer) ->
+  objects = clusterer.getGeoObjects()
+  objects.each (index, value) ->
+    slug = index.properties.get('id')
+    if $(target).attr('data-slug') == slug
+      if state == 'n'
+        index.options.set('preset', 'islands#blueIcon')
+        index.options.set('zIndex', 100)
+      else
+        index.options.set('preset', 'islands#pinkIcon')
+        index.options.set('zIndex', 1000)
+
+  true
