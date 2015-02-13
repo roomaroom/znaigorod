@@ -149,11 +149,9 @@
 
     $('.js-organization-item').each (index, item) ->
       $(item).hover (e) ->
-        target = $(this)
-        init_hl_icons_on_map(target, 'h', clusterer)
+        init_hl_icons_on_map($(this), 'h', clusterer)
       , (e) ->
-        target = $(this)
-        init_hl_icons_on_map(target, 'n', clusterer)
+        init_hl_icons_on_map($(this), 'n', clusterer)
 
       true
 
