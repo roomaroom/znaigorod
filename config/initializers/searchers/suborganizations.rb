@@ -34,7 +34,7 @@ Organization.basic_suborganization_kinds.each do |kind|
       end
     end
 
-    keywords :q do
+    keywords :search_query do
       fields :title
     end
 

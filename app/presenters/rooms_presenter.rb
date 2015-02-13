@@ -195,7 +195,7 @@ class RoomsPresenter
                 :features,
                 :offers,
                 :lat, :lon, :radius,
-                :page, :per_page, :q
+                :page, :per_page, :search_query
 
   def initialize(context_type, args = {})
     @context_type = context_type
@@ -276,7 +276,7 @@ class RoomsPresenter
     @offers ||= []
     @page ||= 1
     @per_page ||= per_page
-    @q ||= q
+    @search_query ||= search_query
   end
 
   def search
@@ -288,7 +288,7 @@ class RoomsPresenter
         with(:price_max).less_than_or_equal_to(price_max)    if price_max.present?
       end
 
-      fulltext(q, :fields => [:title])
+      fulltext search_query
 
       paginate :page => page, :per_page => per_page
 

@@ -71,7 +71,7 @@
         </div>
       </li>
     <% end %>
-    <%= link_to "Еще организации (#{@presenter.organizations_without_rooms.count})", params, :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless params[:q] %>
+    <%= link_to "Еще организации (#{@presenter.organizations_without_rooms.count})", params, :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless params[:search_query] %>
   </ul>
 
   <div class="add_and_paginate">

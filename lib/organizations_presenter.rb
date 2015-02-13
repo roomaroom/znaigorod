@@ -6,7 +6,7 @@ module OrganizationsPresenter
   include ActionView::Helpers
   include Rails.application.routes.url_helpers
 
-  attr_accessor :order_by, :sms_claimable, :not_client_page, :q
+  attr_accessor :order_by, :sms_claimable, :not_client_page, :search_query
 
   included do
     available_sortings.each do |sorting|
@@ -55,7 +55,7 @@ module OrganizationsPresenter
     @page ||= 1
     @not_client_page ||= 1
     @per_page = @per_page.to_i.zero? ? 20 : @per_page.to_i
-    @q = @q
+    @search_query = @search_query
   end
 
   def order_by
@@ -290,7 +290,7 @@ module OrganizationsPresenter
 
       params[:location] = Hashie::Mash.new(lat: geo_filter.lat, lon: geo_filter.lon, radius: geo_filter.radius) if geo_filter.used?
       params[:sms_claimable] = true if sms_claimable
-      params[:q] = q
+      params[:search_query] = search_query
       params.merge!(aditional)
     end
   end

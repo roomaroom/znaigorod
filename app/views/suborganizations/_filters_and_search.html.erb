@@ -26,7 +26,7 @@
   <div class='search_wrapper'>
     <div class='search_fields'>
       <%= form_tag '', method: :get  do %>
-        <%= text_field_tag :q, params[:q], class: :search_field, placeholder: 'Поиск организации' %>
+        <%= text_field_tag :search_query, params[:search_query], class: :search_field, placeholder: 'Поиск организации' %>
         <%= button_tag :search_button, class: :search_button %>
       <% end %>
     </div>

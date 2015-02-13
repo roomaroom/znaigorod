@@ -25,7 +25,10 @@ class Room < ActiveRecord::Base
     string :categories,    :multiple => true
     string :context_id
     string :room_features, :multiple => true
-    text(:title) {context.organization.title}
+
+    text(:title, :boost => 1.0 * 1.2)     { context.organization.title }
+    text(:title_ru, :boost => 1.0)        { context.organization.title }
+    text(:title_translit, :boost => 0.0)  { context.organization.title }
 
     string(:context_type)                { context_type.underscore }
     string(:features, :multiple => true) { context_features }
