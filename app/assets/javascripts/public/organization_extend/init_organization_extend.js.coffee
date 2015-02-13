@@ -24,7 +24,6 @@
 @init_organization_show_phone = ->
   $('.js-show-phone').click ->
     target = $(this)
-    console.log target
     $.ajax
       url: "/show_phone"
       type: "GET"
@@ -171,3 +170,11 @@
         if ui.size.width <= 320
           target.addClass('small').removeClass('medium')
     })
+    true
+
+@init_focus_for_search_button = () ->
+  $('.js-search-field').focusin ->
+    $('.js-search-button').toggleClass('selected')
+
+  $('.js-search-field').focusout ->
+    $('.js-search-button').toggleClass('selected')

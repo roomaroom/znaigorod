@@ -100,7 +100,7 @@
       div.search_fields
         +inline-block
 
-        &:active, &:hover, &:focus
+        &:active, &:hover
           input.search_field
             border: 2px solid #ff5400
 
@@ -113,6 +113,9 @@
           padding: 5px
           width: 400px
 
+          &:focus
+            border: 2px solid #ff5400
+
         button.search_button
           background: #9a9a9a image_url('public/organizations_list_view/search_icon.png') no-repeat center center
           border: 0
@@ -121,6 +124,9 @@
           outline: none
           padding: 7px 15px
           text-indent: -9999px
+
+          &.selected
+            background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center center
 
           &:active
             background: #ff5400 image_url('public/organizations_list_view/search_icon.png') no-repeat center 10px
