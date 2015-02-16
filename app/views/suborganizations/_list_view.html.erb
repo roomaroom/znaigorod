@@ -12,7 +12,8 @@
         <% @presenter.collection.each do |item| %>
           <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
             data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>"
-            data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(nil,nil)}.png") %>'>
+            data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}.png") %>'
+            data-icon-hover='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}_hover.png") %>'>
             <% if item.sms_claimable? %>
               <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
                 send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
@@ -81,7 +82,8 @@
         По Вашему запросу ничего не найдено :(
       </div>
     <% end %>
-    <%= link_to "Еще организации (#{@presenter.current_count + @presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1), :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' if @presenter.current_without_clients_count > 0 %>
+    <%= link_to "Еще организации (#{@presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1),
+      :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless @presenter.current_without_clients_count == 0 %>
   </ul>
 
   <div class="add_and_paginate">

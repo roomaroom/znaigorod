@@ -202,10 +202,10 @@ init_hl_icons_on_map = (target, state = 'h', clusterer) ->
     slug = index.properties.get('id')
     if $(target).attr('data-slug') == slug
       if state == 'n'
-        index.options.set('preset', 'islands#blueIcon')
+        index.options.set('iconImageHref', $(target).attr('data-icon'))
         index.options.set('zIndex', 100)
       else
-        index.options.set('preset', 'islands#pinkIcon')
+        index.options.set('iconImageHref', $(target).attr('data-icon-hover'))
         index.options.set('zIndex', 1000)
 
   true
