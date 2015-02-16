@@ -21,7 +21,9 @@
     <div class="map_and_tree_wrapper">
       <ul class= "placemark_list">
         <% @placemarks.each do |item| %>
-          <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.logotype_url %>">
+          <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
+            data-image="<%= item.logotype_url %>"
+            data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.map_image_name(params[:kind], params[:categories])}.png") %>'>
             <div class="info">
               <h1><%= link_to item.title.truncate(30), organization_path(item) %></h1>
             </li>

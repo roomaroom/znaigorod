@@ -10,7 +10,9 @@
     <ul class="list_view_organization_posters js-paginable-list">
       <% if @presenter.collection.present? %>
         <% @presenter.collection.each do |item| %>
-          <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>">
+          <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
+            data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>"
+            data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(nil,nil)}.png") %>'>
             <% if item.sms_claimable? %>
               <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
                 send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),

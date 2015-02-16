@@ -88,6 +88,10 @@
           id: $(item).attr('data-slug')
       ,
         hideIconOnBalloonOpen: false
+        iconLayout: 'default#image'
+        iconImageHref: $(item).attr('data-icon')
+        iconImageSize: [35, 50]
+        iconImageOffset: [-18, -18]
 
       clusterer.add point
 

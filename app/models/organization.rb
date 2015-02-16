@@ -160,6 +160,20 @@ class Organization < ActiveRecord::Base
     organization_categories.flat_map { |c| c.path }.uniq.map(&:downcased_title)
   end
 
+  def most_valueable_organization_category
+    Organization.search {
+      facet :organization_category, :only => organization_categories.map(&:downcased_title), :sort => :count
+    }.facet(:organization_category).rows.first.value
+  end
+
+  def map_image_name(kind, categories = [])
+    return most_valueable_organization_category.from_russian_to_param unless kind || categories
+
+    return organization_categories.find_by_title!(categories.first.mb_chars.capitalize).title.from_russian_to_param if (categories || []).any?
+
+    organization_categories.detect { |c| c.kind == kind }.try(:downcased_title).from_russian_to_param
+  end
+
   searchable do
     boolean(:logotyped) { logotype_url? }
     boolean(:sms_claimable) { suborganizations.select {|s| s.respond_to?(:sms_claimable?)}.select {|s| s.sms_claimable?}.any? }

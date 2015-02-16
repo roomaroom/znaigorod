@@ -10,7 +10,10 @@
       <div class="resize js-resize left"></div>
       <% if @presenter.decorated_collection.present? %>
         <% @presenter.decorated_collection.each do |item| %>
-          <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>" data-image="<%= item.organization.logotype_url %>">
+          <li class='list_view_organization_item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
+            data-image="<%= item.organization.logotype_url %>"
+            data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}.png") %>'>
+
             <% if item.sms_claimable? %>
               <%= link_to item.priority_sms_claimable_suborganization.reservation_title,
                 send("new_#{item.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.priority_sms_claimable_suborganization),
