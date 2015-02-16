@@ -27,22 +27,17 @@
 <% end %>
 
 <%= content_for :content do %>
+  <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
+  <%= render :partial => 'commons/email_request_form' %>
+  <div class='unique_header_wrapper'>
+    <%= render :partial => 'commons/public_header' %>
+  </div>
   <div class='february_wrapper'>
-    <div class='links'>
-      <a href='/contests/fotokonkurs-par-goroda-tomska-polovinki-loventinki-2' class='one'>Конкурс "Половинки LOVEнтинки 2"</a>
-    </div>
-    <div class='february_content_wrapper'>
-      <%= render :partial => 'commons/not_answered_invitations' unless controller_path.match(/\Amy\//)%>
-      <%= render :partial => 'commons/email_request_form' %>
-      <div class='unique_header_wrapper'>
-        <%= render :partial => 'commons/public_header' %>
-      </div>
-      <%= yield %>
-      <%= render :partial => 'commons/public_footer' %>
-      <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
-      <%= yield :yandex_map_scripts %>
-      <%= render :partial => 'commons/public_reformal' %>
-    </div>
+    <%= yield %>
+    <%= render :partial => 'commons/public_footer' %>
+    <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
+    <%= yield :yandex_map_scripts %>
+    <%= render :partial => 'commons/public_reformal' %>
   </div>
 <% end %>
 

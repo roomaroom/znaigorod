@@ -2,6 +2,13 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.id_generator = Proc.new {|key| "main_menu_#{key}"}
 
   navigation.items do |primary|
+
+    primary.item '23-february', 'День Защитника Отечества', february_path, highlights_on: -> { %w[map_projects map_layers].include? controller_name } do |february|
+      MapProject.find('23-february').map_layers.each do |map_layer|
+        february.item map_layer.slug, map_layer.title, february_path(layer: map_layer.slug)
+      end
+    end
+
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { controller_name == 'afishas' } do |afisha|
 
       Afisha.kind.values.each do |item|
@@ -45,6 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests works cooperation].include?(controller_name) } do |more|
 
+      more.item :reviews, 'Обзоры', reviews_path, highlights_on: -> { controller_name == 'reviews' }
       more.item :photogalleries, 'Фотостримы', photogalleries_path, highlights_on: -> { controller_name == 'photogalleries' }
       more.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { controller_name == 'accounts' }
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }
