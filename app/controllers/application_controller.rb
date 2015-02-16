@@ -26,11 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def resolve_layout
-    if Time.zone.now < Time.zone.parse('16.02.2015')
-      request.xhr? ? false : 'public_contest'
-    else
-      request.xhr? ? false : 'public'
-    end
+    request.xhr? ? false : 'public'
   end
 
   def page

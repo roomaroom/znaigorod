@@ -1,7 +1,7 @@
 <ul class='banner12 <%= params['controller'].to_s.split('/').try(&:first) %>'>
   <% unless params[:id] == 'delay-super-selfi-s-monopodom-dlya-smartfona' %>
     <li class='js-banner selfi-monopode'>
-      <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/discounts/delay-super-selfi-s-monopodom-dlya-smartfona', class: 'js-stat-monopode' %>
+      <%= link_to (image_tag 'public/banners/monopode_banner.jpg', size: '880x80'), '/away?to=http://selfie.znaigorod.ru/', target: '_blank', class: 'js-stat-monopode' %>
     </li>
   <% end %>
 
