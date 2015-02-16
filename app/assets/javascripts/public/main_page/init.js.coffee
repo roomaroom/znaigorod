@@ -35,4 +35,20 @@
     calculate_and_click_toggle()
   , interval
 
+  $('.right_arrow', wrapper).click ->
+    selected = $('.reviews_toggler img.selected', wrapper)
+    if selected.closest('li').is(':last-child')
+      $('img', selected.closest('li').siblings().first()).click()
+    else
+      $('img', selected.closest('li').next()).click()
+    return
+
+  $('.left_arrow', wrapper).click ->
+    selected = $('.reviews_toggler img.selected', wrapper)
+    if selected.closest('li').is(':first-child')
+      $('img', selected.closest('li').siblings().last()).click()
+    else
+      $('img', selected.closest('li').prev()).click()
+      return
+
   return

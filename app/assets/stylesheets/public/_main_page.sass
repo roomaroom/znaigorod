@@ -150,6 +150,9 @@
       left: 420px
       bottom: 7px
 
+      &.lot
+        display: none
+
       li
         +inline-block
         margin-right: 2px
@@ -164,6 +167,32 @@
 
           &:hover
             +opacity(1)
+
+    .left_arrow,
+    .right_arrow
+      cursor: pointer
+      position: absolute
+      width: 35px
+      height: 35px
+      overflow: hidden
+      text-indent: -999em
+      background: transparent image_url('public/main_page_review_arrow.png') no-repeat left top
+
+    .left_arrow
+      right: 45px
+      bottom: 10px
+      background-position: 0 0
+
+      &:hover
+        background-position: 0 -35px
+
+    .right_arrow
+      right: 0
+      bottom: 10px
+      background-position: -35px 0
+
+      &:hover
+        background-position: -35px -35px
 
   .right
     float: left

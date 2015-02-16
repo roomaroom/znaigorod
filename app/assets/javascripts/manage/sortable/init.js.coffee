@@ -14,7 +14,7 @@
     containment: 'parent'
     handle: '.sortable_handle'
     items: 'li'
-    stop: (event, ui) ->
+    update: (event, ui) ->
       recalculate_posotion(ui.target)
       if wrapper.data('sort')
         $.ajax

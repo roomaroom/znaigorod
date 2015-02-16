@@ -12,7 +12,11 @@
           <%= hidden_field :position, main_page_review.id, :class => :position, :value => main_page_review.position %>
           <div class='image'><%= image_tag(decorated_review.annotation_image(100, 100), :size => "100x100") %></div>
           <div><span class='position'><%= main_page_review.position %></span>. <%= link_to decorated_review.title, review_path(main_page_review.review), :target => '_blank' %></div>
-          <div>Действителен до <%= l main_page_review.expires_at, :format => :long %></div>
+          <% if main_page_review.expires_at < DateTime.now %>
+            <div class="inactive">Срок действия истек <%= l main_page_review.expires_at, :format => :long %></div>
+          <% else %>
+            <div>Действителен до <%= l main_page_review.expires_at, :format => :long %></div>
+          <% end %>
           <div>
             <%= link_to 'Изменить', edit_manage_main_page_review_path(main_page_review) %>
             <%= link_to 'Удалить', manage_main_page_review_path(main_page_review), :method => :delete, :confirm => 'Вы уверены?' %>
