@@ -16,12 +16,12 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
+    #primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
 
-      Hash[Question.categories.options].invert.each do |category, title|
-        questions.item category, title, [:questions, category]
-      end
-    end
+      #Hash[Question.categories.options].invert.each do |category, title|
+        #questions.item category, title, [:questions, category]
+      #end
+    #end
 
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first } do |organization|
@@ -52,7 +52,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests works cooperation].include?(controller_name) } do |more|
 
-      more.item :more_reviews, 'Обзоры', reviews_path, highlights_on: -> { controller_name == 'reviews' }
+      more.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' }
       more.item :photogalleries, 'Фотостримы', photogalleries_path, highlights_on: -> { controller_name == 'photogalleries' }
       more.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { controller_name == 'accounts' }
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }
