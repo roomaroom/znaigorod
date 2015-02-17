@@ -28,7 +28,7 @@
               <% services.each do |service| %>
                 <div class='detail'>
                   <div class='title'><%= service.title.text_gilensize %></div>
-                  <div class='age'>(<%= service.humanize_age %>)</div>
+                  <div class='age'><%= service.humanize_age.present? ? "(#{service.humanize_age})" : "(без ограничения по возрасту)" %></div>
                   <% if service.description? %>
                     <%= link_to 'информация', '#', :class => :show_description_link %>
                     <div class='description'>
