@@ -15,7 +15,7 @@
   <% end %>
 
   <div class='services'>
-    <% if sport.services.first.offer? %>
+    <% if sport.services.flat_map(&:prices).any? %>
       <% sport.services.group_by(&:category).each do |category, services| %>
         <%= render :partial => 'sports/services', :locals => { :services => services } %>
       <% end %>
