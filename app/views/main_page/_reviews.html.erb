@@ -29,19 +29,33 @@
             </li>
           <% end %>
         </ul>
-        <% if @decorated_reviews.count > 1 %>
-          <ul class='reviews_toggler<%= ' lot' if @decorated_reviews.count > 4 %>'>
-            <% @decorated_reviews.each_with_index do |decorated_review, index| %>
-              <li><%= image_tag decorated_review.annotation_image(90, 50),
-                :size => '90x50',
-                :alt => decorated_review.title.squish.text_gilensize,
-                :title => decorated_review.title.squish.text_gilensize,
-                :class => index == 0 ? "selected review_#{decorated_review.id}" : "review_#{decorated_review.id}" %></li>
-            <% end %>
-          </ul>
+        <% if @decorated_reviews.any? %>
           <% if @decorated_reviews.count > 4 %>
-            <div class='left_arrow'>Назад</div>
-            <div class='right_arrow'>Вперед</div>
+            <div class='reviews_carousel'>
+              <div class='left_arrow'>Назад</div>
+              <div class='reviews_container'>
+                <ul class='count_<%= @decorated_reviews.count %>'>
+                  <% @decorated_reviews.unshift(@decorated_reviews.pop).each_with_index do |decorated_review, index| %>
+                    <li><%= image_tag decorated_review.annotation_image(90, 50),
+                      :size => '90x50',
+                      :alt => decorated_review.title.squish.text_gilensize,
+                      :title => decorated_review.title.squish.text_gilensize,
+                      :class => index == 1 ? "selected review_#{decorated_review.id}" : "review_#{decorated_review.id}" %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class='right_arrow'>Вперед</div>
+            </div>
+          <% else %>
+            <ul class='reviews_toggler'>
+              <% @decorated_reviews.each_with_index do |decorated_review, index| %>
+                <li><%= image_tag decorated_review.annotation_image(90, 50),
+                  :size => '90x50',
+                  :alt => decorated_review.title.squish.text_gilensize,
+                  :title => decorated_review.title.squish.text_gilensize,
+                  :class => index == 0 ? "selected review_#{decorated_review.id}" : "review_#{decorated_review.id}" %></li>
+              <% end %>
+            </ul>
           <% end %>
         <% end %>
       </div>

@@ -150,8 +150,8 @@
       left: 420px
       bottom: 7px
 
-      &.lot
-        display: none
+      ul
+        +clearfix
 
       li
         +inline-block
@@ -168,31 +168,72 @@
           &:hover
             +opacity(1)
 
-    .left_arrow,
-    .right_arrow
-      cursor: pointer
+    .reviews_carousel
       position: absolute
-      width: 35px
-      height: 35px
-      overflow: hidden
-      text-indent: -999em
-      background: transparent image_url('public/main_page_review_arrow.png') no-repeat left top
+      left: 420px
+      bottom: 7px
+      width: 440px
 
-    .left_arrow
-      right: 45px
-      bottom: 10px
-      background-position: 0 0
+      .left_arrow,
+      .right_arrow
+        cursor: pointer
+        position: absolute
+        bottom: 11px
+        width: 35px
+        height: 35px
+        overflow: hidden
+        text-indent: -999em
+        background: transparent image_url('public/main_page_review_arrow.png') no-repeat left top
 
-      &:hover
-        background-position: 0 -35px
+      .left_arrow
+        left: 0
+        background-position: 0 0
 
-    .right_arrow
-      right: 0
-      bottom: 10px
-      background-position: -35px 0
+        &:hover
+          background-position: 0 -35px
 
-      &:hover
-        background-position: -35px -35px
+      .right_arrow
+        right: 0
+        background-position: -35px 0
+
+        &:hover
+          background-position: -35px -35px
+
+      .reviews_container
+        position: absolute
+        left: 60px
+        bottom: 4px
+        width: 320px
+        height: 50px
+        +clearfix
+
+        $item-margin-right: 25px
+
+        ul
+          position: absolute
+          top: 0
+          left: 0
+          height: 50px
+
+        @for $i from 1 through 10
+          ul.count_#{$i}
+            width: (90px + $item-margin-right) * $i
+
+        li
+          float: left
+          height: 50px
+          margin-right: $item-margin-right
+
+          img
+            cursor: pointer
+            +opacity(0.5)
+
+            &.selected
+              cursor: default
+              +opacity(1)
+
+            &:hover
+              +opacity(1)
 
   .right
     float: left
