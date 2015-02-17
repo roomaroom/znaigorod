@@ -1,11 +1,13 @@
 <% @presenter.organization_for_saunas_without_halls.each do |organization| %>
-  <li class='list_view_organization_item' data-longitude="<%= organization.longitude %>" data-latitude="<%= organization.latitude %>" data-image="<%= organization.logotype_url %>">
+  <li class='list_view_organization_item js-organization-item' data-longitude="<%= organization.longitude %>" data-latitude="<%= organization.latitude %>"
+    data-image="<%= organization.logotype_url %>" data-icon="<%= asset_path('/assets/public/organizations_list_view/not_client_icon.png') %>"
+    data-icon-hover="<%= asset_path('/assets/public/organizations_list_view/not_client_icon_hover.png') %>" data-slug="<%= organization.slug %>">
     <div class="list_view_organization_poster">
       <div class="info">
         <!-- информация о заведении -->
         <h1>
-          <%= link_to item.organization.title.truncate(30), organization_path(item.organization) %>
-          <span <%= "#{item.organization.schedules.first.holiday? ? 'class=close title=Закрыто' : 'class=open title=Открыто'}" %>></span>
+          <%= link_to organization.title.truncate(30), organization_path(organization) %>
+          <span <%= "#{organization.schedules.first.holiday? ? 'class=close title=Закрыто' : 'class=open title=Открыто'}" %>></span>
         </h1>
         <!-- адрес -->
         <%= content_tag(:div, "#{organization.address_without_link}".html_safe, class: :place) if organization.address_link.present? %>
