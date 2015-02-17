@@ -2,7 +2,7 @@
 
   wrapper = $('.reviews_main_page')
   toggler = $('.reviews_toggler', wrapper)
-  interval = 10000
+  interval = 5000
   timer = null
 
   $('.reviews_toggler img', wrapper).on 'click', ->
