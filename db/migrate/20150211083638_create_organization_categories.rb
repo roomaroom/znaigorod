@@ -37,6 +37,8 @@ class CreateOrganizationCategories < ActiveRecord::Migration
 
           suborg.organization.organization_categories << category
         end
+
+        suborg.organization.index
       end
     end
   end
@@ -47,6 +49,8 @@ class CreateOrganizationCategories < ActiveRecord::Migration
       category = OrganizationCategory.find_by_title!(category_title)
 
       o.organization_categories << category
+
+      o.index
     end
   end
 
@@ -73,20 +77,24 @@ class CreateOrganizationCategories < ActiveRecord::Migration
     end
     add_index :organization_categories, :ancestry
 
-    create_table :organization_categories_organizations, :id => false do |t|
+    create_table :organization_category_items  do |t|
       t.references :organization_category
       t.references :organization
+
+      t.timestamps
     end
-    add_index :organization_categories_organizations, [:organization_category_id, :organization_id], :uniq => true, :name => 'organization_organization_category'
 
     create_organization_categories
+
     set_categories_for_organizations_with_suborganizations
     set_categories_for_organizations_without_suborganizations
+    Sunspot.commit
+
     resort_some_categories
   end
 
   def down
-    drop_table :organization_categories_organizations
+    drop_table :organization_category_items
     drop_table :organization_categories
   end
 end

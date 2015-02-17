@@ -26,7 +26,8 @@ class Organization < ActiveRecord::Base
   belongs_to :placement,            :class_name => 'Organization', :foreign_key => 'situated_at'
   belongs_to :primary_organization, :class_name => 'Organization', :foreign_key => 'primary_organization_id'
 
-  has_and_belongs_to_many :organization_categories, :uniq => true
+  has_many :organization_category_items, :dependent => :destroy
+  has_many :organization_categories, :through => :organization_category_items
 
   has_many :activities,             :dependent => :destroy
   has_many :comments,               :dependent => :destroy, :as => :commentable
@@ -187,14 +188,15 @@ class Organization < ActiveRecord::Base
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 
-    string(:organization_category, :multiple => true) { organization_categories_uniq_downcased_titles }
+    string :positive_activity_date
     string :search_kind
     string :status
-    string :positive_activity_date
-    string(:state) { :published }
+
     string(:inviteable_categories, :multiple => true) { ::Inviteables.instance.categories_for_organization self }
-    string(:kind, :multiple => true) { ['organization'] }
-    string(:suborganizations, :multiple => true) { suborganizations.map(&:class).map(&:name).map(&:underscore) }
+    string(:kind, :multiple => true)                  { ['organization'] }
+    string(:organization_category, :multiple => true) { organization_categories_uniq_downcased_titles }
+    string(:state)                                    { :published }
+    string(:suborganizations, :multiple => true)      { suborganizations.map(&:class).map(&:name).map(&:underscore) }
 
     text :title,                :boost => 1.0 * 1.2
     text :title_ru,             :boost => 1.0,              :more_like_this => true

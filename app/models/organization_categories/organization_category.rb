@@ -4,6 +4,9 @@ class OrganizationCategory < ActiveRecord::Base
 
   default_scope order('title')
 
+  has_many :organization_category_items, :dependent => :destroy
+  has_many :organizations, :through => :organization_category_items
+
   validates :title, presence: true, uniqueness: { scope: :ancestry }
 
   has_ancestry
@@ -30,9 +33,9 @@ class OrganizationCategory < ActiveRecord::Base
     facet_row ? facet_row.count : 0
   end
 
-  def organizations
-    Organization.search { with :organization_category, downcased_title; paginate :page => 1, :per_page => 1_000_000 }.results
-  end
+  #def organizations
+    #Organization.search { with :organization_category, downcased_title; paginate :page => 1, :per_page => 1_000_000 }.results
+  #end
 
   def category_path_string
     return 'car_washes_path' if downcased_title == 'автомойки'
