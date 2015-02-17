@@ -18,8 +18,8 @@
               <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
                 send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
                 :class => :sms_claim_link,
-                :title => item.reservation_title
-              %>
+                :title => item.organization.priority_sms_claimable_suborganization.reservation_title
+                %>
           <% end %>
           <div class="list_view_organization_poster">
 
@@ -83,7 +83,7 @@
       </div>
     <% end %>
     <%= link_to "Еще организации (#{@presenter.current_without_clients_count + 42 })", params.merge(:not_client_page => 1),
-      :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless @presenter.current_without_clients_count == 0 %>
+      :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless @presenter.paginated_without_clients_collection.total_count == 0 %>
   </ul>
 
   <div class="add_and_paginate">

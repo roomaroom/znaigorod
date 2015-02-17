@@ -117,16 +117,18 @@
               "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" +
               "</div>"
             hintContent: title
+            id: $(item).attr('data-slug')
         ,
           hideIconOnBalloonOpen: false
-          preset: 'islands#circleDotIcon'
-          iconColor: '#1E98FF'
-          iconWidth: '5'
-          iconHeight: '5'
+          iconLayout: 'default#image'
+          iconImageHref: $(item).attr('data-icon')
+          iconImageSize: [9, 9]
 
         clusterer.add point
+      true
 
       map.geoObjects.add clusterer
+      li_hover(clusterer)
 
       true
 
@@ -151,13 +153,8 @@
 
       false
 
-    $('.js-organization-item').each (index, item) ->
-      $(item).hover (e) ->
-        init_hl_icons_on_map($(this), 'h', clusterer)
-      , (e) ->
-        init_hl_icons_on_map($(this), 'n', clusterer)
+    li_hover(clusterer)
 
-      true
 
     $('.js-resizable').resizable({
       handles: "w, e"
@@ -207,5 +204,14 @@ init_hl_icons_on_map = (target, state = 'h', clusterer) ->
       else
         index.options.set('iconImageHref', $(target).attr('data-icon-hover'))
         index.options.set('zIndex', 1000)
+
+  true
+
+li_hover = (clusterer) ->
+  $('.js-organization-item').each (index, item) ->
+    $(item).hover (e) ->
+      init_hl_icons_on_map($(this), 'h', clusterer)
+    , (e) ->
+      init_hl_icons_on_map($(this), 'n', clusterer)
 
   true

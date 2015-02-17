@@ -23,7 +23,7 @@ end
 HasSearcher.create_searcher :organizations do
   models :organization
 
-  keywords :q do
+  keywords :search_query do
     fields :title
   end
 
