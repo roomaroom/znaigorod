@@ -4,6 +4,8 @@ class SaunasController < ApplicationController
   def index
     add_breadcrumb "Все организации", organizations_path
     add_breadcrumb 'Сауны', saunas_path
+
+    cookies[:view_type] = params[:view_type] if params[:view_type]
     @presenter = SaunaHallsPresenter.new(params.merge(per_page: per_page))
     @discount_collection = SaunasDiscountsPresenter.new({}).collection
     if request.xhr?
@@ -13,7 +15,7 @@ class SaunasController < ApplicationController
   end
 
   def view_type
-    params[:view_type] || 'list'
+    cookies[:view_type] || 'list'
   end
 
   def per_page

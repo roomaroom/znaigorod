@@ -5,12 +5,14 @@ class SuborganizationsController < ApplicationController
     add_breadcrumb "Все организации", organizations_path
     add_breadcrumb I18n.t(params[:kind]), send("#{params[:kind].pluralize}_path") if params[:kind]
     add_breadcrumb params[:categories].first.mb_chars.capitalize, send("#{params[:kind].pluralize}_#{params[:categories].first.from_russian_to_param.pluralize}_path") if params[:categories]
+
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
     klass = "#{kind.pluralize}_presenter".classify.constantize
 
     respond_to do |format|
       format.html {
         cookie = cookies['_znaigorod_organization_list_settings'].to_s
+        cookies[:view_type] = params[:view_type] if params[:view_type]
         settings_from_cookie = {}
         settings_from_cookie = Rack::Utils.parse_nested_query(cookie) if cookie.present?
         @presenter = klass.new(settings_from_cookie.merge(params.merge(per_page: per_page)))
@@ -36,7 +38,7 @@ class SuborganizationsController < ApplicationController
   end
 
   def view_type
-    params[:view_type] || "list"
+    cookies[:view_type] || 'list'
   end
 
   def per_page
