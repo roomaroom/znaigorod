@@ -162,6 +162,7 @@ class SaunaHallsPresenter
 
   def sauna_without_halls_ids
     Sauna.search_ids {
+      fulltext search_query
       with(:with_sauna_halls, false)
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
       paginate(:page => 1, :per_page => 100)
@@ -170,6 +171,7 @@ class SaunaHallsPresenter
 
   def sauna_with_not_client_status
     Sauna.search_ids {
+      fulltext search_query
       without(:status, [:client])
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
       paginate(:page => 1, :per_page => 100)

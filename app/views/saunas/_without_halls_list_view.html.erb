@@ -1,7 +1,8 @@
 <% @presenter.organization_for_saunas_without_halls.each do |organization| %>
   <li class='list_view_organization_item js-organization-item' data-longitude="<%= organization.longitude %>" data-latitude="<%= organization.latitude %>"
     data-image="<%= organization.logotype_url %>" data-icon="<%= asset_path('/assets/public/organizations_list_view/not_client_icon.png') %>"
-    data-icon-hover="<%= asset_path('/assets/public/organizations_list_view/not_client_icon_hover.png') %>" data-slug="<%= organization.slug %>">
+    data-icon-hover="<%= asset_path('/assets/public/organizations_list_view/not_client_icon_hover.png') %>" data-slug="<%= organization.slug %>"
+    data-width='9' data-height='9'>
     <div class="list_view_organization_poster">
       <div class="info">
         <!-- информация о заведении -->

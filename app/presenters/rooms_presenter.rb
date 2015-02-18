@@ -240,7 +240,7 @@ class RoomsPresenter
     @organizations_without_rooms ||= begin
                                       search = suborganization_class.search(:include => :organization) do
                                         paginate :page => 1, :per_page => 500
-
+                                        fulltext search_query
                                         with :with_rooms, false
                                         with "#{context_type}_category", categories if categories.any?
                                       end

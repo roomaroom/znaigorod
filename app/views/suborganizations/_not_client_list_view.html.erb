@@ -1,7 +1,8 @@
 <% @presenter.without_clients_collection.each do |item|  %>
   <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
     data-image="<%= item.organization.logotype_url %>" data-icon="<%= asset_path('/assets/public/organizations_list_view/not_client_icon.png') %>"
-    data-icon-hover="<%= asset_path('/assets/public/organizations_list_view/not_client_icon_hover.png') %>" data-slug="<%= item.organization.slug %>">
+    data-icon-hover="<%= asset_path('/assets/public/organizations_list_view/not_client_icon_hover.png') %>" data-slug="<%= item.organization.slug %>"
+    data-width='9' data-height='9'>
     <div class="list_view_organization_poster">
       <div class="info">
         <!-- информация о заведении -->
