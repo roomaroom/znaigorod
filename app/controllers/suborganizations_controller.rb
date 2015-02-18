@@ -1,5 +1,6 @@
 class SuborganizationsController < ApplicationController
   helper_method :view_type
+
   def index
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
     klass = "#{kind.pluralize}_presenter".classify.constantize
