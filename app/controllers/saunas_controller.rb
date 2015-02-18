@@ -2,6 +2,8 @@ class SaunasController < ApplicationController
   helper_method :view_type
 
   def index
+    add_breadcrumb "Все организации", organizations_path
+    add_breadcrumb 'Сауны', saunas_path
     @presenter = SaunaHallsPresenter.new(params.merge(per_page: per_page))
     @discount_collection = SaunasDiscountsPresenter.new({}).collection
     if request.xhr?

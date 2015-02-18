@@ -360,8 +360,17 @@
         display: none
 
     &.small
-      .image, .categories_and_visits, .place, .phone, .sms_claim_link
+      .image, .categories_and_visits, .place, .phone, .sms_claim_link, .breadcrumbs
         display: none
+
+    .breadcrumbs
+      padding: 5px 10px 0 10px
+
+      &.left
+        float: left
+
+      &.right
+        float: right
 
     .btn-small
       +box-shadow(0px 2px 0px 0px rgba(#cdcdcd, 1))

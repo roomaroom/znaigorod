@@ -5,6 +5,7 @@
   </div>
 
   <div class="list_view_organization_list js-resizable maximum left_position js-button-pagination">
+    <div class='breadcrumbs left js-breadcrumbs'><%= render_breadcrumbs :separator => ' / ' %></div>
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters js-paginable-list">
       <div class="resize js-resize left"></div>

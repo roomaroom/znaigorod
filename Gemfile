@@ -19,6 +19,7 @@ group :default do
   gem 'ancestry'
   gem 'attribute_normalizer'
   gem 'auto_html'
+  gem 'breadcrumbs_on_rails'
   gem 'cancan'
   gem 'curb',                       :require => false
   gem 'daemons'

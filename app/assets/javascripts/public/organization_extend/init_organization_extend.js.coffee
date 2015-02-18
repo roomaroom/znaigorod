@@ -143,6 +143,7 @@
       $(this).parent().css('left','').css('right','10px')
       $(this).toggleClass('swap_left swap_right')
       $(this).parent().find('.js-resize').toggleClass('left right')
+      $(this).parent().find('.js-breadcrumbs').toggleClass('left right')
 
       zoom_position = if $(this).is('.swap_left') then $(this).parent().width() + 20 else 1150 - $(this).parent().width()
       map.controls.remove 'zoomControl'
@@ -177,10 +178,10 @@
         if ui.size.width > 449
           target.addClass('maximum').removeClass('medium small')
 
-        if ui.size.width <= 449 && ui.size.width > 320
+        if ui.size.width <= 449 && ui.size.width > 365
           target.addClass('medium').removeClass('maximum small')
 
-        if ui.size.width <= 320
+        if ui.size.width <= 365
           target.addClass('small').removeClass('medium')
     })
     true
