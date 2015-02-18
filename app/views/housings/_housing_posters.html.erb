@@ -26,7 +26,7 @@
   </li>
 <% end %>
 
-<% if @presenter.last_page? %>
+<% if @presenter.last_page? && !params[:search_query] %>
   <% @presenter.organizations_without_rooms.each do |organization| %>
     <li class='housing_short_item <%= cycle("short_item_1", "short_item_2", "short_item_3", "short_item_4", "short_item_5", "short_item_6", "short_item_7") %>'>
       <div class='info'>
