@@ -90,7 +90,7 @@
         hideIconOnBalloonOpen: false
         iconLayout: 'default#image'
         iconImageHref: $(item).attr('data-icon')
-        iconImageSize: [$(item).attr('data-width'), $(item).attr('data-height')]
+        iconImageSize: [parseInt($(item).attr('data-width')), parseInt($(item).attr('data-height'))]
         iconImageOffset: [-18, -18]
 
       clusterer.add point
@@ -109,6 +109,7 @@
             coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
           properties:
             balloonContentBody: "" +
+              "<div class='ymaps-2-1-17-b-cluster-content__body'>" +
               "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" +
               "</div>"
             hintContent: title
@@ -118,7 +119,7 @@
           balloonMinWidth: 210
           iconLayout: 'default#image'
           iconImageHref: $(item).attr('data-icon')
-          iconImageSize: [$(item).attr('data-width'), $(item).attr('data-height')]
+          iconImageSize: [parseInt($(item).attr('data-width')), parseInt($(item).attr('data-height'))]
           iconImageOffset: [-18, -18]
 
         clusterer.add point

@@ -3,7 +3,7 @@ class SuborganizationsController < ApplicationController
 
   def index
     add_breadcrumb "Все организации", organizations_path
-    add_breadcrumb I18n.t(params[:kind]), send("#{params[:kind].pluralize}_path") if params[:kind]
+    add_breadcrumb I18n.t("organization.kind.#{params[:kind]}"), send("#{params[:kind].pluralize}_path") if params[:kind]
     add_breadcrumb params[:categories].first.mb_chars.capitalize, send("#{params[:kind].pluralize}_#{params[:categories].first.from_russian_to_param.pluralize}_path") if params[:categories]
 
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
