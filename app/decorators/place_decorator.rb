@@ -20,7 +20,7 @@ class PlaceDecorator
 
   def place
     return content_tag(:p, content_tag(:span, link_title, :class => :name)) unless address_link
-    content_tag(:p, content_tag(:span, link_title, :class => :name) + ", " + content_tag(:span, address_link, :class => :address))
+    content_tag(:p, content_tag(:span, link_title, :class => :name) + "<span class='delimiter'>, </span>".html_safe + content_tag(:span, address_link, :class => :address))
   end
 
   def link_title(gsub = nil)

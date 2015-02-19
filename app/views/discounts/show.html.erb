@@ -57,25 +57,15 @@
   </div>
 
   <div class="right">
-    <div class="wrapper">
       <% if @discount.copies.any? %>
         <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
       <% end %>
 
-      <% if @discount.geo_present? %>
-        <div class="yandex_map">
-          <div class="map"
-            data-latitude="<%= @discount.places.first.latitude %>"
-            data-longitude="<%= @discount.places.first.longitude %>"
-            data-hint="<%= @discount.places.first.organization_id? ? @discount.places.first.try(:organization).try(:title) : @discount.places.first.address %>"
-            <%= "data-id=#{@discount.places.first.organization_id}" if @discount.places.first.organization %>>
-          </div>
-        </div>
-      <% end %>
-
       <% if @discount.similar_discount.present? %>
-        <div class="more_like_this">
-          <p class="title">Другие скидки</p>
+      <div class='more_like_this'>
+        <div class='header'>
+          <span class="title">Другие скидки</span>
+        </div>
           <ul>
             <% @discount.similar_discount.each do |discount| %>
               <li>
@@ -102,7 +92,7 @@
           </ul>
         </div>
       <% end %>
-    </div>
+    <%= render :partial => 'commons/promotions' %>
   </div>
 
   <div class="center">

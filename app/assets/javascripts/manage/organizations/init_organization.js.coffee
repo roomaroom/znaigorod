@@ -52,7 +52,7 @@ markItUpSettings = ->
   settings.markupSet.push(imageButton)
   settings.markupSet.push(youtubeButton)
   settings.markupSet.push(vimeoButton)
-  settings.markupSet.push(buyButton) if $('.discounts').length && $('form').attr('class').indexOf('edit') > -1
+  settings.markupSet.push(buyButton) if $('.discounts').length && $('form.simple_form').attr('class').indexOf('edit') > -1
 
   settings
 

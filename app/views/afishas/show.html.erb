@@ -196,6 +196,9 @@
     <% unless @afisha.distribution_movie? %>
       <% @afisha.places.each do |place| %>
         <div class='place'>
+          <div class='map_icon'>
+            <%= place.place  %>
+          </div>
           <%= place.place %>
         </div>
       <% end %>
