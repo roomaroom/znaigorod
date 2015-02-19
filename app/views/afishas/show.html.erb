@@ -147,47 +147,35 @@
   </div>
 
   <div class='right'>
+    <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
 
-    <div class='wrapper'>
-
-      <% if @afisha.geo_present? %>
-        <div class='yandex_map'>
-          <div class='map'
-            data-latitude='<%= @afisha.places.first.latitude %>'
-            data-longitude='<%= @afisha.places.first.longitude %>'
-            data-hint='<%= @afisha.places.first.title.text_gilensize %>'
-            <%= "data-id=#{@afisha.places.first.organization.id}" if @afisha.places.first.organization %>>
-          </div>
+    <% if @afisha.similar_afisha.present? %>
+      <div class='more_like_this'>
+        <div class='header'>
+          <span class='title'>Похожие афиши</span>
         </div>
-      <% end %>
-
-      <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
-
-      <% if @afisha.similar_afisha.present? %>
-        <div class='more_like_this'>
-          <p class='title'>Похожие афиши</p>
-          <ul>
-            <% @afisha.similar_afisha.each do |afisha| %>
-              <li>
-                <div class='image'>
-                  <% if afisha.poster_url.present? %>
-                    <%= link_to afisha_show_path(afisha) do %>
-                      <%= image_tag resized_image_url(afisha.poster_url, 65, 87), :size => '65x87', :alt => afisha.title.text_gilensize %>
-                    <% end %>
+        <ul>
+          <% @afisha.similar_afisha.each do |afisha| %>
+            <li>
+              <div class='image'>
+                <% if afisha.poster_url.present? %>
+                  <%= link_to afisha_show_path(afisha) do %>
+                    <%= image_tag resized_image_url(afisha.poster_url, 65, 87), :size => '65x87', :alt => afisha.title.text_gilensize %>
                   <% end %>
-                  <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
-                </div>
-                <div class='clearfix'>
-                  <div class='title'><%= link_to afisha.title.text_gilensize, afisha_show_path(afisha) %></div>
-                  <%= content_tag :div, afisha.afisha_place, :class => 'places' if afisha.afisha_place.present? %>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+                <% end %>
+                <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
+              </div>
+              <div class='clearfix'>
+                <div class='title'><%= link_to afisha.title.text_gilensize, afisha_show_path(afisha) %></div>
+                <%= content_tag :div, afisha.afisha_place, :class => 'places' if afisha.afisha_place.present? %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-    </div>
+    <%= render :partial => 'commons/promotions' %>
 
   </div>
 
@@ -278,7 +266,7 @@
     <% if @reviews.any? %>
       <div class='suborganization_info related-reviews'>
         <div class='title'>Обзоры</div>
-        <ul class='posters js-isotoped-content' data-item-width="220">
+        <ul class='posters' data-item-width="210">
           <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
         </ul>
       </div>

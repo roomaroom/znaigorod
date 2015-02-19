@@ -1,6 +1,5 @@
 .afisha_show
   +clearfix
-  margin: 30px 10px
 
   span.alert
     color: #f60
@@ -166,6 +165,7 @@
   .left
     float: left
     width: 210px
+    margin: 30px 0
 
     .image
       border: 1px solid #ccc
@@ -270,49 +270,16 @@
 
   .right
     float: right
-    width: 208px
+    width: 230px
+    border-left: 1px solid #ccc
+    border-top: 0
+    margin: 0 0 10px 0
 
-    .wrapper
-      border: 1px solid #ccc
-      margin: 0 0 10px 0
-      > div:last-child
-        border-bottom: none !important
-
-    .yandex_map
-      border-bottom: 1px solid #ccc
-      +background(linear-gradient(top, #fff, #e8e8e8))
-      padding: 5px
-
-      .map
-        height: 275px
-
-        .magnifier_button
-          width: 32px
-          height: 32px
-          cursor: pointer
-          +border-radius(0.5em)
-          +box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px)
-          border: solid 1px #b7b7b7
-          background-color: #fff
-          background-repeat: no-repeat
-          background-position: 50% 50%
-          +background-image(image_url('public/afisha_icon_magnifier.png'), linear-gradient(white, #ededed))
-
-          &:hover
-            background-color: #ededed
-            +background-image(image_url('public/afisha_icon_magnifier.png'), linear-gradient(white, gainsboro))
-
-          &:active
-            +background-image(image_url('public/afisha_icon_magnifier.png'), linear-gradient(gainsboro, white))
-            margin-top: 1px
-            margin-left: 1px
-
-        .ymaps-copyrights-pane
-          display: none
+    > div:last-child
+      border-bottom: none !important
 
     .promote_afisha_wrapper
       padding: 10px
-      border-bottom: 1px solid #ccc
 
       .info
         text-align: center
@@ -329,16 +296,36 @@
           border-color: #f60
 
     .more_like_this, .auction
-      border-bottom: 1px solid #ccc
-      +background(linear-gradient(top, #fff, #e8e8e8))
-      padding: 10px
+      .header
+        background: #ccc
+        color: #222
+        font-size: 14px
+        line-height: 22px
+        margin: 0 0 0 -10px
+        padding: 4px 4px 4px 10px
+        position: relative
 
-      > .title
-        font-size: 12px
-        text-align: center
-        margin-bottom: 10px
+        &:before
+          content: ""
+          width: 0
+          height: 0
+          position: absolute
+          left: 0
+          bottom: -10px
+          border-width: 5px 5px
+          border-style: solid
+          border-color: #999 #999 transparent transparent
+
+        > .title
+          +inline-block
+
+          a, a:hover
+            color: #222
+            text-decoration: none
 
       ul
+        padding: 10px
+
         li
           +clearfix
           margin-bottom: 10px
@@ -364,14 +351,18 @@
   .center
     font-size: 12px
     line-height: 1.6
-    margin: 0 220px
+    margin: 30px 270px 0 230px
+
 
     .similar_afisha
       clear: none
 
       .posters
         .item
-          margin: 0 17px 25px 26px
+          margin: 0 45px 25px 0px
+
+          &:nth-child(3n)
+            margin: 0 0 25px 0
 
     .icon_edit
       float: right
