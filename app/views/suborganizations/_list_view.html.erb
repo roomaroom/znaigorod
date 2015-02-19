@@ -82,7 +82,7 @@
         <% end %>
       <% end %>
     <% elsif @presenter.without_clients_collection.present? %>
-      <%= render partial: 'not_client_list_view' %>
+      <%= render partial: 'suborganizations/not_client_list_view' %>
     <% else %>
       <div class="nothing_find">
         По Вашему запросу ничего не найдено :(

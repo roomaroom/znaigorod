@@ -11,28 +11,17 @@
     +fixed-size
     +clearfix
 
+.filter_header
+  font-size: 22px
+  float: left
+
 .presentation_filters
   +clearfix
   margin-bottom: 15px
 
-  .present_by,
-  .filter_header
-    float: left
-    margin-left: 10px
-
-  .filter_header
-    font-size: 22px
-
-  .present_by
-    /* FIXME iconize & show it */
-    display: none
-
   .order_by
-    float: right
     margin: 6px 10px 0 0
 
-  .present_by,
-  .order_by
     p
       +inline-block
 
@@ -42,7 +31,6 @@
 
       li
         float: left
-        margin-right: 5px
         +toggable-links
 
         &:last-child
@@ -66,13 +54,28 @@
   &.question,
   &.work,
   &.photo,
+  &.reviews,
     float: left
     margin: 10px 0 15px 0
 
     .order_by
       ul
         li
-          margin: 0
+
+          &.selected
+            a
+              line-height: 12px
+              margin-top: 1px
+              padding: 5px 4px
+              +box-shadow(0 -4px 3px 0px rgba(#e84800, 1))
 
           a
+            padding: 4px
+            border: 0
+            line-height: 14px
             +border-radius(0)
+            +box-shadow(0 1px 0px 0px rgba(#cdcdcd, 1))
+
+          &:nth-child(2n)
+            a
+              border-right: 1px solid #cdcdcd

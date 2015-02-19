@@ -58,6 +58,7 @@
         left: menu_width + 20
 
     clusterer = new ymaps.Clusterer
+      preset: 'islands#grayClusterIcons'
       clusterDisableClickZoom: true
       showInAlphabeticalOrder: true
       hideIconOnBalloonOpen: false

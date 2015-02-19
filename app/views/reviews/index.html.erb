@@ -8,28 +8,30 @@
   <% end %>
 <% end %>
 
-<div class="presentation_filters reviews">
-  <div class="filter_header">
-    <% if page_meta %>
-      <h1><%= page_meta.header.squish.html_safe %></h1>
-    <% else %>
-      <h1><%= t('meta.reviews.page_header') %></h1>
-    <% end %>
-  </div>
+<div class="filter_header">
+  <% if page_meta %>
+    <h1><%= page_meta.header.squish.html_safe %></h1>
+  <% else %>
+    <h1><%= t('meta.reviews.page_header') %></h1>
+  <% end %>
+</div>
+<div class="filter_and_share">
+  <div class="presentation_filters reviews">
 
-  <!--noindex-->
-  <div class="order_by">
-    <p>Сортировать по:</p>
-    <ul>
-      <% @presenter.order_by_filter.links.each do |link| %>
-        <li class="<%= link.klass %>">
-          <%= link_to link.title, link.path %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--/noindex-->
+    <!--noindex-->
+    <div class="order_by">
+      <p>По:</p>
+      <ul>
+        <% @presenter.order_by_filter.links.each do |link| %>
+          <li class="<%= link.klass %>">
+            <%= link_to link.title, link.path %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <!--/noindex-->
 
+  </div>
 </div>
 
 <div class="reviews-paginator js-button-pagination">

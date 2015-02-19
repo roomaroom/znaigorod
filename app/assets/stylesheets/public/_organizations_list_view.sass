@@ -38,31 +38,6 @@
     +clearfix
     clear: left
 
-    .presentation_filters
-      float: left
-
-      .order_by
-        ul
-          li
-
-            &.selected
-              a
-                line-height: 12px
-                margin-top: 1px
-                padding: 5px 4px
-                +box-shadow(0 -4px 3px 0px rgba(#e84800, 1))
-
-            a
-              padding: 4px
-              border: 0
-              line-height: 14px
-              +box-shadow(0 1px 0px 0px rgba(#cdcdcd, 1))
-
-            &:nth-child(2n)
-              a
-                border-right: 1px solid #cdcdcd
-
-
     .view_by
       float: left
       margin: 15px 20px
@@ -79,18 +54,23 @@
           height: 100%
           text-indent: -9999px
           width: 100%
+          +box-shadow(0 1px 0px 0px rgba(#cdcdcd, 1))
 
       .tile_view
         background: #e9e9e9 image_url('public/organizations_list_view/tile_button.png') no-repeat center center
 
         &:hover, &.selected
           background: #ff5400 image_url('public/organizations_list_view/tile_button_active.png') no-repeat center center
+          .view_link
+            +box-shadow(0 -1px 0px 0px rgba(#e84800, 1))
 
       .list_view
         background: #e9e9e9 image_url('public/organizations_list_view/list_button.png') no-repeat center center
 
         &:hover, &.selected
           background: #ff5400 image_url('public/organizations_list_view/list_button_active.png') no-repeat center center
+          .view_link
+            +box-shadow(0 -1px 0px 0px rgba(#e84800, 1))
 
     .search_wrapper
       +clearfix
