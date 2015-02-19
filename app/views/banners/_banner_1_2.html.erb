@@ -5,15 +5,15 @@
     </li>
   <% end %>
 
-  <% if Time.zone.now < Time.zone.parse('19-02-2015 00:00') %>
+  <% if Time.zone.now < Time.zone.parse('28-02-2015 00:00') %>
     <li class='js-banner ars-dsm'>
-      <%= link_to (image_tag 'public/banners/banner_ars.jpg', :size => '880x82', :alt => 'Кастинг: Детская супермодель'), '/away?to=http://ars-alliance.ru/projects/dsm', target: '_blank', class: 'js-stat-dsm' %>
+      <%= link_to (image_tag 'public/banners/banner_ars.jpg', :size => '880x82', :alt => 'Мисс Россия-Томск'), '/away?to=http://ars-alliance.ru/projects/miss/regulations.php', target: '_blank', class: 'js-stat-dsm' %>
     </li>
   <% end %>
 
   <% if Time.zone.now < Time.zone.parse('23-02-2015 00:00') %>
     <li class='js-banner wedding'>
-      <%= link_to (image_tag 'public/banners/banner_wedding.jpg', :size => '880x82', :alt => 'Кастинг: Детская супермодель'), '/away?to=http://www.weddingshowtomsk.ru/', target: '_blank', class: 'js-stat-wedding' %>
+      <%= link_to (image_tag 'public/banners/banner_wedding.jpg', :size => '880x82', :alt => 'Свадебное шоу в Томске'), '/away?to=http://www.weddingshowtomsk.ru/', target: '_blank', class: 'js-stat-wedding' %>
     </li>
   <% end %>
 </ul>
