@@ -31,6 +31,7 @@ Znaigorod::Application.routes.draw do
   get '/saunas/sauny', :to => redirect('/saunas')
   get '/meals' => redirect { |params, request| request.params.empty? ? "/kafe_tomske" : "/kafe_tomska?#{request.params.to_query}" }
   get '/kafe_i_restorany_tomska' => redirect('/kafe_tomska')
+  get '/car_washes', :to => redirect('/car_washes/avtomoyki')
 
   get '/recreation_centers' => 'hotels#index',
     :defaults => {:categories => ["базы отдыха"] },
