@@ -4,12 +4,12 @@
   $('.js-toggle-forms').click ->
     $('.organization_wrapper').toggle('slow')
 
-    true
+    false
 
   $('.js-examples').click ->
     $('.help_examples').show()
 
-    true
+    false
 
 init_discount_switch = () ->
   $('.switch_box').on 'change', ->

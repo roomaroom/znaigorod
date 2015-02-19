@@ -10,7 +10,7 @@ class My::RelatedItemsController < ApplicationController
   end
 
   def organizations
-    searcher = HasSearcher.searcher(:organizations, :q => search_param, :state => 'published')
+    searcher = HasSearcher.searcher(:organizations, :search_query => search_param, :state => 'published')
       .order_by_rating
       .paginate(page: page, per_page: per_page)
 

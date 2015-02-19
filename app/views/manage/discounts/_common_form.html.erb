@@ -25,7 +25,7 @@
   <div class='results infinite_list'>
     <ul class='posters'></ul>
   </div>
-  <%= link_to 'нет в списке?', 'javascript:void(0)', :class => 'js-toggle-forms js-not-in-list' %>
+  <%= link_to 'нет в списке?', '#', :class => 'js-toggle-forms js-not-in-list' %>
   <input type="hidden" value="<%= resource.class.name.underscore %>[place_attributes][organization_ids][]" class="params_name">
   <div style='clear: both'></div>
 
