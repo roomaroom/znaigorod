@@ -20,6 +20,4 @@ class CarWashesPresenter
   def categories_links
     CarSalesCentersPresenter.new(categories: ['car_wash']).categories_links
   end
-
-
 end

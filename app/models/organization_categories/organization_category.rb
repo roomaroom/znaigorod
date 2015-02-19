@@ -38,7 +38,7 @@ class OrganizationCategory < ActiveRecord::Base
   #end
 
   def category_path_string
-    return 'car_washes_path' if downcased_title == 'автомойки'
+    return 'car_washes_avtomoykis_path' if downcased_title == 'автомойки'
     return 'saunas_path' if downcased_title == 'сауны'
 
     "#{kind.pluralize}_#{downcased_title.from_russian_to_param.pluralize}_path"
