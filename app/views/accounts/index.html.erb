@@ -42,28 +42,23 @@
   </div>
 </div>
 
-<div class="presentation_filters accounts">
-  <div class='present_by'>
-    <p>Вид:</p>
-    <ul>
-      <li class='selected'><a href='#' class='poster'>Постеры</a></li>
-      <li><a href='#' class='list'>Список</a></li>
-    </ul>
-  </div>
+<div class="filter_and_share">
 
-  <!--noindex-->
-  <div class='order_by'>
-    <p>Сортировать по:</p>
-    <ul>
-      <% @presenter.order_by_links.each do |link| %>
-        <li<%= " class=selected" if link[:selected] %>>
-          <%= link_to link[:title], send(link[:url], link[:parameters]) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <!--/noindex-->
+  <div class="presentation_filters accounts">
+    <!--noindex-->
+    <div class='order_by'>
+      <p>По:</p>
+      <ul>
+        <% @presenter.order_by_links.each do |link| %>
+          <li<%= " class=selected" if link[:selected] %>>
+            <%= link_to link[:title], send(link[:url], link[:parameters]) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <!--/noindex-->
 
+  </div>
 </div>
 
 <div class="accounts_list">
