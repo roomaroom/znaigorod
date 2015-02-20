@@ -8,7 +8,7 @@ class SuborganizationDecorator < ApplicationDecorator
   delegate :truncated_title_link, :logotype_link, :address_link, :address_without_link, :truncated_address_link,
     :html_description,
     :truncated_description, :site_link, :email_link, :stand_info, :schedule_today,
-    :organization_url, :to => :decorated_organization
+    :organization_url, :work_schedule_for_list_view, :to => :decorated_organization
 
   def decorated_title
     h.content_tag :h3, title, class: :suborganization if title?

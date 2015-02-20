@@ -143,6 +143,25 @@ class OrganizationDecorator < ApplicationDecorator
     priority_suborganization.categories.first || ''
   end
 
+  def work_schedule_for_list_view
+    from = schedules.pluck(:from).uniq
+    to   = schedules.pluck(:to).uniq
+    week_day = Time.zone.today.cwday
+    content = week_day
+    schedule = organization.schedules.find_by_day(week_day)
+    content = if from.size == to.size && from.size == 1
+                if from[0].blank? && to[0].nil?
+                  content = 'Гибкий график работы'
+                elsif from == to
+                  content = 'Работает круглосуточно'
+                else
+                  content = "Работает ежедневно #{schedule_time(from[0], to[0])}"
+                end
+              else
+                content = "Сегодня #{schedule_time(schedule.from, schedule.to)}"
+              end
+  end
+
   def work_schedule
     content = ''
     more_schedule = ''
