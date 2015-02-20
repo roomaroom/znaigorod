@@ -48,7 +48,13 @@ Znaigorod::Application.configure do
   config.action_controller.page_cache_directory = Rails.root.join('public/cache/')
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( manage/info_plugin/info_plugin.js public/vk_logotype.png mailer/ink.css mailer/notice_layout.css )
+  config.assets.precompile += %W[
+    manage/info_plugin/info_plugin.js
+    public/vk_logotype.png
+    mailer/ink.css
+    mailer/notice_layout.css
+    teasers/*.css
+  ]
 
   # some magic for Roadie. see https://github.com/Mange/roadie/issues/15 && 18
   config.roadie.provider = Roadie::FilesystemProvider.new("", Rails.root.join("public"))
