@@ -1,16 +1,18 @@
 <%= stylesheet_link_tag 'teasers/teasers_base' %>
 <%= stylesheet_link_tag "teasers/#{params[:id].underscore}" %>
 
-<div class='teaser_wrapper'>
-  <div class="label">
-    <span>znaigorod.ru</span>
+<div class='teasers_znaigorod'>
+  <div class='label'>
+    <a href='<%= Settings['app.url'] %>'><%= Settings['app.host'] %></a>
+  </div>
+
+  <div class='table_wrapper'>
+    <table>
+      <tr>
+        <% @teaser.teaser_items.order_by_id.each do |item| %>
+          <%= render partial: "#{params[:id].underscore}", locals: { item: item } %>
+        <% end %>
+      </tr>
+    </table>
   </div>
 </div>
-
-<table>
-  <tr>
-    <% @teaser.teaser_items.order_by_id.each do |item| %>
-      <%= render partial: "#{params[:id].underscore}", locals: { item: item } %>
-    <% end %>
-  </tr>
-</table>

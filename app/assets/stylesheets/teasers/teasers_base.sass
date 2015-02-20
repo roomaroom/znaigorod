@@ -1,36 +1,68 @@
-body
-  font-family: 'Verdana'
+.teasers_znaigorod
+  background: none !important
+  background-color: transparent !important
+  font-size: 11px !important
+  font-family: 'Verdana', 'Tahoma', sans-serif !important
 
-table
-  margin: -3px 0 0 -4px
-
-.teaser_wrapper
-  overflow: hidden
-
-.teaser_wrapper
   .label
-    background-color: #f45800
-    color: white
-    display: table-row
-    font-size: 10px
-    text-align: center
-    width: 95px
+    display: table-cell !important
+    height: 16px !important
+    line-height: 16px !important
+    color: #fff !important
+    background-color: #f45800 !important
+    font-size: 10px !important
+    position: relative !important
 
-.teaser_wrapper
-  .label
-    span
-      display: table-cell
-      vertical-align: middle
-      padding: 0 10px
-
-.teaser_wrapper
-  .label
     &:after
-      background: white
-      float: right
-      border: 8px solid transparent
-      border-right: 0
-      border-left-color: #f45800
-      content: ""
-      height: 0
-      width: 0
+      content: '' !important
+      height: 0 !important
+      width: 0 !important
+      position: absolute !important
+      top: 0 !important
+      left: 100% !important
+      border-style: solid !important
+      border-width: 8px 0 8px 4px !important
+      border-color: transparent transparent transparent #f45800 !important
+
+    a
+      color: #fff !important
+      text-decoration: none !important
+      padding-left: 4px !important
+      padding-right: 4px !important
+
+      &:hover
+        color: #fff !important
+        text-decoration: none !important
+
+  table
+    width: 100% !important
+    display: table !important
+    border-collapse: separate !important
+    empty-cells: hide !important
+    background: none !important
+    box-sizing: content-box !important
+    clear: none !important
+    float: none !important
+    font-variant: normal !important
+    font-weight: 400 !important
+    height: auto !important
+    letter-spacing: normal !important
+    line-height: normal !important
+    margin: 0 !important
+    max-height: none !important
+    max-width: none !important
+    min-height: 0 !important
+    min-width: 0 !important
+    outline: none !important
+    padding: 0 !important
+    position: static !important
+    text-align: left !important
+    text-decoration: none !important
+    text-indent: 0 !important
+    text-transform: none !important
+    vertical-align: baseline !important
+    visibility: visible !important
+    word-spacing: normal !important
+    border: none !important
+    font-size: 100% !important
+    table-layout: fixed !important
