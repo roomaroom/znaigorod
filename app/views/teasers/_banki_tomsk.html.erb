@@ -6,12 +6,9 @@
       </div>
 
       <span class='description'>
-        <%= item.description %>
+        <%= item.description.try(:as_html) %>
       </span>
 
-      <div class='author'>
-        <span>znaigorod.ru</span>
-      </div>
     </div>
   </div>
 </td>

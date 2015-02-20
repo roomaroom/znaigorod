@@ -2,7 +2,7 @@
   <%= simple_form_for [:manage, @teaser_item.teaser, @teaser_item] do |f| %>
     <%= f.input :link_text %>
     <%= f.input :url %>
-    <%= f.input :description %>
+    <%= f.input :description, input_html: { class: 'markitup' } %>
     <%= f.input :image %>
     <%= f.submit %>
     <%= link_to 'Назад', manage_teaser_path(@teaser_item.teaser) %>
