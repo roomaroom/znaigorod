@@ -33,6 +33,7 @@ module Znaigorod
                                )
 
     config.paths['config/routes'] += Dir[Rails.root.join('config', 'routes', '*.rb')].sort
+    config.action_controller.asset_host = Settings['app']['url']
 
     config.log_level = :info
 

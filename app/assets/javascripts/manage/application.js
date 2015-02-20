@@ -1,7 +1,5 @@
 /*
  * = require jquery
- * = require jquery.minicolors
- * = require jquery.minicolors.simple_form
  * = require jquery-ui
  * = require jquery_ujs
  * = require jquery_nested_form

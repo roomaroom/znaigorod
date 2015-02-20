@@ -1,10 +1,9 @@
 class Teaser < ActiveRecord::Base
   extend FriendlyId
 
-  attr_accessible :image_height, :image_width, :items_quantity, :title,
-                  :background_color, :border_color, :text_color, :link_color
+  attr_accessible :items_quantity, :title
 
-  validates_presence_of :title, :items_quantity, :image_width, :image_height
+  validates_presence_of :title, :items_quantity
   has_many :teaser_items, :dependent => :destroy
 
   after_create :create_teaser_items
@@ -29,17 +28,12 @@ end
 #
 # Table name: teasers
 #
-#  id               :integer          not null, primary key
-#  items_quantity   :integer
-#  image_width      :integer
-#  image_height     :integer
-#  background_color :string(255)
-#  border_color     :string(255)
-#  text_color       :string(255)
-#  link_color       :string(255)
-#  title            :string(255)
-#  slug             :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id             :integer          not null, primary key
+#  items_quantity :integer
+#  border_color   :string(255)
+#  title          :string(255)
+#  slug           :string(255)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 

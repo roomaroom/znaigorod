@@ -41,7 +41,6 @@ group :default do
   gem 'htmldiff'
   gem 'httparty'
   gem 'inherited_resources',        '1.4.1'
-  gem 'jquery-minicolors-rails'
   gem 'kaminari'
   gem 'kinopoisk_parser',           :require => false
   gem 'koala',                      '~> 1.7.0rc1'

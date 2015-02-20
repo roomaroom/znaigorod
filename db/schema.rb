@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150211083638) do
+ActiveRecord::Schema.define(:version => 20150220031550) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1321,23 +1321,19 @@ ActiveRecord::Schema.define(:version => 20150211083638) do
     t.string   "image_file_size"
     t.string   "image_url"
     t.string   "url"
-    t.string   "text"
+    t.string   "link_text"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "description"
   end
 
   create_table "teasers", :force => true do |t|
     t.integer  "items_quantity"
-    t.integer  "image_width"
-    t.integer  "image_height"
-    t.string   "background_color"
     t.string   "border_color"
-    t.string   "text_color"
-    t.string   "link_color"
     t.string   "title"
     t.string   "slug"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "tickets", :force => true do |t|

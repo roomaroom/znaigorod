@@ -44,3 +44,15 @@ class OrganizationCategory < ActiveRecord::Base
     "#{kind.pluralize}_#{downcased_title.from_russian_to_param.pluralize}_path"
   end
 end
+
+# == Schema Information
+#
+# Table name: organization_categories
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  ancestry   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+

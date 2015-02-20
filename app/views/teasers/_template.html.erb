@@ -1,0 +1,17 @@
+<td>
+  <div class='teaser_item'>
+    <div class="left">
+      <%= link_to item.text, item.try(:url), :style => "background-image: url('#{resized_image_url(item.image_url, @teaser.image_width, @teaser.image_height)}')" %>
+    </div>
+
+    <div class="right">
+      <div class="link">
+        <%= link_to item.text, item.try(:url), target: '_blank' %>
+      </div>
+
+      <div class="author">
+        <span>znaigorod.ru</span>
+      </div>
+    </div>
+  </div>
+</td>
