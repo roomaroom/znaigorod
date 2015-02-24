@@ -174,7 +174,7 @@ class Organization < ActiveRecord::Base
 
     return organization_categories.find_by_title!(categories.first.mb_chars.capitalize).title.from_russian_to_param if (categories || []).any?
 
-    organization_categories.detect { |c| c.kind == kind }.try(:downcased_title).from_russian_to_param
+    organization_categories.detect { |c| c.kind == kind }.try(:downcased_title).try(:from_russian_to_param)
   end
 
   searchable do
