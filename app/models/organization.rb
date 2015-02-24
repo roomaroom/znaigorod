@@ -162,6 +162,8 @@ class Organization < ActiveRecord::Base
   end
 
   def most_valueable_organization_category
+    return '' if organization_categories.empty?
+
     Organization.search {
       facet :organization_category, :only => organization_categories.map(&:downcased_title), :sort => :count
     }.facet(:organization_category).rows.first.value
