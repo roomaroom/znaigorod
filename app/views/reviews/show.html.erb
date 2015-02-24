@@ -58,13 +58,14 @@
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
-      <h2>Похожие обзоры:</h2>
-      <ul class="similar posters">
-        <% @review.decorated_similar.each do |review| %>
-          <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
-        <% end %>
-      </ul>
     </div>
   <% end %>
-
+  <h2>Похожие обзоры:</h2>
+  <div class="related_posters">
+    <ul class="similar posters">
+      <% @review.decorated_similar.each do |review| %>
+        <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
