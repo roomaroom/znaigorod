@@ -7,6 +7,9 @@ class OrganizationCategory < ActiveRecord::Base
   has_many :organization_category_items, :dependent => :destroy
   has_many :organizations, :through => :organization_category_items
 
+  has_many :review_category_items, :dependent => :destroy
+  has_many :reviews, :through => :review_category_items
+
   validates :title, presence: true, uniqueness: { scope: :ancestry }
 
   has_ancestry

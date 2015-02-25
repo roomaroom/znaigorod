@@ -24,7 +24,7 @@
 
   $('.js-root').change ->
     root = $(this)[0]
-    children = $(this).parent().next('.children').find('#organization_organization_category_ids_')
+    children = $(this).parent().next('.children').find('input')
 
     children.each (index, item) ->
       item.checked = root.checked

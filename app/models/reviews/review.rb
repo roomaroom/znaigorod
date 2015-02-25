@@ -26,7 +26,8 @@ class Review < ActiveRecord::Base
 
   attr_accessible :content, :title, :tag, :categories,
                   :allow_external_links, :only_tomsk,
-                  :related_items, :tagit_categories, :need_change, :category_flag
+                  :related_items, :tagit_categories, :need_change, :category_flag,
+                  :organization_category_ids
 
   belongs_to :account
   belongs_to :contest
