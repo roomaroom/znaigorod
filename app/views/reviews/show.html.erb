@@ -64,7 +64,7 @@
   <div class="related_posters">
     <ul class="similar posters">
       <% @review.decorated_similar.each do |review| %>
-        <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 120, :width => 214 } %></li>
+        <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 90, :width => 184 } %></li>
       <% end %>
     </ul>
   </div>
