@@ -25,7 +25,7 @@
   <%= f.input :og_title %>
   <%= f.input :og_description %>
   <%= f.input :ability_to_comment %>
-  <%= f.association :organization_categories, :as => :check_boxes, :hint => false %>
+  <%= render :partial => 'organization_categories_fields' %>
 
   <fieldset class='organization_social_links'>
     <legend>Ссылки</legend>

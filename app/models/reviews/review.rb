@@ -33,6 +33,9 @@ class Review < ActiveRecord::Base
   belongs_to :afisha
   belongs_to :organization
 
+  has_many :review_category_items, :dependent => :destroy
+  has_many :organization_categories, :through => :review_category_items
+
   has_many :all_images,            :as => :attachable, :class_name => 'Attachment', :conditions => { :type => %w[GalleryImage GallerySocialImage] }
   has_many :comments,              :as => :commentable,    :dependent => :destroy
   has_many :gallery_images,        :as => :attachable,     :dependent => :destroy

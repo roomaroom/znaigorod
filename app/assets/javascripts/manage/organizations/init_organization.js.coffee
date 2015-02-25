@@ -14,6 +14,23 @@
           ")
         $('.new_section').toggle()
         $('#new_section').val('')
+
+  true
+
+@init_organization_form = () ->
+  $('.js-open-list').click ->
+    $(this).parent().parent().next('.children').toggleClass('opened closed')
+    false
+
+  $('.js-root').change ->
+    root = $(this)[0]
+    children = $(this).parent().next('.children').find('#organization_organization_category_ids_')
+
+    children.each (index, item) ->
+      item.checked = root.checked
+      true
+
+    false
   true
 
 @initMarkitup = ->

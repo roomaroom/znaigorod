@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150220031550) do
+ActiveRecord::Schema.define(:version => 20150225035048) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -943,6 +943,13 @@ ActiveRecord::Schema.define(:version => 20150220031550) do
 
   add_index "reservations", ["reserveable_id"], :name => "index_reservations_on_reserveable_id"
   add_index "reservations", ["reserveable_type"], :name => "index_reservations_on_reserveable_type"
+
+  create_table "review_category_items", :force => true do |t|
+    t.integer  "organization_category_id"
+    t.integer  "review_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
   create_table "reviews", :force => true do |t|
     t.string   "title"
