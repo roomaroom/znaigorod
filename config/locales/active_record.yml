@@ -323,6 +323,7 @@ ru:
         subdomain: Поддомен
         updated_at: Обновлено
         user_id: Менеджер
+        organization_categories: Категории
         page_meta_keywords: Meta - keywords
         page_meta_description: Meta - description
         page_meta_title: Title
