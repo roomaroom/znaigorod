@@ -159,6 +159,9 @@ HasSearcher.create_searcher :afishas do
     with :state, :published
   end
 
+  scope :actual do
+    with(:last_showing_time).greater_than DateTime.now.beginning_of_day
+  end
 end
 
 HasSearcher.create_searcher :similar_afisha do
