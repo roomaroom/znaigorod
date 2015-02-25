@@ -3,12 +3,6 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
 
-    primary.item '23-february', 'День Защитника Отечества', february_path, highlights_on: -> { %w[map_projects map_layers].include? controller_name } do |february|
-      MapProject.find('23-february').map_layers.each do |map_layer|
-        february.item map_layer.slug, map_layer.title, february_path(layer: map_layer.slug)
-      end
-    end
-
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { controller_name == 'afishas' } do |afisha|
 
       Afisha.kind.values.each do |item|
@@ -16,12 +10,12 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    #primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
+    primary.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' } do |questions|
 
-      #Hash[Question.categories.options].invert.each do |category, title|
-        #questions.item category, title, [:questions, category]
-      #end
-    #end
+      Hash[Question.categories.options].invert.each do |category, title|
+        questions.item category, title, [:questions, category]
+      end
+    end
 
     primary.item :organizations, 'Заведения', organizations_path,
       highlights_on: -> { %w[organizations suborganizations saunas].include? controller.class.name.underscore.split("_").first } do |organization|
@@ -52,7 +46,6 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :more, 'Ещё', '#', :link => { :class => :disabled },
       highlights_on: -> { %w[contests works cooperation].include?(controller_name) } do |more|
 
-      more.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'questions' }
       more.item :photogalleries, 'Фотостримы', photogalleries_path, highlights_on: -> { controller_name == 'photogalleries' }
       more.item :accounts, 'Знакомства', accounts_path, highlights_on: -> { controller_name == 'accounts' }
       more.item :tickets, 'Распродажа билетов', afisha_with_tickets_index_path, highlights_on: -> { controller_name == nil }
