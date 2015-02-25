@@ -4,12 +4,12 @@
   if trailers.length == 1
     $(trailers).css
       'float': 'none'
-      'width': 740
-      'height': 462
+      'width': 700
+      'height': 437
       'margin-right': 0
     $('iframe', trailers).css
-      'width': 740
-      'height': 462
+      'width': 700
+      'height': 437
     return true
 
   trailers.each ->
