@@ -28,6 +28,8 @@
       <%= content_tag(:div, 'Премьера', class: :ribbon) if @afisha.premiere? %>
     </div>
 
+    <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
+
     <% if @afisha.allow_auction? %>
       <div class='auction'>
         <%= render :partial => 'my/bets/form' %>
@@ -147,36 +149,7 @@
   </div>
 
   <div class='right'>
-    <%= render :partial => 'afishas/promote', :locals => { :afisha => @afisha } %>
-
-    <% if @afisha.similar_afisha.present? %>
-      <div class='more_like_this'>
-        <div class='header'>
-          <span class='title'>Похожие афиши</span>
-        </div>
-        <ul>
-          <% @afisha.similar_afisha.each do |afisha| %>
-            <li>
-              <div class='image'>
-                <% if afisha.poster_url.present? %>
-                  <%= link_to afisha_show_path(afisha) do %>
-                    <%= image_tag resized_image_url(afisha.poster_url, 65, 87), :size => '65x87', :alt => afisha.title.text_gilensize %>
-                  <% end %>
-                <% end %>
-                <%= content_tag(:div, 'Премьера', class: :ribbon) if afisha.premiere? %>
-              </div>
-              <div class='clearfix'>
-                <div class='title'><%= link_to afisha.title.text_gilensize, afisha_show_path(afisha) %></div>
-                <%= content_tag :div, afisha.afisha_place, :class => 'places' if afisha.afisha_place.present? %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <%= render :partial => 'commons/promotions' %>
-
   </div>
 
   <div class='center'>
@@ -277,11 +250,11 @@
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @afisha } %>
 
-    <% if @kind_afishas.any? %>
+    <% if @afisha.similar_afisha.any? %>
       <div class='suborganization_info similar_afisha'>
         <div class='similar_afishas_header'>Другие мероприятия</div>
         <ul class='posters'>
-          <% @kind_afishas.each do |afisha| %>
+          <% @afisha.similar_afisha.each do |afisha| %>
             <li class='item'>
               <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
             </li>

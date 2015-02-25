@@ -1,7 +1,7 @@
 @init_photogallery = () ->
 
-  scroll_count = 4
-  visible_count = 5
+  scroll_count = 3
+  visible_count = 4
   start_position = if $('.js-start-position').length
     parseInt($('.js-start-position').text()) + 1
   else

@@ -95,9 +95,8 @@ $desktop_default_width: 1200px
     color: #000
     line-height: 16px
     background-color: #e8e8e8
-    border: 1px solid #ccc
-    +border-radius
     padding: $padding-top 8px $padding-bottom
+    +box-shadow(0px 2px 0px 0px #cdcdcd)
 
     &:hover
       color: #f60
@@ -105,12 +104,12 @@ $desktop_default_width: 1200px
 
     &:active
       padding: $padding-bottom 8px $padding-top
+      +transition(.2s)
 
   &.selected a
     color: #fff
     line-height: 16px
     background-color: #f60
-    border: none
     +box-shadow(rgba(0, 0, 0, 0.3) 1px 1px 2px inset)
     padding: ($padding-top + 1) 8px ($padding-bottom + 1)
 

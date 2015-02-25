@@ -168,7 +168,6 @@
     margin: 30px 0
 
     .image
-      border: 1px solid #ccc
       font-size: 12px
       height: 269px
       margin-bottom: 10px
@@ -187,16 +186,33 @@
 
     @import 'certificates_left_list'
 
+    .promote_afisha_wrapper
+      border-bottom: 1px solid #ccc
+      padding: 10px 0 20px 0
+
+      .info
+        text-align: center
+        margin: 0 0 10px 0
+
+      a
+        background: #f93 image_url('public/arrow-up-white.png') no-repeat 13px center
+        display: block
+        margin: 0 auto
+        width: 158px
+
+        &:hover
+          background: #f60 image_url('public/arrow-up-white.png') no-repeat 13px center
+          border-color: #f60
+
     .social_actions
       position: relative
-      border: 1px solid #ccc
       margin-bottom: 10px
-      padding-top: 8px
+      padding-top: 20px
 
     .user_actions
       font-size: 12px
       padding: 0 5px
-      margin-bottom: 5px
+      margin-bottom: 20px
 
       li
         +toggable-links(4px, 5px)
@@ -206,14 +222,14 @@
 
     .list
       li:first-child
-        border-top: 1px solid #ccc
         padding-top: 5px
 
     .visits_counter
       font-size: 12px
       +clearfix
       margin: 5px 5px 0 5px
-      padding-bottom: 5px
+      padding: 10px 0 5px
+      border-top: 1px solid #ccc
 
     .avatars
       +avatar-list-style
@@ -270,57 +286,12 @@
 
   .right
     float: right
-    width: 230px
+    width: 240px
     border-left: 1px solid #ccc
     margin: 0 0 10px 0
 
     > div:last-child
       border-bottom: none !important
-
-    .promote_afisha_wrapper
-      padding: 10px
-
-      .info
-        text-align: center
-        margin: 0 0 10px 0
-
-      a
-        background: #f93 image_url('public/arrow-up-white.png') no-repeat 13px center
-        display: block
-        margin: 0 auto
-        width: 158px
-
-        &:hover
-          background: #f60 image_url('public/arrow-up-white.png') no-repeat 13px center
-          border-color: #f60
-
-    .more_like_this, .auction
-      .header
-        background: #ccc
-        color: #222
-        font-size: 14px
-        line-height: 22px
-        margin: 0 0 0 -10px
-        padding: 4px 4px 4px 10px
-        position: relative
-
-        &:before
-          content: ""
-          width: 0
-          height: 0
-          position: absolute
-          left: 0
-          bottom: -10px
-          border-width: 5px 5px
-          border-style: solid
-          border-color: #999 #999 transparent transparent
-
-        > .title
-          +inline-block
-
-          a, a:hover
-            color: #222
-            text-decoration: none
 
       ul
         padding: 10px
@@ -350,7 +321,7 @@
   .center
     font-size: 12px
     line-height: 1.6
-    margin: 30px 270px 0 230px
+    margin: 30px 280px 0 230px
 
 
     .similar_afisha
@@ -358,7 +329,7 @@
 
       .posters
         .item
-          margin: 0 45px 25px 0px
+          margin: 0 40px 25px 0px
 
           &:nth-child(3n)
             margin: 0 0 25px 0
@@ -393,6 +364,7 @@
         +inline-block
         background: transparent image_url('public/map_icon.png') no-repeat left -1px
         height: 45px
+        width: 35px
 
         .name
           display: none
@@ -412,7 +384,7 @@
 
       p
         +inline-block
-        margin-left: -15px
+        margin-left: 5px
 
       .address a
         background: transparent image_url('public/icon_address.png') no-repeat 2px 2px
@@ -499,7 +471,6 @@
 
       .tags
         float: left
-        width: 525px
         +clearfix
         margin: 10px 0 5px
 

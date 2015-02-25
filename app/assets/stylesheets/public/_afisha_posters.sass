@@ -14,10 +14,9 @@
 .content
 
   .afisha_left
-    border-right: 1px solid #e5e5e5
     float: left
     padding: 0 40px 25px 5px
-    width: 880px
+    width: 890px
 
     .filter_header
       +clearfix
@@ -34,10 +33,10 @@
 
   .afisha_right
     border-left: 1px solid #e5e5e5
-    float: left
+    float: right
     margin: 0 0 0 -1px
     padding: 10px 0
-    width: 230px
+    width: 240px
 
 .afisha_content, .similar_afisha, .related_posters
   clear: both
@@ -50,9 +49,12 @@
       +transition(all 750ms ease-out)
       border: 1px solid #ccc
       height: 352px
-      margin: 0 17px 25px 0px
+      margin: 0 26px 25px 0px
       position: relative
       width: 198px
+
+      &:nth-child(4n)
+        margin: 0 0 25px 0
 
       &.fresh
         +opacity(0)

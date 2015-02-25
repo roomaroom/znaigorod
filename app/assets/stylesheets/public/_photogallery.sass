@@ -1,7 +1,7 @@
 .photogallery
   > ul
     +clearfix
-    height: 99px
+    height: 121px
 
     > li
       float: left
@@ -14,25 +14,22 @@
 
 .jcarousel-clip-horizontal
   width: 680px
-  height: 99px
+  height: 121px
 
 .jcarousel-list-horizontal
-  height: 99px
+  height: 121px
 
 .jcarousel-item
-  width: 130px
-  height: 99px
+  width: 160px
+  height: 121px
 
   a
     +clearfix
     display: block
-    width: 130px
-    height: 99px
+    width: 160px
+    height: 121px
     margin: 0 auto
-    img
-      //+opacity(.5)
     &:hover img
-      //+opacity(1)
       +opacity(.8)
 
 .jcarousel-item-placeholder
@@ -41,8 +38,8 @@
 
 .jcarousel-prev-horizontal
   position: absolute
-  top: 42px
-  left: -12px
+  top: 50px
+  left: -10px
   width: 8px
   height: 16px
   cursor: pointer
@@ -52,21 +49,21 @@
     background-position: 0 -16px
 
   &:active
-    top: 44px
+    top: 52px
 
 .jcarousel-prev-disabled-horizontal
   cursor: default
   background-position: 0 0
 
   &:hover, &:focus, &:active
-    top: 42px
+    top: 52px
     cursor: default
     background-position: 0 0
 
 .jcarousel-next-horizontal
   position: absolute
-  top: 43px
-  right: -12px
+  top: 50px
+  right: -10px
   width: 8px
   height: 16px
   cursor: pointer
@@ -76,13 +73,13 @@
     background-position: -8px -16px
 
   &:active
-    top: 44px
+    top: 52px
 
 .jcarousel-next-disabled-horizontal
   cursor: default
   background-position: -8px 0
 
   &:hover, &:focus, &:active
-    top: 43px
+    top: 52px
     cursor: default
     background-position: -8px 0
