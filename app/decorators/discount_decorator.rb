@@ -94,7 +94,7 @@ class DiscountDecorator < ApplicationDecorator
   end
 
   def similar_discount
-    HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(3).results.map { |d| DiscountDecorator.new d }
+    HasSearcher.searcher(:similar_discount).more_like_this(discount).limit(6).results.map { |d| DiscountDecorator.new d }
   end
 
   def kind_discounts(kind)

@@ -3,7 +3,7 @@
     <%= render :partial => 'accounts/avatar',
       :locals => { :account => question.account, :width => 50, :height => 50, :title => question.account } %>
   </div>
-  <h2><%= link_to question.title, question_path(question.slug) %></h2>
+  <h2 class='title'><%= link_to question.title, question_path(question.slug) %></h2>
 
   <div style='clear: both'> </div>
 

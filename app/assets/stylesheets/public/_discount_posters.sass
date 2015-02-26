@@ -1,10 +1,9 @@
 .discount_left,
 .discounts_wrapper,
 #discounts_filter
-  border-right: 1px solid #e5e5e5
   float: left
   padding: 0 40px 25px 5px
-  width: 880px
+  width: 890px
 
   .filter_header
     +clearfix
@@ -19,11 +18,11 @@
       margin: 15px 0 15px 0
 
 .discount_right
-  float: left
+  float: right
   border-left: 1px solid #e5e5e5
   margin: 0 0 0 -1px
   padding: 10px 0
-  width: 230px
+  width: 240px
 
 .discount_content, .discounts_main_page_list, .similar_discount, .related_posters
   clear: both
@@ -33,12 +32,16 @@
 
     &.related_discounts
       li.item_wrapper
-        margin: 0 0 20px
+        margin: 10px auto
+        float: none
 
     li.item_wrapper
       float: left
-      margin: 0 10px 20px 10px
+      margin: 0 28px 20px 0px
       width: 200px
+
+      &:nth-child(4n)
+        margin: 0 0 20px 0
 
       .item
         border: 1px solid #ccc
@@ -239,7 +242,7 @@
           text-align: left
 
       &.pagination
-        width: 860px
+        width: 884px
 
 .similar_discount
   clear: none

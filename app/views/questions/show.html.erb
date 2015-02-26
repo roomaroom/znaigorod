@@ -44,7 +44,7 @@
     <h2 class='big'>Похожие вопросы</h2>
     <ul class="similar posters">
       <% @question.decorated_similar.each do |question| %>
-        <li class="item_review tiny"><%= render :partial => 'similar', :locals => { :question => question, :height => 120, :width => 214 } %></li>
+        <li class="item_review question_right"><%= render :partial => 'similar', :locals => { :question => question, :height => 120, :width => 214 } %></li>
       <% end %>
     </ul>
   <% end %>

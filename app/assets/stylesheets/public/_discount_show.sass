@@ -7,12 +7,12 @@
     margin: 30px 0
 
     .image
-      border: 1px solid #ccc
       position: relative
       text-align: center
       font-size: 12px
       width: 200px
       padding: 4px
+      border: 1px solid #ccc
 
     .info
       background: #099
@@ -104,7 +104,6 @@
 
 
   .social_actions
-    border: 1px solid #ccc
     padding: 5px 0 0 0
 
     .user_actions
@@ -324,7 +323,7 @@
 
     font-size: 12px
     line-height: 1.6
-    margin: 30px 270px 0 230px
+    margin: 30px 280px 0 230px
 
     .similar_discount
       > .title
@@ -335,7 +334,7 @@
 
       .posters
         li
-          margin: 0 47px 20px 0
+          margin: 0 45px 20px 0
 
           &:nth-child(3n)
             margin: 0 0 20px 0
@@ -355,6 +354,31 @@
         padding: 1px 8px 2px
 
     .place
+      .map_icon
+        +inline-block
+        background: transparent image_url('public/map_icon.png') no-repeat left -1px
+        height: 45px
+        width: 35px
+
+        .name
+          display: none
+
+        .address
+          display: block
+          height: 45px
+
+          a
+            text-indent: -9999px
+            height: 100%
+            display: block
+            background: none
+
+        .delimiter
+          display: none
+
+      p
+        +inline-block
+        margin-left: 5px
 
       .address a
         background: transparent image_url('public/icon_address.png') no-repeat 2px 2px

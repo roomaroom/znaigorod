@@ -57,41 +57,9 @@
   </div>
 
   <div class="right">
-      <% if @discount.copies.any? %>
-        <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
-      <% end %>
-
-      <% if @discount.similar_discount.present? %>
-      <div class='more_like_this'>
-        <div class='header'>
-          <span class="title">Другие скидки</span>
-        </div>
-          <ul>
-            <% @discount.similar_discount.each do |discount| %>
-              <li>
-                <div class="image">
-                  <%= link_to discount_path(discount) do %>
-                    <%= image_tag resized_image_url(discount.poster_url, 80, 60), :size => '80x60', :alt => discount.title.text_gilensize %>
-                    <% if discount.copies.for_sale.any? && discount.price %>
-                      <% if discount.price.zero? %>
-                        <%= link_to 'Участвовать', discount.smart_path(:anchor => :buy_ticket), :class => 'for_sale button hidden_button', :rel => 'nofollow' %>
-                      <% else %>
-                        <%= link_to 'Купить', discount.smart_path(:anchor => :buy_ticket), :class => 'for_sale button hidden_button', :rel => 'nofollow' %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="clearfix">
-                  <div class="title"><%= link_to truncate(discount.title.text_gilensize, :length => 25), discount_path(discount) %></div>
-                  <% if discount.discount? %>
-                    <div class="profit">Скидка <%= discount.model.discount %>%</div>
-                  <% end %>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+    <% if @discount.copies.any? %>
+      <%= render :partial => 'copy_payments/copies', :locals => { :parent => @discount.model } if can? :edit, @discount %>
+    <% end %>
     <%= render :partial => 'commons/promotions' %>
   </div>
 
@@ -107,7 +75,12 @@
     </div>
 
     <div class="place">
-      Место проведения: <%= @discount.human_place %>
+      <% if @discount.human_place.present? %>
+        <div class='map_icon'>
+          <%= @discount.human_place  %>
+        </div>
+        <%= @discount.human_place %>
+      <% end %>
     </div>
 
     <% if @discount.afisha %>
@@ -173,19 +146,15 @@
 
     <%= render :partial => 'comments/block', :locals => { :parent_obj => @discount } %>
 
-    <% if @type_discounts.any? %>
+    <% if @discount.similar_discount.present? %>
       <div class='discount_info similar_discount'>
         <div class='title'>Похожие скидки</div>
         <ul class='posters'>
-          <% @type_discounts.each do |discount| %>
+          <% @discount.similar_discount.each do |discount| %>
             <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '196', :@height => '164' } %>
           <% end %>
         </ul>
       </div>
     <% end %>
-
-    <div class="sape">
-      <%#= @sape.links(2).html_safe %>
-    </div>
   </div>
 </div>
