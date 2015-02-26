@@ -128,13 +128,8 @@ Znaigorod::Application.routes.draw do
   get '/link_counters/create' => 'link_counters#create'
 
   get '/novyj_god_2015_v_tomske' => 'map_projects#show', :as => "new_year_2015", :defaults => { :id => 'new-year-2015' }
-  get '/novyj_god_2015_v_tomske/:id' => 'map_layers#show', :as => "new_year_2015_layers", :defaults => { :map_project_id => 'new-year-2015' }
-
   get '/14_february' => 'map_projects#show', as: 'february', defaults: { id: 'february' }
-  get '/14_february/:id' => 'map_layers#show', as: 'february_layers', defaults:  { map_project_id: 'february' }
-
   get '/23-fevralya' => 'map_projects#show', as: 'february', defaults: { id: '23-february' }
-  get '/23-fevralya/:id' => 'map_layers#show', as: 'february_layers', defaults:  { map_project_id: '23-february' }
 
   resources :teasers, only: [:show]
 

@@ -9,6 +9,8 @@ class SuborganizationsController < ApplicationController
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
     klass = "#{kind.pluralize}_presenter".classify.constantize
 
+    @reviews = ReviewDecorator.decorate(review_list)
+
     respond_to do |format|
       format.html {
         cookie = cookies['_znaigorod_organization_list_settings'].to_s
@@ -45,5 +47,10 @@ class SuborganizationsController < ApplicationController
     kind = (Organization.available_suborganization_kinds & [params[:kind]]).try(:first)
     klass = "#{kind.pluralize}_presenter".classify.constantize
     view_type =='list' ? klass.new(params).total_count : 14
+  end
+
+  def review_list
+    return OrganizationCategory.find_by_title(params[:categories].first.mb_chars.capitalize).reviews if params[:categories]
+    OrganizationCategory.find_by_title(I18n.t("organization.kind.#{params[:kind]}")).children.flat_map(&:reviews).uniq
   end
 end

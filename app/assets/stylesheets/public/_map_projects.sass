@@ -182,22 +182,35 @@ body
           color: #858388
           font-size: 11px
 
-    .map_project_reviews
-      +clearfix
-      clear: both
-      margin-top: 7px
+.map_project_reviews, .organization_reviews
+  +clearfix
+  clear: both
+  margin-top: 7px
 
-      .likes
-        +likes
+  .likes
+    +likes
 
-      .reviews_title
-        background-color: white
-        font-size: 14px
-        margin-top: 30px
-        padding: 5px 10px
+  .reviews_title
+    background-color: white
+    font-size: 14px
+    padding: 5px 10px
 
-      .related-reviews
-        margin-left: 15px
+  .related-reviews
+    margin-left: 15px
 
-        li.item
-          background-color: white
+    li.item
+      background-color: white
+      margin: 5px 26px 20px 0 !important
+
+      &:nth-child(5n)
+        margin: 5px 0px 20px 0
+
+.map_project_reviews
+  .reviews_title
+    margin-top: 30px
+    background-color: white
+
+.organization_reviews
+  .reviews_title
+    margin-top: 10px
+    background-color: #E8E8E8

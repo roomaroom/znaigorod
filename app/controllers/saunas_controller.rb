@@ -8,6 +8,8 @@ class SaunasController < ApplicationController
     cookies[:view_type] = params[:view_type] if params[:view_type]
     @presenter = SaunaHallsPresenter.new(params.merge(per_page: per_page))
     @discount_collection = SaunasDiscountsPresenter.new({}).collection
+    @reviews = ReviewDecorator.decorate(review_list)
+
     if request.xhr?
       render partial: 'without_halls_list_view', layout: false and return if view_type == 'list'
       render partial: 'sauna_posters', layout: false
@@ -20,5 +22,9 @@ class SaunasController < ApplicationController
 
   def per_page
     view_type == 'list' ? SaunaHallsPresenter.new(params).total_count : 9
+  end
+
+  def review_list
+    OrganizationCategory.find_by_title(I18n.t("organization.kind.sauna")).reviews
   end
 end

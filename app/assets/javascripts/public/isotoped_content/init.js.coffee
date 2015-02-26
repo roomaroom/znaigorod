@@ -5,5 +5,3 @@
 
   $container = list.isotope
     itemSelector: '.item'
-    masonry:
-      columnWidth: columnWidth
