@@ -48,145 +48,172 @@
     img
       border: 1px solid #dedede
 
+=map_projects_wrapper
+  .map_projects_wrapper
+    +clearfix
+    width: 100%
+
+    .placemarks_list
+      display: none
+
+    .map_projects_content
+      margin: 0 auto
+      width: 1200px
+
+      .map_projects_header
+        border-bottom: 1px solid white
+        margin: 20px 0
+
+        .lobster_font
+          color: #f00000
+          font-family: 'Lobster', cursive
+          font-size: 36px
+          +text-shadow(#fff -3px 0 2px, #fff 3px 0 2px, #fff 0 3px 2px, #fff 0 -3px 2px)
+
+      .map_projects_main
+
+        .left
+          float: left
+          width: 250px
+          margin-right: 20px
+          font-size: 14px
+
+          ul
+
+            li
+              margin-bottom: 5px
+
+              a
+                background-color: white
+                background-position: 3px center
+                background-repeat: no-repeat
+                color: inherit
+                display: block
+                padding: 10px 10px 10px 40px
+
+                &.all_layers
+                  background-image: image_url('public/map_projects/all_layers.jpg')
+
+                &:hover
+                  color: #367914
+                  text-decoration: none
+
+              &.selected a
+                color: #367914
+                border: 2px solid #567a40
+
+          .contest
+            margin: 20px 0 0 0
+
+          .actual_reviews
+            background-color: #ffe482
+            margin-top: 20px
+            position: relative
+
+            a
+              background: transparent image_url('public/february_contest/arrow.png') no-repeat 6px center
+              color: #ff2a3c
+              display: block
+              font-family: 'Lobster', cursive
+              font-size: 20px
+              padding: 10px 10px 10px 40px
+
+              &:hover
+                text-decoration: none
+
+          .text_block
+            position: relative
+            background-color: #fff
+            +background(rgba(#fff, 0.6))
+            margin: 20px 0 10px
+            padding: 10px 10px 200px
+
+            .left_wreath
+              position: absolute
+              left: -9px
+              bottom: -8px
+
+            .important
+              font-weight: bold
+              color: #ff2a3c
+              margin-bottom: 5px
+
+            .phone
+              padding-left: 21px
+              margin-bottom: 5px
+
+              &.with_icon
+                background: transparent image_url('public/map_projects/phone.png') no-repeat left center
+                margin-bottom: 0
+
+            .email a
+              background: transparent image_url('public/map_projects/email.png') no-repeat left center
+              padding-left: 21px
+
+        .right
+          float: left
+          width: 930px
+
+          .map_wrapper
+            position: relative
+
+            .right_wreath_1,
+            .right_wreath_2,
+            .right_wreath_3
+              position: absolute
+              top: -70px
+              right: -30px
+              z-index: 1
+
+            .right_wreath_2
+              top: 50px
+
+            .right_wreath_3
+              top: 84px
+
+            .map
+              height: 700px
+              width: 930px
+              margin-bottom: 10px
+
+          .introduction
+            color: #858388
+            font-size: 11px
+
 body
   +map_projects_styles
 
 .wrapper_23-fevralya
   background: #d1e0c1 image_url('public/map_projects/23-fevralya_background.jpg') no-repeat center top
+  +map_projects_wrapper
 
 .wrapper_novyj_god_2015_v_tomske
   background: #ffffff image_url('public/map_projects/novyj_god_2015_v_tomske_background.jpg') no-repeat center top
+  +map_projects_wrapper
 
-.map_projects_wrapper
-  +clearfix
-  width: 100%
+.wrapper_8_marta_tomsk
+  background: #ffbed3 image_url('public/map_projects/8_marta_tomsk_background.jpg') no-repeat center top
+  +map_projects_wrapper
+  .map_projects_wrapper
+    .map_projects_content
+      .map_projects_main
+        .left
+          ul
+            li
+              a
+                &:hover
+                  color: #ff002b
 
-  .placemarks_list
-    display: none
+              &.selected a
+                color: #ff002b
+                border: 2px solid #ff002e
 
-  .map_projects_content
-    margin: 0 auto
-    width: 1200px
+          .text_block
+            padding: 10px 10px 235px
 
-    .map_projects_header
-      border-bottom: 1px solid white
-      margin: 20px 0
-
-      .lobster_font
-        color: #f00000
-        font-family: 'Lobster', cursive
-        font-size: 36px
-        +text-shadow(#fff -3px 0 2px, #fff 3px 0 2px, #fff 0 3px 2px, #fff 0 -3px 2px)
-
-    .map_projects_main
-
-      .left
-        float: left
-        width: 250px
-        margin-right: 20px
-        font-size: 14px
-
-        ul
-
-          li
-            margin-bottom: 5px
-
-            a
-              background-color: white
-              background-position: 3px center
-              background-repeat: no-repeat
-              color: inherit
-              display: block
-              padding: 10px 10px 10px 40px
-
-              &.all_layers
-                background-image: image_url('public/map_projects/all_layers.jpg')
-
-              &:hover
-                color: #367914
-                text-decoration: none
-
-            &.selected a
-              color: #367914
-              border: 2px solid #567a40
-
-        .contest
-          margin: 20px 0 0 0
-
-        .actual_reviews
-          background-color: #ffe482
-          margin-top: 20px
-          position: relative
-
-          a
-            background: transparent image_url('public/february_contest/arrow.png') no-repeat 6px center
-            color: #ff2a3c
-            display: block
-            font-family: 'Lobster', cursive
-            font-size: 20px
-            padding: 10px 10px 10px 40px
-
-            &:hover
-              text-decoration: none
-
-        .text_block
-          position: relative
-          background-color: #fff
-          +background(rgba(#fff, 0.6))
-          margin: 20px 0 10px
-          padding: 10px 10px 200px
-
-          .left_wreath
-            position: absolute
-            left: -9px
-            bottom: -8px
-
-          .important
-            font-weight: bold
-            color: #ff2a3c
-            margin-bottom: 5px
-
-          .phone
-            padding-left: 21px
-            margin-bottom: 5px
-
-            &.with_icon
-              background: transparent image_url('public/map_projects/phone.png') no-repeat left center
-              margin-bottom: 0
-
-          .email a
-            background: transparent image_url('public/map_projects/email.png') no-repeat left center
-            padding-left: 21px
-
-      .right
-        float: left
-        width: 930px
-
-        .map_wrapper
-          position: relative
-
-          .right_wreath_1,
-          .right_wreath_2,
-          .right_wreath_3
-            position: absolute
-            top: -70px
-            right: -30px
-            z-index: 1
-
-          .right_wreath_2
-            top: 50px
-
-          .right_wreath_3
-            top: 84px
-
-          .map
-            height: 700px
-            width: 930px
-            margin-bottom: 10px
-
-        .introduction
-          color: #858388
-          font-size: 11px
+            .left_wreath
+              left: -35px
+              bottom: -33px
 
 .map_project_reviews, .organization_reviews
   +clearfix
