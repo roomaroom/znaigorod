@@ -2,6 +2,7 @@
   <h1>Картопроект:</h1>
   <%= simple_form_for [:manage, @map_project] do |f| %>
     <%= f.input :title %>
+    <%= f.input :slug %>
     <%= f.input :cluster_icon%>
     <div class='relations'>
       <p>Этот пост связан с</p>

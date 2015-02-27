@@ -2,7 +2,7 @@ class MapProject < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  attr_accessible :title, :related_items, :need_change, :cluster_icon
+  attr_accessible :title, :related_items, :need_change, :cluster_icon, :slug
   attr_accessor :related_items, :need_change
 
   validates_presence_of :title
@@ -10,10 +10,6 @@ class MapProject < ActiveRecord::Base
   has_many :map_layers,                                    dependent: :destroy
   has_many :relations,             as: :master,            dependent: :destroy
   has_many :reviews,        :through => :relations, :source => :slave, :source_type => Review
-
-  has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
-
-  has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
   has_attached_file :cluster_icon, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 

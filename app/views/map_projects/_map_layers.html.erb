@@ -2,7 +2,7 @@
   <ul>
     <% map_project.map_layers.order('created_at desc').each do |map_layer| %>
       <%= content_tag :li, :class => map_layer.slug == params[:layer] ? 'selected' : nil do %>
-        <%= link_to map_layer.title, february_path(layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
+        <%= link_to map_layer.title, map_project_show_path(map_project.slug,layer: map_layer.slug), :style => "background-image: url('#{map_layer.image_url}')" %>
       <% end %>
     <% end %>
   </ul>
@@ -12,7 +12,7 @@
   </div>
 
   <div class='text_block'>
-    <%= image_tag asset_path('public/february_contest/left.png'), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
+    <%= image_tag asset_path("public/map_projects/#{map_project.slug}_left.png"), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
     <p class='important'>Вас нет на карте?</p>
     <p>Звоните нам:</p>
     <p class='phone with_icon'><%= t('services.phone').split(',').first.to_s.squish %></p>

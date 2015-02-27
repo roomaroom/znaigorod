@@ -8,7 +8,7 @@
 <% end %>
 
 <% content_for :canonical_link do %>
-  <link rel='canonical' href='<%= february_url %>' />
+  <link rel='canonical' href='<%= map_project_show_url %>' />
 <% end %>
 
 <% content_for :extra_meta do %>
@@ -32,7 +32,7 @@
   <div class='unique_header_wrapper'>
     <%= render :partial => 'commons/public_header' %>
   </div>
-  <div class='february_wrapper'>
+  <div class="wrapper_<%= @map_project.slug %>">
     <%= yield %>
     <%= render :partial => 'commons/public_footer' %>
     <%= render :partial => 'commons/yandex_metrika' if Rails.env.production? %>
