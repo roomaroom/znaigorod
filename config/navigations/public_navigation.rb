@@ -3,6 +3,12 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
 
+    primary.item '8_marta_tomsk', '8 марта', map_project_show_path('8_marta_tomsk'), highlights_on: -> { %w[map_projects map_layers].include? controller_name } do |march_8|
+      MapProject.find('8_marta_tomsk').map_layers.each do |map_layer|
+        march_8.item map_layer.slug, map_layer.title, map_project_show_path(id: '8_marta_tomsk', layer: map_layer.slug)
+      end
+    end
+
     primary.item :afisha, 'Афиша', afisha_index_path, highlights_on: -> { controller_name == 'afishas' } do |afisha|
 
       Afisha.kind.values.each do |item|
