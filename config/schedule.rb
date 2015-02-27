@@ -17,6 +17,10 @@ end
   #rake 'generate_yandex_companies_xml_files'
 #end
 
+every :monday, :at => '6:30 am' do
+  rake 'generate_yandex_companies_xml_files'
+end
+
 #every :day, :at => '6:30 am' do
   #rake 'send_digest:statistics'
 #end
