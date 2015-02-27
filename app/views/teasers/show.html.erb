@@ -9,8 +9,12 @@
   <div class='table_wrapper'>
     <table>
       <tr>
-        <% @teaser.teaser_items.order_by_id.each do |item| %>
-          <%= render partial: "#{params[:id].underscore}", locals: { item: item } %>
+        <% unless @teaser.with_relations %>
+          <% @teaser.teaser_items.order_by_id.each do |item| %>
+            <%= render partial: "#{params[:id].underscore}", locals: { item: item } %>
+          <% end %>
+        <% else %>
+          <%= render partial: "#{params[:id].underscore}", :locals => { :teaser => @teaser } %>
         <% end %>
       </tr>
     </table>
