@@ -1,0 +1,15 @@
+<td>
+  <ul>
+    <% teaser.relations.each do |item| %>
+      <li>
+        <div class="image">
+          <%= link_to (image_tag resized_image_url(item.slave.poster_image_url, 70, 50)), item.slave, :target => '_blank' %>
+        </div>
+
+        <div class="link">
+          <%= link_to item.slave.title, item.slave, :target => '_blank' %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</td>

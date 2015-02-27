@@ -1,20 +1,9 @@
 <div class="teaser_wrapper">
   <h1><%= resource.title %></h1>
   <%= link_to 'Посмотреть в публичке', teaser_path(resource), target: '_blank' %>
-  <ul>
-    <% resource.teaser_items.order_by_id.each do |item| %>
-      <li>
-        <p>
-          <%= image_tag item.image_url ? resized_image_url(item.image_url, 90, 90) : '/assets/public/default_image.png' %>
-        </p>
-        <p>
-          <%= item.link_text %>
-        </p>
-        <p><%= link_to item.url, item.url, target: '_blank' if item.url %></p>
-        <p>
-          <%= link_to 'Редактировать', edit_manage_teaser_teaser_item_path(resource, item) %> / <%= link_to 'Очистить', clear_manage_teaser_path(resource, 'teaser_item_id' => item.id), method: :put %>
-        </p>
-      </li>
-    <% end %>
-  </ul>
+  <% if resource.with_relations %>
+    <%= render partial: 'relations', :locals => { :resource => resource } %>
+  <% else %>
+    <%= render partial: 'items', :locals => { :resource => resource } %>
+  <% end %>
 </div>
