@@ -18,6 +18,17 @@
   true
 
 @init_organization_form = () ->
+  # при инициализации скрипта пометить корни согласно правилам
+  $('.js-root').each (index, item) ->
+    root = $(item).parent()
+    children_checkboxes = $(root).next('.children').find('input')
+    checked = 0
+    children_checkboxes.each (index, item) ->
+      if $(item).is(':checked')
+        checked += 1
+
+    check_root(root, checked, children_checkboxes.length)
+
   $('.js-open-list').click ->
     $(this).parent().parent().next('.children').toggleClass('opened closed')
     false
@@ -31,7 +42,46 @@
       true
 
     false
+
+  $('input[type="checkbox"]').change ->
+    root_class = $(this).parent().parent().attr('class').split(' ')
+
+    return if root_class.indexOf('children') < 0
+
+    root_class = $.grep(root_class, (val) ->
+      val != 'children'
+    )
+    root_class = $.grep(root_class, (val) ->
+      val != 'opened'
+    )
+    root_class = $.grep(root_class, (val) ->
+      val != 'closed'
+    )
+
+    root = $(this).parent().parent().parent().find('.root_'+root_class[0])
+    children_checkboxes = $(root).next('.children').find('input')
+
+    checked = 0
+
+    children_checkboxes.each (index, item) ->
+      if $(item).is(':checked')
+        checked += 1
+
+    check_root(root, checked, children_checkboxes.length)
+
+    true
   true
+
+check_root = (root, checked, checkbox_count) ->
+  if checked == checkbox_count
+    root.find('input').prop('indeterminate', false) # indeterminate check for root
+    root.find('input').prop('checked', true)
+  else if checked == 0
+    root.find('input').prop('indeterminate', false) # indeterminate check for root
+    root.find('input').prop('checked', false)
+  else
+    root.find('input').prop('checked', false)
+    root.find('input').prop('indeterminate', true) # indeterminate check for root
 
 @initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())

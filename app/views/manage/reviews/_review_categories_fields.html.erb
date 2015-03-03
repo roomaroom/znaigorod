@@ -1,15 +1,16 @@
 <div class="organization_organization_categories">
   <% OrganizationCategory.used_roots.each do |root| %>
-    <div class="label">
+    <div class="label root_<%= root.title.from_russian_to_param %>">
       <span><%= link_to "+", "#", :class => "js-open-list open_list plus" %></span>
       <%= label_tag root.title %>
       <%= check_box_tag 'root', 'root', false, class: 'js-root' %>
     </div>
-    <div class="children closed">
+
+    <div class="children closed <%= root.title.from_russian_to_param %>">
     <% root.children.each do |child| %>
       <div class="label">
         <%= label_tag child.title %>
-        <%= check_box_tag 'review[organization_category_ids][]', child.id, resource.organization_categories.include?(child) ? true : false %>
+        <%= check_box_tag 'review[organization_category_ids][]', child.id, resource.organization_categories.include?(child) ? true : false, class: 'js-child-item' %>
       </div>
     <% end %>
     </div>
