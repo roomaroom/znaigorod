@@ -1,7 +1,6 @@
 class Manage::MapPlacemarksController < Manage::ApplicationController
   load_and_authorize_resource
 
-
   def new
     new!{
       @map_project = MapProject.find(params[:map_project_id])

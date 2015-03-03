@@ -34,51 +34,50 @@
       cursor: pointer
 
   .select_and_search
+    clear: both
+    +clearfix
     margin-top: 10px
 
     .type_select, .related_search
-      +inline-block
-      padding: 4px
-      border: 1px solid #ccc
       +border-radius(3px)
+      +inline-block
+      border: 1px solid #ccc
+      outline: none
+      padding: 6px
 
     .type_select
-      float: left
-      width: 200px
-      -moz-appearance: none
-      -webkit-appearance: none
-      appearance: none
-      overflow: hidden
+      +appearance(none)
       background: image_url('public/down_arrow.jpg') no-repeat right
       border: 1px solid #ccc
       cursor: pointer
+      float: left
+      overflow: hidden
+      width: 200px
 
     .related_search
-      float: right
-      width: 294px
-      height: 17px
-      margin-top: 2px
-      border-right: 0
-      margin-right: -1px
-      +border-top-right-radius(0)
       +border-bottom-right-radius(0)
+      +border-top-right-radius(0)
+      border-right: 0
+      float: right
+      margin-right: -1px
+      width: 294px
+
       &.discounts
         float: left
-        width: 93%
+        width: 92%
 
     .sbm
-      width: 30px
+      +border-bottom-right-radius
+      +border-top-right-radius
+      background: #e8e8e8 image_url('public/search_submit.png') no-repeat center 6px
+      border: 0
+      border: 1px solid #ccc
+      cursor: pointer
+      float: right
       height: 27px
       margin: 0
       padding: 0
-      border: 0
-      margin-top: 2px
-      background: #e8e8e8 image_url('public/search_submit.png') no-repeat center 6px
-      +border-top-right-radius
-      +border-bottom-right-radius
-      float: right
-      border: 1px solid #ccc
-      cursor: pointer
+      width: 30px
 
       &:hover
         background-position: center -58px
@@ -87,8 +86,9 @@
         background-position: center -57px
 
   .results
-    border-top: 1px solid #ccc
     border-bottom: 1px solid #ccc
+    border-top: 1px solid #ccc
+    clear: both
     margin-top: 10px
 
     .posters
@@ -102,13 +102,26 @@
 
       .poster
         float: left
-        width: 200px
-        margin: 0 50px 10px 0
+        width: 275px
+        margin: 10px 0
 
         .image
-          float: left
+          +inline-block
           min-height: 73px
           max-height: 88px
           margin: 0 5px 0 0
 
         .details
+          +inline-block
+          width: 175px
+          vertical-align: top
+          line-height: 18px
+
+          a
+            text-decoration: none
+
+            &:hover
+              text-decoration: underline
+
+          div
+            margin: 5px 0 0 0

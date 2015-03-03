@@ -18,6 +18,7 @@ class MapPlacemark < ActiveRecord::Base
   has_many :relations,      :as => :master,         :dependent => :destroy
   has_many :afishas,        :through => :relations, :source => :slave, :source_type => Afisha
   has_many :organizations,  :through => :relations, :source => :slave, :source_type => Organization
+  has_many :discounts,      :through => :relations, :source => :slave, :source_type => Discount
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
@@ -62,6 +63,18 @@ class MapPlacemark < ActiveRecord::Base
         self.kind = 'afisha'
         self.organization_title = afisha_organization.title if afisha_organization
         self.organization_url = "/organizations/#{afisha_organization.slug}" if afisha_organization
+      end
+
+      if relation.is_a? Discount
+        discount_organization = relation.try(:organization)
+        self.title = relation.title
+        self.latitude = discount_organization.try(:latitude)
+        self.longitude = discount_organization.try(:longitude)
+        self.image_url = resized_image_url(relation.poster_url, 160, 190, { :magnify => nil, :orientation => nil })
+        self.url = "/discounts/#{relation.slug}"
+        self.kind = 'discount'
+        self.organization_title = discount_organization.title if discount_organization
+        self.organization_url = "/organizations/#{discount_organization.slug}" if discount_organization
       end
     end
   end
