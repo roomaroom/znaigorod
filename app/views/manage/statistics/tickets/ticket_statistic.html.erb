@@ -30,6 +30,7 @@
               <th>Продано</th>
               <th>Наша часть</th>
               <th>Необходимо перечислить</th>
+              <th>Дата продажи</th>
             </thead>
             <% tickets.each do |e| %>
               <tr>
@@ -50,6 +51,13 @@
                 </td>
                 <td>
                    <p><%= organizations_part(e) * e.copies.where(state: 'sold').count %></p>
+                </td>
+                <td>
+                  <% e.copies.where(state: 'sold').each do |copy| %>
+                    <p>
+                      <%= copy.updated_at.strftime('%d-%m-%Y в %H:%M') %>
+                    </p>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
