@@ -16,17 +16,14 @@
         <% end %>
       </div>
 
-      <div style='clear: both'></div>
-
       <div class='select_and_search'>
-        <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'] ]), { class: 'type_select' }  %>
+        <%= select_tag 'type_select', options_for_select([ ['Афиша', '/my/related_afishas'], ['Организация', '/my/related_organizations'], ['Скидки', '/my/related_discounts']]), { class: 'type_select' }  %>
         <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
         <%= text_field_tag :search, '', { class: 'related_search' } %>
       </div>
 
-      <div style='clear: both'></div>
-
       <div class='results infinite_list'>
+        <span class='js-just-one' style='display: none'></span>
         <ul class='posters'></ul>
       </div>
       <input type="hidden" value="map_placemark[related_items][]" class="params_name">
