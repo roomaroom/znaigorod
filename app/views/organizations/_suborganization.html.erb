@@ -48,4 +48,8 @@
   <div class="place">
     <%= suborganization.truncated_address_link.present? ? suborganization.truncated_address_link(false) : "&nbsp;".html_safe %>
   </div>
+
+  <div class='phone'>
+    <%= link_to "Показать телефон", "#", class: "js-show-phone", id: suborganization.organization.id %>
+  </div>
 </div>
