@@ -103,7 +103,7 @@ class Organization < ActiveRecord::Base
   end
 
   def self.available_suborganization_kinds
-    Dir[Rails.root.join('app/models/suborganizations/*.rb')].map { |f| f.split('/').last.gsub '.rb', '' }
+    Dir[Rails.root.join('app/models/suborganizations/*.rb')].map { |f| f.split('/').last.gsub '.rb', '' } - ['shop', 'car_service_center']
   end
 
   available_suborganization_kinds.each do |kind|
