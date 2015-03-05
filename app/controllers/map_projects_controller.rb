@@ -11,7 +11,7 @@ class MapProjectsController < ApplicationController
         @map_layer = MapLayer.find(params[:layer])
         @map_placemarks = @map_layer.map_placemarks
       else
-        @map_placemarks = MapProject.find(params[:id]).map_layers.map(&:map_placemarks).flatten.uniq
+        @map_placemarks = MapProject.find(params[:id]).map_layers.flat_map(&:map_placemarks).uniq
       end
       @reviews = ReviewDecorator.decorate(MapProject.find(params[:id]).relations.map(&:slave))
     }

@@ -46,6 +46,6 @@
   <div class='title'><%= suborganization.truncated_title_link(28) %> </div>
 
   <div class="place">
-    <%= suborganization.truncated_address_link.present? ? suborganization.truncated_address_link : "&nbsp;".html_safe %>
+    <%= suborganization.truncated_address_link.present? ? suborganization.truncated_address_link(false) : "&nbsp;".html_safe %>
   </div>
 </div>

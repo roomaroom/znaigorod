@@ -25,9 +25,11 @@ class OrganizationDecorator < ApplicationDecorator
       organization_url) if organization.logotype_url?
   end
 
-  def truncated_address_link(address = organization.address)
+  def truncated_address_link(need_city = true)
+    address = organization.address
+    city = need_city ? address.city : ''
     return "" if address.to_s.blank?
-    return h.link_to "#{address.city}, #{address}#{office}".truncated(24, nil),
+    return h.link_to "#{city} #{address}#{office}".truncated(24, nil),
         organization_url,
         :title => 'Показать на карте',
         :'data-latitude' => organization.address.latitude,
@@ -53,8 +55,8 @@ class OrganizationDecorator < ApplicationDecorator
 
   def address_without_link(address = organization.address)
     return "" if address.to_s.blank?
-    return h.content_tag :span, "#{address.city}, #{address}#{office}",
-      :title => "#{address.city}, #{address.office}"
+    return h.content_tag :span, "#{address}#{office}",
+      :title => "#{address.office}"
   end
 
   def office
