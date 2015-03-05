@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <ul class="posters tiny">
+    <ul class="posters">
       <% @organizations.random_collection.each do |organization| %>
         <li class="item_organization"><%= render :partial => 'organizations/organization', :locals => { :organization => organization, width: 178, height: 178 } %></li>
       <% end %>
