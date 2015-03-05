@@ -4,6 +4,6 @@
     :data => { :video => { :src => review.content_parser.videos.first.src, :width => '700' } } %>
 
   <div class="text">
-    <%= review.content_for_index %>
+    <%= review.content_for_index.truncate(110) %>
   </div>
 <% end %>
