@@ -22,6 +22,8 @@ class AfishasController < ApplicationController
           @decorator = @presenter.decorated_collection
         end
 
+        @organizations = OrganizationsCatalogPresenter.new(params.merge(per_page: 5))
+
         if request.xhr?
           if params[:page]
             render partial: @presenter.partial, :locals => { :afishas => @presenter.decorated_collection, :presenter => @presenter }, :layout => false and return

@@ -1,5 +1,8 @@
-<% afishas.each do |afisha| %>
-  <li class="item fresh<%= ' highlighted' if afisha.highlighted? %>">
+<% afishas.each_with_index do |afisha, index| %>
+  <% if index == 8 %>
+    <%= render :partial => 'organizations/recommended', :locals => { :organizations => organizations } %>
+  <% end %>
+  <li class="item fresh<%= ' highlighted' if afisha.highlighted? %> <%= cycle('first', 'second', 'third', 'fourth') %>">
     <%= render :partial => 'afishas/afisha_poster', :locals => { :afisha => afisha } %>
   </li>
 <% end %>
