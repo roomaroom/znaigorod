@@ -45,7 +45,7 @@
 
   <div class="discount_content js-button-pagination">
     <ul class="posters js-paginable-list">
-      <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @presenter.collection } %>
+      <%= render :partial => 'discounts/discount_posters', :locals => { :collection => @presenter.collection, :organizations => @organizations } %>
     </ul>
   </div>
   <%= render :partial => 'commons/ads_by_google' %>

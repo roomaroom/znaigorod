@@ -12,6 +12,8 @@ class DiscountsController < ApplicationController
 
         render partial: 'discounts/discount_posters', layout: false and return if request.xhr?
 
+        @organizations = OrganizationsCatalogPresenter.new(params.merge(per_page: 5))
+
       }
 
       format.rss {

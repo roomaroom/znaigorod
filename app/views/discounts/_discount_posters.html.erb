@@ -1,4 +1,7 @@
-<% @discounts.each do |discount| %>
+<% @discounts.each_with_index do |discount, index| %>
+  <% if index == 8 %>
+    <%= render :partial => 'organizations/recommended', :locals => { :organizations => organizations, :sub_class => 'discounts' } %>
+  <% end %>
   <%= render :partial => 'discounts/discount_poster', :locals => { :discount => discount, :@width => '196', :@height => '164' } %>
 <% end %>
 
