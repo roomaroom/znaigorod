@@ -1,4 +1,4 @@
-<% cache("discount_#{params[:page]}_#{controller_name}_#{action_name}", expires_in: 10.minutes) do %>
+<% cache("discount_#{params[:page]}_#{controller_name}_#{action_name}_#{params[:id]}", expires_in: 10.minutes) do %>
   <% @discounts.each_with_index do |discount, index| %>
     <% if index == 8 && !params[:page] && defined?(organizations) %>
       <%= render :partial => 'organizations/recommended', :locals => { :organizations => organizations, :sub_class => 'discounts' } %>
