@@ -128,6 +128,7 @@ class MovieSyncer
 
     def find_similar_cinematheatre_by(cinema_title)
       similar_cinematheatre = Organization.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:category)}}.results
+      p similar_cinematheatre
       unless similar_cinematheatre.one?
         puts "Кинотеатр '#{cinema_title}' не найден"
 
@@ -139,14 +140,18 @@ class MovieSyncer
 
 end
 
-namespace :sync do
+class GoodwinCinemaGroup
+  attr_accessor :cinema_name, :schedule_url
+  def initialize(cinema_name, url)
+    @cinema_name = cinema_name
+    @schedule_url = url
+  end
 
-  desc "Sync movie seances from http://goodwincinema.ru"
-  task :goodwin => :environment do
-    puts 'Goodwin cinema: парсинг'
+  def sync
+    puts cinema_name
     [0, 1, 2].each do |day_offset|
       date = I18n.l(Time.zone.now + day_offset.day, :format => '%d.%m.%Y')
-      url = "http://goodwincinema.ru/schedule/?ajax=1&date=#{date}"
+      url = schedule_url+date
       response = Curl.get(url).body_str
       if response.is_json?
         json = JSON.parse(response.force_encoding('cp1251').encode('utf-8', undef: :replace))
@@ -166,11 +171,24 @@ namespace :sync do
           bar.increment!
         end
         puts "Импорт информации от #{date}"
-        MovieSyncer.new(:place => 'Goodwin cinema, кинотеатр', :movies => movies).sync
+        MovieSyncer.new(:place => cinema_name, :movies => movies).sync
       else
-        Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра 'Goodwin cinema'")
+        Airbrake.notify(:error_class => "Rake Task", :error_message => " Неверный формат ответа от кинотеатра #{cinema_name}")
       end
     end
+  end
+end
+
+namespace :sync do
+
+  desc "Sync movie seances from http://goodwincinema.ru"
+  task :goodwin => :environment do
+    GoodwinCinemaGroup.new('Goodwin cinema, кинотеатр','http://goodwincinema.ru/schedule/?ajax=1&date=' ).sync
+  end
+
+  desc "Sync movie seances from http://kino-polis.ru"
+  task :kinopolis => :environment do
+    GoodwinCinemaGroup.new('KinoPolis, кинотеатр','http://kino-polis.ru/schedule/?ajax=1&date=' ).sync
   end
 
   desc "Sync movie seances from http://fakel.net.ru"
