@@ -32,7 +32,7 @@
       data:
         organization_id: $(target).attr('id')
       success: (response) ->
-        $(target).parent().html(response)
+        $(target).parent().html(response.split(',')[0])
 
       false
     false

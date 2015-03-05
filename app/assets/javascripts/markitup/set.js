@@ -23,7 +23,7 @@ mySettings = {
     { name: 'Ненумерованный список', openWith:'(!(* |!|*)!)', multiline: true, className: 'unordered_list_button' },
     { name: 'Нумерованный список', openWith:'(!(# |!|#)!)', multiline: true, className: 'ordered_list_button' },
     { separator: '-' },
-    { name: 'Ссылка', openWith: '"', closeWith: '":[![Link:!:http://]!]', placeHolder: 'Текст ссылки...', className: 'link_button' },
+    { name: 'Ссылка', openWith: '"', closeWith: '":[![Link:!:http://]!]', key: 'D', placeHolder: 'Текст ссылки...', className: 'link_button' },
     { name: 'Электронная почта', openWith: '"', closeWith: '":mailto:[![Email]!]', placeHolder: 'E-mail', className: 'email_button' },
     { name: 'Помощь', className: 'help_button',
       beforeInsert: function(h) {

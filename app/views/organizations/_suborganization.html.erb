@@ -50,6 +50,7 @@
   </div>
 
   <div class='phone'>
-    <%= link_to "Показать телефон", "#", class: "js-show-phone", id: suborganization.organization.id %>
+    Тел.:
+    <%= link_to "#{suborganization.organization.phone.truncate(7)}", "#", class: "js-show-phone", id: suborganization.organization.id %>
   </div>
 </div>
