@@ -27,15 +27,16 @@
 
     ul
       li
+        +toggable-links
         float: left
         margin-right: 5px
-        +toggable-links
+
         &:last-child
           margin-right: 0
 
   .filters_wrapper
     +box-shadow(none)
-    background: #fff
+    background: none
     clear: both
     margin: 0
     padding: 0
@@ -44,10 +45,12 @@
       .by_kind
         margin: 20px auto
         width: 100%
+
         ul
           width: 100%
           display: table
           margin: 0 10px
+
           li
             float: none
             display: table-cell
@@ -423,6 +426,12 @@
               text-decoration: none
 
 .webcams_main_page_list
+  .posters
+    li
+      .item
+        background-color: #fff
+        border: 0 !important
+
   .filter_header
     margin: 0 0 20px 0
 
@@ -436,6 +445,8 @@
 
       li.item
         margin: 10px 10px
+        border: 0
+        background-color: #fff
 
 .afisha_main_page_list
   .posters
@@ -443,7 +454,7 @@
     position: relative
 
     .item
-      border: 1px solid #ccc
+      background-color: #fff
       float: left
       height: 320px
       margin: 0 10px 20px 10px
@@ -541,16 +552,18 @@
     padding-left: 5px
 
     li.item_organization
+      background-color: #fff
       margin: 0 19px 20px 0
 
       .info
         width: 178px
+        border: 0 !important
+
         .title
         .image
           width: 178px
           height: 178px
           margin: 0
-
 
           .sms_claimable
             width: 190px
@@ -609,12 +622,12 @@
     li.item_wrapper
       width: 220px
       margin: 0px 17px 20px 0px
-      border: 1px solid #ccc
 
       &:nth-child(4n)
         margin: 0px 17px 20px 0px
 
       .item
         width: 220px
+
         .image
           width: 220px

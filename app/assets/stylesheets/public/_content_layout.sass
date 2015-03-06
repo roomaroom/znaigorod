@@ -1,18 +1,11 @@
-.background_wrapper
-  width: 100%
+.content_wrapper
+  +liquid-size($desktop_min_width, $desktop_max_width)
+  +fixed-size
 
-  &.colored_discounts_index, &.colored_afishas_index, &.colored_reviews_index
-    background: #f5f5f5
+  .content
+    +clearfix
+    +min-height(300px)
 
-
-  .content_wrapper
-    +liquid-size($desktop_min_width, $desktop_max_width)
-    +fixed-size
-
-    .content
-      +clearfix
-      +min-height(300px)
-
-      .empty_items_list
-        font-size: 14px
-        margin-left: 10px
+    .empty_items_list
+      font-size: 14px
+      margin-left: 10px

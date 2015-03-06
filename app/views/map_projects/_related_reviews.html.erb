@@ -8,7 +8,7 @@
     Обзоры
   </div>
   <div class='suborganization_info related-reviews'>
-    <ul class='posters js-isotoped-content' data-item-width="220">
+    <ul class='posters'>
       <%= render :partial => 'reviews/posters', locals: { collection: @reviews, height: '120', width: '184' } if @reviews %>
     </ul>
   </div>

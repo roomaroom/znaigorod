@@ -1,22 +1,17 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU') %>
 
-<% content_for :page_title, @presenter.page_title %>
-<% content_for :meta_keywords, @presenter.meta_keywords %>
-<% content_for :meta_description, @presenter.meta_description %>
+<% content_for :page_title, t('meta.saunas.title') %>
+<% content_for :meta_keywords, t('meta.saunas.keywords') %>
+<% content_for :meta_description, t('meta.saunas.description') %>
 <% content_for :extra_meta do %>
-
-  <% if page_meta %>
-    <%= render :partial => 'commons/page_meta_og' %>
-  <% else %>
-    <%= vk_meta(@presenter.pluralized_kind, (send @presenter.collection_direct_url), 'znaigorod_logo.png') %>
-  <% end %>
-<% end %>
+  <%= render :partial => 'commons/page_meta_og' %>
+<% end if page_meta %>
 
 <div class="filter_and_search">
   <%= render partial: "suborganizations/filters_and_search" %>
 </div>
 
-<%= render "suborganizations/#{view_type}_view" %>
+<%= render "#{view_type}_view" %>
 
 <div class="like_this">
   <%= render :partial => 'commons/like_this', :locals => { :url => request.url.split('?').first } %>
@@ -29,7 +24,9 @@
     </div>
     <div class='suborganization_info related-reviews'>
       <ul class='posters'>
-        <%= render :partial => 'reviews/posters', locals: { collection: @reviews, height: '120', width: '184' } %>
+        <% @reviews.each do |review|%>
+          <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => '120', :width => '184' } %></li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -39,8 +36,11 @@
   <div class='introduction suborganization'>
     <%= page_meta.html_introduction %>
   </div>
-<% elsif t("meta.#{@presenter.selected_category}.introduction", default: '').present? %>
-  <div class='introduction suborganization'>
-    <%= t("meta.#{@presenter.selected_category}.introduction").as_html %>
+<% elsif t("meta.#{category}.introduction", default: '').present? %>
+  <div class='introduction subroagnzation'>
+    <%= t("meta.#{category}.introduction").as_html %>
   </div>
 <% end %>
+
+
+

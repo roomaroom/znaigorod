@@ -419,18 +419,19 @@
       margin: 10px 0 0 0
 
     #messages_filter, #events_filter, #discounts_filter, #reviews_filter
-      padding-top: 10px
       +border-radius(0)
       +box-shadow(none)
       margin: 0 0 10px 0
+      padding-top: 10px
 
       ul
         padding: 0
+
       div.ui-tabs-panel.ui-widget-content.ui-corner-bottom
         float: left
 
       .ui-widget-header
-        background: #fff
+        background: none
 
       .ui-tabs-panel
         +border-radius(0)
@@ -441,10 +442,12 @@
 
       .ui-tabs-nav
         height: 30px
+
         li
           +toggable-links
           float: left
           margin-right: 5px
+
           &:last-child
             margin-right: 0
 

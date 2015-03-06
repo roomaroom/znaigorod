@@ -9,7 +9,6 @@
  * = require ./promotions
  * = require sugar
  * = require infinitescroll.min
- * = require isotope.min
  * = require imagesloaded
  * = require magicsuggest
  * = require inputmask
@@ -109,7 +108,6 @@
  * = require ./my_review_video_help
  * = require ./work_addition
  * = require ./banners
- * = require ./isotoped_content
  * = require ./main
  * = require ./photogalleries
  * = require ./social_likes

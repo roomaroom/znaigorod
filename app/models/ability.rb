@@ -129,8 +129,6 @@ class Ability
         discount.published? && discount.account == user.account
       end
 
-      can [:help, :new, :create, :index], Advert if user.persisted?
-
       can [:add, :new, :create, :index, :available_tags, :preview], Review if user.persisted?
       can [:show, :edit, :update, :destroy, :add_images, :edit_poster], Review do |review|
         review.account == user.account
