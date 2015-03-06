@@ -8,6 +8,10 @@ body .suborganization_information_wrapper,
 
 .organization_show .center
 
+  .comments
+    h3
+      margin: 0 0 15px 0
+
   .suborganization_info
     +clearfix
     margin: 15px 0
@@ -15,19 +19,23 @@ body .suborganization_information_wrapper,
     &.afisha_content
       clear: none !important
 
+      .posters
+
       li.pagination
         border: none !important
         height: 30px !important
-        margin: 0 0px !important
+        margin: 0 0 0 14px !important
         padding: 0 0 20px 0 !important
-        width: 725px !important
+        width: 711px !important
+        background: none !important
 
     .posters
-      margin: 0 auto
-      width: 727px
+      background-color: #f5f5f5
+      padding-top: 15px
+      +clearfix
 
       .item
-        margin: 0 59px 25px 0
+        margin: 0 48px 25px 14px
 
         &:nth-child(3n)
           margin: 0 0 25px 0
@@ -42,7 +50,6 @@ body .suborganization_information_wrapper,
       font-size: 14px
       background-color: #e8e8e8
       padding: 1px 10px 2px
-      margin-bottom: 10px
 
       > .link
         float: right
@@ -121,6 +128,7 @@ body .suborganization_information_wrapper,
 
     &.discount_details
       +clearfix
+      margin: 15px 0 0 0 !important
 
       .presentation_filters
         font-size: 11px
@@ -130,16 +138,16 @@ body .suborganization_information_wrapper,
           margin-right: 0
 
       .posters
-        width: 725px
         font-size: 11px
-        margin: 0 auto
+        padding-top: 15px
 
         .item
           height: 278px
+          margin: 0
 
         li
           margin: 0 15px 20px 15px
-          width: 259px
+          width: 199px
 
         .place
           a
