@@ -241,7 +241,7 @@
       <span class='link'><%= link_to 'Добавить обзор', add_my_reviews_path %></span>
     </div>
     <% if @reviews.any? %>
-      <ul class='posters js-isotoped-content' data-item-width="220">
+      <ul class='posters'>
         <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '120', :width => '184' } %>
       </ul>
     <% end %>
