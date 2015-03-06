@@ -72,19 +72,21 @@
     $('.list_view_organization_item').each (index, item) ->
       link = $('.info h1 a', item)
       title = link.text()
+      contentBody = if $(item).attr('data-status') == 'client'
+                      "<div class='ymaps-2-1-17-b-cluster-content__body'>" + "<a href='#{link.attr('href')}' target='_blank'>" +
+                      "<img width='190' height='190' src='#{$(item).attr('data-image')}' />" + "</a>" +
+                      "<div class='balloon_content_header' style='margin:5px 0;padding-bottom:5px;width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" +
+                      "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" + "</div>"
+                    else
+                      "<div class='ymaps-2-1-17-b-cluster-content__body'>" +
+                      "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" + "</div>"
+
       point = new ymaps.GeoObject
         geometry:
           type: 'Point'
           coordinates: [$(item).attr('data-latitude'), $(item).attr('data-longitude')]
         properties:
-          balloonContentBody: "" +
-            "<div class='ymaps-2-1-17-b-cluster-content__body'>" +
-            "<a href='#{link.attr('href')}' target='_blank'>" +
-            "<img width='190' height='190' src='#{$(item).attr('data-image')}' />" +
-            "</a>" +
-            "<div class='balloon_content_header' style='margin:5px 0;padding-bottom:5px;width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>" +
-            "<a href='#{link.attr('href')}' target='_blank' title='#{title}'>#{title}</a>" +
-            "</div>"
+          balloonContentBody: contentBody
           hintContent: title
           id: $(item).attr('data-slug')
       ,
