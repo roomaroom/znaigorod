@@ -23,7 +23,7 @@
       Обзоры
     </div>
     <div class='suborganization_info related-reviews'>
-      <ul class='posters js-isotoped-content' data-item-width="220">
+      <ul class='posters'>
         <% @reviews.each do |review|%>
           <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => '120', :width => '184' } %></li>
         <% end %>

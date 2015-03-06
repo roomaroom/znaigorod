@@ -14,7 +14,9 @@
   <% else %>
     <h1><%= t('meta.reviews.page_header') %></h1>
   <% end %>
+  <%= link_to 'Добавить обзор', add_my_reviews_path, :class => 'button new_review_button' %>
 </div>
+
 <div class="filter_and_share">
   <div class="presentation_filters reviews">
 
@@ -34,8 +36,8 @@
   </div>
 </div>
 
-<div class="reviews-paginator js-button-pagination">
-  <ul class="posters js-paginable-list" data-item-width="392">
+<div class='reviews-paginator js-button-pagination'>
+  <ul class='posters js-paginable-list'>
     <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354', :organizations => @organizations } %>
   </ul>
 </div>
@@ -45,7 +47,7 @@
 <%= paginate @presenter.collection %>
 
 <% if page_meta %>
-  <div class="introduction">
+  <div class='introduction reviews'>
     <%= page_meta.html_introduction %>
   </div>
 <% end %>

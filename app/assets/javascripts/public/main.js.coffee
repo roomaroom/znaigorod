@@ -91,7 +91,6 @@ $ ->
   i_agree_with_u() if $('.works_add').length
   initMyReviewSubmitWithJs() if $('.review_photo_form').length
   initMyReviewVideoHelp() if $('.js-video-help').length
-  initIsotopedContent() if $('.js-isotoped-content').length
   initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length

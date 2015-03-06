@@ -6,9 +6,28 @@
 .reviews_index
   margin-top: 30px
 
-  .presentation_filters
-    float: right
-    margin-top: 0
+  .filter_header
+    border-bottom: 1px solid #ccc
+    float: none
+    margin: 0 16px 0 6px
+    padding-bottom: 20px
+
+    .new_review_button
+      +box-shadow(0px 2px 0px 0px #d15300)
+      background: #ff5700
+      float: right
+      font-size: 11px
+      padding: 7px
+      margin-top: -30px
+
+  .filter_and_share
+    +clearfix
+    clear: both
+    margin-top: 20px
+
+    .presentation_filters
+      float: none
+      margin: 0 0 0 6px
 
   .pagination
     clear: both
@@ -259,10 +278,10 @@
 
     .posters
       li.item_review
-        border: 1px solid #ccc
+        background-color: #fff
+        clear: both
         margin: 5px 0 20px 0
         padding: 9px
-        clear: both
 
         &.tiny
           width: 214px
@@ -336,7 +355,6 @@
 
 .suborganization_info
   +clearfix
-  margin: 0 !important
 
   &.related-reviews
     .title
