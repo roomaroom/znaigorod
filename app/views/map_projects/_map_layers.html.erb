@@ -6,13 +6,17 @@
       <% end %>
     <% end %>
   </ul>
-
+  <div class="map_banner">
+    <%= link_to 'http://znaigorod.ru/afisha/iquest-kvest-v-realnosti' do %>
+      <%= image_tag asset_path("public/map_projects/map_banner.jpg")%>
+    <% end %>
+  </div>
   <div class='actual_reviews'>
     <a href='#actual_reviews'>Актуальные обзоры</a>
   </div>
 
   <div class='text_block'>
-    <%= image_tag asset_path("public/map_projects/#{map_project.slug}_left.png"), :alt => 'Отдых в новогодние праздники', :class => 'left_wreath' %>
+    <%= image_tag asset_path("public/map_projects/#{map_project.slug}_left.png"), :class => 'left_wreath' %>
     <p class='important'>Вас нет на карте?</p>
     <p>Звоните нам:</p>
     <p class='phone with_icon'><%= t('services.phone').split(',').first.to_s.squish %></p>
