@@ -15,7 +15,7 @@
         </div>
       <% else %>
         <% @presenter.collection.each do |item| %>
-          <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}_#{view_type}_#{item.id}", expires_in: 10.minutes) do %>
+          <% cache("organization_#{params[:kind]}_#{params[:categories].try(:first).try(:underscore)}_#{params[:page]}_#{view_type}_#{item.id}_#{params[:order_by]}_#{params[:sms_claimable]}", expires_in: 10.minutes) do %>
             <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
               data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>"
               data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}.png") %>'
