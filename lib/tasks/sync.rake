@@ -58,14 +58,8 @@ class MovieSyncer
                                     :price_min => seance[:price_min],
                                     :price_max => seance[:price_max],
                                     :afisha_id => movie.id).tap do |s|
-
-                if place =~ /Факел/
-                 s.place = 'Факел, кинозал'
-                 s.organization_id = 449
-                else
-                 s.place = cinematheatre.title
-                 s.organization_id = cinematheatre.id
-                end
+                s.place = cinematheatre.title
+                s.organization_id = cinematheatre.id
               end
               showing.attributes = seance
               showing.save!
@@ -84,6 +78,7 @@ class MovieSyncer
   end
 
   private
+
     def find_movie_by(title)
       title.squish!
       title.gsub!('Одноклассники.ru: НаCLICKай удачу', 'Одноклассники.ru')
@@ -127,7 +122,10 @@ class MovieSyncer
     end
 
     def find_similar_cinematheatre_by(cinema_title)
-      similar_cinematheatre = Organization.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:category)}}.results
+      similar_cinematheatre = Organization.where(:title => cinema_title)
+      unless similar_cinematheatre.any?
+        similar_cinematheatre = Organization.search{fulltext(cinema_title){fields(:title)}; fulltext('Кинотеатры'){fields(:category)}}.results
+      end
       unless similar_cinematheatre.one?
         puts "Кинотеатр '#{cinema_title}' не найден"
 
@@ -194,7 +192,7 @@ namespace :sync do
   task :fakel => :environment do
     url = 'http://fakel.net.ru/cinema/schedule'
     page = Nokogiri::HTML(Curl.get(url).body_str)
-    puts 'Факел: парсинг'
+    puts 'Fakel: парсинг'
     movies = {}
     day_nodes = page.css('.av_tab_section')
     bar = ProgressBar.new(day_nodes.count)
@@ -203,7 +201,7 @@ namespace :sync do
       day_node.css('td').map(&:text).each_slice(3) do |seance|
         time, title, price_min = seance
         starts_at  =  Time.zone.parse("#{date} #{time}")
-        title = title.gsub(/\(?2D\)?|\(?3D\)?|\(?HFR\)?/, '').gsub(/\d+\+\)/, '').squish
+        title = title.gsub(/\(?2D\)?|\(?3D\)?|\(?HFR\)?/, '').gsub(/\d+\+\)/, '').gsub(/\u00A0+/, '').squish
         movies[title] ||= []
         movies[title] << {starts_at: starts_at, price_min: price_min, price_max: price_min }
       end
