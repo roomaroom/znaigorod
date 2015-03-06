@@ -9,13 +9,17 @@
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
     <ul class="list_view_organization_posters js-paginable-list">
       <div class="resize js-resize left"></div>
-      <% if @presenter.decorated_collection.present? %>
+      <% if @presenter.decorated_collection.empty? && @presenter.organizations_without_rooms.empty?%>
+        <div class="nothing_find">
+          По Вашему запросу ничего не найдено :(
+        </div>
+      <% else %>
         <% @presenter.decorated_collection.each do |item| %>
           <li class='list_view_organization_item js-organization-item' data-longitude="<%= item.longitude %>" data-latitude="<%= item.latitude %>"
             data-image="<%= item.organization.logotype_url %>" data-slug="<%= item.organization.slug %>"
             data-icon='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}.png") %>'
             data-icon-hover='<%= asset_path("/assets/public/organizations_list_view/#{item.organization.map_image_name(params[:kind], params[:categories])}_hover.png") %>'
-            data-width='35' data-height='50'>
+            data-width='35' data-height='50' data-status = '<%= item.organization.status %>'>
             <% if item.sms_claimable? %>
               <%= link_to item.priority_sms_claimable_suborganization.reservation_title,
                 send("new_#{item.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.priority_sms_claimable_suborganization),
@@ -77,14 +81,13 @@
             </div>
           </li>
         <% end %>
-      <% elsif @presenter.organizations_without_rooms.present? %>
-        <%= render partial: 'without_rooms_list_view' %>
-      <% else %>
-        <div class="nothing_find">
-          По Вашему запросу ничего не найдено :(
-        </div>
+
+        <% if @presenter.total_count > 30 %>
+          <%= link_to "Еще организации (#{@presenter.organizations_without_rooms.count})", params, :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless params[:search_query] %>
+        <% else %>
+          <%= render partial: 'without_rooms_list_view' %>
+        <% end %>
       <% end %>
-      <%= link_to "Еще организации (#{@presenter.organizations_without_rooms.count})", params, :remote => true, :class => 'js-next-page btn btn-block btn-grey btn-small pagination' unless params[:search_query] %>
     </ul>
 
     <div class="add_and_paginate">
