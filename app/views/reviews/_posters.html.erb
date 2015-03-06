@@ -1,4 +1,7 @@
-<% collection.each do |review|%>
+<% collection.each_with_index do |review, index|%>
+  <% if index == 3 && !params[:page] && defined?(organizations) %>
+    <%= render :partial => 'organizations/recommended', :locals => { :organizations => organizations, :sub_class => 'reviews' } %>
+  <% end %>
   <li class="item"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => height, :width => width } %></li>
 <% end %>
 
