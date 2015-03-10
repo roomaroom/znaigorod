@@ -41,6 +41,10 @@ every :day, :at => '7:30 am' do
   rake 'sync:goodwin'
 end
 
+every :day, :at => '7:35 am' do
+  rake 'sync:kinopolis'
+end
+
 every :day, :at => '3:00 am' do
   rake 'update_rating:all'
   rake 'social_likes'
