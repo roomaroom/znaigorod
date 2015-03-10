@@ -1,3 +1,4 @@
+<% cache("discount_#{discount.id}_#{params[:page]}_#{controller_name}_#{action_name}_#{params[:id]}", expires_in: 10.minutes) do %>
 <li class="item_wrapper <%= cycle('first', 'second', 'third', 'fourth') %>">
   <div class="item <%= 'fresh' if controller_name == 'discounts' && action_name != 'show' %>">
     <div class="info">
@@ -52,3 +53,4 @@
 
                       </div>
                     </li>
+                  <% end %>

@@ -217,7 +217,7 @@
         <ul class="posters">
           <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @discount_presenter.decorated_collection, :@width => '220', :@height => '164' } if @discount_presenter.collection.any? %>
           <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @certificate_presenter.decorated_collection, :@height => '120', :@width => '184' } if @certificate_presenter.collection.any? %>
-          <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @coupon_presenter.decorated_collection, :@width => '183', :@height => '120' } if @coupon_presenter.collection.any? if @coupon_presenter.collection.any? %>
+          <%= render :partial => 'discounts/discount_posters', :locals => { :@discounts => @coupon_presenter.decorated_collection, :@width => '183', :@height => '120' } if @coupon_presenter.collection.any? %>
         </ul>
       <% end %>
     </div>
