@@ -38,13 +38,15 @@
 
 <div class='reviews-paginator js-button-pagination'>
   <ul class='posters js-paginable-list'>
-    <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354', :organizations => @organizations } %>
+    <%= render :partial => 'reviews/posters', :locals => { :collection => @reviews, :height => '200', :width => '354' } %>
   </ul>
+
+  <% if defined?(@organizations) %>
+    <%= render :partial => 'organizations/recommended', :locals => { :organizations => @organizations, :sub_class => 'reviews' } %>
+  <% end %>
 </div>
 
 <%= render :partial => 'commons/ads_by_google' %>
-
-<%= paginate @presenter.collection %>
 
 <% if page_meta %>
   <div class='introduction reviews'>
