@@ -7,7 +7,9 @@
 
   <div class="list_view_organization_list js-resizable maximum left_position js-button-pagination">
     <div class='breadcrumbs left js-breadcrumbs'><%= render_breadcrumbs :separator => ' / ' %></div>
+
     <%= link_to 'Сменить позицию', '#', class: 'js-swap-position swap_position swap_left' %>
+
     <ul class="list_view_organization_posters js-paginable-list">
       <% if @presenter.collection.empty? && @presenter.without_clients_collection.empty? %>
         <div class="nothing_find">
@@ -54,7 +56,7 @@
                 <h1>
                   <%= link_to item.organization.title.truncate(30), organization_path(item.organization) %>
                   <%= content_tag :span,'' , :title => "#{item.work_schedule_for_list_view}".html_safe,
-                    :class => (!item.organization.schedules.first.holiday? || item.work_schedule_for_list_view == 'Гибкий график работы') ? 'open' : 'close' %>
+                    :class => (!item.organization.schedules.first.holiday? || item.work_schedule_for_list_view == 'Гибкий график работы') ? 'show_tipsy open' : 'show_tipsy close' %>
                 </h1>
                 <!-- адрес -->
                 <%= content_tag(:div, "#{item.address_without_link}".html_safe, class: :place) if item.address_link.present? %>
