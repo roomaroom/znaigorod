@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150227082455) do
+ActiveRecord::Schema.define(:version => 20150306075931) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -76,18 +76,6 @@ ActiveRecord::Schema.define(:version => 20150227082455) do
   end
 
   add_index "addresses", ["organization_id"], :name => "index_addresses_on_organization_id"
-
-  create_table "adverts", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.float    "price"
-    t.text     "kind"
-    t.text     "categories"
-    t.string   "phone"
-    t.integer  "account_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   create_table "affiche_schedules", :force => true do |t|
     t.integer  "afisha_id"
