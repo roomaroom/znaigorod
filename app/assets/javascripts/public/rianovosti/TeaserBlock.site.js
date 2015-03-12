@@ -1,4 +1,7 @@
 (function (pluginName){
+    if (typeof adriver === 'undefined') {
+      return;
+    }
 	new adriver.Plugin(pluginName);
 
 	new adriver.Plugin.require('functions.adriver').onLoadComplete(function(){
@@ -21,7 +24,7 @@
 					alt = this.decode(a.reply.alt).split(sep),
 					title = (alt[0] || ''),
                     desc = (alt[1] || '');
-					
+
 				if(desc){
 				a.p.innerHTML = '<a href="' + a.reply.cgihref + '" target="' + a.reply.target + '" title="' + alt + '"><img src="' + ar_img + '" width="' + a.normalize(width) + '" height="' + a.normalize(height) + '" alt="' + alt + '">' + '<h1>' + title + '</h1><p>' + desc + '</p></a>';}
 				else{

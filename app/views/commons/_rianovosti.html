@@ -1,0 +1,44 @@
+<!--  AdRiver code START. Type:teaser Site: ЗнайГород PZ: 0 BN: 0 -->
+<div id='adriver_banner_1749481764' class='rianovosti hidden'></div>
+<script type="text/javascript">
+  (function(){
+    if (typeof adriver === 'undefined') {
+      return;
+    }
+    var bannerPlace = 'adriver_banner_1749481764',
+        N = 5,
+        cols = 1,
+        widthImg = 70,
+        heightImg = 50,
+        css = ''
+        pz = 0,
+        sz = '';
+
+    adriver.setDefaults({sid: 204132});
+    adriver.setPluginPath({site: '/assets/public/rianovosti/'});
+
+    /* Do not touch */
+    new adriver.Plugin.require('TeaserBlock.site', 'massLoad.adriver').onLoadComplete(function(){
+      var ID=[],
+          i=N,
+          t=document.getElementById(bannerPlace).appendChild(document.createElement('table')),
+          b=[];
+      while(i--){ID[i]=i+1};
+      ID.sort(function(){return 0.5-Math.random()});
+      for(i=1;i<=N;i++){if(((i-1)%cols)==0){r=t.insertRow(-1)};r.insertCell(0).id='_'+i};
+      for(i=0;i<N;){b[i]=new adriver('_'+ID[i],{bn:++i,bt:56,pz:pz,sz:sz},true)};
+      var i=0,n=100;
+      adriver.onLoadComplete(function(){
+        if (!b[0].reply){if (i++<n) setTimeout(arguments.callee, 100); return false;}
+          adriver.TeaserBlock.drawContainer(bannerPlace, widthImg, heightImg);
+      });
+      t.className='adriverTeaserBlock';
+      if (css){
+        var head=document.getElementsByTagName('head')[0],s=document.createElement('link');s.setAttribute('rel','stylesheet');s.setAttribute('href',css.split('![rnd]').join(Math.round(Math.random()*9999999)));
+          head.insertBefore(s,head.firstChild);
+      }
+      adriver.massLoad();
+    });
+  })();
+</script>
+<!--  AdRiver code END  -->
