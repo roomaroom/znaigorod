@@ -5,17 +5,13 @@
     <% @teasers.each do |teaser| %>
       <li>
         <%= link_to teaser.title, manage_teaser_path(teaser) %> <br />
-        <% unless teaser.with_relations %>
-          Количество элементов: <%= teaser.items_quantity %> <br />
-          Можно редактировать <%= link_to 'элементы', manage_teaser_path(teaser) %>
-        <% else %>
-          Можно привязать <%= link_to 'элементы', edit_manage_teaser_path(teaser) %>
-        <% end %>
+        Количество элементов: <%= teaser.teaser_items.count %> <br />
 
         <div class="warning">
           <% unless File.exist?(Rails.root.join("app/assets/stylesheets/teasers/#{teaser.slug.underscore}.sass")) %>
             <div>Внимание! Файл стилей не существует!</div>
           <% end %>
+
           <% unless File.exist?(Rails.root.join("app/views/teasers/_#{teaser.slug.underscore}.html.erb")) %>
             <div>Внимание! Файл вида не существует!</div>
           <% end %>

@@ -1,9 +1,5 @@
 <div class="teaser_wrapper">
   <h1><%= resource.title %></h1>
   <%= link_to 'Посмотреть в публичке', teaser_path(resource), target: '_blank' %>
-  <% if resource.with_relations %>
-    <%= render partial: 'relations', :locals => { :resource => resource } %>
-  <% else %>
-    <%= render partial: 'items', :locals => { :resource => resource } %>
-  <% end %>
+  <%= render partial: 'items', :locals => { :resource => resource } %>
 </div>
