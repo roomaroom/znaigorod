@@ -2,43 +2,51 @@
   <h1>Тизер:</h1>
   <%= simple_form_for [:manage, @teaser] do |f| %>
     <%= f.input :title %>
-    <%= f.input :items_quantity if action_name == 'new' %> или
-    <%= f.input :with_relations if action_name == 'new' %>
-    <div class='relations'>
-      <p>Этот тизер связан с</p>
+    <%= f.input :slug %>
 
-      <div class='sticky_elements'>
-        <% @teaser.relations.each do |item| %>
-          <div class="element">
-            <% if item.slave.is_a? Afisha %>
-              <%= link_to item.slave.title.truncate(30), afisha_show_path(item.slave), :target => '_blank' %>
-            <% elsif item.slave.is_a? Discount %>
-              <%= link_to item.slave.title.truncate(30), discount_path(item.slave), :target => '_blank' %>
-            <% else %>
-              <%= link_to item.slave.title.truncate(30), item.slave, :target => '_blank' %>
-            <% end %>
-            <span class="del_icon"></span>
-            <%= hidden_field_tag "teaser[related_items][]","#{item.slave_type.underscore}_#{item.slave_id}", class: "hidden_ids" %>
-          </div>
-        <% end %>
+    <% if action_name == 'new' %>
+      <%= f.input :items_quantity %>
+      или
+      <%= f.input :with_relations %>
+    <% end %>
+
+    <% if @teaser.with_relations %>
+      <div class='relations'>
+        <p>Этот тизер связан с</p>
+
+        <div class='sticky_elements'>
+          <% @teaser.relations.each do |item| %>
+            <div class="element">
+              <% if item.slave.is_a? Afisha %>
+                <%= link_to item.slave.title.truncate(30), afisha_show_path(item.slave), :target => '_blank' %>
+              <% elsif item.slave.is_a? Discount %>
+                <%= link_to item.slave.title.truncate(30), discount_path(item.slave), :target => '_blank' %>
+              <% else %>
+                <%= link_to item.slave.title.truncate(30), item.slave, :target => '_blank' %>
+              <% end %>
+              <span class="del_icon"></span>
+              <%= hidden_field_tag "teaser[related_items][]","#{item.slave_type.underscore}_#{item.slave_id}", class: "hidden_ids" %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= hidden_field_tag "teaser[need_change]", true %>
+        <div style='clear: both'></div>
+
+        <div class='select_and_search'>
+          <%= select_tag 'type_select', options_for_select([ ['Обзор', '/my/related_reviews']], 'Обзор'), { class: 'type_select' }  %>
+          <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
+          <%= text_field_tag :search, '', { class: 'related_search' } %>
+        </div>
+
+        <div style='clear: both'></div>
+
+        <div class='results infinite_list'>
+          <ul class='posters'></ul>
+        </div>
+        <input type="hidden" value="teaser[related_items][]" class="params_name">
       </div>
-
-      <%= hidden_field_tag "teaser[need_change]", true %>
-      <div style='clear: both'></div>
-
-      <div class='select_and_search'>
-        <%= select_tag 'type_select', options_for_select([ ['Обзор', '/my/related_reviews']], 'Обзор'), { class: 'type_select' }  %>
-        <%= button_tag '', type: 'button', remote: true, class: 'sbm' %>
-        <%= text_field_tag :search, '', { class: 'related_search' } %>
-      </div>
-
-      <div style='clear: both'></div>
-
-      <div class='results infinite_list'>
-        <ul class='posters'></ul>
-      </div>
-      <input type="hidden" value="teaser[related_items][]" class="params_name">
-    </div>
+    <% end %>
     <%= f.submit %>
     <%= link_to 'Назад', manage_teasers_path %>
   <% end %>

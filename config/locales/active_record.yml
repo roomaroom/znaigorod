@@ -598,12 +598,8 @@ ru:
       teaser:
         <<: *common_attributes
         image_quantity: Количество элементов
-        image_width: Ширина картинки
-        image_height: Высота картинки
-        background_color: Цвет фона
-        border_color: Цвет рамки
-        text_color: Цвет текста
-        link_color: Цвет ссылки
+        with_relations: Связь с обзорами
+        slug: Идентификатор
 
       teaser_item:
         text: Текст
