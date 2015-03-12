@@ -131,6 +131,7 @@ markItUpSettings = ->
 get_discount_slug = ->
   $.ajax
     type: 'get'
+    async: false
 
 @handleImageButtonClick = ->
   $('.image_button').click ->
