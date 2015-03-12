@@ -3,7 +3,8 @@ class Teaser < ActiveRecord::Base
 
   attr_accessor :related_items, :need_change
 
-  attr_accessible :items_quantity, :title, :with_relations, :related_items, :need_change
+  attr_accessible :items_quantity, :title, :with_relations, :related_items,
+                  :need_change, :slug
 
   validates_presence_of :title
   validates_presence_of :items_quantity, :unless => :with_relations
