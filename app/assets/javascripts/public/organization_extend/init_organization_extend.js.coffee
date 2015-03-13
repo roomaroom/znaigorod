@@ -22,7 +22,6 @@
 
   true
 
-
 @init_organization_show_phone = ->
   $('body').on 'click', '.js-show-phone', ->
     target = $(this)
@@ -217,3 +216,21 @@ li_hover = (clusterer) ->
       init_hl_icons_on_map($(this), 'n', clusterer)
 
   true
+
+@init_section_show_full_description = () ->
+  $('.js-show-section-description').click ->
+    target = $(this)
+
+    $.ajax
+      type: 'get'
+      url: '/section_show_full_description'
+      data: {
+        section: $(target).attr('data-section')
+        page: $(target).attr('data-page')
+      }
+      success: (response) ->
+        $(target).parent().html(response)
+        true
+
+    false
+

@@ -140,6 +140,12 @@ class OrganizationsController < ApplicationController
     render text: "#{phone}".html_safe and return if request.xhr?
   end
 
+  def section_show_full_description
+    section = Section.find(params[:section])
+    page = section.section_pages.find(params[:page])
+    render text: "#{page.content.gsub(/!http\S+\s*!|:http\S+\s*|"/, "")}".html_safe and return if request.xhr?
+  end
+
   def view_type
     "tile"
   end

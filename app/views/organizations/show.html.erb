@@ -191,12 +191,15 @@
           <% if section.section_pages.any? %>
             <div class="title"><%= section.title %></div>
             <% section.section_pages.each do |page| %>
-              <div class="image">
-                <%= image_tag page.poster_image_url? ? page.poster_image_url : 'public/default_image.png', size: '150x100' %>
+              <div class="image js-section-colorbox">
+                <%= link_to (image_tag page.poster_image_url? ? resized_image_url(page.poster_image_url, 150, 100) : 'public/default_image.png', size: '150x100', title: section.title, alt: section.title), page.poster_image_url, alt: section.title %>
               </div>
               <div class='info'>
                 <h2><%= page.title %></h2>
-                <%= page.cached_content_for_index %>
+                <span class='js-section-description'>
+                  <%= page.cached_content_for_index %> <%= link_to 'Показать полностью', '#', class: 'js-show-section-description',
+                    :data => { :section => section.id, :page => page.id } %>
+                </span>
               </div>
               <div style='clear: both'></div>
               <div class="divider"></div>

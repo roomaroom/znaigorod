@@ -134,4 +134,5 @@ Znaigorod::Application.routes.draw do
 
   get "/kafe_tomska" => 'suborganizations#index', :as => 'meals', :constraints => { :kind => 'meal' }, :defaults => { :kind => 'meal' }
   get "/show_phone" => "organizations#show_phone", :as => 'show_phone'
+  get '/section_show_full_description'=> "organizations#section_show_full_description", :as => 'section_show_full_description'
 end
