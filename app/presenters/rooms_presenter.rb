@@ -210,7 +210,9 @@ class RoomsPresenter
   end
 
   def decorated_collection
-    OrganizationDecorator.decorate organizations
+    OrganizationDecorator.decorate organizations.sort{ |x,y|
+      y.positive_activity_date && x.positive_activity_date ? y.positive_activity_date <=> x.positive_activity_date : y.positive_activity_date ? -1 : 1
+    }
   end
 
   def paginatable_collection
