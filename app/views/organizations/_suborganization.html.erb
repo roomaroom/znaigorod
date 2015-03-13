@@ -51,6 +51,6 @@
 
   <div class='phone'>
     Тел.:
-    <%= link_to "#{suborganization.organization.phone.truncate(7)}", "#", class: "js-show-phone", id: suborganization.organization.id %>
+    <%= link_to "#{suborganization.organization.phone.truncate(7)}", "#", class: "js-show-phone", id: suborganization.organization.id, single_phone: true %>
   </div>
 </div>

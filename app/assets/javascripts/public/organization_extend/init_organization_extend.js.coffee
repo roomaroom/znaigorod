@@ -31,8 +31,9 @@
       type: "GET"
       data:
         organization_id: $(target).attr('id')
+        single_phone: $(target).attr('single_phone')
       success: (response) ->
-        $(target).parent().html(response.split(',')[0])
+        $(target).parent().html(response)
 
       false
     false

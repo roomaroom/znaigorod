@@ -149,6 +149,7 @@ class OrganizationsController < ApplicationController
   def show_phone
     organization = Organization.find(params[:organization_id])
     organization.increment!(:phone_show_counter)
-    render text: "#{organization.phone}".html_safe and return if request.xhr?
+    phone = params[:single_phone] ? organization.phone.split(',').try(:first) : organization.phone
+    render text: "#{phone}".html_safe and return if request.xhr?
   end
 end
