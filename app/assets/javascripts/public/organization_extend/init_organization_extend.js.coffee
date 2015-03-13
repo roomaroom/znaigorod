@@ -24,7 +24,7 @@
 
 
 @init_organization_show_phone = ->
-  $('.js-show-phone').click ->
+  $('body').on 'click', '.js-show-phone', ->
     target = $(this)
     $.ajax
       url: "/show_phone"

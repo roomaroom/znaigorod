@@ -19,7 +19,7 @@ class Work < ActiveRecord::Base
   before_validation :check_contest_actuality, :on => :create
   after_validation :check_agreement_accepted
 
-  friendly_id :title, use: :slugged
+  friendly_id :title, :use => :scoped, :scope => :type
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
