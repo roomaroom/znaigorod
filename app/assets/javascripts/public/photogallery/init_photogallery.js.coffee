@@ -32,4 +32,17 @@
       title: ->
         $(this).attr('title') || $('img', this).attr('alt') || '&nbsp;'
 
+  $('.js-section-colorbox a').colorbox
+    close: 'закрыть'
+    current: '{current} из {total}'
+    maxHeight: '90%'
+    maxWidth: '90%'
+    next: 'следующая'
+    opacity: '0.5'
+    photo: true
+    previous: 'предыдущая'
+    returnFocus: false
+    title: ->
+      $('img', this).attr('title') || $('img', this).attr('alt') || '&nbsp;'
+
   true

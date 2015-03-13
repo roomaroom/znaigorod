@@ -9,7 +9,7 @@ class OrganizationRequestsController < ApplicationController
     if @request.valid?
       AddOrganizationMailer.delay(:queue => 'mailer').send_request(@request)
 
-      redirect_to '/organizations/add', :flash => { :notice => 'Ваша заявка отправлена. Наши менеджеры свяжутся с вами в ближайщее время.' }
+      redirect_to '/organizations/add', :flash => { :notice => 'Ваша заявка отправлена. Наши менеджеры свяжутся с вами в ближайшее время.' }
     else
       render :new
     end
