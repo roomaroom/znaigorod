@@ -5,9 +5,7 @@
     </li>
   <% end %>
 
-  <% unless params[:id] == '2015-03/znaygorod-ischet-talanty' %>
-    <li class='js-banner zg-talants'>
-      <%= link_to (image_tag 'public/banners/banner_zg_talants.png', :size => '880x80', :alt => 'ЗнайГород ищет таланты!'), review_path('2015-03/znaygorod-ischet-talanty'), target: '_blank', class: 'js-stat-zg-talants' %>
-    </li>
-  <% end %>
+  <li class='js-banner zg-talants'>
+    <%= link_to (image_tag 'public/banners/banner_zg_talants.png', :size => '880x80', :alt => 'ЗнайГород ищет таланты!'), '/reviews/2015-03/znaygorod-ischet-talanty', target: '_blank', class: 'js-stat-zg-talants' %>
+  </li>
 </ul>
