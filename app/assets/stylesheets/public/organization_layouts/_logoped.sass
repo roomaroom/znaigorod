@@ -1,0 +1,102 @@
+.logoped_content_wrapper
+  +background(image_url('public/logoped/header.jpg') no-repeat center top, #78d94c)
+  $border_background_color: #fff
+
+  .logoped_logo
+    width: 1200px
+    height: 110px
+    margin: 0 auto
+
+  .content_wrapper
+    +background(rgba(#fff, .5))
+    +border-top-right-radius(5px)
+    +border-top-left-radius(5px)
+
+    .left
+      .image
+        border: 1px solid #72dfff
+        margin: 0
+        border-bottom: 0
+
+      .social_actions
+        border: 1px solid #72dfff
+        border-top: 0
+        width: 208px
+
+        .user_actions
+          border-bottom: 1px solid #72dfff
+          padding: 7px 5px
+
+        .visits_counter
+
+          .floatr
+            color: #0066cc
+
+        .visitors
+          li
+            &:first-child
+              border: 0
+
+    .center
+      .photogallery
+        .title
+          margin: 0 0 10px
+
+      .sections_info
+        .title
+          color: #fff
+          margin: 20px 0 10px
+
+        .divider
+          display: none
+
+        .info
+          h2
+            color: $border_background_color
+
+      .suborganization_info
+        .item
+          background-color: #fff
+
+          .title
+            background-color: #fff
+
+      .comments
+        h3
+          background-color: $border_background_color
+
+        .body
+          p
+            color: black
+
+      div.title
+        background-color: $border_background_color
+
+      .services
+        table
+          background-color: #fff
+
+        .details
+          .detail
+            .title
+              background: none
+
+      .share_and_likes
+        border-bottom: 1px solid #72dfff
+
+        .share
+          .title
+            background-color: transparent
+
+    .right
+      border: 1px solid #72dfff
+      width: 203px
+      padding: 5px
+
+      .wrapper
+        border: 0
+
+        .more_like_this
+          +background(transparent)
+          border-top: 1px solid $border_background_color
+          margin: 6px -5px -5px
