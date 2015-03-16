@@ -5,9 +5,9 @@
     </li>
   <% end %>
 
-  <% if Time.zone.now < Time.zone.parse('28-02-2015 00:00') %>
-    <li class='js-banner ars-dsm'>
-      <%= link_to (image_tag 'public/banners/banner_ars.jpg', :size => '880x82', :alt => 'Мисс Россия-Томск'), '/away?to=http://ars-alliance.ru/projects/miss/regulations.php', target: '_blank', class: 'js-stat-dsm' %>
+  <% unless params[:id] == '2015-03/znaygorod-ischet-talanty' %>
+    <li class='js-banner zg-talants'>
+      <%= link_to (image_tag 'public/banners/banner_zg_talants.png', :size => '880x80', :alt => 'ЗнайГород ищет таланты!'), review_path('2015-03/znaygorod-ischet-talanty'), target: '_blank', class: 'js-stat-zg-talants' %>
     </li>
   <% end %>
 </ul>
