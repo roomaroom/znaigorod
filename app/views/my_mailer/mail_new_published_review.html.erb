@@ -3,7 +3,7 @@
 </p>
 <% if @review.account %>
   <p>
-    пользователь <%= @review.account %> опубликовал новый обзор:
+    пользователь <%= link_to @review.account, account_url(@review.account) %> опубликовал новый обзор:
   </p>
 <% else %>
   <p>
