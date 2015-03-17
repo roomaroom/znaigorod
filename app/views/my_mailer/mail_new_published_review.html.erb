@@ -1,0 +1,29 @@
+<p>
+  На сайте ЗнайГород (<%= Settings['app']['host'] %>)
+</p>
+<% if @review.account %>
+  <p>
+    пользователь <%= @review.account %> опубликовал новый обзор:
+  </p>
+<% else %>
+  <p>
+    опубликован обзор:
+  </p>
+<% end %>
+
+<p>
+  Название: <%= @review.title.present? ? @review.title : 'Нет названия' %>
+</p>
+<p>
+  Постер: <%= @review.poster_url? ? @review.poster_url : 'Нет постера' %>
+</p>
+<p>
+  Категории: <%= @review.categories.map(&:text).join(', ') %>
+</p>
+<p>
+  Описание: <%= @review.content.present? ? @review.content : 'Нет описания' %>
+</p>
+
+<p>
+  Помотреть обзор: <%= link_to @review.title, review_url(@review), :host => Settings['app']['host'] %>
+</p>
