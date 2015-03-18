@@ -40,14 +40,7 @@ module SearchWithFacets
 
         text :title, :using => :organization_title
 
-        # OPTIMIZE: special cases
-        boolean(:show_in_search_results) {
-          (self.is_a?(Sauna) || self.is_a?(Billiard)) && (self.organization.suborganizations.map(&:class) & [Entertainment]).any? ? false : true
-        } if klass == Entertainment
-
-        boolean(:show_in_search_results) {
-          self.is_a?(CarWash) && (self.organization.suborganizations.map(&:class) & [CarSalesCenter]).any? ? false : true
-        } if klass == CarSalesCenter
+        boolean :show_in_search_results
 
         boolean(:with_sauna_halls) { self.with_sauna_halls? } if klass == Sauna
         boolean(:with_rooms) { self.with_rooms? }             if klass == Hotel
@@ -63,5 +56,20 @@ module SearchWithFacets
     end
 
     stuffs.join(', ')
+  end
+
+  def show_in_search_results
+    return false if self.is_a?(Billiard) && organization.suborganizations.map(&:class).map(&:name).map(&:underscore).sort == [:billiard, :sauna]
+
+    case self
+    when Billiard
+      organization.suborganizations.map(&:class) & [Entertainment, Sauna] ? false : true
+    when Sauna
+      organization.suborganizations.map(&:class).include?(Entertainment) ? false : true
+    when CarWash
+      organization.suborganizations.map(&:class).include?(CarSalesCenter) ? false : true
+    else
+      true
+    end
   end
 end
