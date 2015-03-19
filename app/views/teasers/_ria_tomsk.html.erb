@@ -1,15 +1,27 @@
-<td>
-  <ul>
-    <% @teaser.teaser_items.order_by_id.each do |item| %>
-      <li>
-        <div class="image">
-          <%= link_to (image_tag resized_image_url(item.image_url, 70, 50)), item.url, :target => '_blank' %>
-        </div>
+<div class='teasers_znaigorod' style='background-color: #fff !important; border: 1px solid #ccc !important; max-height: 385px !important; overflow: hidden !important; padding: 5px !important; width: 228px !important;'>
+  <div class='label' style='background: url("http://storage.znaigorod.ru/files/290208/240-78/label.jpg") center center no-repeat !important; height: 70px !important'>
+    <a href='<%= Settings['app.url'] %>' style='width: 100% !important; height: 100% !important; text-indent: -9999px !important; display: block !important' rel='nofollow'><%= Settings['app.host'] %></a>
+  </div>
 
-        <div class="link">
-          <%= link_to item.link_text, item.url, :target => '_blank' %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</td>
+  <div class='table_wrapper'>
+    <table>
+      <tr>
+        <td>
+          <ul style='padding: 0 !important'>
+            <% @teaser.teaser_items.order_by_id.each do |item| %>
+              <li style='list-style: none !important;margin: 10px 0 !important; '>
+                <div class="image" style='display: inline-block !important;margin: 0 5px 0 0 !important '>
+                  <%= link_to (image_tag resized_image_url(item.image_url, 70, 50)), item.url, :target => '_blank', :rel => 'nofollow' %>
+                </div>
+
+                <div class="link" style='display: inline-block !important;vertical-align: top !important;width: 60% !important '>
+                  <%= link_to item.link_text, item.url, :target => '_blank', style: 'text-decoration: none !important; color: #000 !important;', :rel => 'nofollow' %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,16 +1,28 @@
-<% @teaser.teaser_items.order_by_id.each do |item| %>
-  <td>
-    <div class='teaser_item'>
-      <div class='right'>
-        <div class='link'>
-          <%= link_to item.link_text, item.try(:url), target: '_blank' %>
-        </div>
+<div class='teasers_znaigorod'>
+  <div class='label'>
+    <a href='<%= Settings['app.url'] %>'><%= Settings['app.host'] %></a>
+  </div>
 
-        <span class='description'>
-          <%= item.description.try(:as_html) %>
-        </span>
+  <div class='table_wrapper'>
+    <table>
+      <tr>
+        <% @teaser.teaser_items.order_by_id.each do |item| %>
+          <td>
+            <div class='teaser_item'>
+              <div class='right'>
+                <div class='link'>
+                  <%= link_to item.link_text, item.try(:url), target: '_blank' %>
+                </div>
 
-      </div>
-    </div>
-  </td>
-<% end %>
+                <span class='description'>
+                  <%= item.description.try(:as_html) %>
+                </span>
+
+              </div>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
