@@ -65,7 +65,7 @@ group :default do
   gem 'roadie'
   gem 'russian'
   gem 'sanitize'
-  gem 'sidekiq'
+  gem 'sidekiq', '~> 2.14'
   gem 'simple-navigation'
   gem 'simple_form'
   gem 'sinatra',                    :require => false
