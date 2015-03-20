@@ -16,7 +16,7 @@ class Organization < ActiveRecord::Base
                   :vkontakte_likes, :fb_likes, :odn_likes, :poster_vk_id,
                   :situated_at, :page_meta_keywords, :page_meta_description,
                   :page_meta_title, :og_description, :og_title, :positive_activity_date,
-                  :organization_category_ids
+                  :organization_category_ids, :csv_id
 
   ### <=== CRM
 
@@ -29,6 +29,8 @@ class Organization < ActiveRecord::Base
 
   has_many :organization_category_items, :dependent => :destroy
   has_many :organization_categories, :through => :organization_category_items
+  has_many :feature_organizations, :dependent => :destroy
+  has_many :features, :through => :feature_organizations
 
   has_many :activities,             :dependent => :destroy
   has_many :comments,               :dependent => :destroy, :as => :commentable
