@@ -26,7 +26,7 @@
               <% if item.sms_claimable? %>
                 <%= link_to item.organization.priority_sms_claimable_suborganization.reservation_title,
                   send("new_#{item.organization.priority_sms_claimable_suborganization.class.name.underscore}_sms_claim_path", item.organization.priority_sms_claimable_suborganization),
-                  :class => :sms_claim_link,
+                  :class => [:sms_claim_link, :show_tipsy],
                   :title => item.organization.priority_sms_claimable_suborganization.reservation_title
                 %>
             <% end %>
