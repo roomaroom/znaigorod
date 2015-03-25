@@ -51,8 +51,26 @@ class ReviewDecorator < ApplicationDecorator
     votes.liked.size
   end
 
-  def sorted_related_items
-    @sorted_related_items = relations.where(slave_type: 'Discount') + relations.where('slave_type != ?', 'Discount')
+  def related_reviews
+    @related_reviews = relations.where(slave_type: 'Review')
+  end
+
+  def related_afishas
+    @related_afishas = []
+    relations.where(slave_type: 'Afisha').each { |afisha| @related_afishas << afisha if afisha.slave.actual? }
+  end
+
+  def related_discounts
+    @related_discounts = []
+    relations.where(slave_type: 'Discount').each { |discount| @related_discounts << discount if discount.slave.actual? }
+  end
+
+  def related_organizations
+    @related_organizations = relations.where(slave_type: 'Organization')
+  end
+
+  def related_photogalleries
+    @related_photogalleries = relations.where(slave_type: 'Photogallery')
   end
 
   def tags

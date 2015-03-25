@@ -47,25 +47,69 @@
   <% end %>
 
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @review } %>
-</div>
 
-<div class="right">
-  <% if @review.relations.present?  %>
-    <h2>Обзор связан с:</h2>
-    <div class="related_posters">
-      <ul class="posters related_discounts">
-        <% @review.sorted_related_items.delete_if{ |relation| relation.slave.blank? }.each do |relation| %>
+  <div class='similar_afisha related_afishas'>
+    <div class='title'>
+      Афиша
+    </div>
+    <% if @review.related_afishas.any? %>
+      <ul class='posters'>
+        <% @review.related_afishas.delete_if { |relation| relation.slave.blank? }.each do |relation| %>
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
+    <% end %>
+  </div>
+
+  <div class='similar_discount related_discounts'>
+    <div class='title'>
+      Скидки
+    </div>
+    <% if @review.related_discounts.any? %>
+      <ul class='posters'>
+        <% @review.related_discounts.delete_if { |relation| relation.slave.blank? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class='similar_organization related_organizations'>
+    <div class='title'>
+      Организации
+    </div>
+    <% if @review.related_organizations.any? %>
+      <ul class='posters'>
+        <% @review.related_organizations.delete_if { |relation| relation.slave.blank? || !relation.slave.client? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
+        <% end %>
+
+        <div style='clear: both'></div>
+        <% @review.related_organizations.delete_if { |relation| relation.slave.blank? || relation.slave.client? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="right">
+  <% if @review.related_reviews.present? || @review.decorated_similar.present? %>
+    <h2>Смотрите так же!</h2>
+    <div class="related_posters">
+      <ul class="posters related_discounts">
+        <% @review.related_reviews.delete_if { |relation| relation.slave.blank? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
+        <% end %>
+
+        <% @review.decorated_similar.each do |review| %>
+          <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 104, :width => 214 } %></li>
+        <% end %>
+      </ul>
+
+      <div class="promotions">
+        <%= render :partial => 'commons/rianovosti' %>
+      </div>
     </div>
   <% end %>
-  <h2>Похожие обзоры:</h2>
-  <div class="related_posters">
-    <ul class="similar posters">
-      <% @review.decorated_similar.each do |review| %>
-        <li class="item_review"><%= render :partial => 'reviews/poster', :locals => { :review => review, :height => 104, :width => 214 } %></li>
-      <% end %>
-    </ul>
-  </div>
 </div>

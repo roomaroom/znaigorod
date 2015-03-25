@@ -42,6 +42,23 @@
 .afisha_content, .similar_afisha, .related_posters
   clear: both
 
+  &.related_afishas
+    .title
+      background-color: #ccc
+      padding: 0 10px
+      margin: 15px 0
+
+    .posters
+      .item_afisha
+        height: 365px
+        margin: 0 28px 25px 0
+
+        .title
+          background-color: #fff
+
+        &:nth-child(4n)
+          margin: 0 0 25px 0
+
   .posters
     position: relative
 
