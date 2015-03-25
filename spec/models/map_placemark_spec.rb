@@ -23,5 +23,6 @@ end
 #  kind               :string(255)
 #  organization_title :text
 #  organization_url   :text
+#  expires_at         :datetime
 #
 

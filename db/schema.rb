@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150312031659) do
+ActiveRecord::Schema.define(:version => 20150325080418) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -546,6 +546,7 @@ ActiveRecord::Schema.define(:version => 20150312031659) do
     t.string   "kind"
     t.text     "organization_title"
     t.text     "organization_url"
+    t.datetime "expires_at"
   end
 
   create_table "map_projects", :force => true do |t|
