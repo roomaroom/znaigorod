@@ -91,6 +91,19 @@
       </ul>
     <% end %>
   </div>
+
+  <div class='similar_photogalleries related_photogalleries'>
+    <div class='title'>
+      Фотостримы
+    </div>
+    <% if @review.related_photogalleries.any? %>
+      <ul class='posters'>
+        <% @review.related_photogalleries.delete_if { |relation| relation.slave.blank? }.each do |relation| %>
+          <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
 
 <div class="right">
