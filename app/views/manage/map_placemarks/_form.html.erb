@@ -43,6 +43,7 @@
       <%= f.input :image %>
       <%= link_to 'Указать местоположение на карте', '#', :class => 'choose_coordinates' %>
     </div>
+    <%= f.input :expires_at, :as => :datetime_picker, :label => 'Показывать до' %>
     <%= f.submit %>
     <%= link_to 'Назад', manage_map_project_path(@map_project) %>
   <% end %>

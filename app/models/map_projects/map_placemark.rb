@@ -3,9 +3,9 @@ include ImageHelper
 class MapPlacemark < ActiveRecord::Base
   attr_accessor :related_items
   attr_accessible :title, :map_layer_ids, :related_items, :latitude, :longitude, :url, :address,
-                  :image, :kind
+                  :image, :kind, :expires_at
 
-  validates_presence_of :map_layer_ids
+  validates_presence_of :map_layer_ids, :expires_at
   default_value_for :kind, 'custom'
 
   before_save :parse_related_items
@@ -22,8 +22,14 @@ class MapPlacemark < ActiveRecord::Base
 
   has_attached_file :image, :storage => :elvfs, :elvfs_url => Settings['storage.url']
 
+  scope :actual, -> { where('expires_at > ?', Time.zone.now) }
+
   def delete_map_layers
     self.map_layers.delete_all
+  end
+
+  def actual?
+    self.expires_at > Time.zone.now
   end
 
   def parse_related_items
