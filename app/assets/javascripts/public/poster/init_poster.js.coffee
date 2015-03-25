@@ -3,7 +3,7 @@
 
 @init_poster = () ->
   poster = $('.content .left .image a img')
-  return true if poster.hasClass('stub')
+  return true if poster.hasClass('stub') || poster.parent().parent().parent().hasClass('stub')
 
   poster.each (index, item) ->
     $(item).closest('a').colorbox
