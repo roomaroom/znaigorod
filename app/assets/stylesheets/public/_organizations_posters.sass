@@ -14,8 +14,25 @@
       .likes
         margin: 15px 0 15px 0
 
-.organization_content, .organizations_main_page_list, .situated_items, .next_organization, .related_posters
+.organization_content,
+.organizations_main_page_list,
+.situated_items,
+.next_organization,
+.related_posters,
+.similar_organization
   clear: both
+
+  &.related_organizations
+    .title
+      background-color: #ccc
+      padding: 0 10px
+      margin: 0 0 20px 0
+
+    .posters
+      .item_organization
+        .info
+          .title
+            background-color: #fff
 
   &.situated_items
     clear: none
