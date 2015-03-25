@@ -57,12 +57,12 @@ class ReviewDecorator < ApplicationDecorator
 
   def related_afishas
     @related_afishas = []
-    relations.where(slave_type: 'Afisha').each { |afisha| @related_afishas << afisha if afisha.slave.actual? }
+    relations.where(slave_type: 'Afisha').delete_if { |afisha| afisha.slave.blank? }.each { |afisha| @related_afishas << afisha if afisha.slave.actual? }
   end
 
   def related_discounts
     @related_discounts = []
-    relations.where(slave_type: 'Discount').each { |discount| @related_discounts << discount if discount.slave.actual? }
+    relations.where(slave_type: 'Discount').delete_if { |discount| discount.slave.blank? }.each { |discount| @related_discounts << discount if discount.slave.actual? }
   end
 
   def related_organizations
