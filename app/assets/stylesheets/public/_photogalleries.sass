@@ -247,10 +247,41 @@
   padding: 0 40px 25px 5px
   width: 880px
 
-.right_works, .related_posters
+.right_works,
+.related_posters,
+.similar_photogalleries
   float: right
   margin: 0 0 0 -1px
   width: 240px
+
+  &.related_photogalleries
+    clear: both
+    float: none
+    margin: 0
+    width: auto
+
+    .title
+      background-color: #ccc
+      padding: 0 10px
+      margin: 0 0 15px 0
+
+    .posters
+      margin: 0
+      +clearfix
+
+      .item_photogallery
+        &.tiny
+          clear: none
+
+        clear: none
+        float: left
+        margin: 0 102px 20px 0
+
+        &:nth-child(3n)
+          margin: 0 0 20px 0
+
+        .title
+          background-color: #fff
 
   h3
     text-align: center
