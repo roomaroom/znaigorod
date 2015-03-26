@@ -48,37 +48,37 @@
 
   <%= render :partial => 'comments/block', :locals => { :parent_obj => @review } %>
 
-  <div class='similar_afisha related_afishas'>
-    <div class='title'>
-      Афиша
-    </div>
-    <% if @review.related_afishas.any? %>
+  <% if @review.related_afishas.any? %>
+    <div class='similar_afisha related_afishas'>
+      <div class='title'>
+        Афиша
+      </div>
       <ul class='posters'>
         <% @review.related_afishas.each do |relation| %>
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
-    <% end %>
-  </div>
-
-  <div class='similar_discount related_discounts'>
-    <div class='title'>
-      Скидки
     </div>
-    <% if @review.related_discounts.any? %>
+  <% end %>
+
+  <% if @review.related_discounts.any? %>
+    <div class='similar_discount related_discounts'>
+      <div class='title'>
+        Скидки
+      </div>
       <ul class='posters'>
         <% @review.related_discounts.each do |relation| %>
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
-    <% end %>
-  </div>
-
-  <div class='similar_organization related_organizations'>
-    <div class='title'>
-      Организации
     </div>
-    <% if @review.related_organizations.any? %>
+  <% end %>
+
+  <% if @review.related_organizations.any? %>
+    <div class='similar_organization related_organizations'>
+      <div class='title'>
+        Организации
+      </div>
       <ul class='posters'>
         <% @review.related_organizations.delete_if { |relation| relation.slave.blank? || !relation.slave.client? }.each do |relation| %>
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
@@ -89,21 +89,21 @@
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
-    <% end %>
-  </div>
-
-  <div class='similar_photogalleries related_photogalleries'>
-    <div class='title'>
-      Фотостримы
     </div>
-    <% if @review.related_photogalleries.any? %>
+  <% end %>
+
+  <% if @review.related_photogalleries.any? %>
+    <div class='similar_photogalleries related_photogalleries'>
+      <div class='title'>
+        Фотостримы
+      </div>
       <ul class='posters'>
         <% @review.related_photogalleries.delete_if { |relation| relation.slave.blank? }.each do |relation| %>
           <%= render :partial => "reviews/related_poster_#{relation.slave_type.downcase}", :locals => { :item => "#{relation.slave_type}Decorator".constantize.new(relation.slave) } %>
         <% end %>
       </ul>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
 
 <div class="right">
