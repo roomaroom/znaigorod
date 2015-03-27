@@ -1,0 +1,19 @@
+<div class='teasers_znaigorod' style='border: 1px solid #ff5500; background-color: #fff !important; max-height: 98px !important; overflow: hidden !important; padding: 0px !important; width: 98px !important;'>
+  <div class='table_wrapper'>
+    <table>
+      <tr>
+        <td>
+          <ul style='padding: 0 !important'>
+            <% @teaser.teaser_items.order_by_id.each do |item| %>
+              <li style='list-style: none !important;margin: 10px 0 !important; '>
+                <div class="image" style='display: inline-block !important;margin: 0 5px 0 0 !important '>
+                  <%= link_to (image_tag resized_image_url(item.image_url, 100, 100)), item.url, :target => '_blank', :rel => 'nofollow' %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
