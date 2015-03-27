@@ -9,6 +9,7 @@
  * = require ./promotions
  * = require sugar
  * = require infinitescroll.min
+ * = require stickyMojo
  * = require imagesloaded
  * = require magicsuggest
  * = require inputmask
@@ -98,6 +99,7 @@
  * = require ./infinite_scroll
  * = require ./additional_info
  * = require ./countdown
+ * = require ./affix
  * = require ./offer_price
  * = require ./sweets_carousel
  * = require ./my_reviews
