@@ -7,7 +7,7 @@
             <% @teaser.teaser_items.order_by_id.each do |item| %>
               <li style='list-style: none !important;margin: 0 !important; '>
                 <div class="image" style='display: inline-block !important;margin: 0 5px 0 0 !important '>
-                  <%= link_to (image_tag resized_image_url(item.image_url, 100, 100)), item.url, :target => '_blank', :rel => 'nofollow' %>
+                  <%= link_to (image_tag resized_image_url(item.try(:image_url), 100, 100)), item.try(:url), :target => '_blank', :rel => 'nofollow' %>
                 </div>
               </li>
             <% end %>
