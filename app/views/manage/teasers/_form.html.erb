@@ -2,7 +2,6 @@
   <h1>Тизер:</h1>
   <%= simple_form_for [:manage, @teaser] do |f| %>
     <%= f.input :title %>
-    <%= f.input :slug %>
     <%= f.input :items_quantity if action_name == 'new' %>
 
     <%= f.submit %>
