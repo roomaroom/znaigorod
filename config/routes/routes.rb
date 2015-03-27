@@ -20,6 +20,7 @@ Znaigorod::Application.routes.draw do
   end
 
   get 'feedback' => 'feedback#show'
+  get 'help' => 'help#show'
 
   get '/cooperation'    => redirect('/services')
   get 'accounts_search' => 'accounts_search#show',         :as => :accounts_search

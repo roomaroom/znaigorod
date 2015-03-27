@@ -62,7 +62,8 @@ SimpleNavigation::Configuration.run do |navigation|
       more.item :widgets, 'Виджеты', widgets_root_path, highlights_on: -> { controller_name.match(/widgets/i) }
       more.item :feedback, 'Отзывы и предложения', feedback_path, highlights_on: -> { controller_name == 'feedback' }
       more.item :questions, 'Спрашивай', questions_path, highlights_on: -> { controller_name == 'q'  }
-      more.item :kurs_valut, 'Курсы валют', banki_tomsk_path, highlights_on: -> { controller_name == 'banki_tomsk'  }
+      more.item :kurs_valut, 'Курсы валют', banki_tomsk_path, highlights_on: -> { controller_name == 'banki_tomsk' }
+      more.item :help, 'Помощь', help_path , highlights_on: -> { controller_name == 'help' }
     end
   end
 end

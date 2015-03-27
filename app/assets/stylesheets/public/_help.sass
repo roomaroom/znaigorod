@@ -1,0 +1,63 @@
+.help_show
+  .left,
+  .right
+    float: left
+
+  .left
+    width: 1000px
+
+    h1
+      font-size: 22px
+
+    ul
+      margin: 15px 0 15px 30px
+
+      li
+        font-size: 14px
+        margin: 0 0 20px 0
+
+        &.no-margin
+          margin: 0
+
+        .image
+          margin: 10px 5px
+
+  .right
+    float: right
+    width: 200px
+
+    .main
+      &.fixed
+        position: fixed
+        top: 30px
+
+      li
+        padding: 5px 0 5px 10px
+
+        &:hover
+          border-left: 2px solid #ff5500
+
+        a
+          color: #ff5500
+          font-size: 12px
+
+          &:hover
+            font-weight: bold
+            text-decoration: none
+
+      .sub
+        margin-left: 15px
+
+        li
+          padding-left: 10px
+
+          &:hover
+            border-left: 2px solid #ff5500
+
+          a
+            color: #ff5500
+            font-size: 12px
+
+            &:hover
+              font-weight: bold
+              text-decoration: none
