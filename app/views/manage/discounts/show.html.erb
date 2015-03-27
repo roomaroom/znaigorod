@@ -22,6 +22,15 @@
     </div>
 
     <div>
+      <span class="label">Автор:</span>
+      <span class="value">
+        <% unless resource.account.nil? %>
+          <%= link_to "#{resource.account.first_name} #{resource.account.last_name}", account_path(resource.account), :target => '_blank' %>
+        <% end %>
+      </span>
+    </div>
+
+    <div>
       <span class="label">Организация или место:</span>
       <% if resource.places.any? %>
         <span class="value"><%= resource.places.pluck(:address).uniq.join(', ') %></span>
