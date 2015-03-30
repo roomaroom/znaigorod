@@ -10,9 +10,9 @@ class OrganizationsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @presenter = OrganizationsCatalogPresenter.new(params.merge(per_page: 7))
-        @placemarks = Organization.where(status: :client)
+        @presenter = NewOrganizationsPresenter.new(params.merge(per_page: 7))
         @categories = OrganizationCategory.used_roots
+        #@placemarks = NewOrganizationsPresenter.new({}).clients_only
       }
 
       format.json {
@@ -140,6 +140,6 @@ class OrganizationsController < ApplicationController
   end
 
   def view_type
-    "tile"
+    params[:view_type] || 'list'
   end
 end

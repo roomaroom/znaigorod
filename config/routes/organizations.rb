@@ -4,6 +4,10 @@ Znaigorod::Application.routes.draw do
   get 'organizations/add' => "organization_requests#new"
   post 'organizations/send_mail'=> "organization_requests#send_mail"
 
+  get '/:slug' => 'organizations#index',
+    :constraints => { :slug => Regexp.new(OrganizationCategory.pluck(:slug).join('|')) },
+    :as => :organizations_by_category
+
   resources :organizations, :only => [:index, :show] do
     get :in_bounding_box, :on => :collection
     get :details_for_balloon, :on => :member
