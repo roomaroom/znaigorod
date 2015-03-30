@@ -16,9 +16,10 @@ class Manage::Statistics::AfishasController < Manage::ApplicationController
 
     author_ids = %w[4650, 6, 2304, 8590, 18969, 14827]
 
-    @afishas = Afisha.where(:user_id => author_ids, state: 'published')
+    @afishas = Afisha.where(:user_id => author_ids)
                 .where('created_at >= ? and created_at <= ?', @starts_at, @ends_at)
                 .order('created_at DESC')
+                .select { |afisha| afisha.showings.any? || afisha.constant? || afisha.affiche_schedule.present? || afisha.kind.include?('movie') }
                 .group_by(&:user_id)
 
     showings = Afisha.where(:user_id => author_ids, state: 'published')
