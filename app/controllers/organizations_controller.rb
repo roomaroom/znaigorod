@@ -159,6 +159,6 @@ class OrganizationsController < ApplicationController
   end
 
   def view_type
-    "tile"
+    params[:view_type] || 'list'
   end
 end
