@@ -3,8 +3,6 @@
 class OrganizationsController < ApplicationController
   has_scope :page, :default => 1
 
-  helper_method :view_type
-
   before_filter :allow_cross_domain_access
 
   def index
@@ -137,9 +135,5 @@ class OrganizationsController < ApplicationController
     organization = Organization.find(params[:organization_id])
     organization.increment!(:phone_show_counter)
     render text: "#{organization.phone}".html_safe and return if request.xhr?
-  end
-
-  def view_type
-    params[:view_type] || 'list'
   end
 end
