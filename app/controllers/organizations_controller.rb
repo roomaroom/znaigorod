@@ -157,8 +157,4 @@ class OrganizationsController < ApplicationController
     Organization.find(params[:organization_id]).increment!(:site_link_counter)
     render :nothing => true, :status => 200 and return if request.xhr?
   end
-
-  def view_type
-    params[:view_type] || 'list'
-  end
 end
