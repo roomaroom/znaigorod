@@ -9,7 +9,6 @@
  * = require ./promotions
  * = require sugar
  * = require infinitescroll.min
- * = require stickyMojo
  * = require imagesloaded
  * = require magicsuggest
  * = require inputmask
