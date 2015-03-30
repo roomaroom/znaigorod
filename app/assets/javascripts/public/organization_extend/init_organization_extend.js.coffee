@@ -22,6 +22,19 @@
 
   true
 
+@init_organization_site_link = ->
+  $('.js-site-link').click ->
+    target = $(this)
+    $.ajax
+      url: "/increment_site_link_counter"
+      type: "GET"
+      data:
+        organization_id: $(target).attr('id')
+
+      true
+    true
+  return
+
 @init_organization_show_phone = ->
   $('body').on 'click', '.js-show-phone', ->
     target = $(this)

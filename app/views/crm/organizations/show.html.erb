@@ -36,7 +36,7 @@
           <% if @organization.site.present? %>
             <li class='site'>
               <strong>Сайт:</strong>
-              <%= link_to @organization.site, @organization.site, target: '_blank' %>
+              <%= link_to @organization.site, @organization.site, target: '_blank' %> (переходов на сайт: <%= @organization.site_link_counter %>)
             </li>
           <% end %>
           <li class='additional'>
