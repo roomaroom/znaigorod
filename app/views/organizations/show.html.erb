@@ -123,7 +123,7 @@
 
       <% if @organization.contact_links.present? %>
         <ul class='links'>
-          <%= content_tag(:li, "Сайт: #{@organization.site_link}".html_safe) if @organization.site_link.present? %>
+          <%= content_tag(:li, "Сайт: #{@organization.site_link}".html_safe, class: 'js-site-link', id: @organization.id) if @organization.site_link.present? %>
           <%= content_tag(:li, "Email: #{@organization.email_link}".html_safe) if @organization.email_link.present? %>
         </ul>
       <% end %>

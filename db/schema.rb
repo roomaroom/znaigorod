@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150325080418) do
+ActiveRecord::Schema.define(:version => 20150330062250) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -723,6 +723,7 @@ ActiveRecord::Schema.define(:version => 20150325080418) do
     t.text     "og_description"
     t.text     "og_title"
     t.integer  "phone_show_counter",            :default => 0
+    t.integer  "site_link_counter",             :default => 0
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

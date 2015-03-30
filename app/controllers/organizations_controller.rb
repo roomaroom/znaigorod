@@ -140,6 +140,11 @@ class OrganizationsController < ApplicationController
     render text: "#{phone}".html_safe and return if request.xhr?
   end
 
+  def increment_site_link_counter
+    Organization.find(params[:organization_id]).increment!(:site_link_counter)
+    render :nothing => true, :status => 200 and return if request.xhr?
+  end
+
   def section_show_full_description
     section = Section.find(params[:section])
     page = section.section_pages.find(params[:page])

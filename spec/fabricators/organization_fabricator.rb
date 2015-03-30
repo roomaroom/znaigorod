@@ -44,5 +44,6 @@ end
 #  og_description                :text
 #  og_title                      :text
 #  phone_show_counter            :integer          default(0)
+#  site_link_counter             :integer          default(0)
 #
 
