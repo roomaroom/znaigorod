@@ -95,7 +95,6 @@ $ ->
   initEditAttachmentDescription() if $('.js-gallery .js-edit-attachment-description').length
   apply_unauthorized_action()
   process_change_message_status() if $('#notifications').length
-  init_affix() if $('.js-sidebar').length
 
   handleWorkAddition() if $('.new_work', '.upload_work_wrapper').length
   handleBanners() if $('.banners_wrapper').length
@@ -116,6 +115,7 @@ $ ->
   true
 
 $(window).load ->
+  init_affix() if $('.js-sidebar').length
   init_3dtourme_stat() if $('a.3dtourme').length
   init_afisha_map() if $('.show_map_link').length || $('.feeds').length
   init_afisha_yandex_map() if $('.yandex_map .map').length
