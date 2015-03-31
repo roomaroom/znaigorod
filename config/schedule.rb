@@ -21,9 +21,9 @@ every :monday, :at => '6:30 am' do
   rake 'generate_yandex_companies_xml_files'
 end
 
-#every :day, :at => '6:30 am' do
-  #rake 'send_digest:statistics'
-#end
+every :day, :at => '6:30 am' do
+  rake 'send_digest:statistics'
+end
 
 every :day, :at => '7:15 am' do
   rake 'sync:fakel'
@@ -63,7 +63,6 @@ every 6.hours do
   #rake 'afisha:event_users'
   rake 'actualize_discounts'
   rake 'update_ponominalu_tickets'
-  rake 'banki_tomsk:update'
 end
 
 #every 3.hours do

@@ -14,7 +14,7 @@ namespace :send_digest do
       begin
         account = Account.find(account_id)
         accounts << account if account.present? && account.email.present?
-      rescue => e
+      rescue
       end
     end
 
