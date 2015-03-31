@@ -126,6 +126,7 @@ ru:
         lesson:                занятие
         visiting:              посещение
         washing:               автомобильная мойка
+        procedure:             процедура
 
     service_price:
       kind:

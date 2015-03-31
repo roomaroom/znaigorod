@@ -35,7 +35,7 @@ class Service < ActiveRecord::Base
 
   presents_as_checkboxes :offer, available_values: []
 
-  enumerize :kind, in: [:visiting, :lesson, :washing], predicates: true
+  enumerize :kind, in: [:visiting, :lesson, :washing, :procedure], predicates: true
 
   def humanize_age
     content = ''
