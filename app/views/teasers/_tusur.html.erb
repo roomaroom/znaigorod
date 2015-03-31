@@ -1,6 +1,6 @@
 <div class='teasers_znaigorod' style='background-color: #fff; max-height: 460px; overflow: hidden; padding: 5px; width: 240px;'>
   <div class='label' style='background: url("http://storage.znaigorod.ru/files/295269/240-60/tusur_teaser.jpg") center center no-repeat; height: 70px'>
-    <a href='<%= Settings['app.url'] %>' style='width: 100%; height: 100%; text-indent: -9999px; display: block' rel='nofollow'><%= Settings['app.host'] %></a>
+    <a href='<%= Settings['app.url'] %>' style='width: 100%; height: 100%; text-indent: -9999px; display: block'><%= Settings['app.host'] %></a>
   </div>
 
   <div class='table_wrapper'>
@@ -11,11 +11,11 @@
             <% @teaser.teaser_items.order_by_id.each do |item| %>
               <li style='list-style: none;margin: 10px 0; '>
                 <div class="image" style='display: inline-block;margin: 0 5px 0 0 '>
-                  <%= link_to (image_tag resized_image_url(item.try(:image_url), 70, 50)), item.try(:url), :target => '_blank', :rel => 'nofollow' %>
+                  <%= link_to (image_tag resized_image_url(item.try(:image_url), 70, 50)), item.try(:url), :target => '_blank' %>
                 </div>
 
                 <div class="link" style='display: inline-block;vertical-align: top;width: 60% '>
-                  <%= link_to item.try(:link_text), item.try(:url), :target => '_blank', style: 'text-decoration: none; color: #1a2d96;', :rel => 'nofollow' %>
+                  <%= link_to item.try(:link_text), item.try(:url), :target => '_blank', style: 'text-decoration: none; color: #1a2d96;' %>
                 </div>
               </li>
             <% end %>
