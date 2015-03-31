@@ -1,21 +1,21 @@
-<div class='teasers_znaigorod' style='background-color: #fff !important; max-height: 460px !important; overflow: hidden !important; padding: 5px !important; width: 240px !important;'>
-  <div class='label' style='background: url("http://storage.znaigorod.ru/files/295269/240-60/tusur_teaser.jpg") center center no-repeat !important; height: 70px !important'>
-    <a href='<%= Settings['app.url'] %>' style='width: 100% !important; height: 100% !important; text-indent: -9999px !important; display: block !important' rel='nofollow'><%= Settings['app.host'] %></a>
+<div class='teasers_znaigorod' style='background-color: #fff; max-height: 460px; overflow: hidden; padding: 5px; width: 240px;'>
+  <div class='label' style='background: url("http://storage.znaigorod.ru/files/295269/240-60/tusur_teaser.jpg") center center no-repeat; height: 70px'>
+    <a href='<%= Settings['app.url'] %>' style='width: 100%; height: 100%; text-indent: -9999px; display: block' rel='nofollow'><%= Settings['app.host'] %></a>
   </div>
 
   <div class='table_wrapper'>
     <table>
       <tr>
         <td>
-          <ul style='padding: 0 !important'>
+          <ul style='padding: 0'>
             <% @teaser.teaser_items.order_by_id.each do |item| %>
-              <li style='list-style: none !important;margin: 10px 0 !important; '>
-                <div class="image" style='display: inline-block !important;margin: 0 5px 0 0 !important '>
+              <li style='list-style: none;margin: 10px 0; '>
+                <div class="image" style='display: inline-block;margin: 0 5px 0 0 '>
                   <%= link_to (image_tag resized_image_url(item.try(:image_url), 70, 50)), item.try(:url), :target => '_blank', :rel => 'nofollow' %>
                 </div>
 
-                <div class="link" style='display: inline-block !important;vertical-align: top !important;width: 60% !important '>
-                  <%= link_to item.try(:link_text), item.try(:url), :target => '_blank', style: 'text-decoration: none !important; color: #1a2d96 !important;', :rel => 'nofollow' %>
+                <div class="link" style='display: inline-block;vertical-align: top;width: 60% '>
+                  <%= link_to item.try(:link_text), item.try(:url), :target => '_blank', style: 'text-decoration: none; color: #1a2d96;', :rel => 'nofollow' %>
                 </div>
               </li>
             <% end %>
