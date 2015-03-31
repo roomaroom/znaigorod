@@ -1,0 +1,27 @@
+<div class='teasers_znaigorod' style='background-color: #fff !important; max-height: 460px; overflow: hidden; width: 170px; font-size: 11px; font-family: "Verdana", "Tahoma", sans-serif'>
+  <div class='label' style='background: url("http://storage.znaigorod.ru/files/297074/170-43/fotodoska_label.jpg") center center no-repeat; height: 40px'>
+    <a href='<%= Settings['app.url'] %>' style='width: 100%; height: 100%; text-indent: -9999px; display: block'><%= Settings['app.host'] %></a>
+  </div>
+
+  <div class='table_wrapper'>
+    <table style='width: 100%'>
+      <tr>
+        <td>
+          <ul style='padding: 0; margin: 0'>
+            <% @teaser.teaser_items.order_by_id.each do |item| %>
+              <li style='list-style: none;margin: 5px 5px; '>
+                <div class="image" style='display: inline-block;margin: 0 5px 0 0 '>
+                  <%= link_to (image_tag resized_image_url(item.try(:image_url), 50, 50)), item.try(:url), :target => '_blank' %>
+                </div>
+
+                <div class="link" style='display: inline-block;vertical-align: top;width: 60% '>
+                  <%= link_to item.try(:link_text), item.try(:url), :target => '_blank', style: 'text-decoration: none; color: #3582df; font-size: 11px' %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
