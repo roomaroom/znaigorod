@@ -1,6 +1,6 @@
 $(window).load ->
 
-  if (typeof adriver != 'undefined')
+  if $('.rianovosti').height() > 0
     $('.rianovosti').removeClass('hidden')
 
   return
