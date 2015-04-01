@@ -303,16 +303,22 @@
     <%= text_field_tag  'new_section', nil , placeholder: 'Название раздела' %>
     <%= button_tag 'Создать', class: "new_section_button" %>
   </div>
-  <div class="sections">
-    <ul>
-      <% if resource.sections.any? %>
-        <% resource.sections.each do |section| %>
-          <li><%= link_to section.title, manage_organization_section_path(resource, section) %></li>
+  <form class='js-sortable' data-sort='<%= sort_manage_organizations_path %>'>
+    <div class='sections'>
+      <ul>
+        <% if resource.sections.any? %>
+          <% resource.sections.order('position').each do |section| %>
+            <li>
+              <div class='sortable_handle'>&#8597;</div>
+              <%= hidden_field :position, section.id, :class => :position, :value => section.position %>
+              <%= link_to section.title, manage_organization_section_path(resource, section) %>
+            </li>
+          <% end %>
+        <% else %>
+          <span class="blank">Нет разделов</span>
         <% end %>
-      <% else %>
-        <span class="blank">Нет разделов</span>
-      <% end %>
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>
 

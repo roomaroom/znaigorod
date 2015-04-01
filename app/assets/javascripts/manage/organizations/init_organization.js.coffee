@@ -15,6 +15,38 @@
         $('.new_section').toggle()
         $('#new_section').val('')
 
+  recalculate_position = (wrapper) ->
+    $('li input.position', wrapper).each (index, item) ->
+      $(item).val index+1
+      true
+    true
+
+  wrapper = $('.js-sortable')
+
+  $(wrapper).sortable
+    axis: 'y'
+    containment: 'parent'
+    handle: '.sortable_handle'
+    items: 'li'
+    update: (event, ui) ->
+      recalculate_position(ui.target)
+      if wrapper.data('sort')
+        console.log wrapper
+        $.ajax
+          url: wrapper.data('sort')
+          type: 'POST'
+          data: wrapper.serialize()
+          error: (jqXHR, textStatus, errorThrown) ->
+            response = $("<div>#{jqXHR.responseText}</div>")
+            $('meta', response).remove()
+            $('title', response).remove()
+            $('style', response).remove()
+            console.error response.html().trim() if console && console.error
+            true
+          success: (data, textStatus, jqXHR) ->
+            wrapper.effect 'highlight', 1500
+            true
+
   true
 
 @init_organization_form = () ->
