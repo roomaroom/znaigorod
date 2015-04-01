@@ -1,10 +1,9 @@
-<%= simple_form_for GalleryImage.new, :url => my_gallery_images_path, :html => { :multipart => true, :class => 'upload_gallery_images gallery-images-sections-new', :data => { :title => 'Загрузка изображения' } } do |f| %>
-  <%= f.input :file, :input_html => { :name => 'gallery_images[file]' }, :label => t('my.add_images') %>
-<% end %>
+<%= javascript_include_tag 'esp-ckeditor/application' %>
 
 <%= simple_nested_form_for [:manage, resource.section.organization, resource.section, resource] do |f| %>
+  <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path', :value => SectionPage.generate_vfs_path } %>
   <%= f.input :title %>
-  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup js-is-section-page' }  %>
+  <%= f.input :content, :as => :ckeditor %>
   <%= f.submit %>
 <% end %>
 

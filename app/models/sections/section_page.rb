@@ -14,24 +14,8 @@ class SectionPage < ActiveRecord::Base
 
   has_attached_file :poster_image, storage: :elvfs, elvfs_url: Settings['storage.url']
 
-  def store_cached_content_for_index
-    self.cached_content_for_index = AutoHtmlRenderer.new(content).render_index
-  end
-
-  def store_cached_content_for_show
-    self.cached_content_for_show = AutoHtmlRenderer.new(content, allow_external_links: true).render_show
-  end
-
-  def set_poster
-    self.poster_image = Reviews::Content::Parser.new(content).poster
-  end
-
-  def content_for_show(sanitize = true, options = {})
-    if sanitize
-      sanitize(cached_content_for_show.try(:html_safe), :tags => %w(ul li h3 p b strong strike span table tr td tbody thead), :attributes => ['id', 'class', 'style']) # tags => allowed tags
-    else
-      cached_content_for_show.try(:html_safe)
-    end
+  def self.generate_vfs_path
+    "/znaigorod/section_pages/#{Time.now.strftime('%Y/%m/%d/%H-%M')}-#{SecureRandom.hex(4)}"
   end
 end
 
