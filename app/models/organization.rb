@@ -193,6 +193,7 @@ class Organization < ActiveRecord::Base
     string :title
 
     integer :user_id
+    integer :id
 
     latlon(:location) { Sunspot::Util::Coordinates.new(latitude, longitude) }
 
