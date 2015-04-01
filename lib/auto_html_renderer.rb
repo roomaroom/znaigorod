@@ -49,9 +49,9 @@ class AutoHtmlRenderer
   def apply_sanitize(str)
     Sanitize.clean(
       str,
-      :elements => ['a', 'img', 'p', 'div', 'h2', 'h3', 'strong', 'em', 'ul', 'ol', 'li', 'iframe'],
+      :elements => ['a', 'img', 'p', 'div', 'h2', 'h3', 'strong', 'em', 'ul', 'ol', 'li', 'iframe', 'span'],
       :attributes => {
-        :all => ['src', 'alt', 'title', 'href', 'width', 'height', 'frameborder', 'allowfullscreen', 'target', 'rel']
+        :all => ['src', 'alt', 'title', 'href', 'width', 'height', 'frameborder', 'allowfullscreen', 'target', 'rel', 'class']
       }
     )
   end

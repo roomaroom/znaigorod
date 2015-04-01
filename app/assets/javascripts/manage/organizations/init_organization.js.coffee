@@ -121,10 +121,17 @@ markItUpSettings = ->
     replaceWith: "<div align='center' class='buy_button'> <a class='button payment_link' href='http://znaigorod.ru/discounts/#{get_discount_slug().responseText}/copy_payments/new'>[![Текст кнопки:!:Введите текст кнопки]!] </a> </div>"
   }
 
+  delimiterButton = {
+    name: 'Разделитель текста'
+    className: 'delimiter_button'
+    replaceWith: "<span class='js-opener-btn delimiter visible'>[![Текст разделителя:!:Введите текст разделителя]!]</span>"
+  }
+
   settings.markupSet.push(imageButton)
   settings.markupSet.push(youtubeButton)
   settings.markupSet.push(vimeoButton)
   settings.markupSet.push(buyButton) if $('.discounts').length && $('form.simple_form').attr('class').indexOf('edit') > -1
+  settings.markupSet.push(delimiterButton) if $('.js-is-section-page').length
 
   settings
 

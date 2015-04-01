@@ -113,6 +113,8 @@ $ ->
 
   init_focus_for_search_button() if $('.js-search-field').length
 
+  init_delimiter_on_sections() if $('.js-opener-btn').length
+
   true
 
 $(window).load ->

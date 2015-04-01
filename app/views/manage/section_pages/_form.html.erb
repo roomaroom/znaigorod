@@ -4,7 +4,7 @@
 
 <%= simple_nested_form_for [:manage, resource.section.organization, resource.section, resource] do |f| %>
   <%= f.input :title %>
-  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup' }  %>
+  <%= f.input :content, :as => :text, :input_html => { :id => 'html', :class => 'markitup js-is-section-page' }  %>
   <%= f.submit %>
 <% end %>
 
