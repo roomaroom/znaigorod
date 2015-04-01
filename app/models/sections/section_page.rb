@@ -28,7 +28,7 @@ class SectionPage < ActiveRecord::Base
 
   def content_for_show(sanitize = true, options = {})
     if sanitize
-      sanitize(cached_content_for_show.try(:html_safe), :tags => %w(ul li h3 p b strong strike span), :attributes => ['id', 'class', 'style']) # tags => allowed tags
+      sanitize(cached_content_for_show.try(:html_safe), :tags => %w(ul li h3 p b strong strike span table tr td tbody thead), :attributes => ['id', 'class', 'style']) # tags => allowed tags
     else
       cached_content_for_show.try(:html_safe)
     end
