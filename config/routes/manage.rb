@@ -157,7 +157,7 @@ Znaigorod::Application.routes.draw do
 
       resources :organizations,  :only => [:new, :create, :destroy]
 
-      resources :sections, :only => [:show, :destroy] do
+      resources :sections, :only => [:show, :destroy, :edit, :update] do
         resources :section_pages, :except => [:index, :show]
       end
     end
