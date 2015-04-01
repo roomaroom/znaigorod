@@ -152,4 +152,13 @@ class OrganizationsController < ApplicationController
     phone = params[:single_phone] ? organization.phone.split(',').try(:first) : organization.phone
     render text: "#{phone}".html_safe and return if request.xhr?
   end
+
+  def increment_site_link_counter
+    Organization.find(params[:organization_id]).increment!(:site_link_counter)
+    render :nothing => true, :status => 200 and return if request.xhr?
+  end
+
+  def view_type
+    "tile"
+  end
 end
