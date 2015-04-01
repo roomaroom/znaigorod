@@ -1,4 +1,6 @@
 class SectionPage < ActiveRecord::Base
+  include ActionView::Helpers::SanitizeHelper
+
   validates_presence_of :title, :content
 
   attr_accessible :title, :content, :poster
@@ -22,6 +24,14 @@ class SectionPage < ActiveRecord::Base
 
   def set_poster
     self.poster_image = Reviews::Content::Parser.new(content).poster
+  end
+
+  def content_for_show(sanitize = true, options = {})
+    if sanitize
+      sanitize(cached_content_for_show.try(:html_safe), :tags => %w(ul li h3 p b strong strike)) # tags => allowed tags
+    else
+      cached_content_for_show.try(:html_safe)
+    end
   end
 end
 
