@@ -20,5 +20,6 @@ end
 #  poster_image_file_size    :string(255)
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  vfs_path                  :string(255)
 #
 
