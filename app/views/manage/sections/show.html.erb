@@ -1,16 +1,29 @@
-<h3><%= resource.title %></h3>
-<%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource) %>
-<ul class='section_pages_wrapper'>
-  <% if resource.section_pages.any? %>
-    <% resource.section_pages.each do |section_page| %>
-      <li>
-        <%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
-        (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)
-        <p><%= section_page.cached_content_for_index %></p>
-      </li>
-  <% end %>
-<% else %>
-  <p>Нет страниц</p>
-<% end %>
-</ul>
-<h3><%= link_to "Удалить", manage_organization_section_path(params[:organization_id], resource), method: 'DELETE', data: {confirm: "Вы уверены что хотите удалить раздел?"} %></h3>
+<div class="section_show js-section-show">
+  <h3>
+    <span class='js-section-title'>
+      <%= resource.title %>
+    </span>
+    <%= link_to 'Удалить', manage_organization_section_path(params[:organization_id], resource), method: 'DELETE', data: {confirm: "Вы уверены что хотите удалить раздел?"} %>
+
+    <%= simple_form_for [:manage, :organization, @section], :remote => true do |f| %>
+      <%= f.input :title, :label => false %>
+      <%= f.submit %>
+    <% end %>
+  </h3>
+
+  <%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource), class: 'new_section_page' %>
+
+  <ul class='section_pages_wrapper'>
+    <% if resource.section_pages.any? %>
+      <% resource.section_pages.each do |section_page| %>
+        <li>
+          <%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
+          (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)
+          <p><%= section_page.cached_content_for_index %></p>
+        </li>
+      <% end %>
+    <% else %>
+      <p>Нет страниц</p>
+    <% end %>
+  </ul>
+</div>

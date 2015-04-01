@@ -13,6 +13,10 @@
         $('.new_section').toggle()
         $('#new_section').val('')
 
+  $('.js-section-show').on('ajax:success', (e, data, status, xhr) ->
+    $('.js-section-title').html($('#section_title').val())
+  )
+
   recalculate_position = (wrapper) ->
     $('li input.position', wrapper).each (index, item) ->
       $(item).val index+1
