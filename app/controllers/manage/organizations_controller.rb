@@ -17,14 +17,8 @@ class Manage::OrganizationsController < Manage::ApplicationController
     if request.xhr?
       record = Organization.find(params[:id]).sections.create(title: params[:section_title])
 
-      respond_to do |format|
-        format.json do
-          render :json => {
-            :id           => record.id,
-            :organization => params[:id]
-          }
-        end
-      end
+      render :partial => 'section', :locals => { :resource => Organization.find(params[:id]), :section => record }, :status => 200 and return
+
     end
   end
 

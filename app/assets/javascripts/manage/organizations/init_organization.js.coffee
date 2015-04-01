@@ -9,9 +9,7 @@
       data:
         section_title: $('#new_section').val()
       success: (response) ->
-        $('.sections ul').append("
-          <li><a href='/manage/organizations/"+response.organization+"/sections/"+response.id+"'>" + $('#new_section').val()  + "</a></li>
-          ")
+        $('.sections ul').append(response)
         $('.new_section').toggle()
         $('#new_section').val('')
 

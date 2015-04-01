@@ -299,20 +299,18 @@
 <div class="sections_wrapper">
   <h3>Разделы</h3>
   <%= link_to "Новый раздел", "#", class: "new_section_link" %>
+
   <div class="new_section">
     <%= text_field_tag  'new_section', nil , placeholder: 'Название раздела' %>
     <%= button_tag 'Создать', class: "new_section_button" %>
   </div>
+
   <form class='js-sortable' data-sort='<%= sort_manage_organizations_path %>'>
     <div class='sections'>
       <ul>
         <% if resource.sections.any? %>
           <% resource.sections.order('position').each do |section| %>
-            <li>
-              <div class='sortable_handle'>&#8597;</div>
-              <%= hidden_field :position, section.id, :class => :position, :value => section.position %>
-              <%= link_to section.title, manage_organization_section_path(resource, section) %>
-            </li>
+            <%= render :partial => 'section', :locals => { :resource => resource, :section => section } %>
           <% end %>
         <% else %>
           <span class="blank">Нет разделов</span>
