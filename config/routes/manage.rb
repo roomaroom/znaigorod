@@ -160,6 +160,7 @@ Znaigorod::Application.routes.draw do
       resources :sections, :only => [:show, :destroy, :edit, :update] do
         resources :section_pages, :except => [:index, :show] do
           delete 'destroy_poster', :on => :member, :as => :destroy_poster
+          post 'sort', :on => :collection
         end
       end
     end

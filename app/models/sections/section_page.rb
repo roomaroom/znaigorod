@@ -1,12 +1,13 @@
 class SectionPage < ActiveRecord::Base
-  include ActionView::Helpers::SanitizeHelper
+  attr_accessible :title, :content, :poster, :vfs_path,
+                  :poster_image, :position
 
   validates_presence_of :title, :content
 
-  attr_accessible :title, :content, :poster, :vfs_path, :poster_image
-
   has_many :gallery_images,        :as => :attachable,     :dependent => :destroy
   belongs_to :section
+
+  scope :order_by_position, order(:position)
 
   has_attached_file :poster_image, storage: :elvfs, elvfs_url: Settings['storage.url']
 
@@ -30,5 +31,6 @@ end
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  vfs_path                  :string(255)
+#  position                  :integer
 #
 

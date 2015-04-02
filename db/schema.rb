@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150402022655) do
+ActiveRecord::Schema.define(:version => 20150402080835) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -1203,6 +1203,7 @@ ActiveRecord::Schema.define(:version => 20150402022655) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.string   "vfs_path"
+    t.integer  "position"
   end
 
   create_table "sections", :force => true do |t|

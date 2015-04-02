@@ -187,11 +187,11 @@
 
     <div class="sections_info suborganization_info">
       <% if @organization.sections.any? %>
-        <% @organization.sections.each do |section| %>
+        <% @organization.sections.order_by_position.each do |section| %>
           <% if section.section_pages.any? %>
             <div class="section <%= section.title.from_russian_to_param %>">
               <div class="title"><%= content_tag :h2, section.title %></div>
-              <% section.section_pages.each do |page| %>
+              <% section.section_pages.order_by_position.each do |page| %>
                 <div class="section_page">
                   <% if page.poster_image? %>
                     <div class="image js-section-colorbox">
