@@ -84,7 +84,8 @@ CKEDITOR.editorConfig = function( config )
   /* Style tags */
   config.stylesSet = [
     { name: 'Cite', element: 'cite' },
-    { name: 'Mark', element: 'mark' }
+    { name: 'Mark', element: 'mark' },
+    { name: 'Далее', element: 'span', styles: { 'color': 'blue', 'border-bottom': '1px dashed blue' }, attributes: { class: 'js-opener-btn delimiter visible' } }
   ];
 
 };
