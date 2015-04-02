@@ -3,14 +3,10 @@ class SectionPage < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
-  attr_accessible :title, :content, :poster
+  attr_accessible :title, :content, :poster, :vfs_path, :poster_image
 
   has_many :gallery_images,        :as => :attachable,     :dependent => :destroy
   belongs_to :section
-
-  before_save :store_cached_content_for_show,
-              :store_cached_content_for_index,
-              :set_poster
 
   has_attached_file :poster_image, storage: :elvfs, elvfs_url: Settings['storage.url']
 
