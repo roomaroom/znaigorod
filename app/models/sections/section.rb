@@ -3,6 +3,8 @@ class Section < ActiveRecord::Base
 
   has_many :section_pages, :dependent => :destroy
   belongs_to :organization
+
+  scope :order_by_position, order('position')
 end
 
 # == Schema Information

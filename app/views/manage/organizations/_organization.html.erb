@@ -309,7 +309,7 @@
     <div class='sections'>
       <ul>
         <% if resource.sections.any? %>
-          <% resource.sections.order('position').each do |section| %>
+          <% resource.sections.order_by_position.each do |section| %>
             <%= render :partial => 'section', :locals => { :resource => resource, :section => section } %>
           <% end %>
         <% else %>

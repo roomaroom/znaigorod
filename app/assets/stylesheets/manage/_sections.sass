@@ -16,7 +16,7 @@
           text-decoration: none
 
 .section_show
-  form
+  .simple_form
     +inline-block
     margin: 0 0 20px 0
 
@@ -25,7 +25,27 @@
 
       input
         border: 0
+        border-bottom: 1px solid #ccc
+        padding: 10px
 
         &:focus, &:hover
-          border: 1px solid #000
+          border: 1px solid #ccc
           outline: none
+
+  .section_pages_wrapper
+    list-style: none
+
+    li
+      padding: 10px 5px
+      background-color: #ccc
+      margin: 15px 0
+
+      .sortable_handle
+        +inline-block
+        cursor: move
+        font-size: 20px
+        margin-right: 10px
+
+      .section_page_content
+        padding: 0 0 0 10px
+
