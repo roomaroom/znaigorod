@@ -1,22 +1,11 @@
 @init_cooperation = ->
 
-  #$('.cooperation .toggler a').each ->
-    #link = $(this)
-    #link.click ->
-      #$('.info', $(this).closest('.toggable')).slideToggle 'fast', ->
-        #if $('.info', $(this).closest('.toggable')).is(':visible')
-          #link.html('&uarr; свернуть')
-        #else
-          #link.html('&darr; развернуть')
-        #true
-      #false
-    #true
-
-  #$('.cooperation .toggable .info:first').show()
-
   poster = $('.cooperation a img')
+
   poster.each (index, item) ->
     return true if $(this).closest('.statistics').length
+    return true if $(this).parent().parent().parent().hasClass('banner12')
+
     $(this).closest('a').colorbox
       close: 'закрыть'
       current: '{current} / {total}'
