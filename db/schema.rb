@@ -563,6 +563,7 @@ ActiveRecord::Schema.define(:version => 20150330101233) do
     t.string   "kind"
     t.text     "organization_title"
     t.text     "organization_url"
+    t.datetime "expires_at"
   end
 
   create_table "map_projects", :force => true do |t|
@@ -740,6 +741,7 @@ ActiveRecord::Schema.define(:version => 20150330101233) do
     t.text     "og_description"
     t.text     "og_title"
     t.integer  "phone_show_counter",            :default => 0
+    t.integer  "site_link_counter",             :default => 0
     t.integer  "csv_id"
   end
 
