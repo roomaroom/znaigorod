@@ -23,6 +23,8 @@
   clear: both
 
   &.related_organizations
+    +clearfix
+
     .title
       background-color: #ccc
       padding: 0 10px
@@ -30,9 +32,12 @@
 
     .posters
       padding: 0 7px
+      +clearfix
 
       .item_organization
-        margin: 0 27px 20px 0
+        margin: 0 22px 20px 0
+        float: none
+        +inline-block
 
         .info
           .image
@@ -41,6 +46,14 @@
 
           .title
             background-color: #fff
+
+        .place
+          line-height: 17px
+          height: 30px !important
+          font-size: 11px
+
+        .phone
+          height: auto
 
         &:nth-child(5n)
           margin: 0 0 20px 0
