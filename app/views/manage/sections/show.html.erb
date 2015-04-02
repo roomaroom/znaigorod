@@ -1,15 +1,13 @@
 <div class="section_show js-section-show">
-  <h3>
-    <span class='js-section-title'>
-      <%= resource.title %>
-    </span>
-    <%= link_to 'Удалить', manage_organization_section_path(params[:organization_id], resource), method: 'DELETE', data: {confirm: "Вы уверены что хотите удалить раздел?"} %>
-
+  <div class='title'>
     <%= simple_form_for [:manage, :organization, @section], :remote => true do |f| %>
       <%= f.input :title, :label => false %>
       <%= f.submit %>
+
+      <%= link_to 'Удалить', manage_organization_section_path(params[:organization_id], resource), method: 'DELETE',
+        data: { confirm: "Вы уверены что хотите удалить раздел?" } %>
     <% end %>
-  </h3>
+  </div>
 
   <%= link_to 'Новая страница', new_manage_organization_section_section_page_path(params[:organization_id], resource), class: 'new_section_page' %>
 
@@ -19,7 +17,7 @@
         <li>
           <%= link_to section_page.title, edit_manage_organization_section_section_page_path(params[:organization_id], resource, section_page) %>
           (<%= link_to "Удалить", manage_organization_section_section_page_path(params[:organization_id], resource, section_page), method: 'DELETE', data: { confirm: 'Вы уверены что хотите удалить?' } %>)
-          <p><%= section_page.cached_content_for_index %></p>
+          <p><%= section_page.content.truncate(150).as_html %></p>
         </li>
       <% end %>
     <% else %>

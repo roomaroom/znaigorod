@@ -9,7 +9,7 @@ class Manage::SectionPagesController < Manage::ApplicationController
 
   def update
     update! {
-      redirect_to manage_organization_section_path(params[:organization_id], params[:section_id]) and return
+      redirect_to edit_manage_organization_section_section_page_path(params[:organization_id], params[:section_id], params[:id]) and return
     }
   end
 
@@ -17,6 +17,14 @@ class Manage::SectionPagesController < Manage::ApplicationController
     destroy! {
       redirect_to manage_organization_section_path(params[:organization_id], params[:section_id]) and return
     }
+  end
+
+  def destroy_poster
+    section_page = SectionPage.find(params[:id])
+    section_page.poster_image.destroy
+    section_page.poster_image_url = nil
+    section_page.save
+    redirect_to edit_manage_organization_section_section_page_path(params[:organization_id], params[:section_id], params[:id]) and return
   end
 
   def build_resource

@@ -16,15 +16,16 @@
           text-decoration: none
 
 .section_show
-  h3
-    +clearfix
+  form
+    +inline-block
+    margin: 0 0 20px 0
 
-  .edit_section
-    div.section_title
-      float: left
+    .section_title
+      +inline-block
 
-    input[type='submit']
-      margin: 0 0 0 10px
+      input
+        border: 0
 
-  .new_section_page
-    clear: both
+        &:focus, &:hover
+          border: 1px solid #000
+          outline: none
