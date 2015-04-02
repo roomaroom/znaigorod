@@ -11,11 +11,6 @@
     +background(linear-gradient(top, rgba(#fff, .7), rgba(#feffca, .8)))
     +border-radius(5px)
 
-    //.certificate
-      //.origin_price
-        //&:before
-          //background: black !important
-
     .left
       .image
         border: 1px solid $border_background_color
@@ -76,7 +71,13 @@
             color: black
 
       div.title
-        background-color: $border_background_color
+        h2
+          background-color: $border_background_color !important
+
+          &:after
+            border-left-color: $border_background_color !important
+
+        background-color: $border_background_color !important
 
       .services
         .details
