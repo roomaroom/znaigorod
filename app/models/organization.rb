@@ -16,7 +16,8 @@ class Organization < ActiveRecord::Base
                   :vkontakte_likes, :fb_likes, :odn_likes, :poster_vk_id,
                   :situated_at, :page_meta_keywords, :page_meta_description,
                   :page_meta_title, :og_description, :og_title, :positive_activity_date,
-                  :organization_category_ids, :csv_id
+                  :organization_category_ids, :csv_id,
+                  :photo_block_title, :discounts_block_title, :afisha_block_title, :reviews_block_title, :comments_block_title
 
   ### <=== CRM
 

@@ -11,9 +11,15 @@
   </div>
 
   <%= f.input :vfs_path, :as => :hidden, :input_html => { :id => 'vfs_path' } %>
+
   <%= f.input :title %>
   <%= f.input :primary_organization_id, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.primary_organization_id  %>
   <%= f.input :situated_at, :collection => Organization.grouped_collection_for_select, :include_blank => true, :selected => f.object.situated_at  %>
+  <%= f.input :photo_block_title %>
+  <%= f.input :discounts_block_title %>
+  <%= f.input :afisha_block_title %>
+  <%= f.input :reviews_block_title %>
+  <%= f.input :comments_block_title %>
   <%= f.input :comment %>
   <%= f.input :description, :as => :ckeditor, :label => false %>
   <%= f.input :phone %>

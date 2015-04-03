@@ -7,6 +7,7 @@
   <%= @organization.open_graph_meta %>
   <%= @organization.twitter_cards_meta %>
 <% end %>
+
 <div class='organization_show'>
   <div class='left'>
     <div class='image'>
@@ -147,7 +148,7 @@
 
     <div class='photogallery suborganization_info'>
       <div class="title">
-        Фото
+        <%= @organization.photo_block_title %>
       </div>
       <% if @organization.status.client? %>
         <% if @organization.has_photogallery? %>
@@ -216,7 +217,7 @@
 
   <div class="suborganization_info discount_details">
     <div class="title">
-      Скидки
+      <%= @organization.discounts_block_title %>
       <span class='link'><%= link_to 'Добавить скидку', help_my_discounts_path %></span>
     </div>
     <div class="discount_content pagination_none">
@@ -232,7 +233,7 @@
 
   <div class='suborganization_info afisha_content js-button-pagination'>
     <div class='title'>
-      Афиша
+      <%= @organization.afisha_block_title %>
       <span class='link'><%= link_to 'Добавить афишу', new_my_afisha_path %></span>
     </div>
     <% if @afisha_presenter.collection.any? %>
@@ -244,7 +245,7 @@
 
   <div class='suborganization_info related-reviews'>
     <div class='title'>
-      Обзоры
+      <%= @organization.reviews_block_title %>
       <span class='link'><%= link_to 'Добавить обзор', add_my_reviews_path %></span>
     </div>
     <% if @reviews.any? %>
@@ -284,6 +285,6 @@
     </div>
   <% end %>
 
-  <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization } if @organization.ability_to_comment? %>
+  <%= render :partial => 'comments/block', :locals => { :parent_obj => @organization, :comments_block_title => @organization.comments_block_title } if @organization.ability_to_comment? %>
 </div>
 </div>

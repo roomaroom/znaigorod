@@ -2,7 +2,7 @@
   <% if parent_obj.is_a?(Question) %>
     <h3>Ответы</h3>
   <% elsif parent_obj.is_a?(Organization) %>
-    <h3>Отзывы</h3>
+    <%= defined?(comments_block_title) ? "<h3>#{comments_block_title}</h3>".html_safe : '<h3>Отзывы</h3>'.html_safe %>
   <% else %>
     <h3>Комментарии</h3>
   <% end %>
