@@ -9,7 +9,8 @@ xml.rss :version => "2.0", 'xmlns:atom' => 'http://www.w3.org/2005/Atom' do
     for discount in @presenter.collection
       xml.item do
         xml.title discount.title
-        xml.enclosure :url => resized_image_url(discount.poster_url, 220, 164), :type => 'image/jpeg', :length => open(URI.parse(resized_image_url(discount.poster_url, 220, 164))).size
+        xml.enclosure :url => resized_image_url(discount.poster_url, 220, 164), :type => 'image/jpeg',
+          :length => begin open(URI.parse(resized_image_url(discount.poster_url, 220, 164))).size; rescue; end
         xml.pubDate discount.created_at.to_s(:rfc822)
         xml.guid discount_url(discount)
         xml.link discount_url(discount)
