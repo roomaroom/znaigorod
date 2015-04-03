@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150402080835) do
+ActiveRecord::Schema.define(:version => 20150403035822) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -692,8 +692,8 @@ ActiveRecord::Schema.define(:version => 20150402080835) do
     t.text     "site"
     t.text     "email"
     t.text     "description"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.text     "phone"
     t.string   "vfs_path"
     t.integer  "organization_id"
@@ -724,6 +724,11 @@ ActiveRecord::Schema.define(:version => 20150402080835) do
     t.text     "og_title"
     t.integer  "phone_show_counter",            :default => 0
     t.integer  "site_link_counter",             :default => 0
+    t.string   "photo_block_title",             :default => "Фото"
+    t.string   "discounts_block_title",         :default => "Скидки"
+    t.string   "afisha_block_title",            :default => "Афиша"
+    t.string   "reviews_block_title",           :default => "Обзоры"
+    t.string   "comments_block_title",          :default => "Отзывы"
   end
 
   add_index "organizations", ["slug"], :name => "index_organizations_on_slug", :unique => true

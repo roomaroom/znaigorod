@@ -327,6 +327,11 @@ ru:
         page_meta_keywords: Meta - keywords
         page_meta_description: Meta - description
         page_meta_title: Title
+        photo_block_title: Заголовок блока фотографий
+        discounts_block_title: Заголовок блока скидок
+        afisha_block_title: Заголовок блока афиш
+        reviews_block_title: Заголовок блока обзоров
+        comments_block_title: Заголовок блока комментариев
 
       organization_stand:
         guarded:            Охрана

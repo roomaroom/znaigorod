@@ -16,7 +16,8 @@ class Organization < ActiveRecord::Base
                   :vkontakte_likes, :fb_likes, :odn_likes, :poster_vk_id,
                   :situated_at, :page_meta_keywords, :page_meta_description,
                   :page_meta_title, :og_description, :og_title, :positive_activity_date,
-                  :organization_category_ids
+                  :organization_category_ids,
+                  :photo_block_title, :discounts_block_title, :afisha_block_title, :reviews_block_title, :comments_block_title
 
   ### <=== CRM
 
@@ -413,5 +414,10 @@ end
 #  og_title                      :text
 #  phone_show_counter            :integer          default(0)
 #  site_link_counter             :integer          default(0)
+#  photo_block_title             :string(255)      default("Фото")
+#  discounts_block_title         :string(255)      default("Скидки")
+#  afisha_block_title            :string(255)      default("Афиша")
+#  reviews_block_title           :string(255)      default("Обзоры")
+#  comments_block_title          :string(255)      default("Отзывы")
 #
 
