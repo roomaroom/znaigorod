@@ -25,7 +25,7 @@ class Manage::OrganizationsController < Manage::ApplicationController
   def sort
     begin
       params[:position].each do |id, position|
-        Section.find(id).update_attribute :position, position
+        GalleryImage.find(id).update_attribute :position, position
       end
     rescue Exception => e
       render :text => e.message, :status => 500 and return

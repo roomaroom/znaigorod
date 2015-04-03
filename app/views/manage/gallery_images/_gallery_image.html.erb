@@ -1,4 +1,10 @@
 <li>
+
+  <% if gallery_image.attachable.is_a?(Organization) %>
+    <div class='sortable_handle'>&#8597;</div>
+    <%= hidden_field :position, gallery_image.id, :class => :position, :value => gallery_image.position %>
+  <% end %>
+
   <%= link_to gallery_image.to_s, edit_manage_attachment_path(gallery_image), :remote => true, :class => 'js-edit-attachment-description' %>
 
   <p class='image'>
@@ -8,10 +14,13 @@
     <% if gallery_image.attachable.is_a?(SaunaHall) %>
       <%= link_to "Удалить", [:manage, gallery_image.attachable.organization, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
       <%= link_to "Редактировать", [:edit, :manage, gallery_image.attachable.organization, gallery_image.attachable, gallery_image] %>
+
     <% elsif gallery_image.attachable.is_a?(Room) %>
       <%= link_to "Удалить", [:manage, gallery_image.attachable.context.organization, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
+
     <% elsif gallery_image.attachable.is_a?(Review) %>
       <%= link_to "Удалить", send("manage_#{gallery_image.attachable.class.name.underscore}_gallery_image_path", gallery_image.attachable.id, gallery_image), :method => :delete, :remote => true, :class => 'ajax_delete'  %>
+
     <% else %>
       <%= link_to "Удалить", [:manage, gallery_image.attachable, gallery_image], :method => :delete, :remote => true, :class => 'ajax_delete'  %>
     <% end %>
