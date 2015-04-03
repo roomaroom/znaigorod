@@ -127,7 +127,10 @@ Znaigorod::Application.routes.draw do
   get '/link_counters/create' => 'link_counters#create'
 
   get '/:id' => 'map_projects#show', as: 'map_project_show', :constraints => {:id => Regexp.new(MapProject.all.map(&:slug).join('|'))}
+
   resources :teasers, only: [:show]
+
+  resources :rss, :only => [:index]
 
   root :to => 'main_page#show'
 end
