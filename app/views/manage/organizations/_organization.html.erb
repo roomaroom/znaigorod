@@ -305,7 +305,7 @@
     <%= button_tag 'Создать', class: "new_section_button" %>
   </div>
 
-  <form class='js-sortable' data-sort='<%= sort_manage_organizations_path %>'>
+  <form class='js-sortable' data-sort='<%= sort_manage_organization_sections_path(resource) %>'>
     <div class='sections'>
       <ul>
         <% if resource.sections.any? %>
@@ -318,19 +318,21 @@
       </ul>
     </div>
   </form>
-  </div>
+</div>
 </div>
 
 <div class='images'>
   <h3>Галерея изображений</h3>
 
-  <div class="gallery_images">
-    <span class="value">
-      <ul>
-        <%= render resource.gallery_images %>
-      </ul>
-    </span>
-  </div>
+  <form class='js-sortable' data-sort='<%= sort_manage_organizations_path %>'>
+    <div class="gallery_images">
+      <span class="value">
+        <ul>
+          <%= render resource.gallery_images.order('id') %>
+        </ul>
+      </span>
+    </div>
+  </form>
 
   <%= simple_form_for resource.gallery_images.new, :url => manage_organization_gallery_images_path(resource.id), :html => { :multipart => true, :class => 'file_upload' } do |f| %>
     <%= f.input :file, :input_html => { :multiple => true, :name => 'gallery_images[file]' } %>

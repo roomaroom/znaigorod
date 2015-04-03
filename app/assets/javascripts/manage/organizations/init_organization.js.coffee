@@ -13,14 +13,22 @@
         $('.new_section').toggle()
         $('#new_section').val('')
 
-  recalculate_position = (wrapper) ->
-    $('li input.position', wrapper).each (index, item) ->
-      $(item).val index+1
-      true
+
+  wrapper_sections = $('.sections_wrapper .js-sortable')
+  wrapper_section_pages = $('.section_show .js-sortable')
+  wrapper_gallery_images = $('.images .js-sortable')
+
+  init_sort(wrapper_sections)
+  init_sort(wrapper_section_pages)
+  init_sort(wrapper_gallery_images)
+
+recalculate_position = (wrapper) ->
+  $('li input.position', wrapper).each (index, item) ->
+    $(item).val index+1
     true
+  true
 
-  wrapper = $('.js-sortable')
-
+init_sort = (wrapper) ->
   $(wrapper).sortable
     axis: 'y'
     containment: 'parent'
@@ -29,7 +37,6 @@
     update: (event, ui) ->
       recalculate_position(ui.target)
       if wrapper.data('sort')
-        console.log wrapper
         $.ajax
           url: wrapper.data('sort')
           type: 'POST'
@@ -44,7 +51,6 @@
           success: (data, textStatus, jqXHR) ->
             wrapper.effect 'highlight', 1500
             true
-
   true
 
 @init_organization_form = () ->

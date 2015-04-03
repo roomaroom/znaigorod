@@ -153,7 +153,7 @@
       <% if @organization.status.client? %>
         <% if @organization.has_photogallery? %>
           <ul>
-            <% @organization.gallery_images.each do |image| %>
+            <% @organization.gallery_images.order('position').each do |image| %>
               <%= render :partial => image.partial_for_render_object, :object => image, :locals => { :rel => "organization_gallery_#{@organization.id}" } %>
             <% end %>
           </ul>
