@@ -14,5 +14,15 @@ namespace :organization do
       bar.increment!
     end
   end
+
+  desc 'Обновление positive_activity_date у организаций'
+  task :update_positive_activity_date => :environment do
+    organizations = Organization.search { with :status, [:client_standart, :client_premium] }.results
+    bar = ProgressBar.new(organizations.count)
+    organizations.each do |organization|
+      organization.update_attribute :positive_activity_date, Time.zone.now
+      bar.increment!
+    end
+  end
 end
 

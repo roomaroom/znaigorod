@@ -8,17 +8,25 @@ else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
 
-#every :thursday, :at => '8:00 am' do
-  #rake 'send_digest:site'
-#end
+# ------------------------------------------
 
-#every :day, :at => '6:00 am' do
-  #rake 'send_digest:personal'
-  #rake 'generate_yandex_companies_xml_files'
-#end
+# tasks run one time at week
 
 every :monday, :at => '6:30 am' do
   rake 'generate_yandex_companies_xml_files'
+end
+
+every :sunday, :at => '6:30 am' do
+  rake 'organization:update_positive_activity_date'
+end
+
+# ------------------------------------------
+
+# everyday tasks
+
+every :day, :at => '3:00 am' do
+  rake 'update_rating:all'
+  rake 'social_likes'
 end
 
 every :day, :at => '6:30 am' do
@@ -45,10 +53,33 @@ every :day, :at => '7:35 am' do
   rake 'sync:kinopolis'
 end
 
-every :day, :at => '3:00 am' do
-  rake 'update_rating:all'
-  rake 'social_likes'
+# ------------------------------------------
+
+# recurring tasks
+
+every 30.minutes do
+  rake 'refresh_copies'
+  rake 'kill_offers'
 end
+
+every 6.hours do
+  #rake 'afisha:event_users'
+  rake 'actualize_discounts'
+  rake 'update_ponominalu_tickets'
+end
+
+# ------------------------------------------
+
+# Commended for future
+
+#every :thursday, :at => '8:00 am' do
+  #rake 'send_digest:site'
+#end
+
+#every :day, :at => '6:00 am' do
+  #rake 'send_digest:personal'
+  #rake 'generate_yandex_companies_xml_files'
+#end
 
 #every 6.hours do
   #rake 'sitemap:refresh refresh_sitemaps'
@@ -59,20 +90,9 @@ end
   #rake 'invitations:destroy_irrelevant'
 #end
 
-every 6.hours do
-  #rake 'afisha:event_users'
-  rake 'actualize_discounts'
-  rake 'update_ponominalu_tickets'
-end
-
 #every 3.hours do
   #rake 'balance_notify'
 #end
-
-every 30.minutes do
-  rake 'refresh_copies'
-  rake 'kill_offers'
-end
 
 #every 15.minutes do
   #rake 'get_sape_links'
