@@ -18,7 +18,7 @@ class OrganizationsCatalogPresenter
 
   def searcher_params(aditional = {})
     search_params = super
-    search_params.merge!(:status => 'client') if @only_clients
+    search_params.merge!(:status => [:client, :client_economy, :client_standart, :client_premium]) if @only_clients
     search_params.merge(aditional)
   end
 

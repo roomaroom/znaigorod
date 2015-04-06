@@ -11,7 +11,7 @@
 <div class='organization_show'>
   <div class='left'>
     <div class='image'>
-      <% if @organization.status.client? %>
+      <% if @organization.client? %>
         <% if @organization.logotype_url? %>
           <%= link_to(image_tag(resized_image_url(@organization.logotype_url, 200, 200, :watermark => false), :size => '200x200', :alt => @organization.title), @organization.logotype_url) %>
         <% else %>
@@ -53,7 +53,7 @@
 
   <div class='right'>
     <div class='wrapper'>
-      <% if @organization.status.client? %>
+      <% if @organization.client? %>
         <% if @organization.has_tour? %>
           <div class='virtual_tour'>
             <%= link_to('#', :class => :virtual_tour_link, :'data-link' => @organization.virtual_tour.link, title: '3D-тур') do %>
@@ -137,7 +137,7 @@
       </ul>
     <% end %>
 
-    <% if @organization.status.client? %>
+    <% if @organization.client? %>
       <% if @organization.description.present? %>
         <div class='description'>
           <%= @organization.description_html %>
@@ -150,7 +150,7 @@
       <div class="title">
         <%= @organization.photo_block_title %>
       </div>
-      <% if @organization.status.client? %>
+      <% if @organization.client? %>
         <% if @organization.has_photogallery? %>
           <ul>
             <% @organization.gallery_images.order('position').each do |image| %>
@@ -181,7 +181,7 @@
   </div>
 
 
-  <% if @organization.status.client? %>
+  <% if @organization.client? %>
     <% @organization.decorated_suborganizations.each do |suborganization| %>
       <%= render suborganization if suborganization.viewable? %>
     <% end %>
@@ -272,7 +272,7 @@
     </div>
   <% end %>
 
-  <% if @presenter.collection.any? && !@organization.status.client? %>
+  <% if @presenter.collection.any? && !@organization.client? %>
     <div class='suborganization_info next_organization'>
       <div class='title'>Рекомендуем</div>
       <ul class='posters js-paginable-list' data-item-width="220">

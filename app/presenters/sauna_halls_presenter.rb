@@ -148,7 +148,7 @@ class SaunaHallsPresenter
 
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
       with(:sms_claimable, true) if sms_claimable
-      with(:status, [:client])
+      with(:status, [:client, :client_economy, :client_standart, :client_premium])
 
       facet :baths,         sort: :index, zeros: true
       facet :features,      sort: :index, zeros: true
@@ -172,7 +172,7 @@ class SaunaHallsPresenter
   def sauna_with_not_client_status
     Sauna.search_ids {
       fulltext search_query
-      without(:status, [:client])
+      without(:status, [:client, :client_economy, :client_standart, :client_premium])
       with(:location).in_radius(lat, lon, radius) if lat && lon && radius
       paginate(:page => 1, :per_page => 100)
     }

@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html {
         @presenter = OrganizationsCatalogPresenter.new(params.merge(per_page: 7))
-        @placemarks = Organization.where(status: :client)
+        @placemarks = Organization.search { with :status, [:client, :client_economy, :client_standart, :client_premium]; paginate :page => 1, :per_page => 1_000 }.results
         @categories = OrganizationCategory.used_roots
       }
 
@@ -73,7 +73,7 @@ class OrganizationsController < ApplicationController
         render partial: @afisha_presenter.partial,
           locals: { afishas: @afisha_presenter.decorated_collection, :presenter => @afisha_presenter },
           layout: false and return if request.xhr?
-        render layout: "organization_layouts/#{@organization.subdomain}" if @organization.status.client? && @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
+        render layout: "organization_layouts/#{@organization.subdomain}" if @organization.client? && @organization.subdomain? && template_exists?(@organization.subdomain, 'layouts/organization_layouts')
       end
 
       format.promotion do
