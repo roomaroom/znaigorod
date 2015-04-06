@@ -68,6 +68,9 @@ ru:
       talks:                   Ведутся переговоры
       waiting_for_payment:     Ожидание оплаты
       client:                  Клиент
+      client_economy:          Клиент пакет эконом
+      client_standart:         Клиент пакет стандарт
+      client_premium:          Клиент пакет премиум
       non_cooperation:         Отказ в сотрудничестве
       debtor:                  Должник
       advertising_service:     Рекламные услуги

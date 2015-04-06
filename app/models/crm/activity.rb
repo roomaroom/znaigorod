@@ -21,7 +21,8 @@ class Activity < ActiveRecord::Base
   end
 
   extend Enumerize
-  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor, :advertising_service], default: :fresh, predicates: { prefix: true }
+  enumerize :status, in: [:fresh, :talks, :waiting_for_payment, :client, :client_economy, :client_standart, :client_premium, :non_cooperation, :debtor, :advertising_service],
+            default: :fresh, predicates: { prefix: true }
   enumerize :state, in: [:planned, :completed], default: :planned, predicates: { prefix: true }
   enumerize :kind, in: [:phone, :email, :repeated_phone, :meeting, :meeting_contract, :meeting_payment]
 
@@ -32,8 +33,12 @@ class Activity < ActiveRecord::Base
     activity_at.to_date
   end
 
+  def client?
+    status_client? || status_client_economy? || status_client_standart? || status_client_premium?
+  end
+
   def handle_debtors
-    if !status_client?
+    if !client?
       (organization.sauna.try(:sauna_hall_ids) || []).each do |id|
         Sunspot.remove_by_id SaunaHall, id
       end

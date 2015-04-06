@@ -57,7 +57,7 @@ Organization.basic_suborganization_kinds.each do |kind|
     end
 
     scope :only_clients do
-      with(:status, [:client])
+      with(:status, [:client, :client_economy, :client_standart, :client_premium])
     end
 
     scope :without_clients do

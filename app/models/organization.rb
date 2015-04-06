@@ -65,9 +65,14 @@ class Organization < ActiveRecord::Base
   has_one :organization_stand,  :dependent => :destroy
 
   extend Enumerize
-  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :non_cooperation, :debtor], default: :fresh, predicates: true
+  enumerize :status, :in => [:fresh, :talks, :waiting_for_payment, :client, :client_economy, :client_standart, :client_premium, :non_cooperation, :debtor],
+              default: :fresh, predicates: true
 
   default_value_for :total_rating, 0
+
+  def client?
+    status.client? || status.client_economy? || status.client_standart? || status.client_premium?
+  end
 
   def update_slave_organization_statuses
     slave_organizations.update_all :status => status

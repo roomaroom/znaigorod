@@ -33,7 +33,7 @@ class HitDecorator < ApplicationDecorator
   end
 
   def has_image?
-    return true if organization? && result_decorator.logotype_url? && result_decorator.status.client?
+    return true if organization? && result_decorator.logotype_url? && result_decorator.client?
 
     return true if review?
   end
