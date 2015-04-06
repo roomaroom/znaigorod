@@ -15,7 +15,7 @@ class CooperationController < ApplicationController
   end
 
   def our_customers
-    @presenter = OrganizationsCatalogPresenter.new(params.merge(:only_clients => true).merge(:per_page => 21))
+    @presenter = OrganizationsCatalogPresenter.new(params.merge(:per_page => 21))
 
     render partial: 'organizations/organizations_posters', layout: false and return if request.xhr?
   end
