@@ -6,6 +6,8 @@
 /.bundle
 /bin
 /config/database.yml
+/config/database_tomsk.yml
+/config/database_sevastopol.yml
 /config/deploy.yml
 /config/sape.yml
 /config/settings.yml

@@ -1,5 +1,5 @@
 <div class='info'>
-  <% if suborganization.organization.status.client?  %>
+  <% if suborganization.organization.client?  %>
     <div class='image'>
       <% if suborganization.is_a?(OrganizationDecorator) %>
         <% if suborganization.sms_claimable? %>

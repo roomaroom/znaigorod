@@ -50,7 +50,7 @@ HasSearcher.create_searcher :organizations do
   scope(:order_by_activity) { order_by :positive_activity_date, :desc }
 
   scope :only_clients do
-    with(:status, [:client])
+    with(:status, [:client, :client_economy, :client_standart, :client_premium])
   end
 
   scope :without_clients do
