@@ -33,6 +33,11 @@
     false
   true
 
+@init_organization_categories = () ->
+  $('.root_toggler').change ->
+    $('.child').toggleClass('show hide')
+    false
+
 @initMarkitup = ->
   $('.markitup').markItUp(markItUpSettings())
   handleImageButtonClick()
