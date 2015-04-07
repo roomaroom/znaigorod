@@ -17,6 +17,7 @@
 /log/*.log.lck
 /log/sunspot-solr-development.log*
 /public/assets
+/public/faye
 /public/cache
 /public/sitemap.xml
 /public/yandex
@@ -26,5 +27,6 @@
 /tmp
 clear_logs.rb
 erd.pdf
+dump.rdb
 .idea
 /contest_templates

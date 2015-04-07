@@ -20,7 +20,10 @@ namespace :organization do
     organizations = Organization.search { with :status, [:client_standart, :client_premium] }.results
     bar = ProgressBar.new(organizations.count)
     organizations.each do |organization|
-      organization.update_attribute :positive_activity_date, Time.zone.now
+      if organization.positive_activity_date && (organization.positive_activity_date < Time.zone.now - 7.days)
+        organization.update_attribute :positive_activity_date, Time.zone.now
+      end
+
       bar.increment!
     end
   end
