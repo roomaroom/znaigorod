@@ -52,7 +52,8 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def related_reviews
-    @related_reviews = relations.where(slave_type: 'Review')
+    similar_ids = similar.map(&:id)
+    @related_reviews = relations.where(slave_type: 'Review').delete_if { |review| similar_ids.include? review.slave.id }
   end
 
   def related_afishas
