@@ -10,6 +10,6 @@ namespace :sitemap do
   after 'deploy:create_symlink', 'sitemap:symlinks'
 end
 
-set :default_stage, 'production'
+#set :default_stage, 'production'
 
 set :shared_children, fetch(:shared_children) + %w[config/sape.yml sape public/yandex]
