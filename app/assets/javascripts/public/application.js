@@ -20,6 +20,7 @@
  * = require jquery.fileupload
  * = require tmpl.min
  * = require ./rianovosti
+ * = require ./city
  * = require autosuggest_handler
  * = require datetime_picker
  * = require file_upload
