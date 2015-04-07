@@ -16,10 +16,6 @@ every :monday, :at => '6:30 am' do
   rake 'generate_yandex_companies_xml_files'
 end
 
-every :sunday, :at => '6:30 am' do
-  rake 'organization:update_positive_activity_date'
-end
-
 # ------------------------------------------
 
 # everyday tasks
@@ -27,6 +23,7 @@ end
 every :day, :at => '3:00 am' do
   rake 'update_rating:all'
   rake 'social_likes'
+  rake 'organization:update_positive_activity_date'
 end
 
 every :day, :at => '6:30 am' do
