@@ -20,6 +20,7 @@ $ ->
   init_additional_info()
   init_login()
   init_back_to_top()
+  init_change_city()
   init_afisha_extend() if $('.afisha_show .photogallery').length
   init_main_page_reviews_toggler() if $('.reviews_main_page .reviews_toggler').length
   init_main_page_reviews_carousel() if $('.reviews_main_page .reviews_carousel').length

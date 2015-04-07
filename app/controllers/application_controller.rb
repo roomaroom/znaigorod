@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :banners, :hot_offers, :page, :per_page, :page_meta
+  helper_method :banners, :hot_offers, :page, :per_page, :page_meta, :current_city
 
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     render :partial => 'commons/social_auth', layout: false and return unless current_user
     redirect_to :back, :notice => "У вас не хватает прав для выполнения этого действия"
+  end
+
+  def current_city
+    request.original_url.include?('sevastopol'.downcase) ? 'Севастополь' : 'Томск'
   end
 
   private
