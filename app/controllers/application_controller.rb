@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :banners, :hot_offers, :page, :per_page, :page_meta, :current_city
+  helper_method :banners, :hot_offers, :page, :per_page, :page_meta, :cities
 
   before_filter :detect_robots_in_development if Rails.env.development?
   before_filter :update_account_last_visit_at
@@ -15,8 +15,11 @@ class ApplicationController < ActionController::Base
     redirect_to :back, :notice => "У вас не хватает прав для выполнения этого действия"
   end
 
-  def current_city
-    request.original_url.include?('sevastopol'.downcase) ? 'Севастополь' : 'Томск'
+  def cities
+    # cities.first - current
+    # cities.second - not current city. Sevastopol f.e
+
+    request.original_url.include?('sevastopol'.downcase) ? ['Севастополь', 'Томск'] : ['Томск', 'Севастополь']
   end
 
   private

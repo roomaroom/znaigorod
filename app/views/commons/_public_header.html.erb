@@ -1,8 +1,13 @@
 <div class='header_wrapper'>
   <div class='header'>
     <div class='logo'><a href='/'><%= t('meta.default.title') %></a></div>
-    <div class="select_city js-select-city">
-      <%= select_tag "city js-city", options_for_select([ "Томск", "Севастополь"], current_city) %>
+
+    <div class='city_selector'>
+      <%= link_to "#{cities.first} <span class='js-city-arrow'>&darr;</span>".html_safe, '#', class: 'current_city js-city-selector' %>
+
+      <div class='selector js-selector'>
+        <%= link_to "#{cities.second}", '#', data: { city: "#{cities.second.from_russian_to_param}" } %>
+      </div>
     </div>
 
     <a href='/webcams' title='Веб камеры Томска' class='webcams'>
