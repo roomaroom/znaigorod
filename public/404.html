@@ -17,9 +17,9 @@
     <div class="header">
       <div class="logo"><a href="/">Афиша Томска, заведения и мероприятия - ЗнайГород</a></div>
       <div class='select_city js-select-city'>
-        <select id="city_js-city" name="city js-city">
+        <select id="city_js-city" name="city js-city" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
           <option value="Томск" selected="selected">Томск</option>
-          <option value="Севастополь">Севастополь</option>
+          <option value="http://sevastopol.znaigorod.ru">Севастополь</option>
         </select>
       </div>
 
