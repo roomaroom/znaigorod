@@ -6,6 +6,7 @@
   <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
   <link href="/assets/public/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
 </head>
+
 <body class="error">
   <div class="promo_wrapper">
     <div class="promo">
@@ -15,7 +16,13 @@
   <div class="header_wrapper">
     <div class="header">
       <div class="logo"><a href="/">Афиша Томска, заведения и мероприятия - ЗнайГород</a></div>
-      <div class="tomsk"><a href="/">Томск</a></div>
+      <div class='select_city js-select-city'>
+        <select id="city_js-city" name="city js-city">
+          <option value="Томск" selected="selected">Томск</option>
+          <option value="Севастополь">Севастополь</option>
+        </select>
+      </div>
+
       <div class='main_menu'>
         <div class='search_form'>
           <form accept-charset="UTF-8" action="/search" method="get">
