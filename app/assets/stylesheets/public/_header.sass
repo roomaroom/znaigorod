@@ -21,11 +21,22 @@
         text-indent: -9999em
         background: transparent image_url('public/logo.png') no-repeat center center
 
-    .select_city
+    .city_selector
       font-size: 12px
       position: absolute
       left: 180px
-      top: 53px
+      top: 41px
+
+      .current_city
+        border-bottom: 1px dashed blue
+
+        &:hover
+          text-decoration: none
+
+      .selector
+        padding: 3px 0
+        display: none
+        z-index: 3
 
     .webcams
       background: #009999
@@ -35,7 +46,7 @@
       line-height: 26px
       padding: 0 0 0 10px
       position: absolute
-      top: 17px
+      top: 10px
       width: 120px
 
       &:after, &:before
