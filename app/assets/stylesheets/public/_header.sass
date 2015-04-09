@@ -21,22 +21,22 @@
         text-indent: -9999em
         background: transparent image_url('public/logo.png') no-repeat center center
 
-    .city_selector
+    .tomsk, .sevastopol
       font-size: 12px
       position: absolute
-      left: 180px
-      top: 41px
+      top: 22px
+      left: 197px
 
-      .current_city
-        border-bottom: 1px dashed blue
+      a
+        color: #000
+        border-bottom: 1px dashed #000
+
+        &:after
+          content: '\25be'
+          margin: 0 0 2px 3px
 
         &:hover
           text-decoration: none
-
-      .selector
-        padding: 3px 0
-        display: none
-        z-index: 3
 
     .webcams
       background: #009999
