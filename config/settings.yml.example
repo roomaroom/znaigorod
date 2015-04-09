@@ -4,6 +4,24 @@ app:
   port:                 8080
   url:                  http://host.name # without / at the end
 
+  city:                 sevastopol
+  city_ru:              Севастополь
+  region_ru:            Севастопольская область
+
+  #city:                 tomsk
+  #city_ru:              Томск
+  #region_ru:            Томская область
+
+  cookie:
+    key:                  '_session'
+
+  coords:
+    #latitude:           56.488611121111 # Tomsk
+    #longitude:          84.952222232222 # Tomsk
+
+    latitude:           44.616649 # Sevastopol
+    longitude:          33.52536 # Sevastopl
+
 solr:
   url:                  http://localhost:8982/solr
 
