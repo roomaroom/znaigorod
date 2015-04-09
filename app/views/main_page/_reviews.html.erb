@@ -62,7 +62,7 @@
 
       <div class='right'>
         <div class='last_reviews_header'>
-          <span class='title'><%= link_to t('meta.reviews.page_header'), reviews_path %></span>
+          <span class='title'><%= link_to t("meta.#{Settings['app.city']}.reviews.page_header"), reviews_path %></span>
           <span class='counter'><%= link_to "все #{MainPageReview.latest_reviews.total_count}", reviews_path %></span>
         </div>
         <div class='last_reviews_content'>

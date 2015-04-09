@@ -192,15 +192,15 @@ class DiscountsPresenter
   end
 
   def page_title
-    searcher_params[:kind].present? ? I18n.t("meta.discount.#{searcher_params[:kind]}.title") : I18n.t('meta.discount.title')
+    searcher_params[:kind].present? ? I18n.t("meta.#{Settings['app.city']}.discount.#{searcher_params[:kind]}.title") : I18n.t("meta.#{Settings['app.city']}.discount.title")
   end
 
   def meta_description
-    I18n.t("meta.discount.description", default: '')
+    I18n.t("meta.#{Settings['app.city']}.discount.description", default: '')
   end
 
   def meta_keywords
-    I18n.t("meta.discount.keywords", default: '')
+    I18n.t("meta.#{Settings['app.city']}.discount.keywords", default: '')
   end
 
   private

@@ -4,8 +4,8 @@
   ЗнайГород
 <% end %>
 
-<% content_for :meta_keywords, t('meta.account.keywords') %>
-<% content_for :meta_description, t('meta.account.description') %>
+<% content_for :meta_keywords, t("meta.#{Settings['app.city']}.account.keywords") %>
+<% content_for :meta_description, t("meta.#{Settings['app.city']}.account.description") %>
 
 <% content_for :extra_meta do %>
   <%= @account.tags_for_vk %>

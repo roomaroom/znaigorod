@@ -8,8 +8,8 @@
     <meta name='verify-reformal' content='de04fd7b8e7499f228171212' />
     <meta property='fb:app_id' content='131807160304776'/>
     <title><%= yield(:page_title).squish.html_safe %></title>
-    <meta name='keywords' content='<%= "#{yield(:meta_keywords)}, #{I18n.t('meta.default.keywords', :default => '')}".squish.html_safe %>' />
-    <meta name='description' content='<%= "#{yield(:meta_description)}. #{I18n.t('meta.default.description', :default => '')}".squish.html_safe %>' />
+    <meta name='keywords' content='<%= "#{yield(:meta_keywords)}, #{I18n.t("meta.#{Settings['app.city']}.default.keywords", :default => '')}".squish.html_safe %>' />
+    <meta name='description' content='<%= "#{yield(:meta_description)}. #{I18n.t("meta.#{Settings['app.city']}.default.description", :default => '')}".squish.html_safe %>' />
     <%= yield(:extra_meta) %>
     <%= favicon_link_tag %>
     <%= yield(:stylesheets) %>

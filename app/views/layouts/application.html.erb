@@ -11,21 +11,21 @@
     <% elsif content_for?(:page_title) %>
       <title><%= yield(:page_title).squish.html_safe %></title>
     <% else %>
-      <title><%= I18n.t('meta.default.title', :default => '').squish.html_safe %></title>
+      <title><%= I18n.t("meta.#{Settings['app.city']}.default.title", :default => '').squish.html_safe %></title>
     <% end %>
     <% if page_meta %>
       <meta name='keywords' content='<%= page_meta.keywords.squish.html_safe %>' />
     <% elsif content_for?(:meta_keywords) %>
       <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
     <% else %>
-      <meta name='keywords' content='<%= I18n.t('meta.default.keywords', :default => '').squish.html_safe %>' />
+      <meta name='keywords' content='<%= I18n.t("meta.#{Settings['app.city']}.default.keywords", :default => '').squish.html_safe %>' />
     <% end %>
     <% if page_meta %>
       <meta name='description' content='<%= page_meta.description.squish.html_safe %>' />
     <% elsif content_for?(:meta_description) %>
       <meta name='description' content='<%= yield(:meta_description) %>' />
     <% else %>
-      <meta name='description' content='<%= I18n.t('meta.default.description', :default => '').squish.html_safe %>' />
+      <meta name='description' content='<%= I18n.t("meta.#{Settings['app.city']}.default.description", :default => '').squish.html_safe %>' />
     <% end %>
     <% if content_for?(:meta_title) %>
       <meta name='title' content='<%= yield(:meta_title) %>' />

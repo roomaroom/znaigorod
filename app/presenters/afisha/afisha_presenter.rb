@@ -181,8 +181,8 @@ class AfishaPresenter
 
   def page_title
     title = ''
-    title += "#{I18n.t('meta.tickets.title')} " if has_tickets
-    title += I18n.t("meta.#{kind}.title")
+    title += "#{I18n.t("meta.#{Settings['app.city']}.tickets.title")} " if has_tickets
+    title += I18n.t("meta.#{Settings['app.city']}.#{kind}.title")
     title += " сегодня" if period_filter.period == 'today'
     title += " на этой неделе" if period_filter.period == 'week'
     title += " на выходных" if period_filter.period == 'weekend'
@@ -192,15 +192,15 @@ class AfishaPresenter
 
   def meta_description
     "".tap do |str|
-      str << I18n.t('meta.tickets.description') if has_tickets
-      str << I18n.t("meta.#{kind}.description", default: '')
+      str << I18n.t("meta.#{Settings['app.city']}.tickets.description") if has_tickets
+      str << I18n.t("meta.#{Settings['app.city']}.#{kind}.description", default: '')
     end
   end
 
   def meta_keywords
     "".tap do |str|
-      str << I18n.t('meta.tickets.keywords') if has_tickets
-      str << I18n.t("meta.#{kind}.keywords", default: '')
+      str << I18n.t("meta.#{Settings['app.city']}.tickets.keywords") if has_tickets
+      str << I18n.t("meta.#{Settings['app.city']}.#{kind}.keywords", default: '')
     end
   end
 

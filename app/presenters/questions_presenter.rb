@@ -144,15 +144,15 @@ class QuestionsPresenter
   end
 
   def page_title
-    searcher_params[:category].present? ? I18n.t("meta.reviews.#{searcher_params[:category]}.title") : I18n.t('meta.reviews.title')
+    searcher_params[:category].present? ? I18n.t("meta.#{Settings['app.city']}.reviews.#{searcher_params[:category]}.title") : I18n.t("meta.#{Settings['app.city']}.reviews.title")
   end
 
   def meta_description
-    I18n.t("meta.reviews.description", default: '')
+    I18n.t("meta.#{Settings['app.city']}.reviews.description", default: '')
   end
 
   def meta_keywords
-    I18n.t("meta.reviews.keywords", default: '')
+    I18n.t("meta.#{Settings['app.city']}.reviews.keywords", default: '')
   end
 
   private

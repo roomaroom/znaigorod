@@ -95,6 +95,6 @@
 
 <% if @layout_name == 'public' %>
   <div class='introduction'>
-    <%= t('meta.webcams.introduction', :default => '').as_html %>
+    <%= t("meta.#{Settings['app.city']}.webcams.introduction", :default => '').as_html %>
   </div>
 <% end %>

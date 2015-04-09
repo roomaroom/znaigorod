@@ -1,6 +1,6 @@
 <div class="webcams_main_page_list">
   <div class="filter_header">
-    <h2><%= link_to t('meta.webcams.page_header'), webcams_path %></h2>
+    <h2><%= link_to t("meta.#{Settings['app.city']}.webcams.page_header"), webcams_path %></h2>
   </div>
 
   <% cache('main_page_webcams', :expires_in => 10.minutes) do %>

@@ -1,6 +1,6 @@
 <div class="accounts_main_page_list">
   <div class="filter_header">
-    <h2><%= link_to t('meta.account.page_header'), accounts_path %></h2>
+    <h2><%= link_to t("meta.#{Settings['app.city']}.account.page_header"), accounts_path %></h2>
   </div>
 
   <% cache('main_page_accounts', :expires_in => 10.minutes) do %>

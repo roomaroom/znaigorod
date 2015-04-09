@@ -39,8 +39,8 @@
   <div class='introduction suborganization'>
     <%= page_meta.html_introduction %>
   </div>
-<% elsif t("meta.#{@presenter.selected_category}.introduction", default: '').present? %>
+<% elsif t("meta.#{Settings['app.city']}.#{@presenter.selected_category}.introduction", default: '').present? %>
   <div class='introduction suborganization'>
-    <%= t("meta.#{@presenter.selected_category}.introduction").as_html %>
+    <%= t("meta.#{Settings['app.city']}.#{@presenter.selected_category}.introduction").as_html %>
   </div>
 <% end %>

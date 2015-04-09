@@ -1,7 +1,7 @@
 <%= form_tag saunas_path, :method => :get do %>
   <div class='advanced <%= (params[:utf8].present? && !params[:search_query]) ? 'opened' : 'closed' %>'>
     <div class='introduction'>
-      <%= t('meta.saunas.introduction').as_html %>
+      <%= t("meta.#{Settings['app.city']}.saunas.introduction").as_html %>
     </div>
 
     <%= hidden_field_tag :order_by, @presenter.order_by %>
