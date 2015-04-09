@@ -1,0 +1,9 @@
+<% unless Time.zone.now > Time.zone.parse ('01.01.2001') %>
+  <div class="new_feature">
+    <div class='top_headline banner js-banner'>
+      <%= link_to 'http://неделябизнеса.рф', target: '_blank' do %>
+        <%= image_tag 'public/banners/banner_business.jpg', :size => '1200x92', :alt => 'Неделя Бизнеса' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
