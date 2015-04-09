@@ -1,2 +1,2 @@
 require 'whenever/capistrano'
-set :branch, 'tomsk'
+#set :branch, 'tomsk'
