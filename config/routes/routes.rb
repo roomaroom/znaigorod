@@ -126,7 +126,9 @@ Znaigorod::Application.routes.draw do
 
   get '/link_counters/create' => 'link_counters#create'
 
-  get '/:id' => 'map_projects#show', as: 'map_project_show', :constraints => {:id => Regexp.new(MapProject.all.map(&:slug).join('|'))}
+  if Settings['app.city'] == 'tomsk'
+    get '/:id' => 'map_projects#show', as: 'map_project_show', :constraints => {:id => Regexp.new(MapProject.all.map(&:slug).join('|'))}
+  end
 
   resources :teasers, only: [:show]
 
