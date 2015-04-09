@@ -7,13 +7,13 @@
 <% end %>
 
 <%= render :partial => 'reviews' %>
-<%= render :partial => 'news' %>
+<%= render :partial => 'news' if Settings['app.city'] == 'tomsk' %>
 <%= render :partial => 'organizations' %>
 <%= render :partial => 'afisha' %>
 <%= render :partial => 'photogalleries' %>
 <%= render :partial => 'discounts' %>
 <%= render :partial => 'accounts' %>
-<%= render :partial => 'webcams' %>
+<%= render :partial => 'webcams' if Settings['app.city'] == 'tomsk' %>
 
 <% if page_meta %>
   <div class='introduction'>
