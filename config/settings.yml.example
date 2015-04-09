@@ -7,10 +7,12 @@ app:
   city:                 sevastopol
   city_ru:              Севастополь
   region_ru:            Севастопольская область
+  timezone:             Moscow
 
   #city:                 tomsk
   #city_ru:              Томск
   #region_ru:            Томская область
+  #timezone:             Novosibirsk
 
   cookie:
     key:                  '_session'
