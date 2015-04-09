@@ -32,8 +32,8 @@
 
   $.fn.draw_affiche_map = (link, coordinates) ->
     $map = $(this)
-    latitude = coordinates.latitude || '56.488611121111'
-    longitude = coordinates.longitude || '84.952222232222'
+    latitude = coordinates.latitude || $('.map_coords').attr('data-latitude')
+    longitude = coordinates.longitude || $('.map_coords').attr('data-longitude')
 
     map = new ymaps.Map $map[0],
       center: [latitude, longitude]

@@ -10,6 +10,8 @@
       </a>
     <% end %>
 
+    <span class='map_coords' data-latitude="<%= Settings['app.coords.latitude'] %>" data-longitude="<%= Settings['app.coords.longitude'] %>"></span>
+
     <!--noindex-->
     <div class='dashboard'>
       <% if user_signed_in? %>

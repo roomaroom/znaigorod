@@ -9,7 +9,7 @@
 <div class="map_project_wrapper">
   <%= render :partial => 'map_layers', :locals => { :map_project => @map_project} %>
   <div class="right">
-    <div class="map_project_map" data-latitude='56.493246' data-longitude='84.982112'></div>
+    <div class="map_project_map" data-latitude="<%= Settings['app.coords.latitude'] %>" data-longitude="<%= Settings['app.coords.longitude'] %>"></div>
   </div>
   <div style="clear:both"> </div>
   <div class="placemarks_list">

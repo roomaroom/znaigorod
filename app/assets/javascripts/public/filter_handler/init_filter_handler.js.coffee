@@ -1,7 +1,7 @@
 get_coordinates = () ->
   coords = {}
-  coords['lat'] = 56.484605
-  coords['lon'] = 84.948128
+  coords['lat'] = $('.map_coords').attr('data-latitude')
+  coords['lon'] = $('.map_coords').attr('data-longitude')
   coords['radius'] = 11
   coords['title']  = 'Ваше местоположение'
   if $('#geo').hasClass('used')

@@ -56,7 +56,7 @@
     $map = $('.suborganizations_map_wrapper .map')
     menu_width = if $('.tree').length then $('.tree').width() else $('.list_view_organization_list').width()
     map = new ymaps.Map $map[0],
-      center: [56.4800670145844, 84.95244759591]
+      center: [$('.map_coords').attr('data-latitude'), $('.map_coords').attr('data-longitude')]
       zoom: 12
       behaviors: ['drag', 'scrollZoom']
       controls: []

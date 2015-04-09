@@ -19,7 +19,7 @@
               <%= render :partial => 'map_placemark', :locals => { :map_layer => @map_layer ? @map_layer : map_placemark.map_layers.first, :map_placemark => map_placemark } %>
             <% end %>
           </div>
-          <div class='map' data-latitude='56.493246' data-longitude='84.982112'></div>
+          <div class='map' data-latitude="<%= Settings['app.coords.latitude'] %>" data-longitude="<%= Settings['app.coords.longitude'] %>"></div>
         </div>
         <% if page_meta %>
           <div class='introduction'>

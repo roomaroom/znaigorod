@@ -35,8 +35,8 @@ $.fn.draw_organization_map = () ->
   $map = $(this)
   latitude_field = $('#organization_address_attributes_latitude')
   longitude_field = $('#organization_address_attributes_longitude')
-  latitude = latitude_field.val() || '56.488611121111'
-  longitude = longitude_field.val() || '84.952222232222'
+  latitude = latitude_field.val() || $('.map_coords').attr('data-latitude')
+  longitude = longitude_field.val() || $('.map_coords').attr('data-longitude')
 
   map = new ymaps.Map $map[0],
     center: [latitude, longitude]
