@@ -1,12 +1,14 @@
 <div class='header_wrapper'>
   <div class='header'>
-    <div class='logo'><a href='/'><%= t('meta.default.title') %></a></div>
+    <div class='logo'><a href='/'><%= t("meta.#{Settings['app.city']}.default.title") %></a></div>
     <div class="<%= Settings['app.city'] %>"><%= Settings['app.city_ru'] %></div>
 
-    <a href='/webcams' title='Веб камеры Томска' class='webcams'>
-      Веб камеры
-      <span class="webcam-icon"></span>
-    </a>
+    <% if Settings['app.city'] == 'tomsk' %>
+      <a href='/webcams' title='Веб камеры Томска' class='webcams'>
+        Веб камеры
+        <span class="webcam-icon"></span>
+      </a>
+    <% end %>
 
     <!--noindex-->
     <div class='dashboard'>
