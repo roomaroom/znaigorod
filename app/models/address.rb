@@ -7,8 +7,8 @@ class Address < ActiveRecord::Base
 
   validates_presence_of :street, :house
 
-  default_value_for :region, 'Томская область'
-  default_value_for :city,   'Томск'
+  default_value_for :region, Settings['app.region_ru']
+  default_value_for :city, Settings['app.city_ru']
 
   def to_s
     return "" if street.blank? && house.blank?
