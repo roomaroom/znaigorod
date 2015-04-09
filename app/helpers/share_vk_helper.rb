@@ -20,9 +20,9 @@ module ShareVkHelper
   def vk_meta(item, url, img_path)
     image = image_direct_url(img_path)
     res = ""
-    res << "<meta property='og:description' content='#{I18n.t("meta.#{item}.description")}'/>\n"
-    res << "<meta property='og:site_name' content='#{I18n.t('meta.default.title')}' />\n"
-    res << "<meta property='og:title' content='#{I18n.t("meta.#{item}.title")}' />\n"
+    res << "<meta property='og:description' content='#{I18n.t("meta.#{Settings['app.city']}.#{item}.description")}'/>\n"
+    res << "<meta property='og:site_name' content='#{I18n.t("meta.#{Settings['app.city']}.default.title")}' />\n"
+    res << "<meta property='og:title' content='#{I18n.t("meta.#{Settings['app.city']}.#{item}.title")}' />\n"
     res << "<meta property='og:url' content='#{url}' />\n"
     res << "<meta property='og:image' content='#{image}' />\n"
     res << "<link rel='image_src' href='#{image}' />\n"

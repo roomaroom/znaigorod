@@ -1,8 +1,8 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.1/?load=package.full&lang=ru-RU') %>
 
-<% content_for :page_title, t('meta.saunas.title') %>
-<% content_for :meta_keywords, t('meta.saunas.keywords') %>
-<% content_for :meta_description, t('meta.saunas.description') %>
+<% content_for :page_title, t("meta.#{Settings['app.city']}.saunas.title") %>
+<% content_for :meta_keywords, t("meta.#{Settings['app.city']}.saunas.keywords") %>
+<% content_for :meta_description, t("meta.#{Settings['app.city']}.saunas.description") %>
 <% content_for :extra_meta do %>
   <%= render :partial => 'commons/page_meta_og' %>
 <% end if page_meta %>
@@ -36,9 +36,9 @@
   <div class='introduction suborganization'>
     <%= page_meta.html_introduction %>
   </div>
-<% elsif t("meta.#{category}.introduction", default: '').present? %>
+<% elsif t("meta.#{Settings['app.city']}.#{category}.introduction", default: '').present? %>
   <div class='introduction subroagnzation'>
-    <%= t("meta.#{category}.introduction").as_html %>
+    <%= t("meta.#{Settings['app.city']}.#{category}.introduction").as_html %>
   </div>
 <% end %>
 

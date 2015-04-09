@@ -172,15 +172,15 @@ class AccountsPresenter
 
   def page_title
     if gender_filter.used?
-      I18n.t("meta.account.#{gender_filter.gender}.title")
+      I18n.t("meta.#{Settings['app.city']}.account.#{gender_filter.gender}.title")
     else
-      I18n.t('meta.account.title')
+      I18n.t("meta.#{Settings['app.city']}.account.title")
     end
 
     if category_filter.used?
-      I18n.t("meta.account.#{category_filter.category}.title")
+      I18n.t("meta.#{Settings['app.city']}.account.#{category_filter.category}.title")
     else
-      I18n.t('meta.account.title')
+      I18n.t("meta.#{Settings['app.city']}.account.title")
     end
   end
 

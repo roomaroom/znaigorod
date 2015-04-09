@@ -18,9 +18,9 @@
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% elsif @presenter.categories_filter.selected.empty? %>
-      <h1><%= t('meta.afisha.page_header') %></h1>
+      <h1><%= t("meta.#{Settings['app.city']}.afisha.page_header") %></h1>
     <% else %>
-      <h1><%= t("meta.#{@presenter.categories_filter.selected.first.pluralize}.page_header") %></h1>
+      <h1><%= t("meta.#{Settings['app.city']}.#{@presenter.categories_filter.selected.first.pluralize}.page_header") %></h1>
     <% end %>
   </div>
 
@@ -53,9 +53,9 @@
     <div class='introduction green'>
       <%= page_meta.html_introduction %>
     </div>
-  <% elsif !t("meta.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
+  <% elsif !t("meta.#{Settings['app.city']}.#{@presenter.kind}.introduction", default: '').blank? || @presenter.has_tickets %>
     <div class='introduction green'>
-      <%= t("meta.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
+      <%= t("meta.#{Settings['app.city']}.#{@presenter.has_tickets ? 'tickets' : @presenter.kind}.introduction").as_html %>
     </div>
   <% end %>
 </div>

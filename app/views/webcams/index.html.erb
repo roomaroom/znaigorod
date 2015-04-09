@@ -1,8 +1,8 @@
 <% content_for :yandex_map_scripts, javascript_include_tag('http://api-maps.yandex.ru/2.0.34/?load=package.full&lang=ru-RU') %>
 
-<% content_for :page_title, t('meta.webcams.title') %>
-<% content_for :meta_keywords, t('meta.webcams.keywords') %>
-<% content_for :meta_description, t('meta.webcams.description') %>
+<% content_for :page_title, t("meta.#{Settings['app.city']}.webcams.title") %>
+<% content_for :meta_keywords, t("meta.#{Settings['app.city']}.webcams.keywords") %>
+<% content_for :meta_description, t("meta.#{Settings['app.city']}.webcams.description") %>
 
 <% content_for :extra_meta do %>
   <meta property='og:site_name' content='Афиша Томска, кафе, рестораны, бары, сауны, театры, клубы, знакомства - ЗнайГород' />
@@ -22,7 +22,7 @@
 <div class='webcams'>
 
   <div class='clearfix'>
-    <h1><%= t('meta.webcams.page_header') %></h1>
+    <h1><%= t("meta.#{Settings['app.city']}.webcams.page_header") %></h1>
     <div class='add_webcam'>
       <a href='#' class='button'>Добавить веб-камеру</a>
       <div class='instruction'>
@@ -91,5 +91,5 @@
 </div>
 
 <div class='introduction'>
-  <%= t('meta.webcams.introduction', :default => '').as_html %>
+  <%= t("meta.#{Settings['app.city']}.webcams.introduction", :default => '').as_html %>
 </div>

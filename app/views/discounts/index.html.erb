@@ -18,7 +18,7 @@
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% else %>
-      <h1><%= t('meta.discount.page_header') %></h1>
+      <h1><%= t("meta.#{Settings['app.city']}.discount.page_header") %></h1>
     <% end %>
   </div>
 
@@ -58,7 +58,7 @@
     <% if page_meta %>
       <%= page_meta.html_introduction %>
     <% else %>
-      <%= t("meta.discount.introduction").as_html %>
+      <%= t("meta.#{Settings['app.city']}.discount.introduction").as_html %>
     <% end %>
   </div>
 </div>

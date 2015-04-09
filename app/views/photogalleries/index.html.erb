@@ -9,7 +9,7 @@
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% else %>
-      <h1><%= t('meta.photogalleries.page_header') %></h1>
+      <h1><%= t("meta.#{Settings['app.city']}.photogalleries.page_header") %></h1>
     <% end %>
   </div>
 </div>

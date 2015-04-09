@@ -5,7 +5,7 @@
     <% if page_meta %>
       <h1><%= page_meta.header.squish.html_safe %></h1>
     <% else %>
-      <h1><%= t('meta.reviews.page_header') %></h1>
+      <h1><%= t("meta.#{Settings['app.city']}.reviews.page_header") %></h1>
     <% end %>
   </div>
 
