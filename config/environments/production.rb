@@ -54,6 +54,7 @@ Znaigorod::Application.configure do
     mailer/ink.css
     mailer/notice_layout.css
     teasers/*.css
+    public/rianovosti/*
   ]
 
   # some magic for Roadie. see https://github.com/Mange/roadie/issues/15 && 18
