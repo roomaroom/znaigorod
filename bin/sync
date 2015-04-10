@@ -6,10 +6,10 @@ ENDCOLOR="\033[0m"
 echo -e "$COLOR-> rake db:drop & db:create $ENDCOLOR"
 bin/rake db:drop db:create
 
-echo -e "$COLOR-> cap db:pull $ENDCOLOR"
+echo -e "$COLOR-> cap $1 db:pull $ENDCOLOR"
 yes | bin/cap $1 db:pull
 echo -e "$COLOR-> rake db:migrate $ENDCOLOR"
 bin/rake db:migrate
 
-echo -e "$COLOR-> cap sunspot:pull $ENDCOLOR"
+echo -e "$COLOR-> cap $1 sunspot:pull $ENDCOLOR"
 bin/cap $1 sunspot:pull

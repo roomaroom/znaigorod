@@ -26,7 +26,7 @@
       <p>Этот пост связан с</p>
 
       <div class='sticky_elements'>
-        <% @review.relations.each do |item| %>
+        <% @review.relations.delete_if { |item| item.slave.blank? }.each do |item| %>
           <div class="element">
             <% if item.slave.is_a? Afisha %>
               <%= link_to item.slave.title.truncate(30), afisha_show_path(item.slave), :target => '_blank' %>
