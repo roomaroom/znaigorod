@@ -1,7 +1,6 @@
 require File.expand_path('../directories.rb', __FILE__)
 
-require 'configliere'
-Settings.read('config/settings.yml')
+tomsk = true
 
 dir = Directories.new
 
@@ -11,7 +10,7 @@ else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
 
-if Settings['app.city'] == 'tomsk'
+if tomsk
   # ------------------------------------------
 
   # tasks run one time at week
