@@ -25,7 +25,7 @@ class MyMailer < ActionMailer::Base
 
   def mail_new_published_review(review)
     @review = review
-    mail(:to => Settings['mail']['to_afisha'], :subject => 'В ЗнайГород опубликован новый обзор')
+    mail(:to => Settings['mail']['to_obzor'], :subject => 'В ЗнайГород опубликован новый обзор')
   end
 
   def mail_new_answer(answer)
