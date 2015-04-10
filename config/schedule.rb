@@ -1,16 +1,14 @@
 require File.expand_path('../directories.rb', __FILE__)
-
 require 'configliere'
-Settings.read('config/settings.yml')
 
 dir = Directories.new
+Settings.read(File.expand_path('../settings.yml', __FILE__))
 
 if RUBY_PLATFORM =~ /freebsd/
   set :job_template, "/usr/local/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 else
   set :job_template, "/bin/bash -l -i -c ':job' 1>#{dir.log('schedule.log')} 2>#{dir.log('schedule-errors.log')}"
 end
-
 if Settings['app.city'] == 'tomsk'
   # ------------------------------------------
 
@@ -70,7 +68,7 @@ if Settings['app.city'] == 'tomsk'
 
   # ------------------------------------------
 
-  # Commended for future
+  # Commented for future
 
   #every :thursday, :at => '8:00 am' do
   #rake 'send_digest:site'
